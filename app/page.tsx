@@ -12,46 +12,6 @@ export default function Home() {
       <section className="space-y-10">
         <h2 className="text-xl font-semibold">Button</h2>
 
-        <DocsComponent
-          title="Loading"
-          description="Passe a prop isLoading para indicar que uma ação está em progresso. Use loadingText para alterar o texto durante o carregamento."
-        >
-          <Button isLoading loadingText="Enviando">
-            Enviar
-          </Button>
-
-          <Button isLoading variant="secondary">
-            Salvando
-          </Button>
-        </DocsComponent>
-
-        <DocsComponent
-          title="Icons"
-          description="Utilize startContent e endContent para reforçar ações visuais comuns, como navegação ou ações frequentes."
-        >
-          <Button startContent={<span>🚀</span>}>Ação principal</Button>
-
-          <Button endContent={<span>👉</span>}>Continuar</Button>
-
-          <Button
-            isIconOnly
-            aria-label="Excluir"
-            variant="ghost"
-            startContent={<span>🗑️</span>}
-          />
-        </DocsComponent>
-
-        <DocsComponent
-          title="Variants"
-          description="Diferentes variantes visuais para representar hierarquia e intenção da ação."
-        >
-          <Button>Primary</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="destructive">Delete</Button>
-        </DocsComponent>
-
         <CodeBlock
           code={buttonCode}
           componentName="button.tsx"
@@ -64,6 +24,91 @@ export default function Home() {
           componentName="globals.css"
           language="css"
           description="Tokens e estilos globais usados pelo Button."
+        />
+
+        <DocsComponent
+          title="Loading"
+          description="Passe a prop isLoading para indicar que uma ação está em progresso."
+          preview={
+            <div className="flex gap-4 flex-wrap">
+              <Button isLoading loadingText="Enviando">
+                Enviar
+              </Button>
+              <Button isLoading variant="secondary">
+                Salvando
+              </Button>
+            </div>
+          }
+          code={
+            <CodeBlock
+              code={buttonCode}
+              componentName="button.tsx"
+              description="Implementação principal do componente Button."
+              tags={["React", "Tailwind", "Accessibility"]}
+            />
+          }
+        />
+
+        <DocsComponent
+          title="Icons"
+          description="Utilize startContent e endContent para reforçar ações visuais comuns, como navegação ou ações frequentes."
+          preview={
+            <div className="flex gap-4 flex-wrap">
+              <Button startContent={<span>🚀</span>}>Ação principal</Button>
+              <Button endContent={<span>👉</span>}>Continuar</Button>
+              <Button
+                isIconOnly
+                aria-label="Excluir"
+                variant="ghost"
+                startContent={<span>🗑️</span>}
+              />
+            </div>
+          }
+          code={
+            <CodeBlock
+              code={`
+<Button startContent={<span>🚀</span>}>Ação principal</Button>
+<Button endContent={<span>👉</span>}>Continuar</Button>
+<Button
+  isIconOnly
+  aria-label="Excluir"
+  variant="ghost"
+  startContent={<span>🗑️</span>}
+/>
+      `}
+              componentName="button.tsx"
+              description="Exemplos de botões com ícones."
+              tags={["React", "Tailwind"]}
+            />
+          }
+        />
+
+        <DocsComponent
+          title="Variants"
+          description="Diferentes variantes visuais para representar hierarquia e intenção da ação."
+          preview={
+            <div className="flex gap-4 flex-wrap">
+              <Button>Primary</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost">Ghost</Button>
+              <Button variant="destructive">Delete</Button>
+            </div>
+          }
+          code={
+            <CodeBlock
+              code={`
+<Button>Primary</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="destructive">Delete</Button>
+      `}
+              componentName="button.tsx"
+              description="Exemplos das diferentes variantes visuais do Button."
+              tags={["React", "Tailwind"]}
+            />
+          }
         />
       </section>
     </main>
