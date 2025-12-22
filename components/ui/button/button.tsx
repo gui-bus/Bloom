@@ -1,3 +1,4 @@
+"use client";
 //#region Imports
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
@@ -7,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 //#region Variants
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "relative overflow-hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -28,6 +29,9 @@ const buttonVariants = cva(
         lg: "h-12 px-6 text-base",
         icon: "h-10 w-10 p-0",
       },
+      fullWidth: {
+        true: "w-full",
+      },
     },
     defaultVariants: {
       variant: "primary",
@@ -45,6 +49,9 @@ export interface ButtonProps
   isLoading?: boolean;
   loadingText?: string;
   isDisabled?: boolean;
+  disableRipple?: boolean;
+  disableScale?: boolean;
+  iconOnly?: boolean;
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
 }
@@ -57,14 +64,20 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       variant,
       size,
+      fullWidth,
       asChild = false,
       isLoading = false,
       loadingText,
       isDisabled = false,
+      disableRipple = false,
+      disableScale = false,
+      iconOnly = false,
       startContent,
       endContent,
       disabled,
       children,
+      onClick,
+      type,
       ...props
     },
     ref
@@ -72,17 +85,55 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     const isButtonDisabled = disabled || isDisabled || isLoading;
 
+    // A11y guard para iconOnly
+    if (iconOnly && !props["aria-label"]) {
+      console.warn(
+        "Button with iconOnly=true requires an aria-label for accessibility."
+      );
+    }
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (isButtonDisabled) return;
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (!disableRipple && !prefersReducedMotion) {
+        const button = e.currentTarget;
+        const rect = button.getBoundingClientRect();
+
+        const ripple = document.createElement("span");
+        const rippleSize = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - rippleSize / 2;
+        const y = e.clientY - rect.top - rippleSize / 2;
+
+        ripple.className = "ripple";
+        ripple.style.width = ripple.style.height = `${rippleSize}px`;
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+
+        button.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      }
+
+      onClick?.(e);
+    };
+
     return (
       <Comp
         ref={ref}
+        type={type ?? "button"}
         disabled={isButtonDisabled}
         aria-disabled={isButtonDisabled}
         data-variant={variant}
         data-size={size}
+        onClick={handleClick}
         className={cn(
-          buttonVariants({ variant, size }),
-          !isButtonDisabled && "active:scale-[0.98]",
+          buttonVariants({ variant, size, fullWidth }),
+          !disableScale && !isButtonDisabled && "active:scale-[0.98]",
           isButtonDisabled && "cursor-not-allowed",
+          iconOnly && "p-0",
           className
         )}
         {...props}
@@ -103,7 +154,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               <span className="flex items-center">{startContent}</span>
             )}
 
-            {children && <span className="whitespace-nowrap">{children}</span>}
+            {!iconOnly && children && (
+              <span className="whitespace-nowrap">{children}</span>
+            )}
 
             {endContent && (
               <span className="flex items-center">{endContent}</span>

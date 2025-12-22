@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import "highlight.js/styles/atom-one-dark.css";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
