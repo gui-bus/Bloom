@@ -1,8 +1,10 @@
-import { DocsComponent } from "@/components/core/docsComponent";
+//#region Imports
 import { CodeBlock } from "@/components/core/codeBlock";
+import { DocsComponent } from "@/components/core/docsComponent";
 import { Button } from "@/components/ui/button/button";
 import { buttonCode } from "@/components/ui/button/button.code";
 import { buttonCSSCode } from "@/components/ui/button/button.css.code";
+//#endregion
 
 export default function Home() {
   return (
@@ -32,7 +34,7 @@ export default function Home() {
           <Button endContent={<span>👉</span>}>Continuar</Button>
 
           <Button
-            iconOnly
+            isIconOnly
             aria-label="Excluir"
             variant="ghost"
             startContent={<span>🗑️</span>}

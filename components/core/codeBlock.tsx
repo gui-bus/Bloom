@@ -1,63 +1,64 @@
 "use client";
-
+//#region Imports
 import hljs from "highlight.js";
 import { useEffect, useRef, useState } from "react";
-import { Button } from "../ui/button/button";
+import { Button } from "@/components/ui/button/button";
 
+//#endregion
+
+//#region Interfaces
 interface CodeBlockProps {
-  /** Código a ser exibido */
   code: string;
-
-  /** Nome do arquivo ou do exemplo (ex: Button.tsx) */
   componentName: string;
-
-  /** Descrição curta explicando o propósito do exemplo */
   description?: string;
-
-  /** Linguagem usada pelo highlight.js */
   language?: "typescript" | "css";
-
-  /** Rótulo exibido no header (ex: Button.tsx, styles.css, Example) */
-  languageLabel?: string;
-
-  /** Tags informativas para documentação */
   tags?: string[];
-
-  /** Controla exibição do botão de copiar */
   showCopy?: boolean;
+  maxHeight?: number;
 }
+//#endregion
 
 export function CodeBlock({
   code,
   componentName,
   description,
   language = "typescript",
-  languageLabel,
   tags,
   showCopy = true,
+  maxHeight = 280,
 }: CodeBlockProps) {
+  //#region Hooks
   const codeRef = useRef<HTMLElement>(null);
-  const [copied, setCopied] = useState(false);
+  //#endregion
 
+  //#region States
+  const [copied, setCopied] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  //#endregion
+
+  //#region Effects
   useEffect(() => {
     if (codeRef.current) {
       hljs.highlightElement(codeRef.current);
     }
-  }, [code]);
+  }, []);
+  //#endregion
 
+  //#region Handlers
   function handleCopy() {
     navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   }
+  //#endregion
 
   return (
     <div className="relative bg-[#282a36] rounded-3xl p-5">
-      {/* Header */}
+      {/* HEADER */}
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between gap-5">
           <span className="text-sm font-medium text-white">
-            {languageLabel ?? componentName}
+            {componentName}
           </span>
 
           {showCopy && (
@@ -67,14 +68,10 @@ export function CodeBlock({
           )}
         </div>
 
-        {/* Description */}
         {description && (
-          <p className="text-sm text-white/70 max-w-[90%]">
-            {description}
-          </p>
+          <p className="text-sm text-white/70 max-w-[90%]">{description}</p>
         )}
 
-        {/* Tags */}
         {tags && tags.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => (
@@ -89,18 +86,38 @@ export function CodeBlock({
         )}
       </div>
 
-      {/* Code */}
-      <pre
-        className="mt-4 rounded-3xl text-sm overflow-hidden"
-        aria-label={`Código do exemplo ${componentName}`}
-      >
-        <code
-          ref={codeRef}
-          className={`language-${language} whitespace-pre-wrap`}
+      {/* CODE CONTAINER */}
+      <div className="relative mt-4">
+        <pre
+          className="rounded-3xl text-sm overflow-hidden transition-all duration-300"
+          style={{
+            maxHeight: isExpanded ? "none" : `${maxHeight}px`,
+          }}
         >
-          {code}
-        </code>
-      </pre>
+          <code
+            ref={codeRef}
+            className={`language-${language} whitespace-pre-wrap`}
+          >
+            {code}
+          </code>
+        </pre>
+
+        {/* GRADIENT OVERLAY */}
+        {!isExpanded && (
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 rounded-b-3xl bg-linear-to-t from-[#282a36] to-transparent" />
+        )}
+      </div>
+
+      {/* TOGGLE */}
+      <div className="mt-3 flex justify-center">
+        <button
+          type="button"
+          onClick={() => setIsExpanded((prev) => !prev)}
+          className="text-xs text-white/70 hover:text-white transition"
+        >
+          {isExpanded ? "Mostrar menos" : "Mostrar mais"}
+        </button>
+      </div>
     </div>
   );
 }

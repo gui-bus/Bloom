@@ -1,9 +1,10 @@
 "use client";
 //#region Imports
-import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "@/lib/utils";
+
 //#endregion
 
 //#region Variants
@@ -51,7 +52,7 @@ export interface ButtonProps
   isDisabled?: boolean;
   disableRipple?: boolean;
   disableScale?: boolean;
-  iconOnly?: boolean;
+  isIconOnly?: boolean;
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
 }
@@ -71,7 +72,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       isDisabled = false,
       disableRipple = false,
       disableScale = false,
-      iconOnly = false,
+      isIconOnly = false,
       startContent,
       endContent,
       disabled,
@@ -85,10 +86,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     const isButtonDisabled = disabled || isDisabled || isLoading;
 
-    // A11y guard para iconOnly
-    if (iconOnly && !props["aria-label"]) {
+    // A11y guard para isIconOnly
+    if (isIconOnly && !props["aria-label"]) {
       console.warn(
-        "Button with iconOnly=true requires an aria-label for accessibility."
+        "Button with isIconOnly=true requires an aria-label for accessibility."
       );
     }
 
@@ -133,7 +134,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           buttonVariants({ variant, size, fullWidth }),
           !disableScale && !isButtonDisabled && "active:scale-[0.98]",
           isButtonDisabled && "cursor-not-allowed",
-          iconOnly && "p-0",
+          isIconOnly && "p-0 aspect-square",
           className
         )}
         {...props}
@@ -154,7 +155,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               <span className="flex items-center">{startContent}</span>
             )}
 
-            {!iconOnly && children && (
+            {!isIconOnly && children && (
               <span className="whitespace-nowrap">{children}</span>
             )}
 
