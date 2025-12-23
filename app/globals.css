@@ -124,6 +124,16 @@
   }
 }
 
+@layer utilities {
+  .tabs-custom {
+    &[data-state="active"] {
+      background-color: var(--tabs-active-bg);
+      border-color: var(--tabs-active-border);
+      color: var(--tabs-active-text);
+    }
+  }
+}
+
 @keyframes ripple {
   to {
     transform: scale(4);

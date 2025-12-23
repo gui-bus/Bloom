@@ -1,5 +1,6 @@
 "use client";
 //#region Imports
+import { Icon } from "@iconify/react";
 import hljs from "highlight.js";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button/button";
@@ -9,7 +10,7 @@ import { Button } from "@/components/ui/button/button";
 //#region Interfaces
 interface CodeBlockProps {
   code: string;
-  componentName: string;
+  componentName?: string;
   description?: string;
   language?: "typescript" | "css";
   tags?: string[];
@@ -31,20 +32,33 @@ export function CodeBlock({
   const codeRef = useRef<HTMLElement>(null);
   //#endregion
 
-  //#region States
+  //#region useStates
   const [copied, setCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [hasOverflow, setHasOverflow] = useState(false);
   //#endregion
 
-  //#region Effects
+  //#region useEffects
   useEffect(() => {
     if (codeRef.current) {
       hljs.highlightElement(codeRef.current);
     }
   }, []);
+
+  useEffect(() => {
+    if (!codeRef.current) return;
+
+    hljs.highlightElement(codeRef.current);
+
+    const pre = codeRef.current.parentElement;
+    if (!pre) return;
+
+    const hasOverflow = pre.scrollHeight > maxHeight;
+    setHasOverflow(hasOverflow);
+  }, [maxHeight]);
   //#endregion
 
-  //#region Handlers
+  //#region Handle functions
   function handleCopy() {
     navigator.clipboard.writeText(code);
     setCopied(true);
@@ -52,17 +66,41 @@ export function CodeBlock({
   }
   //#endregion
 
+  //#region Constants
+  const iconMap: Record<"typescript" | "css", string> = {
+    typescript: "devicon:react",
+    css: "vscode-icons:file-type-css",
+  };
+
+  const resolvedLanguage: "typescript" | "css" = componentName?.endsWith(".css")
+    ? "css"
+    : language;
+  //#endregion
+
   return (
     <div className="relative bg-[#282a36] rounded-3xl p-5">
       {/* HEADER */}
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between gap-5">
-          <span className="text-sm font-medium text-white">
-            {componentName}
-          </span>
+          <div className="flex items-center gap-2">
+            <Icon
+              icon={iconMap[resolvedLanguage]}
+              className="w-5 h-5 min-w-5 min-h-5"
+            />
+
+            <span className="text-sm font-medium text-white">
+              {componentName || (
+                <span className="capitalize">{resolvedLanguage}</span>
+              )}
+            </span>
+          </div>
 
           {showCopy && (
-            <Button onClick={handleCopy} aria-label="Copiar código">
+            <Button
+              onClick={handleCopy}
+              aria-label="Copiar código"
+              className="ml-auto"
+            >
               {copied ? "Copiado" : "Copiar"}
             </Button>
           )}
@@ -96,28 +134,30 @@ export function CodeBlock({
         >
           <code
             ref={codeRef}
-            className={`language-${language} whitespace-pre-wrap`}
+            className={`language-${resolvedLanguage} whitespace-pre-wrap font-mono`}
           >
             {code}
           </code>
         </pre>
 
         {/* GRADIENT OVERLAY */}
-        {!isExpanded && (
+        {!isExpanded && hasOverflow && (
           <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 rounded-b-3xl bg-linear-to-t from-[#282a36] to-transparent" />
         )}
       </div>
 
       {/* TOGGLE */}
-      <div className="mt-3 flex justify-center">
-        <button
-          type="button"
-          onClick={() => setIsExpanded((prev) => !prev)}
-          className="text-xs text-white/70 hover:text-white transition"
-        >
-          {isExpanded ? "Mostrar menos" : "Mostrar mais"}
-        </button>
-      </div>
+      {hasOverflow && (
+        <div className="mt-3 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setIsExpanded((prev) => !prev)}
+            className="text-xs text-white/70 hover:text-white transition"
+          >
+            {isExpanded ? "Mostrar menos" : "Mostrar mais"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fira_Code, Montserrat } from "next/font/google";
 import "./globals.css";
 import "highlight.js/styles/atom-one-dark.css";
+import Link from "next/link";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -13,8 +14,7 @@ const firacode = Fira_Code({
   subsets: ["latin"],
   variable: "--font-fira-code",
   weight: ["300", "400", "500", "600", "700"],
-})
-
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,13 +23,49 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${montserrat.variable} ${firacode.variable} antialiased font-sans`}>
-        {children}
+      <body
+        className={`${montserrat.variable} ${firacode.variable} antialiased font-sans`}
+      >
+        {/* Wrapper centralizado */}
+        <div className="relative mx-auto w-full max-w-400 min-h-screen">
+          {/* Sidebar fixa RELATIVA ao wrapper */}
+          <aside className="fixed top-0 h-screen w-64 border-r bg-muted/40 px-4 py-6 overflow-y-auto">
+            <div className="mb-6 text-sm font-semibold">Zoe UI</div>
+
+            <nav className="space-y-2 text-sm">
+              <Link
+                className="block rounded-md px-3 py-2 hover:bg-muted transition"
+                href="#"
+              >
+                Introduction
+              </Link>
+              <Link
+                className="block rounded-md px-3 py-2 hover:bg-muted transition"
+                href="#"
+              >
+                Components
+              </Link>
+              <Link
+                className="block rounded-md px-3 py-2 hover:bg-muted transition"
+                href="#"
+              >
+                Tabs
+              </Link>
+              <Link
+                className="block rounded-md px-3 py-2 hover:bg-muted transition"
+                href="#"
+              >
+                Buttons
+              </Link>
+            </nav>
+          </aside>
+
+          {/* Conteúdo */}
+          <main className="ml-64 min-h-screen p-6">{children}</main>
+        </div>
       </body>
     </html>
   );
