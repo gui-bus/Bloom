@@ -38,25 +38,13 @@ export default function RootLayout({
             <nav className="space-y-2 text-sm">
               <Link
                 className="block rounded-md px-3 py-2 hover:bg-muted transition"
-                href="#"
-              >
-                Introduction
-              </Link>
-              <Link
-                className="block rounded-md px-3 py-2 hover:bg-muted transition"
-                href="#"
-              >
-                Components
-              </Link>
-              <Link
-                className="block rounded-md px-3 py-2 hover:bg-muted transition"
-                href="#"
+                href="/components/tabs"
               >
                 Tabs
               </Link>
               <Link
                 className="block rounded-md px-3 py-2 hover:bg-muted transition"
-                href="#"
+                href="/components/button"
               >
                 Buttons
               </Link>
