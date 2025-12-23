@@ -15,6 +15,7 @@ interface DocsComponentProps {
   description?: string;
   preview?: React.ReactNode;
   code?: React.ReactNode;
+  props?: string[];
 }
 //#endregion
 
@@ -23,25 +24,42 @@ export function DocsComponent({
   description,
   preview,
   code,
+  props,
 }: DocsComponentProps) {
   //#region Handle functions
   function renderWithInlineCode(text: string) {
+    const elements: React.ReactNode[] = [];
+    let lastIndex = 0;
     const regex = /'([^']+)'/g;
-    const parts = text.split(regex);
+    let match: RegExpExecArray | null = regex.exec(text);
 
-    return parts.map((part, index) =>
-      index % 2 === 1 ? (
+    while (match !== null) {
+      if (match.index > lastIndex) {
+        elements.push(
+          <span key={lastIndex}>{text.slice(lastIndex, match.index)}</span>
+        );
+      }
+
+      elements.push(
         <code
-          key={part}
+          key={match.index}
           className="mx-1 rounded-full border border-border px-2 py-1 font-sans font-semibold text-xs text-primary shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]"
         >
-          {part}
+          {match[1]}
         </code>
-      ) : (
-        <span key={part}>{part}</span>
-      )
-    );
+      );
+
+      lastIndex = match.index + match[0].length;
+      match = regex.exec(text);
+    }
+
+    if (lastIndex < text.length) {
+      elements.push(<span key={lastIndex}>{text.slice(lastIndex)}</span>);
+    }
+
+    return elements;
   }
+
   //#endregion
 
   //#region Constants
@@ -70,7 +88,7 @@ export function DocsComponent({
             </TabsTrigger>
 
             <TabsTrigger value="code" variant="underline">
-              Código
+              Code
             </TabsTrigger>
           </TabsList>
 
@@ -85,10 +103,24 @@ export function DocsComponent({
       )}
 
       {!hasBoth && hasPreview && (
-        <div className="border rounded-3xl flex-1 outline-none p-5 transition-all duration-300 ease-in-out">{preview}</div>
+        <div>
+          {props?.map((prop) => (
+            <p className="font-light text-sm leading-relaxed mt-2 first:mt-5" key={prop}>
+              {renderWithInlineCode(prop)}
+            </p>
+          ))}
+
+          <div className="border rounded-3xl flex-1 outline-none p-5 transition-all duration-300 ease-in-out mt-5">
+            {preview}
+          </div>
+        </div>
       )}
 
-      {!hasBoth && hasCode && <div className="p-0 flex-1 outline-none transition-all duration-300 ease-in-out">{code}</div>}
+      {!hasBoth && hasCode && (
+        <div className="p-0 flex-1 outline-none transition-all duration-300 ease-in-out mt-5">
+          {code}
+        </div>
+      )}
     </section>
   );
 }

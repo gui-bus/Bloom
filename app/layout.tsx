@@ -32,7 +32,7 @@ export default function RootLayout({
         {/* Wrapper centralizado */}
         <div className="relative mx-auto w-full max-w-400 min-h-screen">
           {/* Sidebar fixa RELATIVA ao wrapper */}
-          <aside className="fixed top-0 h-screen w-64 border-r bg-muted/40 px-4 py-6 overflow-y-auto">
+          <aside className="fixed top-0 h-screen w-44 border-r bg-muted/40 px-4 py-6 overflow-y-auto">
             <div className="mb-6 text-sm font-semibold">Zoe UI</div>
 
             <nav className="space-y-2 text-sm">
@@ -52,7 +52,7 @@ export default function RootLayout({
           </aside>
 
           {/* Conteúdo */}
-          <main className="ml-64 min-h-screen p-6">{children}</main>
+          <main className="ml-44 min-h-screen p-5">{children}</main>
         </div>
       </body>
     </html>

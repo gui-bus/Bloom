@@ -3,10 +3,10 @@
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import DocsTitle from "@/components/core/docsTitle";
 import { Separator } from "@/components/ui/separator/separator";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs/tabs";
 import { tabsCode } from "@/components/ui/tabs/tabs.code";
-import DocsTitle from "@/components/core/docsTitle";
 //#endregion
 
 export default function TabsComponentPage() {
@@ -46,7 +46,7 @@ export default function TabsComponentPage() {
       {/* VARIANTS */}
       <DocsComponent
         title="Variantes"
-        description="Define a aparência visual das abas por meio da prop 'variant', permitindo adaptar o estilo ao contexto da interface. Quando não informada, a variante padrão é utilizada."
+        description="Define a aparência visual dos botões por meio da prop 'variant', permitindo adaptar o estilo ao contexto da interface. Quando não informada, a variante padrão é utilizada."
         preview={
           <div className="space-y-5">
             {/* DEFAULT */}
