@@ -33,18 +33,21 @@ export default function ButtonComponentPage() {
           >
             button.tsx
           </TabsTrigger>
-          <TabsTrigger
-            value="globals"
-            startContent={<Icon icon="skill-icons:css" className="size-5" />}
-          >
-            globals.css
-          </TabsTrigger>
+
           <TabsTrigger
             value="rippleC"
             startContent={<Icon icon="devicon:react" className="size-5" />}
           >
             ripple.tsx
           </TabsTrigger>
+
+          <TabsTrigger
+            value="globals"
+            startContent={<Icon icon="skill-icons:css" className="size-5" />}
+          >
+            globals.css
+          </TabsTrigger>
+
           <TabsTrigger
             value="rippleH"
             startContent={
@@ -473,164 +476,9 @@ export default function ButtonComponentPage() {
         ]}
       />
 
-      {/* LOADING STATE */}
-      <DocsComponent
-        title="Loading state"
-        description="Displays the button in a loading state to provide visual feedback that an action is in progress. Use the 'isLoading' prop to toggle the loading state. Optionally, use the 'loadingText' prop to show custom text while the button is loading."
-        preview={
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-            {/* DEFAULT */}
-            <Button variant="default" isLoading>
-              Default
-            </Button>
-
-            {/* BORDERED */}
-            <Button variant="bordered" isLoading>
-              Bordered
-            </Button>
-
-            {/* LIGHT */}
-            <Button variant="light" isLoading>
-              Light
-            </Button>
-
-            {/* FLAT */}
-            <Button variant="flat" isLoading>
-              Flat
-            </Button>
-
-            {/* GHOST */}
-            <Button variant="ghost" isLoading>
-              Ghost
-            </Button>
-
-            {/* SHADOW */}
-            <Button variant="shadow" isLoading>
-              Shadow
-            </Button>
-
-            {/* LINK */}
-            <Button variant="link" isLoading>
-              Link
-            </Button>
-          </div>
-        }
-        props={["isLoading: 'true' | 'false'", "loadingText: 'string'"]}
-      />
-
-      {/* LOADING ICON */}
-      <DocsComponent
-        title="Loading icon"
-        description="Allows replacing the default loading spinner with any custom ReactNode. Use the 'loadingIcon' prop to pass your own icon or animation."
-        preview={
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            {/* VAR 01 */}
-            <Button
-              variant="default"
-              isLoading
-              loadingIcon={
-                <div className="flex space-x-1">
-                  <span className="h-1 w-1 bg-current rounded-full animate-bounce"></span>
-                  <span className="h-1 w-1 bg-current rounded-full animate-bounce delay-150"></span>
-                  <span className="h-1 w-1 bg-current rounded-full animate-bounce delay-300"></span>
-                </div>
-              }
-            >
-              Default
-            </Button>
-
-            {/* VAR 02 */}
-            <Button
-              variant="default"
-              isLoading
-              loadingIcon={
-                <div className="h-2 w-2 rounded-full border-2 border-current opacity-50 animate-ping"></div>
-              }
-            >
-              Bordered
-            </Button>
-
-            {/* VAR 03 */}
-            <Button
-              variant="default"
-              isLoading
-              loadingIcon={
-                <div className="flex justify-center items-center space-x-1">
-                  <span className="h-4 w-1 bg-current animate-growY"></span>
-                  <span className="h-4 w-1 bg-current animate-growY delay-150"></span>
-                  <span className="h-4 w-1 bg-current animate-growY delay-300"></span>
-                </div>
-              }
-            >
-              Flat
-            </Button>
-
-            {/* VAR 04 */}
-            <Button
-              variant="default"
-              isLoading
-              loadingIcon={
-                <div className="relative h-4 w-4">
-                  <div className="absolute inset-0 border-2 border-t-transparent border-current rounded-full animate-spin"></div>
-                  <div className="absolute inset-1 border-2 border-b-transparent border-current rounded-full animate-spin-reverse"></div>
-                </div>
-              }
-            >
-              Ghost
-            </Button>
-          </div>
-        }
-        props={["loadingIcon: 'ReactNode'"]}
-      />
-
-      {/* DISABLED STATE */}
-      <DocsComponent
-        title="Disabled state"
-        description="Disables the button, preventing any user interaction and visually indicating that the action is unavailable. The 'isDisabled' prop accepts 'true' or 'false' to toggle this state."
-        preview={
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-            {/* DEFAULT */}
-            <Button variant="default" isDisabled>
-              Default
-            </Button>
-
-            {/* BORDERED */}
-            <Button variant="bordered" isDisabled>
-              Bordered
-            </Button>
-
-            {/* LIGHT */}
-            <Button variant="light" isDisabled>
-              Light
-            </Button>
-
-            {/* FLAT */}
-            <Button variant="flat" isDisabled>
-              Flat
-            </Button>
-
-            {/* GHOST */}
-            <Button variant="ghost" isDisabled>
-              Ghost
-            </Button>
-
-            {/* SHADOW */}
-            <Button variant="shadow" isDisabled>
-              Shadow
-            </Button>
-
-            {/* LINK */}
-            <Button variant="link" isDisabled>
-              Link
-            </Button>
-          </div>
-        }
-        props={["isDisabled: 'true' | 'false'"]}
-      />
-
       {/* WITH ICONS */}
       <DocsComponent
-        title="With icons"
+        title="Icons"
         description="Adds icons to the button, either at the start or end, to enhance visual context and improve recognition. Use 'startContent' or 'endContent' props to pass a ReactNode icon."
         preview={
           <div className="space-y-5">
@@ -786,7 +634,7 @@ export default function ButtonComponentPage() {
 
       {/* BADGE */}
       <DocsComponent
-        title="With badge"
+        title="Badges"
         description="Displays a badge on the button to provide additional contextual information, such as counts or notifications. Use the 'badgeContent' prop to define the badge value and 'badgePosition' to set whether it appears at the start or end of the button."
         preview={
           <div className="space-y-5">
@@ -874,9 +722,9 @@ export default function ButtonComponentPage() {
         props={["badgeContent: 'string'", "badgePosition: 'start' | 'end'"]}
       />
 
-      {/* BADGE CLASSES */}
+      {/* CUSTOM BADGES */}
       <DocsComponent
-        title="Badge classes"
+        title="Custom badges"
         description="Allows customizing the badge appearance using any Tailwind CSS classes. Use 'badgeCustomClassname' to apply custom styles."
         preview={
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
@@ -992,7 +840,7 @@ export default function ButtonComponentPage() {
       />
 
       <DocsComponent
-        title="Ripple animation"
+        title="Animations"
         description="Controls the ripple effect on button clicks, providing visual feedback of user interaction. By default, the ripple animation is enabled; set 'disableRipple' to 'true' to turn it off."
         preview={
           <div className="flex items-center gap-5">
@@ -1006,6 +854,161 @@ export default function ButtonComponentPage() {
           </div>
         }
         props={["disableRipple: 'true' | 'false'"]}
+      />
+
+      {/* LOADING STATE */}
+      <DocsComponent
+        title="Loading state"
+        description="Displays the button in a loading state to provide visual feedback that an action is in progress. Use the 'isLoading' prop to toggle the loading state. Optionally, use the 'loadingText' prop to show custom text while the button is loading."
+        preview={
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
+            {/* DEFAULT */}
+            <Button variant="default" isLoading>
+              Default
+            </Button>
+
+            {/* BORDERED */}
+            <Button variant="bordered" isLoading>
+              Bordered
+            </Button>
+
+            {/* LIGHT */}
+            <Button variant="light" isLoading>
+              Light
+            </Button>
+
+            {/* FLAT */}
+            <Button variant="flat" isLoading>
+              Flat
+            </Button>
+
+            {/* GHOST */}
+            <Button variant="ghost" isLoading>
+              Ghost
+            </Button>
+
+            {/* SHADOW */}
+            <Button variant="shadow" isLoading>
+              Shadow
+            </Button>
+
+            {/* LINK */}
+            <Button variant="link" isLoading>
+              Link
+            </Button>
+          </div>
+        }
+        props={["isLoading: 'true' | 'false'", "loadingText: 'string'"]}
+      />
+
+      {/* LOADING ICON */}
+      <DocsComponent
+        title="Loading icon"
+        description="Allows replacing the default loading spinner with any custom ReactNode. Use the 'loadingIcon' prop to pass your own icon or animation."
+        preview={
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            {/* VAR 01 */}
+            <Button
+              variant="default"
+              isLoading
+              loadingIcon={
+                <div className="flex space-x-1">
+                  <span className="h-1 w-1 bg-current rounded-full animate-bounce"></span>
+                  <span className="h-1 w-1 bg-current rounded-full animate-bounce delay-150"></span>
+                  <span className="h-1 w-1 bg-current rounded-full animate-bounce delay-300"></span>
+                </div>
+              }
+            >
+              Default
+            </Button>
+
+            {/* VAR 02 */}
+            <Button
+              variant="default"
+              isLoading
+              loadingIcon={
+                <div className="h-2 w-2 rounded-full border-2 border-current opacity-50 animate-ping"></div>
+              }
+            >
+              Bordered
+            </Button>
+
+            {/* VAR 03 */}
+            <Button
+              variant="default"
+              isLoading
+              loadingIcon={
+                <div className="flex justify-center items-center space-x-1">
+                  <span className="h-4 w-1 bg-current animate-growY"></span>
+                  <span className="h-4 w-1 bg-current animate-growY delay-150"></span>
+                  <span className="h-4 w-1 bg-current animate-growY delay-300"></span>
+                </div>
+              }
+            >
+              Flat
+            </Button>
+
+            {/* VAR 04 */}
+            <Button
+              variant="default"
+              isLoading
+              loadingIcon={
+                <div className="relative h-4 w-4">
+                  <div className="absolute inset-0 border-2 border-t-transparent border-current rounded-full animate-spin"></div>
+                  <div className="absolute inset-1 border-2 border-b-transparent border-current rounded-full animate-spin-reverse"></div>
+                </div>
+              }
+            >
+              Ghost
+            </Button>
+          </div>
+        }
+        props={["loadingIcon: 'ReactNode'"]}
+      />
+
+      {/* DISABLED STATE */}
+      <DocsComponent
+        title="Disabled state"
+        description="Disables the button, preventing any user interaction and visually indicating that the action is unavailable. The 'isDisabled' prop accepts 'true' or 'false' to toggle this state."
+        preview={
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
+            {/* DEFAULT */}
+            <Button variant="default" isDisabled>
+              Default
+            </Button>
+
+            {/* BORDERED */}
+            <Button variant="bordered" isDisabled>
+              Bordered
+            </Button>
+
+            {/* LIGHT */}
+            <Button variant="light" isDisabled>
+              Light
+            </Button>
+
+            {/* FLAT */}
+            <Button variant="flat" isDisabled>
+              Flat
+            </Button>
+
+            {/* GHOST */}
+            <Button variant="ghost" isDisabled>
+              Ghost
+            </Button>
+
+            {/* SHADOW */}
+            <Button variant="shadow" isDisabled>
+              Shadow
+            </Button>
+
+            {/* LINK */}
+            <Button variant="link" isDisabled>
+              Link
+            </Button>
+          </div>
+        }
+        props={["isDisabled: 'true' | 'false'"]}
       />
     </main>
   );

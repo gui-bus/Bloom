@@ -241,10 +241,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           buttonBaseVariants({ size, variant, radius }),
           colorClasses[color][variant || "default"],
           className,
-          "cursor-pointer active:scale-[0.98] relative overflow-hidden",
+          "cursor-pointer active:scale-[0.98] relative overflow-hidden hover:scale-105",
           isLoading && "cursor-wait opacity-50",
           isDisabled && "cursor-not-allowed opacity-50",
-          isIconOnly && "w-5 aspect-square"
+          isIconOnly && "aspect-square"
         )}
         {...props}
       >
