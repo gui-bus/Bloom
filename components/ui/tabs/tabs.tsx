@@ -349,7 +349,7 @@ function TabsTrigger({
       }
       className={cn(
         // Base
-        "inline-flex items-center justify-center gap-1.5 font-medium transition-all duration-200 ease-in-out",
+        "inline-flex items-center justify-center gap-1.5 font-medium transition-all duration-200 ease-in-out cursor-pointer",
 
         // Size & variant
         sizeClasses[size],
