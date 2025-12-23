@@ -1010,6 +1010,191 @@ export default function ButtonComponentPage() {
         }
         props={["isDisabled: 'true' | 'false'"]}
       />
+
+      {/* PROPS BUTTON - BASE */}
+      <DocsComponent
+        title="Props — Button (Base)"
+        description="Core properties for the Button component."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left py-2 px-3">Prop</th>
+                  <th className="text-left py-2 px-3">Type</th>
+                  <th className="text-left py-2 px-3">Default</th>
+                  <th className="text-left py-2 px-3">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b">
+                  <td className="px-3 py-2 font-mono">variant</td>
+                  <td className="px-3 py-2 font-mono">string</td>
+                  <td className="px-3 py-2">default</td>
+                  <td className="px-3 py-2">Visual style of the button.</td>
+                </tr>
+
+                <tr className="border-b">
+                  <td className="px-3 py-2 font-mono">size</td>
+                  <td className="px-3 py-2 font-mono">string</td>
+                  <td className="px-3 py-2">md</td>
+                  <td className="px-3 py-2">
+                    Controls the button's size and density.
+                  </td>
+                </tr>
+
+                <tr className="border-b">
+                  <td className="px-3 py-2 font-mono">color</td>
+                  <td className="px-3 py-2 font-mono">string</td>
+                  <td className="px-3 py-2">default</td>
+                  <td className="px-3 py-2">Color scheme of the button.</td>
+                </tr>
+
+                <tr className="border-b">
+                  <td className="px-3 py-2 font-mono">radius</td>
+                  <td className="px-3 py-2 font-mono">string</td>
+                  <td className="px-3 py-2">xl</td>
+                  <td className="px-3 py-2">Border radius of the button.</td>
+                </tr>
+
+                <tr className="border-b">
+                  <td className="px-3 py-2 font-mono">isDisabled</td>
+                  <td className="px-3 py-2 font-mono">boolean</td>
+                  <td className="px-3 py-2">false</td>
+                  <td className="px-3 py-2">
+                    Disables the button, preventing any interaction.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td className="px-3 py-2 font-mono">disableRipple</td>
+                  <td className="px-3 py-2 font-mono">boolean</td>
+                  <td className="px-3 py-2">false</td>
+                  <td className="px-3 py-2">
+                    Disables the ripple click effect.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      {/* PROPS BUTTON - BADGE */}
+      <DocsComponent
+        title="Props — Button (Badge)"
+        description="Properties related to badges displayed on the button."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left py-2 px-3">Prop</th>
+                  <th className="text-left py-2 px-3">Type</th>
+                  <th className="text-left py-2 px-3">Default</th>
+                  <th className="text-left py-2 px-3">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b">
+                  <td className="px-3 py-2 font-mono">badgeContent</td>
+                  <td className="px-3 py-2 font-mono">string</td>
+                  <td className="px-3 py-2">—</td>
+                  <td className="px-3 py-2">
+                    Displays a badge with informative content on the button.
+                  </td>
+                </tr>
+
+                <tr className="border-b">
+                  <td className="px-3 py-2 font-mono">badgePosition</td>
+                  <td className="px-3 py-2 font-mono">string</td>
+                  <td className="px-3 py-2">end</td>
+                  <td className="px-3 py-2">
+                    Badge position relative to button text ('start' or 'end').
+                  </td>
+                </tr>
+
+                <tr>
+                  <td className="px-3 py-2 font-mono">badgeCustomClassname</td>
+                  <td className="px-3 py-2 font-mono">string</td>
+                  <td className="px-3 py-2">—</td>
+                  <td className="px-3 py-2">
+                    Custom CSS classes for the badge container.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      {/* PROPS BUTTON - LOADING & ICON ONLY */}
+      <DocsComponent
+        title="Props — Button (Loading & Icon Only)"
+        description="Properties controlling loading states and icon-only buttons. Note: 'ariaLabel' is required when 'isIconOnly' is true."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left py-2 px-3">Prop</th>
+                  <th className="text-left py-2 px-3">Type</th>
+                  <th className="text-left py-2 px-3">Default</th>
+                  <th className="text-left py-2 px-3">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b">
+                  <td className="px-3 py-2 font-mono">isLoading</td>
+                  <td className="px-3 py-2 font-mono">boolean</td>
+                  <td className="px-3 py-2">false</td>
+                  <td className="px-3 py-2">
+                    Shows a loading spinner and blocks interaction.
+                  </td>
+                </tr>
+
+                <tr className="border-b">
+                  <td className="px-3 py-2 font-mono">loadingText</td>
+                  <td className="px-3 py-2 font-mono">string</td>
+                  <td className="px-3 py-2">—</td>
+                  <td className="px-3 py-2">
+                    Text displayed alongside the loading spinner.
+                  </td>
+                </tr>
+
+                <tr className="border-b">
+                  <td className="px-3 py-2 font-mono">loadingIcon</td>
+                  <td className="px-3 py-2 font-mono">ReactNode</td>
+                  <td className="px-3 py-2">—</td>
+                  <td className="px-3 py-2">
+                    Custom icon displayed during loading.
+                  </td>
+                </tr>
+
+                <tr className="border-b">
+                  <td className="px-3 py-2 font-mono">isIconOnly</td>
+                  <td className="px-3 py-2 font-mono">boolean</td>
+                  <td className="px-3 py-2">false</td>
+                  <td className="px-3 py-2">
+                    Displays only the icon. Requires 'ariaLabel' for
+                    accessibility
+                  </td>
+                </tr>
+
+                <tr>
+                  <td className="px-3 py-2 font-mono">ariaLabel</td>
+                  <td className="px-3 py-2 font-mono">string</td>
+                  <td className="px-3 py-2">—</td>
+                  <td className="px-3 py-2">
+                    Descriptive text for screen readers. Mandatory if
+                    'isIconOnly' is true.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
     </main>
   );
 }

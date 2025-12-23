@@ -17,8 +17,6 @@ export default function TabsComponentPage() {
         description="Navegação por abas utilizada para organizar conteúdos relacionados e facilitar a alternância entre seções sem perda de contexto."
       />
 
-      <Separator label={<span className="px-2">Core</span>} gradient />
-
       <CodeBlock
         code={tabsCode}
         componentName="tabs.tsx"
@@ -40,8 +38,6 @@ export default function TabsComponentPage() {
         language="css"
         tags={["CSS", "Tailwind", "Utilities", "Tabs", "Theme"]}
       />
-
-      <Separator label={<span className="px-2">Estilos</span>} gradient />
 
       {/* VARIANTS */}
       <DocsComponent
