@@ -1,9 +1,20 @@
 //#region Imports
+
+import { Icon } from "@iconify/react";
+import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
 import { Button } from "@/components/ui/button/button";
-import { Separator } from "@/components/ui/separator/separator";
-import { Icon } from "@iconify/react";
+import { buttonCode } from "@/components/ui/button/button.code";
+import { buttonCSSCode } from "@/components/ui/button/button.css.code";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs/tabs";
+import { rippleCode } from "@/components/utils/ripple/ripple.code";
+import { useRippleCode } from "@/hooks/ripple/useRipple.code";
 //#endregion
 
 export default function ButtonComponentPage() {
@@ -14,23 +25,75 @@ export default function ButtonComponentPage() {
         description="A button is a UI element used to trigger an action, such as navigation, form submission, or other frequent interactions within the interface."
       />
 
-      <Separator label={<span className="px-2">Core</span>} gradient />
+      <Tabs defaultValue="button">
+        <TabsList background={false}>
+          <TabsTrigger
+            value="button"
+            startContent={<Icon icon="devicon:react" className="size-5" />}
+          >
+            button.tsx
+          </TabsTrigger>
+          <TabsTrigger
+            value="globals"
+            startContent={<Icon icon="skill-icons:css" className="size-5" />}
+          >
+            globals.css
+          </TabsTrigger>
+          <TabsTrigger
+            value="rippleC"
+            startContent={<Icon icon="devicon:react" className="size-5" />}
+          >
+            ripple.tsx
+          </TabsTrigger>
+          <TabsTrigger
+            value="rippleH"
+            startContent={
+              <Icon icon="skill-icons:typescript" className="size-5" />
+            }
+          >
+            useRipple.ts
+          </TabsTrigger>
+        </TabsList>
 
-      {/* <CodeBlock
-        code={buttonCode}
-        componentName="button.tsx"
-        description="Implementação principal do componente Button."
-        tags={["React", "Tailwind", "Accessibility"]}
-      />
+        <TabsContent value="button">
+          <CodeBlock
+            code={buttonCode}
+            componentName="button.tsx"
+            description="Main implementation of the Button component, handling all visual variants, interactive states, and user interactions."
+            tags={["React", "Tailwind", "UI Component", "Accessibility"]}
+          />
+        </TabsContent>
 
-      <CodeBlock
-        code={buttonCSSCode}
-        componentName="globals.css"
-        language="css"
-        description="Tokens e estilos globais usados pelo Button."
-      /> */}
+        <TabsContent value="globals">
+          <CodeBlock
+            code={buttonCSSCode}
+            componentName="globals.css"
+            language="css"
+            description="Global CSS variables and utility classes used by the Button component for consistent spacing, colors, and styling."
+            tags={["CSS", "Tailwind", "Design Tokens", "Styling"]}
+          />
+        </TabsContent>
 
-      <Separator label={<span className="px-2">Styles</span>} gradient />
+        <TabsContent value="rippleC">
+          <CodeBlock
+            code={rippleCode}
+            componentName="ripple.tsx"
+            language="typescript"
+            description="Implementation of the ripple animation effect for buttons, handling visual feedback on user clicks."
+            tags={["React", "TypeScript", "UI Animation", "Interaction"]}
+          />
+        </TabsContent>
+
+        <TabsContent value="rippleH">
+          <CodeBlock
+            code={useRippleCode}
+            componentName="useRipple.ts"
+            language="typescript"
+            description="Custom React hook that encapsulates the ripple effect logic for reuse across button components."
+            tags={["React", "TypeScript", "Custom Hook", "Animation"]}
+          />
+        </TabsContent>
+      </Tabs>
 
       {/* VARIANTS */}
       <DocsComponent
@@ -455,6 +518,71 @@ export default function ButtonComponentPage() {
         props={["isLoading: 'true' | 'false'", "loadingText: 'string'"]}
       />
 
+      {/* LOADING ICON */}
+      <DocsComponent
+        title="Loading icon"
+        description="Allows replacing the default loading spinner with any custom ReactNode. Use the 'loadingIcon' prop to pass your own icon or animation."
+        preview={
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            {/* VAR 01 */}
+            <Button
+              variant="default"
+              isLoading
+              loadingIcon={
+                <div className="flex space-x-1">
+                  <span className="h-1 w-1 bg-current rounded-full animate-bounce"></span>
+                  <span className="h-1 w-1 bg-current rounded-full animate-bounce delay-150"></span>
+                  <span className="h-1 w-1 bg-current rounded-full animate-bounce delay-300"></span>
+                </div>
+              }
+            >
+              Default
+            </Button>
+
+            {/* VAR 02 */}
+            <Button
+              variant="default"
+              isLoading
+              loadingIcon={
+                <div className="h-2 w-2 rounded-full border-2 border-current opacity-50 animate-ping"></div>
+              }
+            >
+              Bordered
+            </Button>
+
+            {/* VAR 03 */}
+            <Button
+              variant="default"
+              isLoading
+              loadingIcon={
+                <div className="flex justify-center items-center space-x-1">
+                  <span className="h-4 w-1 bg-current animate-growY"></span>
+                  <span className="h-4 w-1 bg-current animate-growY delay-150"></span>
+                  <span className="h-4 w-1 bg-current animate-growY delay-300"></span>
+                </div>
+              }
+            >
+              Flat
+            </Button>
+
+            {/* VAR 04 */}
+            <Button
+              variant="default"
+              isLoading
+              loadingIcon={
+                <div className="relative h-4 w-4">
+                  <div className="absolute inset-0 border-2 border-t-transparent border-current rounded-full animate-spin"></div>
+                  <div className="absolute inset-1 border-2 border-b-transparent border-current rounded-full animate-spin-reverse"></div>
+                </div>
+              }
+            >
+              Ghost
+            </Button>
+          </div>
+        }
+        props={["loadingIcon: 'ReactNode'"]}
+      />
+
       {/* DISABLED STATE */}
       <DocsComponent
         title="Disabled state"
@@ -753,17 +881,29 @@ export default function ButtonComponentPage() {
         preview={
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
             {/* DEFAULT */}
-            <Button variant="default" badgeContent="20" badgeCustomClassname="bg-sky-600">
+            <Button
+              variant="default"
+              badgeContent="20"
+              badgeCustomClassname="bg-sky-600"
+            >
               Inbox
             </Button>
 
             {/* DEFAULT */}
-            <Button variant="default" badgeContent="20" badgeCustomClassname="bg-white text-black rounded-bl-3xl">
+            <Button
+              variant="default"
+              badgeContent="20"
+              badgeCustomClassname="bg-white text-black rounded-bl-3xl"
+            >
               Inbox
             </Button>
 
             {/* DEFAULT */}
-            <Button variant="default" badgeContent="20" badgeCustomClassname="bg-rose-600 animate-pulse">
+            <Button
+              variant="default"
+              badgeContent="20"
+              badgeCustomClassname="bg-rose-600 animate-pulse"
+            >
               Inbox
             </Button>
           </div>

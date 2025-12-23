@@ -69,7 +69,7 @@ export function CodeBlock({
   //#region Constants
   const iconMap: Record<"typescript" | "css", string> = {
     typescript: "devicon:react",
-    css: "vscode-icons:file-type-css",
+    css: "skill-icons:css",
   };
 
   const resolvedLanguage: "typescript" | "css" = componentName?.endsWith(".css")

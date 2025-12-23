@@ -48,6 +48,12 @@ export default function RootLayout({
               >
                 Buttons
               </Link>
+              <Link
+                className="block rounded-md px-3 py-2 hover:bg-muted transition"
+                href="/components/buttonGroup"
+              >
+                Button Group
+              </Link>
             </nav>
           </aside>
 

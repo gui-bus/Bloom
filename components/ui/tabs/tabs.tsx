@@ -187,7 +187,7 @@ function TabsList({ className, background = true, ...props }: TabsListProps) {
       <TabsPrimitive.List
         data-slot="tabs-list"
         className={cn(
-          "inline-flex items-center gap-2 rounded-2xl p-1 shadow-inner scroll-snap-x-x",
+          "inline-flex items-center gap-2 rounded-2xl p-1 scroll-snap-x-x",
           background && "bg-muted",
           className
         )}
@@ -422,7 +422,7 @@ function TabsContent({ className, children, ...props }: TabsContentProps) {
           exit={{ opacity: 0, x: -10 }}
           transition={{ duration: 0.25 }}
           className={cn(
-            "flex-1 outline-none p-5 transition-all duration-300 ease-in-out",
+            "flex-1 outline-none transition-all duration-300 ease-in-out",
             className
           )}
         >

@@ -3,9 +3,9 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
+import { Ripple } from "@/components/utils/ripple/ripple";
+import { useRipples } from "@/hooks/ripple/useRipple";
 import { cn } from "@/lib/utils";
-import { useRipples } from "@/hooks/useRipple";
-import { Ripple } from "@/components/utils/ripple";
 
 //#endregion
 
@@ -29,12 +29,12 @@ type ButtonColor =
   | "danger"
   | "default";
 
-//#region Types
 type ButtonBaseProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonBaseVariants> & {
     asChild?: boolean;
     isLoading?: boolean;
     loadingText?: string;
+    loadingIcon?: React.ReactNode;
     isDisabled?: boolean;
     startContent?: React.ReactNode;
     endContent?: React.ReactNode;
@@ -111,6 +111,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       variant,
       isLoading = false,
       loadingText,
+      loadingIcon,
       isDisabled = false,
       startContent,
       endContent,
@@ -249,10 +250,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading ? (
           <div className="flex items-center gap-2">
-            <span
-              className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
-              aria-hidden
-            />
+            {loadingIcon || (
+              <span
+                className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+                aria-hidden
+              />
+            )}
             <span>{loadingText || children}</span>
           </div>
         ) : (
@@ -268,11 +271,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               </span>
             )}
             {startContent && (
-              <span className={`${!isIconOnly && "mr-2"}`}>{startContent}</span>
+              <span className={cn(!isIconOnly && "mr-2")}>{startContent}</span>
             )}
             {children && <span>{children}</span>}
             {endContent && (
-              <span className={`${!isIconOnly && "ml-2"}`}>{endContent}</span>
+              <span className={cn(!isIconOnly && "ml-2")}>{endContent}</span>
             )}
             {badgeContent && badgePosition === "end" && (
               <span
