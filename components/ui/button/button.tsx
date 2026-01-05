@@ -22,12 +22,15 @@ type ButtonRadius =
   | "3xl"
   | "full";
 type ButtonColor =
+  | "accent"
   | "primary"
   | "secondary"
   | "success"
   | "warning"
   | "danger"
   | "default";
+
+type ButtonHover = "scale" | "lift";
 
 type ButtonBaseProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonBaseVariants> & {
@@ -41,6 +44,7 @@ type ButtonBaseProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
     badgeContent?: string;
     badgePosition?: "start" | "end";
     badgeCustomClassname?: string;
+    hover?: ButtonHover;
     size?: ButtonSize;
     color?: ButtonColor;
     radius?: ButtonRadius;
@@ -92,7 +96,11 @@ const buttonBaseVariants = cva(
         flat: "bg-transparent shadow-none border border-transparent",
         ghost: "bg-transparent border-2 border-teal-300 shadow-sm",
         shadow: "shadow-lg",
-        link: "bg-transparent underline text-sky-600 hover:text-sky-700 shadow-none border-none",
+        link: "bg-transparent underline text-sky-600 hover:text-sky-500 shadow-none border-none",
+      },
+      hover: {
+        scale: "hover:scale-[1.03] active:scale-[0.97] will-change-transform",
+        lift: "hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:shadow-sm will-change-transform",
       },
     },
     defaultVariants: {
@@ -121,6 +129,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       color = "default",
       radius = "xl",
       size = "md",
+      hover = "scale",
       disableRipple = false,
       disabled,
       children,
@@ -139,77 +148,99 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const colorClasses: Record<ButtonColor, Record<string, string>> = {
       default: {
         default:
-          "bg-slate-600 text-white hover:bg-slate-700 focus-visible:ring-slate-500",
+          "bg-neutral-200 text-neutral-800 hover:bg-neutral-300 focus-visible:ring-neutral-400",
         bordered:
-          "border-slate-500 text-slate-700 focus-visible:ring-slate-500",
-        light: "hover:bg-slate-100 focus-visible:ring-slate-500 text-slate-700",
-        flat: "bg-slate-100 focus-visible:ring-slate-500 text-slate-700",
+          "border border-neutral-300 text-neutral-700 hover:bg-neutral-100 focus-visible:ring-neutral-400",
+        light:
+          "bg-transparent text-neutral-700 hover:bg-neutral-100 focus-visible:ring-neutral-400",
+        flat: "bg-neutral-100 text-neutral-700 hover:bg-neutral-200 focus-visible:ring-neutral-400",
         ghost:
-          "border-slate-500 text-slate-700 focus-visible:ring-slate-500 hover:bg-slate-500 hover:text-white",
+          "bg-transparent text-neutral-700 hover:bg-neutral-200 focus-visible:ring-neutral-400 border-2 border-neutral-200",
         shadow:
-          "bg-slate-600 text-white hover:bg-slate-700 focus-visible:ring-slate-500 shadow-slate-600",
-        link: "bg-transparent underline text-slate-600 hover:text-slate-700 shadow-none border-none",
+          "bg-neutral-200 text-neutral-800 hover:bg-neutral-300 focus-visible:ring-neutral-400 shadow-neutral-300/40 hover:shadow-neutral-400/40",
+        link: "bg-transparent text-neutral-600 hover:text-neutral-800 underline shadow-none border-none",
       },
+
       primary: {
         default:
-          "bg-sky-600 text-white hover:bg-sky-700 focus-visible:ring-sky-500",
-        bordered: "border-sky-500 text-sky-700 focus-visible:ring-sky-500",
-        light: "hover:bg-sky-100 focus-visible:ring-sky-500 text-sky-700",
-        flat: "bg-sky-100 focus-visible:ring-sky-500 text-sky-700",
+          "bg-sky-600 text-white hover:bg-sky-500 focus-visible:ring-sky-500",
+        bordered: "border-sky-500 text-sky-500 focus-visible:ring-sky-500",
+        light: "hover:bg-sky-100 focus-visible:ring-sky-500 text-sky-500",
+        flat: "bg-sky-100 focus-visible:ring-sky-500 text-sky-500",
         ghost:
-          "border-sky-500 text-sky-700 focus-visible:ring-sky-500 hover:bg-sky-500 hover:text-white",
+          "border-sky-500 text-sky-500 focus-visible:ring-sky-500 hover:bg-sky-500 hover:text-white",
         shadow:
-          "bg-sky-600 text-white hover:bg-sky-700 focus-visible:ring-sky-500 shadow-sky-600",
-        link: "bg-transparent underline text-sky-600 hover:text-sky-700 shadow-none border-none",
+          "bg-sky-600 text-white hover:bg-sky-500 focus-visible:ring-sky-500 shadow-sky-600 hover:shadow-sky-500",
+        link: "bg-transparent underline text-sky-600 hover:text-sky-500 shadow-none border-none",
       },
+
       secondary: {
         default:
-          "bg-teal-600 text-white hover:bg-teal-700 focus-visible:ring-teal-500",
-        bordered: "border-teal-500 text-teal-700 focus-visible:ring-teal-500",
-        light: "hover:bg-teal-100 focus-visible:ring-sky-500 text-teal-700",
-        flat: "bg-teal-100 focus-visible:ring-teal-500 text-teal-700",
+          "bg-amber-600 text-white hover:bg-amber-500 focus-visible:ring-amber-500",
+        bordered:
+          "border-amber-500 text-amber-500 focus-visible:ring-amber-500",
+        light: "hover:bg-amber-100 focus-visible:ring-amber-500 text-amber-500",
+        flat: "bg-amber-100 focus-visible:ring-amber-500 text-amber-500",
         ghost:
-          "border-teal-500 text-teal-700 focus-visible:ring-teal-500 hover:bg-teal-500 hover:text-white",
+          "border-amber-500 text-amber-500 focus-visible:ring-amber-500 hover:bg-amber-500 hover:text-white",
         shadow:
-          "bg-teal-600 text-white hover:bg-teal-700 focus-visible:ring-teal-500 shadow-teal-600",
-        link: "bg-transparent underline text-teal-600 hover:text-teal-700 shadow-none border-none",
+          "bg-amber-600 text-white hover:bg-amber-500 focus-visible:ring-amber-500 shadow-amber-600 hover:shadow-amber-500",
+        link: "bg-transparent underline text-amber-600 hover:text-amber-500 shadow-none border-none",
       },
+
+      accent: {
+        default:
+          "bg-teal-600 text-white hover:bg-teal-500 focus-visible:ring-teal-500",
+        bordered: "border-teal-500 text-teal-500 focus-visible:ring-teal-500",
+        light: "hover:bg-teal-100 focus-visible:ring-sky-500 text-teal-500",
+        flat: "bg-teal-100 focus-visible:ring-teal-500 text-teal-500",
+        ghost:
+          "border-teal-500 text-teal-500 focus-visible:ring-teal-500 hover:bg-teal-500 hover:text-white",
+        shadow:
+          "bg-teal-600 text-white hover:bg-teal-500 focus-visible:ring-teal-500 shadow-teal-600 hover:shadow-teal-500",
+        link: "bg-transparent underline text-teal-600 hover:text-teal-500 shadow-none border-none",
+      },
+
       success: {
         default:
-          "bg-lime-600 text-white hover:bg-lime-700 focus-visible:ring-lime-500",
-        bordered: "border-lime-500 text-lime-700 focus-visible:ring-lime-500",
-        light: "hover:bg-lime-100 focus-visible:ring-lime-500 text-lime-700",
-        flat: "bg-lime-100 focus-visible:ring-lime-500 text-lime-700",
+          "bg-green-600 text-white hover:bg-green-500 focus-visible:ring-green-500",
+        bordered:
+          "border-green-500 text-green-500 focus-visible:ring-green-500",
+        light: "hover:bg-green-100 focus-visible:ring-green-500 text-green-500",
+        flat: "bg-green-100 focus-visible:ring-green-500 text-green-500",
         ghost:
-          "border-lime-500 text-lime-700 focus-visible:ring-lime-500 hover:bg-lime-500 hover:text-white",
+          "border-green-500 text-green-500 focus-visible:ring-green-500 hover:bg-green-500 hover:text-white",
         shadow:
-          "bg-lime-600 text-white hover:bg-lime-700 focus-visible:ring-lime-500 shadow-lime-600",
-        link: "bg-transparent underline text-lime-600 hover:text-lime-700 shadow-none border-none",
+          "bg-green-600 text-white hover:bg-green-500 focus-visible:ring-green-500 shadow-green-600 hover:shadow-green-500",
+        link: "bg-transparent underline text-green-600 hover:text-green-500 shadow-none border-none",
       },
+
       warning: {
         default:
-          "bg-amber-600 text-white hover:bg-amber-700 focus-visible:ring-amber-500",
+          "bg-yellow-500 text-white hover:bg-yellow-400 focus-visible:ring-yellow-400",
         bordered:
-          "border-amber-500 text-amber-700 focus-visible:ring-amber-500",
-        light: "hover:bg-amber-100 focus-visible:ring-amber-500 text-amber-700",
-        flat: "bg-amber-100 focus-visible:ring-amber-500 text-amber-700",
+          "border-yellow-400 text-yellow-400 focus-visible:ring-yellow-400",
+        light:
+          "hover:bg-yellow-100 focus-visible:ring-yellow-400 text-yellow-400",
+        flat: "bg-yellow-100 focus-visible:ring-yellow-400 text-yellow-400",
         ghost:
-          "border-amber-500 text-amber-700 focus-visible:ring-amber-500 hover:bg-amber-500 hover:text-white",
+          "border-yellow-400 text-yellow-400 focus-visible:ring-yellow-400 hover:bg-yellow-400 hover:text-white",
         shadow:
-          "bg-amber-600 text-white hover:bg-amber-700 focus-visible:ring-amber-500 shadow-amber-600",
-        link: "bg-transparent underline text-amber-600 hover:text-amber-700 shadow-none border-none",
+          "bg-yellow-500 text-white hover:bg-yellow-400 focus-visible:ring-yellow-400 shadow-yellow-500 hover:shadow-yellow-400",
+        link: "bg-transparent underline text-yellow-500 hover:text-yellow-400 shadow-none border-none",
       },
+
       danger: {
         default:
-          "bg-rose-600 text-white hover:bg-rose-700 focus-visible:ring-rose-500",
-        bordered: "border-rose-500 text-rose-700 focus-visible:ring-rose-500",
-        light: "hover:bg-rose-100 focus-visible:ring-rose-500 text-rose-700",
-        flat: "bg-rose-100 focus-visible:ring-rose-500 text-rose-700",
+          "bg-red-600 text-white hover:bg-red-500 focus-visible:ring-red-500",
+        bordered: "border-red-500 text-red-500 focus-visible:ring-red-500",
+        light: "hover:bg-red-100 focus-visible:ring-red-500 text-red-500",
+        flat: "bg-red-100 focus-visible:ring-red-500 text-red-500",
         ghost:
-          "border-rose-500 text-rose-700 focus-visible:ring-rose-500 hover:bg-rose-500 hover:text-white",
+          "border-red-500 text-red-500 focus-visible:ring-red-500 hover:bg-red-500 hover:text-white",
         shadow:
-          "bg-rose-600 text-white hover:bg-rose-700 focus-visible:ring-rose-500 shadow-rose-600",
-        link: "bg-transparent underline text-rose-600 hover:text-rose-700 shadow-none border-none",
+          "bg-red-600 text-white hover:bg-red-500 focus-visible:ring-red-500 shadow-red-600 hover:shadow-red-500",
+        link: "bg-transparent underline text-red-600 hover:text-red-500 shadow-none border-none",
       },
     };
     //#endregion
@@ -238,10 +269,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         aria-label={ariaLabel}
         onClick={handleClick}
         className={cn(
-          buttonBaseVariants({ size, variant, radius }),
+          buttonBaseVariants({ size, variant, radius, hover }),
           colorClasses[color][variant || "default"],
           className,
-          "cursor-pointer active:scale-[0.98] relative overflow-hidden hover:scale-105",
+          "cursor-pointer relative overflow-hidden",
           isLoading && "cursor-wait opacity-50",
           isDisabled && "cursor-not-allowed opacity-50",
           isIconOnly && "aspect-square"

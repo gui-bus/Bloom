@@ -138,7 +138,7 @@ export default function ButtonComponentPage() {
         preview={
           <div className="space-y-5">
             {/* DEFAULT */}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
               {/* DEFAULT */}
               <Button variant="default" color="default">
                 Default
@@ -152,6 +152,11 @@ export default function ButtonComponentPage() {
               {/* SECONDARY */}
               <Button variant="default" color="secondary">
                 Secondary
+              </Button>
+
+              {/* ACCENT */}
+              <Button variant="default" color="accent">
+                Accent
               </Button>
 
               {/* SUCCESS */}
@@ -171,7 +176,7 @@ export default function ButtonComponentPage() {
             </div>
 
             {/* BORDERED */}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
               {/* DEFAULT */}
               <Button variant="bordered" color="default">
                 Default
@@ -185,6 +190,11 @@ export default function ButtonComponentPage() {
               {/* SECONDARY */}
               <Button variant="bordered" color="secondary">
                 Secondary
+              </Button>
+
+              {/* ACCENT */}
+              <Button variant="bordered" color="accent">
+                Accent
               </Button>
 
               {/* SUCCESS */}
@@ -204,7 +214,7 @@ export default function ButtonComponentPage() {
             </div>
 
             {/* LIGHT */}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
               {/* DEFAULT */}
               <Button variant="light" color="default">
                 Default
@@ -218,6 +228,11 @@ export default function ButtonComponentPage() {
               {/* SECONDARY */}
               <Button variant="light" color="secondary">
                 Secondary
+              </Button>
+
+              {/* ACCENT */}
+              <Button variant="light" color="accent">
+                Accent
               </Button>
 
               {/* SUCCESS */}
@@ -237,7 +252,7 @@ export default function ButtonComponentPage() {
             </div>
 
             {/* FLAT */}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
               {/* DEFAULT */}
               <Button variant="flat" color="default">
                 Default
@@ -251,6 +266,11 @@ export default function ButtonComponentPage() {
               {/* SECONDARY */}
               <Button variant="flat" color="secondary">
                 Secondary
+              </Button>
+
+              {/* ACCENT */}
+              <Button variant="flat" color="accent">
+                Accent
               </Button>
 
               {/* SUCCESS */}
@@ -270,7 +290,7 @@ export default function ButtonComponentPage() {
             </div>
 
             {/* GHOST */}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
               {/* DEFAULT */}
               <Button variant="ghost" color="default">
                 Default
@@ -284,6 +304,11 @@ export default function ButtonComponentPage() {
               {/* SECONDARY */}
               <Button variant="ghost" color="secondary">
                 Secondary
+              </Button>
+
+              {/* ACCENT */}
+              <Button variant="ghost" color="accent">
+                Accent
               </Button>
 
               {/* SUCCESS */}
@@ -303,7 +328,7 @@ export default function ButtonComponentPage() {
             </div>
 
             {/* SHADOW */}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
               {/* DEFAULT */}
               <Button variant="shadow" color="default">
                 Default
@@ -317,6 +342,11 @@ export default function ButtonComponentPage() {
               {/* SECONDARY */}
               <Button variant="shadow" color="secondary">
                 Secondary
+              </Button>
+
+              {/* ACCENT */}
+              <Button variant="shadow" color="accent">
+                Accent
               </Button>
 
               {/* SUCCESS */}
@@ -336,7 +366,7 @@ export default function ButtonComponentPage() {
             </div>
 
             {/* LINK */}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
               {/* DEFAULT */}
               <Button variant="link" color="default">
                 Default
@@ -350,6 +380,11 @@ export default function ButtonComponentPage() {
               {/* SECONDARY */}
               <Button variant="link" color="secondary">
                 Secondary
+              </Button>
+
+              {/* ACCENT */}
+              <Button variant="link" color="accent">
+                Accent
               </Button>
 
               {/* SUCCESS */}
@@ -474,6 +509,24 @@ export default function ButtonComponentPage() {
         props={[
           "radius: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'",
         ]}
+      />
+
+      {/* HOVERS */}
+      <DocsComponent
+        title="Hovers"
+        description="Defines how the button behaves on user interaction, such as hover and active states. Use the 'hover' prop to control motion, depth, and feedback without affecting the button color."
+        preview={
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
+            <Button variant="default" hover="scale">
+              Scale
+            </Button>
+
+            <Button variant="default" hover="lift">
+              Lift
+            </Button>
+          </div>
+        }
+        props={["hover: 'scale' | 'lift'"]}
       />
 
       {/* WITH ICONS */}
@@ -1055,6 +1108,13 @@ export default function ButtonComponentPage() {
                   <td className="px-3 py-2 font-mono">string</td>
                   <td className="px-3 py-2">xl</td>
                   <td className="px-3 py-2">Border radius of the button.</td>
+                </tr>
+
+                <tr className="border-b">
+                  <td className="px-3 py-2 font-mono">hover</td>
+                  <td className="px-3 py-2 font-mono">string</td>
+                  <td className="px-3 py-2">scale</td>
+                  <td className="px-3 py-2">Hover behavior of the button.</td>
                 </tr>
 
                 <tr className="border-b">

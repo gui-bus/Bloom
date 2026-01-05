@@ -139,16 +139,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const colorClasses: Record<ButtonColor, Record<string, string>> = {
       default: {
         default:
-          "bg-slate-600 text-white hover:bg-slate-700 focus-visible:ring-slate-500",
+          "bg-neutral-600 text-white hover:bg-neutral-700 focus-visible:ring-neutral-500",
         bordered:
-          "border-slate-500 text-slate-700 focus-visible:ring-slate-500",
-        light: "hover:bg-slate-100 focus-visible:ring-slate-500 text-slate-700",
-        flat: "bg-slate-100 focus-visible:ring-slate-500 text-slate-700",
+          "border-neutral-500 text-neutral-700 focus-visible:ring-neutral-500",
+        light: "hover:bg-neutral-100 focus-visible:ring-neutral-500 text-neutral-700",
+        flat: "bg-neutral-100 focus-visible:ring-neutral-500 text-neutral-700",
         ghost:
-          "border-slate-500 text-slate-700 focus-visible:ring-slate-500 hover:bg-slate-500 hover:text-white",
+          "border-neutral-500 text-neutral-700 focus-visible:ring-neutral-500 hover:bg-neutral-500 hover:text-white",
         shadow:
-          "bg-slate-600 text-white hover:bg-slate-700 focus-visible:ring-slate-500 shadow-slate-600",
-        link: "bg-transparent underline text-slate-600 hover:text-slate-700 shadow-none border-none",
+          "bg-neutral-600 text-white hover:bg-neutral-700 focus-visible:ring-neutral-500 shadow-neutral-600",
+        link: "bg-transparent underline text-neutral-600 hover:text-neutral-700 shadow-none border-none",
       },
       primary: {
         default:

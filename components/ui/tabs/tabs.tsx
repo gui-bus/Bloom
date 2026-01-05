@@ -22,7 +22,14 @@ type TabsSize = "xs" | "sm" | "md" | "lg" | "xl";
  * Color intent for TabsTrigger.
  * Can map to theme tokens or be overridden via `customColor`.
  */
-type TabsColor = "primary" | "secondary" | "success" | "warning" | "danger" | "custom";
+type TabsColor =
+  | "default"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "danger"
+  | "custom";
 //#endregion
 
 //#region Interfaces
@@ -218,7 +225,7 @@ function TabsTrigger({
   badgePosition = "end",
   variant = "default",
   size = "md",
-  color = "primary",
+  color = "default",
   customColor,
   isDisabled = false,
   isLoading = false,
@@ -244,6 +251,17 @@ function TabsTrigger({
     Exclude<TabsColor, "custom">,
     Record<TabsVariant, string>
   > = {
+    default: {
+      default:
+        "data-[state=active]:bg-neutral-600 data-[state=active]:text-white",
+      ghost:
+        "data-[state=active]:bg-neutral-100 data-[state=active]:text-neutral-800",
+      bordered:
+        "data-[state=active]:border-neutral-500 data-[state=active]:text-neutral-700",
+      underline:
+        "data-[state=active]:border-neutral-600 data-[state=active]:text-neutral-600",
+    },
+
     primary: {
       default: "data-[state=active]:bg-blue-600 data-[state=active]:text-white",
       ghost:
@@ -253,6 +271,7 @@ function TabsTrigger({
       underline:
         "data-[state=active]:border-blue-600 data-[state=active]:text-blue-600",
     },
+
     secondary: {
       default: "data-[state=active]:bg-gray-700 data-[state=active]:text-white",
       ghost:
@@ -262,6 +281,7 @@ function TabsTrigger({
       underline:
         "data-[state=active]:border-gray-700 data-[state=active]:text-gray-700",
     },
+
     success: {
       default:
         "data-[state=active]:bg-green-600 data-[state=active]:text-white",
