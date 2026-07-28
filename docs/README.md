@@ -1,6 +1,6 @@
 # Documentação Técnica do Bloom
 
-Esta pasta contém o detalhamento técnico, arquitetura e decisões de design aplicadas no ecossistema Bloom. 
+Esta pasta contém o detalhamento técnico, arquitetura e decisões de design aplicadas no ecossistema Bloom.
 
 ---
 
@@ -15,6 +15,12 @@ Esta pasta contém o detalhamento técnico, arquitetura e decisões de design ap
    * Estrutura de arquivos e padrões exigidos para cada componente UI (`components/ui/[name]`).
    * Escala de tamanhos (`size`), cantos arredondados (`radius`), estados (`isLoading`, `isDisabled`), e variações visuais.
    * Centralização de tokens em variáveis CSS e no script `lib/design-system.ts`.
+
+3. 💻 [**Instalação e Uso via CLI (`cli.md`)**](file:///c:/Users/Guilherme/Desktop/PROJETOS/ZoeUI/docs/cli.md)
+   * Guia para desenvolvedores consumidores de como inicializar o Bloom em seus projetos (`npx @bloomui/cli init`) e instalar os componentes (`npx @bloomui/cli add [componente]`).
+
+4. 🚀 [**Guia de Desenvolvimento e Publicação (`development.md`)**](file:///c:/Users/Guilherme/Desktop/PROJETOS/ZoeUI/docs/development.md)
+   * Guia do proprietário do Bloom de como gerar o registro de componentes e publicar novas versões da CLI no NPM.
 
 ---
 
