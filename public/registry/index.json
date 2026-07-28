@@ -23,6 +23,12 @@
     "dependencies": []
   },
   {
+    "name": "separator",
+    "dependencies": [
+      "@radix-ui/react-separator"
+    ]
+  },
+  {
     "name": "tabs",
     "dependencies": [
       "@radix-ui/react-tabs",

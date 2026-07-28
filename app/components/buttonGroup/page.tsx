@@ -67,6 +67,25 @@ export default function ButtonGroupPage() {
             </ButtonGroup>
           </div>
         }
+        code={`<div className="space-y-5">
+  <ButtonGroup>
+    <Button variant="default">Default</Button>
+    <Button variant="default">Middle</Button>
+    <Button variant="default">Last</Button>
+  </ButtonGroup>
+
+  <ButtonGroup>
+    <Button variant="bordered">Default</Button>
+    <Button variant="bordered">Middle</Button>
+    <Button variant="bordered">Last</Button>
+  </ButtonGroup>
+
+  <ButtonGroup>
+    <Button variant="ghost">Default</Button>
+    <Button variant="ghost">Middle</Button>
+    <Button variant="ghost">Last</Button>
+  </ButtonGroup>
+</div>`}
         props={[
           "variant: 'default' | 'bordered' | 'light' | 'flat' | 'ghost' | 'shadow' | 'link'",
         ]}
@@ -100,6 +119,21 @@ export default function ButtonGroupPage() {
             </ButtonGroup>
           </div>
         }
+        code={`<div className="space-y-5">
+  <ButtonGroup>
+    <Button color="primary">Primary</Button>
+    <Button color="secondary">Secondary</Button>
+    <Button color="success">Success</Button>
+    <Button color="danger">Danger</Button>
+  </ButtonGroup>
+
+  <ButtonGroup>
+    <Button variant="bordered" color="primary">Primary</Button>
+    <Button variant="bordered" color="secondary">Secondary</Button>
+    <Button variant="bordered" color="success">Success</Button>
+    <Button variant="bordered" color="danger">Danger</Button>
+  </ButtonGroup>
+</div>`}
         props={[
           "color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'",
         ]}
@@ -127,6 +161,23 @@ export default function ButtonGroupPage() {
             </ButtonGroup>
           </div>
         }
+        code={`<div className="space-y-5">
+  <ButtonGroup>
+    <Button size="sm">Small</Button>
+    <Button size="sm">Small</Button>
+    <Button size="sm">Small</Button>
+  </ButtonGroup>
+  <ButtonGroup>
+    <Button size="md">Medium</Button>
+    <Button size="md">Medium</Button>
+    <Button size="md">Medium</Button>
+  </ButtonGroup>
+  <ButtonGroup>
+    <Button size="lg">Large</Button>
+    <Button size="lg">Large</Button>
+    <Button size="lg">Large</Button>
+  </ButtonGroup>
+</div>`}
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
 
@@ -158,6 +209,23 @@ export default function ButtonGroupPage() {
             />
           </ButtonGroup>
         }
+        code={`<ButtonGroup>
+  <Button
+    isIconOnly
+    ariaLabel="Home"
+    startContent={<Icon icon="hugeicons:home-03" className="size-5" />}
+  />
+  <Button
+    isIconOnly
+    ariaLabel="Profile"
+    startContent={<Icon icon="hugeicons:user-square" className="size-5" />}
+  />
+  <Button
+    isIconOnly
+    ariaLabel="Settings"
+    startContent={<Icon icon="material-symbols:settings" className="size-5" />}
+  />
+</ButtonGroup>`}
         props={["isIconOnly: 'true' | 'false'", "ariaLabel: 'string'"]}
       />
 
@@ -173,6 +241,13 @@ export default function ButtonGroupPage() {
             <Button badgeContent="20">Messages</Button>
           </ButtonGroup>
         }
+        code={`<ButtonGroup>
+  <Button badgeContent="5">Inbox</Button>
+  <Button badgeContent="10" badgePosition="start">
+    Alerts
+  </Button>
+  <Button badgeContent="20">Messages</Button>
+</ButtonGroup>`}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />

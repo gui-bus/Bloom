@@ -1,4 +1,4 @@
-"use client";
+export const separatorCode = `"use client";
 
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
 import * as React from "react";
@@ -137,3 +137,4 @@ const Separator = React.forwardRef<
 Separator.displayName = "Separator";
 
 export { Separator };
+`;

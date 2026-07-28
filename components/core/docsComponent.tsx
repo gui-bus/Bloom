@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import reactElementToJSXString from "react-element-to-jsx-string";
 import {
   Tabs,
   TabsContent,
@@ -14,7 +13,7 @@ interface DocsComponentProps {
   title: string;
   description?: string;
   preview: React.ReactNode;
-  code?: string | React.ReactNode; 
+  code?: string | React.ReactNode;
   props?: string[];
 }
 
@@ -60,32 +59,18 @@ export function DocsComponent({
   }
 
   const resolvedCode = React.useMemo(() => {
-    if (code) {
-      
-      if (React.isValidElement(code)) {
-        return code;
-      }
-      
-      if (typeof code === "string") {
-        return <CodeBlock code={code} componentName="Usage" />;
-      }
+    if (!code) return null;
+
+    if (React.isValidElement(code)) {
+      return code;
     }
 
-    try {
-      if (React.isValidElement(preview)) {
-        const generatedString = reactElementToJSXString(preview, {
-          showDefaultProps: false,
-          showFunctions: false,
-          maxInlineAttributesLineLength: 80,
-        });
-        return <CodeBlock code={generatedString} componentName="Usage" />;
-      }
-    } catch (e) {
-      console.error("Failed to generate JSX string for preview in DocsComponent:", e);
+    if (typeof code === "string") {
+      return <CodeBlock code={code} componentName="Usage" />;
     }
 
     return null;
-  }, [code, preview]);
+  }, [code]);
 
   return (
     <section className="space-y-4 border border-zinc-200/50 dark:border-zinc-800/50 rounded-3xl p-6 bg-zinc-50/20 dark:bg-zinc-950/10">

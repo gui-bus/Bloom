@@ -59,6 +59,21 @@ export default function AvatarPage() {
             </Avatar>
           </div>
         }
+        code={`<div className="flex flex-wrap items-center gap-4">
+  <Avatar>
+    <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="User" />
+    <AvatarFallback>GB</AvatarFallback>
+  </Avatar>
+
+  <Avatar>
+    <AvatarImage src="invalid-url.jpg" alt="Broken link" />
+    <AvatarFallback>JD</AvatarFallback>
+  </Avatar>
+
+  <Avatar>
+    <AvatarFallback>AB</AvatarFallback>
+  </Avatar>
+</div>`}
       />
 
       {/* Sizes */}
@@ -90,6 +105,29 @@ export default function AvatarPage() {
             </Avatar>
           </div>
         }
+        code={`<div className="flex flex-wrap items-center gap-4">
+  <Avatar size="xs">
+    <AvatarFallback>XS</AvatarFallback>
+  </Avatar>
+  <Avatar size="sm">
+    <AvatarFallback>SM</AvatarFallback>
+  </Avatar>
+  <Avatar size="md">
+    <AvatarFallback>MD</AvatarFallback>
+  </Avatar>
+  <Avatar size="lg">
+    <AvatarFallback>LG</AvatarFallback>
+  </Avatar>
+  <Avatar size="xl">
+    <AvatarFallback>XL</AvatarFallback>
+  </Avatar>
+  <Avatar size="2xl">
+    <AvatarFallback>2X</AvatarFallback>
+  </Avatar>
+  <Avatar size="3xl">
+    <AvatarFallback>3X</AvatarFallback>
+  </Avatar>
+</div>`}
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
 
@@ -122,6 +160,29 @@ export default function AvatarPage() {
             </Avatar>
           </div>
         }
+        code={`<div className="flex flex-wrap items-center gap-4">
+  <Avatar isBordered color="default">
+    <AvatarFallback>DF</AvatarFallback>
+  </Avatar>
+  <Avatar isBordered color="primary">
+    <AvatarFallback>PR</AvatarFallback>
+  </Avatar>
+  <Avatar isBordered color="secondary">
+    <AvatarFallback>SC</AvatarFallback>
+  </Avatar>
+  <Avatar isBordered color="accent">
+    <AvatarFallback>AC</AvatarFallback>
+  </Avatar>
+  <Avatar isBordered color="success">
+    <AvatarFallback>SC</AvatarFallback>
+  </Avatar>
+  <Avatar isBordered color="warning">
+    <AvatarFallback>WR</AvatarFallback>
+  </Avatar>
+  <Avatar isBordered color="danger">
+    <AvatarFallback>DG</AvatarFallback>
+  </Avatar>
+</div>`}
         props={["isBordered: boolean", "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
       />
 
@@ -145,6 +206,20 @@ export default function AvatarPage() {
             </Avatar>
           </div>
         }
+        code={`<div className="flex flex-wrap items-center gap-4">
+  <Avatar radius="none">
+    <AvatarFallback>SQ</AvatarFallback>
+  </Avatar>
+  <Avatar radius="md">
+    <AvatarFallback>MD</AvatarFallback>
+  </Avatar>
+  <Avatar radius="xl">
+    <AvatarFallback>XL</AvatarFallback>
+  </Avatar>
+  <Avatar radius="full">
+    <AvatarFallback>RD</AvatarFallback>
+  </Avatar>
+</div>`}
         props={["radius: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'"]}
       />
 
@@ -168,6 +243,20 @@ export default function AvatarPage() {
             </Avatar>
           </div>
         }
+        code={`<div className="flex flex-wrap items-center gap-6">
+  <Avatar status="success" statusPosition="bottom-right">
+    <AvatarFallback>ON</AvatarFallback>
+  </Avatar>
+  <Avatar status="warning" statusPosition="top-right">
+    <AvatarFallback>AW</AvatarFallback>
+  </Avatar>
+  <Avatar status="danger" statusPosition="bottom-left">
+    <AvatarFallback>OFF</AvatarFallback>
+  </Avatar>
+  <Avatar status="secondary" statusPosition="top-left">
+    <AvatarFallback>DND</AvatarFallback>
+  </Avatar>
+</div>`}
         props={["status: AvatarColor", "statusPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'"]}
       />
 
@@ -186,6 +275,15 @@ export default function AvatarPage() {
             </Avatar>
           </div>
         }
+        code={`<div className="flex flex-wrap items-center gap-4">
+  <Avatar isDisabled>
+    <AvatarFallback>DS</AvatarFallback>
+  </Avatar>
+  <Avatar isDisabled isBordered color="primary">
+    <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="User" />
+    <AvatarFallback>DS</AvatarFallback>
+  </Avatar>
+</div>`}
         props={["isDisabled: boolean"]}
       />
 

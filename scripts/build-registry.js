@@ -24,6 +24,10 @@ const componentsConfig = {
     dependencies: [],
     files: ["buttonGroup.tsx"],
   },
+  separator: {
+    dependencies: ["@radix-ui/react-separator"],
+    files: ["separator.tsx"],
+  },
   tabs: {
     dependencies: ["@radix-ui/react-tabs", "framer-motion", "class-variance-authority"],
     files: ["tabs.tsx"],

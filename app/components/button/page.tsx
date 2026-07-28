@@ -102,7 +102,6 @@ export default function ButtonComponentPage() {
         description="Defines the visual appearance of the tabs through the 'variant' prop, allowing the style to adapt to the interface context. When not specified, the default variant is used."
         preview={
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-            
             <Button variant="default">Default</Button>
 
             <Button variant="bordered">Bordered</Button>
@@ -118,6 +117,15 @@ export default function ButtonComponentPage() {
             <Button variant="link">Link</Button>
           </div>
         }
+        code={`<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
+  <Button variant="default">Default</Button>
+  <Button variant="bordered">Bordered</Button>
+  <Button variant="light">Light</Button>
+  <Button variant="flat">Flat</Button>
+  <Button variant="ghost">Ghost</Button>
+  <Button variant="shadow">Shadow</Button>
+  <Button variant="link">Link</Button>
+</div>`}
         props={[
           "variant: 'default' | 'bordered' | 'light' | 'flat' | 'ghost' | 'shadow' | 'link'",
         ]}
@@ -128,225 +136,26 @@ export default function ButtonComponentPage() {
         description="Defines the button color scheme through the 'color' prop. This approach ensures visual consistency without limiting design flexibility."
         preview={
           <div className="space-y-5">
-            
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              
-              <Button variant="default" color="default">
-                Default
-              </Button>
-
-              <Button variant="default" color="primary">
-                Primary
-              </Button>
-
-              <Button variant="default" color="secondary">
-                Secondary
-              </Button>
-
-              <Button variant="default" color="accent">
-                Accent
-              </Button>
-
-              <Button variant="default" color="success">
-                Success
-              </Button>
-
-              <Button variant="default" color="warning">
-                Warning
-              </Button>
-
-              <Button variant="default" color="danger">
-                Danger
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              
-              <Button variant="bordered" color="default">
-                Default
-              </Button>
-
-              <Button variant="bordered" color="primary">
-                Primary
-              </Button>
-
-              <Button variant="bordered" color="secondary">
-                Secondary
-              </Button>
-
-              <Button variant="bordered" color="accent">
-                Accent
-              </Button>
-
-              <Button variant="bordered" color="success">
-                Success
-              </Button>
-
-              <Button variant="bordered" color="warning">
-                Warning
-              </Button>
-
-              <Button variant="bordered" color="danger">
-                Danger
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              
-              <Button variant="light" color="default">
-                Default
-              </Button>
-
-              <Button variant="light" color="primary">
-                Primary
-              </Button>
-
-              <Button variant="light" color="secondary">
-                Secondary
-              </Button>
-
-              <Button variant="light" color="accent">
-                Accent
-              </Button>
-
-              <Button variant="light" color="success">
-                Success
-              </Button>
-
-              <Button variant="light" color="warning">
-                Warning
-              </Button>
-
-              <Button variant="light" color="danger">
-                Danger
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              
-              <Button variant="flat" color="default">
-                Default
-              </Button>
-
-              <Button variant="flat" color="primary">
-                Primary
-              </Button>
-
-              <Button variant="flat" color="secondary">
-                Secondary
-              </Button>
-
-              <Button variant="flat" color="accent">
-                Accent
-              </Button>
-
-              <Button variant="flat" color="success">
-                Success
-              </Button>
-
-              <Button variant="flat" color="warning">
-                Warning
-              </Button>
-
-              <Button variant="flat" color="danger">
-                Danger
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              
-              <Button variant="ghost" color="default">
-                Default
-              </Button>
-
-              <Button variant="ghost" color="primary">
-                Primary
-              </Button>
-
-              <Button variant="ghost" color="secondary">
-                Secondary
-              </Button>
-
-              <Button variant="ghost" color="accent">
-                Accent
-              </Button>
-
-              <Button variant="ghost" color="success">
-                Success
-              </Button>
-
-              <Button variant="ghost" color="warning">
-                Warning
-              </Button>
-
-              <Button variant="ghost" color="danger">
-                Danger
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              
-              <Button variant="shadow" color="default">
-                Default
-              </Button>
-
-              <Button variant="shadow" color="primary">
-                Primary
-              </Button>
-
-              <Button variant="shadow" color="secondary">
-                Secondary
-              </Button>
-
-              <Button variant="shadow" color="accent">
-                Accent
-              </Button>
-
-              <Button variant="shadow" color="success">
-                Success
-              </Button>
-
-              <Button variant="shadow" color="warning">
-                Warning
-              </Button>
-
-              <Button variant="shadow" color="danger">
-                Danger
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              
-              <Button variant="link" color="default">
-                Default
-              </Button>
-
-              <Button variant="link" color="primary">
-                Primary
-              </Button>
-
-              <Button variant="link" color="secondary">
-                Secondary
-              </Button>
-
-              <Button variant="link" color="accent">
-                Accent
-              </Button>
-
-              <Button variant="link" color="success">
-                Success
-              </Button>
-
-              <Button variant="link" color="warning">
-                Warning
-              </Button>
-
-              <Button variant="link" color="danger">
-                Danger
-              </Button>
+              <Button variant="default" color="default">Default</Button>
+              <Button variant="default" color="primary">Primary</Button>
+              <Button variant="default" color="secondary">Secondary</Button>
+              <Button variant="default" color="accent">Accent</Button>
+              <Button variant="default" color="success">Success</Button>
+              <Button variant="default" color="warning">Warning</Button>
+              <Button variant="default" color="danger">Danger</Button>
             </div>
           </div>
         }
+        code={`<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
+  <Button variant="default" color="default">Default</Button>
+  <Button variant="default" color="primary">Primary</Button>
+  <Button variant="default" color="secondary">Secondary</Button>
+  <Button variant="default" color="accent">Accent</Button>
+  <Button variant="default" color="success">Success</Button>
+  <Button variant="default" color="warning">Warning</Button>
+  <Button variant="default" color="danger">Danger</Button>
+</div>`}
         props={[
           "color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'",
         ]}
@@ -357,36 +166,24 @@ export default function ButtonComponentPage() {
         description="Allows adjusting the visual scale of buttons through the 'size' prop. The default size is 'md', with options that adapt to different interface densities and contexts."
         preview={
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
-            
-            <Button variant="default" size="xs">
-              xs
-            </Button>
-
-            <Button variant="default" size="sm">
-              sm
-            </Button>
-
-            <Button variant="default" size="md">
-              md
-            </Button>
-
-            <Button variant="default" size="lg">
-              lg
-            </Button>
-
-            <Button variant="default" size="xl">
-              xl
-            </Button>
-
-            <Button variant="default" size="2xl">
-              2xl
-            </Button>
-
-            <Button variant="default" size="3xl">
-              3xl
-            </Button>
+            <Button variant="default" size="xs">xs</Button>
+            <Button variant="default" size="sm">sm</Button>
+            <Button variant="default" size="md">md</Button>
+            <Button variant="default" size="lg">lg</Button>
+            <Button variant="default" size="xl">xl</Button>
+            <Button variant="default" size="2xl">2xl</Button>
+            <Button variant="default" size="3xl">3xl</Button>
           </div>
         }
+        code={`<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
+  <Button variant="default" size="xs">xs</Button>
+  <Button variant="default" size="sm">sm</Button>
+  <Button variant="default" size="md">md</Button>
+  <Button variant="default" size="lg">lg</Button>
+  <Button variant="default" size="xl">xl</Button>
+  <Button variant="default" size="2xl">2xl</Button>
+  <Button variant="default" size="3xl">3xl</Button>
+</div>`}
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
 
@@ -395,44 +192,28 @@ export default function ButtonComponentPage() {
         description="Allows adjusting the visual radius of buttons through the 'radius' prop. The default radius is 'lg', with options that adapt to different interface densities and contexts."
         preview={
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-5">
-            
-            <Button variant="default" radius="none" size="2xl">
-              none
-            </Button>
-
-            <Button variant="default" radius="xs" size="2xl">
-              xs
-            </Button>
-
-            <Button variant="default" radius="sm" size="2xl">
-              sm
-            </Button>
-
-            <Button variant="default" radius="md" size="2xl">
-              md
-            </Button>
-
-            <Button variant="default" radius="lg" size="2xl">
-              lg
-            </Button>
-
-            <Button variant="default" radius="xl" size="2xl">
-              xl
-            </Button>
-
-            <Button variant="default" radius="2xl" size="2xl">
-              2xl
-            </Button>
-
-            <Button variant="default" radius="3xl" size="2xl">
-              3xl
-            </Button>
-
-            <Button variant="default" radius="full" size="2xl">
-              Full
-            </Button>
+            <Button variant="default" radius="none" size="2xl">none</Button>
+            <Button variant="default" radius="xs" size="2xl">xs</Button>
+            <Button variant="default" radius="sm" size="2xl">sm</Button>
+            <Button variant="default" radius="md" size="2xl">md</Button>
+            <Button variant="default" radius="lg" size="2xl">lg</Button>
+            <Button variant="default" radius="xl" size="2xl">xl</Button>
+            <Button variant="default" radius="2xl" size="2xl">2xl</Button>
+            <Button variant="default" radius="3xl" size="2xl">3xl</Button>
+            <Button variant="default" radius="full" size="2xl">Full</Button>
           </div>
         }
+        code={`<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-5">
+  <Button variant="default" radius="none" size="2xl">none</Button>
+  <Button variant="default" radius="xs" size="2xl">xs</Button>
+  <Button variant="default" radius="sm" size="2xl">sm</Button>
+  <Button variant="default" radius="md" size="2xl">md</Button>
+  <Button variant="default" radius="lg" size="2xl">lg</Button>
+  <Button variant="default" radius="xl" size="2xl">xl</Button>
+  <Button variant="default" radius="2xl" size="2xl">2xl</Button>
+  <Button variant="default" radius="3xl" size="2xl">3xl</Button>
+  <Button variant="default" radius="full" size="2xl">Full</Button>
+</div>`}
         props={[
           "radius: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'",
         ]}
@@ -443,15 +224,14 @@ export default function ButtonComponentPage() {
         description="Defines how the button behaves on user interaction, such as hover and active states. Use the 'hover' prop to control motion, depth, and feedback without affecting the button color."
         preview={
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
-            <Button variant="default" hover="scale">
-              Scale
-            </Button>
-
-            <Button variant="default" hover="lift">
-              Lift
-            </Button>
+            <Button variant="default" hover="scale">Scale</Button>
+            <Button variant="default" hover="lift">Lift</Button>
           </div>
         }
+        code={`<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
+  <Button variant="default" hover="scale">Scale</Button>
+  <Button variant="default" hover="lift">Lift</Button>
+</div>`}
         props={["hover: 'scale' | 'lift'"]}
       />
 
@@ -460,9 +240,7 @@ export default function ButtonComponentPage() {
         description="Adds icons to the button, either at the start or end, to enhance visual context and improve recognition. Use 'startContent' or 'endContent' props to pass a ReactNode icon."
         preview={
           <div className="space-y-5">
-            
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              
               <Button
                 variant="default"
                 startContent={
@@ -471,7 +249,6 @@ export default function ButtonComponentPage() {
               >
                 Home
               </Button>
-
               <Button
                 variant="bordered"
                 startContent={
@@ -479,121 +256,16 @@ export default function ButtonComponentPage() {
                 }
               >
                 Home
-              </Button>
-
-              <Button
-                variant="light"
-                startContent={
-                  <Icon icon="hugeicons:home-03" className="size-5" />
-                }
-              >
-                Home
-              </Button>
-
-              <Button
-                variant="flat"
-                startContent={
-                  <Icon icon="hugeicons:home-03" className="size-5" />
-                }
-              >
-                Home
-              </Button>
-
-              <Button
-                variant="ghost"
-                startContent={
-                  <Icon icon="hugeicons:home-03" className="size-5" />
-                }
-              >
-                Home
-              </Button>
-
-              <Button
-                variant="shadow"
-                startContent={
-                  <Icon icon="hugeicons:home-03" className="size-5" />
-                }
-              >
-                Home
-              </Button>
-
-              <Button
-                variant="link"
-                startContent={
-                  <Icon icon="hugeicons:home-03" className="size-5" />
-                }
-              >
-                Home
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              
-              <Button
-                variant="default"
-                endContent={
-                  <Icon icon="hugeicons:user-square" className="size-5" />
-                }
-              >
-                Profile
-              </Button>
-
-              <Button
-                variant="bordered"
-                endContent={
-                  <Icon icon="hugeicons:user-square" className="size-5" />
-                }
-              >
-                Profile
-              </Button>
-
-              <Button
-                variant="light"
-                endContent={
-                  <Icon icon="hugeicons:user-square" className="size-5" />
-                }
-              >
-                Profile
-              </Button>
-
-              <Button
-                variant="flat"
-                endContent={
-                  <Icon icon="hugeicons:user-square" className="size-5" />
-                }
-              >
-                Profile
-              </Button>
-
-              <Button
-                variant="ghost"
-                endContent={
-                  <Icon icon="hugeicons:user-square" className="size-5" />
-                }
-              >
-                Profile
-              </Button>
-
-              <Button
-                variant="shadow"
-                endContent={
-                  <Icon icon="hugeicons:user-square" className="size-5" />
-                }
-              >
-                Profile
-              </Button>
-
-              <Button
-                variant="link"
-                endContent={
-                  <Icon icon="hugeicons:user-square" className="size-5" />
-                }
-              >
-                Profile
               </Button>
             </div>
           </div>
         }
+        code={`<Button
+  variant="default"
+  startContent={<Icon icon="hugeicons:home-03" className="size-5" />}
+>
+  Home
+</Button>`}
         props={["startContent: 'ReactNode'", "endContent: 'ReactNode'"]}
       />
 
@@ -602,74 +274,19 @@ export default function ButtonComponentPage() {
         description="Displays a badge on the button to provide additional contextual information, such as counts or notifications. Use the 'badgeContent' prop to define the badge value and 'badgePosition' to set whether it appears at the start or end of the button."
         preview={
           <div className="space-y-5">
-            
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              
               <Button variant="default" badgeContent="20">
                 Inbox
               </Button>
-
-              <Button variant="bordered" badgeContent="20">
-                Inbox
-              </Button>
-
-              <Button variant="light" badgeContent="20">
-                Inbox
-              </Button>
-
-              <Button variant="flat" badgeContent="20">
-                Inbox
-              </Button>
-
-              <Button variant="ghost" badgeContent="20">
-                Inbox
-              </Button>
-
-              <Button variant="shadow" badgeContent="20">
-                Inbox
-              </Button>
-
-              <Button variant="link" badgeContent="20">
-                Inbox
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              
               <Button variant="default" badgeContent="20" badgePosition="start">
-                Inbox
-              </Button>
-
-              <Button
-                variant="bordered"
-                badgeContent="20"
-                badgePosition="start"
-              >
-                Inbox
-              </Button>
-
-              <Button variant="light" badgeContent="20" badgePosition="start">
-                Inbox
-              </Button>
-
-              <Button variant="flat" badgeContent="20" badgePosition="start">
-                Inbox
-              </Button>
-
-              <Button variant="ghost" badgeContent="20" badgePosition="start">
-                Inbox
-              </Button>
-
-              <Button variant="shadow" badgeContent="20" badgePosition="start">
-                Inbox
-              </Button>
-
-              <Button variant="link" badgeContent="20" badgePosition="start">
                 Inbox
               </Button>
             </div>
           </div>
         }
+        code={`<Button variant="default" badgeContent="20">
+  Inbox
+</Button>`}
         props={["badgeContent: 'string'", "badgePosition: 'start' | 'end'"]}
       />
 
@@ -678,7 +295,6 @@ export default function ButtonComponentPage() {
         description="Allows customizing the badge appearance using any Tailwind CSS classes. Use 'badgeCustomClassname' to apply custom styles."
         preview={
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-            
             <Button
               variant="default"
               badgeContent="20"
@@ -686,24 +302,15 @@ export default function ButtonComponentPage() {
             >
               Inbox
             </Button>
-
-            <Button
-              variant="default"
-              badgeContent="20"
-              badgeCustomClassname="bg-white text-black rounded-bl-3xl"
-            >
-              Inbox
-            </Button>
-
-            <Button
-              variant="default"
-              badgeContent="20"
-              badgeCustomClassname="bg-rose-600 animate-pulse"
-            >
-              Inbox
-            </Button>
           </div>
         }
+        code={`<Button
+  variant="default"
+  badgeContent="20"
+  badgeCustomClassname="bg-sky-600"
+>
+  Inbox
+</Button>`}
         props={["badgeCustomClassname: 'string'"]}
       />
 
@@ -712,7 +319,6 @@ export default function ButtonComponentPage() {
         description="Displays the button with only an icon, without any text, for compact or minimalist UI patterns. Use the 'isIconOnly' prop to enable this mode. When 'isIconOnly' is true, the 'ariaLabel' prop is required to ensure accessibility."
         preview={
           <div className="flex items-center gap-5">
-            
             <Button
               variant="default"
               startContent={
@@ -721,62 +327,14 @@ export default function ButtonComponentPage() {
               isIconOnly
               ariaLabel="Home"
             />
-
-            <Button
-              variant="bordered"
-              startContent={
-                <Icon icon="hugeicons:home-03" className="size-5" />
-              }
-              isIconOnly
-              ariaLabel="Home"
-            />
-
-            <Button
-              variant="light"
-              startContent={
-                <Icon icon="hugeicons:home-03" className="size-5" />
-              }
-              isIconOnly
-              ariaLabel="Home"
-            />
-
-            <Button
-              variant="flat"
-              startContent={
-                <Icon icon="hugeicons:home-03" className="size-5" />
-              }
-              isIconOnly
-              ariaLabel="Home"
-            />
-
-            <Button
-              variant="ghost"
-              startContent={
-                <Icon icon="hugeicons:home-03" className="size-5" />
-              }
-              isIconOnly
-              ariaLabel="Home"
-            />
-
-            <Button
-              variant="shadow"
-              startContent={
-                <Icon icon="hugeicons:home-03" className="size-5" />
-              }
-              isIconOnly
-              ariaLabel="Home"
-            />
-
-            <Button
-              variant="link"
-              startContent={
-                <Icon icon="hugeicons:home-03" className="size-5" />
-              }
-              isIconOnly
-              ariaLabel="Home"
-            />
           </div>
         }
+        code={`<Button
+  variant="default"
+  startContent={<Icon icon="hugeicons:home-03" className="size-5" />}
+  isIconOnly
+  ariaLabel="Home"
+/>`}
         props={["isIconOnly: 'true' | 'false'", "ariaLabel: 'string'"]}
       />
 
@@ -785,14 +343,18 @@ export default function ButtonComponentPage() {
         description="Controls the ripple effect on button clicks, providing visual feedback of user interaction. By default, the ripple animation is enabled; set 'disableRipple' to 'true' to turn it off."
         preview={
           <div className="flex items-center gap-5">
-            
             <Button variant="default">Click me (with ripple animation)</Button>
-
             <Button variant="default" disableRipple>
               Click me (without ripple animation)
             </Button>
           </div>
         }
+        code={`<div className="flex items-center gap-5">
+  <Button variant="default">Click me (with ripple animation)</Button>
+  <Button variant="default" disableRipple>
+    Click me (without ripple animation)
+  </Button>
+</div>`}
         props={["disableRipple: 'true' | 'false'"]}
       />
 
@@ -801,36 +363,17 @@ export default function ButtonComponentPage() {
         description="Displays the button in a loading state to provide visual feedback that an action is in progress. Use the 'isLoading' prop to toggle the loading state. Optionally, use the 'loadingText' prop to show custom text while the button is loading."
         preview={
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-            
             <Button variant="default" isLoading>
               Default
             </Button>
-
             <Button variant="bordered" isLoading>
               Bordered
             </Button>
-
-            <Button variant="light" isLoading>
-              Light
-            </Button>
-
-            <Button variant="flat" isLoading>
-              Flat
-            </Button>
-
-            <Button variant="ghost" isLoading>
-              Ghost
-            </Button>
-
-            <Button variant="shadow" isLoading>
-              Shadow
-            </Button>
-
-            <Button variant="link" isLoading>
-              Link
-            </Button>
           </div>
         }
+        code={`<Button variant="default" isLoading>
+  Default
+</Button>`}
         props={["isLoading: 'true' | 'false'", "loadingText: 'string'"]}
       />
 
@@ -839,7 +382,6 @@ export default function ButtonComponentPage() {
         description="Allows replacing the default loading spinner with any custom ReactNode. Use the 'loadingIcon' prop to pass your own icon or animation."
         preview={
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            
             <Button
               variant="default"
               isLoading
@@ -853,45 +395,21 @@ export default function ButtonComponentPage() {
             >
               Default
             </Button>
-
-            <Button
-              variant="default"
-              isLoading
-              loadingIcon={
-                <div className="h-2 w-2 rounded-full border-2 border-current opacity-50 animate-ping"></div>
-              }
-            >
-              Bordered
-            </Button>
-
-            <Button
-              variant="default"
-              isLoading
-              loadingIcon={
-                <div className="flex justify-center items-center space-x-1">
-                  <span className="h-4 w-1 bg-current animate-growY"></span>
-                  <span className="h-4 w-1 bg-current animate-growY delay-150"></span>
-                  <span className="h-4 w-1 bg-current animate-growY delay-300"></span>
-                </div>
-              }
-            >
-              Flat
-            </Button>
-
-            <Button
-              variant="default"
-              isLoading
-              loadingIcon={
-                <div className="relative h-4 w-4">
-                  <div className="absolute inset-0 border-2 border-t-transparent border-current rounded-full animate-spin"></div>
-                  <div className="absolute inset-1 border-2 border-b-transparent border-current rounded-full animate-spin-reverse"></div>
-                </div>
-              }
-            >
-              Ghost
-            </Button>
           </div>
         }
+        code={`<Button
+  variant="default"
+  isLoading
+  loadingIcon={
+    <div className="flex space-x-1">
+      <span className="h-1 w-1 bg-current rounded-full animate-bounce"></span>
+      <span className="h-1 w-1 bg-current rounded-full animate-bounce delay-150"></span>
+      <span className="h-1 w-1 bg-current rounded-full animate-bounce delay-300"></span>
+    </div>
+  }
+>
+  Default
+</Button>`}
         props={["loadingIcon: 'ReactNode'"]}
       />
 
@@ -900,36 +418,14 @@ export default function ButtonComponentPage() {
         description="Disables the button, preventing any user interaction and visually indicating that the action is unavailable. The 'isDisabled' prop accepts 'true' or 'false' to toggle this state."
         preview={
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-            
             <Button variant="default" isDisabled>
               Default
             </Button>
-
-            <Button variant="bordered" isDisabled>
-              Bordered
-            </Button>
-
-            <Button variant="light" isDisabled>
-              Light
-            </Button>
-
-            <Button variant="flat" isDisabled>
-              Flat
-            </Button>
-
-            <Button variant="ghost" isDisabled>
-              Ghost
-            </Button>
-
-            <Button variant="shadow" isDisabled>
-              Shadow
-            </Button>
-
-            <Button variant="link" isDisabled>
-              Link
-            </Button>
           </div>
         }
+        code={`<Button variant="default" isDisabled>
+  Default
+</Button>`}
         props={["isDisabled: 'true' | 'false'"]}
       />
 
