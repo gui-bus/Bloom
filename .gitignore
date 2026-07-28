@@ -4,6 +4,7 @@
 node_modules/
 **/node_modules/
 scratch/
+todo/
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
