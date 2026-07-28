@@ -6,12 +6,11 @@ import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { SidebarHeader } from "./sidebar-header";
-import { LayoutDashboard, Radio, Layers, Keyboard, Sun, Moon } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 
 interface SidebarLink {
   href: string;
   label: string;
-  icon: React.ComponentType<{ className?: string }>;
 }
 
 interface SidebarSection {
@@ -21,7 +20,7 @@ interface SidebarSection {
 
 export function Sidebar() {
   const pathname = usePathname();
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -32,15 +31,16 @@ export function Sidebar() {
     {
       title: "Overview",
       links: [
-        { href: "/", label: "Introduction", icon: LayoutDashboard },
+        { href: "/", label: "Introduction" },
       ],
     },
     {
       title: "Components",
       links: [
-        { href: "/components/button", label: "Button", icon: Radio },
-        { href: "/components/buttonGroup", label: "Button Group", icon: Keyboard },
-        { href: "/components/tabs", label: "Tabs", icon: Layers },
+        { href: "/components/badge", label: "Badge" },
+        { href: "/components/button", label: "Button" },
+        { href: "/components/buttonGroup", label: "Button Group" },
+        { href: "/components/tabs", label: "Tabs" },
       ],
     },
   ];
@@ -66,42 +66,30 @@ export function Sidebar() {
 
         <nav className="space-y-6">
           {sections.map((section) => (
-            <div key={section.title} className="space-y-2">
-              <h4 className="text-[10px] font-bold uppercase tracking-wider text-zinc-400/80 dark:text-zinc-500/80 px-3">
+            <div key={section.title} className="space-y-1">
+              <h4 className="text-[10px] font-bold uppercase tracking-wider text-zinc-400/80 dark:text-zinc-500/80 px-3 mb-2">
                 {section.title}
               </h4>
-              <div className="space-y-1">
-                {section.links.map((link) => {
-                  const isActive = pathname === link.href;
-                  const Icon = link.icon;
-                  return (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className={cn(
-                        "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 cursor-pointer relative",
-                        isActive
-                          ? "bg-sky-500/10 text-sky-600 dark:bg-sky-500/15 dark:text-sky-400"
-                          : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/40 dark:text-zinc-450 dark:hover:text-zinc-100 dark:hover:bg-zinc-900/40"
-                      )}
-                    >
-                      {isActive && (
-                        <span className="absolute left-0 top-2.5 bottom-2.5 w-1 rounded-r-md bg-sky-500 dark:bg-sky-400" />
-                      )}
-
-                      <Icon
-                        className={cn(
-                          "h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105",
-                          isActive
-                            ? "text-sky-600 dark:text-sky-400"
-                            : "text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-700 dark:group-hover:text-zinc-300"
-                        )}
-                      />
-                      <span>{link.label}</span>
-                    </Link>
-                  );
-                })}
-              </div>
+              {section.links.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "group flex items-center rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200 cursor-pointer relative",
+                      isActive
+                        ? "bg-sky-500/10 text-sky-600 dark:bg-sky-500/15 dark:text-sky-400"
+                        : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/40 dark:text-zinc-450 dark:hover:text-zinc-100 dark:hover:bg-zinc-900/40"
+                    )}
+                  >
+                    {isActive && (
+                      <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-r-md bg-sky-500 dark:bg-sky-400" />
+                    )}
+                    <span className="pl-1">{link.label}</span>
+                  </Link>
+                );
+              })}
             </div>
           ))}
         </nav>

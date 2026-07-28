@@ -1,5 +1,11 @@
 [
   {
+    "name": "badge",
+    "dependencies": [
+      "class-variance-authority"
+    ]
+  },
+  {
     "name": "button",
     "dependencies": [
       "@radix-ui/react-slot",

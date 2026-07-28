@@ -8,6 +8,10 @@ const outputDir = path.join(projectRoot, "public/registry");
 
 // Registry metadata configuration
 const componentsConfig = {
+  badge: {
+    dependencies: ["class-variance-authority"],
+    files: ["badge.tsx"],
+  },
   button: {
     dependencies: ["@radix-ui/react-slot", "class-variance-authority"],
     files: ["button.tsx"],
