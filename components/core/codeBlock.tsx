@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import hljs from "highlight.js";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button/button";
+import { motion, AnimatePresence } from "framer-motion";
 
 //#endregion
 
@@ -98,10 +99,39 @@ export function CodeBlock({
           {showCopy && (
             <Button
               onClick={handleCopy}
-              aria-label="Copiar código"
-              className="ml-auto"
+              aria-label="Copy code"
+              variant="flat"
+              color="default"
+              size="sm"
+              className="ml-auto bg-white/10 hover:bg-white/20 text-white rounded-lg px-3 py-1.5 flex items-center gap-1.5 border border-white/5 transition-colors cursor-pointer"
             >
-              {copied ? "Copiado" : "Copiar"}
+              <AnimatePresence mode="wait" initial={false}>
+                {copied ? (
+                  <motion.span
+                    key="copied"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.15 }}
+                    className="flex items-center gap-1.5"
+                  >
+                    <Icon icon="lucide:check" className="w-3.5 h-3.5 text-green-400" />
+                    <span className="text-xs font-semibold">Copied</span>
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="copy"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.15 }}
+                    className="flex items-center gap-1.5"
+                  >
+                    <Icon icon="lucide:copy" className="w-3.5 h-3.5" />
+                    <span className="text-xs font-semibold">Copy</span>
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </Button>
           )}
         </div>
@@ -152,9 +182,9 @@ export function CodeBlock({
           <button
             type="button"
             onClick={() => setIsExpanded((prev) => !prev)}
-            className="text-xs text-white/70 hover:text-white transition"
+            className="text-xs text-white/70 hover:text-white transition cursor-pointer"
           >
-            {isExpanded ? "Mostrar menos" : "Mostrar mais"}
+            {isExpanded ? "Show less" : "Show more"}
           </button>
         </div>
       )}

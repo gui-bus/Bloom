@@ -1,11 +1,17 @@
-//#region Imports
-
 import { Icon } from "@iconify/react";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
 import { Button } from "@/components/ui/button/button";
 import { ButtonGroup } from "@/components/ui/buttonGroup/buttonGroup";
 import { Separator } from "@/components/ui/separator/separator";
+import { CodeBlock } from "@/components/core/codeBlock";
+import { buttonGroupCode } from "@/components/ui/buttonGroup/buttonGroup.code";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs/tabs";
 //#endregion
 
 export default function ButtonGroupPage() {
@@ -15,6 +21,26 @@ export default function ButtonGroupPage() {
         title="Button Group"
         description="ButtonGroup allows grouping multiple buttons together, creating a visually connected set. Supports variants, colors, sizes, badges, and iconOnly buttons while preserving individual button states."
       />
+
+      <Tabs defaultValue="buttonGroup">
+        <TabsList background={false}>
+          <TabsTrigger
+            value="buttonGroup"
+            startContent={<Icon icon="devicon:react" className="size-5" />}
+          >
+            buttonGroup.tsx
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="buttonGroup">
+          <CodeBlock
+            code={buttonGroupCode}
+            componentName="buttonGroup.tsx"
+            description="Implementation of the ButtonGroup component, managing layout logic and propagating visual traits to children buttons."
+            tags={["React", "Tailwind", "UI Component", "Layout"]}
+          />
+        </TabsContent>
+      </Tabs>
 
       <Separator label={<span className="px-2">Core</span>} gradient />
 
