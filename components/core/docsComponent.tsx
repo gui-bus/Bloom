@@ -101,7 +101,7 @@ export function DocsComponent({
         {props && props.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-2 pt-1">
             {props.map((prop) => (
-              <span key={prop} className="text-xs font-mono bg-zinc-200/40 dark:bg-zinc-800/40 border border-zinc-200/60 dark:border-zinc-800/60 px-2 py-0.5 rounded text-zinc-600 dark:text-zinc-400">
+              <span key={prop} className="text-xs font-mono p-3 rounded text-zinc-600 dark:text-zinc-400">
                 {renderWithInlineCode(prop)}
               </span>
             ))}
