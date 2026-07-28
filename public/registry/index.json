@@ -6,6 +6,10 @@
     ]
   },
   {
+    "name": "avatarGroup",
+    "dependencies": []
+  },
+  {
     "name": "badge",
     "dependencies": [
       "class-variance-authority"

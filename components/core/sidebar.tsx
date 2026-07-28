@@ -38,6 +38,7 @@ export function Sidebar() {
       title: "Components",
       links: [
         { href: "/components/avatar", label: "Avatar" },
+        { href: "/components/avatarGroup", label: "Avatar Group" },
         { href: "/components/badge", label: "Badge" },
         { href: "/components/button", label: "Button" },
         { href: "/components/buttonGroup", label: "Button Group" },

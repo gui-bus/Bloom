@@ -12,6 +12,10 @@ const componentsConfig = {
     dependencies: ["@radix-ui/react-avatar"],
     files: ["avatar.tsx"],
   },
+  avatarGroup: {
+    dependencies: [],
+    files: ["avatarGroup.tsx"],
+  },
   badge: {
     dependencies: ["class-variance-authority"],
     files: ["badge.tsx"],
