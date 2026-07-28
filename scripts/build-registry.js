@@ -9,7 +9,7 @@ const outputDir = path.join(projectRoot, "public/registry");
 // Registry metadata configuration
 const componentsConfig = {
   button: {
-    dependencies: ["@radix-ui/react-slot"],
+    dependencies: ["@radix-ui/react-slot", "class-variance-authority"],
     files: ["button.tsx"],
   },
   buttonGroup: {
@@ -17,7 +17,7 @@ const componentsConfig = {
     files: ["buttonGroup.tsx"],
   },
   tabs: {
-    dependencies: ["@radix-ui/react-tabs", "framer-motion"],
+    dependencies: ["@radix-ui/react-tabs", "framer-motion", "class-variance-authority"],
     files: ["tabs.tsx"],
   },
 };

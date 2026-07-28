@@ -1,7 +1,8 @@
 {
   "name": "button",
   "dependencies": [
-    "@radix-ui/react-slot"
+    "@radix-ui/react-slot",
+    "class-variance-authority"
   ],
   "files": [
     {
