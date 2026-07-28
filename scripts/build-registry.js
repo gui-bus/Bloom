@@ -32,6 +32,10 @@ const componentsConfig = {
     dependencies: ["@radix-ui/react-progress"],
     files: ["progress.tsx"],
   },
+  scrollArea: {
+    dependencies: ["@radix-ui/react-scroll-area"],
+    files: ["scrollArea.tsx"],
+  },
   separator: {
     dependencies: ["@radix-ui/react-separator"],
     files: ["separator.tsx"],

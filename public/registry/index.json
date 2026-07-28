@@ -33,6 +33,12 @@
     ]
   },
   {
+    "name": "scrollArea",
+    "dependencies": [
+      "@radix-ui/react-scroll-area"
+    ]
+  },
+  {
     "name": "separator",
     "dependencies": [
       "@radix-ui/react-separator"

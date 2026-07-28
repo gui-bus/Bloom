@@ -1,0 +1,12 @@
+{
+  "name": "scrollArea",
+  "dependencies": [
+    "@radix-ui/react-scroll-area"
+  ],
+  "files": [
+    {
+      "name": "scrollArea.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as ScrollAreaPrimitive from \"@radix-ui/react-scroll-area\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ScrollAreaProps\n  extends React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> {\n  orientation?: \"vertical\" | \"horizontal\" | \"both\";\n}\n\nconst ScrollBar = React.forwardRef<\n  React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,\n  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>\n>(({ className, orientation = \"vertical\", ...props }, ref) => (\n  <ScrollAreaPrimitive.ScrollAreaScrollbar\n    ref={ref}\n    orientation={orientation}\n    className={cn(\n      \"flex touch-none select-none transition-colors p-0.5 bg-transparent\",\n      orientation === \"vertical\" && \"h-full w-2.5 border-l border-l-transparent\",\n      orientation === \"horizontal\" && \"h-2.5 flex-col border-t border-t-transparent\",\n      className\n    )}\n    {...props}\n  >\n    <ScrollAreaPrimitive.ScrollAreaThumb className=\"relative flex-1 rounded-full bg-border hover:bg-muted-foreground/50 transition-colors\" />\n  </ScrollAreaPrimitive.ScrollAreaScrollbar>\n));\nScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;\n\nconst ScrollArea = React.forwardRef<\n  React.ElementRef<typeof ScrollAreaPrimitive.Root>,\n  ScrollAreaProps\n>(({ className, children, orientation = \"vertical\", ...props }, ref) => (\n  <ScrollAreaPrimitive.Root\n    ref={ref}\n    className={cn(\"relative overflow-hidden\", className)}\n    {...props}\n  >\n    <ScrollAreaPrimitive.Viewport className=\"size-full rounded-[inherit]\">\n      {children}\n    </ScrollAreaPrimitive.Viewport>\n    {(orientation === \"vertical\" || orientation === \"both\") && (\n      <ScrollBar orientation=\"vertical\" />\n    )}\n    {(orientation === \"horizontal\" || orientation === \"both\") && (\n      <ScrollBar orientation=\"horizontal\" />\n    )}\n    <ScrollAreaPrimitive.Corner />\n  </ScrollAreaPrimitive.Root>\n));\nScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;\n\nexport { ScrollArea, ScrollBar };\n"
+    }
+  ]
+}
