@@ -70,3 +70,10 @@ Escala de cantos arredondados:
 ### Efeito de Onda (Ripple)
 * Componentes clicáveis (como botões) devem emitir um feedback visual de onda (ripple) ao serem acionados, exceto se `disableRipple?: boolean` estiver ativado.
 * Utilize o componente `<Ripple />` e o hook `useRipples`.
+
+---
+
+## 4. Documentação e Tabelas de Props
+
+Toda página de documentação de componente em `app/components/[name]/page.tsx` **deve** incluir obrigatoriamente no final da página uma seção **API Reference / Props Table**, detalhando em tabela HTML todas as propriedades suportadas (Prop, Type, Default, Description).
+

@@ -1,7 +1,7 @@
 "use client";
 
 import * as TabsPrimitive from "@radix-ui/react-tabs";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { designSizes } from "@/lib/design-system";
@@ -23,6 +23,8 @@ interface TabsProps extends React.ComponentProps<typeof TabsPrimitive.Root> {
 
 interface TabsListProps extends React.ComponentProps<typeof TabsPrimitive.List> {
   background?: boolean;
+  /** Accessible label for the tab list. Useful when there are multiple tab lists on the same page. */
+  label?: string;
 }
 
 interface TabsTriggerProps
@@ -102,9 +104,10 @@ const stateClasses = {
 
 const Spinner = React.memo(() => {
   return (
+    // aria-hidden: aria-busy on the trigger already signals loading to screen readers
     <span
       className="h-4 w-4 animate-spin rounded-full border-2 border-muted-foreground border-t-transparent"
-      aria-hidden
+      aria-hidden="true"
     />
   );
 });
@@ -122,11 +125,13 @@ const Tabs = React.memo(({ className, onTabChange, ...props }: TabsProps) => {
 });
 Tabs.displayName = "Tabs";
 
-const TabsList = React.memo(({ className, background = true, ...props }: TabsListProps) => {
+const TabsList = React.memo(({ className, background = true, label, ...props }: TabsListProps) => {
   return (
     <div className="overflow-x-auto scrollbar-none flex items-center relative">
       <TabsPrimitive.List
         data-slot="tabs-list"
+        // aria-label forwarded so multi-tablist pages can distinguish between them
+        aria-label={label}
         className={cn(
           "inline-flex items-center gap-2 rounded-2xl p-1 scroll-snap-x-x",
           background && "bg-muted",
@@ -169,7 +174,9 @@ const TabsTrigger = React.memo(({
           : undefined
       }
       className={cn(
-        "inline-flex items-center justify-center gap-1.5 font-medium transition-all duration-200 ease-in-out cursor-pointer",
+        // outline-none + focus-visible:ring-* ensures keyboard users see a
+        // focus ring without showing one on mouse/touch interactions.
+        "inline-flex items-center justify-center gap-1.5 font-medium transition-all duration-200 ease-in-out cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         designSizes[size],
         variantClasses[variant],
         color !== "custom" && colorClasses[color][variant],
@@ -179,9 +186,11 @@ const TabsTrigger = React.memo(({
         isLoading && stateClasses.loading,
         className
       )}
-      disabled={disabled}
-      aria-disabled={isDisabled}
-      aria-busy={isLoading}
+      // Only set native disabled when isDisabled (not isLoading) so the tab
+      // stays focusable/discoverable while loading. aria-disabled covers both.
+      disabled={isDisabled}
+      aria-disabled={disabled || undefined}
+      aria-busy={isLoading || undefined}
       {...props}
     >
       {isLoading ? (
@@ -192,7 +201,9 @@ const TabsTrigger = React.memo(({
       ) : (
         <>
           {badgePosition === "start" && badgeContent && (
+            // aria-hidden: badge count is decorative within the tab label context
             <span
+              aria-hidden="true"
               className={cn(
                 "mr-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-semibold rounded-full shadow bg-primary text-white"
               )}
@@ -200,11 +211,13 @@ const TabsTrigger = React.memo(({
               {badgeContent}
             </span>
           )}
-          {startContent && <span className="mr-1">{startContent}</span>}
+          {/* aria-hidden: icons are decorative; the tab's text label is the accessible name */}
+          {startContent && <span className="mr-1" aria-hidden="true">{startContent}</span>}
           {props.children}
-          {endContent && <span className="ml-1">{endContent}</span>}
+          {endContent && <span className="ml-1" aria-hidden="true">{endContent}</span>}
           {badgePosition === "end" && badgeContent && (
             <span
+              aria-hidden="true"
               className={cn(
                 "ml-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-semibold rounded-full shadow bg-primary text-white"
               )}
@@ -220,17 +233,21 @@ const TabsTrigger = React.memo(({
 TabsTrigger.displayName = "TabsTrigger";
 
 const TabsContent = React.memo(({ className, children, ...props }: TabsContentProps) => {
+  // Respect user's OS-level "reduce motion" preference (WCAG 2.3.3)
+  const shouldReduceMotion = useReducedMotion();
+
   return (
+    // Radix TabsContent automatically gets role="tabpanel" and aria-labelledby
     <TabsPrimitive.Content {...props} data-slot="tabs-content">
       <AnimatePresence mode="wait">
         <motion.div
           key={props.value}
-          initial={{ opacity: 0, x: 10 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, x: 10 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -10 }}
-          transition={{ duration: 0.25 }}
+          exit={shouldReduceMotion ? {} : { opacity: 0, x: -10 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.25 }}
           className={cn(
-            "flex-1 outline-none transition-all duration-300 ease-in-out",
+            "flex-1 outline-none transition-all duration-300 ease-in-out motion-reduce:transition-none motion-reduce:transform-none",
             className
           )}
         >

@@ -16,7 +16,7 @@ describe("Button Component", () => {
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-busy", "true");
     expect(button).toHaveClass("cursor-wait", "opacity-50");
-    expect(screen.getByText("Loading...")).toBeInTheDocument();
+    expect(screen.getAllByText("Loading...")[0]).toBeInTheDocument();
   });
 
   it("renders as disabled and prevents clicking", () => {

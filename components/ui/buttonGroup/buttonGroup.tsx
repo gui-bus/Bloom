@@ -7,6 +7,12 @@ type ButtonGroupProps = {
   variant?: ButtonProps["variant"];
   color?: ButtonProps["color"];
   size?: ButtonProps["size"];
+  /**
+   * Accessible label describing the purpose of this button group.
+   * Required for screen readers to announce the group context.
+   * Example: "Text formatting", "View options", "Pagination"
+   */
+  ariaLabel?: string;
 };
 
 export const ButtonGroup = React.memo(({
@@ -14,6 +20,7 @@ export const ButtonGroup = React.memo(({
   variant,
   color,
   size,
+  ariaLabel,
 }: ButtonGroupProps) => {
   const count = React.Children.count(children);
 
@@ -31,6 +38,8 @@ export const ButtonGroup = React.memo(({
         className: cn(
           child.props.className,
           "rounded-none",
+          // Ensure focused button's ring always renders above adjacent siblings
+          "focus-visible:z-10 focus-visible:relative",
           isFirst && "rounded-l-xl",
           isLast && "rounded-r-xl",
           !isFirst && !isLast && "-ml-px"
@@ -40,7 +49,13 @@ export const ButtonGroup = React.memo(({
   }, [children, variant, color, size, count]);
 
   return (
-    <div className="inline-flex">
+    // role="group" with aria-label semantically announces this as a related
+    // collection of controls, enabling screen readers to provide context
+    <div
+      role="group"
+      aria-label={ariaLabel}
+      className="inline-flex"
+    >
       {clonedChildren}
     </div>
   );

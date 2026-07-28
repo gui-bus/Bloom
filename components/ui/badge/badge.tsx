@@ -24,6 +24,11 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
   dot?: boolean;
+  /**
+   * When true, wraps the badge in a live region that announces
+   * content changes to screen readers (e.g. notification counters).
+   */
+  live?: boolean;
 }
 
 const badgeSizes: Record<BadgeSize, string> = {
@@ -97,6 +102,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       startContent,
       endContent,
       dot = false,
+      live = false,
       children,
       className,
       ...props
@@ -106,6 +112,11 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     return (
       <span
         ref={ref}
+        // aria-live="polite" allows screen readers to announce badge content
+        // changes without interrupting the current reading flow.
+        // Use live=true for dynamic counters (e.g. notification badges).
+        aria-live={live ? "polite" : undefined}
+        aria-atomic={live ? "true" : undefined}
         className={cn(
           "inline-flex items-center font-medium",
           badgeSizes[size],
@@ -116,16 +127,29 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
         {...props}
       >
         {dot && (
+          // aria-hidden: the dot is a purely decorative visual indicator.
+          // The badge's text content already conveys the status.
           <span
+            aria-hidden="true"
             className={cn(
               "size-1.5 rounded-full shrink-0",
               dotColorMap[color]
             )}
           />
         )}
-        {startContent && <span className="shrink-0">{startContent}</span>}
+        {startContent && (
+          // aria-hidden: icons inside badges are decorative.
+          // The badge text is the accessible label.
+          <span aria-hidden="true" className="shrink-0">
+            {startContent}
+          </span>
+        )}
         {children}
-        {endContent && <span className="shrink-0">{endContent}</span>}
+        {endContent && (
+          <span aria-hidden="true" className="shrink-0">
+            {endContent}
+          </span>
+        )}
       </span>
     );
   }

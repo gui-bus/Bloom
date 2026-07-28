@@ -52,20 +52,14 @@ const FeatureCard = ({
 const ComponentCard = ({
   name,
   href,
-  icon,
 }: {
   name: string;
   href: string;
-  icon: string;
 }) => (
   <Link
     href={href}
     className="group flex items-center gap-3 p-4 rounded-xl border border-border hover:border-primary/40 hover:bg-primary/5 transition-all duration-200"
   >
-    <Icon
-      icon={icon}
-      className="size-5 text-muted-foreground group-hover:text-primary transition-colors duration-200"
-    />
     <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-200">
       {name}
     </span>
@@ -79,7 +73,6 @@ const ComponentCard = ({
 export default function Home() {
   return (
     <main className="p-5 space-y-16">
-      {/* Hero */}
       <section className="space-y-6">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-medium">
           <span className="size-1.5 rounded-full bg-primary animate-pulse" />
@@ -122,7 +115,6 @@ export default function Home() {
 
       <hr className="border-border" />
 
-      {/* Why Bloom */}
       <section className="space-y-6">
         <div>
           <h2 className="text-2xl font-bold text-foreground">Why Bloom?</h2>
@@ -143,12 +135,12 @@ export default function Home() {
             description="Centralized tokens for colors, sizes, and border-radius guarantee visual consistency across all components."
           />
           <FeatureCard
-            icon="hugeicons:accessibility"
+            icon="hugeicons:view"
             title="Accessibility out of the box"
             description="Built on top of Radix UI — every component follows WAI-ARIA standards with zero extra configuration required."
           />
           <FeatureCard
-            icon="hugeicons:motion"
+            icon="hugeicons:flash"
             title="Fluid animations"
             description="Framer Motion integration for transitions and effects (like the ripple click feedback) that make your interface feel alive."
           />
@@ -167,7 +159,6 @@ export default function Home() {
 
       <hr className="border-border" />
 
-      {/* CLI Installation */}
       <section className="space-y-6">
         <div>
           <h2 className="text-2xl font-bold text-foreground">
@@ -248,7 +239,6 @@ export default function Home() {
 
       <hr className="border-border" />
 
-      {/* Available Components + Tech Stack side by side */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div className="space-y-6">
           <div>
@@ -262,19 +252,20 @@ export default function Home() {
 
           <div className="space-y-2">
             <ComponentCard
+              name="Badge"
+              href="/components/badge"
+            />
+            <ComponentCard
               name="Button"
               href="/components/button"
-              icon="hugeicons:cursor-02"
             />
             <ComponentCard
               name="Button Group"
               href="/components/buttonGroup"
-              icon="hugeicons:layout-grid"
             />
             <ComponentCard
               name="Tabs"
               href="/components/tabs"
-              icon="hugeicons:tab"
             />
           </div>
 
