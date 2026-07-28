@@ -20,6 +20,33 @@ A biblioteca inclui controles de layout robustos, animações fluidas via Framer
 O projeto de documentação e demonstração interativa dos componentes estará disponível no seguinte endereço:
 👉 **EM BREVE**
 
+---
+
+## 📦 CLI — Instale os Componentes no Seu Projeto
+
+<div align="center">
+  <a href="https://www.npmjs.com/package/@bloomui-react/cli">
+    <img src="https://img.shields.io/npm/v/@bloomui-react/cli?style=for-the-badge&color=cb3837&logo=npm&logoColor=white" alt="npm version" />
+  </a>
+  <a href="https://www.npmjs.com/package/@bloomui-react/cli">
+    <img src="https://img.shields.io/npm/dm/@bloomui-react/cli?style=for-the-badge&color=cb3837&logo=npm&logoColor=white" alt="npm downloads" />
+  </a>
+</div>
+
+O Bloom disponibiliza uma **CLI oficial** que permite inicializar o design system e adicionar componentes diretamente no seu projeto, sem precisar clonar este repositório.
+
+```bash
+# 1. Inicialize o Bloom no seu projeto
+npx @bloomui-react/cli init
+
+# 2. Adicione o componente desejado
+npx @bloomui-react/cli add button
+```
+
+A CLI detecta automaticamente o seu gerenciador de pacotes (`npm`, `pnpm`, `yarn` ou `bun`), instala todas as dependências necessárias e copia o código-fonte do componente com os caminhos de importação já configurados para a sua estrutura de projeto.
+
+👉 **[Veja o guia completo de uso da CLI](./docs/cli.md)**
+
 ## 🛠️ Stack Tecnológica
 
 <div align="center">
@@ -147,7 +174,8 @@ Abra [http://localhost:3000](http://localhost:3000) no seu navegador para explor
 
 ## 📑 Documentação Técnica Adicional
 
-Consulte a pasta [`/docs`](file:///c:/Users/Guilherme/Desktop/PROJETOS/ZoeUI/docs/README.md) para detalhamentos adicionais de arquitetura:
+Consulte a pasta [`/docs`](./docs/README.md) para detalhamentos adicionais de arquitetura:
 
-* 🏗️ [**`docs/architecture.md`**](file:///c:/Users/Guilherme/Desktop/PROJETOS/ZoeUI/docs/architecture.md): Especificação do Next.js App Router, layout e pipeline de build.
-* 🎨 [**`docs/design-system.md`**](file:///c:/Users/Guilherme/Desktop/PROJETOS/ZoeUI/docs/design-system.md): Detalhamento da paleta de cores, escala de tamanhos, cantos arredondados (radius) e regras para novos componentes.
+* 📦 [**`docs/cli.md`**](./docs/cli.md): Guia de uso da CLI — como inicializar e instalar componentes no seu projeto.
+* 🏗️ [**`docs/architecture.md`**](./docs/architecture.md): Especificação do Next.js App Router, layout e pipeline de build.
+* 🎨 [**`docs/design-system.md`**](./docs/design-system.md): Detalhamento da paleta de cores, escala de tamanhos, cantos arredondados (radius) e regras para novos componentes.
