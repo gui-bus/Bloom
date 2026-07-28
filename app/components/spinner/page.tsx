@@ -17,7 +17,7 @@ export default function SpinnerPage() {
     <main className="p-5 space-y-8">
       <DocsTitle
         title="Spinner / Loader"
-        description="Circular loading indicator used to provide feedback when content or data is being loaded."
+        description="Circular and animated loading indicators with multiple visual variants used to provide immediate feedback during asynchronous actions."
       />
 
       <Tabs defaultValue="spinner">
@@ -34,16 +34,59 @@ export default function SpinnerPage() {
           <CodeBlock
             code={spinnerCode}
             componentName="spinner.tsx"
-            description="Spinner component supporting multiple sizes, colors, optional text label, and full accessibility."
+            description="Spinner component supporting multiple variants, sizes, colors, text labels, and full accessibility."
             tags={["React", "Tailwind", "UI Component", "Loading"]}
           />
         </TabsContent>
       </Tabs>
 
+      {/* Variants */}
+      <DocsComponent
+        title="Variants"
+        description="Choose from 6 animation styles: 'default', 'dots', 'bars', 'pulse', 'ring', or 'gradient'."
+        preview={
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 items-center">
+            <div className="flex flex-col items-center gap-2">
+              <Spinner variant="default" size="lg" />
+              <span className="text-xs text-muted-foreground">Default</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Spinner variant="dots" size="lg" />
+              <span className="text-xs text-muted-foreground">Dots</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Spinner variant="bars" size="lg" />
+              <span className="text-xs text-muted-foreground">Bars</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Spinner variant="pulse" size="lg" />
+              <span className="text-xs text-muted-foreground">Pulse</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Spinner variant="ring" size="lg" />
+              <span className="text-xs text-muted-foreground">Ring</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Spinner variant="gradient" size="lg" />
+              <span className="text-xs text-muted-foreground">Gradient</span>
+            </div>
+          </div>
+        }
+        code={`<div className="flex gap-6 items-center">
+  <Spinner variant="default" />
+  <Spinner variant="dots" />
+  <Spinner variant="bars" />
+  <Spinner variant="pulse" />
+  <Spinner variant="ring" />
+  <Spinner variant="gradient" />
+</div>`}
+        props={["variant: 'default' | 'dots' | 'bars' | 'pulse' | 'ring' | 'gradient'"]}
+      />
+
       {/* Colors */}
       <DocsComponent
         title="Colors"
-        description="Customize the spinner color to match design intentions using the 'color' prop."
+        description="Customize the spinner color theme using the 'color' prop across any variant."
         preview={
           <div className="flex flex-wrap items-center gap-6">
             <Spinner color="default" />
@@ -101,14 +144,14 @@ export default function SpinnerPage() {
         preview={
           <div className="flex flex-col gap-4">
             <Spinner color="primary" label="Loading data..." />
-            <Spinner color="success" label="Saving changes..." />
-            <Spinner color="warning" label="Connecting to server..." />
+            <Spinner variant="dots" color="success" label="Saving changes..." />
+            <Spinner variant="pulse" color="warning" label="Connecting to server..." />
           </div>
         }
         code={`<div className="flex flex-col gap-4">
   <Spinner color="primary" label="Loading data..." />
-  <Spinner color="success" label="Saving changes..." />
-  <Spinner color="warning" label="Connecting to server..." />
+  <Spinner variant="dots" color="success" label="Saving changes..." />
+  <Spinner variant="pulse" color="warning" label="Connecting to server..." />
 </div>`}
         props={["label: string"]}
       />
@@ -131,13 +174,23 @@ export default function SpinnerPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">variant</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'default' | 'dots' | 'bars' | 'pulse' | 'ring' | 'gradient'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'default'</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Animation visual style pattern.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'primary'</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Color theme scheme of the spinner ring.
+                    Color theme scheme of the loader animation.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -147,7 +200,7 @@ export default function SpinnerPage() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Visual scale dimension of the spinner circle.
+                    Visual scale dimension of the loader.
                   </td>
                 </tr>
                 <tr>
@@ -155,7 +208,7 @@ export default function SpinnerPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Optional text displayed beside the spinner (also used for accessible aria-label).
+                    Optional text displayed beside the loader (also used for accessible aria-label).
                   </td>
                 </tr>
               </tbody>

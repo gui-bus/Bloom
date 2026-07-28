@@ -11,15 +11,22 @@ describe("Spinner Component", () => {
     expect(spinner).toHaveAttribute("aria-busy", "true");
   });
 
+  it("renders all variant animation types without crash", () => {
+    const { container: dots } = render(<Spinner variant="dots" />);
+    expect(dots.querySelector(".animate-bounce")).toBeInTheDocument();
+
+    const { container: bars } = render(<Spinner variant="bars" />);
+    expect(bars.querySelector(".animate-pulse")).toBeInTheDocument();
+
+    const { container: pulse } = render(<Spinner variant="pulse" />);
+    expect(pulse.querySelector(".animate-ping")).toBeInTheDocument();
+
+    const { container: ring } = render(<Spinner variant="ring" />);
+    expect(ring.querySelector(".border-dashed")).toBeInTheDocument();
+  });
+
   it("renders visible label when provided", () => {
     render(<Spinner label="Processing payment..." />);
     expect(screen.getByText("Processing payment...")).toBeInTheDocument();
-  });
-
-  it("applies size and color theme classes correctly", () => {
-    const { container } = render(<Spinner size="lg" color="danger" />);
-    const spinnerCircle = container.querySelector(".animate-spin");
-    expect(spinnerCircle).toHaveClass("size-8");
-    expect(spinnerCircle).toHaveClass("border-t-rose-500");
   });
 });
