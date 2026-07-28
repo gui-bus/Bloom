@@ -1,0 +1,10 @@
+{
+  "name": "spinner",
+  "dependencies": [],
+  "files": [
+    {
+      "name": "spinner.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { designColors, designSizes } from \"@/lib/design-system\";\n\nexport interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {\n  size?: keyof typeof designSizes;\n  color?: keyof typeof designColors;\n  label?: string;\n}\n\nconst spinnerSizes = {\n  xs: \"size-3.5 border\",\n  sm: \"size-4 border-2\",\n  md: \"size-6 border-2\",\n  lg: \"size-8 border-3\",\n  xl: \"size-10 border-3\",\n  \"2xl\": \"size-12 border-4\",\n  \"3xl\": \"size-16 border-4\",\n};\n\nconst spinnerColors = {\n  default: \"border-foreground/20 border-t-foreground\",\n  primary: \"border-primary/20 border-t-primary\",\n  secondary: \"border-secondary/20 border-t-secondary\",\n  accent: \"border-accent/20 border-t-accent\",\n  success: \"border-emerald-500/20 border-t-emerald-500\",\n  warning: \"border-amber-500/20 border-t-amber-500\",\n  danger: \"border-rose-500/20 border-t-rose-500\",\n};\n\nconst Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(\n  (\n    {\n      className,\n      size = \"md\",\n      color = \"primary\",\n      label,\n      ...props\n    },\n    ref\n  ) => {\n    return (\n      <div\n        ref={ref}\n        role=\"status\"\n        aria-busy=\"true\"\n        aria-label={label || \"Loading...\"}\n        className={cn(\"inline-flex items-center gap-2.5\", className)}\n        {...props}\n      >\n        <div\n          className={cn(\n            \"rounded-full animate-spin shrink-0\",\n            spinnerSizes[size],\n            spinnerColors[color]\n          )}\n        />\n        {label ? (\n          <span className=\"text-sm font-medium text-muted-foreground\">{label}</span>\n        ) : (\n          <span className=\"sr-only\">Loading...</span>\n        )}\n      </div>\n    );\n  }\n);\n\nSpinner.displayName = \"Spinner\";\n\nexport { Spinner };\n"
+    }
+  ]
+}

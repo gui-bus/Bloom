@@ -36,6 +36,10 @@ const componentsConfig = {
     dependencies: [],
     files: ["skeleton.tsx"],
   },
+  spinner: {
+    dependencies: [],
+    files: ["spinner.tsx"],
+  },
   tabs: {
     dependencies: ["@radix-ui/react-tabs", "framer-motion", "class-variance-authority"],
     files: ["tabs.tsx"],

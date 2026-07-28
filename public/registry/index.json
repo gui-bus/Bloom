@@ -37,6 +37,10 @@
     "dependencies": []
   },
   {
+    "name": "spinner",
+    "dependencies": []
+  },
+  {
     "name": "tabs",
     "dependencies": [
       "@radix-ui/react-tabs",
