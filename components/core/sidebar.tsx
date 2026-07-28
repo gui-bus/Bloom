@@ -42,6 +42,7 @@ export function Sidebar() {
         { href: "/components/badge", label: "Badge" },
         { href: "/components/button", label: "Button" },
         { href: "/components/buttonGroup", label: "Button Group" },
+        { href: "/components/progress", label: "Progress" },
         { href: "/components/separator", label: "Separator" },
         { href: "/components/skeleton", label: "Skeleton" },
         { href: "/components/spinner", label: "Spinner" },

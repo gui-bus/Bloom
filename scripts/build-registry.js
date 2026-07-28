@@ -28,6 +28,10 @@ const componentsConfig = {
     dependencies: [],
     files: ["buttonGroup.tsx"],
   },
+  progress: {
+    dependencies: ["@radix-ui/react-progress"],
+    files: ["progress.tsx"],
+  },
   separator: {
     dependencies: ["@radix-ui/react-separator"],
     files: ["separator.tsx"],
