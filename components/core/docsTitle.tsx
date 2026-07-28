@@ -1,9 +1,8 @@
-//#region Interfaces
+
 interface DocsTitleProps {
   title: string;
   description: string;
 }
-//#endregion
 
 const DocsTitle = ({ title, description }: DocsTitleProps) => {
   return (

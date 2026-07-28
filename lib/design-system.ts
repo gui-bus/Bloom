@@ -5,7 +5,6 @@
  * Modifying these tokens will propagate changes across all components.
  */
 
-// 1. Semantic Color Mappings resolving to CSS variables in globals.css
 export const designColors = {
   default: {
     default: "bg-default text-default-foreground hover:bg-default/80 focus-visible:ring-default/50",
@@ -72,7 +71,6 @@ export const designColors = {
   },
 };
 
-// 2. Sizing Config for consistent heights, paddings, and font sizes
 export const designSizes = {
   xs: "px-2 py-1 text-xs h-6",
   sm: "px-3 py-1.5 text-sm h-7",
@@ -83,7 +81,6 @@ export const designSizes = {
   "3xl": "px-8 py-4 text-2xl h-16",
 };
 
-// 3. Border Radius Config
 export const designRadius = {
   none: "rounded-none",
   xs: "rounded-xs",

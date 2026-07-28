@@ -36,12 +36,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Wrapper centralizado */}
+          
           <div className="relative mx-auto w-full max-w-[110rem] min-h-screen">
-            {/* Sidebar */}
+            
             <Sidebar />
 
-            {/* Conteúdo */}
             <main className="ml-64 min-h-screen p-8 transition-all duration-300">
               {children}
             </main>

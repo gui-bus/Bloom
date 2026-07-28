@@ -41,10 +41,9 @@ export function Sidebar() {
   return (
     <aside className="fixed top-0 left-0 h-screen w-64 border-r border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/70 dark:bg-zinc-950/70 backdrop-blur-xl px-5 py-6 flex flex-col justify-between transition-all duration-300 z-50">
       <div className="flex flex-col gap-6">
-        {/* Header containing Logo & Theme Toggle */}
+        
         <SidebarHeader />
 
-        {/* Search placeholder to feel premium */}
         <div className="relative w-full">
           <input
             type="text"
@@ -57,7 +56,6 @@ export function Sidebar() {
           </kbd>
         </div>
 
-        {/* Navigation list */}
         <nav className="space-y-6">
           {sections.map((section) => (
             <div key={section.title} className="space-y-2">
@@ -79,7 +77,7 @@ export function Sidebar() {
                           : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/50 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-900/50"
                       )}
                     >
-                      {/* Active indicator bar */}
+                      
                       {isActive && (
                         <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r-md bg-sky-500 dark:bg-sky-400" />
                       )}
@@ -102,7 +100,6 @@ export function Sidebar() {
         </nav>
       </div>
 
-      {/* Footer Info */}
       <div className="border-t border-zinc-200/60 dark:border-zinc-800/60 pt-4 px-2">
         <div className="flex items-center justify-between text-xs text-zinc-400 dark:text-zinc-500">
           <span>Version</span>

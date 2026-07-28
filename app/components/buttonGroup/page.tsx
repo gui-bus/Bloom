@@ -12,7 +12,6 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
-//#endregion
 
 export default function ButtonGroupPage() {
   return (
@@ -44,7 +43,6 @@ export default function ButtonGroupPage() {
 
       <Separator label={<span className="px-2">Core</span>} gradient />
 
-      {/* VARIANTS */}
       <DocsComponent
         title="Variants"
         description="Defines the visual style of each button inside the group via 'variant'."
@@ -74,7 +72,6 @@ export default function ButtonGroupPage() {
         ]}
       />
 
-      {/* COLORS */}
       <DocsComponent
         title="Colors"
         description="Defines the color of each button inside the group via 'color'."
@@ -108,7 +105,6 @@ export default function ButtonGroupPage() {
         ]}
       />
 
-      {/* SIZES */}
       <DocsComponent
         title="Sizes"
         description="Adjusts the size of each button in the group using 'size' prop."
@@ -134,7 +130,6 @@ export default function ButtonGroupPage() {
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
 
-      {/* ICON ONLY */}
       <DocsComponent
         title="Icon Only"
         description="Supports iconOnly buttons inside the group."
@@ -166,7 +161,6 @@ export default function ButtonGroupPage() {
         props={["isIconOnly: 'true' | 'false'", "ariaLabel: 'string'"]}
       />
 
-      {/* BADGES */}
       <DocsComponent
         title="With badges"
         description="Each button in the group can have a badge, using 'badgeContent' and 'badgePosition'."

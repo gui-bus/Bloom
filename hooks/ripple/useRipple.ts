@@ -1,8 +1,6 @@
 "use client";
 
-//#region Imports
 import * as React from "react";
-//#endregion
 
 /**
  * useRipples Hook

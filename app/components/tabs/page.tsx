@@ -1,5 +1,5 @@
 "use client";
-//#region Imports
+
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -7,7 +7,6 @@ import DocsTitle from "@/components/core/docsTitle";
 import { Separator } from "@/components/ui/separator/separator";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs/tabs";
 import { tabsCode } from "@/components/ui/tabs/tabs.code";
-//#endregion
 
 export default function TabsComponentPage() {
   return (
@@ -62,14 +61,13 @@ export default function TabsComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* VARIANTS */}
       <DocsComponent
         title="Variants"
         description="Defines the visual appearance of the tab triggers through the 'variant' prop, allowing the style to adapt to the interface context. When not specified, the default variant is used."
         props={["variant: 'default' | 'ghost' | 'bordered' | 'underline'"]}
         preview={
           <div className="space-y-5">
-            {/* DEFAULT */}
+            
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile">Profile</TabsTrigger>
@@ -78,7 +76,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* GHOST */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" variant="ghost">
@@ -93,7 +90,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* BORDERED */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" variant="bordered">
@@ -108,7 +104,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* UNDERLINE */}
             <Tabs defaultValue="profile">
               <TabsList background={false}>
                 <TabsTrigger value="profile" variant="underline">
@@ -128,7 +123,7 @@ export default function TabsComponentPage() {
           <CodeBlock
             code={`      
 <div className="space-y-5">
-  {/* DEFAULT */}
+  
   <Tabs defaultValue="profile">                 
     <TabsList>
       <TabsTrigger value="profile">Profile</TabsTrigger>
@@ -137,7 +132,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* GHOST */}
   <Tabs defaultValue="profile">                  
     <TabsList>
       <TabsTrigger value="profile" variant="ghost">
@@ -152,7 +146,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* BORDERED */}
   <Tabs defaultValue="profile">                  
     <TabsList>
       <TabsTrigger value="profile" variant="bordered">
@@ -167,7 +160,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* UNDERLINE */}
   <Tabs defaultValue="profile">                  
     <TabsList background={false}>
       <TabsTrigger value="profile" variant="underline">
@@ -187,14 +179,13 @@ export default function TabsComponentPage() {
         }
       />
 
-      {/* START & END CONTENT */}
       <DocsComponent
         title="Icons and Indicators"
         description="Use 'startContent' and 'endContent' to add optional visual elements that help reinforce the meaning of the tabs and make navigation faster and more intuitive."
         props={["startContent: 'React.ReactNode'", "endContent: 'React.ReactNode'"]}
         preview={
           <div className="space-y-5">
-            {/* START CONTENT */}
+            
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger
@@ -230,7 +221,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* END CONTENT */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger
@@ -271,7 +261,7 @@ export default function TabsComponentPage() {
           <CodeBlock
             code={`
 <div className="space-y-5">
-  {/* START CONTENT */}
+  
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger
@@ -307,7 +297,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* END CONTENT */}
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger
@@ -348,14 +337,13 @@ export default function TabsComponentPage() {
         }
       />
 
-      {/* BADGES */}
       <DocsComponent
         title="Badges"
         description="Visual indicators used to highlight notifications, states, or quantities associated with the tabs, with positioning control via 'badgePosition'."
         props={["badgeContent: 'string'", "badgePosition: 'start' | 'end'"]}
         preview={
           <div className="space-y-5">
-            {/* BADGE POSITION DEFAULT (END) */}
+            
             <Tabs defaultValue="inbox">
               <TabsList>
                 <TabsTrigger value="inbox" badgeContent="12">
@@ -372,7 +360,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* BADGE POSITION START */}
             <Tabs defaultValue="inbox">
               <TabsList>
                 <TabsTrigger
@@ -406,7 +393,7 @@ export default function TabsComponentPage() {
           <CodeBlock
             code={`
 <div className="space-y-5">
-  {/* BADGE POSITION DEFAULT (END) */}
+  
   <Tabs defaultValue="inbox">
     <TabsList>
       <TabsTrigger value="inbox" badgeContent="12">
@@ -423,7 +410,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* BADGE POSITION START */}
   <Tabs defaultValue="inbox">
     <TabsList>
       <TabsTrigger
@@ -457,14 +443,13 @@ export default function TabsComponentPage() {
         }
       />
 
-      {/* BACKGROUND */}
       <DocsComponent
         title="Background"
         description="Defines the background display in the tab group. By default, the background is shown, but can be disabled via the 'background' prop."
         props={["background: 'boolean'"]}
         preview={
           <div className="space-y-5">
-            {/* DEFAULT */}
+            
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile">Profile</TabsTrigger>
@@ -473,7 +458,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* DEFAULT */}
             <Tabs defaultValue="profile">
               <TabsList background={false}>
                 <TabsTrigger value="profile">Profile</TabsTrigger>
@@ -487,7 +471,7 @@ export default function TabsComponentPage() {
           <CodeBlock
             code={`
 <div className="space-y-5">
-  {/* DEFAULT */}
+  
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile">Profile</TabsTrigger>
@@ -496,7 +480,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* DEFAULT */}
   <Tabs defaultValue="profile">
     <TabsList background={false}>
       <TabsTrigger value="profile">Profile</TabsTrigger>
@@ -510,14 +493,13 @@ export default function TabsComponentPage() {
         }
       />
 
-      {/* SIZE */}
       <DocsComponent
         title="Sizes"
         description="Allows adjusting the visual scale of tabs through the 'size' prop. The default size is 'md', with options that adapt to different interface densities and contexts."
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl'"]}
         preview={
           <div className="space-y-5">
-            {/* XS */}
+            
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" size="xs">
@@ -532,7 +514,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* SM */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" size="sm">
@@ -547,7 +528,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* MD */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" size="md">
@@ -562,7 +542,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* LG */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" size="lg">
@@ -577,7 +556,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* XL */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" size="xl">
@@ -597,7 +575,7 @@ export default function TabsComponentPage() {
           <CodeBlock
             code={`
 <div className="space-y-5">
-  {/* XS */}
+  
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" size="xs">
@@ -612,7 +590,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* SM */}
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" size="sm">
@@ -627,7 +604,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* MD */}
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" size="md">
@@ -642,7 +618,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* LG */}
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" size="lg">
@@ -657,7 +632,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* XL */}
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" size="xl">
@@ -677,7 +651,6 @@ export default function TabsComponentPage() {
         }
       />
 
-      {/* COLORS */}
       <DocsComponent
         title="Colors"
         description="Defines the active tab color scheme through the 'color' prop. You can use predefined semantic colors (like primary, success, or danger) or apply custom styles with 'customColor' (HEX). This ensures visual consistency without limiting design flexibility."
@@ -687,7 +660,7 @@ export default function TabsComponentPage() {
         ]}
         preview={
           <div className="space-y-5">
-            {/* PRIMARY */}
+            
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" color="primary">
@@ -702,7 +675,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* SECONDARY */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" color="secondary">
@@ -717,7 +689,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* SUCCESS */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" color="success">
@@ -732,7 +703,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* WARNING */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" color="warning">
@@ -747,7 +717,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* DANGER */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" color="danger">
@@ -762,7 +731,6 @@ export default function TabsComponentPage() {
               </TabsList>
             </Tabs>
 
-            {/* CUSTOM – HEX */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger
@@ -794,7 +762,7 @@ export default function TabsComponentPage() {
           <CodeBlock
             code={`
 <div className="space-y-5">
-  {/* PRIMARY */}
+  
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" color="primary">
@@ -811,7 +779,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* SECONDARY */}
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" color="secondary">
@@ -828,7 +795,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* SUCCESS */}
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" color="success">
@@ -845,7 +811,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* WARNING */}
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" color="warning">
@@ -860,7 +825,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* DANGER */}
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" color="danger">
@@ -877,7 +841,6 @@ export default function TabsComponentPage() {
     </TabsList>
   </Tabs>
 
-  {/* CUSTOM – HEX */}
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger
@@ -911,7 +874,6 @@ export default function TabsComponentPage() {
         }
       />
 
-      {/* DISABLED */}
       <DocsComponent
         title="Disabled State"
         description="Indicates tabs that are unavailable for interaction, applying an appropriate visual and behavioral state via the 'isDisabled' prop."
@@ -944,7 +906,6 @@ export default function TabsComponentPage() {
         }
       />
 
-      {/* LOADING */}
       <DocsComponent
         title="Loading State"
         description="Represents tabs performing asynchronous processing. When using the 'isLoading' prop, interaction is temporarily blocked and a loading spinner is displayed."

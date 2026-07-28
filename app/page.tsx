@@ -1,6 +1,5 @@
-//#region Imports
+
 import Link from "next/link";
-//#endregion
 
 export default function Home() {
   return (

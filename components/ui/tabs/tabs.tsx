@@ -1,13 +1,11 @@
 "use client";
-//#region Imports
+
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { AnimatePresence, motion } from "framer-motion";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { designSizes } from "@/lib/design-system";
-//#endregion
 
-//#region Types
 type TabsVariant = "default" | "bordered" | "ghost" | "underline";
 type TabsSize = "xs" | "sm" | "md" | "lg" | "xl";
 type TabsColor =
@@ -18,9 +16,7 @@ type TabsColor =
   | "warning"
   | "danger"
   | "custom";
-//#endregion
 
-//#region Interfaces
 interface TabsProps extends React.ComponentProps<typeof TabsPrimitive.Root> {
   onTabChange?: (value: string) => void;
 }
@@ -45,9 +41,7 @@ interface TabsTriggerProps
 
 interface TabsContentProps
   extends React.ComponentProps<typeof TabsPrimitive.Content> {}
-//#endregion
 
-//#region Static Configuration
 const colorClasses: Record<
   Exclude<TabsColor, "custom">,
   Record<TabsVariant, string>
@@ -115,9 +109,7 @@ const Spinner = React.memo(() => {
   );
 });
 Spinner.displayName = "Spinner";
-//#endregion
 
-//#region Components
 const Tabs = React.memo(({ className, onTabChange, ...props }: TabsProps) => {
   return (
     <TabsPrimitive.Root
@@ -249,6 +241,5 @@ const TabsContent = React.memo(({ className, children, ...props }: TabsContentPr
   );
 });
 TabsContent.displayName = "TabsContent";
-//#endregion
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };

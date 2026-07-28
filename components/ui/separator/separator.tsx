@@ -43,7 +43,7 @@ type SeparatorProps = {
   gradient?: boolean;
   className?: string;
 };
-//======================================
+
 export const Separator = ({
   label,
   gradient = false,

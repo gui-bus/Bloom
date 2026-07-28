@@ -13,7 +13,6 @@ export function SidebarHeader() {
     setMounted(true);
   }, []);
 
-  // Use resolvedTheme to correctly determine if we are in dark/light even if set to 'system'
   const isDark = mounted && resolvedTheme === "dark";
 
   return (

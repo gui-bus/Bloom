@@ -1,14 +1,11 @@
 "use client";
-//#region Imports
+
 import { Icon } from "@iconify/react";
 import hljs from "highlight.js";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button/button";
 import { motion, AnimatePresence } from "framer-motion";
 
-//#endregion
-
-//#region Interfaces
 interface CodeBlockProps {
   code: string;
   componentName?: string;
@@ -18,7 +15,6 @@ interface CodeBlockProps {
   showCopy?: boolean;
   maxHeight?: number;
 }
-//#endregion
 
 export function CodeBlock({
   code,
@@ -29,17 +25,13 @@ export function CodeBlock({
   showCopy = true,
   maxHeight = 280,
 }: CodeBlockProps) {
-  //#region Hooks
+  
   const codeRef = useRef<HTMLElement>(null);
-  //#endregion
 
-  //#region useStates
   const [copied, setCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasOverflow, setHasOverflow] = useState(false);
-  //#endregion
 
-  //#region useEffects
   useEffect(() => {
     if (codeRef.current) {
       hljs.highlightElement(codeRef.current);
@@ -57,17 +49,13 @@ export function CodeBlock({
     const hasOverflow = pre.scrollHeight > maxHeight;
     setHasOverflow(hasOverflow);
   }, [maxHeight]);
-  //#endregion
 
-  //#region Handle functions
   function handleCopy() {
     navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   }
-  //#endregion
 
-  //#region Constants
   const iconMap: Record<"typescript" | "css", string> = {
     typescript: "devicon:react",
     css: "skill-icons:css",
@@ -76,11 +64,10 @@ export function CodeBlock({
   const resolvedLanguage: "typescript" | "css" = componentName?.endsWith(".css")
     ? "css"
     : language;
-  //#endregion
 
   return (
     <div className="relative bg-[#282a36] rounded-3xl p-5">
-      {/* HEADER */}
+      
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between gap-5">
           <div className="flex items-center gap-2">
@@ -154,7 +141,6 @@ export function CodeBlock({
         )}
       </div>
 
-      {/* CODE CONTAINER */}
       <div className="relative mt-4">
         <pre
           className="rounded-3xl text-sm overflow-hidden transition-all duration-300"
@@ -170,13 +156,11 @@ export function CodeBlock({
           </code>
         </pre>
 
-        {/* GRADIENT OVERLAY */}
         {!isExpanded && hasOverflow && (
           <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 rounded-b-3xl bg-linear-to-t from-[#282a36] to-transparent" />
         )}
       </div>
 
-      {/* TOGGLE */}
       {hasOverflow && (
         <div className="mt-3 flex justify-center">
           <button

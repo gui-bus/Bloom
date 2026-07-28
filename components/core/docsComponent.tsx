@@ -1,6 +1,5 @@
 "use client";
 
-//#region Imports
 import * as React from "react";
 import reactElementToJSXString from "react-element-to-jsx-string";
 import {
@@ -10,17 +9,14 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
 import { CodeBlock } from "./codeBlock";
-//#endregion
 
-//#region Interfaces
 interface DocsComponentProps {
   title: string;
   description?: string;
   preview: React.ReactNode;
-  code?: string | React.ReactNode; // Can be a custom string or custom ReactNode
+  code?: string | React.ReactNode; 
   props?: string[];
 }
-//#endregion
 
 export function DocsComponent({
   title,
@@ -29,7 +25,7 @@ export function DocsComponent({
   code,
   props,
 }: DocsComponentProps) {
-  //#region Handle functions
+  
   function renderWithInlineCode(text: string) {
     const elements: React.ReactNode[] = [];
     let lastIndex = 0;
@@ -62,22 +58,19 @@ export function DocsComponent({
 
     return elements;
   }
-  //#endregion
 
-  //#region Code generation
   const resolvedCode = React.useMemo(() => {
     if (code) {
-      // If the user passed a custom element (like a pre-wrapped CodeBlock), return it directly
+      
       if (React.isValidElement(code)) {
         return code;
       }
-      // If they passed a custom string code, wrap it in CodeBlock
+      
       if (typeof code === "string") {
         return <CodeBlock code={code} componentName="Usage" />;
       }
     }
 
-    // Auto-generate code string from preview element using react-element-to-jsx-string
     try {
       if (React.isValidElement(preview)) {
         const generatedString = reactElementToJSXString(preview, {
@@ -93,7 +86,6 @@ export function DocsComponent({
 
     return null;
   }, [code, preview]);
-  //#endregion
 
   return (
     <section className="space-y-4 border border-zinc-200/50 dark:border-zinc-800/50 rounded-3xl p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
