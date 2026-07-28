@@ -19,7 +19,7 @@ pnpm build:registry
 
 ## 🚀 2. Publicação da CLI no NPM
 
-O pacote da CLI está localizado na pasta `packages/cli/` e é publicado sob o escopo público `@bloomui/cli`.
+O pacote da CLI está localizado na pasta `packages/cli/` e é publicado sob o escopo público `@bloomui-react/cli`.
 
 ### Passo 1: Fazer Login no NPM
 Caso não esteja logado, execute o comando:
@@ -32,7 +32,7 @@ npm login
 2. Execute o build e a publicação a partir da pasta raiz do projeto:
 ```bash
 # Compilar a CLI
-pnpm --filter @bloomui/cli build
+pnpm --filter @bloomui-react/cli build
 
 # Entrar na pasta e publicar
 cd packages/cli
