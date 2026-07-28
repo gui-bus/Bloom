@@ -4,6 +4,7 @@ import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { AnimatePresence, motion } from "framer-motion";
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { designSizes } from "@/lib/design-system";
 //#endregion
 
 //#region Types
@@ -47,85 +48,57 @@ interface TabsContentProps
 //#endregion
 
 //#region Static Configuration
-const sizeClasses: Record<TabsSize, string> = {
-  xs: "px-2 py-0.5 text-xs h-6",
-  sm: "px-3 py-1 text-sm h-7",
-  md: "px-4 py-2 text-sm h-9",
-  lg: "px-5 py-2 text-base h-11",
-  xl: "px-6 py-3 text-lg h-12",
-};
-
 const colorClasses: Record<
   Exclude<TabsColor, "custom">,
   Record<TabsVariant, string>
 > = {
   default: {
-    default:
-      "data-[state=active]:bg-neutral-600 data-[state=active]:text-white",
-    ghost:
-      "data-[state=active]:bg-neutral-100 data-[state=active]:text-neutral-800",
-    bordered:
-      "data-[state=active]:border-neutral-500 data-[state=active]:text-neutral-700",
-    underline:
-      "data-[state=active]:border-neutral-600 data-[state=active]:text-neutral-600",
+    default: "data-[state=active]:bg-default data-[state=active]:text-default-foreground",
+    ghost: "data-[state=active]:bg-default/20 data-[state=active]:text-default-foreground",
+    bordered: "data-[state=active]:border-default data-[state=active]:text-default-foreground",
+    underline: "data-[state=active]:border-default data-[state=active]:text-default-foreground",
   },
   primary: {
-    default: "data-[state=active]:bg-blue-600 data-[state=active]:text-white",
-    ghost:
-      "data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700",
-    bordered:
-      "data-[state=active]:border-blue-500 data-[state=active]:text-blue-700",
-    underline:
-      "data-[state=active]:border-blue-600 data-[state=active]:text-blue-600",
+    default: "data-[state=active]:bg-primary data-[state=active]:text-primary-foreground",
+    ghost: "data-[state=active]:bg-primary/20 data-[state=active]:text-primary",
+    bordered: "data-[state=active]:border-primary data-[state=active]:text-primary",
+    underline: "data-[state=active]:border-primary data-[state=active]:text-primary",
   },
   secondary: {
-    default: "data-[state=active]:bg-gray-700 data-[state=active]:text-white",
-    ghost:
-      "data-[state=active]:bg-gray-200 data-[state=active]:text-gray-900",
-    bordered:
-      "data-[state=active]:border-gray-500 data-[state=active]:text-gray-700",
-    underline:
-      "data-[state=active]:border-gray-700 data-[state=active]:text-gray-700",
+    default: "data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground",
+    ghost: "data-[state=active]:bg-secondary/20 data-[state=active]:text-secondary",
+    bordered: "data-[state=active]:border-secondary data-[state=active]:text-secondary",
+    underline: "data-[state=active]:border-secondary data-[state=active]:text-secondary",
   },
   success: {
-    default:
-      "data-[state=active]:bg-green-600 data-[state=active]:text-white",
-    ghost:
-      "data-[state=active]:bg-green-100 data-[state=active]:text-green-700",
-    bordered:
-      "data-[state=active]:border-green-500 data-[state=active]:text-green-700",
-    underline:
-      "data-[state=active]:border-green-600 data-[state=active]:text-green-600",
+    default: "data-[state=active]:bg-success data-[state=active]:text-success-foreground",
+    ghost: "data-[state=active]:bg-success/20 data-[state=active]:text-success",
+    bordered: "data-[state=active]:border-success data-[state=active]:text-success",
+    underline: "data-[state=active]:border-success data-[state=active]:text-success",
   },
   warning: {
-    default:
-      "data-[state=active]:bg-yellow-600 data-[state=active]:text-white",
-    ghost:
-      "data-[state=active]:bg-yellow-100 data-[state=active]:text-yellow-700",
-    bordered:
-      "data-[state=active]:border-yellow-500 data-[state=active]:text-yellow-700",
-    underline:
-      "data-[state=active]:border-yellow-600 data-[state=active]:text-yellow-600",
+    default: "data-[state=active]:bg-warning data-[state=active]:text-warning-foreground",
+    ghost: "data-[state=active]:bg-warning/20 data-[state=active]:text-warning",
+    bordered: "data-[state=active]:border-warning data-[state=active]:text-warning",
+    underline: "data-[state=active]:border-warning data-[state=active]:text-warning",
   },
   danger: {
-    default: "data-[state=active]:bg-red-600 data-[state=active]:text-white",
-    ghost: "data-[state=active]:bg-red-100 data-[state=active]:text-red-700",
-    bordered:
-      "data-[state=active]:border-red-500 data-[state=active]:text-red-700",
-    underline:
-      "data-[state=active]:border-red-600 data-[state=active]:text-red-600",
+    default: "data-[state=active]:bg-danger data-[state=active]:text-danger-foreground",
+    ghost: "data-[state=active]:bg-danger/20 data-[state=active]:text-danger",
+    bordered: "data-[state=active]:border-danger data-[state=active]:text-danger",
+    underline: "data-[state=active]:border-danger data-[state=active]:text-danger",
   },
 };
 
 const variantClasses: Record<TabsVariant, string> = {
   default:
-    "bg-white text-gray-800 hover:bg-gray-50 rounded-3xl shadow-md border border-gray-200 transition-all duration-200",
+    "bg-background text-foreground hover:bg-muted/50 rounded-3xl shadow-md border border-border transition-all duration-200",
   ghost:
-    "bg-transparent text-gray-700 hover:bg-gray-100 rounded-3xl border border-transparent shadow-none transition-all duration-200",
+    "bg-transparent text-muted-foreground hover:bg-muted rounded-3xl border border-transparent shadow-none transition-all duration-200",
   bordered:
-    "bg-transparent text-gray-800 border-2 border-gray-300 hover:bg-gray-50 rounded-3xl shadow-sm transition-all duration-200",
+    "bg-transparent text-foreground border-2 border-border hover:bg-muted rounded-3xl shadow-sm transition-all duration-200",
   underline:
-    "bg-transparent text-gray-700 hover:text-gray-900 rounded-none transition-all duration-200 border-b-2 border-transparent",
+    "bg-transparent text-muted-foreground hover:text-foreground rounded-none transition-all duration-200 border-b-2 border-transparent",
 };
 
 const stateClasses = {
@@ -205,7 +178,7 @@ const TabsTrigger = React.memo(({
       }
       className={cn(
         "inline-flex items-center justify-center gap-1.5 font-medium transition-all duration-200 ease-in-out cursor-pointer",
-        sizeClasses[size],
+        designSizes[size],
         variantClasses[variant],
         color !== "custom" && colorClasses[color][variant],
         isHex &&
