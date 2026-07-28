@@ -104,6 +104,28 @@ function main() {
     console.log("Registered util: design-system.ts");
   }
 
+  const ripplePath = path.join(libDir, "ripple/ripple.tsx");
+  if (fs.existsSync(ripplePath)) {
+    const rippleContent = fs.readFileSync(ripplePath, "utf8");
+    fs.writeFileSync(
+      path.join(outputDir, "ripple.json"),
+      JSON.stringify({ content: rippleContent }, null, 2),
+      "utf8"
+    );
+    console.log("Registered util: ripple.tsx");
+  }
+
+  const useRipplePath = path.join(libDir, "ripple/useRipple.ts");
+  if (fs.existsSync(useRipplePath)) {
+    const useRippleContent = fs.readFileSync(useRipplePath, "utf8");
+    fs.writeFileSync(
+      path.join(outputDir, "useRipple.json"),
+      JSON.stringify({ content: useRippleContent }, null, 2),
+      "utf8"
+    );
+    console.log("Registered util: useRipple.ts");
+  }
+
   // Save index registry
   fs.writeFileSync(
     path.join(outputDir, "index.json"),

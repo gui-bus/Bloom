@@ -110,7 +110,7 @@ program
 
     const registryBase = await getRegistryBase();
 
-    // Fetch design-system.ts and utils.ts
+    // Fetch design-system.ts, utils.ts, and ripple utilities
     try {
       const utilsRes = await fetch(`${registryBase}/utils.json`);
       if (utilsRes.ok) {
@@ -122,6 +122,23 @@ program
       if (dsRes.ok) {
         const dsData = await dsRes.json() as { content: string };
         fs.writeFileSync(path.join(targetUtilsDir, "design-system.ts"), dsData.content, "utf8");
+      }
+
+      const targetRippleDir = path.join(targetUtilsDir, "ripple");
+      if (!fs.existsSync(targetRippleDir)) {
+        fs.mkdirSync(targetRippleDir, { recursive: true });
+      }
+
+      const rippleRes = await fetch(`${registryBase}/ripple.json`);
+      if (rippleRes.ok) {
+        const rippleData = await rippleRes.json() as { content: string };
+        fs.writeFileSync(path.join(targetRippleDir, "ripple.tsx"), rippleData.content, "utf8");
+      }
+
+      const useRippleRes = await fetch(`${registryBase}/useRipple.json`);
+      if (useRippleRes.ok) {
+        const useRippleData = await useRippleRes.json() as { content: string };
+        fs.writeFileSync(path.join(targetRippleDir, "useRipple.ts"), useRippleData.content, "utf8");
       }
     } catch (e) {
       if (!skipPrompts) {

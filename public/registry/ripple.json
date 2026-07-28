@@ -1,0 +1,3 @@
+{
+  "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\ninterface RippleProps {\n  x: number;\n  y: number;\n  size: number;\n  onComplete: () => void;\n}\n\nexport const Ripple = React.memo(({ x, y, size, onComplete }: RippleProps) => {\n  React.useEffect(() => {\n    const timer = setTimeout(onComplete, 600);\n    return () => clearTimeout(timer);\n  }, [onComplete]);\n\n  return (\n    <span\n      className={cn(\"ripple absolute rounded-full bg-white/30 animate-ripple\")}\n      style={{\n        width: size,\n        height: size,\n        left: x - size / 2,\n        top: y - size / 2,\n      }}\n    />\n  );\n});\n\nRipple.displayName = \"Ripple\";\n"
+}

@@ -1,0 +1,3 @@
+{
+  "content": "\"use client\";\n\nimport * as React from \"react\";\n\nexport const useRipples = () => {\n  const [ripples, setRipples] = React.useState<\n    { x: number; y: number; size: number; id: number }[]\n  >([]);\n\n  const addRipple = React.useCallback((x: number, y: number, size: number) => {\n    const id = Date.now() + Math.random();\n    setRipples((prev) => [...prev, { x, y, size, id }]);\n  }, []);\n\n  const removeRipple = React.useCallback((id: number) => {\n    setRipples((prev) => prev.filter((r) => r.id !== id));\n  }, []);\n\n  return { ripples, addRipple, removeRipple };\n};\n"
+}
