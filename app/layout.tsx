@@ -33,7 +33,7 @@ export default function RootLayout({
         <div className="relative mx-auto w-full max-w-400 min-h-screen">
           {/* Sidebar fixa RELATIVA ao wrapper */}
           <aside className="fixed top-0 h-screen w-44 border-r bg-muted/40 px-4 py-6 overflow-y-auto">
-            <div className="mb-6 text-sm font-semibold">Zoe UI</div>
+            <div className="mb-6 text-sm font-semibold">Bloom</div>
 
             <nav className="space-y-2 text-sm">
               <Link
