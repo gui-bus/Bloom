@@ -7,7 +7,7 @@ interface DocsTitleProps {
 const DocsTitle = ({ title, description }: DocsTitleProps) => {
   return (
     <div>
-      <h2 className="text-2xl font-bold">{title}</h2>
+      <h1 className="text-3xl font-extrabold">{title}</h1>
       <p className="font-light">{description}</p>
     </div>
   );
