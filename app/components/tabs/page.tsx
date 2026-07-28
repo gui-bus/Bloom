@@ -5,7 +5,7 @@ import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
 import { Separator } from "@/components/ui/separator/separator";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs/tabs";
 import { tabsCode } from "@/components/ui/tabs/tabs.code";
 //#endregion
 
@@ -14,17 +14,37 @@ export default function TabsComponentPage() {
     <main className="p-5 space-y-8">
       <DocsTitle
         title="Tabs"
-        description="Navegação por abas utilizada para organizar conteúdos relacionados e facilitar a alternância entre seções sem perda de contexto."
+        description="Tabbed navigation used to organize related content and facilitate toggling between sections without losing context."
       />
 
-      <CodeBlock
-        code={tabsCode}
-        componentName="tabs.tsx"
-        tags={["React", "Radix UI", "Component", "Tabs", "TypeScript"]}
-      />
+      <Tabs defaultValue="tabs">
+        <TabsList background={false}>
+          <TabsTrigger
+            value="tabs"
+            startContent={<Icon icon="devicon:react" className="size-5" />}
+          >
+            tabs.tsx
+          </TabsTrigger>
+          <TabsTrigger
+            value="css"
+            startContent={<Icon icon="skill-icons:css" className="size-5" />}
+          >
+            globals.css
+          </TabsTrigger>
+        </TabsList>
 
-      <CodeBlock
-        code={`
+        <TabsContent value="tabs">
+          <CodeBlock
+            code={tabsCode}
+            componentName="tabs.tsx"
+            description="Main implementation of the Tabs component, managing layouts, variants, sizes, and accessibility."
+            tags={["React", "Radix UI", "UI Component", "Accessibility"]}
+          />
+        </TabsContent>
+
+        <TabsContent value="css">
+          <CodeBlock
+            code={`
 @layer utilities {
   .tabs-custom {
     &[data-state="active"] {
@@ -34,23 +54,27 @@ export default function TabsComponentPage() {
     }
   }
 }`}
-        componentName="globals.css"
-        language="css"
-        tags={["CSS", "Tailwind", "Utilities", "Tabs", "Theme"]}
-      />
+            componentName="globals.css"
+            language="css"
+            description="Tailwind CSS custom variant overrides for the active tab state styling."
+            tags={["CSS", "Tailwind", "Utilities", "Theme"]}
+          />
+        </TabsContent>
+      </Tabs>
 
       {/* VARIANTS */}
       <DocsComponent
-        title="Variantes"
-        description="Define a aparência visual dos botões por meio da prop 'variant', permitindo adaptar o estilo ao contexto da interface. Quando não informada, a variante padrão é utilizada."
+        title="Variants"
+        description="Defines the visual appearance of the tab triggers through the 'variant' prop, allowing the style to adapt to the interface context. When not specified, the default variant is used."
+        props={["variant: 'default' | 'ghost' | 'bordered' | 'underline'"]}
         preview={
           <div className="space-y-5">
             {/* DEFAULT */}
             <Tabs defaultValue="profile">
               <TabsList>
-                <TabsTrigger value="profile">Perfil</TabsTrigger>
-                <TabsTrigger value="documents">Documentos</TabsTrigger>
-                <TabsTrigger value="config">Configurações</TabsTrigger>
+                <TabsTrigger value="profile">Profile</TabsTrigger>
+                <TabsTrigger value="documents">Documents</TabsTrigger>
+                <TabsTrigger value="config">Settings</TabsTrigger>
               </TabsList>
             </Tabs>
 
@@ -58,13 +82,13 @@ export default function TabsComponentPage() {
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" variant="ghost">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" variant="ghost">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" variant="ghost">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -73,13 +97,13 @@ export default function TabsComponentPage() {
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" variant="bordered">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" variant="bordered">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" variant="bordered">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -88,13 +112,13 @@ export default function TabsComponentPage() {
             <Tabs defaultValue="profile">
               <TabsList background={false}>
                 <TabsTrigger value="profile" variant="underline">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" variant="underline">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" variant="underline">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -107,9 +131,9 @@ export default function TabsComponentPage() {
   {/* DEFAULT */}
   <Tabs defaultValue="profile">                 
     <TabsList>
-      <TabsTrigger value="profile">Perfil</TabsTrigger>
-      <TabsTrigger value="documents">Documentos</TabsTrigger>
-      <TabsTrigger value="config">Configurações</TabsTrigger>
+      <TabsTrigger value="profile">Profile</TabsTrigger>
+      <TabsTrigger value="documents">Documents</TabsTrigger>
+      <TabsTrigger value="config">Settings</TabsTrigger>
     </TabsList>
   </Tabs>
 
@@ -117,13 +141,13 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">                  
     <TabsList>
       <TabsTrigger value="profile" variant="ghost">
-        Perfil
+        Profile
       </TabsTrigger>
       <TabsTrigger value="documents" variant="ghost">
-        Documentos
+        Documents
       </TabsTrigger>
       <TabsTrigger value="config" variant="ghost">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -132,13 +156,13 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">                  
     <TabsList>
       <TabsTrigger value="profile" variant="bordered">
-        Perfil
+        Profile
       </TabsTrigger>
       <TabsTrigger value="documents" variant="bordered">
-        Documentos
+        Documents
       </TabsTrigger>
       <TabsTrigger value="config" variant="bordered">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -147,13 +171,13 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">                  
     <TabsList background={false}>
       <TabsTrigger value="profile" variant="underline">
-        Perfil
+        Profile
       </TabsTrigger>
       <TabsTrigger value="documents" variant="underline">
-        Documentos
+        Documents
       </TabsTrigger>
       <TabsTrigger value="config" variant="underline">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -165,8 +189,9 @@ export default function TabsComponentPage() {
 
       {/* START & END CONTENT */}
       <DocsComponent
-        title="Ícones e indicadores"
-        description="Utilize 'startContent' e 'endContent' para adicionar elementos visuais opcionais ajudam a reforçar o significado das abas e tornam a navegação mais rápida e intuitiva."
+        title="Icons and Indicators"
+        description="Use 'startContent' and 'endContent' to add optional visual elements that help reinforce the meaning of the tabs and make navigation faster and more intuitive."
+        props={["startContent: 'React.ReactNode'", "endContent: 'React.ReactNode'"]}
         preview={
           <div className="space-y-5">
             {/* START CONTENT */}
@@ -178,7 +203,7 @@ export default function TabsComponentPage() {
                     <Icon icon="hugeicons:user-account" className="size-5" />
                   }
                 >
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger
                   value="documents"
@@ -189,7 +214,7 @@ export default function TabsComponentPage() {
                     />
                   }
                 >
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger
                   value="config"
@@ -200,7 +225,7 @@ export default function TabsComponentPage() {
                     />
                   }
                 >
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -214,7 +239,7 @@ export default function TabsComponentPage() {
                     <Icon icon="hugeicons:user-account" className="size-5" />
                   }
                 >
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger
                   value="documents"
@@ -225,7 +250,7 @@ export default function TabsComponentPage() {
                     />
                   }
                 >
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger
                   value="config"
@@ -236,7 +261,7 @@ export default function TabsComponentPage() {
                     />
                   }
                 >
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -255,7 +280,7 @@ export default function TabsComponentPage() {
           <Icon icon="hugeicons:user-account" className="size-5" />
         }
       >
-        Perfil
+        Profile
       </TabsTrigger>
       <TabsTrigger
         value="documents"
@@ -266,7 +291,7 @@ export default function TabsComponentPage() {
           />
         }
       >
-        Documentos
+        Documents
       </TabsTrigger>
       <TabsTrigger
         value="config"
@@ -277,7 +302,7 @@ export default function TabsComponentPage() {
           />
         }
       >
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -291,7 +316,7 @@ export default function TabsComponentPage() {
           <Icon icon="hugeicons:user-account" className="size-5" />
         }
       >
-        Perfil
+        Profile
       </TabsTrigger>
       <TabsTrigger
         value="documents"
@@ -302,7 +327,7 @@ export default function TabsComponentPage() {
           />
         }
       >
-        Documentos
+        Documents
       </TabsTrigger>
       <TabsTrigger
         value="config"
@@ -313,7 +338,7 @@ export default function TabsComponentPage() {
           />
         }
       >
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -326,22 +351,23 @@ export default function TabsComponentPage() {
       {/* BADGES */}
       <DocsComponent
         title="Badges"
-        description="Indicadores visuais utilizados para destacar notificações, estados ou quantidades associadas às abas, com controle de posicionamento por meio de 'badgePosition'."
+        description="Visual indicators used to highlight notifications, states, or quantities associated with the tabs, with positioning control via 'badgePosition'."
+        props={["badgeContent: 'string'", "badgePosition: 'start' | 'end'"]}
         preview={
           <div className="space-y-5">
             {/* BADGE POSITION DEFAULT (END) */}
             <Tabs defaultValue="inbox">
               <TabsList>
                 <TabsTrigger value="inbox" badgeContent="12">
-                  Caixa de entrada
+                  Inbox
                 </TabsTrigger>
 
                 <TabsTrigger value="documents" badgeContent="6">
-                  Arquivados
+                  Archived
                 </TabsTrigger>
 
-                <TabsTrigger value="trash" badgeContent="CHEIO">
-                  Lixeira
+                <TabsTrigger value="trash" badgeContent="FULL">
+                  Trash
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -354,7 +380,7 @@ export default function TabsComponentPage() {
                   badgeContent="12"
                   badgePosition="start"
                 >
-                  Caixa de entrada
+                  Inbox
                 </TabsTrigger>
 
                 <TabsTrigger
@@ -362,15 +388,15 @@ export default function TabsComponentPage() {
                   badgeContent="6"
                   badgePosition="start"
                 >
-                  Arquivados
+                  Archived
                 </TabsTrigger>
 
                 <TabsTrigger
                   value="trash"
-                  badgeContent="CHEIO"
+                  badgeContent="FULL"
                   badgePosition="start"
                 >
-                  Lixeira
+                  Trash
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -384,15 +410,15 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="inbox">
     <TabsList>
       <TabsTrigger value="inbox" badgeContent="12">
-        Caixa de entrada
+        Inbox
       </TabsTrigger>
 
       <TabsTrigger value="documents" badgeContent="6">
-        Arquivados
+        Archived
       </TabsTrigger>
 
-      <TabsTrigger value="trash" badgeContent="CHEIO">
-        Lixeira
+      <TabsTrigger value="trash" badgeContent="FULL">
+        Trash
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -405,7 +431,7 @@ export default function TabsComponentPage() {
         badgeContent="12"
         badgePosition="start"
       >
-        Caixa de entrada
+        Inbox
       </TabsTrigger>
 
       <TabsTrigger
@@ -413,15 +439,15 @@ export default function TabsComponentPage() {
         badgeContent="6"
         badgePosition="start"
       >
-        Arquivados
+        Archived
       </TabsTrigger>
 
       <TabsTrigger
         value="trash"
-        badgeContent="CHEIO"
+        badgeContent="FULL"
         badgePosition="start"
       >
-        Lixeira
+        Trash
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -434,24 +460,25 @@ export default function TabsComponentPage() {
       {/* BACKGROUND */}
       <DocsComponent
         title="Background"
-        description="Define a exibição do fundo no agrupamento de abas. Por padrão, o fundo é exibido, mas pode ser desativado pela prop 'background'."
+        description="Defines the background display in the tab group. By default, the background is shown, but can be disabled via the 'background' prop."
+        props={["background: 'boolean'"]}
         preview={
           <div className="space-y-5">
             {/* DEFAULT */}
             <Tabs defaultValue="profile">
               <TabsList>
-                <TabsTrigger value="profile">Perfil</TabsTrigger>
-                <TabsTrigger value="documents">Documentos</TabsTrigger>
-                <TabsTrigger value="config">Configurações</TabsTrigger>
+                <TabsTrigger value="profile">Profile</TabsTrigger>
+                <TabsTrigger value="documents">Documents</TabsTrigger>
+                <TabsTrigger value="config">Settings</TabsTrigger>
               </TabsList>
             </Tabs>
 
             {/* DEFAULT */}
             <Tabs defaultValue="profile">
               <TabsList background={false}>
-                <TabsTrigger value="profile">Perfil</TabsTrigger>
-                <TabsTrigger value="documents">Documentos</TabsTrigger>
-                <TabsTrigger value="config">Configurações</TabsTrigger>
+                <TabsTrigger value="profile">Profile</TabsTrigger>
+                <TabsTrigger value="documents">Documents</TabsTrigger>
+                <TabsTrigger value="config">Settings</TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
@@ -463,18 +490,18 @@ export default function TabsComponentPage() {
   {/* DEFAULT */}
   <Tabs defaultValue="profile">
     <TabsList>
-      <TabsTrigger value="profile">Perfil</TabsTrigger>
-      <TabsTrigger value="documents">Documentos</TabsTrigger>
-      <TabsTrigger value="config">Configurações</TabsTrigger>
+      <TabsTrigger value="profile">Profile</TabsTrigger>
+      <TabsTrigger value="documents">Documents</TabsTrigger>
+      <TabsTrigger value="config">Settings</TabsTrigger>
     </TabsList>
   </Tabs>
 
   {/* DEFAULT */}
   <Tabs defaultValue="profile">
     <TabsList background={false}>
-      <TabsTrigger value="profile">Perfil</TabsTrigger>
-      <TabsTrigger value="documents">Documentos</TabsTrigger>
-      <TabsTrigger value="config">Configurações</TabsTrigger>
+      <TabsTrigger value="profile">Profile</TabsTrigger>
+      <TabsTrigger value="documents">Documents</TabsTrigger>
+      <TabsTrigger value="config">Settings</TabsTrigger>
     </TabsList>
   </Tabs>
 </div>
@@ -485,21 +512,22 @@ export default function TabsComponentPage() {
 
       {/* SIZE */}
       <DocsComponent
-        title="Tamanho"
-        description="Permite ajustar a escala visual das abas por meio da prop 'size'. O tamanho padrão é 'md', com opções que se adaptam a diferentes densidades e contextos de interface."
+        title="Sizes"
+        description="Allows adjusting the visual scale of tabs through the 'size' prop. The default size is 'md', with options that adapt to different interface densities and contexts."
+        props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl'"]}
         preview={
           <div className="space-y-5">
             {/* XS */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" size="xs">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" size="xs">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" size="xs">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -508,13 +536,13 @@ export default function TabsComponentPage() {
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" size="sm">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" size="sm">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" size="sm">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -523,13 +551,13 @@ export default function TabsComponentPage() {
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" size="md">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" size="md">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" size="md">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -538,13 +566,13 @@ export default function TabsComponentPage() {
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" size="lg">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" size="lg">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" size="lg">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -553,13 +581,13 @@ export default function TabsComponentPage() {
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" size="xl">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" size="xl">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" size="xl">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -573,13 +601,13 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" size="xs">
-        Perfil
+        Profile
       </TabsTrigger>
       <TabsTrigger value="documents" size="xs">
-        Documentos
+        Documents
       </TabsTrigger>
       <TabsTrigger value="config" size="xs">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -588,13 +616,13 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" size="sm">
-        Perfil
+        Profile
       </TabsTrigger>
       <TabsTrigger value="documents" size="sm">
-        Documentos
+        Documents
       </TabsTrigger>
       <TabsTrigger value="config" size="sm">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -603,13 +631,13 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" size="md">
-        Perfil
+        Profile
       </TabsTrigger>
       <TabsTrigger value="documents" size="md">
-        Documentos
+        Documents
       </TabsTrigger>
       <TabsTrigger value="config" size="md">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -618,13 +646,13 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" size="lg">
-        Perfil
+        Profile
       </TabsTrigger>
       <TabsTrigger value="documents" size="lg">
-        Documentos
+        Documents
       </TabsTrigger>
       <TabsTrigger value="config" size="lg">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -633,13 +661,13 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" size="xl">
-        Perfil
+        Profile
       </TabsTrigger>
       <TabsTrigger value="documents" size="xl">
-        Documentos
+        Documents
       </TabsTrigger>
       <TabsTrigger value="config" size="xl">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -651,21 +679,25 @@ export default function TabsComponentPage() {
 
       {/* COLORS */}
       <DocsComponent
-        title="Cores"
-        description="Define o esquema de cores das abas por meio da prop 'color'. É possível utilizar cores semânticas pré-definidas (como primary, success ou danger) ou aplicar estilos personalizados com 'customColor', seja via tokens Tailwind ou valores HEX. Essa abordagem garante consistência visual sem limitar a flexibilidade do design."
+        title="Colors"
+        description="Defines the active tab color scheme through the 'color' prop. You can use predefined semantic colors (like primary, success, or danger) or apply custom styles with 'customColor' (HEX). This ensures visual consistency without limiting design flexibility."
+        props={[
+          "color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'custom'",
+          "customColor: 'string' (HEX)",
+        ]}
         preview={
           <div className="space-y-5">
             {/* PRIMARY */}
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" color="primary">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" color="primary">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" color="primary">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -674,13 +706,13 @@ export default function TabsComponentPage() {
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" color="secondary">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" color="secondary">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" color="secondary">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -689,13 +721,13 @@ export default function TabsComponentPage() {
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" color="success">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" color="success">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" color="success">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -704,13 +736,13 @@ export default function TabsComponentPage() {
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" color="warning">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" color="warning">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" color="warning">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -719,13 +751,13 @@ export default function TabsComponentPage() {
             <Tabs defaultValue="profile">
               <TabsList>
                 <TabsTrigger value="profile" color="danger">
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger value="documents" color="danger">
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger value="config" color="danger">
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -738,21 +770,21 @@ export default function TabsComponentPage() {
                   color="custom"
                   customColor="#9106D1"
                 >
-                  Perfil
+                  Profile
                 </TabsTrigger>
                 <TabsTrigger
                   value="documents"
                   color="custom"
                   customColor="#9106D1"
                 >
-                  Documentos
+                  Documents
                 </TabsTrigger>
                 <TabsTrigger
                   value="config"
                   color="custom"
                   customColor="#9106D1"
                 >
-                  Configurações
+                  Settings
                 </TabsTrigger>
               </TabsList>
             </Tabs>
@@ -766,15 +798,15 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" color="primary">
-        Perfil
+        Profile
       </TabsTrigger>
 
       <TabsTrigger value="documents" color="primary">
-        Documentos
+        Documents
       </TabsTrigger>
 
       <TabsTrigger value="config" color="primary">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -783,15 +815,15 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" color="secondary">
-        Perfil
+        Profile
       </TabsTrigger>
 
       <TabsTrigger value="documents" color="secondary">
-        Documentos
+        Documents
       </TabsTrigger>
 
       <TabsTrigger value="config" color="secondary">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -800,15 +832,15 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" color="success">
-        Perfil
+        Profile
       </TabsTrigger>
                   
       <TabsTrigger value="documents" color="success">
-        Documentos
+        Documents
       </TabsTrigger>
 
       <TabsTrigger value="config" color="success">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -817,13 +849,13 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" color="warning">
-        Perfil
+        Profile
       </TabsTrigger>
       <TabsTrigger value="documents" color="warning">
-        Documentos
+        Documents
       </TabsTrigger>
       <TabsTrigger value="config" color="warning">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -832,15 +864,15 @@ export default function TabsComponentPage() {
   <Tabs defaultValue="profile">
     <TabsList>
       <TabsTrigger value="profile" color="danger">
-        Perfil
+        Profile
       </TabsTrigger>
 
       <TabsTrigger value="documents" color="danger">
-        Documentos
+        Documents
       </TabsTrigger>
 
       <TabsTrigger value="config" color="danger">
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -853,7 +885,7 @@ export default function TabsComponentPage() {
         color="custom"
         customColor="#9106D1"
       >
-        Perfil
+        Profile
       </TabsTrigger>
 
       <TabsTrigger
@@ -861,7 +893,7 @@ export default function TabsComponentPage() {
         color="custom"
         customColor="#9106D1"
       >
-        Documentos
+        Documents
       </TabsTrigger>
 
       <TabsTrigger
@@ -869,7 +901,7 @@ export default function TabsComponentPage() {
         color="custom"
         customColor="#9106D1"
       >
-        Configurações
+        Settings
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -881,17 +913,18 @@ export default function TabsComponentPage() {
 
       {/* DISABLED */}
       <DocsComponent
-        title="Estado desabilitado"
-        description="Indica abas indisponíveis para interação, aplicando um estado visual e comportamental apropriado por meio da prop 'isDisabled'."
+        title="Disabled State"
+        description="Indicates tabs that are unavailable for interaction, applying an appropriate visual and behavioral state via the 'isDisabled' prop."
+        props={["isDisabled: 'boolean'"]}
         preview={
           <Tabs defaultValue="profile">
             <TabsList>
-              <TabsTrigger value="profile">Perfil</TabsTrigger>
+              <TabsTrigger value="profile">Profile</TabsTrigger>
               <TabsTrigger value="documents" isDisabled>
-                Documentos
+                Documents
               </TabsTrigger>
               <TabsTrigger value="config" isDisabled>
-                Configurações
+                Settings
               </TabsTrigger>
             </TabsList>
           </Tabs>
@@ -901,9 +934,9 @@ export default function TabsComponentPage() {
             code={`
 <Tabs defaultValue="profile">
   <TabsList>
-    <TabsTrigger value="profile">Perfil</TabsTrigger>
-    <TabsTrigger value="documents" isDisabled>Documentos</TabsTrigger>
-    <TabsTrigger value="config" isDisabled>Configurações</TabsTrigger>
+    <TabsTrigger value="profile">Profile</TabsTrigger>
+    <TabsTrigger value="documents" isDisabled>Documents</TabsTrigger>
+    <TabsTrigger value="config" isDisabled>Settings</TabsTrigger>
   </TabsList>
 </Tabs>
                 `}
@@ -913,16 +946,17 @@ export default function TabsComponentPage() {
 
       {/* LOADING */}
       <DocsComponent
-        title="Estado de carregamento"
-        description="Representa abas em processamento assíncrono. Ao usar a prop 'isLoading', a interação é bloqueada temporariamente e um indicador visual de carregamento é exibido."
+        title="Loading State"
+        description="Represents tabs performing asynchronous processing. When using the 'isLoading' prop, interaction is temporarily blocked and a loading spinner is displayed."
+        props={["isLoading: 'boolean'"]}
         preview={
           <Tabs defaultValue="profile">
             <TabsList>
-              <TabsTrigger value="profile">Perfil</TabsTrigger>
+              <TabsTrigger value="profile">Profile</TabsTrigger>
               <TabsTrigger value="documents" isLoading>
-                Documentos
+                Documents
               </TabsTrigger>
-              <TabsTrigger value="config">Configurações</TabsTrigger>
+              <TabsTrigger value="config">Settings</TabsTrigger>
             </TabsList>
           </Tabs>
         }
@@ -931,9 +965,9 @@ export default function TabsComponentPage() {
             code={`
 <Tabs defaultValue="profile">
   <TabsList>
-    <TabsTrigger value="profile">Perfil</TabsTrigger>
-    <TabsTrigger value="documents" isLoading>Documentos</TabsTrigger>
-    <TabsTrigger value="config">Configurações</TabsTrigger>
+    <TabsTrigger value="profile">Profile</TabsTrigger>
+    <TabsTrigger value="documents" isLoading>Documents</TabsTrigger>
+    <TabsTrigger value="config">Settings</TabsTrigger>
   </TabsList>
 </Tabs>
                 `}
@@ -945,16 +979,16 @@ export default function TabsComponentPage() {
 
       <DocsComponent
         title="Props — Tabs"
-        description="Propriedades disponíveis para o componente raiz Tabs."
+        description="Available properties for the root Tabs component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b">
                   <th className="text-left py-2 px-3">Prop</th>
-                  <th className="text-left py-2 px-3">Tipo</th>
+                  <th className="text-left py-2 px-3">Type</th>
                   <th className="text-left py-2 px-3">Default</th>
-                  <th className="text-left py-2 px-3">Descrição</th>
+                  <th className="text-left py-2 px-3">Description</th>
                 </tr>
               </thead>
               <tbody>
@@ -963,8 +997,7 @@ export default function TabsComponentPage() {
                   <td className="px-3 py-2 font-mono">string</td>
                   <td className="px-3 py-2">—</td>
                   <td className="px-3 py-2">
-                    Define a aba ativa inicial quando usado de forma não
-                    controlada.
+                    Defines the initial active tab when used in an uncontrolled way.
                   </td>
                 </tr>
 
@@ -973,7 +1006,7 @@ export default function TabsComponentPage() {
                   <td className="px-3 py-2 font-mono">string</td>
                   <td className="px-3 py-2">—</td>
                   <td className="px-3 py-2">
-                    Controla manualmente a aba ativa.
+                    Manually controls the active tab.
                   </td>
                 </tr>
 
@@ -984,7 +1017,7 @@ export default function TabsComponentPage() {
                   </td>
                   <td className="px-3 py-2">—</td>
                   <td className="px-3 py-2">
-                    Callback disparado sempre que a aba ativa muda.
+                    Callback fired whenever the active tab changes.
                   </td>
                 </tr>
               </tbody>
@@ -995,17 +1028,17 @@ export default function TabsComponentPage() {
 
       <DocsComponent
         title="Props — TabsList"
-        description="Configura o container que agrupa os gatilhos das abas."
+        description="Configures the container wrapping the tab triggers."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b">
                   <th className="text-left py-2 px-3">Prop</th>
-                  <th className="text-left py-2 px-3">Tipo</th>
-                  <th className="text-left py-2 px-3">Opções</th>
+                  <th className="text-left py-2 px-3">Type</th>
+                  <th className="text-left py-2 px-3">Options</th>
                   <th className="text-left py-2 px-3">Default</th>
-                  <th className="text-left py-2 px-3">Descrição</th>
+                  <th className="text-left py-2 px-3">Description</th>
                 </tr>
               </thead>
               <tbody>
@@ -1015,7 +1048,7 @@ export default function TabsComponentPage() {
                   <td className="px-3 py-2 font-mono">true | false</td>
                   <td className="px-3 py-2">true</td>
                   <td className="px-3 py-2">
-                    Controla a exibição do fundo que envolve as abas.
+                    Controls the background display wrapping the tabs.
                   </td>
                 </tr>
               </tbody>
@@ -1026,17 +1059,17 @@ export default function TabsComponentPage() {
 
       <DocsComponent
         title="Props — TabsTrigger"
-        description="Propriedades responsáveis pela aparência, comportamento e estados das abas."
+        description="Properties responsible for tab appearance, behaviors, and states."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b">
                   <th className="text-left py-2 px-3">Prop</th>
-                  <th className="text-left py-2 px-3">Tipo</th>
-                  <th className="text-left py-2 px-3">Opções</th>
+                  <th className="text-left py-2 px-3">Type</th>
+                  <th className="text-left py-2 px-3">Options</th>
                   <th className="text-left py-2 px-3">Default</th>
-                  <th className="text-left py-2 px-3">Descrição</th>
+                  <th className="text-left py-2 px-3">Description</th>
                 </tr>
               </thead>
               <tbody>
@@ -1047,7 +1080,7 @@ export default function TabsComponentPage() {
                     default | ghost | bordered | underline
                   </td>
                   <td className="px-3 py-2">default</td>
-                  <td className="px-3 py-2">Define o estilo visual da aba.</td>
+                  <td className="px-3 py-2">Defines the tab's visual style.</td>
                 </tr>
 
                 <tr className="border-b">
@@ -1058,7 +1091,7 @@ export default function TabsComponentPage() {
                   </td>
                   <td className="px-3 py-2">md</td>
                   <td className="px-3 py-2">
-                    Controla o tamanho e densidade visual da aba.
+                    Controls the visual size and density of the tab.
                   </td>
                 </tr>
 
@@ -1070,7 +1103,7 @@ export default function TabsComponentPage() {
                   </td>
                   <td className="px-3 py-2">primary</td>
                   <td className="px-3 py-2">
-                    Define o esquema de cores do estado ativo.
+                    Defines the active state color scheme.
                   </td>
                 </tr>
 
@@ -1080,7 +1113,7 @@ export default function TabsComponentPage() {
                   <td className="px-3 py-2 font-mono">HEX</td>
                   <td className="px-3 py-2">—</td>
                   <td className="px-3 py-2">
-                    Cor personalizada usada quando <code>color="custom"</code>.
+                    Custom color used when <code>color="custom"</code>.
                   </td>
                 </tr>
 
@@ -1090,7 +1123,7 @@ export default function TabsComponentPage() {
                   <td className="px-3 py-2">—</td>
                   <td className="px-3 py-2">—</td>
                   <td className="px-3 py-2">
-                    Elemento exibido antes do texto (ícones, avatares).
+                    Element displayed before the text (icons, avatars).
                   </td>
                 </tr>
 
@@ -1099,7 +1132,7 @@ export default function TabsComponentPage() {
                   <td className="px-3 py-2 font-mono">ReactNode</td>
                   <td className="px-3 py-2">—</td>
                   <td className="px-3 py-2">—</td>
-                  <td className="px-3 py-2">Elemento exibido após o texto.</td>
+                  <td className="px-3 py-2">Element displayed after the text.</td>
                 </tr>
 
                 <tr className="border-b">
@@ -1108,7 +1141,7 @@ export default function TabsComponentPage() {
                   <td className="px-3 py-2">—</td>
                   <td className="px-3 py-2">—</td>
                   <td className="px-3 py-2">
-                    Exibe um badge informativo junto à aba.
+                    Displays an informational badge next to the tab.
                   </td>
                 </tr>
 
@@ -1118,7 +1151,7 @@ export default function TabsComponentPage() {
                   <td className="px-3 py-2 font-mono">start | end</td>
                   <td className="px-3 py-2">end</td>
                   <td className="px-3 py-2">
-                    Define a posição do badge em relação ao texto.
+                    Defines the position of the badge relative to the text.
                   </td>
                 </tr>
 
@@ -1127,7 +1160,7 @@ export default function TabsComponentPage() {
                   <td className="px-3 py-2 font-mono">boolean</td>
                   <td className="px-3 py-2 font-mono">true | false</td>
                   <td className="px-3 py-2">false</td>
-                  <td className="px-3 py-2">Desabilita a interação da aba.</td>
+                  <td className="px-3 py-2">Disables tab interaction.</td>
                 </tr>
 
                 <tr>
@@ -1136,7 +1169,7 @@ export default function TabsComponentPage() {
                   <td className="px-3 py-2 font-mono">true | false</td>
                   <td className="px-3 py-2">false</td>
                   <td className="px-3 py-2">
-                    Exibe um estado de carregamento e bloqueia interação.
+                    Displays a loading state and blocks interaction.
                   </td>
                 </tr>
               </tbody>

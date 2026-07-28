@@ -78,6 +78,16 @@ export function DocsComponent({
             {renderWithInlineCode(description)}
           </p>
         )}
+
+        {props && props.length > 0 && (
+          <div className="flex flex-col gap-1 mt-2">
+            {props.map((prop) => (
+              <p className="font-light text-sm leading-relaxed" key={prop}>
+                {renderWithInlineCode(prop)}
+              </p>
+            ))}
+          </div>
+        )}
       </div>
 
       {hasBoth && (
@@ -92,7 +102,7 @@ export function DocsComponent({
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="preview" className="border rounded-3xl">
+          <TabsContent value="preview" className="border rounded-3xl p-6">
             {preview}
           </TabsContent>
 
@@ -103,16 +113,8 @@ export function DocsComponent({
       )}
 
       {!hasBoth && hasPreview && (
-        <div>
-          {props?.map((prop) => (
-            <p className="font-light text-sm leading-relaxed mt-2 first:mt-5" key={prop}>
-              {renderWithInlineCode(prop)}
-            </p>
-          ))}
-
-          <div className="border rounded-3xl flex-1 outline-none p-5 transition-all duration-300 ease-in-out mt-5">
-            {preview}
-          </div>
+        <div className="border rounded-3xl flex-1 outline-none p-5 transition-all duration-300 ease-in-out mt-5">
+          {preview}
         </div>
       )}
 
