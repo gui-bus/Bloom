@@ -3,8 +3,8 @@ export const buttonCode = `"use client";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
-import { Ripple } from "@/components/utils/ripple/ripple";
-import { useRipples } from "@/hooks/ripple/useRipple";
+import { Ripple } from "@/lib/ripple/ripple";
+import { useRipples } from "@/lib/ripple/useRipple";
 import { cn } from "@/lib/utils";
 import { designColors, designSizes, designRadius } from "@/lib/design-system";
 

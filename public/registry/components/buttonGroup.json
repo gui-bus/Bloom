@@ -1,0 +1,10 @@
+{
+  "name": "buttonGroup",
+  "dependencies": [],
+  "files": [
+    {
+      "name": "buttonGroup.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport type { ButtonProps } from \"../button/button\";\n\ntype ButtonGroupProps = {\n  children: React.ReactNode;\n  variant?: ButtonProps[\"variant\"];\n  color?: ButtonProps[\"color\"];\n  size?: ButtonProps[\"size\"];\n};\n\nexport const ButtonGroup = React.memo(({\n  children,\n  variant,\n  color,\n  size,\n}: ButtonGroupProps) => {\n  const count = React.Children.count(children);\n\n  const clonedChildren = React.useMemo(() => {\n    return React.Children.map(children, (child, index) => {\n      if (!React.isValidElement<ButtonProps>(child)) return child;\n\n      const isFirst = index === 0;\n      const isLast = index === count - 1;\n\n      return React.cloneElement(child, {\n        variant,\n        color,\n        size,\n        className: cn(\n          child.props.className,\n          \"rounded-none\",\n          isFirst && \"rounded-l-xl\",\n          isLast && \"rounded-r-xl\",\n          !isFirst && !isLast && \"-ml-px\"\n        ),\n      });\n    });\n  }, [children, variant, color, size, count]);\n\n  return (\n    <div className=\"inline-flex\">\n      {clonedChildren}\n    </div>\n  );\n});\n\nButtonGroup.displayName = \"ButtonGroup\";\n"
+    }
+  ]
+}

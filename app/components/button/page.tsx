@@ -13,8 +13,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
-import { rippleCode } from "@/components/utils/ripple/ripple.code";
-import { useRippleCode } from "@/hooks/ripple/useRipple.code";
+import { rippleCode } from "@/lib/ripple/ripple.code";
+import { useRippleCode } from "@/lib/ripple/useRipple.code";
 
 export default function ButtonComponentPage() {
   return (

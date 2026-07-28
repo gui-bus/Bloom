@@ -1,0 +1,19 @@
+[
+  {
+    "name": "button",
+    "dependencies": [
+      "@radix-ui/react-slot"
+    ]
+  },
+  {
+    "name": "buttonGroup",
+    "dependencies": []
+  },
+  {
+    "name": "tabs",
+    "dependencies": [
+      "@radix-ui/react-tabs",
+      "framer-motion"
+    ]
+  }
+]
