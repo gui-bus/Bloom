@@ -75,5 +75,7 @@ Escala de cantos arredondados:
 
 ## 4. Documentação e Tabelas de Props
 
-Toda página de documentação de componente em `app/components/[name]/page.tsx` **deve** incluir obrigatoriamente no final da página uma seção **API Reference / Props Table**, detalhando em tabela HTML todas as propriedades suportadas (Prop, Type, Default, Description).
+Toda página de documentação de componente em `app/components/[name]/page.tsx` **deve**:
+1. Incluir no final da página uma seção **API Reference / Props Table**, detalhando em tabela HTML todas as propriedades suportadas (Prop, Type, Default, Description).
+2. Fornecer obrigatoriamente para cada `<DocsComponent />` uma prop `code` contendo uma string explícita do JSX real do componente (ex: `<Button>`, `<Avatar>`, `<Separator>`). É **proibido** utilizar geradores automáticos ou trechos genéricos/placeholders como `<Component>` e `<Lazy>`.
 
