@@ -1,0 +1,10 @@
+{
+  "name": "skeleton",
+  "dependencies": [],
+  "files": [
+    {
+      "name": "skeleton.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { designRadius } from \"@/lib/design-system\";\n\nexport interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {\n  variant?: \"circle\" | \"rectangle\" | \"text\";\n  radius?: keyof typeof designRadius;\n  isLoaded?: boolean;\n}\n\nconst variantStyles = {\n  circle: \"rounded-full aspect-square\",\n  rectangle: \"\",\n  text: \"h-4 w-full rounded-md\",\n};\n\nconst Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(\n  (\n    {\n      className,\n      variant = \"rectangle\",\n      radius = \"lg\",\n      isLoaded = false,\n      children,\n      ...props\n    },\n    ref\n  ) => {\n    if (isLoaded) {\n      return <>{children}</>;\n    }\n\n    return (\n      <div\n        ref={ref}\n        role=\"status\"\n        aria-busy=\"true\"\n        aria-label=\"Loading...\"\n        className={cn(\n          \"animate-pulse bg-muted/70 shrink-0\",\n          variantStyles[variant],\n          variant !== \"circle\" && designRadius[radius],\n          className\n        )}\n        {...props}\n      >\n        <span className=\"sr-only\">Loading...</span>\n      </div>\n    );\n  }\n);\n\nSkeleton.displayName = \"Skeleton\";\n\nexport { Skeleton };\n"
+    }
+  ]
+}

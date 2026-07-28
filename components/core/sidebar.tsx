@@ -43,6 +43,7 @@ export function Sidebar() {
         { href: "/components/button", label: "Button" },
         { href: "/components/buttonGroup", label: "Button Group" },
         { href: "/components/separator", label: "Separator" },
+        { href: "/components/skeleton", label: "Skeleton" },
         { href: "/components/tabs", label: "Tabs" },
       ],
     },

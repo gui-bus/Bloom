@@ -33,6 +33,10 @@
     ]
   },
   {
+    "name": "skeleton",
+    "dependencies": []
+  },
+  {
     "name": "tabs",
     "dependencies": [
       "@radix-ui/react-tabs",

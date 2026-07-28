@@ -32,6 +32,10 @@ const componentsConfig = {
     dependencies: ["@radix-ui/react-separator"],
     files: ["separator.tsx"],
   },
+  skeleton: {
+    dependencies: [],
+    files: ["skeleton.tsx"],
+  },
   tabs: {
     dependencies: ["@radix-ui/react-tabs", "framer-motion", "class-variance-authority"],
     files: ["tabs.tsx"],
