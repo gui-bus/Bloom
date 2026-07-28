@@ -1,5 +1,5 @@
 export const buttonCode = `"use client";
-//#region Imports
+
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
@@ -7,9 +7,7 @@ import { Ripple } from "@/components/utils/ripple/ripple";
 import { useRipples } from "@/hooks/ripple/useRipple";
 import { cn } from "@/lib/utils";
 import { designColors, designSizes, designRadius } from "@/lib/design-system";
-//#endregion
 
-//#region Types
 type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 type ButtonRadius =
   | "none"
@@ -62,9 +60,7 @@ type NormalButtonProps = {
 };
 
 export type ButtonProps = ButtonBaseProps & (IconOnlyProps | NormalButtonProps);
-//#endregion
 
-//#region Variants
 const buttonBaseVariants = cva(
   "relative inline-flex items-center justify-center gap-1.5 font-medium transition-all duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded-xl",
   {
@@ -91,9 +87,7 @@ const buttonBaseVariants = cva(
     },
   }
 );
-//#endregion
 
-//#region Component
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
@@ -221,7 +215,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = "Button";
-//#endregion
 
 export { Button, buttonBaseVariants };
 `;
