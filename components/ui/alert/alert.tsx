@@ -48,7 +48,7 @@ const iconMap = {
 
 export interface AlertProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
-  variant?: AlertStyle;
+  variant?: AlertStyle | AlertColor;
   color?: AlertColor;
   title?: React.ReactNode;
   icon?: React.ReactNode;
@@ -74,7 +74,13 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     ref
   ) => {
     const [isVisible, setIsVisible] = React.useState(true);
-    const IconComponent = iconMap[color || "info"];
+
+    // Map backwards-compatible variant (e.g. variant="info")
+    const isColorVariant = (["info", "success", "warning", "danger"] as string[]).includes(variant);
+    const effectiveColor = isColorVariant ? (variant as AlertColor) : color;
+    const effectiveVariant = isColorVariant ? "flat" : (variant as AlertStyle);
+
+    const IconComponent = iconMap[effectiveColor || "info"];
 
     if (!isVisible) return null;
 
@@ -89,7 +95,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         role="alert"
         className={cn(
           "relative w-full rounded-2xl p-4 text-sm flex gap-3 items-start font-medium leading-relaxed",
-          alertColorMap[color][variant],
+          alertColorMap[effectiveColor][effectiveVariant],
           className
         )}
         {...props}
