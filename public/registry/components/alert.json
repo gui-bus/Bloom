@@ -1,0 +1,13 @@
+{
+  "name": "alert",
+  "dependencies": [
+    "lucide-react",
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "name": "alert.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { AlertCircle, CheckCircle2, Info, AlertTriangle } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nconst alertVariants = cva(\n  \"relative w-full rounded-2xl border p-4 text-sm flex gap-3 items-start font-medium leading-relaxed\",\n  {\n    variants: {\n      variant: {\n        info: \"border-sky-500/30 bg-sky-500/10 text-sky-700 dark:text-sky-300 [&>svg]:text-sky-500\",\n        success: \"border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 [&>svg]:text-emerald-500\",\n        warning: \"border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300 [&>svg]:text-amber-500\",\n        danger: \"border-rose-500/30 bg-rose-500/10 text-rose-700 dark:text-rose-300 [&>svg]:text-rose-500\",\n      },\n    },\n    defaultVariants: {\n      variant: \"info\",\n    },\n  }\n);\n\nconst iconMap = {\n  info: Info,\n  success: CheckCircle2,\n  warning: AlertTriangle,\n  danger: AlertCircle,\n};\n\nexport interface AlertProps\n  extends Omit<React.HTMLAttributes<HTMLDivElement>, \"title\">,\n    VariantProps<typeof alertVariants> {\n  title?: React.ReactNode;\n  icon?: React.ReactNode;\n}\n\nconst Alert = React.forwardRef<HTMLDivElement, AlertProps>(\n  ({ className, variant = \"info\", title, icon, children, ...props }, ref) => {\n    const IconComponent = iconMap[variant || \"info\"];\n\n    return (\n      <div\n        ref={ref}\n        role=\"alert\"\n        className={cn(alertVariants({ variant }), className)}\n        {...props}\n      >\n        {icon !== undefined ? icon : <IconComponent className=\"size-5 shrink-0 mt-0.5\" />}\n        <div className=\"flex flex-col gap-1 flex-1\">\n          {title && <h5 className=\"font-bold text-sm leading-none\">{title}</h5>}\n          {children && <div className=\"text-xs opacity-90\">{children}</div>}\n        </div>\n      </div>\n    );\n  }\n);\nAlert.displayName = \"Alert\";\n\nexport { Alert, alertVariants };\n"
+    }
+  ]
+}

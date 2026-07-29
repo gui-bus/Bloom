@@ -54,18 +54,18 @@ Visão geral de todos os componentes planejados para a biblioteca Bloom UI, orga
 
 | Status | Componente | Descrição |
 | :---: | :--- | :--- |
-| ⏳ | **Dialog** | Modal de diálogo acessível via Radix |
-| ⏳ | **Alert Dialog** | Diálogo de confirmação crítica com ações destrutivas |
-| ⏳ | **Sheet** | Painel deslizante lateral (drawer para desktop) |
-| ⏳ | **Drawer** | Painel deslizante a partir da borda inferior (mobile-first) |
-| ⏳ | **Popover** | Balão flutuante com conteúdo rico |
-| ⏳ | **Tooltip** | Dica de contexto ao hover ou focus |
-| ⏳ | **Hover Card** | Cartão expandido ao passar o mouse sobre um elemento |
-| ⏳ | **Toast / Sonner** | Notificações temporárias não-intrusivas |
-| ⏳ | **Alert** | Mensagem de alerta contextual (info, sucesso, erro, aviso) |
-| ⏳ | **Context Menu** | Menu de contexto ao clicar com o botão direito |
+| ✅ | **Dialog** | Modal de diálogo acessível via Radix |
+| ✅ | **Alert Dialog** | Diálogo de confirmação crítica com ações destrutivas |
+| ✅ | **Sheet** | Painel deslizante lateral (drawer para desktop) |
+| ✅ | **Drawer** | Painel deslizante a partir da borda inferior (mobile-first) |
+| ✅ | **Popover** | Balão flutuante com conteúdo rico |
+| ✅ | **Tooltip** | Dica de contexto ao hover ou focus |
+| ✅ | **Hover Card** | Cartão expandido ao passar o mouse sobre um elemento |
+| ✅ | **Toast / Sonner** | Notificações temporárias não-intrusivas |
+| ✅ | **Alert** | Mensagem de alerta contextual (info, sucesso, erro, aviso) |
+| ✅ | **Context Menu** | Menu de contexto ao clicar com o botão direito |
 | ✅ | **Dropdown Menu** | Menu suspenso com itens, grupos e atalhos |
-| ⏳ | **Command** | Paleta de comandos estilo Spotlight / CMD+K |
+| ✅ | **Command** | Paleta de comandos estilo Spotlight / CMD+K |
 
 ---
 
@@ -128,9 +128,9 @@ Visão geral de todos os componentes planejados para a biblioteca Bloom UI, orga
 | :--- | :---: | :---: | :---: |
 | Inputs & Controles | 18 | 18 | 100% |
 | Navegação | 8 | 8 | 100% |
-| Overlays & Feedback | 12 | 1 | 8% |
+| Overlays & Feedback | 12 | 12 | 100% |
 | Layout & Exibição | 14 | 14 | 100% |
 | Dados & Tabelas | 5 | 0 | 0% |
 | Formulários | 3 | 3 | 100% |
 | Tipografia & Mídia | 3 | 3 | 100% |
-| **Total** | **63** | **47** | **75%** |
+| **Total** | **63** | **58** | **92%** |

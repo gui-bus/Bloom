@@ -1,0 +1,12 @@
+{
+  "name": "toast",
+  "dependencies": [
+    "sonner"
+  ],
+  "files": [
+    {
+      "name": "toast.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Toaster as SonnerToaster, toast } from \"sonner\";\n\nexport interface ToastProps {\n  theme?: \"light\" | \"dark\" | \"system\";\n  position?: \"top-left\" | \"top-right\" | \"bottom-left\" | \"bottom-right\" | \"top-center\" | \"bottom-center\";\n}\n\nexport function Toast({ theme = \"system\", position = \"bottom-right\" }: ToastProps) {\n  return (\n    <SonnerToaster\n      theme={theme}\n      position={position}\n      toastOptions={{\n        className:\n          \"rounded-2xl border border-border bg-background text-foreground shadow-lg font-sans text-xs\",\n      }}\n    />\n  );\n}\n\nexport { toast };\n"
+    }
+  ]
+}

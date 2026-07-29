@@ -200,6 +200,50 @@ const componentsConfig = {
     dependencies: ["react-hook-form"],
     files: ["form.tsx"],
   },
+  dialog: {
+    dependencies: ["@radix-ui/react-dialog", "lucide-react"],
+    files: ["dialog.tsx"],
+  },
+  alertDialog: {
+    dependencies: ["@radix-ui/react-alert-dialog"],
+    files: ["alertDialog.tsx"],
+  },
+  sheet: {
+    dependencies: ["@radix-ui/react-dialog", "lucide-react", "class-variance-authority"],
+    files: ["sheet.tsx"],
+  },
+  drawer: {
+    dependencies: ["vaul"],
+    files: ["drawer.tsx"],
+  },
+  popover: {
+    dependencies: ["@radix-ui/react-popover"],
+    files: ["popover.tsx"],
+  },
+  tooltip: {
+    dependencies: ["@radix-ui/react-tooltip"],
+    files: ["tooltip.tsx"],
+  },
+  hoverCard: {
+    dependencies: ["@radix-ui/react-hover-card"],
+    files: ["hoverCard.tsx"],
+  },
+  toast: {
+    dependencies: ["sonner"],
+    files: ["toast.tsx"],
+  },
+  alert: {
+    dependencies: ["lucide-react", "class-variance-authority"],
+    files: ["alert.tsx"],
+  },
+  contextMenu: {
+    dependencies: ["@radix-ui/react-context-menu", "lucide-react"],
+    files: ["contextMenu.tsx"],
+  },
+  command: {
+    dependencies: ["cmdk", "lucide-react"],
+    files: ["command.tsx"],
+  },
 };
 
 function main() {

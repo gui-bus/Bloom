@@ -276,5 +276,77 @@
     "dependencies": [
       "react-hook-form"
     ]
+  },
+  {
+    "name": "dialog",
+    "dependencies": [
+      "@radix-ui/react-dialog",
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "alertDialog",
+    "dependencies": [
+      "@radix-ui/react-alert-dialog"
+    ]
+  },
+  {
+    "name": "sheet",
+    "dependencies": [
+      "@radix-ui/react-dialog",
+      "lucide-react",
+      "class-variance-authority"
+    ]
+  },
+  {
+    "name": "drawer",
+    "dependencies": [
+      "vaul"
+    ]
+  },
+  {
+    "name": "popover",
+    "dependencies": [
+      "@radix-ui/react-popover"
+    ]
+  },
+  {
+    "name": "tooltip",
+    "dependencies": [
+      "@radix-ui/react-tooltip"
+    ]
+  },
+  {
+    "name": "hoverCard",
+    "dependencies": [
+      "@radix-ui/react-hover-card"
+    ]
+  },
+  {
+    "name": "toast",
+    "dependencies": [
+      "sonner"
+    ]
+  },
+  {
+    "name": "alert",
+    "dependencies": [
+      "lucide-react",
+      "class-variance-authority"
+    ]
+  },
+  {
+    "name": "contextMenu",
+    "dependencies": [
+      "@radix-ui/react-context-menu",
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "command",
+    "dependencies": [
+      "cmdk",
+      "lucide-react"
+    ]
   }
 ]
