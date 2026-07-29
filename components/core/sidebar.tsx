@@ -43,6 +43,7 @@ export function Sidebar() {
         { href: "/components/avatarGroup", label: "Avatar Group" },
         { href: "/components/aspectRatio", label: "Aspect Ratio" },
         { href: "/components/badge", label: "Badge" },
+        { href: "/components/breadcrumb", label: "Breadcrumb" },
         { href: "/components/button", label: "Button" },
         { href: "/components/buttonGroup", label: "Button Group" },
         { href: "/components/carousel", label: "Carousel" },

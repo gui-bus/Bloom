@@ -51,6 +51,10 @@
     ]
   },
   {
+    "name": "breadcrumb",
+    "dependencies": []
+  },
+  {
     "name": "kbd",
     "dependencies": []
   },

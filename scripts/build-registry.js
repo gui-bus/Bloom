@@ -44,6 +44,10 @@ const componentsConfig = {
     dependencies: ["@radix-ui/react-collapsible"],
     files: ["collapsible.tsx"],
   },
+  breadcrumb: {
+    dependencies: [],
+    files: ["breadcrumb.tsx"],
+  },
   kbd: {
     dependencies: [],
     files: ["kbd.tsx"],
