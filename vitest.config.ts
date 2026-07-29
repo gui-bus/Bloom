@@ -12,13 +12,12 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
-    isolate: true,
-    pool: "threads",
+    pool: "forks",
     poolOptions: {
-      threads: {
-        singleThread: true,
-        isolate: true,
+      forks: {
+        singleFork: true,
       },
     },
+    isolate: true,
   },
 });
