@@ -5,7 +5,7 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: "jsdom",
+    environment: "happy-dom",
     globals: true,
     setupFiles: "./__tests__/setup.ts",
     exclude: ["**/node_modules/**", "**/dist/**", "**/e2e/**", "**/cypress/**", "**/.next/**"],
@@ -13,8 +13,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./"),
     },
     isolate: true,
-    sequence: {
-      concurrent: false,
-    },
   },
 });
