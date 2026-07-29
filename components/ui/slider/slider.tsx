@@ -4,6 +4,11 @@ import * as React from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { cn } from "@/lib/utils";
 
+export interface SliderMark {
+  value: number;
+  label?: string;
+}
+
 export interface SliderProps
   extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {
   color?: "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
@@ -11,6 +16,7 @@ export interface SliderProps
   label?: React.ReactNode;
   showValue?: boolean;
   formatValue?: (val: number[]) => string;
+  marks?: SliderMark[];
 }
 
 const trackColorMap = {
@@ -51,8 +57,11 @@ const Slider = React.forwardRef<
       label,
       showValue = false,
       formatValue,
+      marks,
       value,
       defaultValue,
+      min = 0,
+      max = 100,
       onValueChange,
       ...props
     },
@@ -96,38 +105,66 @@ const Slider = React.forwardRef<
             )}
           </div>
         )}
-        <SliderPrimitive.Root
-          ref={ref}
-          value={value}
-          defaultValue={defaultValue}
-          onValueChange={handleValueChange}
-          className={cn(
-            "relative flex w-full touch-none select-none items-center cursor-pointer",
-            className
-          )}
-          {...props}
-        >
-          <SliderPrimitive.Track
+        <div className="relative w-full">
+          <SliderPrimitive.Root
+            ref={ref}
+            value={value}
+            defaultValue={defaultValue}
+            min={min}
+            max={max}
+            onValueChange={handleValueChange}
             className={cn(
-              "relative w-full grow overflow-hidden rounded-full bg-secondary/20",
-              sizeMap[size].track
+              "relative flex w-full touch-none select-none items-center cursor-pointer z-10",
+              className
             )}
+            {...props}
           >
-            <SliderPrimitive.Range
-              className={cn("absolute h-full", trackColorMap[color])}
-            />
-          </SliderPrimitive.Track>
-          {Array.from({ length: currentVal.length }).map((_, i) => (
-            <SliderPrimitive.Thumb
-              key={i}
+            <SliderPrimitive.Track
               className={cn(
-                "block rounded-full border-2 bg-background ring-offset-background transition-transform focus-visible:outline-none focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50 hover:scale-110",
-                sizeMap[size].thumb,
-                thumbBorderMap[color]
+                "relative w-full grow overflow-hidden rounded-full bg-secondary/20",
+                sizeMap[size].track
               )}
-            />
-          ))}
-        </SliderPrimitive.Root>
+            >
+              <SliderPrimitive.Range
+                className={cn("absolute h-full", trackColorMap[color])}
+              />
+            </SliderPrimitive.Track>
+            {Array.from({ length: currentVal.length }).map((_, i) => (
+              <SliderPrimitive.Thumb
+                key={i}
+                className={cn(
+                  "block rounded-full border-2 bg-background ring-offset-background transition-transform focus-visible:outline-none focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50 hover:scale-110",
+                  sizeMap[size].thumb,
+                  thumbBorderMap[color]
+                )}
+              />
+            ))}
+          </SliderPrimitive.Root>
+          {marks && marks.length > 0 && (
+            <div className="relative w-full mt-1.5 h-4 select-none">
+              {marks.map((mark, i) => {
+                const percent = Math.min(
+                  100,
+                  Math.max(0, ((mark.value - min) / (max - min)) * 100)
+                );
+                return (
+                  <div
+                    key={i}
+                    style={{ left: `${percent}%` }}
+                    className="absolute -translate-x-1/2 flex flex-col items-center"
+                  >
+                    <div className="h-1.5 w-0.5 bg-muted-foreground/50 mb-0.5" />
+                    {mark.label && (
+                      <span className="text-[10px] text-muted-foreground font-medium whitespace-nowrap">
+                        {mark.label}
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
     );
   }

@@ -13,6 +13,7 @@ export interface CheckboxProps
   label?: React.ReactNode;
   description?: React.ReactNode;
   isInvalid?: boolean;
+  isCard?: boolean;
 }
 
 const colorMap = {
@@ -28,11 +29,11 @@ const colorMap = {
 const Checkbox = React.forwardRef<
   React.ComponentRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
->(({ className, color = "primary", radius = "md", label, description, isInvalid, id, disabled, ...props }, ref) => {
+>(({ className, color = "primary", radius = "md", label, description, isInvalid, isCard = false, id, disabled, ...props }, ref) => {
   const generatedId = React.useId();
   const checkboxId = id || generatedId;
 
-  return (
+  const content = (
     <div className="inline-flex items-start gap-2.5">
       <CheckboxPrimitive.Root
         ref={ref}
@@ -71,6 +72,21 @@ const Checkbox = React.forwardRef<
       )}
     </div>
   );
+
+  if (isCard) {
+    return (
+      <div
+        className={cn(
+          "relative flex items-center gap-3 p-4 rounded-xl border border-border bg-card transition-all duration-200 cursor-pointer hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 shadow-xs",
+          disabled && "opacity-50 cursor-not-allowed pointer-events-none"
+        )}
+      >
+        {content}
+      </div>
+    );
+  }
+
+  return content;
 });
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 

@@ -42,17 +42,18 @@ export interface RadioGroupItemProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> {
   label?: React.ReactNode;
   description?: React.ReactNode;
+  isCard?: boolean;
 }
 
 const RadioGroupItem = React.forwardRef<
   React.ComponentRef<typeof RadioGroupPrimitive.Item>,
   RadioGroupItemProps
->(({ className, label, description, id, disabled, ...props }, ref) => {
+>(({ className, label, description, isCard = false, id, disabled, ...props }, ref) => {
   const generatedId = React.useId();
   const itemId = id || generatedId;
   const { color = "primary" } = React.useContext(RadioGroupContext);
 
-  return (
+  const content = (
     <div className="inline-flex items-start gap-2.5">
       <RadioGroupPrimitive.Item
         ref={ref}
@@ -86,6 +87,21 @@ const RadioGroupItem = React.forwardRef<
       )}
     </div>
   );
+
+  if (isCard) {
+    return (
+      <div
+        className={cn(
+          "relative flex items-center gap-3 p-4 rounded-xl border border-border bg-card transition-all duration-200 cursor-pointer hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 shadow-xs",
+          disabled && "opacity-50 cursor-not-allowed pointer-events-none"
+        )}
+      >
+        {content}
+      </div>
+    );
+  }
+
+  return content;
 });
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 
