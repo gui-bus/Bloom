@@ -11,6 +11,10 @@ vi.mock("@iconify/react", () => ({
 
 afterEach(() => {
   cleanup();
+  if (typeof document !== "undefined") {
+    document.body.innerHTML = "";
+    document.head.innerHTML = "";
+  }
 });
 
 // Mock ResizeObserver

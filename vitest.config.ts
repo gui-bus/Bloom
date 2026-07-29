@@ -13,6 +13,6 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
-    teardownTimeout: 1000,
+    pool: "forks",
   },
 });
