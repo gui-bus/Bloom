@@ -12,15 +12,6 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
-    pool: "forks",
-    forks: {
-      singleFork: false,
-    },
     isolate: true,
-    environmentOptions: {
-      jsdom: {
-        resources: "usable",
-      },
-    },
   },
 });
