@@ -5,14 +5,19 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: "happy-dom",
+    environment: "jsdom",
     globals: true,
     setupFiles: "./__tests__/setup.ts",
     exclude: ["**/node_modules/**", "**/dist/**", "**/e2e/**", "**/cypress/**", "**/.next/**"],
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
-    isolate: true,
-    fileParallelism: false,
+    pool: "forks",
+    poolOptions: {
+      forks: {
+        maxForks: 2,
+        minForks: 1,
+      },
+    },
   },
 });
