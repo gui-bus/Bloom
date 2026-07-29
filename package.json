@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "test:unit": "vitest run",
+    "test:unit": "NODE_OPTIONS=--max-old-space-size=4096 vitest run",
     "test:unit:watch": "vitest",
     "test:e2e": "playwright test"
   },
