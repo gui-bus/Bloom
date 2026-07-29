@@ -94,11 +94,11 @@ Visão geral de todos os componentes planejados para a biblioteca Bloom UI, orga
 
 | Status | Componente | Descrição |
 | :---: | :--- | :--- |
-| ⏳ | **Table** | Tabela de dados com cabeçalho e corpo semânticos |
-| ⏳ | **Data Table** | Tabela com ordenação, filtragem e paginação integradas |
-| ⏳ | **Chart** | Gráficos de linha, barra, pizza, etc. (via Recharts) |
-| ⏳ | **Stat Card** | Cartão de métrica com valor, label e ícone |
-| ⏳ | **List** | Lista ordenada/não-ordenada com ícones |
+| ✅ | **Table** | Tabela de dados com cabeçalho e corpo semânticos |
+| ✅ | **Data Table** | Tabela com ordenação, filtragem e paginação integradas |
+| ✅ | **Chart** | Gráficos de linha, barra, pizza, etc. (via Recharts) |
+| ✅ | **Stat Card** | Cartão de métrica com valor, label e ícone |
+| ✅ | **List** | Lista ordenada/não-ordenada com ícones |
 
 ---
 
@@ -130,7 +130,7 @@ Visão geral de todos os componentes planejados para a biblioteca Bloom UI, orga
 | Navegação | 8 | 8 | 100% |
 | Overlays & Feedback | 12 | 12 | 100% |
 | Layout & Exibição | 14 | 14 | 100% |
-| Dados & Tabelas | 5 | 0 | 0% |
+| Dados & Tabelas | 5 | 5 | 100% |
 | Formulários | 3 | 3 | 100% |
 | Tipografia & Mídia | 3 | 3 | 100% |
-| **Total** | **63** | **58** | **92%** |
+| **Total** | **63** | **63** | **100%** |

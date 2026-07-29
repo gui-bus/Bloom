@@ -1,0 +1,10 @@
+{
+  "name": "list",
+  "dependencies": [],
+  "files": [
+    {
+      "name": "list.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ListProps extends React.HTMLAttributes<HTMLUListElement> {\n  variant?: \"default\" | \"bordered\" | \"separated\";\n}\n\nconst List = React.forwardRef<HTMLUListElement, ListProps>(\n  ({ className, variant = \"default\", ...props }, ref) => (\n    <ul\n      ref={ref}\n      className={cn(\n        \"w-full flex flex-col list-none p-0 m-0\",\n        variant === \"bordered\" && \"border border-border rounded-2xl overflow-hidden divide-y divide-border\",\n        variant === \"separated\" && \"gap-2\",\n        className\n      )}\n      {...props}\n    />\n  )\n);\nList.displayName = \"List\";\n\nexport interface ListItemProps extends React.HTMLAttributes<HTMLLIElement> {\n  icon?: React.ReactNode;\n  isActive?: boolean;\n}\n\nconst ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(\n  ({ className, children, icon, isActive = false, ...props }, ref) => (\n    <li\n      ref={ref}\n      className={cn(\n        \"flex items-center gap-3 px-4 py-3 text-xs font-medium transition-colors bg-background text-foreground\",\n        isActive && \"bg-accent/60 text-accent-foreground font-semibold\",\n        className\n      )}\n      {...props}\n    >\n      {icon && <div className=\"shrink-0 text-muted-foreground\">{icon}</div>}\n      <div className=\"flex-1\">{children}</div>\n    </li>\n  )\n);\nListItem.displayName = \"ListItem\";\n\nexport { List, ListItem };\n"
+    }
+  ]
+}

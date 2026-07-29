@@ -1,0 +1,12 @@
+{
+  "name": "chart",
+  "dependencies": [
+    "recharts"
+  ],
+  "files": [
+    {
+      "name": "chart.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  ResponsiveContainer,\n  LineChart as ReLineChart,\n  Line,\n  BarChart as ReBarChart,\n  Bar,\n  XAxis,\n  YAxis,\n  Tooltip,\n  CartesianGrid,\n} from \"recharts\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ChartProps {\n  type?: \"line\" | \"bar\";\n  data: Array<Record<string, any>>;\n  xKey: string;\n  yKey: string;\n  height?: number;\n  className?: string;\n  color?: string;\n}\n\nexport function Chart({\n  type = \"line\",\n  data,\n  xKey,\n  yKey,\n  height = 300,\n  className,\n  color = \"#3b82f6\",\n}: ChartProps) {\n  return (\n    <div className={cn(\"w-full rounded-2xl border border-border p-4 bg-background shadow-xs\", className)}>\n      <ResponsiveContainer width=\"100%\" height={height}>\n        {type === \"bar\" ? (\n          <ReBarChart data={data}>\n            <CartesianGrid strokeDasharray=\"3 3\" opacity={0.2} />\n            <XAxis dataKey={xKey} stroke=\"#888888\" fontSize={12} tickLine={false} axisLine={false} />\n            <YAxis stroke=\"#888888\" fontSize={12} tickLine={false} axisLine={false} />\n            <Tooltip\n              contentStyle={{\n                backgroundColor: \"var(--background)\",\n                borderColor: \"var(--border)\",\n                borderRadius: \"0.75rem\",\n                fontSize: \"12px\",\n              }}\n            />\n            <Bar dataKey={yKey} fill={color} radius={[6, 6, 0, 0]} />\n          </ReBarChart>\n        ) : (\n          <ReLineChart data={data}>\n            <CartesianGrid strokeDasharray=\"3 3\" opacity={0.2} />\n            <XAxis dataKey={xKey} stroke=\"#888888\" fontSize={12} tickLine={false} axisLine={false} />\n            <YAxis stroke=\"#888888\" fontSize={12} tickLine={false} axisLine={false} />\n            <Tooltip\n              contentStyle={{\n                backgroundColor: \"var(--background)\",\n                borderColor: \"var(--border)\",\n                borderRadius: \"0.75rem\",\n                fontSize: \"12px\",\n              }}\n            />\n            <Line type=\"monotone\" dataKey={yKey} stroke={color} strokeWidth={2.5} dot={{ r: 4 }} />\n          </ReLineChart>\n        )}\n      </ResponsiveContainer>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

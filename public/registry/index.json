@@ -348,5 +348,31 @@
       "cmdk",
       "lucide-react"
     ]
+  },
+  {
+    "name": "table",
+    "dependencies": []
+  },
+  {
+    "name": "dataTable",
+    "dependencies": [
+      "@tanstack/react-table"
+    ]
+  },
+  {
+    "name": "chart",
+    "dependencies": [
+      "recharts"
+    ]
+  },
+  {
+    "name": "statCard",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "list",
+    "dependencies": []
   }
 ]

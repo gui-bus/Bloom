@@ -244,6 +244,26 @@ const componentsConfig = {
     dependencies: ["cmdk", "lucide-react"],
     files: ["command.tsx"],
   },
+  table: {
+    dependencies: [],
+    files: ["table.tsx"],
+  },
+  dataTable: {
+    dependencies: ["@tanstack/react-table"],
+    files: ["dataTable.tsx"],
+  },
+  chart: {
+    dependencies: ["recharts"],
+    files: ["chart.tsx"],
+  },
+  statCard: {
+    dependencies: ["lucide-react"],
+    files: ["statCard.tsx"],
+  },
+  list: {
+    dependencies: [],
+    files: ["list.tsx"],
+  },
 };
 
 function main() {
