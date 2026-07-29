@@ -111,5 +111,29 @@
       "framer-motion",
       "class-variance-authority"
     ]
+  },
+  {
+    "name": "card",
+    "dependencies": [
+      "class-variance-authority"
+    ]
+  },
+  {
+    "name": "codeBlock",
+    "dependencies": [
+      "highlight.js",
+      "framer-motion",
+      "@iconify/react"
+    ]
+  },
+  {
+    "name": "image",
+    "dependencies": []
+  },
+  {
+    "name": "typography",
+    "dependencies": [
+      "class-variance-authority"
+    ]
   }
 ]

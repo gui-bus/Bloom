@@ -92,6 +92,22 @@ const componentsConfig = {
     dependencies: ["@radix-ui/react-tabs", "framer-motion", "class-variance-authority"],
     files: ["tabs.tsx"],
   },
+  card: {
+    dependencies: ["class-variance-authority"],
+    files: ["card.tsx"],
+  },
+  codeBlock: {
+    dependencies: ["highlight.js", "framer-motion", "@iconify/react"],
+    files: ["codeBlock.tsx"],
+  },
+  image: {
+    dependencies: [],
+    files: ["image.tsx"],
+  },
+  typography: {
+    dependencies: ["class-variance-authority"],
+    files: ["typography.tsx"],
+  },
 };
 
 function main() {
