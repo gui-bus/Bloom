@@ -36,6 +36,10 @@ const componentsConfig = {
     dependencies: [],
     files: ["buttonGroup.tsx"],
   },
+  carousel: {
+    dependencies: ["embla-carousel-react"],
+    files: ["carousel.tsx"],
+  },
   collapsible: {
     dependencies: ["@radix-ui/react-collapsible"],
     files: ["collapsible.tsx"],
