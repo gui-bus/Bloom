@@ -116,6 +116,10 @@ const AccordionContent = React.forwardRef<
 });
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
+type AccordionProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> & {
+  variant?: AccordionVariant;
+};
+
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
-export type { AccordionVariant };
+export type { AccordionVariant, AccordionProps };
 `;
