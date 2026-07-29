@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Spinner",
+  description: "Displays an animated loading spinner with multiple visual variants and color themes.",
+};
 import { Spinner } from "@/components/ui/spinner/spinner";
 import { spinnerCode } from "@/components/ui/spinner/spinner.code";
 import { Separator } from "@/components/ui/separator/separator";

@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Avatar",
+  description: "An image element with a fallback for representing a user or entity.",
+};
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar/avatar";
 import { avatarCode } from "@/components/ui/avatar/avatar.code";
 import { Separator } from "@/components/ui/separator/separator";

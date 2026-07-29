@@ -1,9 +1,15 @@
 
 
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Button",
+  description: "Interactive button component supporting multiple variants, sizes, colors, icons, loading states, and ripple effect.",
+};
 import { Button } from "@/components/ui/button/button";
 import { buttonCode } from "@/components/ui/button/button.code";
 import { buttonCSSCode } from "@/components/ui/button/button.css.code";

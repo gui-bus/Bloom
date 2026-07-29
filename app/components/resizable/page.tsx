@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Resizable",
+  description: "Accessible resizable panel groups that allow users to drag dividers and customize layout proportions.",
+};
 import {
   ResizablePanelGroup,
   ResizablePanel,

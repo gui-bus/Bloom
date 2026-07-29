@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Separator",
+  description: "Visually or semantically separates content in horizontal or vertical orientation.",
+};
 import { Separator } from "@/components/ui/separator/separator";
 import { separatorCode } from "@/components/ui/separator/separator.code";
 import {

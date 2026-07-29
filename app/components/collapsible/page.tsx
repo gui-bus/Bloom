@@ -1,16 +1,14 @@
-"use client";
-
-import * as React from "react";
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-import { Button } from "@/components/ui/button/button";
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "@/components/ui/collapsible/collapsible";
+import { CollapsibleDemo } from "./collapsible-demo";
+
+export const metadata: Metadata = {
+  title: "Collapsible",
+  description: "An interactive component which expands and collapses a panel with smooth height transitions.",
+};
 import { collapsibleCode } from "@/components/ui/collapsible/collapsible.code";
 import { Separator } from "@/components/ui/separator/separator";
 import {
@@ -19,41 +17,6 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
-
-function CollapsibleDemo() {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full max-w-md space-y-2">
-      <div className="flex items-center justify-between space-x-4 rounded-xl border border-border px-4 py-3">
-        <h4 className="text-sm font-semibold">@guilherme starred 3 repositories</h4>
-        <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="sm" isIconOnly ariaLabel="Toggle details">
-            <Icon
-              icon="hugeicons:arrow-down-01"
-              className={`size-4 transition-transform duration-200 ${
-                isOpen ? "rotate-180" : ""
-              }`}
-            />
-          </Button>
-        </CollapsibleTrigger>
-      </div>
-
-      <div className="rounded-xl border border-border px-4 py-3 font-mono text-sm">
-        @bloomui/core
-      </div>
-
-      <CollapsibleContent className="space-y-2">
-        <div className="rounded-xl border border-border px-4 py-3 font-mono text-sm">
-          @bloomui/cli
-        </div>
-        <div className="rounded-xl border border-border px-4 py-3 font-mono text-sm">
-          @bloomui/react
-        </div>
-      </CollapsibleContent>
-    </Collapsible>
-  );
-}
 
 export default function CollapsiblePage() {
   return (

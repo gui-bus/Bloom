@@ -18,15 +18,52 @@ const firacode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "Bloom UI",
-  description: "Bloom Design System components library",
+  title: {
+    default: "Bloom UI — Premium React Component Library",
+    template: "%s — Bloom UI",
+  },
+  description:
+    "An accessible, customizable, and high-performance React component library built on Radix UI, Tailwind CSS v4, and Framer Motion.",
+  keywords: [
+    "Bloom UI",
+    "React",
+    "Tailwind CSS v4",
+    "Radix UI",
+    "Framer Motion",
+    "Design System",
+    "UI Components",
+    "Accessibility",
+    "WAI-ARIA",
+    "Next.js",
+  ],
+  authors: [{ name: "Guilherme Bus" }],
+  creator: "Guilherme Bus",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://bloomui.dev",
+    title: "Bloom UI — Premium React Component Library",
+    description:
+      "An accessible, customizable, and high-performance React component library built on Radix UI, Tailwind CSS v4, and Framer Motion.",
+    siteName: "Bloom UI",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bloom UI — Premium React Component Library",
+    description:
+      "An accessible, customizable, and high-performance React component library built on Radix UI, Tailwind CSS v4, and Framer Motion.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${montserrat.variable} ${firacode.variable} antialiased font-sans bg-background text-foreground transition-colors duration-200`}
       >
@@ -36,11 +73,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          
           <div className="relative mx-auto w-full max-w-[110rem] min-h-screen">
-            
             <Sidebar />
-
             <main className="ml-64 min-h-screen p-8 transition-all duration-300">
               {children}
             </main>

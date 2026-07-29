@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Scroll Area",
+  description: "Augments native scroll functionality with custom cross-browser styling built on Radix ScrollArea.",
+};
 import { ScrollArea } from "@/components/ui/scrollArea/scrollArea";
 import { scrollAreaCode } from "@/components/ui/scrollArea/scrollArea.code";
 import { Separator } from "@/components/ui/separator/separator";

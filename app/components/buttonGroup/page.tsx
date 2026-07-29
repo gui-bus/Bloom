@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Button Group",
+  description: "A group component for laying out buttons together with shared styles and prop propagation.",
+};
 import { Button } from "@/components/ui/button/button";
 import { ButtonGroup } from "@/components/ui/buttonGroup/buttonGroup";
 import { Separator } from "@/components/ui/separator/separator";

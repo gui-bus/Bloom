@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Accordion",
+  description: "A vertically stacked set of interactive headings that expand or collapse associated content sections.",
+};
 import {
   Accordion,
   AccordionItem,

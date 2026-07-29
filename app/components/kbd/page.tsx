@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Kbd",
+  description: "A tactile keyboard key indicator component used to display keyboard shortcuts and hotkeys.",
+};
 import { Kbd } from "@/components/ui/kbd/kbd";
 import { kbdCode } from "@/components/ui/kbd/kbd.code";
 import { Separator } from "@/components/ui/separator/separator";

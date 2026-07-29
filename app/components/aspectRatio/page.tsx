@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Aspect Ratio",
+  description: "Displays content within a desired aspect ratio constraint.",
+};
 import { AspectRatio } from "@/components/ui/aspectRatio/aspectRatio";
 import { aspectRatioCode } from "@/components/ui/aspectRatio/aspectRatio.code";
 import { Separator } from "@/components/ui/separator/separator";

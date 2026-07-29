@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Badge",
+  description: "Displays a badge or a component that looks like a badge for highlights, counts, and status indicators.",
+};
 import { Badge } from "@/components/ui/badge/badge";
 import { badgeCode } from "@/components/ui/badge/badge.code";
 import { Separator } from "@/components/ui/separator/separator";

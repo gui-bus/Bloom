@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Skeleton",
+  description: "Use to show a placeholder while content is loading with smooth pulse animations.",
+};
 import { Skeleton } from "@/components/ui/skeleton/skeleton";
 import { skeletonCode } from "@/components/ui/skeleton/skeleton.code";
 import { Separator } from "@/components/ui/separator/separator";

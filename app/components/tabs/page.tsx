@@ -1,9 +1,13 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Tabs",
+  description: "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+};
 import { Separator } from "@/components/ui/separator/separator";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs/tabs";
 import { tabsCode } from "@/components/ui/tabs/tabs.code";

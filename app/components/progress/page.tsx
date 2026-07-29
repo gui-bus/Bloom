@@ -1,11 +1,14 @@
-"use client";
-
-import * as React from "react";
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-import { Button } from "@/components/ui/button/button";
+import { AnimatedProgressDemo } from "./animated-progress-demo";
+
+export const metadata: Metadata = {
+  title: "Progress",
+  description: "Displays a bar showing completion progress of a task, built on Radix Progress primitive.",
+};
 import { Progress } from "@/components/ui/progress/progress";
 import { progressCode } from "@/components/ui/progress/progress.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -15,35 +18,6 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
-
-function AnimatedProgressDemo() {
-  const [progress, setProgress] = React.useState(0);
-
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prev) => (prev >= 100 ? 0 : prev + 5));
-    }, 200);
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div className="space-y-4 max-w-md">
-      <Progress
-        value={progress}
-        label="Simulating download..."
-        showValueLabel
-        color="primary"
-      />
-      <Button
-        size="sm"
-        variant="bordered"
-        onClick={() => setProgress(0)}
-      >
-        Reset Progress
-      </Button>
-    </div>
-  );
-}
 
 export default function ProgressPage() {
   return (

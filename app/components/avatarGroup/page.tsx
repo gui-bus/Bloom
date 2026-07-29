@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
+
+export const metadata: Metadata = {
+  title: "Avatar Group",
+  description: "A stacked set of avatars displaying multiple user profiles with overflow indicators.",
+};
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar/avatar";
 import { AvatarGroup } from "@/components/ui/avatarGroup/avatarGroup";
 import { avatarGroupCode } from "@/components/ui/avatarGroup/avatarGroup.code";
