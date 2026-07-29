@@ -48,6 +48,7 @@ export function Sidebar() {
         { href: "/components/carousel", label: "Carousel" },
         { href: "/components/collapsible", label: "Collapsible" },
         { href: "/components/progress", label: "Progress" },
+        { href: "/components/resizable", label: "Resizable" },
         { href: "/components/scrollArea", label: "Scroll Area" },
         { href: "/components/separator", label: "Separator" },
         { href: "/components/skeleton", label: "Skeleton" },

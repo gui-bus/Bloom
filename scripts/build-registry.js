@@ -48,6 +48,10 @@ const componentsConfig = {
     dependencies: ["@radix-ui/react-progress"],
     files: ["progress.tsx"],
   },
+  resizable: {
+    dependencies: ["react-resizable-panels"],
+    files: ["resizable.tsx"],
+  },
   scrollArea: {
     dependencies: ["@radix-ui/react-scroll-area"],
     files: ["scrollArea.tsx"],

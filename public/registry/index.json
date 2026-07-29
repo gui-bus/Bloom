@@ -57,6 +57,12 @@
     ]
   },
   {
+    "name": "resizable",
+    "dependencies": [
+      "react-resizable-panels"
+    ]
+  },
+  {
     "name": "scrollArea",
     "dependencies": [
       "@radix-ui/react-scroll-area"
