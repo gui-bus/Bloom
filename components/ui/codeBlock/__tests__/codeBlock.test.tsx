@@ -19,8 +19,10 @@ describe("CodeBlock Component", () => {
 
   it("renders copy button and handles clipboard action", async () => {
     const writeTextMock = vi.fn().mockResolvedValue(undefined);
-    Object.assign(navigator, {
-      clipboard: { writeText: writeTextMock },
+    Object.defineProperty(navigator, "clipboard", {
+      value: { writeText: writeTextMock },
+      configurable: true,
+      writable: true,
     });
 
     render(
