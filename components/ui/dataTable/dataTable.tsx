@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/table/table";
 import { Input } from "@/components/ui/input/input";
 import { Button } from "@/components/ui/button/button";
+import { cn } from "@/lib/utils";
 
 import { Icon } from "@iconify/react";
 
