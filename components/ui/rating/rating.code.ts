@@ -87,7 +87,7 @@ export function Rating({
                 "p-0.5 outline-none transition-transform focus-visible:scale-125 hover:scale-115 cursor-pointer disabled:cursor-not-allowed",
                 readOnly && "cursor-default hover:scale-100"
               )}
-              aria-label={`Rate ${starIndex} out of ${max}`}
+              aria-label={\`Rate \${starIndex} out of \${max}\`}
             >
               <Star
                 className={cn(

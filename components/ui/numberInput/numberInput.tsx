@@ -74,6 +74,7 @@ export function NumberInput({
           size="sm"
           variant="light"
           isIconOnly
+          ariaLabel="Decrement value"
           disabled={disabled || (min !== undefined && internalVal <= min)}
           onClick={handleDecrement}
           aria-label="Decrement value"
@@ -95,6 +96,7 @@ export function NumberInput({
           size="sm"
           variant="light"
           isIconOnly
+          ariaLabel="Increment value"
           disabled={disabled || (max !== undefined && internalVal >= max)}
           onClick={handleIncrement}
           aria-label="Increment value"

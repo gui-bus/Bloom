@@ -1,9 +1,11 @@
+"use client";
+
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { designRadius } from "@/lib/design-system";
 
-export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size"> {
   variant?: "default" | "bordered" | "flat" | "underlined";
   color?: "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
   size?: "sm" | "md" | "lg";

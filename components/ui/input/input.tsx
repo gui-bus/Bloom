@@ -3,7 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { designRadius } from "@/lib/design-system";
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   variant?: "default" | "bordered" | "flat" | "underlined";
   color?: "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
   size?: "sm" | "md" | "lg";
