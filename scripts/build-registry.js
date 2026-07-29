@@ -8,6 +8,10 @@ const outputDir = path.join(projectRoot, "public/registry");
 
 // Registry metadata configuration
 const componentsConfig = {
+  accordion: {
+    dependencies: ["@radix-ui/react-accordion"],
+    files: ["accordion.tsx"],
+  },
   aspectRatio: {
     dependencies: ["@radix-ui/react-aspect-ratio"],
     files: ["aspectRatio.tsx"],
