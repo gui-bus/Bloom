@@ -5,11 +5,17 @@ import { Group, Panel, Separator } from "react-resizable-panels";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
+export interface ResizablePanelGroupProps extends React.ComponentProps<typeof Group> {
+  direction?: "horizontal" | "vertical";
+}
+
 const ResizablePanelGroup = ({
   className,
+  direction = "horizontal",
   ...props
-}: React.ComponentProps<typeof Group>) => (
+}: ResizablePanelGroupProps) => (
   <Group
+    direction={direction}
     className={cn(
       "flex size-full data-[panel-group-direction=vertical]:flex-col",
       className
