@@ -8,6 +8,10 @@ const outputDir = path.join(projectRoot, "public/registry");
 
 // Registry metadata configuration
 const componentsConfig = {
+  aspectRatio: {
+    dependencies: ["@radix-ui/react-aspect-ratio"],
+    files: ["aspectRatio.tsx"],
+  },
   avatar: {
     dependencies: ["@radix-ui/react-avatar"],
     files: ["avatar.tsx"],

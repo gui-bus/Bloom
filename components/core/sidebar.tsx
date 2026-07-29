@@ -39,6 +39,7 @@ export function Sidebar() {
       links: [
         { href: "/components/avatar", label: "Avatar" },
         { href: "/components/avatarGroup", label: "Avatar Group" },
+        { href: "/components/aspectRatio", label: "Aspect Ratio" },
         { href: "/components/badge", label: "Badge" },
         { href: "/components/button", label: "Button" },
         { href: "/components/buttonGroup", label: "Button Group" },

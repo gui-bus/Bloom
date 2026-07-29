@@ -1,0 +1,12 @@
+{
+  "name": "aspectRatio",
+  "dependencies": [
+    "@radix-ui/react-aspect-ratio"
+  ],
+  "files": [
+    {
+      "name": "aspectRatio.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as AspectRatioPrimitive from \"@radix-ui/react-aspect-ratio\";\n\nexport interface AspectRatioProps\n  extends React.ComponentPropsWithoutRef<typeof AspectRatioPrimitive.Root> {\n  ratio?: number;\n}\n\nconst AspectRatio = React.forwardRef<\n  React.ElementRef<typeof AspectRatioPrimitive.Root>,\n  AspectRatioProps\n>(({ ratio = 16 / 9, ...props }, ref) => (\n  <AspectRatioPrimitive.Root ref={ref} ratio={ratio} {...props} />\n));\n\nAspectRatio.displayName = AspectRatioPrimitive.Root.displayName;\n\nexport { AspectRatio };\n"
+    }
+  ]
+}
