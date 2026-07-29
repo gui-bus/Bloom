@@ -68,6 +68,7 @@ PaginationItem.displayName = "PaginationItem";
 
 export interface PaginationLinkProps extends React.ComponentProps<"button"> {
   isActive?: boolean;
+  href?: string;
 }
 
 const colorActiveMap: Record<PaginationColor, string> = {
