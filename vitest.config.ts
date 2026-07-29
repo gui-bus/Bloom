@@ -13,6 +13,12 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./"),
     },
     isolate: true,
-    fileParallelism: false,
+    pool: "threads",
+    poolOptions: {
+      threads: {
+        singleThread: true,
+        isolate: true,
+      },
+    },
   },
 });
