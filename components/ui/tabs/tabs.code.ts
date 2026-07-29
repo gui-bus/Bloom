@@ -1,12 +1,12 @@
 export const tabsCode = `"use client";
 
 import * as TabsPrimitive from "@radix-ui/react-tabs";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { designSizes } from "@/lib/design-system";
 
-type TabsVariant = "default" | "bordered" | "ghost" | "underline";
+type TabsVariant = "default" | "bordered" | "ghost" | "underline" | "pills" | "contained";
 type TabsSize = "xs" | "sm" | "md" | "lg" | "xl";
 type TabsColor =
   | "default"
@@ -23,6 +23,9 @@ interface TabsProps extends React.ComponentProps<typeof TabsPrimitive.Root> {
 
 interface TabsListProps extends React.ComponentProps<typeof TabsPrimitive.List> {
   background?: boolean;
+  isScrollable?: boolean;
+  /** Accessible label for the tab list. Useful when there are multiple tab lists on the same page. */
+  label?: string;
 }
 
 interface TabsTriggerProps
@@ -51,36 +54,48 @@ const colorClasses: Record<
     ghost: "data-[state=active]:bg-default/20 data-[state=active]:text-default-foreground",
     bordered: "data-[state=active]:border-default data-[state=active]:text-default-foreground",
     underline: "data-[state=active]:border-default data-[state=active]:text-default-foreground",
+    pills: "data-[state=active]:bg-default data-[state=active]:text-default-foreground",
+    contained: "data-[state=active]:bg-default data-[state=active]:text-default-foreground",
   },
   primary: {
     default: "data-[state=active]:bg-primary data-[state=active]:text-primary-foreground",
     ghost: "data-[state=active]:bg-primary/20 data-[state=active]:text-primary",
     bordered: "data-[state=active]:border-primary data-[state=active]:text-primary",
     underline: "data-[state=active]:border-primary data-[state=active]:text-primary",
+    pills: "data-[state=active]:bg-primary data-[state=active]:text-primary-foreground",
+    contained: "data-[state=active]:bg-primary data-[state=active]:text-primary-foreground",
   },
   secondary: {
     default: "data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground",
     ghost: "data-[state=active]:bg-secondary/20 data-[state=active]:text-secondary",
     bordered: "data-[state=active]:border-secondary data-[state=active]:text-secondary",
     underline: "data-[state=active]:border-secondary data-[state=active]:text-secondary",
+    pills: "data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground",
+    contained: "data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground",
   },
   success: {
     default: "data-[state=active]:bg-success data-[state=active]:text-success-foreground",
     ghost: "data-[state=active]:bg-success/20 data-[state=active]:text-success",
     bordered: "data-[state=active]:border-success data-[state=active]:text-success",
     underline: "data-[state=active]:border-success data-[state=active]:text-success",
+    pills: "data-[state=active]:bg-success data-[state=active]:text-success-foreground",
+    contained: "data-[state=active]:bg-success data-[state=active]:text-success-foreground",
   },
   warning: {
     default: "data-[state=active]:bg-warning data-[state=active]:text-warning-foreground",
     ghost: "data-[state=active]:bg-warning/20 data-[state=active]:text-warning",
     bordered: "data-[state=active]:border-warning data-[state=active]:text-warning",
     underline: "data-[state=active]:border-warning data-[state=active]:text-warning",
+    pills: "data-[state=active]:bg-warning data-[state=active]:text-warning-foreground",
+    contained: "data-[state=active]:bg-warning data-[state=active]:text-warning-foreground",
   },
   danger: {
     default: "data-[state=active]:bg-danger data-[state=active]:text-danger-foreground",
     ghost: "data-[state=active]:bg-danger/20 data-[state=active]:text-danger",
     bordered: "data-[state=active]:border-danger data-[state=active]:text-danger",
     underline: "data-[state=active]:border-danger data-[state=active]:text-danger",
+    pills: "data-[state=active]:bg-danger data-[state=active]:text-danger-foreground",
+    contained: "data-[state=active]:bg-danger data-[state=active]:text-danger-foreground",
   },
 };
 
@@ -93,6 +108,10 @@ const variantClasses: Record<TabsVariant, string> = {
     "bg-transparent text-foreground border-2 border-border hover:bg-muted rounded-3xl shadow-sm transition-all duration-200",
   underline:
     "bg-transparent text-muted-foreground hover:text-foreground rounded-none transition-all duration-200 border-b-2 border-transparent",
+  pills:
+    "bg-transparent text-muted-foreground hover:text-foreground rounded-full transition-all duration-200 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground shadow-xs",
+  contained:
+    "bg-muted/40 text-muted-foreground hover:text-foreground rounded-xl transition-all duration-200 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
 };
 
 const stateClasses = {
@@ -102,9 +121,10 @@ const stateClasses = {
 
 const Spinner = React.memo(() => {
   return (
+    // aria-hidden: aria-busy on the trigger already signals loading to screen readers
     <span
       className="h-4 w-4 animate-spin rounded-full border-2 border-muted-foreground border-t-transparent"
-      aria-hidden
+      aria-hidden="true"
     />
   );
 });
@@ -122,11 +142,13 @@ const Tabs = React.memo(({ className, onTabChange, ...props }: TabsProps) => {
 });
 Tabs.displayName = "Tabs";
 
-const TabsList = React.memo(({ className, background = true, ...props }: TabsListProps) => {
+const TabsList = React.memo(({ className, background = true, label, ...props }: TabsListProps) => {
   return (
     <div className="overflow-x-auto scrollbar-none flex items-center relative">
       <TabsPrimitive.List
         data-slot="tabs-list"
+        // aria-label forwarded so multi-tablist pages can distinguish between them
+        aria-label={label}
         className={cn(
           "inline-flex items-center gap-2 rounded-2xl p-1 scroll-snap-x-x",
           background && "bg-muted",
@@ -169,7 +191,9 @@ const TabsTrigger = React.memo(({
           : undefined
       }
       className={cn(
-        "inline-flex items-center justify-center gap-1.5 font-medium transition-all duration-200 ease-in-out cursor-pointer",
+        // outline-none + focus-visible:ring-* ensures keyboard users see a
+        // focus ring without showing one on mouse/touch interactions.
+        "inline-flex items-center justify-center gap-1.5 font-medium transition-all duration-200 ease-in-out cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         designSizes[size],
         variantClasses[variant],
         color !== "custom" && colorClasses[color][variant],
@@ -179,9 +203,11 @@ const TabsTrigger = React.memo(({
         isLoading && stateClasses.loading,
         className
       )}
-      disabled={disabled}
-      aria-disabled={isDisabled}
-      aria-busy={isLoading}
+      // Only set native disabled when isDisabled (not isLoading) so the tab
+      // stays focusable/discoverable while loading. aria-disabled covers both.
+      disabled={isDisabled}
+      aria-disabled={disabled || undefined}
+      aria-busy={isLoading || undefined}
       {...props}
     >
       {isLoading ? (
@@ -192,7 +218,9 @@ const TabsTrigger = React.memo(({
       ) : (
         <>
           {badgePosition === "start" && badgeContent && (
+            // aria-hidden: badge count is decorative within the tab label context
             <span
+              aria-hidden="true"
               className={cn(
                 "mr-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-semibold rounded-full shadow bg-primary text-white"
               )}
@@ -200,11 +228,13 @@ const TabsTrigger = React.memo(({
               {badgeContent}
             </span>
           )}
-          {startContent && <span className="mr-1">{startContent}</span>}
+          {/* aria-hidden: icons are decorative; the tab's text label is the accessible name */}
+          {startContent && <span className="mr-1" aria-hidden="true">{startContent}</span>}
           {props.children}
-          {endContent && <span className="ml-1">{endContent}</span>}
+          {endContent && <span className="ml-1" aria-hidden="true">{endContent}</span>}
           {badgePosition === "end" && badgeContent && (
             <span
+              aria-hidden="true"
               className={cn(
                 "ml-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-semibold rounded-full shadow bg-primary text-white"
               )}
@@ -220,17 +250,21 @@ const TabsTrigger = React.memo(({
 TabsTrigger.displayName = "TabsTrigger";
 
 const TabsContent = React.memo(({ className, children, ...props }: TabsContentProps) => {
+  // Respect user's OS-level "reduce motion" preference (WCAG 2.3.3)
+  const shouldReduceMotion = useReducedMotion();
+
   return (
+    // Radix TabsContent automatically gets role="tabpanel" and aria-labelledby
     <TabsPrimitive.Content {...props} data-slot="tabs-content">
       <AnimatePresence mode="wait">
         <motion.div
           key={props.value}
-          initial={{ opacity: 0, x: 10 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, x: 10 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -10 }}
-          transition={{ duration: 0.25 }}
+          exit={shouldReduceMotion ? {} : { opacity: 0, x: -10 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.25 }}
           className={cn(
-            "flex-1 outline-none transition-all duration-300 ease-in-out",
+            "flex-1 outline-none transition-all duration-300 ease-in-out motion-reduce:transition-none motion-reduce:transform-none",
             className
           )}
         >
