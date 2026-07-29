@@ -12,12 +12,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
-    pool: "forks",
-    poolOptions: {
-      forks: {
-        maxForks: process.env.CI ? 2 : undefined,
-        minForks: 1,
-      },
-    },
+    maxConcurrency: process.env.CI ? 2 : 5,
+    isolate: false,
   },
 });
