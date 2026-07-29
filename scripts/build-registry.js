@@ -44,6 +44,10 @@ const componentsConfig = {
     dependencies: ["@radix-ui/react-collapsible"],
     files: ["collapsible.tsx"],
   },
+  dropdownMenu: {
+    dependencies: ["@radix-ui/react-dropdown-menu"],
+    files: ["dropdownMenu.tsx"],
+  },
   breadcrumb: {
     dependencies: [],
     files: ["breadcrumb.tsx"],

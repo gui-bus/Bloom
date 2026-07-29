@@ -3,11 +3,11 @@ import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
 const Breadcrumb = React.forwardRef<
-  HTMLOptionElement,
+  HTMLElement,
   React.ComponentPropsWithoutRef<"nav"> & {
     separator?: React.ReactNode;
   }
->(({ ...props }, ref) => <nav ref={ref as unknown as React.Ref<HTMLElement>} aria-label="breadcrumb" {...props} />);
+>(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />);
 Breadcrumb.displayName = "Breadcrumb";
 
 const BreadcrumbList = React.forwardRef<
@@ -40,31 +40,42 @@ BreadcrumbItem.displayName = "BreadcrumbItem";
 const BreadcrumbLink = React.forwardRef<
   HTMLAnchorElement,
   React.ComponentPropsWithoutRef<"a"> & {
-    asChild?: boolean;
+    icon?: string;
   }
->(({ className, ...props }, ref) => {
+>(({ className, icon, children, ...props }, ref) => {
   return (
     <a
       ref={ref}
-      className={cn("transition-colors hover:text-foreground cursor-pointer font-medium", className)}
+      className={cn(
+        "inline-flex items-center gap-1.5 transition-colors hover:text-foreground cursor-pointer font-medium",
+        className
+      )}
       {...props}
-    />
+    >
+      {icon && <Icon icon={icon} className="size-4 shrink-0" />}
+      {children}
+    </a>
   );
 });
 BreadcrumbLink.displayName = "BreadcrumbLink";
 
 const BreadcrumbPage = React.forwardRef<
   HTMLSpanElement,
-  React.ComponentPropsWithoutRef<"span">
->(({ className, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<"span"> & {
+    icon?: string;
+  }
+>(({ className, icon, children, ...props }, ref) => (
   <span
     ref={ref}
     role="link"
     aria-disabled="true"
     aria-current="page"
-    className={cn("font-semibold text-foreground", className)}
+    className={cn("inline-flex items-center gap-1.5 font-semibold text-foreground", className)}
     {...props}
-  />
+  >
+    {icon && <Icon icon={icon} className="size-4 shrink-0 text-primary" />}
+    {children}
+  </span>
 ));
 BreadcrumbPage.displayName = "BreadcrumbPage";
 
@@ -86,17 +97,21 @@ BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
 
 const BreadcrumbEllipsis = ({
   className,
+  children,
   ...props
-}: React.ComponentProps<"span">) => (
-  <span
-    role="presentation"
-    aria-hidden="true"
-    className={cn("flex size-7 items-center justify-center rounded-md border border-border bg-muted/40", className)}
+}: React.ComponentProps<"button">) => (
+  <button
+    type="button"
+    aria-label="Toggle collapsed breadcrumbs"
+    className={cn(
+      "flex size-7 items-center justify-center rounded-md border border-border bg-muted/40 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+      className
+    )}
     {...props}
   >
-    <Icon icon="hugeicons:more-horizontal" className="size-4 text-muted-foreground" />
-    <span className="sr-only">More</span>
-  </span>
+    <Icon icon="hugeicons:more-horizontal" className="size-4" />
+    <span className="sr-only">Toggle menu</span>
+  </button>
 );
 BreadcrumbEllipsis.displayName = "BreadcrumbEllipsis";
 

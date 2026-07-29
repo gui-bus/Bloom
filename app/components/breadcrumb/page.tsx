@@ -13,6 +13,12 @@ import {
   BreadcrumbEllipsis,
 } from "@/components/ui/breadcrumb/breadcrumb";
 import { breadcrumbCode } from "@/components/ui/breadcrumb/breadcrumb.code";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdownMenu/dropdownMenu";
 import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
@@ -48,7 +54,7 @@ export default function BreadcrumbDocsPage() {
           <CodeBlock
             code={breadcrumbCode}
             componentName="breadcrumb.tsx"
-            description="Breadcrumb trail component supporting custom separators, page indicators, and ellipsis."
+            description="Breadcrumb trail component supporting icons, custom separators, and interactive dropdown ellipsis."
             tags={["React", "Tailwind", "UI Component", "Navigation", "Breadcrumb"]}
           />
         </TabsContent>
@@ -92,66 +98,55 @@ export default function BreadcrumbDocsPage() {
 </Breadcrumb>`}
       />
 
-      {/* Custom Separator */}
+      {/* With Icons */}
       <DocsComponent
-        title="Custom Separators"
-        description="Pass custom icons or slash characters into BreadcrumbSeparator."
+        title="With Icons"
+        description="Pass icon names to BreadcrumbLink and BreadcrumbPage for enhanced visual cues."
         preview={
-          <div className="space-y-4">
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator>/</BreadcrumbSeparator>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator>/</BreadcrumbSeparator>
-                <BreadcrumbItem>
-                  <BreadcrumbPage>API</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/">Dashboard</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator>
-                  <Icon icon="hugeicons:arrow-right-02" className="size-3.5" />
-                </BreadcrumbSeparator>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/settings">Settings</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator>
-                  <Icon icon="hugeicons:arrow-right-02" className="size-3.5" />
-                </BreadcrumbSeparator>
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Security</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/" icon="hugeicons:home-01">
+                  Home
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/components/button" icon="hugeicons:grid-view">
+                  Components
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage icon="hugeicons:navigation-01">
+                  Breadcrumb
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
         }
         code={`<Breadcrumb>
   <BreadcrumbList>
     <BreadcrumbItem>
-      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      <BreadcrumbLink href="/" icon="hugeicons:home-01">Home</BreadcrumbLink>
     </BreadcrumbItem>
-    <BreadcrumbSeparator>/</BreadcrumbSeparator>
+    <BreadcrumbSeparator />
     <BreadcrumbItem>
-      <BreadcrumbPage>Docs</BreadcrumbPage>
+      <BreadcrumbLink href="/components" icon="hugeicons:grid-view">Components</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage icon="hugeicons:navigation-01">Breadcrumb</BreadcrumbPage>
     </BreadcrumbItem>
   </BreadcrumbList>
 </Breadcrumb>`}
+        props={["icon: string"]}
       />
 
-      {/* Collapsed Ellipsis */}
+      {/* Collapsed Ellipsis with Dropdown Menu */}
       <DocsComponent
-        title="Collapsed Items with Ellipsis"
-        description="Use BreadcrumbEllipsis to compress long paths while retaining navigation context."
+        title="Collapsed Items with Interactive Dropdown Menu"
+        description="Clicking the BreadcrumbEllipsis trigger opens our DropdownMenu popover containing hidden route items."
         preview={
           <Breadcrumb>
             <BreadcrumbList>
@@ -160,11 +155,26 @@ export default function BreadcrumbDocsPage() {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbEllipsis />
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <BreadcrumbEllipsis />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start">
+                    <DropdownMenuItem asChild>
+                      <a href="/docs">Documentation</a>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <a href="/components">All Components</a>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <a href="/themes">Theme Customizer</a>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+                <BreadcrumbLink href="/components/button">Components</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
@@ -180,11 +190,23 @@ export default function BreadcrumbDocsPage() {
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
-      <BreadcrumbEllipsis />
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <BreadcrumbEllipsis />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start">
+          <DropdownMenuItem asChild>
+            <a href="/docs">Documentation</a>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <a href="/components">All Components</a>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
-      <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+      <BreadcrumbLink href="/components/button">Components</BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
@@ -205,52 +227,30 @@ export default function BreadcrumbDocsPage() {
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 px-3 font-semibold text-foreground">Component</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">HTML Element</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Props</th>
                   <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">Breadcrumb</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">&lt;nav&gt;</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Root container with aria-label="breadcrumb".
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">BreadcrumbList</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">&lt;ol&gt;</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Ordered list container for breadcrumb items.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">BreadcrumbItem</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">&lt;li&gt;</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Wrapper item for a breadcrumb segment.
-                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">HTMLNavProps</td>
+                  <td className="px-3 py-2 text-muted-foreground">Root container with aria-label="breadcrumb".</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">BreadcrumbLink</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">&lt;a&gt;</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Interactive link for navigating up the hierarchy.
-                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">icon?: string</td>
+                  <td className="px-3 py-2 text-muted-foreground">Interactive link with optional icon.</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">BreadcrumbPage</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">&lt;span&gt;</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Active page indicator with aria-current="page".
-                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">icon?: string</td>
+                  <td className="px-3 py-2 text-muted-foreground">Active page with aria-current="page".</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">BreadcrumbSeparator</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">&lt;li&gt;</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Visual divider icon or element between items.
-                  </td>
+                  <td className="px-3 py-2 font-mono text-primary">BreadcrumbEllipsis</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">HTMLButtonProps</td>
+                  <td className="px-3 py-2 text-muted-foreground">Button trigger for opening DropdownMenu hidden routes.</td>
                 </tr>
               </tbody>
             </table>

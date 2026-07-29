@@ -51,6 +51,12 @@
     ]
   },
   {
+    "name": "dropdownMenu",
+    "dependencies": [
+      "@radix-ui/react-dropdown-menu"
+    ]
+  },
+  {
     "name": "breadcrumb",
     "dependencies": []
   },

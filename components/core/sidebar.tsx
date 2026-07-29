@@ -48,6 +48,7 @@ export function Sidebar() {
         { href: "/components/buttonGroup", label: "Button Group" },
         { href: "/components/carousel", label: "Carousel" },
         { href: "/components/collapsible", label: "Collapsible" },
+        { href: "/components/dropdownMenu", label: "Dropdown Menu" },
         { href: "/components/kbd", label: "Kbd" },
         { href: "/components/progress", label: "Progress" },
         { href: "/components/resizable", label: "Resizable" },
