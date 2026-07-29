@@ -172,6 +172,34 @@ const componentsConfig = {
     dependencies: ["@radix-ui/react-toggle-group"],
     files: ["toggleGroup.tsx"],
   },
+  link: {
+    dependencies: ["lucide-react", "class-variance-authority"],
+    files: ["link.tsx"],
+  },
+  navigationMenu: {
+    dependencies: ["@radix-ui/react-navigation-menu", "lucide-react", "class-variance-authority"],
+    files: ["navigationMenu.tsx"],
+  },
+  menubar: {
+    dependencies: ["@radix-ui/react-menubar", "lucide-react"],
+    files: ["menubar.tsx"],
+  },
+  sidebar: {
+    dependencies: ["lucide-react"],
+    files: ["sidebar.tsx"],
+  },
+  label: {
+    dependencies: ["@radix-ui/react-label", "class-variance-authority"],
+    files: ["label.tsx"],
+  },
+  formField: {
+    dependencies: [],
+    files: ["formField.tsx"],
+  },
+  form: {
+    dependencies: ["react-hook-form"],
+    files: ["form.tsx"],
+  },
 };
 
 function main() {

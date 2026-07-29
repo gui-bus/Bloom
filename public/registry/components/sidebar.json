@@ -1,0 +1,12 @@
+{
+  "name": "sidebar",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "name": "sidebar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ChevronLeft, ChevronRight, PanelLeft } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface UiSidebarProps extends React.HTMLAttributes<HTMLDivElement> {\n  defaultCollapsed?: boolean;\n  isCollapsed?: boolean;\n  onCollapseChange?: (collapsed: boolean) => void;\n  header?: React.ReactNode;\n  footer?: React.ReactNode;\n  collapsible?: boolean;\n}\n\nexport function UiSidebar({\n  className,\n  children,\n  defaultCollapsed = false,\n  isCollapsed: controlledCollapsed,\n  onCollapseChange,\n  header,\n  footer,\n  collapsible = true,\n  ...props\n}: UiSidebarProps) {\n  const [internalCollapsed, setInternalCollapsed] = React.useState(defaultCollapsed);\n\n  const collapsed = controlledCollapsed !== undefined ? controlledCollapsed : internalCollapsed;\n\n  const toggleCollapse = () => {\n    const next = !collapsed;\n    if (controlledCollapsed === undefined) {\n      setInternalCollapsed(next);\n    }\n    onCollapseChange?.(next);\n  };\n\n  return (\n    <aside\n      className={cn(\n        \"relative flex flex-col justify-between border-r border-border bg-background transition-all duration-300 h-full select-none\",\n        collapsed ? \"w-16 px-2 py-4\" : \"w-64 px-4 py-6\",\n        className\n      )}\n      {...props}\n    >\n      <div className=\"flex flex-col gap-4 overflow-hidden flex-1\">\n        {header && <div className=\"px-1 flex items-center justify-between\">{header}</div>}\n\n        <div className=\"flex-1 overflow-y-auto overflow-x-hidden space-y-1\">\n          {children}\n        </div>\n      </div>\n\n      {footer && <div className=\"border-t border-border pt-3 mt-3\">{footer}</div>}\n\n      {collapsible && (\n        <button\n          type=\"button\"\n          onClick={toggleCollapse}\n          className=\"absolute -right-3 top-6 flex size-6 items-center justify-center rounded-full border border-border bg-background text-foreground shadow-xs hover:bg-accent transition-transform cursor-pointer\"\n          aria-label={collapsed ? \"Expand sidebar\" : \"Collapse sidebar\"}\n        >\n          {collapsed ? <ChevronRight className=\"size-3.5\" /> : <ChevronLeft className=\"size-3.5\" />}\n        </button>\n      )}\n    </aside>\n  );\n}\n"
+    }
+  ]
+}

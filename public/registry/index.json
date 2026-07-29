@@ -231,5 +231,50 @@
     "dependencies": [
       "@radix-ui/react-toggle-group"
     ]
+  },
+  {
+    "name": "link",
+    "dependencies": [
+      "lucide-react",
+      "class-variance-authority"
+    ]
+  },
+  {
+    "name": "navigationMenu",
+    "dependencies": [
+      "@radix-ui/react-navigation-menu",
+      "lucide-react",
+      "class-variance-authority"
+    ]
+  },
+  {
+    "name": "menubar",
+    "dependencies": [
+      "@radix-ui/react-menubar",
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "sidebar",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "label",
+    "dependencies": [
+      "@radix-ui/react-label",
+      "class-variance-authority"
+    ]
+  },
+  {
+    "name": "formField",
+    "dependencies": []
+  },
+  {
+    "name": "form",
+    "dependencies": [
+      "react-hook-form"
+    ]
   }
 ]

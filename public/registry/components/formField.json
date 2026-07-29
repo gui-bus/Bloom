@@ -1,0 +1,10 @@
+{
+  "name": "formField",
+  "dependencies": [],
+  "files": [
+    {
+      "name": "formField.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { Label } from \"@/components/ui/label/label\";\n\nexport interface FormFieldProps extends React.HTMLAttributes<HTMLDivElement> {\n  label?: React.ReactNode;\n  isRequired?: boolean;\n  description?: React.ReactNode;\n  errorMessage?: React.ReactNode;\n  isInvalid?: boolean;\n  htmlFor?: string;\n}\n\nexport function FormField({\n  className,\n  children,\n  label,\n  isRequired = false,\n  description,\n  errorMessage,\n  isInvalid = false,\n  htmlFor,\n  ...props\n}: FormFieldProps) {\n  const generatedId = React.useId();\n  const fieldId = htmlFor || generatedId;\n\n  return (\n    <div className={cn(\"w-full flex flex-col gap-1.5\", className)} {...props}>\n      {label && (\n        <Label htmlFor={fieldId} isRequired={isRequired}>\n          {label}\n        </Label>\n      )}\n      <div className=\"w-full\">\n        {React.isValidElement(children)\n          ? React.cloneElement(children as React.ReactElement<{ id?: string; isInvalid?: boolean }>, {\n              id: fieldId,\n              isInvalid: isInvalid || Boolean(errorMessage),\n            })\n          : children}\n      </div>\n      {isInvalid && errorMessage ? (\n        <p className=\"text-xs text-danger font-medium\">{errorMessage}</p>\n      ) : description ? (\n        <p className=\"text-xs text-muted-foreground\">{description}</p>\n      ) : null}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

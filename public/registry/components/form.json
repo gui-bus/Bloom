@@ -1,0 +1,12 @@
+{
+  "name": "form",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "files": [
+    {
+      "name": "form.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  useForm,\n  UseFormReturn,\n  FieldValues,\n  SubmitHandler,\n  UseFormProps,\n} from \"react-hook-form\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface FormProps<TFieldValues extends FieldValues = FieldValues>\n  extends Omit<React.FormHTMLAttributes<HTMLFormElement>, \"onSubmit\"> {\n  form: UseFormReturn<TFieldValues>;\n  onSubmit: SubmitHandler<TFieldValues>;\n}\n\nexport function Form<TFieldValues extends FieldValues = FieldValues>({\n  form,\n  onSubmit,\n  children,\n  className,\n  ...props\n}: FormProps<TFieldValues>) {\n  return (\n    <form\n      onSubmit={form.handleSubmit(onSubmit)}\n      className={cn(\"space-y-4 w-full\", className)}\n      {...props}\n    >\n      {children}\n    </form>\n  );\n}\n\nexport { useForm };\nexport type { UseFormReturn, SubmitHandler, UseFormProps };\n"
+    }
+  ]
+}

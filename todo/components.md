@@ -40,13 +40,13 @@ Visão geral de todos os componentes planejados para a biblioteca Bloom UI, orga
 | :---: | :--- | :--- |
 | ✅ | **Tabs** | Abas animadas com suporte a Framer Motion e Radix |
 | ✅ | **Breadcrumb** | Trilha de navegação hierárquica |
-| ⏳ | **Navigation Menu** | Menu de navegação complexo com submenus |
-| ⏳ | **Menubar** | Barra de menus estilo aplicação desktop |
-| ⏳ | **Sidebar** | Painel lateral de navegação colapsável |
+| ✅ | **Navigation Menu** | Menu de navegação complexo com submenus |
+| ✅ | **Menubar** | Barra de menus estilo aplicação desktop |
+| ✅ | **Sidebar** | Painel lateral de navegação colapsável |
 | ✅ | **Pagination** | Controles de paginação com seleção de página |
 | ✅ | **Stepper** | Indicador de progresso em etapas |
 | ✅ | **Kbd** | Indicador de tecla do teclado |
-| ⏳ | **Link** | Link estilizado com variantes |
+| ✅ | **Link** | Link estilizado com variantes |
 
 ---
 
@@ -106,9 +106,9 @@ Visão geral de todos os componentes planejados para a biblioteca Bloom UI, orga
 
 | Status | Componente | Descrição |
 | :---: | :--- | :--- |
-| ⏳ | **Form** | Wrapper de formulário com validação integrada (react-hook-form) |
-| ⏳ | **Label** | Rótulo semântico para campos de formulário |
-| ⏳ | **Form Field** | Campo de formulário com label, input e mensagem de erro |
+| ✅ | **Form** | Wrapper de formulário com validação integrada (react-hook-form) |
+| ✅ | **Label** | Rótulo semântico para campos de formulário |
+| ✅ | **Form Field** | Campo de formulário com label, input e mensagem de erro |
 
 ---
 
@@ -127,10 +127,10 @@ Visão geral de todos os componentes planejados para a biblioteca Bloom UI, orga
 | Categoria | Total | Feitos | Progresso |
 | :--- | :---: | :---: | :---: |
 | Inputs & Controles | 18 | 18 | 100% |
-| Navegação | 8 | 6 | 75% |
+| Navegação | 8 | 8 | 100% |
 | Overlays & Feedback | 12 | 1 | 8% |
 | Layout & Exibição | 14 | 14 | 100% |
 | Dados & Tabelas | 5 | 0 | 0% |
-| Formulários | 3 | 0 | 0% |
+| Formulários | 3 | 3 | 100% |
 | Tipografia & Mídia | 3 | 3 | 100% |
-| **Total** | **63** | **40** | **63%** |
+| **Total** | **63** | **47** | **75%** |
