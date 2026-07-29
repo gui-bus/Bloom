@@ -1,0 +1,13 @@
+{
+  "name": "toggle",
+  "dependencies": [
+    "@radix-ui/react-toggle",
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "name": "toggle.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as TogglePrimitive from \"@radix-ui/react-toggle\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\nimport { designRadius } from \"@/lib/design-system\";\n\nconst toggleVariants = cva(\n  \"inline-flex items-center justify-center font-medium transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer select-none\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-transparent data-[state=on]:bg-accent data-[state=on]:text-accent-foreground\",\n        outline: \"border border-input bg-transparent hover:bg-accent hover:text-accent-foreground data-[state=on]:bg-accent data-[state=on]:text-accent-foreground\",\n        flat: \"bg-muted/50 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground\",\n      },\n      size: {\n        sm: \"h-8 px-2 text-xs min-w-8\",\n        md: \"h-10 px-3 text-sm min-w-10\",\n        lg: \"h-12 px-4 text-base min-w-12\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"md\",\n    },\n  }\n);\n\nexport interface ToggleProps\n  extends React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>,\n    VariantProps<typeof toggleVariants> {\n  radius?: keyof typeof designRadius;\n}\n\nconst Toggle = React.forwardRef<\n  React.ComponentRef<typeof TogglePrimitive.Root>,\n  ToggleProps\n>(({ className, variant, size, radius = \"lg\", ...props }, ref) => (\n  <TogglePrimitive.Root\n    ref={ref}\n    className={cn(\n      toggleVariants({ variant, size }),\n      designRadius[radius],\n      className\n    )}\n    {...props}\n  />\n));\n\nToggle.displayName = TogglePrimitive.Root.displayName;\n\nexport { Toggle, toggleVariants };\n"
+    }
+  ]
+}
