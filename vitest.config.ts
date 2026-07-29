@@ -14,5 +14,6 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./"),
     },
     pool: "forks",
+    execArgv: ["--max-old-space-size=8192"],
   },
 });
