@@ -135,5 +135,101 @@
     "dependencies": [
       "class-variance-authority"
     ]
+  },
+  {
+    "name": "checkbox",
+    "dependencies": [
+      "@radix-ui/react-checkbox",
+      "class-variance-authority"
+    ]
+  },
+  {
+    "name": "colorPicker",
+    "dependencies": []
+  },
+  {
+    "name": "combobox",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "datePicker",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "fileUpload",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "input",
+    "dependencies": [
+      "class-variance-authority"
+    ]
+  },
+  {
+    "name": "inputOtp",
+    "dependencies": [
+      "input-otp"
+    ]
+  },
+  {
+    "name": "numberInput",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "radioGroup",
+    "dependencies": [
+      "@radix-ui/react-radio-group"
+    ]
+  },
+  {
+    "name": "rating",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "select",
+    "dependencies": [
+      "@radix-ui/react-select"
+    ]
+  },
+  {
+    "name": "slider",
+    "dependencies": [
+      "@radix-ui/react-slider"
+    ]
+  },
+  {
+    "name": "switch",
+    "dependencies": [
+      "@radix-ui/react-switch"
+    ]
+  },
+  {
+    "name": "textarea",
+    "dependencies": [
+      "class-variance-authority"
+    ]
+  },
+  {
+    "name": "toggle",
+    "dependencies": [
+      "@radix-ui/react-toggle",
+      "class-variance-authority"
+    ]
+  },
+  {
+    "name": "toggleGroup",
+    "dependencies": [
+      "@radix-ui/react-toggle-group"
+    ]
   }
 ]

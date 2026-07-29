@@ -108,6 +108,70 @@ const componentsConfig = {
     dependencies: ["class-variance-authority"],
     files: ["typography.tsx"],
   },
+  checkbox: {
+    dependencies: ["@radix-ui/react-checkbox", "class-variance-authority"],
+    files: ["checkbox.tsx"],
+  },
+  colorPicker: {
+    dependencies: [],
+    files: ["colorPicker.tsx"],
+  },
+  combobox: {
+    dependencies: ["lucide-react"],
+    files: ["combobox.tsx"],
+  },
+  datePicker: {
+    dependencies: ["lucide-react"],
+    files: ["datePicker.tsx"],
+  },
+  fileUpload: {
+    dependencies: ["lucide-react"],
+    files: ["fileUpload.tsx"],
+  },
+  input: {
+    dependencies: ["class-variance-authority"],
+    files: ["input.tsx"],
+  },
+  inputOtp: {
+    dependencies: ["input-otp"],
+    files: ["inputOtp.tsx"],
+  },
+  numberInput: {
+    dependencies: ["lucide-react"],
+    files: ["numberInput.tsx"],
+  },
+  radioGroup: {
+    dependencies: ["@radix-ui/react-radio-group"],
+    files: ["radioGroup.tsx"],
+  },
+  rating: {
+    dependencies: ["lucide-react"],
+    files: ["rating.tsx"],
+  },
+  select: {
+    dependencies: ["@radix-ui/react-select"],
+    files: ["select.tsx"],
+  },
+  slider: {
+    dependencies: ["@radix-ui/react-slider"],
+    files: ["slider.tsx"],
+  },
+  switch: {
+    dependencies: ["@radix-ui/react-switch"],
+    files: ["switch.tsx"],
+  },
+  textarea: {
+    dependencies: ["class-variance-authority"],
+    files: ["textarea.tsx"],
+  },
+  toggle: {
+    dependencies: ["@radix-ui/react-toggle", "class-variance-authority"],
+    files: ["toggle.tsx"],
+  },
+  toggleGroup: {
+    dependencies: ["@radix-ui/react-toggle-group"],
+    files: ["toggleGroup.tsx"],
+  },
 };
 
 function main() {
