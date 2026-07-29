@@ -13,5 +13,8 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./"),
     },
     isolate: true,
+    sequence: {
+      concurrent: false,
+    },
   },
 });
