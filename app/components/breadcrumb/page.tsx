@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   description: "Displays the path to the current resource using a hierarchy of links.",
 };
 
-export default function BreadcrumbPage() {
+export default function BreadcrumbDocsPage() {
   return (
     <main className="p-5 space-y-8">
       <DocsTitle
