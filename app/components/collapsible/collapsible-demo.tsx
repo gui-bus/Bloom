@@ -21,7 +21,7 @@ export function CollapsibleDemo() {
       <div className="flex items-center justify-between space-x-4 px-4 py-2 border border-border rounded-xl bg-card">
         <h4 className="text-sm font-semibold">@peduarte starred 3 repositories</h4>
         <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="sm" isIconOnly>
+          <Button variant="ghost" size="sm" isIconOnly ariaLabel="Toggle collapsible content">
             <Icon
               icon="hugeicons:arrow-down-01"
               className={`size-4 transition-transform duration-200 ${
