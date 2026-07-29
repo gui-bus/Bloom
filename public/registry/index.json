@@ -154,6 +154,12 @@
     ]
   },
   {
+    "name": "autocomplete",
+    "dependencies": [
+      "@iconify/react"
+    ]
+  },
+  {
     "name": "datePicker",
     "dependencies": [
       "lucide-react"

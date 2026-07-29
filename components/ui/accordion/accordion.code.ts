@@ -14,16 +14,12 @@ const AccordionContext = React.createContext<{ variant: AccordionVariant }>({
 const useAccordionContext = () => React.useContext(AccordionContext);
 
 /* ─── Root ─── */
-interface AccordionProps
-  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> {
-  variant?: AccordionVariant;
-}
-
-function AccordionWrapper({
-  variant = "default",
-  className,
-  ...props
-}: AccordionProps & { className?: string }) {
+const Accordion = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> & {
+    variant?: AccordionVariant;
+  }
+>(({ className, variant = "default", ...props }, ref) => {
   const rootClasses = cn(
     variant === "bordered" && "border border-border rounded-xl p-1",
     variant === "shadow" && "shadow-md rounded-xl bg-card p-1",
@@ -33,12 +29,11 @@ function AccordionWrapper({
 
   return (
     <AccordionContext.Provider value={{ variant }}>
-      <AccordionPrimitive.Root className={rootClasses} {...props} />
+      <AccordionPrimitive.Root ref={ref} className={rootClasses} {...props} />
     </AccordionContext.Provider>
   );
-}
-
-const Accordion = AccordionWrapper as typeof AccordionWrapper;
+});
+Accordion.displayName = "Accordion";
 
 /* ─── Item ─── */
 const AccordionItem = React.forwardRef<
@@ -122,5 +117,5 @@ const AccordionContent = React.forwardRef<
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
-export type { AccordionVariant, AccordionProps };
+export type { AccordionVariant };
 `;
