@@ -11,7 +11,7 @@
 
 ## 🌟 Visão Geral
 
-O **Bloom** é uma biblioteca profissional de componentes de interface (UI) premium baseada em React, Radix UI e Tailwind CSS. Desenvolvida sob rígidos padrões de performance e acessibilidade, a biblioteca centraliza tokens de design em variáveis CSS semânticas e mapas de JavaScript estruturados, possibilitando a consistência completa de temas claro/escuro e adaptações visuais instantâneas.
+O **Bloom** é uma biblioteca profissional de componentes de interface (UI) premium baseada em React 19, Next.js 16, Radix UI e Tailwind CSS v4. Desenvolvida sob rígidos padrões de performance e acessibilidade, a biblioteca centraliza tokens de design em variáveis CSS semânticas e mapas de JavaScript estruturados, possibilitando a consistência completa de temas claro/escuro e adaptações visuais instantâneas.
 
 A biblioteca inclui controles de layout robustos, animações fluidas via Framer Motion, e uma suíte completa de testes de regressão de comportamento e integração automatizados.
 
@@ -73,8 +73,8 @@ O Bloom baseia sua arquitetura na separação clara entre a camada de lógica es
 graph TB
     subgraph Client ["🎨 Frontend & Documentation Page"]
         DocPage["📄 Next.js App Router Pages"]
-        DocsComponent["⚙️ DocsComponent (JSX Auto-Stringer)"]
-        UI["🧩 Component Instance (Button, Tabs, etc.)"]
+        DocsComponent["⚙️ DocsComponent (Explicit Code Snippets)"]
+        UI["🧩 Component Instances (Button, Accordion, Carousel, Stepper, etc.)"]
     end
 
     subgraph Core ["💎 Design Tokens & Semantics"]
@@ -86,13 +86,14 @@ graph TB
         CVA["class-variance-authority"]
         Radix["@radix-ui/primitives"]
         Motion["framer-motion"]
+        Embla["embla-carousel-react"]
     end
 
     subgraph CI ["🧪 Testing & Quality Gate"]
-        Vitest["🧪 Vitest + JSDOM (Unit)"]
+        Vitest["🧪 Vitest + JSDOM (Unit Tests)"]
         Playwright["🎭 Playwright (E2E Integration)"]
         Actions["🚀 GitHub Actions Workflow"]
-      end
+    end
 
     DocPage -->|Exibe| DocsComponent
     DocsComponent -->|Gera visualizações do| UI
@@ -101,6 +102,7 @@ graph TB
     UI -->|Utiliza| CVA
     UI -->|Baseado em| Radix
     UI -->|Animado por| Motion
+    UI -->|Carrosséis por| Embla
     
     UI -.->|Validado por| Vitest
     DocPage -.->|Automatizado por| Playwright
@@ -110,30 +112,44 @@ graph TB
 
 ---
 
-## 🚀 Funcionalidades Principais
+## 🚀 Componentes Implementados
 
-| Componente | Funcionalidades | Detalhes Técnicos |
+| Componente | Categoria | Descrição |
 | :--- | :--- | :--- |
-| **🔘 Button** | • Ripple effect interno nativo<br/>• Estados de loading & disabled<br/>• Badges e ícones ajustáveis | Variações estruturadas via `cva`. Callback otimizado com `React.useCallback` e efeito ripple controlado por estado React. |
-| **🗂️ Button Group** | • Junção fluida de múltiplos botões<br/>• Propagação automática de propriedades<br/>• Controle inteligente de bordas | Injeção e clonagem dinâmica de propriedades em componentes filhos via `React.Children` e `React.cloneElement`. |
-| **📁 Tabs** | • Navegação animada e fluida<br/>• Layouts horizontais com scroll oculto<br/>• Suporte completo a acessibilidade | Baseado em `@radix-ui/react-tabs` e sincronizado com `framer-motion` (`AnimatePresence`) para transições de conteúdo. |
-| **📑 Centralized Tokens** | • Escala padronizada (xs a 3xl)<br/>• Tema claro/escuro dinâmico<br/>• Cores semânticas extensíveis | Gerenciamento centralizado em [design-system.ts](file:///c:/Users/Guilherme/Desktop/PROJETOS/ZoeUI/lib/design-system.ts) e mapeamento dinâmico no Tailwind CSS v4. |
+| **🔘 Button** | Inputs & Controles | Ripple effect interno, estados loading/disabled, tamanhos, cores e polimorfismo. |
+| **🗂️ Button Group** | Inputs & Controles | Junção fluida de múltiplos botões com propagação automática de propriedades. |
+| **📁 Tabs** | Navegação | Abas animadas sincronizadas com `framer-motion` e Radix. |
+| **🗺️ Breadcrumb** | Navegação | Trilha hierárquica acessível com ícones e suporte a `DropdownMenu` na elipse. |
+| **🔢 Pagination** | Navegação | Controles de paginação sem salto de URL com salto para primeira/última página e modo compacto. |
+| **🪜 Stepper** | Navegação | Indicador de etapas para wizards com suporte a clique, estados de erro e modo vertical. |
+| **⌨️ Kbd** | Navegação | Indicador visual de teclas e atalhos do teclado. |
+| **Dropdown Menu** | Overlays & Feedback | Menu suspenso flutuante com itens, grupos, separadores e atalhos de teclado. |
+| **📂 Accordion** | Layout & Exibição | Lista de seções expansíveis/recolhíveis via Radix com rotação animada. |
+| **🖼️ Aspect Ratio** | Layout & Exibição | Contêiner de proporção fixa para mídia responsiva. |
+| **👤 Avatar / Avatar Group** | Layout & Exibição | Foto de perfil com fallback de iniciais e pilha de avatares com contador. |
+| **🏷️ Badge** | Layout & Exibição | Rótulo compacto com variantes, pontos de status e ícones. |
+| **🎠 Carousel** | Layout & Exibição | Galeria deslizante via Embla com autoplay, pause no hover, orientação vertical e pontos. |
+| **📐 Collapsible** | Layout & Exibição | Elemento expansível/recolhível com animação de altura. |
+| **🔲 Resizable** | Layout & Exibição | Painéis redimensionáveis com divisores arrastáveis via `react-resizable-panels`. |
+| **📜 Scroll Area** | Layout & Exibição | Área de rolagem estilizada via Radix integrada à barra lateral da aplicação. |
+| **➖ Separator** | Layout & Exibição | Divisor visual horizontal ou vertical com suporte a labels e gradientes. |
+| **🦴 Skeleton** | Layout & Exibição | Placeholder animado estilo pulse para conteúdos em carregamento. |
+| **🌀 Spinner** | Layout & Exibição | Indicador de carregamento rotativo com tamanhos e cores semânticas. |
 
 ---
 
-## 🧪 Testes Automatizados (14 Testes)
+## 🧪 Testes Automatizados
 
-O ecossistema Bloom adota uma cobertura de testes moderna e de alta velocidade para assegurar que refatorações ou novos componentes não introduzam regressões funcionais:
+O ecossistema Bloom adota uma cobertura de testes automatizada para assegurar estabilidade em cada refatoração:
 
 ```mermaid
 flowchart LR
-    subgraph Unit ["🧪 Vitest (11 Testes Unitários)"]
-        U1["Button Component (5 testes)"]
-        U2["ButtonGroup Component (3 testes)"]
-        U3["Tabs Component (3 testes)"]
+    subgraph Unit ["🧪 Vitest (Suíte Unitária)"]
+        U1["21 Arquivos de Teste"]
+        U2["57+ Assertivas Unitárias"]
     end
 
-    subgraph E2E ["🎭 Playwright (3 Testes E2E)"]
+    subgraph E2E ["🎭 Playwright (Suíte E2E)"]
         E1["Navegação da Sidebar"]
         E2["Alternância de Temas"]
         E3["Ações de Cópia de Código"]
