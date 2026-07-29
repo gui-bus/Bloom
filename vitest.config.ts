@@ -13,10 +13,8 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./"),
     },
     pool: "forks",
-    poolOptions: {
-      forks: {
-        singleFork: true,
-      },
+    forks: {
+      singleFork: true,
     },
     isolate: true,
   },
