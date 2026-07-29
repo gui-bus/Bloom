@@ -14,8 +14,13 @@ export default defineConfig({
     },
     pool: "forks",
     forks: {
-      singleFork: true,
+      singleFork: false,
     },
     isolate: true,
+    environmentOptions: {
+      jsdom: {
+        resources: "usable",
+      },
+    },
   },
 });
