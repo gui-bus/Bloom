@@ -29,6 +29,8 @@ type TypographyColor =
 export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   variant?: TypographyVariant;
   color?: TypographyColor;
+  clampLines?: number;
+  gradient?: boolean;
   as?: React.ElementType;
   children?: React.ReactNode;
 }
@@ -79,6 +81,8 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
     {
       variant = "p",
       color = "default",
+      clampLines,
+      gradient = false,
       as,
       className,
       children,
@@ -91,9 +95,11 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
     return (
       <Component
         ref={ref as any}
+        style={clampLines ? { display: "-webkit-box", WebkitLineClamp: clampLines, WebkitBoxOrient: "vertical", overflow: "hidden" } : undefined}
         className={cn(
           variantStyles[variant],
           color !== "default" && colorStyles[color],
+          gradient && "bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent",
           className
         )}
         {...props}

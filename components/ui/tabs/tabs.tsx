@@ -6,7 +6,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { designSizes } from "@/lib/design-system";
 
-type TabsVariant = "default" | "bordered" | "ghost" | "underline";
+type TabsVariant = "default" | "bordered" | "ghost" | "underline" | "pills" | "contained";
 type TabsSize = "xs" | "sm" | "md" | "lg" | "xl";
 type TabsColor =
   | "default"
@@ -23,6 +23,7 @@ interface TabsProps extends React.ComponentProps<typeof TabsPrimitive.Root> {
 
 interface TabsListProps extends React.ComponentProps<typeof TabsPrimitive.List> {
   background?: boolean;
+  isScrollable?: boolean;
   /** Accessible label for the tab list. Useful when there are multiple tab lists on the same page. */
   label?: string;
 }
@@ -95,6 +96,10 @@ const variantClasses: Record<TabsVariant, string> = {
     "bg-transparent text-foreground border-2 border-border hover:bg-muted rounded-3xl shadow-sm transition-all duration-200",
   underline:
     "bg-transparent text-muted-foreground hover:text-foreground rounded-none transition-all duration-200 border-b-2 border-transparent",
+  pills:
+    "bg-transparent text-muted-foreground hover:text-foreground rounded-full transition-all duration-200 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground shadow-xs",
+  contained:
+    "bg-muted/40 text-muted-foreground hover:text-foreground rounded-xl transition-all duration-200 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
 };
 
 const stateClasses = {

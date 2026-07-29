@@ -12,7 +12,7 @@ type CardColor =
   | "warning"
   | "danger";
 
-type CardVariant = "default" | "bordered" | "flat" | "ghost" | "shadow";
+type CardVariant = "default" | "bordered" | "flat" | "ghost" | "shadow" | "glassmorphism" | "gradient";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: CardVariant;
@@ -31,6 +31,8 @@ const cardColorMap: Record<CardColor, Record<CardVariant, string>> = {
     flat: "bg-muted/50 text-card-foreground border-transparent",
     ghost: "bg-transparent text-card-foreground border-transparent",
     shadow: "bg-card text-card-foreground border-transparent shadow-md",
+    glassmorphism: "backdrop-blur-md bg-white/10 dark:bg-black/10 text-card-foreground border border-white/20 dark:border-white/10 shadow-lg",
+    gradient: "bg-gradient-to-br from-primary/10 to-accent/10 text-card-foreground border border-border/50",
   },
   primary: {
     default: "bg-primary text-primary-foreground border-transparent shadow-xs",
@@ -38,6 +40,8 @@ const cardColorMap: Record<CardColor, Record<CardVariant, string>> = {
     flat: "bg-primary/10 text-primary border-transparent",
     ghost: "bg-transparent text-primary border-transparent",
     shadow: "bg-primary text-primary-foreground border-transparent shadow-md shadow-primary/20",
+    glassmorphism: "backdrop-blur-md bg-primary/10 text-primary border border-primary/20 shadow-lg",
+    gradient: "bg-gradient-to-br from-primary/20 to-primary/5 text-primary border border-primary/30",
   },
   secondary: {
     default: "bg-secondary text-secondary-foreground border-transparent shadow-xs",
@@ -45,6 +49,8 @@ const cardColorMap: Record<CardColor, Record<CardVariant, string>> = {
     flat: "bg-secondary/10 text-secondary border-transparent",
     ghost: "bg-transparent text-secondary border-transparent",
     shadow: "bg-secondary text-secondary-foreground border-transparent shadow-md shadow-secondary/20",
+    glassmorphism: "backdrop-blur-md bg-secondary/10 text-secondary border border-secondary/20 shadow-lg",
+    gradient: "bg-gradient-to-br from-secondary/20 to-secondary/5 text-secondary border border-secondary/30",
   },
   accent: {
     default: "bg-accent text-accent-foreground border-transparent shadow-xs",
@@ -52,6 +58,8 @@ const cardColorMap: Record<CardColor, Record<CardVariant, string>> = {
     flat: "bg-accent/10 text-accent border-transparent",
     ghost: "bg-transparent text-accent border-transparent",
     shadow: "bg-accent text-accent-foreground border-transparent shadow-md shadow-accent/20",
+    glassmorphism: "backdrop-blur-md bg-accent/10 text-accent border border-accent/20 shadow-lg",
+    gradient: "bg-gradient-to-br from-accent/20 to-accent/5 text-accent border border-accent/30",
   },
   success: {
     default: "bg-success text-success-foreground border-transparent shadow-xs",
@@ -59,6 +67,8 @@ const cardColorMap: Record<CardColor, Record<CardVariant, string>> = {
     flat: "bg-success/10 text-success border-transparent",
     ghost: "bg-transparent text-success border-transparent",
     shadow: "bg-success text-success-foreground border-transparent shadow-md shadow-success/20",
+    glassmorphism: "backdrop-blur-md bg-success/10 text-success border border-success/20 shadow-lg",
+    gradient: "bg-gradient-to-br from-success/20 to-success/5 text-success border border-success/30",
   },
   warning: {
     default: "bg-warning text-warning-foreground border-transparent shadow-xs",
@@ -66,6 +76,8 @@ const cardColorMap: Record<CardColor, Record<CardVariant, string>> = {
     flat: "bg-warning/10 text-warning border-transparent",
     ghost: "bg-transparent text-warning border-transparent",
     shadow: "bg-warning text-warning-foreground border-transparent shadow-md shadow-warning/20",
+    glassmorphism: "backdrop-blur-md bg-warning/10 text-warning border border-warning/20 shadow-lg",
+    gradient: "bg-gradient-to-br from-warning/20 to-warning/5 text-warning border border-warning/30",
   },
   danger: {
     default: "bg-danger text-danger-foreground border-transparent shadow-xs",
@@ -73,6 +85,8 @@ const cardColorMap: Record<CardColor, Record<CardVariant, string>> = {
     flat: "bg-danger/10 text-danger border-transparent",
     ghost: "bg-transparent text-danger border-transparent",
     shadow: "bg-danger text-danger-foreground border-transparent shadow-md shadow-danger/20",
+    glassmorphism: "backdrop-blur-md bg-danger/10 text-danger border border-danger/20 shadow-lg",
+    gradient: "bg-gradient-to-br from-danger/20 to-danger/5 text-danger border border-danger/30",
   },
 };
 
@@ -165,13 +179,19 @@ const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>(
 );
 CardBody.displayName = "CardBody";
 
-export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
+  isBlurred?: boolean;
+}
 
 const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
-  ({ className, ...props }, ref) => (
+  ({ className, isBlurred = false, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("flex items-center p-6 pt-0", className)}
+      className={cn(
+        "flex items-center p-6 pt-0",
+        isBlurred && "backdrop-blur-md bg-background/60 absolute bottom-0 left-0 right-0 z-10 rounded-b-xl border-t border-white/10",
+        className
+      )}
       {...props}
     />
   )

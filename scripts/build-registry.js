@@ -120,6 +120,10 @@ const componentsConfig = {
     dependencies: ["lucide-react"],
     files: ["combobox.tsx"],
   },
+  autocomplete: {
+    dependencies: ["@iconify/react"],
+    files: ["autocomplete.tsx"],
+  },
   datePicker: {
     dependencies: ["lucide-react"],
     files: ["datePicker.tsx"],

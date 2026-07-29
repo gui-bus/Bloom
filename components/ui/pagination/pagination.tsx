@@ -4,13 +4,45 @@ import * as React from "react";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
-const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
-  <nav
-    role="navigation"
-    aria-label="pagination"
-    className={cn("mx-auto flex w-full justify-center", className)}
-    {...props}
-  />
+type PaginationVariant = "default" | "bordered" | "flat" | "light" | "pills";
+type PaginationShape = "square" | "rounded" | "circle";
+type PaginationColor = "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
+
+const PaginationContext = React.createContext<{
+  variant: PaginationVariant;
+  shape: PaginationShape;
+  color: PaginationColor;
+  size: "sm" | "md" | "lg";
+}>({
+  variant: "default",
+  shape: "rounded",
+  color: "primary",
+  size: "md",
+});
+
+export interface PaginationProps extends React.ComponentProps<"nav"> {
+  variant?: PaginationVariant;
+  shape?: PaginationShape;
+  color?: PaginationColor;
+  size?: "sm" | "md" | "lg";
+}
+
+const Pagination = ({
+  className,
+  variant = "default",
+  shape = "rounded",
+  color = "primary",
+  size = "md",
+  ...props
+}: PaginationProps) => (
+  <PaginationContext.Provider value={{ variant, shape, color, size }}>
+    <nav
+      role="navigation"
+      aria-label="pagination"
+      className={cn("mx-auto flex w-full justify-center", className)}
+      {...props}
+    />
+  </PaginationContext.Provider>
 );
 Pagination.displayName = "Pagination";
 
@@ -36,20 +68,60 @@ PaginationItem.displayName = "PaginationItem";
 
 export interface PaginationLinkProps extends React.ComponentProps<"button"> {
   isActive?: boolean;
-  size?: "sm" | "md" | "lg";
 }
+
+const colorActiveMap: Record<PaginationColor, string> = {
+  default: "border-default bg-default text-default-foreground",
+  primary: "border-primary bg-primary text-primary-foreground",
+  secondary: "border-secondary bg-secondary text-secondary-foreground",
+  accent: "border-accent bg-accent text-accent-foreground",
+  success: "border-success bg-success text-success-foreground",
+  warning: "border-warning bg-warning text-warning-foreground",
+  danger: "border-danger bg-danger text-danger-foreground",
+};
+
+const shapeMap: Record<PaginationShape, string> = {
+  square: "rounded-md",
+  rounded: "rounded-xl",
+  circle: "rounded-full",
+};
+
+const sizeMap = {
+  sm: "h-8 min-w-8 text-xs px-2.5",
+  md: "h-9 min-w-9 text-sm px-3",
+  lg: "h-10 min-w-10 text-base px-3.5",
+};
 
 const PaginationLink = ({
   className,
   isActive,
-  size = "md",
   onClick,
   children,
   ...props
 }: PaginationLinkProps) => {
+  const { variant, shape, color, size } = React.useContext(PaginationContext);
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (onClick) onClick(e);
+  };
+
+  const variantClasses = {
+    default: isActive
+      ? `${colorActiveMap[color]} font-semibold shadow-xs`
+      : "border border-border bg-card text-foreground hover:bg-accent hover:text-accent-foreground",
+    bordered: isActive
+      ? `border-2 ${colorActiveMap[color]} font-semibold`
+      : "border border-border bg-transparent text-foreground hover:bg-muted",
+    flat: isActive
+      ? `${colorActiveMap[color]} font-semibold`
+      : "border-transparent bg-muted/50 text-foreground hover:bg-muted",
+    light: isActive
+      ? `border-transparent ${colorActiveMap[color]} font-semibold`
+      : "border-transparent bg-transparent text-foreground hover:text-foreground/80",
+    pills: isActive
+      ? `${colorActiveMap[color]} font-semibold rounded-full`
+      : "border border-border bg-card text-foreground hover:bg-accent hover:text-accent-foreground rounded-full",
   };
 
   return (
@@ -59,13 +131,10 @@ const PaginationLink = ({
       aria-current={isActive ? "page" : undefined}
       onClick={handleClick}
       className={cn(
-        "inline-flex items-center justify-center rounded-xl border border-border bg-card font-medium transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-        size === "sm" && "h-8 min-w-8 text-xs px-2.5",
-        size === "md" && "h-9 min-w-9 text-sm px-3",
-        size === "lg" && "h-10 min-w-10 text-base px-3.5",
-        isActive
-          ? "border-primary bg-primary text-primary-foreground font-semibold shadow-xs"
-          : "text-foreground hover:bg-accent hover:text-accent-foreground",
+        "inline-flex items-center justify-center font-medium transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+        sizeMap[size],
+        variant !== "pills" && shapeMap[shape],
+        variantClasses[variant],
         className
       )}
       {...props}
