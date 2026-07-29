@@ -65,6 +65,10 @@
     "dependencies": []
   },
   {
+    "name": "pagination",
+    "dependencies": []
+  },
+  {
     "name": "progress",
     "dependencies": [
       "@radix-ui/react-progress"
@@ -94,6 +98,10 @@
   },
   {
     "name": "spinner",
+    "dependencies": []
+  },
+  {
+    "name": "stepper",
     "dependencies": []
   },
   {

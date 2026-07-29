@@ -56,6 +56,10 @@ const componentsConfig = {
     dependencies: [],
     files: ["kbd.tsx"],
   },
+  pagination: {
+    dependencies: [],
+    files: ["pagination.tsx"],
+  },
   progress: {
     dependencies: ["@radix-ui/react-progress"],
     files: ["progress.tsx"],
@@ -79,6 +83,10 @@ const componentsConfig = {
   spinner: {
     dependencies: [],
     files: ["spinner.tsx"],
+  },
+  stepper: {
+    dependencies: [],
+    files: ["stepper.tsx"],
   },
   tabs: {
     dependencies: ["@radix-ui/react-tabs", "framer-motion", "class-variance-authority"],
