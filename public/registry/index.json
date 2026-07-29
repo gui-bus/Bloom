@@ -51,6 +51,10 @@
     ]
   },
   {
+    "name": "kbd",
+    "dependencies": []
+  },
+  {
     "name": "progress",
     "dependencies": [
       "@radix-ui/react-progress"

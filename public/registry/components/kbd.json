@@ -1,0 +1,10 @@
+{
+  "name": "kbd",
+  "dependencies": [],
+  "files": [
+    {
+      "name": "kbd.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\nconst kbdVariants = cva(\n  \"inline-flex items-center justify-center font-mono font-medium select-none rounded-md border border-border bg-muted/60 text-muted-foreground shadow-2xs transition-colors\",\n  {\n    variants: {\n      size: {\n        sm: \"h-5 px-1.5 text-[10px]\",\n        md: \"h-6 px-2 text-xs\",\n        lg: \"h-7 px-2.5 text-sm\",\n      },\n    },\n    defaultVariants: {\n      size: \"md\",\n    },\n  }\n);\n\nexport interface KbdProps\n  extends React.HTMLAttributes<HTMLElement>,\n    VariantProps<typeof kbdVariants> {}\n\nconst Kbd = React.forwardRef<HTMLElement, KbdProps>(\n  ({ className, size, children, ...props }, ref) => {\n    return (\n      <kbd\n        ref={ref}\n        className={cn(kbdVariants({ size, className }))}\n        {...props}\n      >\n        {children}\n      </kbd>\n    );\n  }\n);\nKbd.displayName = \"Kbd\";\n\nexport { Kbd, kbdVariants };\n"
+    }
+  ]
+}
