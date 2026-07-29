@@ -43,6 +43,7 @@ export function Sidebar() {
         { href: "/components/badge", label: "Badge" },
         { href: "/components/button", label: "Button" },
         { href: "/components/buttonGroup", label: "Button Group" },
+        { href: "/components/collapsible", label: "Collapsible" },
         { href: "/components/progress", label: "Progress" },
         { href: "/components/scrollArea", label: "Scroll Area" },
         { href: "/components/separator", label: "Separator" },

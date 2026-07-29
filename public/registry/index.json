@@ -33,6 +33,12 @@
     "dependencies": []
   },
   {
+    "name": "collapsible",
+    "dependencies": [
+      "@radix-ui/react-collapsible"
+    ]
+  },
+  {
     "name": "progress",
     "dependencies": [
       "@radix-ui/react-progress"

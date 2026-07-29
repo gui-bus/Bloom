@@ -32,6 +32,10 @@ const componentsConfig = {
     dependencies: [],
     files: ["buttonGroup.tsx"],
   },
+  collapsible: {
+    dependencies: ["@radix-ui/react-collapsible"],
+    files: ["collapsible.tsx"],
+  },
   progress: {
     dependencies: ["@radix-ui/react-progress"],
     files: ["progress.tsx"],
