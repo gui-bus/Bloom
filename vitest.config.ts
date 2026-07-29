@@ -12,7 +12,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
-    maxConcurrency: process.env.CI ? 2 : 5,
-    isolate: false,
+    isolate: true,
+    fileParallelism: false,
   },
 });
