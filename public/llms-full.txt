@@ -1,0 +1,394 @@
+# Bloom UI — Full LLM Documentation Reference
+
+> Complete technical documentation for all components in the Bloom UI ecosystem.
+
+## CLI Setup Guide
+Initialize Bloom UI:
+```bash
+npx @bloomui-react/cli init
+```
+
+Add any component:
+```bash
+npx @bloomui-react/cli add <component-name>
+```
+
+## Component Catalog
+
+---
+
+### Accordion
+URL: https://bloom.guibus.dev/components/accordion
+CLI Command: `npx @bloomui-react/cli add accordion`
+
+---
+
+### Alert
+URL: https://bloom.guibus.dev/components/alert
+CLI Command: `npx @bloomui-react/cli add alert`
+
+---
+
+### Alert Dialog
+URL: https://bloom.guibus.dev/components/alertDialog
+CLI Command: `npx @bloomui-react/cli add alertDialog`
+
+---
+
+### Avatar
+URL: https://bloom.guibus.dev/components/avatar
+CLI Command: `npx @bloomui-react/cli add avatar`
+
+---
+
+### Avatar Group
+URL: https://bloom.guibus.dev/components/avatarGroup
+CLI Command: `npx @bloomui-react/cli add avatarGroup`
+
+---
+
+### Aspect Ratio
+URL: https://bloom.guibus.dev/components/aspectRatio
+CLI Command: `npx @bloomui-react/cli add aspectRatio`
+
+---
+
+### Badge
+URL: https://bloom.guibus.dev/components/badge
+CLI Command: `npx @bloomui-react/cli add badge`
+
+---
+
+### Breadcrumb
+URL: https://bloom.guibus.dev/components/breadcrumb
+CLI Command: `npx @bloomui-react/cli add breadcrumb`
+
+---
+
+### Button
+URL: https://bloom.guibus.dev/components/button
+CLI Command: `npx @bloomui-react/cli add button`
+
+---
+
+### Button Group
+URL: https://bloom.guibus.dev/components/buttonGroup
+CLI Command: `npx @bloomui-react/cli add buttonGroup`
+
+---
+
+### Card
+URL: https://bloom.guibus.dev/components/card
+CLI Command: `npx @bloomui-react/cli add card`
+
+---
+
+### Carousel
+URL: https://bloom.guibus.dev/components/carousel
+CLI Command: `npx @bloomui-react/cli add carousel`
+
+---
+
+### Chart
+URL: https://bloom.guibus.dev/components/chart
+CLI Command: `npx @bloomui-react/cli add chart`
+
+---
+
+### Checkbox
+URL: https://bloom.guibus.dev/components/checkbox
+CLI Command: `npx @bloomui-react/cli add checkbox`
+
+---
+
+### Code Block
+URL: https://bloom.guibus.dev/components/codeBlock
+CLI Command: `npx @bloomui-react/cli add codeBlock`
+
+---
+
+### Collapsible
+URL: https://bloom.guibus.dev/components/collapsible
+CLI Command: `npx @bloomui-react/cli add collapsible`
+
+---
+
+### Color Picker
+URL: https://bloom.guibus.dev/components/colorPicker
+CLI Command: `npx @bloomui-react/cli add colorPicker`
+
+---
+
+### Combobox
+URL: https://bloom.guibus.dev/components/combobox
+CLI Command: `npx @bloomui-react/cli add combobox`
+
+---
+
+### Command
+URL: https://bloom.guibus.dev/components/command
+CLI Command: `npx @bloomui-react/cli add command`
+
+---
+
+### Context Menu
+URL: https://bloom.guibus.dev/components/contextMenu
+CLI Command: `npx @bloomui-react/cli add contextMenu`
+
+---
+
+### Data Table
+URL: https://bloom.guibus.dev/components/dataTable
+CLI Command: `npx @bloomui-react/cli add dataTable`
+
+---
+
+### Date Picker
+URL: https://bloom.guibus.dev/components/datePicker
+CLI Command: `npx @bloomui-react/cli add datePicker`
+
+---
+
+### Dialog
+URL: https://bloom.guibus.dev/components/dialog
+CLI Command: `npx @bloomui-react/cli add dialog`
+
+---
+
+### Drawer
+URL: https://bloom.guibus.dev/components/drawer
+CLI Command: `npx @bloomui-react/cli add drawer`
+
+---
+
+### Dropdown Menu
+URL: https://bloom.guibus.dev/components/dropdownMenu
+CLI Command: `npx @bloomui-react/cli add dropdownMenu`
+
+---
+
+### File Upload
+URL: https://bloom.guibus.dev/components/fileUpload
+CLI Command: `npx @bloomui-react/cli add fileUpload`
+
+---
+
+### Form
+URL: https://bloom.guibus.dev/components/form
+CLI Command: `npx @bloomui-react/cli add form`
+
+---
+
+### Form Field
+URL: https://bloom.guibus.dev/components/formField
+CLI Command: `npx @bloomui-react/cli add formField`
+
+---
+
+### Hover Card
+URL: https://bloom.guibus.dev/components/hoverCard
+CLI Command: `npx @bloomui-react/cli add hoverCard`
+
+---
+
+### Image
+URL: https://bloom.guibus.dev/components/image
+CLI Command: `npx @bloomui-react/cli add image`
+
+---
+
+### Input
+URL: https://bloom.guibus.dev/components/input
+CLI Command: `npx @bloomui-react/cli add input`
+
+---
+
+### Input OTP
+URL: https://bloom.guibus.dev/components/inputOtp
+CLI Command: `npx @bloomui-react/cli add inputOtp`
+
+---
+
+### Kbd
+URL: https://bloom.guibus.dev/components/kbd
+CLI Command: `npx @bloomui-react/cli add kbd`
+
+---
+
+### Label
+URL: https://bloom.guibus.dev/components/label
+CLI Command: `npx @bloomui-react/cli add label`
+
+---
+
+### Link
+URL: https://bloom.guibus.dev/components/link
+CLI Command: `npx @bloomui-react/cli add link`
+
+---
+
+### List
+URL: https://bloom.guibus.dev/components/list
+CLI Command: `npx @bloomui-react/cli add list`
+
+---
+
+### Menubar
+URL: https://bloom.guibus.dev/components/menubar
+CLI Command: `npx @bloomui-react/cli add menubar`
+
+---
+
+### Navigation Menu
+URL: https://bloom.guibus.dev/components/navigationMenu
+CLI Command: `npx @bloomui-react/cli add navigationMenu`
+
+---
+
+### Number Input
+URL: https://bloom.guibus.dev/components/numberInput
+CLI Command: `npx @bloomui-react/cli add numberInput`
+
+---
+
+### Progress
+URL: https://bloom.guibus.dev/components/progress
+CLI Command: `npx @bloomui-react/cli add progress`
+
+---
+
+### Pagination
+URL: https://bloom.guibus.dev/components/pagination
+CLI Command: `npx @bloomui-react/cli add pagination`
+
+---
+
+### Popover
+URL: https://bloom.guibus.dev/components/popover
+CLI Command: `npx @bloomui-react/cli add popover`
+
+---
+
+### Radio Group
+URL: https://bloom.guibus.dev/components/radioGroup
+CLI Command: `npx @bloomui-react/cli add radioGroup`
+
+---
+
+### Rating
+URL: https://bloom.guibus.dev/components/rating
+CLI Command: `npx @bloomui-react/cli add rating`
+
+---
+
+### Resizable
+URL: https://bloom.guibus.dev/components/resizable
+CLI Command: `npx @bloomui-react/cli add resizable`
+
+---
+
+### Scroll Area
+URL: https://bloom.guibus.dev/components/scrollArea
+CLI Command: `npx @bloomui-react/cli add scrollArea`
+
+---
+
+### Select
+URL: https://bloom.guibus.dev/components/select
+CLI Command: `npx @bloomui-react/cli add select`
+
+---
+
+### Separator
+URL: https://bloom.guibus.dev/components/separator
+CLI Command: `npx @bloomui-react/cli add separator`
+
+---
+
+### Sheet
+URL: https://bloom.guibus.dev/components/sheet
+CLI Command: `npx @bloomui-react/cli add sheet`
+
+---
+
+### Skeleton
+URL: https://bloom.guibus.dev/components/skeleton
+CLI Command: `npx @bloomui-react/cli add skeleton`
+
+---
+
+### Slider
+URL: https://bloom.guibus.dev/components/slider
+CLI Command: `npx @bloomui-react/cli add slider`
+
+---
+
+### Spinner
+URL: https://bloom.guibus.dev/components/spinner
+CLI Command: `npx @bloomui-react/cli add spinner`
+
+---
+
+### Stat Card
+URL: https://bloom.guibus.dev/components/statCard
+CLI Command: `npx @bloomui-react/cli add statCard`
+
+---
+
+### Stepper
+URL: https://bloom.guibus.dev/components/stepper
+CLI Command: `npx @bloomui-react/cli add stepper`
+
+---
+
+### Switch
+URL: https://bloom.guibus.dev/components/switch
+CLI Command: `npx @bloomui-react/cli add switch`
+
+---
+
+### Table
+URL: https://bloom.guibus.dev/components/table
+CLI Command: `npx @bloomui-react/cli add table`
+
+---
+
+### Tabs
+URL: https://bloom.guibus.dev/components/tabs
+CLI Command: `npx @bloomui-react/cli add tabs`
+
+---
+
+### Textarea
+URL: https://bloom.guibus.dev/components/textarea
+CLI Command: `npx @bloomui-react/cli add textarea`
+
+---
+
+### Toast
+URL: https://bloom.guibus.dev/components/toast
+CLI Command: `npx @bloomui-react/cli add toast`
+
+---
+
+### Toggle
+URL: https://bloom.guibus.dev/components/toggle
+CLI Command: `npx @bloomui-react/cli add toggle`
+
+---
+
+### Toggle Group
+URL: https://bloom.guibus.dev/components/toggleGroup
+CLI Command: `npx @bloomui-react/cli add toggleGroup`
+
+---
+
+### Tooltip
+URL: https://bloom.guibus.dev/components/tooltip
+CLI Command: `npx @bloomui-react/cli add tooltip`
+
+---
+
+### Typography
+URL: https://bloom.guibus.dev/components/typography
+CLI Command: `npx @bloomui-react/cli add typography`

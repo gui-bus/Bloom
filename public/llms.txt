@@ -1,0 +1,83 @@
+# Bloom UI
+
+> Bloom UI is a professional React 19 component library built on top of Radix UI, Tailwind CSS v4, and Framer Motion. Clean neutral theme tokens, full accessibility standards, and high-performance micro-animations.
+
+## Overview
+- [Introduction](https://bloom.guibus.dev/): Main overview and core principles.
+- [Installation](https://bloom.guibus.dev/installation): CLI setup guide and requirements.
+
+## CLI Usage
+To initialize Bloom UI in a project:
+```bash
+npx @bloomui-react/cli init
+```
+
+To add any component:
+```bash
+npx @bloomui-react/cli add <component-name>
+```
+
+## Component Catalog (63 UI Primitives)
+- [Accordion](https://bloom.guibus.dev/components/accordion): UI component for accordion.
+- [Alert](https://bloom.guibus.dev/components/alert): UI component for alert.
+- [Alert Dialog](https://bloom.guibus.dev/components/alertDialog): UI component for alert dialog.
+- [Avatar](https://bloom.guibus.dev/components/avatar): UI component for avatar.
+- [Avatar Group](https://bloom.guibus.dev/components/avatarGroup): UI component for avatar group.
+- [Aspect Ratio](https://bloom.guibus.dev/components/aspectRatio): UI component for aspect ratio.
+- [Badge](https://bloom.guibus.dev/components/badge): UI component for badge.
+- [Breadcrumb](https://bloom.guibus.dev/components/breadcrumb): UI component for breadcrumb.
+- [Button](https://bloom.guibus.dev/components/button): UI component for button.
+- [Button Group](https://bloom.guibus.dev/components/buttonGroup): UI component for button group.
+- [Card](https://bloom.guibus.dev/components/card): UI component for card.
+- [Carousel](https://bloom.guibus.dev/components/carousel): UI component for carousel.
+- [Chart](https://bloom.guibus.dev/components/chart): UI component for chart.
+- [Checkbox](https://bloom.guibus.dev/components/checkbox): UI component for checkbox.
+- [Code Block](https://bloom.guibus.dev/components/codeBlock): UI component for code block.
+- [Collapsible](https://bloom.guibus.dev/components/collapsible): UI component for collapsible.
+- [Color Picker](https://bloom.guibus.dev/components/colorPicker): UI component for color picker.
+- [Combobox](https://bloom.guibus.dev/components/combobox): UI component for combobox.
+- [Command](https://bloom.guibus.dev/components/command): UI component for command.
+- [Context Menu](https://bloom.guibus.dev/components/contextMenu): UI component for context menu.
+- [Data Table](https://bloom.guibus.dev/components/dataTable): UI component for data table.
+- [Date Picker](https://bloom.guibus.dev/components/datePicker): UI component for date picker.
+- [Dialog](https://bloom.guibus.dev/components/dialog): UI component for dialog.
+- [Drawer](https://bloom.guibus.dev/components/drawer): UI component for drawer.
+- [Dropdown Menu](https://bloom.guibus.dev/components/dropdownMenu): UI component for dropdown menu.
+- [File Upload](https://bloom.guibus.dev/components/fileUpload): UI component for file upload.
+- [Form](https://bloom.guibus.dev/components/form): UI component for form.
+- [Form Field](https://bloom.guibus.dev/components/formField): UI component for form field.
+- [Hover Card](https://bloom.guibus.dev/components/hoverCard): UI component for hover card.
+- [Image](https://bloom.guibus.dev/components/image): UI component for image.
+- [Input](https://bloom.guibus.dev/components/input): UI component for input.
+- [Input OTP](https://bloom.guibus.dev/components/inputOtp): UI component for input otp.
+- [Kbd](https://bloom.guibus.dev/components/kbd): UI component for kbd.
+- [Label](https://bloom.guibus.dev/components/label): UI component for label.
+- [Link](https://bloom.guibus.dev/components/link): UI component for link.
+- [List](https://bloom.guibus.dev/components/list): UI component for list.
+- [Menubar](https://bloom.guibus.dev/components/menubar): UI component for menubar.
+- [Navigation Menu](https://bloom.guibus.dev/components/navigationMenu): UI component for navigation menu.
+- [Number Input](https://bloom.guibus.dev/components/numberInput): UI component for number input.
+- [Progress](https://bloom.guibus.dev/components/progress): UI component for progress.
+- [Pagination](https://bloom.guibus.dev/components/pagination): UI component for pagination.
+- [Popover](https://bloom.guibus.dev/components/popover): UI component for popover.
+- [Radio Group](https://bloom.guibus.dev/components/radioGroup): UI component for radio group.
+- [Rating](https://bloom.guibus.dev/components/rating): UI component for rating.
+- [Resizable](https://bloom.guibus.dev/components/resizable): UI component for resizable.
+- [Scroll Area](https://bloom.guibus.dev/components/scrollArea): UI component for scroll area.
+- [Select](https://bloom.guibus.dev/components/select): UI component for select.
+- [Separator](https://bloom.guibus.dev/components/separator): UI component for separator.
+- [Sheet](https://bloom.guibus.dev/components/sheet): UI component for sheet.
+- [Skeleton](https://bloom.guibus.dev/components/skeleton): UI component for skeleton.
+- [Slider](https://bloom.guibus.dev/components/slider): UI component for slider.
+- [Spinner](https://bloom.guibus.dev/components/spinner): UI component for spinner.
+- [Stat Card](https://bloom.guibus.dev/components/statCard): UI component for stat card.
+- [Stepper](https://bloom.guibus.dev/components/stepper): UI component for stepper.
+- [Switch](https://bloom.guibus.dev/components/switch): UI component for switch.
+- [Table](https://bloom.guibus.dev/components/table): UI component for table.
+- [Tabs](https://bloom.guibus.dev/components/tabs): UI component for tabs.
+- [Textarea](https://bloom.guibus.dev/components/textarea): UI component for textarea.
+- [Toast](https://bloom.guibus.dev/components/toast): UI component for toast.
+- [Toggle](https://bloom.guibus.dev/components/toggle): UI component for toggle.
+- [Toggle Group](https://bloom.guibus.dev/components/toggleGroup): UI component for toggle group.
+- [Tooltip](https://bloom.guibus.dev/components/tooltip): UI component for tooltip.
+- [Typography](https://bloom.guibus.dev/components/typography): UI component for typography.
