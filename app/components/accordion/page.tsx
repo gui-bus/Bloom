@@ -25,7 +25,7 @@ export default function AccordionPage() {
   const [controlledValue, setControlledValue] = React.useState<string>("item-2");
 
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Accordion"
         description="A vertically stacked set of interactive headings that expand or collapse associated content sections, supporting controlled states, custom icons, and disabled items."
@@ -558,6 +558,6 @@ return (
           </div>
         }
       />
-    </main>
+    </div>
   );
 }
