@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Checkbox",
-  description: "Accessible checkbox component built with Radix UI, supporting custom colors, labels, and description text.",
-};
-
 import { Checkbox } from "@/components/ui/checkbox/checkbox";
 import { checkboxCode } from "@/components/ui/checkbox/checkbox.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -21,10 +17,10 @@ import {
 
 export default function CheckboxComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Checkbox"
-        description="A control that allows the user to toggle between checked and unchecked states, powered by Radix UI for ARIA accessibility."
+        description="An accessible control that allows toggling between checked and unchecked states, powered by Radix UI with support for colors, labels, descriptions, and card mode."
       />
 
       <Tabs defaultValue="checkbox">
@@ -42,17 +38,17 @@ export default function CheckboxComponentPage() {
             code={checkboxCode}
             componentName="checkbox.tsx"
             description="Core implementation of the Checkbox component built on Radix UI."
-            tags={["React", "Radix UI", "Tailwind", "Forms"]}
+            tags={["React", "Radix UI", "Tailwind", "Forms", "Checkbox"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Standard checkbox with label."
+        title="Default"
+        description="Standard checkbox control displaying an active state with label."
         preview={
-          <div className="flex flex-col gap-3">
+          <div className="w-full">
             <Checkbox label="Accept terms and conditions" defaultChecked />
           </div>
         }
@@ -62,51 +58,129 @@ export default function CheckboxComponentPage() {
       {/* Colors */}
       <DocsComponent
         title="Colors"
-        description="Supports primary, secondary, accent, success, warning, and danger themes."
+        description="Defines the checked color theme using the 'color' prop. Stacked vertically for clear visual comparison."
         preview={
-          <div className="flex flex-wrap gap-4">
-            <Checkbox color="primary" label="Primary" defaultChecked />
-            <Checkbox color="secondary" label="Secondary" defaultChecked />
-            <Checkbox color="accent" label="Accent" defaultChecked />
-            <Checkbox color="success" label="Success" defaultChecked />
-            <Checkbox color="warning" label="Warning" defaultChecked />
-            <Checkbox color="danger" label="Danger" defaultChecked />
+          <div className="w-full flex flex-col gap-4">
+            <Checkbox color="default" label="Default Theme" defaultChecked />
+            <Checkbox color="primary" label="Primary Theme" defaultChecked />
+            <Checkbox color="secondary" label="Secondary Theme" defaultChecked />
+            <Checkbox color="accent" label="Accent Theme" defaultChecked />
+            <Checkbox color="success" label="Success Theme" defaultChecked />
+            <Checkbox color="warning" label="Warning Theme" defaultChecked />
+            <Checkbox color="danger" label="Danger Theme" defaultChecked />
           </div>
         }
-        code={`<div className="flex flex-wrap gap-4">
-  <Checkbox color="primary" label="Primary" defaultChecked />
-  <Checkbox color="secondary" label="Secondary" defaultChecked />
-  <Checkbox color="accent" label="Accent" defaultChecked />
-  <Checkbox color="success" label="Success" defaultChecked />
-  <Checkbox color="warning" label="Warning" defaultChecked />
-  <Checkbox color="danger" label="Danger" defaultChecked />
+        code={`<div className="space-y-4 w-full">
+  <Checkbox color="default" label="Default Theme" defaultChecked />
+  <Checkbox color="primary" label="Primary Theme" defaultChecked />
+  <Checkbox color="secondary" label="Secondary Theme" defaultChecked />
+  <Checkbox color="accent" label="Accent Theme" defaultChecked />
+  <Checkbox color="success" label="Success Theme" defaultChecked />
+  <Checkbox color="warning" label="Warning Theme" defaultChecked />
+  <Checkbox color="danger" label="Danger Theme" defaultChecked />
 </div>`}
         props={["color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
       />
 
-      {/* Description */}
+      {/* Card Mode (isCard) */}
+      <DocsComponent
+        title="Card Mode (isCard)"
+        description="Encloses the checkbox and label inside an interactive neutral card container."
+        preview={
+          <div className="w-full flex flex-col gap-4">
+            <Checkbox
+              isCard
+              color="primary"
+              label="Standard Delivery"
+              description="Delivered in 3-5 business days"
+              defaultChecked
+            />
+            <Checkbox
+              isCard
+              color="success"
+              label="Express Courier"
+              description="Guaranteed next-day delivery with live tracking"
+            />
+          </div>
+        }
+        code={`<div className="space-y-4 w-full">
+  <Checkbox
+    isCard
+    color="primary"
+    label="Standard Delivery"
+    description="Delivered in 3-5 business days"
+    defaultChecked
+  />
+  <Checkbox
+    isCard
+    color="success"
+    label="Express Courier"
+    description="Guaranteed next-day delivery with live tracking"
+  />
+</div>`}
+        props={["isCard: boolean"]}
+      />
+
+      {/* With Description */}
       <DocsComponent
         title="With Description"
-        description="Provide additional context below the checkbox label."
+        description="Provides secondary descriptive text below the main checkbox label."
         preview={
-          <div className="flex flex-col gap-3">
+          <div className="w-full flex flex-col gap-4">
             <Checkbox
               label="Enable push notifications"
-              description="Receive instant alerts on your desktop or mobile device."
+              description="Receive instant security alerts and account activity updates on your devices."
               defaultChecked
             />
           </div>
         }
         code={`<Checkbox
   label="Enable push notifications"
-  description="Receive instant alerts on your desktop or mobile device."
+  description="Receive instant security alerts and account activity updates on your devices."
   defaultChecked
 />`}
         props={["description: ReactNode"]}
       />
 
+      {/* Disabled State */}
+      <DocsComponent
+        title="Disabled State"
+        description="Disables user interaction and applies muted opacity styling."
+        preview={
+          <div className="w-full flex flex-col gap-4">
+            <Checkbox label="Disabled unchecked" disabled />
+            <Checkbox label="Disabled checked" defaultChecked disabled />
+          </div>
+        }
+        code={`<div className="space-y-4 w-full">
+  <Checkbox label="Disabled unchecked" disabled />
+  <Checkbox label="Disabled checked" defaultChecked disabled />
+</div>`}
+        props={["disabled: boolean"]}
+      />
+
+      {/* Invalid State */}
+      <DocsComponent
+        title="Invalid State"
+        description="Applies error border and text styling for form validation errors."
+        preview={
+          <div className="w-full flex flex-col gap-4">
+            <Checkbox
+              isInvalid
+              label="You must agree to the privacy policy to proceed"
+            />
+          </div>
+        }
+        code={`<Checkbox
+  isInvalid
+  label="You must agree to the privacy policy to proceed"
+/>`}
+        props={["isInvalid: boolean"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Checkbox Table */}
       <DocsComponent
         title="Props — Checkbox"
         description="Properties to configure the Checkbox component."
@@ -134,19 +208,37 @@ export default function CheckboxComponentPage() {
                   <td className="px-3 py-2 font-mono text-primary">label</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Clickable label content.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Clickable text or element for the checkbox.</td>
                 </tr>
-                <tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">description</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Secondary text below the label.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Secondary text rendered below the label.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isCard</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Encloses the control inside an interactive card container.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isInvalid</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Applies red error border and text styling.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">disabled</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Disables user interaction and applies muted opacity styling.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }
