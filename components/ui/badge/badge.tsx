@@ -1,4 +1,5 @@
-import { cva, type VariantProps } from "class-variance-authority";
+"use client";
+
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { designRadius } from "@/lib/design-system";
@@ -12,7 +13,7 @@ type BadgeColor =
   | "warning"
   | "danger";
 
-type BadgeVariant = "default" | "bordered" | "flat" | "light";
+type BadgeVariant = "default" | "bordered" | "flat" | "ghost" | "shadow" | "dot";
 
 type BadgeSize = "sm" | "md" | "lg";
 
@@ -24,10 +25,9 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
   dot?: boolean;
-  /**
-   * When true, wraps the badge in a live region that announces
-   * content changes to screen readers (e.g. notification counters).
-   */
+  isPressable?: boolean;
+  isDisabled?: boolean;
+  isInvisible?: boolean;
   live?: boolean;
 }
 
@@ -39,57 +39,71 @@ const badgeSizes: Record<BadgeSize, string> = {
 
 const badgeColorMap: Record<BadgeColor, Record<BadgeVariant, string>> = {
   default: {
-    default: "bg-default text-default-foreground",
-    bordered: "border border-default text-default-foreground bg-transparent",
-    flat: "bg-default/20 text-default-foreground",
-    light: "bg-transparent text-default-foreground",
+    default: "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900",
+    bordered: "border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 bg-transparent",
+    flat: "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-transparent",
+    ghost: "bg-transparent text-zinc-900 dark:text-zinc-100 border border-transparent",
+    shadow: "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 shadow-md",
+    dot: "bg-transparent text-zinc-900 dark:text-zinc-100 border border-transparent",
   },
   primary: {
-    default: "bg-primary text-primary-foreground",
-    bordered: "border border-primary text-primary bg-transparent",
-    flat: "bg-primary/20 text-primary",
-    light: "bg-transparent text-primary",
+    default: "bg-sky-600 text-white dark:bg-sky-500 dark:text-white",
+    bordered: "border border-sky-500 text-sky-600 dark:text-sky-400 bg-transparent",
+    flat: "bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-transparent",
+    ghost: "bg-transparent text-sky-600 dark:text-sky-400 border border-transparent",
+    shadow: "bg-sky-600 text-white dark:bg-sky-500 shadow-md shadow-sky-500/20",
+    dot: "bg-transparent text-sky-600 dark:text-sky-400 border border-transparent",
   },
   secondary: {
-    default: "bg-secondary text-secondary-foreground",
-    bordered: "border border-secondary text-secondary bg-transparent",
-    flat: "bg-secondary/20 text-secondary",
-    light: "bg-transparent text-secondary",
+    default: "bg-purple-600 text-white dark:bg-purple-500 dark:text-white",
+    bordered: "border border-purple-500 text-purple-600 dark:text-purple-400 bg-transparent",
+    flat: "bg-purple-500/15 text-purple-600 dark:text-purple-400 border border-transparent",
+    ghost: "bg-transparent text-purple-600 dark:text-purple-400 border border-transparent",
+    shadow: "bg-purple-600 text-white dark:bg-purple-500 shadow-md shadow-purple-500/20",
+    dot: "bg-transparent text-purple-600 dark:text-purple-400 border border-transparent",
   },
   accent: {
-    default: "bg-accent text-accent-foreground",
-    bordered: "border border-accent text-accent bg-transparent",
-    flat: "bg-accent/20 text-accent",
-    light: "bg-transparent text-accent",
+    default: "bg-pink-600 text-white dark:bg-pink-500 dark:text-white",
+    bordered: "border border-pink-500 text-pink-600 dark:text-pink-400 bg-transparent",
+    flat: "bg-pink-500/15 text-pink-600 dark:text-pink-400 border border-transparent",
+    ghost: "bg-transparent text-pink-600 dark:text-pink-400 border border-transparent",
+    shadow: "bg-pink-600 text-white dark:bg-pink-500 shadow-md shadow-pink-500/20",
+    dot: "bg-transparent text-pink-600 dark:text-pink-400 border border-transparent",
   },
   success: {
-    default: "bg-success text-success-foreground",
-    bordered: "border border-success text-success bg-transparent",
-    flat: "bg-success/20 text-success",
-    light: "bg-transparent text-success",
+    default: "bg-emerald-600 text-white dark:bg-emerald-500 dark:text-white",
+    bordered: "border border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-transparent",
+    flat: "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-transparent",
+    ghost: "bg-transparent text-emerald-600 dark:text-emerald-400 border border-transparent",
+    shadow: "bg-emerald-600 text-white dark:bg-emerald-500 shadow-md shadow-emerald-500/20",
+    dot: "bg-transparent text-emerald-600 dark:text-emerald-400 border border-transparent",
   },
   warning: {
-    default: "bg-warning text-warning-foreground",
-    bordered: "border border-warning text-warning bg-transparent",
-    flat: "bg-warning/20 text-warning",
-    light: "bg-transparent text-warning",
+    default: "bg-amber-600 text-white dark:bg-amber-500 dark:text-white",
+    bordered: "border border-amber-500 text-amber-600 dark:text-amber-400 bg-transparent",
+    flat: "bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-transparent",
+    ghost: "bg-transparent text-amber-600 dark:text-amber-400 border border-transparent",
+    shadow: "bg-amber-600 text-white dark:bg-amber-500 shadow-md shadow-amber-500/20",
+    dot: "bg-transparent text-amber-600 dark:text-amber-400 border border-transparent",
   },
   danger: {
-    default: "bg-danger text-danger-foreground",
-    bordered: "border border-danger text-danger bg-transparent",
-    flat: "bg-danger/20 text-danger",
-    light: "bg-transparent text-danger",
+    default: "bg-rose-600 text-white dark:bg-rose-500 dark:text-white",
+    bordered: "border border-rose-500 text-rose-600 dark:text-rose-400 bg-transparent",
+    flat: "bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-transparent",
+    ghost: "bg-transparent text-rose-600 dark:text-rose-400 border border-transparent",
+    shadow: "bg-rose-600 text-white dark:bg-rose-500 shadow-md shadow-rose-500/20",
+    dot: "bg-transparent text-rose-600 dark:text-rose-400 border border-transparent",
   },
 };
 
 const dotColorMap: Record<BadgeColor, string> = {
-  default: "bg-default-foreground",
-  primary: "bg-primary",
-  secondary: "bg-secondary",
-  accent: "bg-accent",
-  success: "bg-success",
-  warning: "bg-warning",
-  danger: "bg-danger",
+  default: "bg-zinc-600 dark:bg-zinc-400",
+  primary: "bg-sky-500",
+  secondary: "bg-purple-500",
+  accent: "bg-pink-500",
+  success: "bg-emerald-500",
+  warning: "bg-amber-500",
+  danger: "bg-rose-500",
 };
 
 const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
@@ -102,6 +116,9 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       startContent,
       endContent,
       dot = false,
+      isPressable = false,
+      isDisabled = false,
+      isInvisible = false,
       live = false,
       children,
       className,
@@ -109,26 +126,29 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     },
     ref
   ) => {
+    if (isInvisible) return null;
+
+    const isDotMode = dot || variant === "dot";
+
     return (
       <span
         ref={ref}
-        // aria-live="polite" allows screen readers to announce badge content
-        // changes without interrupting the current reading flow.
-        // Use live=true for dynamic counters (e.g. notification badges).
         aria-live={live ? "polite" : undefined}
         aria-atomic={live ? "true" : undefined}
         className={cn(
-          "inline-flex items-center font-medium",
+          "inline-flex items-center font-semibold select-none transition-all duration-200 ease-in-out",
           badgeSizes[size],
           designRadius[radius],
           badgeColorMap[color][variant],
+          isPressable &&
+            !isDisabled &&
+            "cursor-pointer hover:scale-105 active:scale-95 hover:opacity-90 will-change-transform outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring",
+          isDisabled && "opacity-50 grayscale cursor-not-allowed pointer-events-none",
           className
         )}
         {...props}
       >
-        {dot && (
-          // aria-hidden: the dot is a purely decorative visual indicator.
-          // The badge's text content already conveys the status.
+        {isDotMode && (
           <span
             aria-hidden="true"
             className={cn(
@@ -138,13 +158,11 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
           />
         )}
         {startContent && (
-          // aria-hidden: icons inside badges are decorative.
-          // The badge text is the accessible label.
           <span aria-hidden="true" className="shrink-0">
             {startContent}
           </span>
         )}
-        {children}
+        {children && <span>{children}</span>}
         {endContent && (
           <span aria-hidden="true" className="shrink-0">
             {endContent}
@@ -158,3 +176,4 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
 Badge.displayName = "Badge";
 
 export { Badge };
+export type { BadgeColor, BadgeVariant, BadgeSize };

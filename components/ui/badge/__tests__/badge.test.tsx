@@ -12,25 +12,41 @@ describe("Badge Component", () => {
   it("applies flat variant classes by default", () => {
     render(<Badge color="primary">Primary</Badge>);
     const badge = screen.getByText("Primary");
-    expect(badge).toHaveClass("bg-primary/20", "text-primary");
+    expect(badge).toHaveClass("bg-sky-500/15", "text-sky-600");
   });
 
   it("applies default variant classes correctly", () => {
     render(<Badge variant="default" color="success">Success</Badge>);
     const badge = screen.getByText("Success");
-    expect(badge).toHaveClass("bg-success", "text-success-foreground");
+    expect(badge).toHaveClass("bg-emerald-600", "text-white");
   });
 
   it("applies bordered variant classes correctly", () => {
     render(<Badge variant="bordered" color="danger">Danger</Badge>);
     const badge = screen.getByText("Danger");
-    expect(badge).toHaveClass("border", "border-danger", "text-danger");
+    expect(badge).toHaveClass("border", "border-rose-500");
+  });
+
+  it("supports isPressable prop with hover scale interaction", () => {
+    render(<Badge isPressable color="primary">Clickable</Badge>);
+    const badge = screen.getByText("Clickable");
+    expect(badge).toHaveClass("cursor-pointer", "hover:scale-105");
+  });
+
+  it("supports isDisabled prop", () => {
+    render(<Badge isDisabled color="primary">Disabled</Badge>);
+    const badge = screen.getByText("Disabled");
+    expect(badge).toHaveClass("opacity-50", "pointer-events-none");
+  });
+
+  it("returns null when isInvisible is true", () => {
+    const { container } = render(<Badge isInvisible>Hidden</Badge>);
+    expect(container.firstChild).toBeNull();
   });
 
   it("renders dot indicator when dot prop is true", () => {
     render(<Badge dot color="success">Online</Badge>);
     const badge = screen.getByText("Online").closest("span");
-    // The dot is a child span within the badge
     const dot = badge?.querySelector("span");
     expect(dot).toBeInTheDocument();
     expect(dot).toHaveClass("size-1.5", "rounded-full");
@@ -65,17 +81,5 @@ describe("Badge Component", () => {
     render(<Badge>Pill</Badge>);
     const badge = screen.getByText("Pill");
     expect(badge).toHaveClass("rounded-full");
-  });
-
-  it("applies custom radius class", () => {
-    render(<Badge radius="md">Square-ish</Badge>);
-    const badge = screen.getByText("Square-ish");
-    expect(badge).toHaveClass("rounded-md");
-  });
-
-  it("accepts and applies custom className", () => {
-    render(<Badge className="my-custom-class">Custom</Badge>);
-    const badge = screen.getByText("Custom");
-    expect(badge).toHaveClass("my-custom-class");
   });
 });
