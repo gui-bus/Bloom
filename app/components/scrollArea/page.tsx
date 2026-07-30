@@ -1,17 +1,13 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Scroll Area",
-  description: "Augments native scroll functionality with custom cross-browser styling built on Radix ScrollArea.",
-};
 import { ScrollArea } from "@/components/ui/scrollArea/scrollArea";
 import { scrollAreaCode } from "@/components/ui/scrollArea/scrollArea.code";
 import { Separator } from "@/components/ui/separator/separator";
-import { Badge } from "@/components/ui/badge/badge";
 import {
   Tabs,
   TabsContent,
@@ -19,16 +15,26 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
 
-const tags = Array.from({ length: 30 }).map(
-  (_, i, a) => `v1.2.0-beta.${a.length - i}`
-);
+const tags = [
+  "v1.0.0",
+  "React 19",
+  "Next.js 16",
+  "Tailwind CSS v4",
+  "Radix UI",
+  "TypeScript",
+  "Iconify",
+  "Design System",
+  "UI Components",
+  "Accessibility",
+  "Dark Mode",
+];
 
-export default function ScrollAreaPage() {
+export default function ScrollAreaComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Scroll Area"
-        description="Augments native scroll functionality with custom cross-browser styled scrollbars built on Radix primitives."
+        description="Augments native scroll functionality with custom cross-browser styled scrollbars built on Radix UI primitives."
       />
 
       <Tabs defaultValue="scrollArea">
@@ -45,68 +51,56 @@ export default function ScrollAreaPage() {
           <CodeBlock
             code={scrollAreaCode}
             componentName="scrollArea.tsx"
-            description="Custom scrollbar area component supporting vertical, horizontal, and combined scroll orientations."
-            tags={["React", "Radix UI", "Tailwind", "UI Component", "Scroll"]}
+            description="Core implementation of the ScrollArea component."
+            tags={["React", "Radix UI", "ScrollArea", "Layout"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Vertical Scroll */}
+      {/* Default */}
       <DocsComponent
-        title="Vertical Scroll"
-        description="Constrains vertical height and provides smooth custom scrollbar for long list content."
+        title="Default"
+        description="Vertical scrollable list container."
         preview={
-          <ScrollArea className="h-72 w-64 rounded-xl border border-border p-4">
-            <h4 className="mb-4 text-sm font-semibold leading-none">Tags & Versions</h4>
-            <div className="space-y-2">
+          <ScrollArea className="h-60 w-72 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-xs">
+            <div className="space-y-3">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">Changelog Items</h4>
+              {Array.from({ length: 14 }).map((_, i) => (
+                <div key={i} className="text-xs text-zinc-700 dark:text-zinc-300 pb-2 border-b border-zinc-100 dark:border-zinc-800/60 last:border-0">
+                  Release v1.2.{i + 1} — Updated UI design system component tokens.
+                </div>
+              ))}
+            </div>
+          </ScrollArea>
+        }
+        code={`<ScrollArea className="h-60 w-72 border rounded-2xl p-4">
+  {items.map(item => (
+    <div key={item.id}>{item.title}</div>
+  ))}
+</ScrollArea>`}
+      />
+
+      {/* Horizontal Scrolling */}
+      <DocsComponent
+        title="Horizontal Scrolling"
+        description="Horizontal scroll container using orientation='horizontal'."
+        preview={
+          <ScrollArea orientation="horizontal" className="w-full max-w-lg rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-xs">
+            <div className="flex gap-3 pb-3">
               {tags.map((tag) => (
-                <div key={tag} className="text-sm border-b border-border/40 pb-2 last:border-0">
+                <div
+                  key={tag}
+                  className="px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-xs font-semibold text-zinc-900 dark:text-zinc-100 shrink-0 border border-zinc-200 dark:border-zinc-700"
+                >
                   {tag}
                 </div>
               ))}
             </div>
           </ScrollArea>
         }
-        code={`<ScrollArea className="h-72 w-64 rounded-xl border border-border p-4">
-  <h4 className="mb-4 text-sm font-semibold leading-none">Tags & Versions</h4>
-  <div className="space-y-2">
-    {tags.map((tag) => (
-      <div key={tag} className="text-sm border-b border-border/40 pb-2">
-        {tag}
-      </div>
-    ))}
-  </div>
-</ScrollArea>`}
-      />
-
-      {/* Horizontal Scroll */}
-      <DocsComponent
-        title="Horizontal Scroll"
-        description="Set 'orientation' to 'horizontal' to manage wide content rows gracefully."
-        preview={
-          <ScrollArea orientation="horizontal" className="w-96 whitespace-nowrap rounded-xl border border-border p-4">
-            <div className="flex w-max space-x-4">
-              {Array.from({ length: 10 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="flex flex-col items-center justify-center size-24 shrink-0 rounded-xl bg-muted/60 text-sm font-medium"
-                >
-                  Item {i + 1}
-                </div>
-              ))}
-            </div>
-          </ScrollArea>
-        }
-        code={`<ScrollArea orientation="horizontal" className="w-96 whitespace-nowrap rounded-xl border border-border p-4">
-  <div className="flex w-max space-x-4">
-    {Array.from({ length: 10 }).map((_, i) => (
-      <div
-        key={i}
-        className="flex flex-col items-center justify-center size-24 shrink-0 rounded-xl bg-muted/60 text-sm font-medium"
-      >
-        Item {i + 1}
-      </div>
-    ))}
+        code={`<ScrollArea orientation="horizontal" className="w-full max-w-lg border rounded-2xl p-4">
+  <div className="flex gap-3">
+    {tags.map(tag => <Tag key={tag}>{tag}</Tag>)}
   </div>
 </ScrollArea>`}
         props={["orientation: 'vertical' | 'horizontal' | 'both'"]}
@@ -114,9 +108,10 @@ export default function ScrollAreaPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — ScrollArea"
-        description="Properties for configuring the ScrollArea component."
+        description="Supported properties for ScrollArea."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -135,23 +130,13 @@ export default function ScrollAreaPage() {
                     'vertical' | 'horizontal' | 'both'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'vertical'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Scrollbar axis direction rendered in the container viewport.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">className</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Tailwind CSS classes controlling explicit width, height, and border styles.
-                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">Scroll direction layout and scrollbar visibility.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

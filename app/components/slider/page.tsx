@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Slider",
-  description: "An input control for selecting a single numeric value or a range of values by sliding a thumb.",
-};
-
 import { Slider } from "@/components/ui/slider/slider";
 import { sliderCode } from "@/components/ui/slider/slider.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -20,11 +16,14 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 export default function SliderComponentPage() {
+  const [val1, setVal1] = React.useState([45]);
+  const [rangeVal, setRangeVal] = React.useState([20, 80]);
+
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Slider"
-        description="A fluid slider control built on Radix UI Slider primitive. Supports single values or ranges, numeric preview badges, scale sizes, and semantic color themes."
+        description="An interactive range slider input allowing users to select single values or range spans with marks, tooltips, and custom formatting."
       />
 
       <Tabs defaultValue="slider">
@@ -42,65 +41,91 @@ export default function SliderComponentPage() {
             code={sliderCode}
             componentName="slider.tsx"
             description="Core implementation of the Slider component."
-            tags={["React", "Radix UI", "Tailwind", "Forms"]}
+            tags={["React", "Radix UI", "Slider", "Form"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
+        title="Default"
         description="Standard single value slider."
         preview={
-          <div className="w-full max-w-sm">
-            <Slider label="Volume" showValue defaultValue={[60]} max={100} step={1} />
+          <div className="max-w-md w-full">
+            <Slider
+              label="Volume Level"
+              showValue
+              value={val1}
+              onValueChange={setVal1}
+              formatValue={(v) => `${v[0]}%`}
+            />
           </div>
         }
-        code={`<div className="w-full max-w-sm">
-  <Slider label="Volume" showValue defaultValue={[60]} max={100} step={1} />
-</div>`}
+        code={`const [val, setVal] = React.useState([45]);
+
+<Slider label="Volume Level" showValue value={val} onValueChange={setVal} formatValue={(v) => \`\${v[0]}%\`} />`}
       />
 
-      {/* Range Slider */}
+      {/* Range Dual Thumbs */}
       <DocsComponent
-        title="Range Selection"
-        description="Pass multiple values in an array to create a range slider."
+        title="Range Dual Thumbs"
+        description="Select a minimum and maximum range span with two thumbs."
         preview={
-          <div className="w-full max-w-sm">
-            <Slider label="Price Range" showValue defaultValue={[20, 80]} max={100} step={1} />
+          <div className="max-w-md w-full">
+            <Slider
+              label="Price Range Filter"
+              showValue
+              value={rangeVal}
+              onValueChange={setRangeVal}
+              formatValue={(v) => `$${v[0]} — $${v[1]}`}
+            />
           </div>
         }
-        code={`<div className="w-full max-w-sm">
-  <Slider label="Price Range" showValue defaultValue={[20, 80]} max={100} step={1} />
-</div>`}
+        code={`const [range, setRange] = React.useState([20, 80]);
+
+<Slider label="Price Range" showValue value={range} onValueChange={setRange} formatValue={(v) => \`$\${v[0]} — $\${v[1]}\`} />`}
       />
 
-      {/* Colors */}
+      {/* Slider Marks */}
       <DocsComponent
-        title="Colors"
-        description="Customize the active range track color."
+        title="Slider Marks & Ticks"
+        description="Add step markers along the track with label text."
         preview={
-          <div className="flex flex-col gap-5 w-full max-w-sm">
-            <Slider color="primary" defaultValue={[70]} label="Primary" />
-            <Slider color="success" defaultValue={[85]} label="Success" />
-            <Slider color="warning" defaultValue={[40]} label="Warning" />
-            <Slider color="danger" defaultValue={[25]} label="Danger" />
+          <div className="max-w-md w-full">
+            <Slider
+              label="System Memory (GB)"
+              defaultValue={[8]}
+              min={0}
+              max={32}
+              step={8}
+              marks={[
+                { value: 0, label: "0 GB" },
+                { value: 8, label: "8 GB" },
+                { value: 16, label: "16 GB" },
+                { value: 24, label: "24 GB" },
+                { value: 32, label: "32 GB" },
+              ]}
+            />
           </div>
         }
-        code={`<div className="flex flex-col gap-5 w-full max-w-sm">
-  <Slider color="primary" defaultValue={[70]} label="Primary" />
-  <Slider color="success" defaultValue={[85]} label="Success" />
-  <Slider color="warning" defaultValue={[40]} label="Warning" />
-  <Slider color="danger" defaultValue={[25]} label="Danger" />
-</div>`}
-        props={["color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
+        code={`<Slider
+  label="System Memory"
+  step={8}
+  marks={[
+    { value: 0, label: "0 GB" },
+    { value: 16, label: "16 GB" },
+    { value: 32, label: "32 GB" },
+  ]}
+/>`}
+        props={["marks: Array<{ value: number, label?: string }>"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — Slider"
-        description="Properties to configure the Slider component."
+        description="Supported properties for Slider."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -114,24 +139,38 @@ export default function SliderComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">color</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'primary'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Range track fill color theme.</td>
+                  <td className="px-3 py-2 font-mono text-primary">value / defaultValue</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">[0]</td>
+                  <td className="px-3 py-2 text-muted-foreground">Array of values for single thumb or range thumbs.</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">showValue</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Displays formatted numeric value header.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Displays formatted numeric value in header label.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">color</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'primary'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Active track and thumb highlight color variant.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">size</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'sm' | 'md' | 'lg'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Track and thumb size scale.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

@@ -39,7 +39,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
         aria-busy="true"
         aria-label="Loading..."
         className={cn(
-          "animate-pulse bg-muted/70 shrink-0",
+          "animate-pulse bg-zinc-200 dark:bg-zinc-800 shrink-0",
           variantStyles[variant],
           variant !== "circle" && designRadius[radius],
           className

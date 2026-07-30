@@ -4,6 +4,11 @@ import * as React from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { cn } from "@/lib/utils";
 
+export interface SliderMark {
+  value: number;
+  label?: string;
+}
+
 export interface SliderProps
   extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {
   color?: "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
@@ -11,26 +16,27 @@ export interface SliderProps
   label?: React.ReactNode;
   showValue?: boolean;
   formatValue?: (val: number[]) => string;
+  marks?: SliderMark[];
 }
 
 const trackColorMap = {
-  default: "bg-foreground",
-  primary: "bg-primary",
-  secondary: "bg-secondary",
-  accent: "bg-accent",
-  success: "bg-success",
-  warning: "bg-warning",
-  danger: "bg-danger",
+  default: "bg-zinc-900 dark:bg-zinc-100",
+  primary: "bg-sky-500",
+  secondary: "bg-purple-500",
+  accent: "bg-pink-500",
+  success: "bg-emerald-500",
+  warning: "bg-amber-500",
+  danger: "bg-rose-500",
 };
 
 const thumbBorderMap = {
-  default: "border-foreground focus-visible:ring-foreground/20",
-  primary: "border-primary focus-visible:ring-primary/20",
-  secondary: "border-secondary focus-visible:ring-secondary/20",
-  accent: "border-accent focus-visible:ring-accent/20",
-  success: "border-success focus-visible:ring-success/20",
-  warning: "border-warning focus-visible:ring-warning/20",
-  danger: "border-danger focus-visible:ring-danger/20",
+  default: "border-zinc-900 dark:border-zinc-100 focus-visible:ring-sky-500/20",
+  primary: "border-sky-500 focus-visible:ring-sky-500/20",
+  secondary: "border-purple-500 focus-visible:ring-purple-500/20",
+  accent: "border-pink-500 focus-visible:ring-pink-500/20",
+  success: "border-emerald-500 focus-visible:ring-emerald-500/20",
+  warning: "border-amber-500 focus-visible:ring-amber-500/20",
+  danger: "border-rose-500 focus-visible:ring-rose-500/20",
 };
 
 const sizeMap = {
@@ -51,8 +57,11 @@ const Slider = React.forwardRef<
       label,
       showValue = false,
       formatValue,
+      marks,
       value,
       defaultValue,
+      min = 0,
+      max = 100,
       onValueChange,
       ...props
     },
@@ -87,51 +96,80 @@ const Slider = React.forwardRef<
     return (
       <div className="w-full flex flex-col gap-2">
         {(label || showValue) && (
-          <div className="flex justify-between items-center text-xs font-semibold text-foreground/90 select-none">
+          <div className="flex justify-between items-center text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
             {label && <span>{label}</span>}
             {showValue && (
-              <span className="text-muted-foreground font-mono">
+              <span className="text-zinc-500 font-mono text-xs">
                 {formattedDisplay}
               </span>
             )}
           </div>
         )}
-        <SliderPrimitive.Root
-          ref={ref}
-          value={value}
-          defaultValue={defaultValue}
-          onValueChange={handleValueChange}
-          className={cn(
-            "relative flex w-full touch-none select-none items-center cursor-pointer",
-            className
-          )}
-          {...props}
-        >
-          <SliderPrimitive.Track
+        <div className="relative w-full">
+          <SliderPrimitive.Root
+            ref={ref}
+            value={value}
+            defaultValue={defaultValue}
+            min={min}
+            max={max}
+            onValueChange={handleValueChange}
             className={cn(
-              "relative w-full grow overflow-hidden rounded-full bg-secondary/20",
-              sizeMap[size].track
+              "relative flex w-full touch-none select-none items-center cursor-pointer z-10",
+              className
             )}
+            {...props}
           >
-            <SliderPrimitive.Range
-              className={cn("absolute h-full", trackColorMap[color])}
-            />
-          </SliderPrimitive.Track>
-          {Array.from({ length: currentVal.length }).map((_, i) => (
-            <SliderPrimitive.Thumb
-              key={i}
+            <SliderPrimitive.Track
               className={cn(
-                "block rounded-full border-2 bg-background ring-offset-background transition-transform focus-visible:outline-none focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50 hover:scale-110",
-                sizeMap[size].thumb,
-                thumbBorderMap[color]
+                "relative w-full grow overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800",
+                sizeMap[size].track
               )}
-            />
-          ))}
-        </SliderPrimitive.Root>
+            >
+              <SliderPrimitive.Range
+                className={cn("absolute h-full", trackColorMap[color])}
+              />
+            </SliderPrimitive.Track>
+            {Array.from({ length: currentVal.length }).map((_, i) => (
+              <SliderPrimitive.Thumb
+                key={i}
+                className={cn(
+                  "block rounded-full border-2 bg-white dark:bg-zinc-900 shadow-xs transition-transform focus-visible:outline-none focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50 hover:scale-110 cursor-pointer",
+                  sizeMap[size].thumb,
+                  thumbBorderMap[color]
+                )}
+              />
+            ))}
+          </SliderPrimitive.Root>
+          {marks && marks.length > 0 && (
+            <div className="relative w-full mt-2 h-4 select-none">
+              {marks.map((mark, i) => {
+                const percent = Math.min(
+                  100,
+                  Math.max(0, ((mark.value - min) / (max - min)) * 100)
+                );
+                return (
+                  <div
+                    key={i}
+                    style={{ left: percent + "%" }}
+                    className="absolute -translate-x-1/2 flex flex-col items-center"
+                  >
+                    <div className="h-1.5 w-0.5 bg-zinc-300 dark:bg-zinc-700 mb-0.5" />
+                    {mark.label && (
+                      <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-medium whitespace-nowrap">
+                        {mark.label}
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
     );
   }
 );
 Slider.displayName = SliderPrimitive.Root.displayName;
 
-export { Slider };`;
+export { Slider };
+`;

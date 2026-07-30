@@ -116,7 +116,6 @@ export function Sidebar() {
         { href: "/components/select", label: "Select" },
         { href: "/components/separator", label: "Separator" },
         { href: "/components/sheet", label: "Sheet" },
-        { href: "/components/sidebar", label: "Sidebar" },
         { href: "/components/skeleton", label: "Skeleton" },
         { href: "/components/slider", label: "Slider" },
         { href: "/components/spinner", label: "Spinner" },

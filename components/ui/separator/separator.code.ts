@@ -21,55 +21,55 @@ export interface SeparatorProps
 }
 
 const colorSolidMap: Record<SeparatorColor, string> = {
-  default: "bg-border",
-  primary: "bg-primary",
-  secondary: "bg-secondary",
-  accent: "bg-accent",
-  success: "bg-success",
-  warning: "bg-warning",
-  danger: "bg-danger",
+  default: "bg-zinc-200 dark:bg-zinc-800",
+  primary: "bg-sky-500",
+  secondary: "bg-purple-500",
+  accent: "bg-pink-500",
+  success: "bg-emerald-500",
+  warning: "bg-amber-500",
+  danger: "bg-rose-500",
 };
 
 const colorGradientMap: Record<SeparatorColor, { line: string; left: string; right: string }> = {
   default: {
-    line: "bg-linear-to-r from-transparent via-border to-transparent",
-    left: "bg-linear-to-r from-transparent to-border",
-    right: "bg-linear-to-r from-border to-transparent",
+    line: "bg-gradient-to-r from-transparent via-zinc-300 dark:via-zinc-700 to-transparent",
+    left: "bg-gradient-to-r from-transparent to-zinc-300 dark:to-zinc-700",
+    right: "bg-gradient-to-r from-zinc-300 dark:from-zinc-700 to-transparent",
   },
   primary: {
-    line: "bg-linear-to-r from-transparent via-primary to-transparent",
-    left: "bg-linear-to-r from-transparent to-primary",
-    right: "bg-linear-to-r from-primary to-transparent",
+    line: "bg-gradient-to-r from-transparent via-sky-500 to-transparent",
+    left: "bg-gradient-to-r from-transparent to-sky-500",
+    right: "bg-gradient-to-r from-sky-500 to-transparent",
   },
   secondary: {
-    line: "bg-linear-to-r from-transparent via-secondary to-transparent",
-    left: "bg-linear-to-r from-transparent to-secondary",
-    right: "bg-linear-to-r from-secondary to-transparent",
+    line: "bg-gradient-to-r from-transparent via-purple-500 to-transparent",
+    left: "bg-gradient-to-r from-transparent to-purple-500",
+    right: "bg-gradient-to-r from-purple-500 to-transparent",
   },
   accent: {
-    line: "bg-linear-to-r from-transparent via-accent to-transparent",
-    left: "bg-linear-to-r from-transparent to-accent",
-    right: "bg-linear-to-r from-accent to-transparent",
+    line: "bg-gradient-to-r from-transparent via-pink-500 to-transparent",
+    left: "bg-gradient-to-r from-transparent to-pink-500",
+    right: "bg-gradient-to-r from-pink-500 to-transparent",
   },
   success: {
-    line: "bg-linear-to-r from-transparent via-success to-transparent",
-    left: "bg-linear-to-r from-transparent to-success",
-    right: "bg-linear-to-r from-success to-transparent",
+    line: "bg-gradient-to-r from-transparent via-emerald-500 to-transparent",
+    left: "bg-gradient-to-r from-transparent to-emerald-500",
+    right: "bg-gradient-to-r from-emerald-500 to-transparent",
   },
   warning: {
-    line: "bg-linear-to-r from-transparent via-warning to-transparent",
-    left: "bg-linear-to-r from-transparent to-warning",
-    right: "bg-linear-to-r from-warning to-transparent",
+    line: "bg-gradient-to-r from-transparent via-amber-500 to-transparent",
+    left: "bg-gradient-to-r from-transparent to-amber-500",
+    right: "bg-gradient-to-r from-amber-500 to-transparent",
   },
   danger: {
-    line: "bg-linear-to-r from-transparent via-danger to-transparent",
-    left: "bg-linear-to-r from-transparent to-danger",
-    right: "bg-linear-to-r from-danger to-transparent",
+    line: "bg-gradient-to-r from-transparent via-rose-500 to-transparent",
+    left: "bg-gradient-to-r from-transparent to-rose-500",
+    right: "bg-gradient-to-r from-rose-500 to-transparent",
   },
 };
 
 const Separator = React.forwardRef<
-  React.ElementRef<typeof SeparatorPrimitive.Root>,
+  React.ComponentRef<typeof SeparatorPrimitive.Root>,
   SeparatorProps
 >(
   (
@@ -99,7 +99,7 @@ const Separator = React.forwardRef<
             )}
             {...props}
           />
-          <div className="w-fit text-nowrap text-xs font-medium text-muted-foreground uppercase shrink-0">
+          <div className="w-fit text-nowrap text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider shrink-0">
             {label}
           </div>
           <SeparatorPrimitive.Root
