@@ -43,10 +43,10 @@ export default function AvatarPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Basic & Fallback */}
+      {/* Default */}
       <DocsComponent
-        title="Basic & Fallbacks"
-        description="Renders the user profile image or gracefully falls back to initials when the image fails to load or is absent."
+        title="Default"
+        description="A standard avatar component displaying a user image with an automated initials fallback when the image is absent or loading."
         preview={
           <div className="w-full flex flex-wrap items-center gap-4">
             <Avatar>

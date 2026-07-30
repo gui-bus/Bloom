@@ -44,10 +44,10 @@ export default function AvatarGroupPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Basic Stack with Smooth Hover */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Stack with Smooth Hover"
-        description="Groups multiple avatars with overlapping negative margins. Hovering over the group or an individual avatar smoothly expands the stack and elevates the targeted avatar."
+        title="Default"
+        description="A standard avatar group component stacking multiple user avatars with smooth hover expansion transitions."
         preview={
           <div className="w-full">
             <AvatarGroup>

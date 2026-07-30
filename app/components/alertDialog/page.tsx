@@ -54,10 +54,10 @@ export default function AlertDialogComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage (Destructive)"
-        description="Modal confirmation dialog for destructive actions. Uses clean neutral card styling and a clear action button."
+        title="Default"
+        description="A standard confirmation dialog modal that interrupts the user with critical content requiring an explicit response before proceeding."
         preview={
           <div className="w-full">
             <AlertDialog>
