@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Input OTP",
-  description: "Accessible one-time password component with copy-paste and keyboard navigation.",
-};
-
 import {
   InputOTP,
   InputOTPGroup,
@@ -25,11 +21,15 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 export default function InputOtpComponentPage() {
+  const [val1, setVal1] = React.useState("");
+  const [val2, setVal2] = React.useState("");
+  const [val3, setVal3] = React.useState("");
+
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Input OTP"
-        description="A specialized input component for entering 2FA/one-time verification codes with individual slot digits and paste support."
+        description="Accessible one-time password input component supporting input mode validation (numeric only, letters only, alphanumeric), custom lengths, separators, and sizes."
       />
 
       <Tabs defaultValue="inputOtp">
@@ -47,32 +47,111 @@ export default function InputOtpComponentPage() {
             code={inputOtpCode}
             componentName="inputOtp.tsx"
             description="Core implementation of the InputOTP component."
-            tags={["React", "Input OTP", "Tailwind", "Forms"]}
+            tags={["React", "Input OTP", "Tailwind", "Form"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="6-digit verification code input."
+        title="Default"
+        description="Standard 6-digit numeric verification code input."
         preview={
-          <div className="flex flex-col gap-2">
-            <span className="text-xs font-semibold text-foreground/90">Verification Code</span>
-            <InputOTP maxLength={6}>
+          <div className="space-y-2">
+            <InputOTP maxLength={6} value={val1} onChange={setVal1} allowedType="numeric">
               <InputOTPGroup>
                 <InputOTPSlot index={0} />
                 <InputOTPSlot index={1} />
                 <InputOTPSlot index={2} />
-              </InputOTPGroup>
-              <InputOTPSeparator />
-              <InputOTPGroup>
                 <InputOTPSlot index={3} />
                 <InputOTPSlot index={4} />
                 <InputOTPSlot index={5} />
               </InputOTPGroup>
             </InputOTP>
+            <div className="text-xs text-muted-foreground font-mono">Entered Value: {val1 || "—"}</div>
           </div>
+        }
+        code={`<InputOTP maxLength={6} allowedType="numeric">
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>`}
+      />
+
+      {/* Allowed Input Types */}
+      <DocsComponent
+        title="Allowed Types (Numeric, Letters, Alphanumeric)"
+        description="Restrict user entry to specific character sets using the 'allowedType' prop: 'numeric', 'alphabetic', or 'alphanumeric'."
+        preview={
+          <div className="flex flex-col gap-6">
+            <div>
+              <span className="text-xs font-semibold text-foreground block mb-2">1. Numbers Only (allowedType="numeric")</span>
+              <InputOTP maxLength={4} allowedType="numeric">
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                  <InputOTPSlot index={3} />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+
+            <div>
+              <span className="text-xs font-semibold text-foreground block mb-2">2. Letters Only (allowedType="alphabetic")</span>
+              <InputOTP maxLength={4} allowedType="alphabetic">
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                  <InputOTPSlot index={3} />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+
+            <div>
+              <span className="text-xs font-semibold text-foreground block mb-2">3. Alphanumeric Mixed (allowedType="alphanumeric")</span>
+              <InputOTP maxLength={6} allowedType="alphanumeric" value={val2} onChange={setVal2}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                  <InputOTPSlot index={3} />
+                  <InputOTPSlot index={4} />
+                  <InputOTPSlot index={5} />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+          </div>
+        }
+        code={`<InputOTP maxLength={4} allowedType="numeric">...</InputOTP>
+<InputOTP maxLength={4} allowedType="alphabetic">...</InputOTP>
+<InputOTP maxLength={6} allowedType="alphanumeric">...</InputOTP>`}
+        props={["allowedType: 'numeric' | 'alphabetic' | 'alphanumeric'"]}
+      />
+
+      {/* Group Separator */}
+      <DocsComponent
+        title="Digit Lengths & Group Separators"
+        description="Split OTP digits into formatted groups using <InputOTPSeparator />."
+        preview={
+          <InputOTP maxLength={6} value={val3} onChange={setVal3}>
+            <InputOTPGroup>
+              <InputOTPSlot index={0} />
+              <InputOTPSlot index={1} />
+              <InputOTPSlot index={2} />
+            </InputOTPGroup>
+            <InputOTPSeparator />
+            <InputOTPGroup>
+              <InputOTPSlot index={3} />
+              <InputOTPSlot index={4} />
+              <InputOTPSlot index={5} />
+            </InputOTPGroup>
+          </InputOTP>
         }
         code={`<InputOTP maxLength={6}>
   <InputOTPGroup>
@@ -89,11 +168,59 @@ export default function InputOtpComponentPage() {
 </InputOTP>`}
       />
 
+      {/* Sizes */}
+      <DocsComponent
+        title="Slot Sizes"
+        description="Control slot square dimensions using the 'size' prop: 'sm', 'md', or 'lg'."
+        preview={
+          <div className="flex flex-col gap-6">
+            <div>
+              <span className="text-xs text-muted-foreground block mb-1">Small (sm):</span>
+              <InputOTP maxLength={4}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} size="sm" />
+                  <InputOTPSlot index={1} size="sm" />
+                  <InputOTPSlot index={2} size="sm" />
+                  <InputOTPSlot index={3} size="sm" />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+            <div>
+              <span className="text-xs text-muted-foreground block mb-1">Medium (md):</span>
+              <InputOTP maxLength={4}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} size="md" />
+                  <InputOTPSlot index={1} size="md" />
+                  <InputOTPSlot index={2} size="md" />
+                  <InputOTPSlot index={3} size="md" />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+            <div>
+              <span className="text-xs text-muted-foreground block mb-1">Large (lg):</span>
+              <InputOTP maxLength={4}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} size="lg" />
+                  <InputOTPSlot index={1} size="lg" />
+                  <InputOTPSlot index={2} size="lg" />
+                  <InputOTPSlot index={3} size="lg" />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+          </div>
+        }
+        code={`<InputOTPSlot index={0} size="sm" />
+<InputOTPSlot index={0} size="md" />
+<InputOTPSlot index={0} size="lg" />`}
+        props={["size: 'sm' | 'md' | 'lg'"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — InputOTP"
-        description="Properties to configure the InputOTP component."
+        description="Supported properties for the InputOTP component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -107,22 +234,32 @@ export default function InputOtpComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">allowedType</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'numeric' | 'alphabetic' | 'alphanumeric'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'numeric'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Restricts allowed input characters (numbers, letters, or mixed).</td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">maxLength</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Total length limit of the OTP passcode.</td>
+                  <td className="px-3 py-2 text-muted-foreground">6</td>
+                  <td className="px-3 py-2 text-muted-foreground">Total number of OTP input digit slots.</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">index</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Zero-based slot index passed to InputOTPSlot.</td>
+                  <td className="px-3 py-2 font-mono text-primary">size (on Slot)</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'sm' | 'md' | 'lg'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Dimensional size variant for slot boxes.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

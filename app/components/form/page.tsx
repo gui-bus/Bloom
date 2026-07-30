@@ -1,15 +1,14 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Form",
-  description: "Form wrapper component integrating React Hook Form state management and validation.",
-};
-
-import { FormDemo } from "./form-demo";
+import { Form, useForm } from "@/components/ui/form/form";
+import { FormField } from "@/components/ui/formField/formField";
+import { Input } from "@/components/ui/input/input";
+import { Button } from "@/components/ui/button/button";
 import { formCode } from "@/components/ui/form/form.code";
 import { Separator } from "@/components/ui/separator/separator";
 import {
@@ -19,12 +18,30 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
 
+interface DemoFormValues {
+  username: string;
+  email: string;
+}
+
 export default function FormComponentPage() {
+  const form = useForm<DemoFormValues>({
+    defaultValues: {
+      username: "",
+      email: "",
+    },
+  });
+
+  const [submittedData, setSubmittedData] = React.useState<DemoFormValues | null>(null);
+
+  const onSubmit = (data: DemoFormValues) => {
+    setSubmittedData(data);
+  };
+
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Form"
-        description="A form container component providing seamless integration with React Hook Form for state management and submit handling."
+        description="A wrapper component for building forms with React Hook Form integration, validation handlers, and accessible field controls."
       />
 
       <Tabs defaultValue="form">
@@ -42,21 +59,44 @@ export default function FormComponentPage() {
             code={formCode}
             componentName="form.tsx"
             description="Core implementation of the Form component."
-            tags={["React", "React Hook Form", "Tailwind", "Forms"]}
+            tags={["React", "Form", "React Hook Form", "Validation"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Form validation and submit workflow."
-        preview={<FormDemo />}
-        code={`const form = useForm({ defaultValues: { email: '', password: '' } });
+        title="Default"
+        description="Standard Form with submit handler and field inputs."
+        preview={
+          <div className="max-w-md w-full">
+            <Form form={form} onSubmit={onSubmit}>
+              <FormField label="Username" isRequired description="Enter your public display name.">
+                <Input placeholder="johndoe" {...form.register("username")} />
+              </FormField>
+
+              <FormField label="Email Address" isRequired description="We'll never share your email with anyone.">
+                <Input type="email" placeholder="john@example.com" {...form.register("email")} />
+              </FormField>
+
+              <Button type="submit" color="primary" className="w-full mt-2">
+                Submit Account Form
+              </Button>
+            </Form>
+
+            {submittedData && (
+              <div className="mt-4 p-3 bg-zinc-100 dark:bg-zinc-800 rounded-xl text-xs font-mono">
+                <div>Submitted JSON:</div>
+                <pre className="text-sky-500 font-semibold">{JSON.stringify(submittedData, null, 2)}</pre>
+              </div>
+            )}
+          </div>
+        }
+        code={`const form = useForm<FormValues>();
 
 <Form form={form} onSubmit={(data) => console.log(data)}>
-  <FormField label="Email">
-    <Input {...form.register("email")} />
+  <FormField label="Username" isRequired>
+    <Input {...form.register("username")} />
   </FormField>
   <Button type="submit">Submit</Button>
 </Form>`}
@@ -64,9 +104,10 @@ export default function FormComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — Form"
-        description="Properties to configure the Form component."
+        description="Supported properties for the Form component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -83,19 +124,19 @@ export default function FormComponentPage() {
                   <td className="px-3 py-2 font-mono text-primary">form</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">UseFormReturn</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">React Hook Form instance returned from useForm().</td>
+                  <td className="px-3 py-2 text-muted-foreground">React Hook Form instance created by useForm().</td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">onSubmit</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">SubmitHandler</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback function executed on valid form submit.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback function triggered when form submits successfully.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

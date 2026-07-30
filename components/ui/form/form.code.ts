@@ -35,4 +35,5 @@ export function Form<TFieldValues extends FieldValues = FieldValues>({
 }
 
 export { useForm };
-export type { UseFormReturn, SubmitHandler, UseFormProps };`;
+export type { UseFormReturn, SubmitHandler, UseFormProps };
+`;

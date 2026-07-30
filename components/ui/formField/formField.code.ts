@@ -43,10 +43,11 @@ export function FormField({
           : children}
       </div>
       {isInvalid && errorMessage ? (
-        <p className="text-xs text-danger font-medium">{errorMessage}</p>
+        <p className="text-xs text-rose-500 font-medium">{errorMessage}</p>
       ) : description ? (
-        <p className="text-xs text-muted-foreground">{description}</p>
+        <p className="text-xs text-zinc-500 dark:text-zinc-400">{description}</p>
       ) : null}
     </div>
   );
-}`;
+}
+`;

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { UploadCloud, File, X } from "lucide-react";
+import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
 export interface FileUploadProps {
@@ -12,6 +12,7 @@ export interface FileUploadProps {
   label?: React.ReactNode;
   description?: React.ReactNode;
   disabled?: boolean;
+  className?: string;
 }
 
 export function FileUpload({
@@ -22,6 +23,7 @@ export function FileUpload({
   label,
   description = "Drag & drop files here, or click to browse",
   disabled = false,
+  className,
 }: FileUploadProps) {
   const [dragActive, setDragActive] = React.useState(false);
   const [selectedFiles, setSelectedFiles] = React.useState<File[]>([]);
@@ -68,8 +70,12 @@ export function FileUpload({
   };
 
   return (
-    <div className="flex flex-col gap-2 w-full">
-      {label && <label className="text-xs font-semibold text-foreground/90 select-none">{label}</label>}
+    <div className={cn("flex flex-col gap-2 w-full", className)}>
+      {label && (
+        <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
+          {label}
+        </label>
+      )}
       <div
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
@@ -77,8 +83,10 @@ export function FileUpload({
         onDrop={handleDrop}
         onClick={() => !disabled && inputRef.current?.click()}
         className={cn(
-          "relative flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-2xl transition-all duration-200 cursor-pointer bg-muted/20 hover:bg-muted/40",
-          dragActive ? "border-primary bg-primary/10" : "border-input",
+          "relative flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-2xl transition-all duration-200 cursor-pointer bg-zinc-50/50 dark:bg-zinc-900/50 hover:bg-zinc-100/60 dark:hover:bg-zinc-800/60",
+          dragActive
+            ? "border-sky-500 bg-sky-500/10 dark:border-sky-400 dark:bg-sky-400/10"
+            : "border-zinc-200 dark:border-zinc-800",
           disabled && "opacity-50 cursor-not-allowed pointer-events-none"
         )}
       >
@@ -91,11 +99,11 @@ export function FileUpload({
           onChange={(e) => handleFiles(e.target.files)}
           className="hidden"
         />
-        <div className="p-3 bg-background border border-border rounded-xl shadow-xs mb-3">
-          <UploadCloud className="size-6 text-primary" />
+        <div className="p-3 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-xs mb-3 text-sky-500 dark:text-sky-400">
+          <Icon icon="hugeicons:cloud-upload" className="size-6" />
         </div>
-        <p className="text-sm font-medium text-foreground text-center">{description}</p>
-        <p className="text-xs text-muted-foreground mt-1">Max file size: {maxSizeMB}MB</p>
+        <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 text-center">{description}</p>
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">Maximum file size: {maxSizeMB}MB</p>
       </div>
 
       {selectedFiles.length > 0 && (
@@ -103,12 +111,12 @@ export function FileUpload({
           {selectedFiles.map((file, idx) => (
             <div
               key={`${file.name}-${idx}`}
-              className="flex items-center justify-between p-2.5 bg-card border border-border rounded-xl text-xs"
+              className="flex items-center justify-between p-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl text-xs shadow-xs"
             >
-              <div className="flex items-center gap-2 truncate">
-                <File className="size-4 text-muted-foreground shrink-0" />
-                <span className="truncate font-medium">{file.name}</span>
-                <span className="text-muted-foreground shrink-0">
+              <div className="flex items-center gap-2.5 truncate">
+                <Icon icon="hugeicons:file-02" className="size-4 text-zinc-400 shrink-0" />
+                <span className="truncate font-medium text-zinc-900 dark:text-zinc-100">{file.name}</span>
+                <span className="text-zinc-400 shrink-0">
                   ({(file.size / (1024 * 1024)).toFixed(2)} MB)
                 </span>
               </div>
@@ -118,9 +126,9 @@ export function FileUpload({
                   e.stopPropagation();
                   removeFile(idx);
                 }}
-                className="p-1 hover:bg-muted rounded-lg text-muted-foreground hover:text-foreground cursor-pointer"
+                className="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-pointer transition-colors"
               >
-                <X className="size-3.5" />
+                <Icon icon="hugeicons:cancel-01" className="size-4" />
               </button>
             </div>
           ))}

@@ -1,21 +1,34 @@
 "use client";
 
-import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
+import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
-import { designRadius } from "@/lib/design-system";
+
+export type ImageRadius = "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "full";
+export type ImageAspectRatio = "auto" | "square" | "video" | "4/3" | "21/9";
 
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
-  radius?: keyof typeof designRadius;
-  aspectRatio?: "auto" | "square" | "video" | "4/3" | "21/9";
+  radius?: ImageRadius;
+  aspectRatio?: ImageAspectRatio;
   fallback?: React.ReactNode;
   isZoomable?: boolean;
+  isBlurred?: boolean;
   caption?: string;
 }
 
-const aspectRatioStyles: Record<string, string> = {
+const radiusStyles: Record<ImageRadius, string> = {
+  none: "rounded-none",
+  sm: "rounded-sm",
+  md: "rounded-md",
+  lg: "rounded-lg",
+  xl: "rounded-xl",
+  "2xl": "rounded-2xl",
+  full: "rounded-full",
+};
+
+const aspectRatioStyles: Record<ImageAspectRatio, string> = {
   auto: "aspect-auto",
   square: "aspect-square",
   video: "aspect-video",
@@ -28,10 +41,11 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     {
       src,
       alt,
-      radius = "lg",
+      radius = "2xl",
       aspectRatio = "auto",
       fallback,
       isZoomable = false,
+      isBlurred = false,
       caption,
       className,
       onError,
@@ -55,38 +69,41 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     };
 
     return (
-      <figure className="inline-flex flex-col max-w-full">
+      <figure className="relative inline-flex flex-col max-w-full">
+        {/* Glow backdrop blur shadow effect when isBlurred=true */}
+        {isBlurred && !hasError && (
+          <img
+            src={src}
+            alt=""
+            aria-hidden="true"
+            className={cn(
+              "absolute inset-0 size-full object-cover blur-lg opacity-60 scale-105 pointer-events-none transition-opacity duration-300",
+              radiusStyles[radius]
+            )}
+          />
+        )}
+
         <div
           className={cn(
-            "relative overflow-hidden bg-muted flex items-center justify-center transition-all duration-300",
-            designRadius[radius],
+            "relative overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center border border-zinc-200/60 dark:border-zinc-800/60 transition-all duration-300",
+            radiusStyles[radius],
             aspectRatioStyles[aspectRatio],
             className
           )}
         >
           {hasError ? (
             fallback || (
-              <div className="flex flex-col items-center justify-center p-4 text-center text-muted-foreground w-full h-full min-h-[120px]">
-                <svg
-                  className="size-8 mb-2 opacity-50"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                <span className="text-xs">Failed to load image</span>
+              <div className="flex flex-col items-center justify-center p-6 text-center text-zinc-400 dark:text-zinc-500 w-full h-full min-h-[140px]">
+                <Icon icon="hugeicons:image-not-found-01" className="size-8 mb-2 opacity-60" />
+                <span className="text-xs font-medium">Failed to load image</span>
               </div>
             )
           ) : (
             <>
               {isLoading && (
-                <div className="absolute inset-0 bg-muted animate-pulse" />
+                <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-800 animate-pulse flex items-center justify-center">
+                  <Icon icon="hugeicons:image-01" className="size-8 text-zinc-400 dark:text-zinc-600 animate-bounce" />
+                </div>
               )}
               <img
                 ref={ref}
@@ -95,7 +112,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
                 onLoad={handleImageLoad}
                 onError={handleImageError}
                 className={cn(
-                  "w-full h-full object-cover transition-transform duration-300",
+                  "w-full h-full object-cover transition-all duration-300",
                   isLoading ? "opacity-0" : "opacity-100",
                   isZoomable && "hover:scale-105 cursor-pointer"
                 )}
@@ -105,7 +122,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
           )}
         </div>
         {caption && (
-          <figcaption className="mt-2 text-center text-xs text-muted-foreground">
+          <figcaption className="mt-2 text-center text-xs font-medium text-zinc-500 dark:text-zinc-400">
             {caption}
           </figcaption>
         )}

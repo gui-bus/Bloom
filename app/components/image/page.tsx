@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Image",
-  description: "Image component featuring responsive aspect ratios, fallback error handling, zoom animations, and captions.",
-};
-
 import { Image } from "@/components/ui/image/image";
 import { imageCode } from "@/components/ui/image/image.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -19,14 +15,14 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
 
-const sampleImageUrl = "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&auto=format&fit=crop&q=80";
-
 export default function ImageComponentPage() {
+  const sampleImage = "https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=800&auto=format&fit=crop&q=80";
+
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Image"
-        description="Enhanced image container component with built-in aspect ratio management, skeleton loading states, fallback handling on broken URLs, zoom effects, and captions."
+        description="Enhanced image container with loading skeletons, error fallback state, radius options, zoomable hover effects, and blurred glow backdrop shadow."
       />
 
       <Tabs defaultValue="image">
@@ -44,147 +40,114 @@ export default function ImageComponentPage() {
             code={imageCode}
             componentName="image.tsx"
             description="Core implementation of the Image component."
-            tags={["React", "Tailwind", "UI Component", "Media"]}
+            tags={["React", "Tailwind", "Media", "Image"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Standard image with rounded corners and caption."
+        title="Default"
+        description="Standard image with rounded-2xl borders and caption."
         preview={
-          <div className="w-full max-w-sm">
+          <div className="max-w-md w-full">
             <Image
-              src={sampleImageUrl}
-              alt="Gradient abstract background"
-              radius="2xl"
-              caption="Abstract ambient gradient artwork"
+              src={sampleImage}
+              alt="Mountain landscape"
+              caption="Serene mountain vista at sunrise"
             />
           </div>
         }
-        code={`<div className="w-full max-w-sm">
-  <Image
-    src="${sampleImageUrl}"
-    alt="Gradient abstract background"
-    radius="2xl"
-    caption="Abstract ambient gradient artwork"
-  />
-</div>`}
+        code={`<Image
+  src="https://images.unsplash.com/..."
+  alt="Mountain landscape"
+  caption="Serene mountain vista at sunrise"
+/>`}
+      />
+
+      {/* Zoomable */}
+      <DocsComponent
+        title="Zoomable Hover Effect"
+        description="Enable smooth zoom animation on hover using the 'isZoomable' prop."
+        preview={
+          <div className="max-w-md w-full">
+            <Image
+              src={sampleImage}
+              alt="Zoomable landscape"
+              isZoomable
+              caption="Hover over the image to view the zoom transition"
+            />
+          </div>
+        }
+        code={`<Image src="..." alt="..." isZoomable />`}
+        props={["isZoomable: boolean"]}
+      />
+
+      {/* Blurred Glow Backdrop */}
+      <DocsComponent
+        title="Blurred Glow Backdrop"
+        description="Create an ambient colored glow shadow under the image with the 'isBlurred' prop."
+        preview={
+          <div className="max-w-md w-full py-4">
+            <Image
+              src={sampleImage}
+              alt="Glow landscape"
+              isBlurred
+              caption="Ambient blurred shadow glow background"
+            />
+          </div>
+        }
+        code={`<Image src="..." alt="..." isBlurred />`}
+        props={["isBlurred: boolean"]}
       />
 
       {/* Aspect Ratios */}
       <DocsComponent
         title="Aspect Ratios"
-        description="Preset ratio containers: square (1:1), video (16:9), and 4/3."
+        description="Control container dimensions using the 'aspectRatio' prop: 'square', 'video', '4/3', or '21/9'."
         preview={
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl w-full">
             <Image
-              src={sampleImageUrl}
-              alt="Square aspect ratio"
+              src={sampleImage}
+              alt="Square"
               aspectRatio="square"
-              radius="xl"
               caption="Square (1:1)"
             />
             <Image
-              src={sampleImageUrl}
-              alt="Video aspect ratio"
+              src={sampleImage}
+              alt="Video"
               aspectRatio="video"
-              radius="xl"
               caption="Video (16:9)"
-            />
-            <Image
-              src={sampleImageUrl}
-              alt="4/3 aspect ratio"
-              aspectRatio="4/3"
-              radius="xl"
-              caption="Standard (4:3)"
             />
           </div>
         }
-        code={`<div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
-  <Image
-    src="${sampleImageUrl}"
-    alt="Square aspect ratio"
-    aspectRatio="square"
-    radius="xl"
-    caption="Square (1:1)"
-  />
-  <Image
-    src="${sampleImageUrl}"
-    alt="Video aspect ratio"
-    aspectRatio="video"
-    radius="xl"
-    caption="Video (16:9)"
-  />
-  <Image
-    src="${sampleImageUrl}"
-    alt="4/3 aspect ratio"
-    aspectRatio="4/3"
-    radius="xl"
-    caption="Standard (4:3)"
-  />
-</div>`}
+        code={`<Image src="..." alt="..." aspectRatio="square" />
+<Image src="..." alt="..." aspectRatio="video" />`}
         props={["aspectRatio: 'auto' | 'square' | 'video' | '4/3' | '21/9'"]}
       />
 
-      {/* Zoomable */}
+      {/* Error Fallback */}
       <DocsComponent
-        title="Zoomable Hover"
-        description="Enable smooth zoom animation on hover with isZoomable."
+        title="Error Fallback State"
+        description="Gracefully displays a fallback UI when image fails to load."
         preview={
-          <div className="w-full max-w-sm">
+          <div className="max-w-md w-full">
             <Image
-              src={sampleImageUrl}
-              alt="Zoomable artwork"
-              isZoomable
-              radius="xl"
+              src="https://invalid-domain-image-url.com/broken.jpg"
+              alt="Broken image"
               aspectRatio="video"
             />
           </div>
         }
-        code={`<div className="w-full max-w-sm">
-  <Image
-    src="${sampleImageUrl}"
-    alt="Zoomable artwork"
-    isZoomable
-    radius="xl"
-    aspectRatio="video"
-  />
-</div>`}
-        props={["isZoomable: boolean"]}
-      />
-
-      {/* Fallback */}
-      <DocsComponent
-        title="Fallback Error Handling"
-        description="Gracefully displays fallback component when an image fails to load."
-        preview={
-          <div className="w-full max-w-sm">
-            <Image
-              src="https://invalid-domain.com/non-existent-image.jpg"
-              alt="Broken image example"
-              aspectRatio="video"
-              radius="xl"
-            />
-          </div>
-        }
-        code={`<div className="w-full max-w-sm">
-  <Image
-    src="https://invalid-domain.com/non-existent-image.jpg"
-    alt="Broken image example"
-    aspectRatio="video"
-    radius="xl"
-  />
-</div>`}
-        props={["fallback: ReactNode"]}
+        code={`<Image src="invalid-url.jpg" alt="Broken image" aspectRatio="video" />`}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — Image"
-        description="Properties to configure the Image component."
+        description="Supported properties for the Image component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -201,67 +164,41 @@ export default function ImageComponentPage() {
                   <td className="px-3 py-2 font-mono text-primary">src</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Image source URL.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">alt</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Accessible alternative text description.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'lg'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Border radius scale.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">aspectRatio</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'auto' | 'square' | 'video' | '4/3' | '21/9'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'auto'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Aspect ratio container constraint.
-                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">URL source of the image.</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">isZoomable</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Enables subtle scale transform on hover.
-                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables smooth zoom effect on hover.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">caption</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Optional figure caption text rendered below image.
+                  <td className="px-3 py-2 font-mono text-primary">isBlurred</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders ambient glow backdrop shadow.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">radius</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'
                   </td>
+                  <td className="px-3 py-2 text-muted-foreground">'2xl'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Border radius style variant.</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">fallback</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Custom fallback component rendered on loading error.
+                  <td className="px-3 py-2 font-mono text-primary">aspectRatio</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'auto' | 'square' | 'video' | '4/3' | '21/9'
                   </td>
+                  <td className="px-3 py-2 text-muted-foreground">'auto'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Aspect ratio constraint.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

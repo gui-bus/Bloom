@@ -1,13 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Kbd",
-  description: "A tactile keyboard key indicator component used to display keyboard shortcuts and hotkeys.",
-};
 import { Kbd } from "@/components/ui/kbd/kbd";
 import { kbdCode } from "@/components/ui/kbd/kbd.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -18,12 +15,12 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
 
-export default function KbdPage() {
+export default function KbdComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Kbd"
-        description="A tactile keyboard key indicator component used to display keyboard shortcuts and hotkeys."
+        description="Display key bindings and keyboard shortcuts with sleek typography, variants, and size scales."
       />
 
       <Tabs defaultValue="kbd">
@@ -40,66 +37,117 @@ export default function KbdPage() {
           <CodeBlock
             code={kbdCode}
             componentName="kbd.tsx"
-            description="Kbd key indicator component with size variants."
-            tags={["React", "Tailwind", "UI Component", "Keyboard", "Shortcut"]}
+            description="Core implementation of the Kbd component."
+            tags={["React", "Tailwind", "Typography", "Kbd"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Display single or combined keyboard keys."
+        title="Default"
+        description="Standard key binding badge."
+        preview={
+          <div className="flex items-center gap-2">
+            <Kbd>⌘</Kbd>
+            <Kbd>K</Kbd>
+          </div>
+        }
+        code={`<div className="flex items-center gap-2">
+  <Kbd>⌘</Kbd>
+  <Kbd>K</Kbd>
+</div>`}
+      />
+
+      {/* Variants */}
+      <DocsComponent
+        title="Variants"
+        description="Style variants using the 'variant' prop: 'flat', 'bordered', or 'solid'."
         preview={
           <div className="flex flex-wrap items-center gap-4">
-            <div className="flex items-center gap-1">
-              <Kbd>⌘</Kbd>
-              <Kbd>K</Kbd>
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs text-muted-foreground mr-1">Flat:</span>
+              <Kbd variant="flat">Ctrl</Kbd>
+              <Kbd variant="flat">C</Kbd>
             </div>
-            <div className="flex items-center gap-1">
-              <Kbd>Ctrl</Kbd>
-              <Kbd>Shift</Kbd>
-              <Kbd>P</Kbd>
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs text-muted-foreground mr-1">Bordered:</span>
+              <Kbd variant="bordered">Alt</Kbd>
+              <Kbd variant="bordered">F4</Kbd>
             </div>
-            <div className="flex items-center gap-1">
-              <Kbd>Alt</Kbd>
-              <Kbd>F4</Kbd>
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs text-muted-foreground mr-1">Solid:</span>
+              <Kbd variant="solid">Shift</Kbd>
+              <Kbd variant="solid">Enter</Kbd>
             </div>
           </div>
         }
-        code={`<div className="flex items-center gap-1">
-  <Kbd>⌘</Kbd>
-  <Kbd>K</Kbd>
-</div>
-<div className="flex items-center gap-1">
-  <Kbd>Ctrl</Kbd>
-  <Kbd>Shift</Kbd>
-  <Kbd>P</Kbd>
-</div>`}
+        code={`<Kbd variant="flat">Ctrl</Kbd>
+<Kbd variant="bordered">Alt</Kbd>
+<Kbd variant="solid">Shift</Kbd>`}
+        props={["variant: 'flat' | 'bordered' | 'solid'"]}
       />
 
       {/* Sizes */}
       <DocsComponent
         title="Sizes"
-        description="Kbd supports 'sm', 'md' (default), and 'lg' size variants."
+        description="Scale badge dimensions using the 'size' prop: 'sm', 'md', or 'lg'."
         preview={
-          <div className="flex items-center gap-4">
-            <Kbd size="sm">Small (⌘K)</Kbd>
-            <Kbd size="md">Medium (⌘K)</Kbd>
-            <Kbd size="lg">Large (⌘K)</Kbd>
+          <div className="flex items-end gap-3">
+            <Kbd size="sm">⌘ Shift P</Kbd>
+            <Kbd size="md">⌘ Shift P</Kbd>
+            <Kbd size="lg">⌘ Shift P</Kbd>
           </div>
         }
-        code={`<Kbd size="sm">Small (⌘K)</Kbd>
-<Kbd size="md">Medium (⌘K)</Kbd>
-<Kbd size="lg">Large (⌘K)</Kbd>`}
+        code={`<Kbd size="sm">⌘ Shift P</Kbd>
+<Kbd size="md">⌘ Shift P</Kbd>
+<Kbd size="lg">⌘ Shift P</Kbd>`}
         props={["size: 'sm' | 'md' | 'lg'"]}
+      />
+
+      {/* Shortcuts Demo */}
+      <DocsComponent
+        title="Keyboard Shortcuts List"
+        description="Combining Kbd badges into a clean user interface reference list."
+        preview={
+          <div className="flex flex-col gap-2 max-w-sm w-full border border-border bg-card p-4 rounded-2xl">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-medium text-foreground">Command Palette</span>
+              <div className="flex items-center gap-1">
+                <Kbd size="sm">⌘</Kbd>
+                <Kbd size="sm">K</Kbd>
+              </div>
+            </div>
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-medium text-foreground">Copy Code</span>
+              <div className="flex items-center gap-1">
+                <Kbd size="sm">Ctrl</Kbd>
+                <Kbd size="sm">C</Kbd>
+              </div>
+            </div>
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-medium text-foreground">Quick Search</span>
+              <div className="flex items-center gap-1">
+                <Kbd size="sm">/</Kbd>
+              </div>
+            </div>
+          </div>
+        }
+        code={`<div className="flex items-center justify-between">
+  <span>Command Palette</span>
+  <div className="flex items-center gap-1">
+    <Kbd size="sm">⌘</Kbd>
+    <Kbd size="sm">K</Kbd>
+  </div>
+</div>`}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — Kbd"
-        description="Properties for configuring the Kbd component."
+        description="Supported properties for the Kbd component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -113,26 +161,26 @@ export default function KbdPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">size</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'sm' | 'md' | 'lg'</td>
-                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Size variant controlling height, padding, and font size.
+                  <td className="px-3 py-2 font-mono text-primary">variant</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'flat' | 'bordered' | 'solid'
                   </td>
+                  <td className="px-3 py-2 text-muted-foreground">'flat'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Visual surface style variant.</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">className</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Additional CSS classes to override default key styles.
+                  <td className="px-3 py-2 font-mono text-primary">size</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'sm' | 'md' | 'lg'
                   </td>
+                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Dimensional scale for key badge.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

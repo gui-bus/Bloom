@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Form Field",
-  description: "Form field wrapper layout component integrating label, control, helper text and validation errors.",
-};
-
 import { FormField } from "@/components/ui/formField/formField";
 import { Input } from "@/components/ui/input/input";
 import { formFieldCode } from "@/components/ui/formField/formField.code";
@@ -22,10 +18,10 @@ import {
 
 export default function FormFieldComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Form Field"
-        description="A composite form layout wrapper that connects labels, input fields, helper text, and validation error messages."
+        description="A wrapper component providing layout structure, label association, helper descriptions, and error state validation messaging for inputs."
       />
 
       <Tabs defaultValue="formField">
@@ -43,44 +39,77 @@ export default function FormFieldComponentPage() {
             code={formFieldCode}
             componentName="formField.tsx"
             description="Core implementation of the FormField component."
-            tags={["React", "Tailwind", "Forms", "UI Layout"]}
+            tags={["React", "Form", "FormField", "Validation"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Form field with label, description and error states."
+        title="Default"
+        description="Standard FormField wrapping an Input control."
         preview={
-          <div className="w-full max-w-sm flex flex-col gap-4">
-            <FormField
-              label="Work Email"
-              isRequired
-              description="We will send a confirmation email here."
-            >
-              <Input placeholder="john@company.com" />
-            </FormField>
-
-            <FormField
-              label="Username"
-              isInvalid
-              errorMessage="Username is already taken"
-            >
-              <Input defaultValue="john_doe" />
+          <div className="max-w-sm w-full">
+            <FormField label="Account Email" description="Enter your primary account login email address.">
+              <Input type="email" placeholder="alex@company.com" />
             </FormField>
           </div>
         }
-        code={`<FormField label="Work Email" isRequired description="We will send a confirmation email here.">
-  <Input placeholder="john@company.com" />
+        code={`<FormField label="Account Email" description="Enter your primary email.">
+  <Input type="email" placeholder="alex@company.com" />
 </FormField>`}
+      />
+
+      {/* Required */}
+      <DocsComponent
+        title="Required Field Indicator"
+        description="Renders a red asterisk indicator on the field label with the 'isRequired' prop."
+        preview={
+          <div className="max-w-sm w-full">
+            <FormField label="Full Name" isRequired>
+              <Input placeholder="Alex Morgan" />
+            </FormField>
+          </div>
+        }
+        code={`<FormField label="Full Name" isRequired>
+  <Input placeholder="Alex Morgan" />
+</FormField>`}
+        props={["isRequired: boolean"]}
+      />
+
+      {/* Validation Error State */}
+      <DocsComponent
+        title="Validation Error State"
+        description="Display validation failure messages in red using 'isInvalid' and 'errorMessage'."
+        preview={
+          <div className="max-w-sm w-full">
+            <FormField
+              label="Password"
+              isRequired
+              isInvalid
+              errorMessage="Password must be at least 8 characters long and contain a symbol."
+            >
+              <Input type="password" value="123" />
+            </FormField>
+          </div>
+        }
+        code={`<FormField
+  label="Password"
+  isRequired
+  isInvalid
+  errorMessage="Password must be at least 8 characters long."
+>
+  <Input type="password" value="123" />
+</FormField>`}
+        props={["isInvalid: boolean", "errorMessage: ReactNode"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — FormField"
-        description="Properties to configure the FormField component."
+        description="Supported properties for the FormField component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -97,19 +126,37 @@ export default function FormFieldComponentPage() {
                   <td className="px-3 py-2 font-mono text-primary">label</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Label title text.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Text or element for field label.</td>
                 </tr>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isRequired</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Adds required asterisk to the label.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">description</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Helper description text displayed beneath the field control.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isInvalid</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Highlights field in error state.</td>
+                </tr>
+                <tr>
                   <td className="px-3 py-2 font-mono text-primary">errorMessage</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Error message shown when invalid.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Error message text displayed when isInvalid is true.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }
