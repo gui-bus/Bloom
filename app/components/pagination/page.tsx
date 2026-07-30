@@ -1,13 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-import { PaginationInteractiveDemo } from "./pagination-demo";
-import {
-  PaginationFirstLastDemo,
-  PaginationCompactDemo,
-} from "./pagination-interactive-demos";
 import {
   Pagination,
   PaginationContent,
@@ -15,9 +12,9 @@ import {
   PaginationLink,
   PaginationPrevious,
   PaginationNext,
+  PaginationEllipsis,
   PaginationFirst,
   PaginationLast,
-  PaginationEllipsis,
 } from "@/components/ui/pagination/pagination";
 import { paginationCode } from "@/components/ui/pagination/pagination.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -28,17 +25,14 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
 
-export const metadata: Metadata = {
-  title: "Pagination",
-  description: "Pagination component with page navigation controls, first/last controls, compact icon modes, and interactive stateful switching.",
-};
+export default function PaginationComponentPage() {
+  const [page, setPage] = React.useState(2);
 
-export default function PaginationDocsPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Pagination"
-        description="Navigation controls for splitting multi-page content into discrete pages with stateful switching, icon modes, and first/last jump controls."
+        description="Pagination component with page numbers, prev/next controls, first/last jumps, shapes, variants, and sizes."
       />
 
       <Tabs defaultValue="pagination">
@@ -55,131 +49,169 @@ export default function PaginationDocsPage() {
           <CodeBlock
             code={paginationCode}
             componentName="pagination.tsx"
-            description="Pagination bar component supporting page switching, previous/next/first/last controls, and page ellipsis."
-            tags={["React", "Tailwind", "UI Component", "Navigation", "Pagination"]}
+            description="Core implementation of the Pagination component."
+            tags={["React", "Pagination", "Navigation", "Table"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Interactive Stateful Pagination */}
+      {/* Default */}
       <DocsComponent
-        title="Interactive Stateful Page Switching"
-        description="Stateful page switching that updates content dynamically without anchor jump scroll."
-        preview={<PaginationInteractiveDemo />}
+        title="Default"
+        description="Standard pagination bar."
+        preview={
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious onClick={() => setPage(Math.max(1, page - 1))} />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink isActive={page === 1} onClick={() => setPage(1)}>
+                  1
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink isActive={page === 2} onClick={() => setPage(2)}>
+                  2
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink isActive={page === 3} onClick={() => setPage(3)}>
+                  3
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext onClick={() => setPage(Math.min(5, page + 1))} />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        }
         code={`<Pagination>
   <PaginationContent>
-    <PaginationItem>
-      <PaginationPrevious disabled={currentPage === 1} onClick={() => setCurrentPage(p => p - 1)} />
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationLink isActive={currentPage === 1} onClick={() => setCurrentPage(1)}>1</PaginationLink>
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationLink isActive={currentPage === 2} onClick={() => setCurrentPage(2)}>2</PaginationLink>
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationLink isActive={currentPage === 3} onClick={() => setCurrentPage(3)}>3</PaginationLink>
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationNext disabled={currentPage === totalPages} onClick={() => setCurrentPage(p => p + 1)} />
-    </PaginationItem>
+    <PaginationItem><PaginationPrevious /></PaginationItem>
+    <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationNext /></PaginationItem>
   </PaginationContent>
 </Pagination>`}
       />
 
-      {/* Complete Navigation Controls with First / Last */}
+      {/* Shapes */}
       <DocsComponent
-        title="First & Last Controls"
-        description="Include PaginationFirst and PaginationLast buttons to jump directly to the beginning or end of large datasets."
-        preview={<PaginationFirstLastDemo />}
-        code={`<Pagination>
-  <PaginationContent>
-    <PaginationItem>
-      <PaginationFirst label="First" disabled={currentPage === 1} onClick={() => setCurrentPage(1)} />
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationPrevious disabled={currentPage === 1} onClick={() => setCurrentPage(p => p - 1)} />
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationLink isActive>{currentPage}</PaginationLink>
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationNext disabled={currentPage === totalPages} onClick={() => setCurrentPage(p => p + 1)} />
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationLast label="Last" disabled={currentPage === totalPages} onClick={() => setCurrentPage(totalPages)} />
-    </PaginationItem>
-  </PaginationContent>
-</Pagination>`}
+        title="Shapes"
+        description="Button border radius shape using the 'shape' prop: 'square', 'rounded', or 'circle'."
+        preview={
+          <div className="flex flex-col gap-6 w-full">
+            <Pagination shape="rounded">
+              <PaginationContent>
+                <PaginationItem><PaginationPrevious /></PaginationItem>
+                <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationNext /></PaginationItem>
+              </PaginationContent>
+            </Pagination>
+
+            <Pagination shape="circle">
+              <PaginationContent>
+                <PaginationItem><PaginationFirst /></PaginationItem>
+                <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLast /></PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </div>
+        }
+        code={`<Pagination shape="rounded">...</Pagination>
+<Pagination shape="circle">...</Pagination>`}
+        props={["shape: 'square' | 'rounded' | 'circle'"]}
       />
 
-      {/* Compact Icon-Only Mode */}
+      {/* Sizes */}
       <DocsComponent
-        title="Compact Icon-Only Mode"
-        description="Pass label='' to hide text labels for a compact icon-driven pagination layout."
-        preview={<PaginationCompactDemo />}
-        code={`<Pagination>
-  <PaginationContent>
-    <PaginationItem>
-      <PaginationFirst label="" disabled={currentPage === 1} onClick={() => setCurrentPage(1)} />
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationPrevious label="" disabled={currentPage === 1} onClick={() => setCurrentPage(p => p - 1)} />
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationLink isActive={currentPage === 1} onClick={() => setCurrentPage(1)}>1</PaginationLink>
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationNext label="" disabled={currentPage === totalPages} onClick={() => setCurrentPage(p => p + 1)} />
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationLast label="" disabled={currentPage === totalPages} onClick={() => setCurrentPage(totalPages)} />
-    </PaginationItem>
-  </PaginationContent>
-</Pagination>`}
+        title="Sizes"
+        description="Scale pagination button size using the 'size' prop: 'sm', 'md', or 'lg'."
+        preview={
+          <div className="flex flex-col gap-6 w-full">
+            <Pagination size="sm">
+              <PaginationContent>
+                <PaginationItem><PaginationPrevious /></PaginationItem>
+                <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationNext /></PaginationItem>
+              </PaginationContent>
+            </Pagination>
+
+            <Pagination size="lg">
+              <PaginationContent>
+                <PaginationItem><PaginationPrevious /></PaginationItem>
+                <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationNext /></PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </div>
+        }
+        code={`<Pagination size="sm">...</Pagination>
+<Pagination size="lg">...</Pagination>`}
+        props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — Pagination"
-        description="Sub-components for composing accessible Pagination controls."
+        description="Supported properties for the Pagination component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Component</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Props</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
                   <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">Pagination</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">HTMLNavProps</td>
-                  <td className="px-3 py-2 text-muted-foreground">Root container with role="navigation".</td>
+                  <td className="px-3 py-2 font-mono text-primary">variant</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'default' | 'bordered' | 'flat' | 'light' | 'pills'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'default'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Visual button surface style variant.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">PaginationLink</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">isActive?: boolean, size?: 'sm'|'md'|'lg'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Interactive page button with active indicator state.</td>
+                  <td className="px-3 py-2 font-mono text-primary">shape</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'square' | 'rounded' | 'circle'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'rounded'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Border radius shape variant.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">PaginationFirst / PaginationLast</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">label?: string</td>
-                  <td className="px-3 py-2 text-muted-foreground">Buttons to jump directly to page 1 or the last page.</td>
+                  <td className="px-3 py-2 font-mono text-primary">size</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'sm' | 'md' | 'lg'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Button dimensions scale.</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">PaginationPrevious / PaginationNext</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">label?: string</td>
-                  <td className="px-3 py-2 text-muted-foreground">Previous and Next page navigation buttons.</td>
+                  <td className="px-3 py-2 font-mono text-primary">isActive (on Link)</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Highlights current active page link.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }
