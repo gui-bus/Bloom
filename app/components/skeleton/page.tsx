@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function SkeletonComponentPage() {
         title="Skeleton"
         description="Renders subtle animated pulse loading placeholders while data or media content is fetching."
       />
+
+      <InstallationBlock componentName="skeleton" />
 
       <Tabs defaultValue="skeleton">
         <TabsList background={false}>
@@ -129,6 +135,8 @@ export default function SkeletonComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

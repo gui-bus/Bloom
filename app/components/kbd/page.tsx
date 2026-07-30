@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function KbdComponentPage() {
         title="Kbd"
         description="Display key bindings and keyboard shortcuts with sleek typography, variants, and size scales."
       />
+
+      <InstallationBlock componentName="kbd" />
 
       <Tabs defaultValue="kbd">
         <TabsList background={false}>
@@ -183,6 +189,8 @@ export default function KbdComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

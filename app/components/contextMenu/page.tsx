@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -40,6 +44,8 @@ export default function ContextMenuComponentPage() {
         title="Context Menu"
         description="Displays an interactive context menu popup upon right-click or tap-and-hold interaction, without causing page layout shift."
       />
+
+      <InstallationBlock componentName="contextMenu" />
 
       <Tabs defaultValue="contextMenu">
         <TabsList background={false}>
@@ -278,6 +284,8 @@ export default function ContextMenuComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

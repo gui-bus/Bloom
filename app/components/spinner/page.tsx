@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function SpinnerComponentPage() {
         title="Spinner"
         description="Animated loading indicator featuring multiple visual styles (default, dots, bars, pulse, ring, gradient), color palettes, size scale, and text labels."
       />
+
+      <InstallationBlock componentName="spinner" />
 
       <Tabs defaultValue="spinner">
         <TabsList background={false}>
@@ -175,6 +181,8 @@ export default function SpinnerComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

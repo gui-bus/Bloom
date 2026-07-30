@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function DatePickerComponentPage() {
         title="Date Picker"
         description="A visual date selection component featuring an interactive calendar dropdown, date formatting, clearable selection, and error state validation."
       />
+
+      <InstallationBlock componentName="datePicker" />
 
       <Tabs defaultValue="datePicker">
         <TabsList background={false}>
@@ -183,6 +189,8 @@ export default function DatePickerComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

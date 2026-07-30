@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function FileUploadComponentPage() {
         title="File Upload"
         description="Drag & drop file upload zone supporting file format restrictions, size limits, multi-file attachments, and staged file item removals."
       />
+
+      <InstallationBlock componentName="fileUpload" />
 
       <Tabs defaultValue="fileUpload">
         <TabsList background={false}>
@@ -147,6 +153,8 @@ export default function FileUploadComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function ColorPickerComponentPage() {
         title="Color Picker"
         description="A visual color selection component featuring a native color input preview, HEX/RGB/HSL format switcher with copy button, and an interactive canvas-based color wheel."
       />
+
+      <InstallationBlock componentName="colorPicker" />
 
       <Tabs defaultValue="colorPicker">
         <TabsList background={false}>
@@ -202,6 +208,8 @@ export default function ColorPickerComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

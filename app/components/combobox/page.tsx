@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -38,6 +42,8 @@ export default function ComboboxComponentPage() {
         title="Combobox"
         description="An autocomplete input combo box component allowing users to filter and select options with live search, support for icons, descriptions, clearable values, and individual disabled items."
       />
+
+      <InstallationBlock componentName="combobox" />
 
       <Tabs defaultValue="combobox">
         <TabsList background={false}>
@@ -297,6 +303,8 @@ export default function ComboboxComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

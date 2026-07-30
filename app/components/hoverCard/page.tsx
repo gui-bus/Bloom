@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -28,6 +32,8 @@ export default function HoverCardComponentPage() {
         title="Hover Card"
         description="For sighted users to preview content available behind a link or trigger when hovered over."
       />
+
+      <InstallationBlock componentName="hoverCard" />
 
       <Tabs defaultValue="hoverCard">
         <TabsList background={false}>
@@ -180,6 +186,8 @@ export default function HoverCardComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

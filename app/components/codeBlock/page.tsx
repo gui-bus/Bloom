@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock as CoreCodeBlock } from "@/components/core/codeBlock";
@@ -26,8 +30,7 @@ export function ExampleApp() {
   );
 }`;
 
-const longSnippet = `"use client";
-
+const longSnippet = `
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
@@ -64,6 +67,8 @@ export default function CodeBlockComponentPage() {
         title="Code Block"
         description="A stylized syntax-highlighted code block component with integrated copy button, file name header, language badges, description text, tag pills, and optional expandable container."
       />
+
+      <InstallationBlock componentName="codeBlock" />
 
       <Tabs defaultValue="codeBlock">
         <TabsList background={false}>
@@ -287,6 +292,8 @@ console.log(greeting);`}
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

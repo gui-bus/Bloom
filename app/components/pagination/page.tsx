@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -34,6 +38,8 @@ export default function PaginationComponentPage() {
         title="Pagination"
         description="Pagination component with page numbers, prev/next controls, first/last jumps, shapes, variants, and sizes."
       />
+
+      <InstallationBlock componentName="pagination" />
 
       <Tabs defaultValue="pagination">
         <TabsList background={false}>
@@ -212,6 +218,8 @@ export default function PaginationComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

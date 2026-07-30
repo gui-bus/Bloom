@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function AvatarPage() {
         title="Avatar"
         description="Avatars represent a user or entity using an image, initials fallback, or status indicator. Built on top of Radix UI primitive with support for interactive press states and standardized neutral dark/light themes."
       />
+
+      <InstallationBlock componentName="avatar" />
 
       <Tabs defaultValue="avatar">
         <TabsList background={false}>
@@ -376,6 +382,8 @@ export default function AvatarPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

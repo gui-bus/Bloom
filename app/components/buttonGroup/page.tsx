@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -23,6 +27,8 @@ export default function ButtonGroupPage() {
         title="Button Group"
         description="ButtonGroup allows grouping multiple buttons together, creating a visually connected set. Propagates variants, colors, sizes, loading, and disabled states to child buttons."
       />
+
+      <InstallationBlock componentName="buttonGroup" />
 
       <Tabs defaultValue="buttonGroup">
         <TabsList background={false}>
@@ -382,6 +388,8 @@ export default function ButtonGroupPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

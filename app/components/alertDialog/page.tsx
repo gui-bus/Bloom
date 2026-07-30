@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -33,6 +37,8 @@ export default function AlertDialogComponentPage() {
         title="Alert Dialog"
         description="A confirmation dialog modal that interrupts the user with critical content requiring an explicit response before proceeding."
       />
+
+      <InstallationBlock componentName="alertDialog" />
 
       <Tabs defaultValue="alertDialog">
         <TabsList background={false}>
@@ -252,6 +258,8 @@ export default function AlertDialogComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

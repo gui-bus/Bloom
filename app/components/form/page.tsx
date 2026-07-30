@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -43,6 +47,8 @@ export default function FormComponentPage() {
         title="Form"
         description="A wrapper component for building forms with React Hook Form integration, validation handlers, and accessible field controls."
       />
+
+      <InstallationBlock componentName="form" />
 
       <Tabs defaultValue="form">
         <TabsList background={false}>
@@ -137,6 +143,8 @@ export default function FormComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -25,6 +29,8 @@ export default function AlertComponentPage() {
         title="Alert"
         description="Displays a clean contextual banner for user attention with theme-adaptive neutral backgrounds, colored titles & icons, and custom slot support."
       />
+
+      <InstallationBlock componentName="alert" />
 
       <Tabs defaultValue="alert">
         <TabsList background={false}>
@@ -405,6 +411,8 @@ export default function AlertComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function StatCardComponentPage() {
         title="Stat Card"
         description="Displays key performance metrics, numeric values, trend indicators (+/-), icons, and contextual descriptions."
       />
+
+      <InstallationBlock componentName="statCard" />
 
       <Tabs defaultValue="statCard">
         <TabsList background={false}>
@@ -160,6 +166,8 @@ export default function StatCardComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

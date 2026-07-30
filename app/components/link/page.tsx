@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function LinkComponentPage() {
         title="Link"
         description="Accessible navigation hyperlink component built on top of Next.js Link and HTML anchor primitives with variants and external indicators."
       />
+
+      <InstallationBlock componentName="link" />
 
       <Tabs defaultValue="link">
         <TabsList background={false}>
@@ -186,6 +192,8 @@ export default function LinkComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -36,6 +40,8 @@ export default function ScrollAreaComponentPage() {
         title="Scroll Area"
         description="Augments native scroll functionality with custom cross-browser styled scrollbars built on Radix UI primitives."
       />
+
+      <InstallationBlock componentName="scrollArea" />
 
       <Tabs defaultValue="scrollArea">
         <TabsList background={false}>
@@ -137,6 +143,8 @@ export default function ScrollAreaComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

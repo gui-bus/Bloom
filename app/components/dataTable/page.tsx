@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -61,6 +65,8 @@ export default function DataTableComponentPage() {
         title="Data Table"
         description="A feature-rich data grid component built on TanStack Table supporting client-side searching, column sorting, pagination controls, and CSV data export."
       />
+
+      <InstallationBlock componentName="dataTable" />
 
       <Tabs defaultValue="dataTable">
         <TabsList background={false}>
@@ -174,6 +180,8 @@ export default function DataTableComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

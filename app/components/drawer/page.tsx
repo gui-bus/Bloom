@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -38,6 +42,8 @@ export default function DrawerComponentPage() {
         title="Drawer"
         description="A sliding panel primitive supporting positions (bottom, top, left, right), size scales (sm, md, lg, xl, full), customizable backdrop overlays (blur, dark, light), keyboard accessibility, and zero page layout shift."
       />
+
+      <InstallationBlock componentName="drawer" />
 
       <Tabs defaultValue="drawer">
         <TabsList background={false}>
@@ -356,6 +362,8 @@ export default function DrawerComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

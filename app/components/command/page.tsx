@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -31,6 +35,8 @@ export default function CommandComponentPage() {
         title="Command"
         description="A fast, composable, spotlight-style command menu palette built on cmdk for keyboard-driven navigation and search actions."
       />
+
+      <InstallationBlock componentName="command" />
 
       <Tabs defaultValue="command">
         <TabsList background={false}>
@@ -165,6 +171,8 @@ export default function CommandComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -24,6 +28,8 @@ export default function SwitchComponentPage() {
         title="Switch"
         description="A toggle control allowing users to switch between on and off states with support for labels, descriptions, icons, card layout, and color variants."
       />
+
+      <InstallationBlock componentName="switch" />
 
       <Tabs defaultValue="switch">
         <TabsList background={false}>
@@ -210,6 +216,8 @@ export default function SwitchComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

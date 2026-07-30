@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -25,6 +29,8 @@ export default function SliderComponentPage() {
         title="Slider"
         description="An interactive range slider input allowing users to select single values or range spans with marks, tooltips, and custom formatting."
       />
+
+      <InstallationBlock componentName="slider" />
 
       <Tabs defaultValue="slider">
         <TabsList background={false}>
@@ -171,6 +177,8 @@ export default function SliderComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -42,6 +46,8 @@ export default function DropdownMenuDocsPage() {
         title="Dropdown Menu"
         description="A contextual popover menu presenting a list of actions or shortcuts, powered by Radix UI primitives with zero layout shift."
       />
+
+      <InstallationBlock componentName="dropdownMenu" />
 
       <Tabs defaultValue="dropdownMenu">
         <TabsList background={false}>
@@ -289,6 +295,8 @@ export default function DropdownMenuDocsPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

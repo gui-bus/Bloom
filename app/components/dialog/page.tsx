@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -33,6 +37,8 @@ export default function DialogComponentPage() {
         title="Dialog"
         description="A modal window component overlaid on the primary view with customizable backdrop blur/dark overlays, size options, keyboard accessibility, and zero layout shift."
       />
+
+      <InstallationBlock componentName="dialog" />
 
       <Tabs defaultValue="dialog">
         <TabsList background={false}>
@@ -265,6 +271,8 @@ export default function DialogComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

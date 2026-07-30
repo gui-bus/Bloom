@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -21,6 +25,8 @@ export default function TabsComponentPage() {
         title="Tabs"
         description="Organizes content into multiple panel views with animated transitions, tab variants (contained, pills, underline, bordered), badges, and icons."
       />
+
+      <InstallationBlock componentName="tabs" />
 
       <Tabs defaultValue="tabs">
         <TabsList background={false}>
@@ -163,6 +169,8 @@ export default function TabsComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

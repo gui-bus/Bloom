@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -85,6 +89,8 @@ export default function CarouselPage() {
         title="Carousel"
         description="A touch-enabled, responsive slider component for cycling through images, cards, or custom content with support for autoplay, vertical orientation, and pagination dots with navigation controls."
       />
+
+      <InstallationBlock componentName="carousel" />
 
       <Tabs defaultValue="carousel">
         <TabsList background={false}>
@@ -428,6 +434,8 @@ export default function CarouselPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

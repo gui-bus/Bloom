@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -23,6 +27,8 @@ export default function LabelComponentPage() {
         title="Label"
         description="Renders an accessible label associated with form controls using Radix UI primitives."
       />
+
+      <InstallationBlock componentName="label" />
 
       <Tabs defaultValue="label">
         <TabsList background={false}>
@@ -136,6 +142,8 @@ export default function LabelComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

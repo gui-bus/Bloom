@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function TypographyComponentPage() {
         title="Typography"
         description="Standardized typographic text hierarchy styles including headings, body paragraphs, lead copy, colors, and inline code elements."
       />
+
+      <InstallationBlock componentName="typography" />
 
       <Tabs defaultValue="typography">
         <TabsList background={false}>
@@ -149,6 +155,8 @@ export default function TypographyComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -21,6 +25,8 @@ export default function SeparatorComponentPage() {
         title="Separator"
         description="Visually or semantically separates content with horizontal/vertical lines, gradients, and section labels."
       />
+
+      <InstallationBlock componentName="separator" />
 
       <Tabs defaultValue="separator">
         <TabsList background={false}>
@@ -137,6 +143,8 @@ export default function SeparatorComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

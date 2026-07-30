@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -24,6 +28,8 @@ export default function ImageComponentPage() {
         title="Image"
         description="Enhanced image container with placeholder graphics, loading skeletons, error fallbacks, radius options, zoomable hover effects, and blurred glow backdrop shadow."
       />
+
+      <InstallationBlock componentName="image" />
 
       <Tabs defaultValue="image">
         <TabsList background={false}>
@@ -207,6 +213,8 @@ export default function ImageComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

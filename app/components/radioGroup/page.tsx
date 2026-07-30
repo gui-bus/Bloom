@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -24,6 +28,8 @@ export default function RadioGroupComponentPage() {
         title="Radio Group"
         description="A set of checkable radio buttons where only one option can be checked at a time, featuring card selection styles and descriptions."
       />
+
+      <InstallationBlock componentName="radioGroup" />
 
       <Tabs defaultValue="radioGroup">
         <TabsList background={false}>
@@ -172,6 +178,8 @@ export default function RadioGroupComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

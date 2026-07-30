@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function TextareaComponentPage() {
         title="Textarea"
         description="Multi-line text input field supporting character limits, auto-expanding heights, error validation, variants, and label placements."
       />
+
+      <InstallationBlock componentName="textarea" />
 
       <Tabs defaultValue="textarea">
         <TabsList background={false}>
@@ -147,6 +153,8 @@ export default function TextareaComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

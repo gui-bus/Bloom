@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -32,6 +36,8 @@ export default function StepperComponentPage() {
         title="Stepper"
         description="Guides users through multi-step forms or workflows with progress indicators, status titles, icons, and interactive step navigation."
       />
+
+      <InstallationBlock componentName="stepper" />
 
       <Tabs defaultValue="stepper">
         <TabsList background={false}>
@@ -210,6 +216,8 @@ export default function StepperComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

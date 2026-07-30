@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -36,6 +40,8 @@ export default function BreadcrumbDocsPage() {
         title="Breadcrumb"
         description="A navigational helper that reveals the user's location within a website or web application hierarchy."
       />
+
+      <InstallationBlock componentName="breadcrumb" />
 
       <Tabs defaultValue="breadcrumb">
         <TabsList background={false}>
@@ -260,6 +266,8 @@ export default function BreadcrumbDocsPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -34,6 +38,8 @@ export default function MenubarComponentPage() {
         title="Menubar"
         description="A desktop-style horizontal top navigation bar menu with keyboard shortcuts, checkboxes, and submenus."
       />
+
+      <InstallationBlock componentName="menubar" />
 
       <Tabs defaultValue="menubar">
         <TabsList background={false}>
@@ -171,6 +177,8 @@ export default function MenubarComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

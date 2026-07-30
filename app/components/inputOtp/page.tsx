@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -31,6 +35,8 @@ export default function InputOtpComponentPage() {
         title="Input OTP"
         description="Accessible one-time password input component supporting input mode validation (numeric only, letters only, alphanumeric), custom lengths, separators, and sizes."
       />
+
+      <InstallationBlock componentName="inputOtp" />
 
       <Tabs defaultValue="inputOtp">
         <TabsList background={false}>
@@ -260,6 +266,8 @@ export default function InputOtpComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

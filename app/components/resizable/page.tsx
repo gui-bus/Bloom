@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -26,6 +30,8 @@ export default function ResizableComponentPage() {
         title="Resizable"
         description="Accessible resizable panel layout groups with horizontal and vertical drag handles built on react-resizable-panels."
       />
+
+      <InstallationBlock componentName="resizable" />
 
       <Tabs defaultValue="resizable">
         <TabsList background={false}>
@@ -145,6 +151,8 @@ export default function ResizableComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

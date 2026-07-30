@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -24,6 +28,8 @@ export default function ToggleComponentPage() {
         title="Toggle"
         description="A two-state button component that can be toggled on or off for formatting controls, filters, and feature toggles."
       />
+
+      <InstallationBlock componentName="toggle" />
 
       <Tabs defaultValue="toggle">
         <TabsList background={false}>
@@ -153,6 +159,8 @@ export default function ToggleComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

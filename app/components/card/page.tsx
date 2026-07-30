@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -31,6 +35,8 @@ export default function CardComponentPage() {
         title="Card"
         description="A content container component supporting headers, bodies, footers, interactive states (hoverable, pressable), custom radii, variants, and clean neutral theme backgrounds."
       />
+
+      <InstallationBlock componentName="card" />
 
       <Tabs defaultValue="card">
         <TabsList background={false}>
@@ -366,6 +372,8 @@ export default function CardComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -32,6 +36,8 @@ export default function PopoverComponentPage() {
         title="Popover"
         description="Displays rich content in a portal layer triggered by a button click, with custom backdrop overlays (blur, dark, light) similar to Dialog and Drawer."
       />
+
+      <InstallationBlock componentName="popover" />
 
       <Tabs defaultValue="popover">
         <TabsList background={false}>
@@ -202,6 +208,8 @@ export default function PopoverComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

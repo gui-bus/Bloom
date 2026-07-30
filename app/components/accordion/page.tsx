@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -30,6 +34,8 @@ export default function AccordionPage() {
         title="Accordion"
         description="A vertically stacked set of interactive headings that expand or collapse associated content sections, supporting controlled states, custom icons, and disabled items."
       />
+
+      <InstallationBlock componentName="accordion" />
 
       <Tabs defaultValue="accordion">
         <TabsList background={false}>
@@ -558,6 +564,8 @@ return (
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

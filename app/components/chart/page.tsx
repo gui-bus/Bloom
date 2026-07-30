@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -31,6 +35,8 @@ export default function ChartComponentPage() {
         title="Chart"
         description="A responsive data visualization chart component built on Recharts supporting line and bar series with customizable height, colors, and tooltips."
       />
+
+      <InstallationBlock componentName="chart" />
 
       <Tabs defaultValue="chart">
         <TabsList background={false}>
@@ -184,6 +190,8 @@ export default function ChartComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

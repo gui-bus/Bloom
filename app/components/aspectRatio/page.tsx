@@ -1,3 +1,5 @@
+import { DocsPagination } from "@/components/core/docsPagination";
+import { InstallationBlock } from "@/components/core/installationBlock";
 import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -25,6 +27,8 @@ export default function AspectRatioPage() {
         title="Aspect Ratio"
         description="Displays content within a desired aspect ratio, preserving proportions responsively across viewport sizes."
       />
+
+      <InstallationBlock componentName="aspectRatio" />
 
       <Tabs defaultValue="aspectRatio">
         <TabsList background={false}>
@@ -160,7 +164,9 @@ export default function AspectRatioPage() {
                 </tr>
               </tbody>
             </table>
-          </div>
+          
+      <DocsPagination />
+    </div>
         }
       />
     </main>

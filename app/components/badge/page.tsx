@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function BadgeComponentPage() {
         title="Badge"
         description="A compact label used to highlight status, categories, or contextual metadata. Supports multiple color palettes, visual variants, sizes, pressable interactions, and optional dot indicators or icon slots."
       />
+
+      <InstallationBlock componentName="badge" />
 
       <Tabs defaultValue="badge">
         <TabsList background={false}>
@@ -433,6 +439,8 @@ export default function BadgeComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

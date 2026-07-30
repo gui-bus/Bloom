@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function InputComponentPage() {
         title="Input"
         description="A flexible, accessible text input field supporting visual style variants, size scales, prefix/suffix icon slots, clearable buttons, password toggles, and validation feedback."
       />
+
+      <InstallationBlock componentName="input" />
 
       <Tabs defaultValue="input">
         <TabsList background={false}>
@@ -255,6 +261,8 @@ export default function InputComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

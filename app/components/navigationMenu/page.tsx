@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -30,6 +34,8 @@ export default function NavigationMenuComponentPage() {
         title="Navigation Menu"
         description="A collection of navigation links and dropdown content cards for site headers built on Radix UI Navigation Menu."
       />
+
+      <InstallationBlock componentName="navigationMenu" />
 
       <Tabs defaultValue="navigationMenu">
         <TabsList background={false}>
@@ -169,6 +175,8 @@ export default function NavigationMenuComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

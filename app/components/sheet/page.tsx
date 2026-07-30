@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -34,6 +38,8 @@ export default function SheetComponentPage() {
         title="Sheet"
         description="Extends modal dialogs with side drawer panels (left, right, top, bottom) featuring customizable backdrop overlays matching Drawer."
       />
+
+      <InstallationBlock componentName="sheet" />
 
       <Tabs defaultValue="sheet">
         <TabsList background={false}>
@@ -248,6 +254,8 @@ export default function SheetComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

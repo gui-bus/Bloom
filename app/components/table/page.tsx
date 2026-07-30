@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -32,6 +36,8 @@ export default function TableComponentPage() {
         title="Table"
         description="A responsive data table for presenting tabular information with custom row highlights, headers, status badges, and captions."
       />
+
+      <InstallationBlock componentName="table" />
 
       <Tabs defaultValue="table">
         <TabsList background={false}>
@@ -187,6 +193,8 @@ export default function TableComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

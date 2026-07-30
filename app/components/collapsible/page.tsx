@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -165,6 +169,8 @@ export default function CollapsiblePage() {
         title="Collapsible"
         description="An interactive component that expands and collapses content panels with smooth height transitions, built on Radix UI Primitives."
       />
+
+      <InstallationBlock componentName="collapsible" />
 
       <Tabs defaultValue="collapsible">
         <TabsList background={false}>
@@ -342,6 +348,8 @@ export default function CollapsiblePage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

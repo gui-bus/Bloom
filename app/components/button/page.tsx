@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -25,6 +29,8 @@ export default function ButtonComponentPage() {
         title="Button"
         description="A button is an interactive UI element used to trigger actions such as navigation, form submissions, or contextual commands."
       />
+
+      <InstallationBlock componentName="button" />
 
       <Tabs defaultValue="button">
         <TabsList background={false}>
@@ -476,6 +482,8 @@ export default function ButtonComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -30,6 +34,8 @@ export default function SelectComponentPage() {
         title="Select"
         description="Displays a custom select menu with options, group labels, item indicators, and sizes built on Radix UI Select."
       />
+
+      <InstallationBlock componentName="select" />
 
       <Tabs defaultValue="select">
         <TabsList background={false}>
@@ -200,6 +206,8 @@ export default function SelectComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

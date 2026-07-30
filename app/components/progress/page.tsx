@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function ProgressComponentPage() {
         title="Progress"
         description="Displays an indicator showing the completion progress of a task, typically displayed as a progress bar."
       />
+
+      <InstallationBlock componentName="progress" />
 
       <Tabs defaultValue="progress">
         <TabsList background={false}>
@@ -184,6 +190,8 @@ export default function ProgressComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

@@ -62,7 +62,10 @@ export function Sidebar() {
   const sections: SidebarSection[] = [
     {
       title: "Overview",
-      links: [{ href: "/", label: "Introduction" }],
+      links: [
+        { href: "/", label: "Introduction" },
+        { href: "/installation", label: "Installation" },
+      ],
     },
     {
       title: "Components",

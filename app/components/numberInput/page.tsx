@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -24,6 +28,8 @@ export default function NumberInputComponentPage() {
         title="Number Input"
         description="Numeric stepper input control with increment/decrement buttons, min/max limits, custom step sizes, and size options."
       />
+
+      <InstallationBlock componentName="numberInput" />
 
       <Tabs defaultValue="numberInput">
         <TabsList background={false}>
@@ -158,6 +164,8 @@ export default function NumberInputComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,6 +26,8 @@ export default function CheckboxComponentPage() {
         title="Checkbox"
         description="An accessible control that allows toggling between checked and unchecked states, powered by Radix UI with support for colors, labels, descriptions, and card mode."
       />
+
+      <InstallationBlock componentName="checkbox" />
 
       <Tabs defaultValue="checkbox">
         <TabsList background={false}>
@@ -239,6 +245,8 @@ export default function CheckboxComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

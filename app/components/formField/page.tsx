@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -23,6 +27,8 @@ export default function FormFieldComponentPage() {
         title="Form Field"
         description="A wrapper component providing layout structure, label association, helper descriptions, and error state validation messaging for inputs."
       />
+
+      <InstallationBlock componentName="formField" />
 
       <Tabs defaultValue="formField">
         <TabsList background={false}>
@@ -157,6 +163,8 @@ export default function FormFieldComponentPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

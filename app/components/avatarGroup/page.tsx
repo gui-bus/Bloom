@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -23,6 +27,8 @@ export default function AvatarGroupPage() {
         title="Avatar Group"
         description="Stack multiple avatars together with smooth cubic-bezier hover expansion, orientation support (horizontal or vertical), count truncation, and clean dark/light neutral theme styling."
       />
+
+      <InstallationBlock componentName="avatarGroup" />
 
       <Tabs defaultValue="avatarGroup">
         <TabsList background={false}>
@@ -444,6 +450,8 @@ export default function AvatarGroupPage() {
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }

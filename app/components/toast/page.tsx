@@ -1,5 +1,9 @@
 "use client";
 
+import { DocsPagination } from "@/components/core/docsPagination";
+
+import { InstallationBlock } from "@/components/core/installationBlock";
+
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -25,6 +29,8 @@ export default function ToastComponentPage() {
       />
 
       <Toast position="bottom-right" />
+
+      <InstallationBlock componentName="toast" />
 
       <Tabs defaultValue="toast">
         <TabsList background={false}>
@@ -182,6 +188,8 @@ toast.info("System Update Available", { description: "Version v2.4.0 is ready." 
           </div>
         }
       />
+    
+      <DocsPagination />
     </div>
   );
 }
