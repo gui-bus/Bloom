@@ -4,7 +4,6 @@
   <img src="./public/logo/logo_white.svg" alt="BLOOM Logo" width="280" />
   <br/>
   <br/>
-  <img src="https://img.shields.io/badge/Status-Em%20Constru%C3%A7%C3%A3o-orange?style=for-the-badge" alt="Status: Em Construção" />
 </div>
 
 <br />
@@ -17,7 +16,7 @@ A biblioteca inclui controles de layout robustos, animações fluidas via Framer
 
 ## 🚀 Deploy & Demonstração
 
-O projeto de documentação e demonstração interativa dos componentes estará disponível no seguinte endereço:
+O portal de documentação interativo e guia completo dos componentes está disponível no seguinte endereço:
 👉 **[https://bloom.guibus.dev/](https://bloom.guibus.dev/)**
 
 ---
@@ -46,6 +45,8 @@ npx @bloomui-react/cli add button
 A CLI detecta automaticamente o seu gerenciador de pacotes (`npm`, `pnpm`, `yarn` ou `bun`), instala todas as dependências necessárias e copia o código-fonte do componente com os caminhos de importação já configurados para a sua estrutura de projeto.
 
 👉 **[Veja o guia completo de uso da CLI](./docs/cli.md)**
+
+---
 
 ## 🛠️ Stack Tecnológica
 
