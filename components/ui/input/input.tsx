@@ -29,17 +29,17 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
 }
 
 const inputVariants = cva(
-  "w-full transition-colors flex items-center font-normal focus-within:outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none",
+  "w-full transition-all flex items-center font-normal focus-within:outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none",
   {
     variants: {
       variant: {
-        default: "bg-background border border-input shadow-xs focus-within:border-ring focus-within:ring-1 focus-within:ring-ring",
-        bordered: "bg-transparent border-2 border-input focus-within:border-primary",
-        flat: "bg-muted/60 border-transparent hover:bg-muted/80 focus-within:bg-background focus-within:border-primary border",
-        underlined: "bg-transparent border-b-2 border-input rounded-none px-0 focus-within:border-primary",
-        filled: "bg-muted border border-transparent focus-within:border-ring focus-within:ring-1 focus-within:ring-ring",
-        glassmorphism: "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 focus-within:border-primary shadow-lg",
-        glow: "bg-background border border-input shadow-xs focus-within:border-primary focus-within:shadow-[0_0_10px_rgba(var(--primary-rgb,59,130,246),0.3)]",
+        default: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+        bordered: "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
+        flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/70 dark:hover:bg-zinc-800 focus-within:bg-white dark:focus-within:bg-zinc-900 focus-within:border-sky-500 border text-zinc-900 dark:text-zinc-100",
+        underlined: "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
+        filled: "bg-zinc-100 dark:bg-zinc-800/80 border border-transparent focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+        glassmorphism: "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 focus-within:border-sky-500 shadow-lg text-zinc-900 dark:text-zinc-100",
+        glow: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:shadow-[0_0_12px_rgba(14,165,233,0.35)] text-zinc-900 dark:text-zinc-100",
       },
       size: {
         sm: "h-8 px-2.5 text-xs gap-1.5",
@@ -106,7 +106,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const handleClear = React.useCallback(() => {
       setInternalValue("");
       onClear?.();
-      // Dispatch synthetic event for controlled components
       const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
         window.HTMLInputElement.prototype,
         "value"
@@ -128,8 +127,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <label
         htmlFor={inputId}
         className={cn(
-          "text-xs font-semibold text-foreground/90 select-none",
-          labelPlacement === "inside" && "absolute top-1 left-3 text-[10px] text-muted-foreground z-10 pointer-events-none"
+          "text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none",
+          labelPlacement === "inside" && "absolute top-1 left-3 text-[10px] text-zinc-400 dark:text-zinc-500 z-10 pointer-events-none"
         )}
       >
         {label}
@@ -141,18 +140,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         className={cn(
           inputVariants({ variant, size }),
           variant !== "underlined" && designRadius[radius],
-          isInvalid && "border-danger focus-within:border-danger focus-within:ring-danger text-danger",
+          isInvalid && "border-rose-500 dark:border-rose-500 focus-within:border-rose-500 focus-within:ring-rose-500/30 text-rose-600 dark:text-rose-400",
           labelPlacement === "inside" && "relative pt-4",
           className
         )}
       >
         {labelPlacement === "inside" && labelEl}
         {prefix && (
-          <span className="text-muted-foreground shrink-0 border-r border-border pr-2 mr-1 text-xs font-medium select-none">
+          <span className="text-zinc-400 dark:text-zinc-500 shrink-0 border-r border-zinc-200 dark:border-zinc-800 pr-2 mr-1 text-xs font-medium select-none">
             {prefix}
           </span>
         )}
-        {startContent && <span className="text-muted-foreground shrink-0">{startContent}</span>}
+        {startContent && <span className="text-zinc-400 dark:text-zinc-500 shrink-0">{startContent}</span>}
         <input
           ref={ref}
           id={inputId}
@@ -163,11 +162,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onChange={handleChange}
           maxLength={maxLength}
           aria-invalid={isInvalid ? true : undefined}
-          className="w-full h-full bg-transparent outline-none placeholder:text-muted-foreground text-foreground"
+          className="w-full h-full bg-transparent outline-none placeholder:text-zinc-400 dark:placeholder:text-zinc-500 text-zinc-900 dark:text-zinc-100"
           {...props}
         />
         {suffix && (
-          <span className="text-muted-foreground shrink-0 border-l border-border pl-2 ml-1 text-xs font-medium select-none">
+          <span className="text-zinc-400 dark:text-zinc-500 shrink-0 border-l border-zinc-200 dark:border-zinc-800 pl-2 ml-1 text-xs font-medium select-none">
             {suffix}
           </span>
         )}
@@ -175,7 +174,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <button
             type="button"
             onClick={handleClear}
-            className="text-muted-foreground hover:text-foreground shrink-0 transition-colors cursor-pointer"
+            className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 shrink-0 transition-colors cursor-pointer"
             aria-label="Clear input"
             tabIndex={-1}
           >
@@ -186,7 +185,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
-            className="text-muted-foreground hover:text-foreground shrink-0 transition-colors cursor-pointer"
+            className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 shrink-0 transition-colors cursor-pointer"
             aria-label={showPassword ? "Hide password" : "Show password"}
             tabIndex={-1}
           >
@@ -200,31 +199,31 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <button
             type="button"
             onClick={() => copy(currentValue)}
-            className="text-muted-foreground hover:text-foreground shrink-0 transition-colors cursor-pointer"
+            className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 shrink-0 transition-colors cursor-pointer"
             aria-label={copied ? "Copied!" : "Copy to clipboard"}
             tabIndex={-1}
           >
             <Icon
               icon={copied ? "hugeicons:tick-02" : "hugeicons:copy-01"}
-              className="size-4"
+              className={cn("size-4", copied && "text-emerald-500")}
             />
           </button>
         )}
-        {endContent && <span className="text-muted-foreground shrink-0">{endContent}</span>}
+        {endContent && <span className="text-zinc-400 dark:text-zinc-500 shrink-0">{endContent}</span>}
       </div>
     );
 
     const bottomContent = (
       <>
         {isInvalid && errorMessage ? (
-          <p className="text-xs text-danger font-medium">{errorMessage}</p>
+          <p className="text-xs text-rose-500 font-medium">{errorMessage}</p>
         ) : description ? (
-          <p className="text-xs text-muted-foreground">{description}</p>
+          <p className="text-xs text-zinc-400 dark:text-zinc-500">{description}</p>
         ) : null}
         {showCharacterCount && maxLength && (
           <p className={cn(
             "text-xs text-right",
-            Number(currentValue.length) >= maxLength ? "text-danger" : "text-muted-foreground"
+            Number(currentValue.length) >= maxLength ? "text-rose-500" : "text-zinc-400 dark:text-zinc-500"
           )}>
             {currentValue.length}/{maxLength}
           </p>

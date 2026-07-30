@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Date Picker",
-  description: "Date picker component with popover month grid calendar navigation.",
-};
-
 import { DatePicker } from "@/components/ui/datePicker/datePicker";
 import { datePickerCode } from "@/components/ui/datePicker/datePicker.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -21,10 +17,10 @@ import {
 
 export default function DatePickerComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Date Picker"
-        description="A popover calendar component allowing users to select dates with interactive month navigation."
+        description="A visual date selection component featuring an interactive calendar dropdown, date formatting, clearable selection, and error state validation."
       />
 
       <Tabs defaultValue="datePicker">
@@ -42,25 +38,89 @@ export default function DatePickerComponentPage() {
             code={datePickerCode}
             componentName="datePicker.tsx"
             description="Core implementation of the DatePicker component."
-            tags={["React", "Tailwind", "Forms", "UI Component"]}
+            tags={["React", "Tailwind", "Calendar", "Forms", "DatePicker"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Standard date picker."
+        title="Default"
+        description="Standard date picker input with interactive calendar grid popup."
         preview={
-          <div className="w-full max-w-xs">
-            <DatePicker label="Departure Date" placeholder="Pick a date..." />
+          <div className="w-full">
+            <DatePicker label="Birth Date" placeholder="Select your birth date..." />
           </div>
         }
-        code={`<DatePicker label="Departure Date" placeholder="Pick a date..." />`}
+        code={`<DatePicker label="Birth Date" placeholder="Select your birth date..." />`}
+      />
+
+      {/* Clearable State */}
+      <DocsComponent
+        title="Clearable State"
+        description="Set 'isClearable' to true to render a clear action button when a date is selected."
+        preview={
+          <div className="w-full">
+            <DatePicker
+              isClearable
+              label="Event Date (Clearable)"
+              value={new Date()}
+            />
+          </div>
+        }
+        code={`<DatePicker
+  isClearable
+  label="Event Date (Clearable)"
+  value={new Date()}
+/>`}
+        props={["isClearable: boolean"]}
+      />
+
+      {/* Invalid State */}
+      <DocsComponent
+        title="Invalid State"
+        description="Applies error border and text styling for form validation errors."
+        preview={
+          <div className="w-full">
+            <DatePicker
+              isInvalid
+              label="Departure Date (Required)"
+              placeholder="Date selection is required"
+            />
+          </div>
+        }
+        code={`<DatePicker
+  isInvalid
+  label="Departure Date (Required)"
+  placeholder="Date selection is required"
+/>`}
+        props={["isInvalid: boolean"]}
+      />
+
+      {/* Disabled State */}
+      <DocsComponent
+        title="Disabled State"
+        description="Disables user interaction and applies muted opacity styling."
+        preview={
+          <div className="w-full">
+            <DatePicker
+              disabled
+              label="Locked Date"
+              value={new Date()}
+            />
+          </div>
+        }
+        code={`<DatePicker
+  disabled
+  label="Locked Date"
+  value={new Date()}
+/>`}
+        props={["disabled: boolean"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props DatePicker Table */}
       <DocsComponent
         title="Props — DatePicker"
         description="Properties to configure the DatePicker component."
@@ -80,19 +140,49 @@ export default function DatePickerComponentPage() {
                   <td className="px-3 py-2 font-mono text-primary">value</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">Date</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Selected JavaScript Date object.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Controlled selected Date object.</td>
                 </tr>
-                <tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">onChange</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(date: Date | undefined) => void"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback fired when a date is selected or cleared.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">label</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Label element rendered above the input button.</td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">placeholder</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
                   <td className="px-3 py-2 text-muted-foreground">'Select date...'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Trigger label placeholder.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Placeholder text when no date is selected.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isClearable</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders a clear button to reset selected date.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isInvalid</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Applies red error border and text styling.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">disabled</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Disables user interaction and applies muted opacity styling.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

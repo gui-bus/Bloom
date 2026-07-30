@@ -39,7 +39,6 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   searchPlaceholder = "Filter rows...",
-  searchColumn,
   enableExport = true,
   exportFileName = "data-table-export",
 }: DataTableProps<TData, TValue>) {
@@ -98,7 +97,7 @@ export function DataTable<TData, TValue>({
           onChange={(e) => setGlobalFilter(e.target.value)}
           className="max-w-xs"
           size="sm"
-          startContent={<Icon icon="hugeicons:search-01" className="size-4" />}
+          startContent={<Icon icon="hugeicons:search-01" className="size-4 text-zinc-400" />}
           isClearable
         />
         {enableExport && (
@@ -106,12 +105,14 @@ export function DataTable<TData, TValue>({
             variant="bordered"
             size="sm"
             onClick={exportToCSV}
-            startContent={<Icon icon="hugeicons:download-02" className="size-4" />}
+            startContent={<Icon icon="hugeicons:download-02" className="size-4 shrink-0" />}
+            className="shrink-0 whitespace-nowrap px-4"
           >
             Export CSV
           </Button>
         )}
       </div>
+
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -124,7 +125,7 @@ export function DataTable<TData, TValue>({
                   <TableHead
                     key={header.id}
                     onClick={canSort ? header.column.getToggleSortingHandler() : undefined}
-                    className={cn(canSort && "cursor-pointer select-none hover:text-foreground")}
+                    className={cn(canSort && "cursor-pointer select-none hover:text-zinc-900 dark:hover:text-zinc-100")}
                   >
                     <div className="flex items-center gap-1.5">
                       {header.isPlaceholder
@@ -134,11 +135,11 @@ export function DataTable<TData, TValue>({
                             header.getContext()
                           )}
                       {canSort && (
-                        <span className="text-muted-foreground">
+                        <span className="text-zinc-400 dark:text-zinc-500">
                           {isSorted === "asc" ? (
-                            <Icon icon="hugeicons:arrow-up-01" className="size-3.5 text-primary" />
+                            <Icon icon="hugeicons:arrow-up-01" className="size-3.5 text-sky-500" />
                           ) : isSorted === "desc" ? (
-                            <Icon icon="hugeicons:arrow-down-01" className="size-3.5 text-primary" />
+                            <Icon icon="hugeicons:arrow-down-01" className="size-3.5 text-sky-500" />
                           ) : (
                             <Icon icon="hugeicons:arrow-up-down" className="size-3.5 opacity-50" />
                           )}
@@ -167,15 +168,16 @@ export function DataTable<TData, TValue>({
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
-                No results.
+              <TableCell colSpan={columns.length} className="h-24 text-center text-zinc-400 dark:text-zinc-500">
+                No results found.
               </TableCell>
             </TableRow>
           )}
         </TableBody>
       </Table>
+
       <div className="flex items-center justify-between py-2">
-        <span className="text-xs text-muted-foreground">
+        <span className="text-xs text-zinc-500 dark:text-zinc-400">
           Showing {table.getRowModel().rows.length} records
         </span>
         <div className="flex items-center space-x-2">

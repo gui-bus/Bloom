@@ -1,15 +1,18 @@
 export const datePickerCode = `"use client";
 
 import * as React from "react";
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight } from "lucide-react";
+import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
 export interface DatePickerProps {
   value?: Date;
-  onChange?: (date: Date) => void;
+  onChange?: (date: Date | undefined) => void;
   label?: React.ReactNode;
   placeholder?: string;
   disabled?: boolean;
+  isInvalid?: boolean;
+  isClearable?: boolean;
+  className?: string;
 }
 
 export function DatePicker({
@@ -18,6 +21,9 @@ export function DatePicker({
   label,
   placeholder = "Select date...",
   disabled = false,
+  isInvalid = false,
+  isClearable = false,
+  className,
 }: DatePickerProps) {
   const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(value);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -27,7 +33,7 @@ export function DatePicker({
   React.useEffect(() => {
     if (value !== undefined) {
       setSelectedDate(value);
-      setCurrentMonth(value);
+      if (value) setCurrentMonth(value);
     }
   }, [value]);
 
@@ -67,6 +73,12 @@ export function DatePicker({
     setIsOpen(false);
   };
 
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedDate(undefined);
+    onChange?.(undefined);
+  };
+
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-US", {
       month: "short",
@@ -76,49 +88,70 @@ export function DatePicker({
   };
 
   return (
-    <div ref={containerRef} className="relative w-full flex flex-col gap-1.5 max-w-xs">
-      {label && <label className="text-xs font-semibold text-foreground/90 select-none">{label}</label>}
+    <div ref={containerRef} className={cn("relative w-full flex flex-col gap-1.5 max-w-xs", className)}>
+      {label && (
+        <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
+          {label}
+        </label>
+      )}
+
       <button
         type="button"
         disabled={disabled}
         onClick={() => setIsOpen((prev) => !prev)}
-        className="h-10 w-full flex items-center justify-between rounded-xl border border-input bg-background px-3 py-2 text-sm shadow-xs outline-none focus:ring-2 focus:ring-ring cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+        className={cn(
+          "h-10 w-full flex items-center justify-between rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 shadow-xs outline-none focus:ring-2 focus:ring-sky-500/40 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed",
+          isInvalid && "border-rose-500 dark:border-rose-500 text-rose-500"
+        )}
       >
-        <span className={cn("truncate", !selectedDate && "text-muted-foreground")}>
+        <span className={cn("truncate", !selectedDate && "text-zinc-400 dark:text-zinc-500")}>
           {selectedDate ? formatDate(selectedDate) : placeholder}
         </span>
-        <CalendarIcon className="size-4 shrink-0 opacity-50 ml-2" />
+
+        <div className="flex items-center gap-1 shrink-0 ml-2">
+          {isClearable && selectedDate && (
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={handleClear}
+              className="p-0.5 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors cursor-pointer"
+            >
+              <Icon icon="hugeicons:cancel-01" className="size-3.5" />
+            </span>
+          )}
+          <Icon icon="hugeicons:calendar-01" className="size-4 text-zinc-400 dark:text-zinc-500" />
+        </div>
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 z-50 mt-1 w-64 rounded-2xl border border-border bg-popover text-popover-foreground shadow-lg p-3 animate-in fade-in-80">
+        <div className="absolute top-full left-0 z-50 mt-1 w-64 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xl p-3 animate-in fade-in-80">
           <div className="flex items-center justify-between mb-3">
             <button
               type="button"
               onClick={handlePrevMonth}
-              className="p-1 hover:bg-accent rounded-lg text-muted-foreground hover:text-foreground cursor-pointer"
+              className="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-pointer transition-colors"
             >
-              <ChevronLeft className="size-4" />
+              <Icon icon="hugeicons:arrow-left-01" className="size-4" />
             </button>
-            <span className="text-xs font-semibold">
+            <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
               {monthNames[month]} {year}
             </span>
             <button
               type="button"
               onClick={handleNextMonth}
-              className="p-1 hover:bg-accent rounded-lg text-muted-foreground hover:text-foreground cursor-pointer"
+              className="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-pointer transition-colors"
             >
-              <ChevronRight className="size-4" />
+              <Icon icon="hugeicons:arrow-right-01" className="size-4" />
             </button>
           </div>
 
-          <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-semibold text-muted-foreground mb-1">
+          <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-semibold text-zinc-400 dark:text-zinc-500 mb-1">
             <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
           </div>
 
           <div className="grid grid-cols-7 gap-1">
             {Array.from({ length: firstDayOfWeek }).map((_, i) => (
-              <div key={\`empty-\${i}\`} />
+              <div key={"empty-" + i} />
             ))}
             {Array.from({ length: daysInMonth }).map((_, i) => {
               const day = i + 1;
@@ -134,8 +167,8 @@ export function DatePicker({
                   type="button"
                   onClick={() => handleSelectDay(day)}
                   className={cn(
-                    "size-7 rounded-lg text-xs flex items-center justify-center transition-colors cursor-pointer hover:bg-accent hover:text-accent-foreground",
-                    isSelected && "bg-primary text-primary-foreground font-semibold hover:bg-primary/90"
+                    "size-7 rounded-lg text-xs flex items-center justify-center transition-colors cursor-pointer text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800",
+                    isSelected && "bg-sky-600 text-white font-semibold hover:bg-sky-500 dark:bg-sky-500 dark:hover:bg-sky-400"
                   )}
                 >
                   {day}
@@ -147,4 +180,5 @@ export function DatePicker({
       )}
     </div>
   );
-}`;
+}
+`;
