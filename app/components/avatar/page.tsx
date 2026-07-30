@@ -1,13 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Avatar",
-  description: "An image element with a fallback for representing a user or entity.",
-};
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar/avatar";
 import { avatarCode } from "@/components/ui/avatar/avatar.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -20,10 +17,10 @@ import {
 
 export default function AvatarPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Avatar"
-        description="Avatars represent a user or entity using an image, initials, or fallback icon. Built on top of Radix UI primitive with support for sizes, border indicators, and online status."
+        description="Avatars represent a user or entity using an image, initials fallback, or status indicator. Built on top of Radix UI primitive with support for interactive press states and standardized neutral dark/light themes."
       />
 
       <Tabs defaultValue="avatar">
@@ -40,8 +37,8 @@ export default function AvatarPage() {
           <CodeBlock
             code={avatarCode}
             componentName="avatar.tsx"
-            description="Avatar component built on Radix UI primitive with fallbacks, borders, status dots and design tokens."
-            tags={["React", "Tailwind", "Radix UI", "UI Component"]}
+            description="Avatar component featuring image fallbacks, pressable interactions, status dots, and clean dark/light neutral colors."
+            tags={["React", "Tailwind", "Radix UI", "UI Component", "Avatar"]}
           />
         </TabsContent>
       </Tabs>
@@ -49,12 +46,12 @@ export default function AvatarPage() {
       {/* Basic & Fallback */}
       <DocsComponent
         title="Basic & Fallbacks"
-        description="Renders the user image or gracefully falls back to initials when the image fails or is absent."
+        description="Renders the user profile image or gracefully falls back to initials when the image fails to load or is absent."
         preview={
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="w-full flex flex-wrap items-center gap-4">
             <Avatar>
-              <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="User" />
-              <AvatarFallback>GB</AvatarFallback>
+              <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
+              <AvatarFallback>SJ</AvatarFallback>
             </Avatar>
             <Avatar>
               <AvatarImage src="invalid-url.jpg" alt="Broken link" />
@@ -67,8 +64,8 @@ export default function AvatarPage() {
         }
         code={`<div className="flex flex-wrap items-center gap-4">
   <Avatar>
-    <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="User" />
-    <AvatarFallback>GB</AvatarFallback>
+    <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
+    <AvatarFallback>SJ</AvatarFallback>
   </Avatar>
 
   <Avatar>
@@ -82,12 +79,90 @@ export default function AvatarPage() {
 </div>`}
       />
 
+      {/* Pressable */}
+      <DocsComponent
+        title="Pressable Avatars (isPressable)"
+        description="Enable interactive press behavior using 'isPressable' for profile triggers, user menus, or clickable list avatars."
+        preview={
+          <div className="w-full flex flex-wrap items-center gap-5">
+            <Avatar isPressable onClick={() => alert("Clicked avatar 1")}>
+              <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
+              <AvatarFallback>SJ</AvatarFallback>
+            </Avatar>
+            <Avatar isPressable isBordered color="primary" onClick={() => alert("Clicked avatar 2")}>
+              <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Alex Rivera" />
+              <AvatarFallback>AR</AvatarFallback>
+            </Avatar>
+            <Avatar isPressable color="success" onClick={() => alert("Clicked avatar 3")}>
+              <AvatarFallback>MK</AvatarFallback>
+            </Avatar>
+          </div>
+        }
+        code={`<div className="flex flex-wrap items-center gap-5">
+  <Avatar isPressable onClick={() => console.log("Clicked")}>
+    <AvatarImage src="..." alt="Sarah Jenkins" />
+    <AvatarFallback>SJ</AvatarFallback>
+  </Avatar>
+
+  <Avatar isPressable isBordered color="primary" onClick={() => console.log("Clicked")}>
+    <AvatarImage src="..." alt="Alex Rivera" />
+    <AvatarFallback>AR</AvatarFallback>
+  </Avatar>
+
+  <Avatar isPressable color="success" onClick={() => console.log("Clicked")}>
+    <AvatarFallback>MK</AvatarFallback>
+  </Avatar>
+</div>`}
+        props={["isPressable: boolean"]}
+      />
+
+      {/* Colors & Bordered */}
+      <DocsComponent
+        title="Colors & Bordered Rings"
+        description="Pair 'isBordered' with any design system color to highlight user status, active stories, or primary roles. Fallbacks automatically adapt soft accent colors."
+        preview={
+          <div className="w-full flex flex-wrap items-center gap-4">
+            <Avatar isBordered color="default">
+              <AvatarFallback>DF</AvatarFallback>
+            </Avatar>
+            <Avatar isBordered color="primary">
+              <AvatarFallback>PR</AvatarFallback>
+            </Avatar>
+            <Avatar isBordered color="secondary">
+              <AvatarFallback>SC</AvatarFallback>
+            </Avatar>
+            <Avatar isBordered color="accent">
+              <AvatarFallback>AC</AvatarFallback>
+            </Avatar>
+            <Avatar isBordered color="success">
+              <AvatarFallback>SU</AvatarFallback>
+            </Avatar>
+            <Avatar isBordered color="warning">
+              <AvatarFallback>WR</AvatarFallback>
+            </Avatar>
+            <Avatar isBordered color="danger">
+              <AvatarFallback>DG</AvatarFallback>
+            </Avatar>
+          </div>
+        }
+        code={`<div className="flex flex-wrap items-center gap-4">
+  <Avatar isBordered color="default"><AvatarFallback>DF</AvatarFallback></Avatar>
+  <Avatar isBordered color="primary"><AvatarFallback>PR</AvatarFallback></Avatar>
+  <Avatar isBordered color="secondary"><AvatarFallback>SC</AvatarFallback></Avatar>
+  <Avatar isBordered color="accent"><AvatarFallback>AC</AvatarFallback></Avatar>
+  <Avatar isBordered color="success"><AvatarFallback>SU</AvatarFallback></Avatar>
+  <Avatar isBordered color="warning"><AvatarFallback>WR</AvatarFallback></Avatar>
+  <Avatar isBordered color="danger"><AvatarFallback>DG</AvatarFallback></Avatar>
+</div>`}
+        props={["isBordered: boolean", "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
+      />
+
       {/* Sizes */}
       <DocsComponent
         title="Sizes"
-        description="Scales from 'xs' to '3xl' across predefined design system sizes."
+        description="Scales seamlessly from 'xs' (24px) to '3xl' (80px) across predefined design scale tokens."
         preview={
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="w-full flex flex-wrap items-center gap-4">
             <Avatar size="xs">
               <AvatarFallback>XS</AvatarFallback>
             </Avatar>
@@ -112,92 +187,23 @@ export default function AvatarPage() {
           </div>
         }
         code={`<div className="flex flex-wrap items-center gap-4">
-  <Avatar size="xs">
-    <AvatarFallback>XS</AvatarFallback>
-  </Avatar>
-  <Avatar size="sm">
-    <AvatarFallback>SM</AvatarFallback>
-  </Avatar>
-  <Avatar size="md">
-    <AvatarFallback>MD</AvatarFallback>
-  </Avatar>
-  <Avatar size="lg">
-    <AvatarFallback>LG</AvatarFallback>
-  </Avatar>
-  <Avatar size="xl">
-    <AvatarFallback>XL</AvatarFallback>
-  </Avatar>
-  <Avatar size="2xl">
-    <AvatarFallback>2X</AvatarFallback>
-  </Avatar>
-  <Avatar size="3xl">
-    <AvatarFallback>3X</AvatarFallback>
-  </Avatar>
+  <Avatar size="xs"><AvatarFallback>XS</AvatarFallback></Avatar>
+  <Avatar size="sm"><AvatarFallback>SM</AvatarFallback></Avatar>
+  <Avatar size="md"><AvatarFallback>MD</AvatarFallback></Avatar>
+  <Avatar size="lg"><AvatarFallback>LG</AvatarFallback></Avatar>
+  <Avatar size="xl"><AvatarFallback>XL</AvatarFallback></Avatar>
+  <Avatar size="2xl"><AvatarFallback>2X</AvatarFallback></Avatar>
+  <Avatar size="3xl"><AvatarFallback>3X</AvatarFallback></Avatar>
 </div>`}
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
-      />
-
-      {/* Bordered & Colors */}
-      <DocsComponent
-        title="Bordered & Color Themes"
-        description="Enable 'isBordered' to apply an outer ring ringed with any design system color."
-        preview={
-          <div className="flex flex-wrap items-center gap-4">
-            <Avatar isBordered color="default">
-              <AvatarFallback>DF</AvatarFallback>
-            </Avatar>
-            <Avatar isBordered color="primary">
-              <AvatarFallback>PR</AvatarFallback>
-            </Avatar>
-            <Avatar isBordered color="secondary">
-              <AvatarFallback>SC</AvatarFallback>
-            </Avatar>
-            <Avatar isBordered color="accent">
-              <AvatarFallback>AC</AvatarFallback>
-            </Avatar>
-            <Avatar isBordered color="success">
-              <AvatarFallback>SC</AvatarFallback>
-            </Avatar>
-            <Avatar isBordered color="warning">
-              <AvatarFallback>WR</AvatarFallback>
-            </Avatar>
-            <Avatar isBordered color="danger">
-              <AvatarFallback>DG</AvatarFallback>
-            </Avatar>
-          </div>
-        }
-        code={`<div className="flex flex-wrap items-center gap-4">
-  <Avatar isBordered color="default">
-    <AvatarFallback>DF</AvatarFallback>
-  </Avatar>
-  <Avatar isBordered color="primary">
-    <AvatarFallback>PR</AvatarFallback>
-  </Avatar>
-  <Avatar isBordered color="secondary">
-    <AvatarFallback>SC</AvatarFallback>
-  </Avatar>
-  <Avatar isBordered color="accent">
-    <AvatarFallback>AC</AvatarFallback>
-  </Avatar>
-  <Avatar isBordered color="success">
-    <AvatarFallback>SC</AvatarFallback>
-  </Avatar>
-  <Avatar isBordered color="warning">
-    <AvatarFallback>WR</AvatarFallback>
-  </Avatar>
-  <Avatar isBordered color="danger">
-    <AvatarFallback>DG</AvatarFallback>
-  </Avatar>
-</div>`}
-        props={["isBordered: boolean", "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
       />
 
       {/* Radius */}
       <DocsComponent
         title="Border Radius"
-        description="Customizes the avatar corner rounding."
+        description="Controls corner rounding from sharp 'none' to fully circular 'full'."
         preview={
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="w-full flex flex-wrap items-center gap-4">
             <Avatar radius="none">
               <AvatarFallback>SQ</AvatarFallback>
             </Avatar>
@@ -213,18 +219,10 @@ export default function AvatarPage() {
           </div>
         }
         code={`<div className="flex flex-wrap items-center gap-4">
-  <Avatar radius="none">
-    <AvatarFallback>SQ</AvatarFallback>
-  </Avatar>
-  <Avatar radius="md">
-    <AvatarFallback>MD</AvatarFallback>
-  </Avatar>
-  <Avatar radius="xl">
-    <AvatarFallback>XL</AvatarFallback>
-  </Avatar>
-  <Avatar radius="full">
-    <AvatarFallback>RD</AvatarFallback>
-  </Avatar>
+  <Avatar radius="none"><AvatarFallback>SQ</AvatarFallback></Avatar>
+  <Avatar radius="md"><AvatarFallback>MD</AvatarFallback></Avatar>
+  <Avatar radius="xl"><AvatarFallback>XL</AvatarFallback></Avatar>
+  <Avatar radius="full"><AvatarFallback>RD</AvatarFallback></Avatar>
 </div>`}
         props={["radius: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'"]}
       />
@@ -232,9 +230,9 @@ export default function AvatarPage() {
       {/* Status Indicators */}
       <DocsComponent
         title="Status Indicators"
-        description="Adds a status dot (online, away, offline) positioned at any corner."
+        description="Adds a status dot indicator (online, away, offline, dnd) positioned at any corner."
         preview={
-          <div className="flex flex-wrap items-center gap-6">
+          <div className="w-full flex flex-wrap items-center gap-6">
             <Avatar status="success" statusPosition="bottom-right">
               <AvatarFallback>ON</AvatarFallback>
             </Avatar>
@@ -250,43 +248,33 @@ export default function AvatarPage() {
           </div>
         }
         code={`<div className="flex flex-wrap items-center gap-6">
-  <Avatar status="success" statusPosition="bottom-right">
-    <AvatarFallback>ON</AvatarFallback>
-  </Avatar>
-  <Avatar status="warning" statusPosition="top-right">
-    <AvatarFallback>AW</AvatarFallback>
-  </Avatar>
-  <Avatar status="danger" statusPosition="bottom-left">
-    <AvatarFallback>OFF</AvatarFallback>
-  </Avatar>
-  <Avatar status="secondary" statusPosition="top-left">
-    <AvatarFallback>DND</AvatarFallback>
-  </Avatar>
+  <Avatar status="success" statusPosition="bottom-right"><AvatarFallback>ON</AvatarFallback></Avatar>
+  <Avatar status="warning" statusPosition="top-right"><AvatarFallback>AW</AvatarFallback></Avatar>
+  <Avatar status="danger" statusPosition="bottom-left"><AvatarFallback>OFF</AvatarFallback></Avatar>
+  <Avatar status="secondary" statusPosition="top-left"><AvatarFallback>DND</AvatarFallback></Avatar>
 </div>`}
         props={["status: AvatarColor", "statusPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'"]}
       />
 
-      {/* Disabled */}
+      {/* Disabled State */}
       <DocsComponent
         title="Disabled State"
-        description="Applies grayscale filter and reduced opacity when 'isDisabled' is true."
+        description="Applies grayscale filter, reduced opacity, and disables pointer interactions when 'isDisabled' is true."
         preview={
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="w-full flex flex-wrap items-center gap-4">
             <Avatar isDisabled>
               <AvatarFallback>DS</AvatarFallback>
             </Avatar>
             <Avatar isDisabled isBordered color="primary">
-              <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="User" />
+              <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
               <AvatarFallback>DS</AvatarFallback>
             </Avatar>
           </div>
         }
         code={`<div className="flex flex-wrap items-center gap-4">
-  <Avatar isDisabled>
-    <AvatarFallback>DS</AvatarFallback>
-  </Avatar>
+  <Avatar isDisabled><AvatarFallback>DS</AvatarFallback></Avatar>
   <Avatar isDisabled isBordered color="primary">
-    <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="User" />
+    <AvatarImage src="..." alt="Sarah Jenkins" />
     <AvatarFallback>DS</AvatarFallback>
   </Avatar>
 </div>`}
@@ -295,9 +283,10 @@ export default function AvatarPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Avatar Table */}
       <DocsComponent
         title="Props — Avatar"
-        description="Properties for configuring the Avatar component."
+        description="Properties for configuring the Avatar root component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -317,7 +306,7 @@ export default function AvatarPage() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Sets the size scale of the avatar.
+                    Sets the dimension scale of the avatar.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -327,7 +316,7 @@ export default function AvatarPage() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Color theme for outer ring when isBordered is true.
+                    Theme color for the outer ring when isBordered is true, and for the fallback background.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -337,7 +326,7 @@ export default function AvatarPage() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'full'</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Corner rounding scale.
+                    Corner rounding scale for the avatar element.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -345,7 +334,15 @@ export default function AvatarPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Enables an outer color ring around the avatar.
+                    Enables an outer color ring around the avatar frame.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isPressable</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables interactive scale animation and keyboard focus for clickable avatars.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -353,7 +350,7 @@ export default function AvatarPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Disables interaction and applies opacity + grayscale.
+                    Disables interaction and applies opacity + grayscale filter.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -361,7 +358,7 @@ export default function AvatarPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">AvatarColor</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Displays a small status dot indicator.
+                    Displays a status dot indicator over the avatar.
                   </td>
                 </tr>
                 <tr>
@@ -371,7 +368,7 @@ export default function AvatarPage() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'bottom-right'</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Corner position for the status dot indicator.
+                    Corner alignment position for the status dot.
                   </td>
                 </tr>
               </tbody>
@@ -379,6 +376,6 @@ export default function AvatarPage() {
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

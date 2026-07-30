@@ -17,6 +17,16 @@ type AvatarColor =
 
 type StatusPosition = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 
+interface AvatarContextValue {
+  color: AvatarColor;
+}
+
+const AvatarContext = React.createContext<AvatarContextValue>({
+  color: "default",
+});
+
+const useAvatarContext = () => React.useContext(AvatarContext);
+
 export interface AvatarProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
   size?: AvatarSize;
@@ -24,6 +34,7 @@ export interface AvatarProps
   radius?: keyof typeof designRadius;
   isBordered?: boolean;
   isDisabled?: boolean;
+  isPressable?: boolean;
   status?: AvatarColor;
   statusPosition?: StatusPosition;
 }
@@ -39,7 +50,7 @@ const avatarSizes: Record<AvatarSize, string> = {
 };
 
 const avatarColorBorders: Record<AvatarColor, string> = {
-  default: "ring-2 ring-default",
+  default: "ring-2 ring-zinc-300 dark:ring-zinc-700",
   primary: "ring-2 ring-primary",
   secondary: "ring-2 ring-secondary",
   accent: "ring-2 ring-accent",
@@ -49,7 +60,7 @@ const avatarColorBorders: Record<AvatarColor, string> = {
 };
 
 const statusColors: Record<AvatarColor, string> = {
-  default: "bg-default-foreground",
+  default: "bg-zinc-400 dark:bg-zinc-500",
   primary: "bg-primary",
   secondary: "bg-secondary",
   accent: "bg-accent",
@@ -65,6 +76,16 @@ const statusPositions: Record<StatusPosition, string> = {
   "bottom-right": "bottom-0 right-0 translate-x-1/3 translate-y-1/3",
 };
 
+const fallbackColorMap: Record<AvatarColor, string> = {
+  default: "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300",
+  primary: "bg-sky-500/15 text-sky-600 dark:text-sky-400",
+  secondary: "bg-purple-500/15 text-purple-600 dark:text-purple-400",
+  accent: "bg-pink-500/15 text-pink-600 dark:text-pink-400",
+  success: "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400",
+  warning: "bg-amber-500/15 text-amber-600 dark:text-amber-400",
+  danger: "bg-rose-500/15 text-rose-600 dark:text-rose-400",
+};
+
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
   AvatarProps
@@ -76,41 +97,51 @@ const Avatar = React.forwardRef<
       radius = "full",
       isBordered = false,
       isDisabled = false,
+      isPressable = false,
       status,
       statusPosition = "bottom-right",
       className,
       children,
+      tabIndex,
       ...props
     },
     ref
   ) => {
+    const isEffectivelyDisabled = isDisabled;
+
     return (
-      <div className="relative inline-flex shrink-0">
-        <AvatarPrimitive.Root
-          ref={ref}
-          className={cn(
-            "relative flex shrink-0 overflow-hidden items-center justify-center select-none font-medium transition-all duration-200",
-            avatarSizes[size],
-            designRadius[radius],
-            isBordered && cn("ring-offset-2 ring-offset-background", avatarColorBorders[color]),
-            isDisabled && "opacity-50 grayscale cursor-not-allowed",
-            className
-          )}
-          {...props}
-        >
-          {children}
-        </AvatarPrimitive.Root>
-        {status && (
-          <span
-            aria-hidden="true"
+      <AvatarContext.Provider value={{ color }}>
+        <div className="relative inline-flex shrink-0">
+          <AvatarPrimitive.Root
+            ref={ref}
+            tabIndex={isPressable && !isEffectivelyDisabled ? tabIndex ?? 0 : tabIndex}
             className={cn(
-              "absolute size-3 rounded-full ring-2 ring-background z-10",
-              statusColors[status],
-              statusPositions[statusPosition]
+              "relative flex shrink-0 overflow-hidden items-center justify-center select-none font-semibold transition-all duration-200",
+              avatarSizes[size],
+              designRadius[radius],
+              isBordered && cn("ring-offset-2 ring-offset-background", avatarColorBorders[color]),
+              isPressable &&
+                !isEffectivelyDisabled &&
+                "cursor-pointer hover:scale-105 active:scale-95 hover:opacity-90 transition-all duration-200 ease-in-out will-change-transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring outline-none",
+              isEffectivelyDisabled && "opacity-50 grayscale cursor-not-allowed pointer-events-none",
+              className
             )}
-          />
-        )}
-      </div>
+            {...props}
+          >
+            {children}
+          </AvatarPrimitive.Root>
+          {status && (
+            <span
+              aria-hidden="true"
+              className={cn(
+                "absolute size-3 rounded-full ring-2 ring-white dark:ring-zinc-900 z-10",
+                statusColors[status],
+                statusPositions[statusPosition]
+              )}
+            />
+          )}
+        </div>
+      </AvatarContext.Provider>
     );
   }
 );
@@ -131,17 +162,23 @@ AvatarImage.displayName = "AvatarImage";
 const AvatarFallback = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Fallback>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Fallback
-    ref={ref}
-    className={cn(
-      "flex size-full items-center justify-center font-medium bg-muted text-muted-foreground",
-      className
-    )}
-    {...props}
-  />
-));
+>(({ className, ...props }, ref) => {
+  const { color } = useAvatarContext();
+
+  return (
+    <AvatarPrimitive.Fallback
+      ref={ref}
+      className={cn(
+        "flex size-full items-center justify-center font-semibold text-xs leading-none select-none",
+        fallbackColorMap[color],
+        className
+      )}
+      {...props}
+    />
+  );
+});
 AvatarFallback.displayName = "AvatarFallback";
 
 export { Avatar, AvatarImage, AvatarFallback };
+export type { AvatarSize, AvatarColor, StatusPosition };
 `;

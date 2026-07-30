@@ -32,7 +32,7 @@ const AlertDialogContent = React.forwardRef<
     <AlertDialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-border bg-background p-6 shadow-xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-3xl",
+        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900 p-6 shadow-2xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-3xl",
         className
       )}
       {...props}
@@ -75,7 +75,7 @@ const AlertDialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Title
     ref={ref}
-    className={cn("text-lg font-bold text-foreground", className)}
+    className={cn("text-lg font-bold text-zinc-900 dark:text-zinc-100 tracking-tight", className)}
     {...props}
   />
 ));
@@ -87,21 +87,46 @@ const AlertDialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
+    className={cn("text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed", className)}
     {...props}
   />
 ));
 AlertDialogDescription.displayName =
   AlertDialogPrimitive.Description.displayName;
 
+export type AlertDialogActionColor =
+  | "danger"
+  | "primary"
+  | "secondary"
+  | "accent"
+  | "success"
+  | "warning"
+  | "default";
+
+export interface AlertDialogActionProps
+  extends React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action> {
+  color?: AlertDialogActionColor;
+}
+
+const actionColorMap: Record<AlertDialogActionColor, string> = {
+  danger: "bg-danger text-danger-foreground hover:opacity-90",
+  primary: "bg-primary text-primary-foreground hover:opacity-90",
+  secondary: "bg-secondary text-secondary-foreground hover:opacity-90",
+  accent: "bg-accent text-accent-foreground hover:opacity-90",
+  success: "bg-success text-success-foreground hover:opacity-90",
+  warning: "bg-warning text-warning-foreground hover:opacity-90",
+  default: "bg-default text-default-foreground hover:opacity-90",
+};
+
 const AlertDialogAction = React.forwardRef<
   React.ComponentRef<typeof AlertDialogPrimitive.Action>,
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action>
->(({ className, ...props }, ref) => (
+  AlertDialogActionProps
+>(({ className, color = "danger", ...props }, ref) => (
   <AlertDialogPrimitive.Action
     ref={ref}
     className={cn(
-      "inline-flex h-10 items-center justify-center rounded-xl bg-danger px-4 text-sm font-semibold text-danger-foreground hover:bg-danger/90 cursor-pointer transition-colors",
+      "inline-flex h-9 items-center justify-center rounded-xl px-4 text-sm font-medium cursor-pointer transition-all duration-200 shadow-md",
+      actionColorMap[color],
       className
     )}
     {...props}
@@ -116,7 +141,7 @@ const AlertDialogCancel = React.forwardRef<
   <AlertDialogPrimitive.Cancel
     ref={ref}
     className={cn(
-      "inline-flex h-10 items-center justify-center rounded-xl border border-input bg-background px-4 text-sm font-semibold text-foreground hover:bg-accent cursor-pointer transition-colors mt-2 sm:mt-0",
+      "inline-flex h-9 items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer transition-all duration-200 mt-2 sm:mt-0",
       className
     )}
     {...props}

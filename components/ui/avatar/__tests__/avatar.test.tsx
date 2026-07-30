@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import * as React from "react";
-import { describe, it, expect } from "vitest";
-import { Avatar, AvatarImage, AvatarFallback } from "../avatar";
+import { describe, it, expect, vi } from "vitest";
+import { Avatar, AvatarFallback } from "../avatar";
 
 describe("Avatar Component", () => {
   it("renders fallback text when image is not provided", () => {
@@ -44,6 +44,24 @@ describe("Avatar Component", () => {
     const root = container.querySelector('[class*="opacity-50"]');
     expect(root).toBeInTheDocument();
     expect(root).toHaveClass("grayscale", "cursor-not-allowed");
+  });
+
+  it("applies pressable styles and responds to clicks when isPressable is true", () => {
+    const handleClick = vi.fn();
+    const { container } = render(
+      <Avatar isPressable onClick={handleClick}>
+        <AvatarFallback>PR</AvatarFallback>
+      </Avatar>
+    );
+
+    const root = container.querySelector('[class*="cursor-pointer"]');
+    expect(root).toBeInTheDocument();
+    expect(root).toHaveClass("hover:scale-105");
+
+    if (root) {
+      fireEvent.click(root);
+      expect(handleClick).toHaveBeenCalledTimes(1);
+    }
   });
 
   it("applies custom size scale class", () => {
