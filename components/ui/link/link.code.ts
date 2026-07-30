@@ -3,18 +3,18 @@ export const linkCode = `"use client";
 import * as React from "react";
 import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
-import { ExternalLink } from "lucide-react";
+import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
 const linkVariants = cva(
-  "inline-flex items-center gap-1.5 font-medium transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm",
+  "inline-flex items-center gap-1.5 font-medium transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-sky-500/20 rounded-sm",
   {
     variants: {
       variant: {
-        default: "text-primary hover:text-primary/80 hover:underline",
-        muted: "text-muted-foreground hover:text-foreground hover:underline",
-        underline: "text-foreground underline underline-offset-4 hover:text-primary",
-        ghost: "text-foreground hover:text-primary hover:bg-accent/50 px-2 py-1 rounded-md no-underline",
+        default: "text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 hover:underline",
+        muted: "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline",
+        underline: "text-zinc-900 dark:text-zinc-100 underline underline-offset-4 hover:text-sky-500 dark:hover:text-sky-400",
+        ghost: "text-zinc-900 dark:text-zinc-100 hover:text-sky-500 dark:hover:text-sky-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 px-2 py-1 rounded-lg no-underline",
       },
       size: {
         sm: "text-xs",
@@ -64,7 +64,9 @@ const UiLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
         {startContent}
         <span>{children}</span>
         {endContent}
-        {isExternal && !endContent && <ExternalLink className="size-3.5 shrink-0 opacity-70" />}
+        {isExternal && !endContent && (
+          <Icon icon="hugeicons:arrow-up-right-01" className="size-3.5 shrink-0 opacity-70" />
+        )}
       </>
     );
 
@@ -97,4 +99,5 @@ const UiLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
 );
 UiLink.displayName = "Link";
 
-export { UiLink as Link, linkVariants };`;
+export { UiLink as Link, linkVariants };
+`;

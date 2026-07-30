@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-import { AnimatedProgressDemo } from "./animated-progress-demo";
-
-export const metadata: Metadata = {
-  title: "Progress",
-  description: "Displays a bar showing completion progress of a task, built on Radix Progress primitive.",
-};
 import { Progress } from "@/components/ui/progress/progress";
 import { progressCode } from "@/components/ui/progress/progress.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -19,12 +15,12 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
 
-export default function ProgressPage() {
+export default function ProgressComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Progress"
-        description="Linear progress bar indicating completion status of a process or task."
+        description="Displays an indicator showing the completion progress of a task, typically displayed as a progress bar."
       />
 
       <Tabs defaultValue="progress">
@@ -41,153 +37,96 @@ export default function ProgressPage() {
           <CodeBlock
             code={progressCode}
             componentName="progress.tsx"
-            description="Progress bar built with Radix Primitive supporting colors, sizes, indeterminate state, and labels."
-            tags={["React", "Radix UI", "Tailwind", "UI Component", "Progress"]}
+            description="Core implementation of the Progress component."
+            tags={["React", "Radix UI", "Progress", "Feedback"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Displays a progress bar with a numeric percentage value from 0 to 100."
+        title="Default"
+        description="Standard progress bar."
         preview={
-          <div className="space-y-4 max-w-md">
-            <Progress value={25} />
-            <Progress value={60} />
-            <Progress value={90} />
+          <div className="max-w-md w-full">
+            <Progress value={65} />
           </div>
         }
-        code={`<div className="space-y-4 max-w-md">
-  <Progress value={25} />
-  <Progress value={60} />
-  <Progress value={90} />
-</div>`}
-        props={["value: number"]}
+        code={`<Progress value={65} />`}
       />
 
-      {/* Colors */}
+      {/* With Label & Percentage */}
       <DocsComponent
-        title="Colors"
-        description="Apply custom color themes using the 'color' prop."
+        title="With Label & Percentage"
+        description="Display text header and percentage badge using 'label' and 'showValueLabel'."
         preview={
-          <div className="space-y-4 max-w-md">
-            <Progress value={60} color="default" />
-            <Progress value={60} color="primary" />
-            <Progress value={60} color="secondary" />
-            <Progress value={60} color="accent" />
-            <Progress value={60} color="success" />
-            <Progress value={60} color="warning" />
-            <Progress value={60} color="danger" />
+          <div className="max-w-md w-full">
+            <Progress
+              label="Downloading System Update..."
+              showValueLabel
+              value={82}
+            />
           </div>
         }
-        code={`<div className="space-y-4 max-w-md">
-  <Progress value={60} color="default" />
-  <Progress value={60} color="primary" />
-  <Progress value={60} color="secondary" />
-  <Progress value={60} color="accent" />
-  <Progress value={60} color="success" />
-  <Progress value={60} color="warning" />
-  <Progress value={60} color="danger" />
-</div>`}
-        props={["color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
+        code={`<Progress label="Downloading System Update..." showValueLabel value={82} />`}
+        props={["label: string", "showValueLabel: boolean"]}
       />
 
       {/* Sizes */}
       <DocsComponent
         title="Sizes"
-        description="Adjust the height scale using 'sm', 'md', or 'lg'."
+        description="Bar height scale using the 'size' prop: 'sm', 'md', or 'lg'."
         preview={
-          <div className="space-y-4 max-w-md">
-            <Progress value={50} size="sm" />
-            <Progress value={50} size="md" />
-            <Progress value={50} size="lg" />
+          <div className="flex flex-col gap-4 max-w-md w-full">
+            <Progress size="sm" value={30} label="Small (sm)" showValueLabel />
+            <Progress size="md" value={60} label="Medium (md)" showValueLabel />
+            <Progress size="lg" value={90} label="Large (lg)" showValueLabel />
           </div>
         }
-        code={`<div className="space-y-4 max-w-md">
-  <Progress value={50} size="sm" />
-  <Progress value={50} size="md" />
-  <Progress value={50} size="lg" />
-</div>`}
+        code={`<Progress size="sm" value={30} />
+<Progress size="md" value={60} />
+<Progress size="lg" value={90} />`}
         props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
-      {/* Labels & Percentage */}
+      {/* Colors */}
       <DocsComponent
-        title="Labels & Value Display"
-        description="Combine text description and numeric percentage with 'label' and 'showValueLabel'."
+        title="Colors"
+        description="Indicator color variants: 'primary', 'secondary', 'accent', 'success', 'warning', or 'danger'."
         preview={
-          <div className="space-y-4 max-w-md">
-            <Progress value={75} label="Uploading file..." showValueLabel color="primary" />
-            <Progress value={100} label="Storage used" showValueLabel color="success" />
+          <div className="flex flex-col gap-4 max-w-md w-full">
+            <Progress color="primary" value={45} label="Primary (Sky)" showValueLabel />
+            <Progress color="success" value={75} label="Success (Emerald)" showValueLabel />
+            <Progress color="warning" value={55} label="Warning (Amber)" showValueLabel />
+            <Progress color="danger" value={95} label="Danger (Rose)" showValueLabel />
           </div>
         }
-        code={`<div className="space-y-4 max-w-md">
-  <Progress value={75} label="Uploading file..." showValueLabel color="primary" />
-  <Progress value={100} label="Storage used" showValueLabel color="success" />
-</div>`}
-        props={["label: string", "showValueLabel: boolean"]}
+        code={`<Progress color="primary" value={45} />
+<Progress color="success" value={75} />
+<Progress color="warning" value={55} />
+<Progress color="danger" value={95} />`}
+        props={["color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
       />
 
-      {/* Animated Loading 0-100 */}
-      <DocsComponent
-        title="Animated Progress (0% to 100%)"
-        description="Demonstrates a real-time animated progress simulation from 0% to 100% with restart capability."
-        preview={<AnimatedProgressDemo />}
-        code={`"use client";
-
-import * as React from "react";
-import { Progress } from "@/components/ui/progress/progress";
-import { Button } from "@/components/ui/button/button";
-
-export function AnimatedProgressDemo() {
-  const [progress, setProgress] = React.useState(0);
-
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prev) => (prev >= 100 ? 0 : prev + 5));
-    }, 200);
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div className="space-y-4 max-w-md">
-      <Progress
-        value={progress}
-        label="Simulating download..."
-        showValueLabel
-        color="primary"
-      />
-      <Button
-        size="sm"
-        variant="bordered"
-        onClick={() => setProgress(0)}
-      >
-        Reset Progress
-      </Button>
-    </div>
-  );
-}`}
-      />
-
-      {/* Indeterminate State */}
+      {/* Indeterminate */}
       <DocsComponent
         title="Indeterminate State"
-        description="Set 'isIndeterminate' for ongoing processes without a fixed completion percentage."
+        description="Animated loading indicator for ongoing tasks of unknown duration using 'isIndeterminate'."
         preview={
-          <div className="space-y-4 max-w-md">
-            <Progress isIndeterminate label="Fetching server status..." color="accent" />
+          <div className="max-w-md w-full">
+            <Progress label="Connecting to Server..." isIndeterminate color="primary" />
           </div>
         }
-        code={`<Progress isIndeterminate label="Fetching server status..." color="accent" />`}
+        code={`<Progress label="Connecting to Server..." isIndeterminate />`}
         props={["isIndeterminate: boolean"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — Progress"
-        description="Properties for configuring the Progress component."
+        description="Supported properties for the Progress component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -204,9 +143,7 @@ export function AnimatedProgressDemo() {
                   <td className="px-3 py-2 font-mono text-primary">value</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
                   <td className="px-3 py-2 text-muted-foreground">0</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Completion percentage value from 0 to 100.
-                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">Current percentage value (0 to 100).</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">size</td>
@@ -214,9 +151,7 @@ export function AnimatedProgressDemo() {
                     'sm' | 'md' | 'lg'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Height dimension of the progress track.
-                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">Progress bar track height scale.</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
@@ -224,39 +159,31 @@ export function AnimatedProgressDemo() {
                     'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'primary'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Color theme fill of the indicator bar.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isIndeterminate</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Enables animated continuous loading mode without fixed value.
-                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">Indicator theme color accent.</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">label</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Optional text label displayed above the progress bar.
-                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">Text title above progress bar.</td>
                 </tr>
-                <tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">showValueLabel</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Displays formatted percentage text on the top right.
-                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">Displays percentage label text.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">isIndeterminate</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders infinite looping animation for pending tasks.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

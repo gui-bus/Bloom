@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Number Input",
-  description: "Numeric entry field with increment and decrement control buttons.",
-};
-
 import { NumberInput } from "@/components/ui/numberInput/numberInput";
 import { numberInputCode } from "@/components/ui/numberInput/numberInput.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -20,11 +16,13 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 export default function NumberInputComponentPage() {
+  const [val, setVal] = React.useState(2);
+
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Number Input"
-        description="A specialized numeric input featuring stepper buttons for incrementing and decrementing values, min/max bounds, step intervals, and custom sizes."
+        description="Numeric stepper input control with increment/decrement buttons, min/max limits, custom step sizes, and size options."
       />
 
       <Tabs defaultValue="numberInput">
@@ -42,41 +40,81 @@ export default function NumberInputComponentPage() {
             code={numberInputCode}
             componentName="numberInput.tsx"
             description="Core implementation of the NumberInput component."
-            tags={["React", "Tailwind", "Forms", "UI Component"]}
+            tags={["React", "NumberInput", "Stepper", "Form"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Standard numeric stepper."
+        title="Default"
+        description="Standard numeric stepper with default value."
         preview={
-          <div className="w-full max-w-xs">
-            <NumberInput label="Quantity" defaultValue={1} min={1} max={10} />
+          <div className="max-w-xs w-full">
+            <NumberInput label="Item Quantity" defaultValue={1} min={1} max={10} />
           </div>
         }
-        code={`<NumberInput label="Quantity" defaultValue={1} min={1} max={10} />`}
+        code={`<NumberInput label="Item Quantity" defaultValue={1} min={1} max={10} />`}
       />
 
-      {/* Step Intervals */}
+      {/* Controlled State */}
       <DocsComponent
-        title="Step Intervals"
-        description="Configure custom increment steps."
+        title="Controlled State & Limits"
+        description="Controlled number value bound to state with min=0 and max=5 constraints."
         preview={
-          <div className="w-full max-w-xs">
-            <NumberInput label="Price (in $5 increments)" defaultValue={20} step={5} min={0} />
+          <div className="flex flex-col gap-2 max-w-xs w-full">
+            <NumberInput
+              label="Selected Tickets (Max 5)"
+              value={val}
+              min={0}
+              max={5}
+              onValueChange={setVal}
+            />
+            <span className="text-xs font-mono text-muted-foreground">Current Value: {val}</span>
           </div>
         }
-        code={`<NumberInput label="Price (in $5 increments)" defaultValue={20} step={5} min={0} />`}
+        code={`const [val, setVal] = React.useState(2);
+
+<NumberInput label="Selected Tickets" value={val} min={0} max={5} onValueChange={setVal} />`}
+        props={["value: number", "min: number", "max: number", "onValueChange: (val: number) => void"]}
+      />
+
+      {/* Sizes */}
+      <DocsComponent
+        title="Sizes"
+        description="Control input dimensions using the 'size' prop: 'sm', 'md', or 'lg'."
+        preview={
+          <div className="flex flex-col gap-4 max-w-xs w-full">
+            <NumberInput label="Small (sm)" size="sm" defaultValue={5} />
+            <NumberInput label="Medium (md)" size="md" defaultValue={10} />
+            <NumberInput label="Large (lg)" size="lg" defaultValue={15} />
+          </div>
+        }
+        code={`<NumberInput size="sm" defaultValue={5} />
+<NumberInput size="md" defaultValue={10} />
+<NumberInput size="lg" defaultValue={15} />`}
+        props={["size: 'sm' | 'md' | 'lg'"]}
+      />
+
+      {/* Custom Step */}
+      <DocsComponent
+        title="Custom Step Increment"
+        description="Increment or decrement by custom step sizes (e.g. step=5 or step=0.5)."
+        preview={
+          <div className="max-w-xs w-full">
+            <NumberInput label="Volume Level (Step 5)" step={5} defaultValue={50} min={0} max={100} />
+          </div>
+        }
+        code={`<NumberInput label="Volume Level" step={5} defaultValue={50} min={0} max={100} />`}
         props={["step: number"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — NumberInput"
-        description="Properties to configure the NumberInput component."
+        description="Supported properties for the NumberInput component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -90,28 +128,36 @@ export default function NumberInputComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">min</td>
+                  <td className="px-3 py-2 font-mono text-primary">value / defaultValue</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Minimum allowed numeric bound.</td>
+                  <td className="px-3 py-2 text-muted-foreground">0</td>
+                  <td className="px-3 py-2 text-muted-foreground">Current numeric value.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">max</td>
+                  <td className="px-3 py-2 font-mono text-primary">min / max</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Maximum allowed numeric bound.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Minimum and maximum numeric bounds.</td>
                 </tr>
-                <tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">step</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
                   <td className="px-3 py-2 text-muted-foreground">1</td>
-                  <td className="px-3 py-2 text-muted-foreground">Increment/decrement step size interval.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Step interval for button clicks.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">size</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'sm' | 'md' | 'lg'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Dimensional scale of the stepper input.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

@@ -3,13 +3,21 @@ export const progressCode = `"use client";
 import * as React from "react";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
 import { cn } from "@/lib/utils";
-import { designColors } from "@/lib/design-system";
+
+export type ProgressColor =
+  | "default"
+  | "primary"
+  | "secondary"
+  | "accent"
+  | "success"
+  | "warning"
+  | "danger";
 
 export interface ProgressProps
   extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> {
   value?: number;
   size?: "sm" | "md" | "lg";
-  color?: keyof typeof designColors;
+  color?: ProgressColor;
   isIndeterminate?: boolean;
   label?: string;
   showValueLabel?: boolean;
@@ -21,14 +29,14 @@ const progressSizes = {
   lg: "h-4",
 };
 
-const progressColors = {
-  default: "bg-foreground",
-  primary: "bg-primary",
-  secondary: "bg-secondary",
-  accent: "bg-accent",
-  success: "bg-emerald-500",
-  warning: "bg-amber-500",
-  danger: "bg-rose-500",
+const progressColors: Record<ProgressColor, string> = {
+  default: "bg-zinc-900 dark:bg-zinc-100",
+  primary: "bg-sky-500 dark:bg-sky-400",
+  secondary: "bg-purple-500 dark:bg-purple-400",
+  accent: "bg-pink-500 dark:bg-pink-400",
+  success: "bg-emerald-500 dark:bg-emerald-400",
+  warning: "bg-amber-500 dark:bg-amber-400",
+  danger: "bg-rose-500 dark:bg-rose-400",
 };
 
 const Progress = React.forwardRef<
@@ -53,10 +61,12 @@ const Progress = React.forwardRef<
     return (
       <div className="w-full space-y-1.5">
         {(label || showValueLabel) && (
-          <div className="flex items-center justify-between text-sm font-medium text-foreground">
+          <div className="flex items-center justify-between text-xs font-semibold text-zinc-900 dark:text-zinc-100">
             {label ? <span>{label}</span> : <span />}
             {showValueLabel && !isIndeterminate && (
-              <span className="text-xs text-muted-foreground">{Math.round(clampedValue)}%</span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+                {Math.round(clampedValue)}%
+              </span>
             )}
           </div>
         )}
@@ -66,7 +76,7 @@ const Progress = React.forwardRef<
           aria-label={label || "Progress bar"}
           value={isIndeterminate ? undefined : clampedValue}
           className={cn(
-            "relative w-full overflow-hidden rounded-full bg-muted/60 shrink-0",
+            "relative w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200/50 dark:border-zinc-800/50 shrink-0",
             progressSizes[size],
             className
           )}
@@ -81,7 +91,7 @@ const Progress = React.forwardRef<
             style={
               isIndeterminate
                 ? undefined
-                : { transform: \`translateX(-\${100 - clampedValue}%)\` }
+                : { transform: "translateX(-" + (100 - clampedValue) + "%)" }
             }
           />
         </ProgressPrimitive.Root>

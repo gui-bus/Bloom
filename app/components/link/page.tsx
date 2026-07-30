@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Link",
-  description: "Stylized link component supporting internal Next.js routing, external links, variants, and icon slots.",
-};
-
 import { Link } from "@/components/ui/link/link";
 import { linkCode } from "@/components/ui/link/link.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -21,10 +17,10 @@ import {
 
 export default function LinkComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Link"
-        description="A navigation link component integrating Next.js Link routing, automatic external indicators, visual style variants, and icon slots."
+        description="Accessible navigation hyperlink component built on top of Next.js Link and HTML anchor primitives with variants and external indicators."
       />
 
       <Tabs defaultValue="link">
@@ -42,57 +38,103 @@ export default function LinkComponentPage() {
             code={linkCode}
             componentName="link.tsx"
             description="Core implementation of the Link component."
-            tags={["React", "Next.js", "Tailwind", "Navigation"]}
+            tags={["React", "Next.js", "Link", "Navigation"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Internal and external navigation links."
+        title="Default"
+        description="Standard primary navigation link."
         preview={
-          <div className="flex flex-col gap-3">
-            <Link href="/components/button">Go to Button docs</Link>
-            <Link href="https://github.com/gui-bus/Bloom" isExternal>
-              GitHub Repository
-            </Link>
+          <div className="flex items-center gap-4">
+            <Link href="#">Explore Components</Link>
           </div>
         }
-        code={`<div className="flex flex-col gap-3">
-  <Link href="/components/button">Go to Button docs</Link>
-  <Link href="https://github.com/gui-bus/Bloom" isExternal>
-    GitHub Repository
-  </Link>
-</div>`}
+        code={`<Link href="#">Explore Components</Link>`}
       />
 
       {/* Variants */}
       <DocsComponent
         title="Variants"
-        description="Default, muted, underline, and ghost visual styles."
+        description="Visual style variants using the 'variant' prop: 'default', 'muted', 'underline', or 'ghost'."
         preview={
-          <div className="flex flex-wrap gap-4 items-center">
-            <Link variant="default" href="#">Default Link</Link>
-            <Link variant="muted" href="#">Muted Link</Link>
-            <Link variant="underline" href="#">Underline Link</Link>
-            <Link variant="ghost" href="#">Ghost Link</Link>
+          <div className="flex flex-wrap items-center gap-4">
+            <Link href="#" variant="default">Default Link</Link>
+            <Link href="#" variant="muted">Muted Link</Link>
+            <Link href="#" variant="underline">Underline Link</Link>
+            <Link href="#" variant="ghost">Ghost Link</Link>
           </div>
         }
-        code={`<div className="flex flex-wrap gap-4 items-center">
-  <Link variant="default" href="#">Default Link</Link>
-  <Link variant="muted" href="#">Muted Link</Link>
-  <Link variant="underline" href="#">Underline Link</Link>
-  <Link variant="ghost" href="#">Ghost Link</Link>
-</div>`}
+        code={`<Link href="#" variant="default">Default Link</Link>
+<Link href="#" variant="muted">Muted Link</Link>
+<Link href="#" variant="underline">Underline Link</Link>
+<Link href="#" variant="ghost">Ghost Link</Link>`}
         props={["variant: 'default' | 'muted' | 'underline' | 'ghost'"]}
+      />
+
+      {/* Sizes */}
+      <DocsComponent
+        title="Sizes"
+        description="Typography size scales using the 'size' prop: 'sm', 'md', or 'lg'."
+        preview={
+          <div className="flex items-baseline gap-4">
+            <Link href="#" size="sm">Small Link</Link>
+            <Link href="#" size="md">Medium Link</Link>
+            <Link href="#" size="lg">Large Link</Link>
+          </div>
+        }
+        code={`<Link href="#" size="sm">Small Link</Link>
+<Link href="#" size="md">Medium Link</Link>
+<Link href="#" size="lg">Large Link</Link>`}
+        props={["size: 'sm' | 'md' | 'lg'"]}
+      />
+
+      {/* External Link */}
+      <DocsComponent
+        title="External Link Indicator"
+        description="Automatically renders an external arrow icon and target='_blank' attributes with the 'isExternal' prop."
+        preview={
+          <div className="flex items-center gap-4">
+            <Link href="https://github.com" isExternal>
+              GitHub Repository
+            </Link>
+          </div>
+        }
+        code={`<Link href="https://github.com" isExternal>
+  GitHub Repository
+</Link>`}
+        props={["isExternal: boolean"]}
+      />
+
+      {/* Custom Icons & Content */}
+      <DocsComponent
+        title="Custom Start & End Content"
+        description="Pass custom icons into 'startContent' and 'endContent'."
+        preview={
+          <div className="flex items-center gap-4">
+            <Link
+              href="#"
+              variant="muted"
+              startContent={<Icon icon="hugeicons:download-01" className="size-4" />}
+            >
+              Download PDF Docs
+            </Link>
+          </div>
+        }
+        code={`<Link href="#" startContent={<Icon icon="hugeicons:download-01" className="size-4" />}>
+  Download PDF Docs
+</Link>`}
+        props={["startContent: ReactNode", "endContent: ReactNode"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — Link"
-        description="Properties to configure the Link component."
+        description="Supported properties for the Link component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -109,19 +151,41 @@ export default function LinkComponentPage() {
                   <td className="px-3 py-2 font-mono text-primary">href</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Target URL path or external web link.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Target URL destination.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">variant</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'default' | 'muted' | 'underline' | 'ghost'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'default'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Visual style variant for text and hover effect.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">size</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'sm' | 'md' | 'lg'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Font size scale.</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">isExternal</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Opens link in new tab with external icon indicator.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Opens link in a new tab with security attributes and arrow icon.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">startContent / endContent</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Icons or elements rendered before or after the link text.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

@@ -1,17 +1,14 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "List",
-  description: "Stylized list container and item components.",
-};
-
 import { List, ListItem } from "@/components/ui/list/list";
 import { listCode } from "@/components/ui/list/list.code";
 import { Separator } from "@/components/ui/separator/separator";
+import { Badge } from "@/components/ui/badge/badge";
 import {
   Tabs,
   TabsContent,
@@ -21,10 +18,10 @@ import {
 
 export default function ListComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="List"
-        description="A list container component supporting bordered styles, icon bullets, and active item highlight states."
+        description="Clean list component for displaying structured items with icons, badges, borders, hover states, and active selection."
       />
 
       <Tabs defaultValue="list">
@@ -42,35 +39,115 @@ export default function ListComponentPage() {
             code={listCode}
             componentName="list.tsx"
             description="Core implementation of the List component."
-            tags={["React", "Tailwind", "Data", "List"]}
+            tags={["React", "Tailwind", "List", "Layout"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Bordered list container."
+        title="Default"
+        description="Standard borderless list layout."
         preview={
-          <div className="w-full max-w-sm">
+          <div className="max-w-md w-full">
+            <List>
+              <ListItem startContent={<Icon icon="hugeicons:user-02" className="size-4" />}>
+                User Account Settings
+              </ListItem>
+              <ListItem startContent={<Icon icon="hugeicons:notification-01" className="size-4" />}>
+                Push Notifications & Alerts
+              </ListItem>
+              <ListItem startContent={<Icon icon="hugeicons:security-01" className="size-4" />}>
+                Security & Two-Factor Authentication
+              </ListItem>
+            </List>
+          </div>
+        }
+        code={`<List>
+  <ListItem startContent={<Icon icon="hugeicons:user-02" />}>
+    User Account Settings
+  </ListItem>
+  <ListItem startContent={<Icon icon="hugeicons:notification-01" />}>
+    Notifications & Alerts
+  </ListItem>
+</List>`}
+      />
+
+      {/* Bordered */}
+      <DocsComponent
+        title="Bordered Variant"
+        description="Encapsulated card list container with item dividers using variant='bordered'."
+        preview={
+          <div className="max-w-md w-full">
             <List variant="bordered">
-              <ListItem isActive>Profile Settings</ListItem>
-              <ListItem>Account Security</ListItem>
-              <ListItem>Notifications</ListItem>
+              <ListItem
+                startContent={<Icon icon="hugeicons:mail-01" className="size-4" />}
+                endContent={<Badge size="sm">12 Unread</Badge>}
+                isHoverable
+              >
+                Inbox Messages
+              </ListItem>
+              <ListItem
+                startContent={<Icon icon="hugeicons:star" className="size-4" />}
+                endContent={<span className="text-xs text-muted-foreground">3</span>}
+                isHoverable
+              >
+                Starred Conversations
+              </ListItem>
+
+              <ListItem
+                startContent={<Icon icon="hugeicons:delete-02" className="size-4" />}
+                isHoverable
+              >
+                Trash & Archived Files
+              </ListItem>
             </List>
           </div>
         }
         code={`<List variant="bordered">
-  <ListItem isActive>Profile Settings</ListItem>
-  <ListItem>Account Security</ListItem>
+  <ListItem startContent={<Icon icon="..." />} endContent={<Badge>12</Badge>} isHoverable>
+    Inbox Messages
+  </ListItem>
+</List>`}
+        props={["variant: 'default' | 'bordered' | 'separated'"]}
+      />
+
+      {/* Separated */}
+      <DocsComponent
+        title="Separated Cards Variant"
+        description="Renders list items as decoupled floating card rows with variant='separated'."
+        preview={
+          <div className="max-w-md w-full">
+            <List variant="separated">
+              <ListItem
+                className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-xl"
+                startContent={<Icon icon="hugeicons:checkmark-circle-02" className="size-4 text-emerald-500" />}
+                isActive
+                isHoverable
+              >
+                Active Billing Plan — Pro Team
+              </ListItem>
+              <ListItem
+                className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-xl"
+                startContent={<Icon icon="hugeicons:alert-circle" className="size-4 text-amber-500" />}
+                isHoverable
+              >
+                Payment Method Expiring Soon
+              </ListItem>
+            </List>
+          </div>
+        }
+        code={`<List variant="separated">
+  <ListItem isActive isHoverable>Active Billing Plan</ListItem>
 </List>`}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
-        title="Props — List"
-        description="Properties to configure the List component."
+        title="Props — List & ListItem"
+        description="Supported properties for List and ListItem components."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -84,16 +161,42 @@ export default function ListComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'default' | 'bordered' | 'separated'</td>
+                  <td className="px-3 py-2 font-mono text-primary">variant (List)</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'default' | 'bordered' | 'separated'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">List frame layout variant.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Container layout style variant.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">startContent / endContent</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Leading or trailing icons or badges inside ListItem.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isActive</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Highlights item as selected/active.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isHoverable</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables hover background highlight.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">isDisabled</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Disables item interactions.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }
