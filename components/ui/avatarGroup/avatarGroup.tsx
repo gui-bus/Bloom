@@ -4,13 +4,20 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, type AvatarProps } from "@/components/ui/avatar/avatar";
 
+export type AvatarGroupOrientation = "horizontal" | "vertical";
+
 export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   max?: number;
+  total?: number;
+  orientation?: AvatarGroupOrientation;
   size?: AvatarProps["size"];
   color?: AvatarProps["color"];
   radius?: AvatarProps["radius"];
   isBordered?: boolean;
+  isGrid?: boolean;
+  isDisabled?: boolean;
+  renderCount?: (count: number) => React.ReactNode;
 }
 
 const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
@@ -18,52 +25,98 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
     {
       children,
       max,
+      total,
+      orientation = "horizontal",
       size = "md",
       color = "default",
       radius = "full",
       isBordered = true,
+      isGrid = false,
+      isDisabled = false,
+      renderCount,
       className,
       ...props
     },
     ref
   ) => {
     const childrenArray = React.Children.toArray(children);
-    const totalAvatars = childrenArray.length;
-    const hasMax = typeof max === "number" && max > 0 && max < totalAvatars;
+    const countTotal = total ?? childrenArray.length;
+    const hasMax = typeof max === "number" && max > 0 && max < childrenArray.length;
     const visibleAvatars = hasMax ? childrenArray.slice(0, max) : childrenArray;
-    const excessCount = hasMax ? totalAvatars - max : 0;
+    const excessCount = hasMax ? countTotal - max : countTotal > childrenArray.length ? countTotal - childrenArray.length : 0;
+
+    const isVertical = orientation === "vertical";
 
     return (
       <div
         ref={ref}
         role="group"
         aria-label="Avatar group"
-        className={cn("flex items-center -space-x-3 hover:space-x-1 transition-all duration-300", className)}
+        className={cn(
+          "inline-flex transition-all duration-300 ease-out",
+          isGrid
+            ? "flex-wrap gap-2"
+            : isVertical
+            ? "flex-col -space-y-3 hover:-space-y-1.5 items-start"
+            : "items-center -space-x-3 hover:-space-x-1.5",
+          isDisabled && "opacity-50 grayscale pointer-events-none",
+          className
+        )}
         {...props}
       >
         {visibleAvatars.map((child, index) => {
           if (!React.isValidElement<AvatarProps>(child)) return child;
 
-          return React.cloneElement(child, {
-            key: index,
+          const clonedAvatar = React.cloneElement(child, {
             size: child.props.size || size,
             color: child.props.color || color,
             radius: child.props.radius || radius,
             isBordered: child.props.isBordered !== undefined ? child.props.isBordered : isBordered,
+            isDisabled: child.props.isDisabled !== undefined ? child.props.isDisabled : isDisabled,
+            className: cn(
+              "ring-2 ring-white dark:ring-zinc-900 transition-all duration-300 ease-out",
+              child.props.className
+            ),
           });
+
+          return (
+            <div
+              key={index}
+              className={cn(
+                "relative transition-all duration-300 ease-out hover:z-30 hover:scale-105",
+                isVertical ? "hover:translate-x-1" : "hover:-translate-y-1"
+              )}
+              style={{ zIndex: visibleAvatars.length - index }}
+            >
+              {clonedAvatar}
+            </div>
+          );
         })}
 
         {excessCount > 0 && (
-          <Avatar
-            size={size}
-            color={color}
-            radius={radius}
-            isBordered={isBordered}
+          <div
+            className={cn(
+              "relative transition-all duration-300 ease-out hover:z-30 hover:scale-105",
+              isVertical ? "hover:translate-x-1" : "hover:-translate-y-1"
+            )}
+            style={{ zIndex: 0 }}
           >
-            <AvatarFallback className="bg-muted text-foreground font-semibold">
-              +{excessCount}
-            </AvatarFallback>
-          </Avatar>
+            <Avatar
+              size={size}
+              color={color}
+              radius={radius}
+              isBordered={isBordered}
+              className="ring-2 ring-white dark:ring-zinc-900"
+            >
+              {renderCount ? (
+                renderCount(excessCount)
+              ) : (
+                <AvatarFallback className="bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold text-xs select-none">
+                  +{excessCount}
+                </AvatarFallback>
+              )}
+            </Avatar>
+          </div>
         )}
       </div>
     );
