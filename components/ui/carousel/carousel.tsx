@@ -145,7 +145,7 @@ const Carousel = React.forwardRef<
           ref={ref}
           role="region"
           aria-roledescription="carousel"
-          className={cn("relative", className)}
+          className={cn("relative w-full", className)}
           {...props}
         >
           {children}
@@ -204,7 +204,7 @@ const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "bordered", size = "sm", ...props }, ref) => {
-  const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+  const { scrollPrev, canScrollPrev } = useCarousel();
 
   return (
     <Button
@@ -216,10 +216,7 @@ const CarouselPrevious = React.forwardRef<
       onClick={scrollPrev}
       ariaLabel="Previous slide"
       className={cn(
-        "absolute rounded-full z-10 bg-background/80 backdrop-blur-sm shadow-md",
-        orientation === "horizontal"
-          ? "-left-4 top-1/2 -translate-y-1/2"
-          : "-top-4 left-1/2 -translate-x-1/2 rotate-90",
+        "rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-xs hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:scale-105 active:scale-95 transition-all duration-200",
         className
       )}
       {...props}
@@ -234,7 +231,7 @@ const CarouselNext = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "bordered", size = "sm", ...props }, ref) => {
-  const { orientation, scrollNext, canScrollNext } = useCarousel();
+  const { scrollNext, canScrollNext } = useCarousel();
 
   return (
     <Button
@@ -246,10 +243,7 @@ const CarouselNext = React.forwardRef<
       onClick={scrollNext}
       ariaLabel="Next slide"
       className={cn(
-        "absolute rounded-full z-10 bg-background/80 backdrop-blur-sm shadow-md",
-        orientation === "horizontal"
-          ? "-right-4 top-1/2 -translate-y-1/2"
-          : "-bottom-4 left-1/2 -translate-x-1/2 rotate-90",
+        "rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-xs hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:scale-105 active:scale-95 transition-all duration-200",
         className
       )}
       {...props}
@@ -271,7 +265,7 @@ const CarouselDots = React.forwardRef<
   return (
     <div
       ref={ref}
-      className={cn("flex items-center justify-center gap-1.5 mt-4", className)}
+      className={cn("flex items-center justify-center gap-1.5", className)}
       {...props}
     >
       {scrollSnaps.map((_, index) => (
@@ -280,10 +274,10 @@ const CarouselDots = React.forwardRef<
           onClick={() => scrollTo(index)}
           aria-label={`Go to slide ${index + 1}`}
           className={cn(
-            "size-2 rounded-full transition-all duration-300 cursor-pointer",
+            "h-2 rounded-full transition-all duration-300 cursor-pointer",
             index === selectedIndex
-              ? "bg-primary w-6"
-              : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
+              ? "bg-sky-500 w-6"
+              : "bg-zinc-300 dark:bg-zinc-700 hover:bg-zinc-400 dark:hover:bg-zinc-600 w-2"
           )}
         />
       ))}
