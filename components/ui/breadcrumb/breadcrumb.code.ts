@@ -1,4 +1,6 @@
-export const breadcrumbCode = `import * as React from "react";
+export const breadcrumbCode = `"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +19,7 @@ const BreadcrumbList = React.forwardRef<
   <ol
     ref={ref}
     className={cn(
-      "flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5",
+      "flex flex-wrap items-center gap-1.5 break-words text-sm text-zinc-500 dark:text-zinc-400 sm:gap-2",
       className
     )}
     {...props}
@@ -47,7 +49,7 @@ const BreadcrumbLink = React.forwardRef<
     <a
       ref={ref}
       className={cn(
-        "inline-flex items-center gap-1.5 transition-colors hover:text-foreground cursor-pointer font-medium",
+        "inline-flex items-center gap-1.5 transition-colors text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 cursor-pointer font-medium",
         className
       )}
       {...props}
@@ -70,10 +72,10 @@ const BreadcrumbPage = React.forwardRef<
     role="link"
     aria-disabled="true"
     aria-current="page"
-    className={cn("inline-flex items-center gap-1.5 font-semibold text-foreground", className)}
+    className={cn("inline-flex items-center gap-1.5 font-semibold text-zinc-900 dark:text-zinc-100", className)}
     {...props}
   >
-    {icon && <Icon icon={icon} className="size-4 shrink-0 text-primary" />}
+    {icon && <Icon icon={icon} className="size-4 shrink-0 text-sky-600 dark:text-sky-400" />}
     {children}
   </span>
 ));
@@ -87,7 +89,7 @@ const BreadcrumbSeparator = ({
   <li
     role="presentation"
     aria-hidden="true"
-    className={cn("[&>svg]:size-3.5 text-muted-foreground/70", className)}
+    className={cn("[&>svg]:size-3.5 text-zinc-400 dark:text-zinc-600 select-none", className)}
     {...props}
   >
     {children ?? <Icon icon="hugeicons:arrow-right-01" className="size-3.5" />}
@@ -104,7 +106,7 @@ const BreadcrumbEllipsis = ({
     type="button"
     aria-label="Toggle collapsed breadcrumbs"
     className={cn(
-      "flex size-7 items-center justify-center rounded-md border border-border bg-muted/40 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+      "flex size-7 items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
       className
     )}
     {...props}

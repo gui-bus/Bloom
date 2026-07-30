@@ -1,4 +1,6 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -27,17 +29,12 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
 
-export const metadata: Metadata = {
-  title: "Breadcrumb",
-  description: "Displays the path to the current resource using a hierarchy of links.",
-};
-
 export default function BreadcrumbDocsPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Breadcrumb"
-        description="A navigational helper that reveals the user's location within a website or web application."
+        description="A navigational helper that reveals the user's location within a website or web application hierarchy."
       />
 
       <Tabs defaultValue="breadcrumb">
@@ -60,35 +57,37 @@ export default function BreadcrumbDocsPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Basic Breadcrumb */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Standard breadcrumb navigation path leading to the active page."
+        title="Default"
+        description="A standard breadcrumb navigation path leading to the current active page."
         preview={
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/components/button">Components</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <div className="w-full">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">Components</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
         }
         code={`<Breadcrumb>
   <BreadcrumbList>
     <BreadcrumbItem>
-      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      <BreadcrumbLink href="#">Home</BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
-      <BreadcrumbLink href="/components/button">Components</BreadcrumbLink>
+      <BreadcrumbLink href="#">Components</BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
@@ -103,36 +102,38 @@ export default function BreadcrumbDocsPage() {
         title="With Icons"
         description="Pass icon names to BreadcrumbLink and BreadcrumbPage for enhanced visual cues."
         preview={
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/" icon="hugeicons:home-01">
-                  Home
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/components/button" icon="hugeicons:grid-view">
-                  Components
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage icon="hugeicons:navigation-01">
-                  Breadcrumb
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <div className="w-full">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#" icon="hugeicons:home-01">
+                    Home
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#" icon="hugeicons:grid-view">
+                    Components
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage icon="hugeicons:navigation-01">
+                    Breadcrumb
+                  </BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
         }
         code={`<Breadcrumb>
   <BreadcrumbList>
     <BreadcrumbItem>
-      <BreadcrumbLink href="/" icon="hugeicons:home-01">Home</BreadcrumbLink>
+      <BreadcrumbLink href="#" icon="hugeicons:home-01">Home</BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
-      <BreadcrumbLink href="/components" icon="hugeicons:grid-view">Components</BreadcrumbLink>
+      <BreadcrumbLink href="#" icon="hugeicons:grid-view">Components</BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
@@ -145,48 +146,53 @@ export default function BreadcrumbDocsPage() {
 
       {/* Collapsed Ellipsis with Dropdown Menu */}
       <DocsComponent
-        title="Collapsed Items with Interactive Dropdown Menu"
-        description="Clicking the BreadcrumbEllipsis trigger opens our DropdownMenu popover containing hidden route items."
+        title="Collapsed Items with Dropdown Menu"
+        description="Clicking the BreadcrumbEllipsis trigger opens our DropdownMenu popover containing hidden route items without shifting page layout."
         preview={
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <BreadcrumbEllipsis />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start">
-                    <DropdownMenuItem asChild>
-                      <a href="/docs">Documentation</a>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <a href="/components">All Components</a>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <a href="/themes">Theme Customizer</a>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/components/button">Components</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <div className="w-full">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <BreadcrumbEllipsis />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="w-48">
+                      <DropdownMenuItem>
+                        <Icon icon="hugeicons:book-open-01" className="mr-2 size-4" />
+                        <span>Documentation</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Icon icon="hugeicons:grid-view" className="mr-2 size-4" />
+                        <span>All Components</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Icon icon="hugeicons:color-picker" className="mr-2 size-4" />
+                        <span>Theme Customizer</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">Components</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
         }
         code={`<Breadcrumb>
   <BreadcrumbList>
     <BreadcrumbItem>
-      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      <BreadcrumbLink href="#">Home</BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
@@ -195,18 +201,14 @@ export default function BreadcrumbDocsPage() {
           <BreadcrumbEllipsis />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
-          <DropdownMenuItem asChild>
-            <a href="/docs">Documentation</a>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <a href="/components">All Components</a>
-          </DropdownMenuItem>
+          <DropdownMenuItem>Documentation</DropdownMenuItem>
+          <DropdownMenuItem>All Components</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
-      <BreadcrumbLink href="/components/button">Components</BreadcrumbLink>
+      <BreadcrumbLink href="#">Components</BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
@@ -218,6 +220,7 @@ export default function BreadcrumbDocsPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Breadcrumb Table */}
       <DocsComponent
         title="Props — Breadcrumb"
         description="Sub-components for building accessible Breadcrumb trails."
@@ -257,6 +260,6 @@ export default function BreadcrumbDocsPage() {
           </div>
         }
       />
-    </main>
+    </div>
   );
 }
