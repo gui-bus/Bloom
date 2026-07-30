@@ -16,13 +16,13 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 export default function ImageComponentPage() {
-  const sampleImage = "https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=800&auto=format&fit=crop&q=80";
+  const sampleImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80";
 
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Image"
-        description="Enhanced image container with loading skeletons, error fallback state, radius options, zoomable hover effects, and blurred glow backdrop shadow."
+        description="Enhanced image container with placeholder graphics, loading skeletons, error fallbacks, radius options, zoomable hover effects, and blurred glow backdrop shadow."
       />
 
       <Tabs defaultValue="image">
@@ -59,10 +59,28 @@ export default function ImageComponentPage() {
           </div>
         }
         code={`<Image
-  src="https://images.unsplash.com/..."
+  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80"
   alt="Mountain landscape"
   caption="Serene mountain vista at sunrise"
 />`}
+      />
+
+      {/* Placeholder Image */}
+      <DocsComponent
+        title="Placeholder Graphic"
+        description="Use the 'placeholder' prop to render a default vector SVG placeholder."
+        preview={
+          <div className="max-w-md w-full">
+            <Image
+              placeholder
+              alt="Placeholder graphic"
+              aspectRatio="video"
+              caption="Standard 1200x1200 vector placeholder SVG"
+            />
+          </div>
+        }
+        code={`<Image placeholder aspectRatio="video" caption="Standard vector placeholder SVG" />`}
+        props={["placeholder: boolean"]}
       />
 
       {/* Zoomable */}
@@ -79,7 +97,7 @@ export default function ImageComponentPage() {
             />
           </div>
         }
-        code={`<Image src="..." alt="..." isZoomable />`}
+        code={`<Image src="https://images.unsplash.com/..." alt="..." isZoomable />`}
         props={["isZoomable: boolean"]}
       />
 
@@ -97,7 +115,7 @@ export default function ImageComponentPage() {
             />
           </div>
         }
-        code={`<Image src="..." alt="..." isBlurred />`}
+        code={`<Image src="https://images.unsplash.com/..." alt="..." isBlurred />`}
         props={["isBlurred: boolean"]}
       />
 
@@ -121,25 +139,9 @@ export default function ImageComponentPage() {
             />
           </div>
         }
-        code={`<Image src="..." alt="..." aspectRatio="square" />
-<Image src="..." alt="..." aspectRatio="video" />`}
+        code={`<Image src="https://images.unsplash.com/..." aspectRatio="square" />
+<Image src="https://images.unsplash.com/..." aspectRatio="video" />`}
         props={["aspectRatio: 'auto' | 'square' | 'video' | '4/3' | '21/9'"]}
-      />
-
-      {/* Error Fallback */}
-      <DocsComponent
-        title="Error Fallback State"
-        description="Gracefully displays a fallback UI when image fails to load."
-        preview={
-          <div className="max-w-md w-full">
-            <Image
-              src="https://invalid-domain-image-url.com/broken.jpg"
-              alt="Broken image"
-              aspectRatio="video"
-            />
-          </div>
-        }
-        code={`<Image src="invalid-url.jpg" alt="Broken image" aspectRatio="video" />`}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -160,6 +162,12 @@ export default function ImageComponentPage() {
                 </tr>
               </thead>
               <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">placeholder</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders the default placeholder vector SVG graphic.</td>
+                </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">src</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>

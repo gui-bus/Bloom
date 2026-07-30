@@ -66,17 +66,17 @@ export default function KbdComponentPage() {
         preview={
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-1.5">
-              <span className="text-xs text-muted-foreground mr-1">Flat:</span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400 mr-1">Flat:</span>
               <Kbd variant="flat">Ctrl</Kbd>
               <Kbd variant="flat">C</Kbd>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="text-xs text-muted-foreground mr-1">Bordered:</span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400 mr-1">Bordered:</span>
               <Kbd variant="bordered">Alt</Kbd>
               <Kbd variant="bordered">F4</Kbd>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="text-xs text-muted-foreground mr-1">Solid:</span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400 mr-1">Solid:</span>
               <Kbd variant="solid">Shift</Kbd>
               <Kbd variant="solid">Enter</Kbd>
             </div>
@@ -110,34 +110,36 @@ export default function KbdComponentPage() {
         title="Keyboard Shortcuts List"
         description="Combining Kbd badges into a clean user interface reference list."
         preview={
-          <div className="flex flex-col gap-2 max-w-sm w-full border border-border bg-card p-4 rounded-2xl">
+          <div className="flex flex-col gap-2 max-w-sm w-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 rounded-2xl">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-medium text-foreground">Command Palette</span>
+              <span className="font-medium text-zinc-900 dark:text-zinc-100">Command Palette</span>
               <div className="flex items-center gap-1">
                 <Kbd size="sm">⌘</Kbd>
                 <Kbd size="sm">K</Kbd>
               </div>
             </div>
             <div className="flex items-center justify-between text-xs">
-              <span className="font-medium text-foreground">Copy Code</span>
+              <span className="font-medium text-zinc-900 dark:text-zinc-100">Copy Code</span>
               <div className="flex items-center gap-1">
                 <Kbd size="sm">Ctrl</Kbd>
                 <Kbd size="sm">C</Kbd>
               </div>
             </div>
             <div className="flex items-center justify-between text-xs">
-              <span className="font-medium text-foreground">Quick Search</span>
+              <span className="font-medium text-zinc-900 dark:text-zinc-100">Quick Search</span>
               <div className="flex items-center gap-1">
                 <Kbd size="sm">/</Kbd>
               </div>
             </div>
           </div>
         }
-        code={`<div className="flex items-center justify-between">
-  <span>Command Palette</span>
-  <div className="flex items-center gap-1">
-    <Kbd size="sm">⌘</Kbd>
-    <Kbd size="sm">K</Kbd>
+        code={`<div className="flex flex-col gap-2 max-w-sm border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 rounded-2xl">
+  <div className="flex items-center justify-between">
+    <span>Command Palette</span>
+    <div className="flex items-center gap-1">
+      <Kbd size="sm">⌘</Kbd>
+      <Kbd size="sm">K</Kbd>
+    </div>
   </div>
 </div>`}
       />

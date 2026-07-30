@@ -8,13 +8,15 @@ export type ImageRadius = "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "full";
 export type ImageAspectRatio = "auto" | "square" | "video" | "4/3" | "21/9";
 
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  src: string;
-  alt: string;
+  src?: string;
+  alt?: string;
   radius?: ImageRadius;
   aspectRatio?: ImageAspectRatio;
   fallback?: React.ReactNode;
   isZoomable?: boolean;
   isBlurred?: boolean;
+  placeholder?: boolean;
+  isPlaceholder?: boolean;
   caption?: string;
 }
 
@@ -36,16 +38,20 @@ const aspectRatioStyles: Record<ImageAspectRatio, string> = {
   "21/9": "aspect-21/9",
 };
 
+const PLACEHOLDER_SVG_SRC = "/utils/placeholder.svg";
+
 const Image = React.forwardRef<HTMLImageElement, ImageProps>(
   (
     {
       src,
-      alt,
+      alt = "Image",
       radius = "2xl",
       aspectRatio = "auto",
       fallback,
       isZoomable = false,
       isBlurred = false,
+      placeholder = false,
+      isPlaceholder = false,
       caption,
       className,
       onError,
@@ -56,6 +62,18 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
   ) => {
     const [hasError, setHasError] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(true);
+    const internalRef = React.useRef<HTMLImageElement>(null);
+
+    React.useImperativeHandle(ref, () => internalRef.current as HTMLImageElement);
+
+    const usePlaceholder = placeholder || isPlaceholder;
+    const activeSrc = usePlaceholder ? PLACEHOLDER_SVG_SRC : src;
+
+    React.useEffect(() => {
+      if (internalRef.current && internalRef.current.complete) {
+        setIsLoading(false);
+      }
+    }, [activeSrc]);
 
     const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
       setHasError(true);
@@ -70,9 +88,10 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
 
     return (
       <figure className="relative inline-flex flex-col max-w-full">
-        {isBlurred && !hasError && (
+        {/* Glow backdrop blur shadow effect when isBlurred=true */}
+        {isBlurred && !hasError && activeSrc && (
           <img
-            src={src}
+            src={activeSrc}
             alt=""
             aria-hidden="true"
             className={cn(
@@ -105,13 +124,13 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
                 </div>
               )}
               <img
-                ref={ref}
-                src={src}
+                ref={internalRef}
+                src={activeSrc}
                 alt={alt}
                 onLoad={handleImageLoad}
                 onError={handleImageError}
                 className={cn(
-                  "w-full h-full object-cover transition-all duration-300",
+                  "w-full h-full object-cover transition-all duration-500 ease-out",
                   isLoading ? "opacity-0" : "opacity-100",
                   isZoomable && "hover:scale-105 cursor-pointer"
                 )}
