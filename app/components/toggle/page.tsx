@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Toggle",
-  description: "A two-state button that can be either on or off.",
-};
-
 import { Toggle } from "@/components/ui/toggle/toggle";
 import { toggleCode } from "@/components/ui/toggle/toggle.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -20,11 +16,13 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 export default function ToggleComponentPage() {
+  const [isBold, setIsBold] = React.useState(true);
+
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Toggle"
-        description="A binary toggle button built on Radix UI Toggle primitive. Supports icon states, outline/flat variants, and size scales."
+        description="A two-state button component that can be toggled on or off for formatting controls, filters, and feature toggles."
       />
 
       <Tabs defaultValue="toggle">
@@ -42,35 +40,80 @@ export default function ToggleComponentPage() {
             code={toggleCode}
             componentName="toggle.tsx"
             description="Core implementation of the Toggle component."
-            tags={["React", "Radix UI", "Tailwind", "Buttons"]}
+            tags={["React", "Radix UI", "Toggle", "Button"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Toggle button with icon."
+        title="Default"
+        description="Standard pressable toggle button."
         preview={
-          <div className="flex gap-3">
-            <Toggle aria-label="Toggle italic" variant="outline">
-              <Icon icon="lucide:italic" className="size-4" />
-            </Toggle>
-            <Toggle aria-label="Toggle bold" variant="flat">
-              <Icon icon="lucide:bold" className="size-4" />
+          <div className="flex items-center gap-4">
+            <Toggle aria-label="Toggle bold" pressed={isBold} onPressedChange={setIsBold}>
+              <Icon icon="hugeicons:text-bold" className="size-4" />
+              <span>Bold</span>
             </Toggle>
           </div>
         }
-        code={`<Toggle aria-label="Toggle italic" variant="outline">
-  <Icon icon="lucide:italic" className="size-4" />
+        code={`const [isBold, setIsBold] = React.useState(true);
+
+<Toggle aria-label="Toggle bold" pressed={isBold} onPressedChange={setIsBold}>
+  <Icon icon="hugeicons:text-bold" className="size-4" />
+  <span>Bold</span>
 </Toggle>`}
+      />
+
+      {/* Variants (Default, Outline, Flat) */}
+      <DocsComponent
+        title="Variants (Default, Outline, Flat)"
+        description="Visual style options: 'default', 'outline', or 'flat'."
+        preview={
+          <div className="flex flex-wrap gap-4">
+            <Toggle variant="default" defaultPressed>
+              <Icon icon="hugeicons:text-bold" className="size-4" />
+              <span>Default</span>
+            </Toggle>
+            <Toggle variant="outline" defaultPressed>
+              <Icon icon="hugeicons:text-italic" className="size-4" />
+              <span>Outline</span>
+            </Toggle>
+            <Toggle variant="flat" defaultPressed>
+              <Icon icon="hugeicons:text-underline" className="size-4" />
+              <span>Flat</span>
+            </Toggle>
+          </div>
+        }
+        code={`<Toggle variant="default" defaultPressed>Default</Toggle>
+<Toggle variant="outline" defaultPressed>Outline</Toggle>
+<Toggle variant="flat" defaultPressed>Flat</Toggle>`}
+        props={["variant: 'default' | 'outline' | 'flat'"]}
+      />
+
+      {/* Sizes */}
+      <DocsComponent
+        title="Sizes"
+        description="Scale toggle dimensions: 'sm', 'md', or 'lg'."
+        preview={
+          <div className="flex flex-wrap items-center gap-4">
+            <Toggle size="sm" variant="outline" defaultPressed>Small</Toggle>
+            <Toggle size="md" variant="outline" defaultPressed>Medium</Toggle>
+            <Toggle size="lg" variant="outline" defaultPressed>Large</Toggle>
+          </div>
+        }
+        code={`<Toggle size="sm">Small</Toggle>
+<Toggle size="md">Medium</Toggle>
+<Toggle size="lg">Large</Toggle>`}
+        props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — Toggle"
-        description="Properties to configure the Toggle component."
+        description="Supported properties for Toggle."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -84,22 +127,32 @@ export default function ToggleComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">pressed / defaultPressed</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Controlled / uncontrolled pressed toggle state.</td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'default' | 'outline' | 'flat'</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'default' | 'outline' | 'flat'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Visual button variant style.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Visual button border & background style.</td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">size</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'sm' | 'md' | 'lg'</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'sm' | 'md' | 'lg'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Button height and padding scale.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Dimension scale of toggle button.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

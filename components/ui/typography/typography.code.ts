@@ -1,4 +1,5 @@
-export const typographyCode = `import { cva, type VariantProps } from "class-variance-authority";
+export const typographyCode = `"use client";
+
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
@@ -29,23 +30,24 @@ type TypographyColor =
 export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   variant?: TypographyVariant;
   color?: TypographyColor;
+  clampLines?: number;
   as?: React.ElementType;
   children?: React.ReactNode;
 }
 
 const variantStyles: Record<TypographyVariant, string> = {
-  h1: "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
-  h2: "scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0",
-  h3: "scroll-m-20 text-2xl font-semibold tracking-tight",
-  h4: "scroll-m-20 text-xl font-semibold tracking-tight",
-  h5: "scroll-m-20 text-lg font-semibold tracking-tight",
-  h6: "scroll-m-20 text-base font-semibold tracking-tight",
-  p: "leading-7 [&:not(:first-child)]:mt-4",
-  lead: "text-xl text-muted-foreground",
-  large: "text-lg font-semibold",
-  small: "text-sm font-medium leading-none",
-  muted: "text-sm text-muted-foreground",
-  code: "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold",
+  h1: "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-zinc-900 dark:text-zinc-100",
+  h2: "scroll-m-20 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100",
+  h3: "scroll-m-20 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100",
+  h4: "scroll-m-20 text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100",
+  h5: "scroll-m-20 text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100",
+  h6: "scroll-m-20 text-base font-bold tracking-tight text-zinc-900 dark:text-zinc-100",
+  p: "leading-7 text-zinc-700 dark:text-zinc-300 font-normal",
+  lead: "text-lg text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed",
+  large: "text-lg font-bold text-zinc-900 dark:text-zinc-100",
+  small: "text-xs font-semibold leading-none text-zinc-500 dark:text-zinc-400",
+  muted: "text-xs text-zinc-500 dark:text-zinc-400 leading-normal",
+  code: "relative rounded-lg bg-zinc-100 dark:bg-zinc-800 px-2 py-1 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700",
 };
 
 const defaultElementMap: Record<TypographyVariant, React.ElementType> = {
@@ -64,14 +66,14 @@ const defaultElementMap: Record<TypographyVariant, React.ElementType> = {
 };
 
 const colorStyles: Record<TypographyColor, string> = {
-  default: "text-foreground",
-  muted: "text-muted-foreground",
-  primary: "text-primary",
-  secondary: "text-secondary",
-  accent: "text-accent",
-  success: "text-success",
-  warning: "text-warning",
-  danger: "text-danger",
+  default: "text-zinc-900 dark:text-zinc-100",
+  muted: "text-zinc-500 dark:text-zinc-400",
+  primary: "text-sky-500",
+  secondary: "text-purple-500",
+  accent: "text-pink-500",
+  success: "text-emerald-500",
+  warning: "text-amber-500",
+  danger: "text-rose-500",
 };
 
 const Typography = React.forwardRef<HTMLElement, TypographyProps>(
@@ -79,6 +81,7 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
     {
       variant = "p",
       color = "default",
+      clampLines,
       as,
       className,
       children,
@@ -91,6 +94,7 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
     return (
       <Component
         ref={ref as any}
+        style={clampLines ? { display: "-webkit-box", WebkitLineClamp: clampLines, WebkitBoxOrient: "vertical", overflow: "hidden" } : undefined}
         className={cn(
           variantStyles[variant],
           color !== "default" && colorStyles[color],
@@ -105,4 +109,5 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
 );
 Typography.displayName = "Typography";
 
-export { Typography };`;
+export { Typography };
+`;

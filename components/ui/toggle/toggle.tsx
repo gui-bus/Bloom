@@ -7,18 +7,18 @@ import { cn } from "@/lib/utils";
 import { designRadius } from "@/lib/design-system";
 
 const toggleVariants = cva(
-  "inline-flex items-center justify-center font-medium transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer select-none",
+  "inline-flex items-center justify-center font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/20 disabled:pointer-events-none disabled:opacity-35 cursor-pointer select-none",
   {
     variants: {
       variant: {
-        default: "bg-transparent data-[state=on]:bg-accent data-[state=on]:text-accent-foreground",
-        outline: "border border-input bg-transparent hover:bg-accent hover:text-accent-foreground data-[state=on]:bg-accent data-[state=on]:text-accent-foreground",
-        flat: "bg-muted/50 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground",
+        default: "bg-transparent text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 data-[state=on]:bg-zinc-900 dark:data-[state=on]:bg-zinc-100 data-[state=on]:text-white dark:data-[state=on]:text-zinc-900 shadow-xs",
+        outline: "border border-zinc-200 dark:border-zinc-800 bg-transparent text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 data-[state=on]:border-sky-500 data-[state=on]:bg-sky-500/10 data-[state=on]:text-sky-600 dark:data-[state=on]:text-sky-400",
+        flat: "bg-zinc-100 dark:bg-zinc-800/60 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/60 dark:hover:bg-zinc-800 data-[state=on]:bg-sky-500 data-[state=on]:text-white shadow-xs",
       },
       size: {
-        sm: "h-8 px-2 text-xs min-w-8",
-        md: "h-10 px-3 text-sm min-w-10",
-        lg: "h-12 px-4 text-base min-w-12",
+        sm: "h-8 px-2.5 text-xs min-w-8 gap-1.5",
+        md: "h-10 px-3.5 text-xs min-w-10 gap-2",
+        lg: "h-12 px-4 text-sm min-w-12 gap-2.5",
       },
     },
     defaultVariants: {

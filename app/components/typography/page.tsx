@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Typography",
-  description: "Standardized text styling component supporting semantic text elements, custom tags, and color variants.",
-};
-
 import { Typography } from "@/components/ui/typography/typography";
 import { typographyCode } from "@/components/ui/typography/typography.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -21,10 +17,10 @@ import {
 
 export default function TypographyComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Typography"
-        description="Standardized typographic scale and text styling component. Supports HTML heading hierarchy (h1–h6), body text, leads, muted captions, code snippets, and color themes."
+        description="Standardized typographic text hierarchy styles including headings, body paragraphs, lead copy, colors, and inline code elements."
       />
 
       <Tabs defaultValue="typography">
@@ -41,124 +37,79 @@ export default function TypographyComponentPage() {
           <CodeBlock
             code={typographyCode}
             componentName="typography.tsx"
-            description="Core implementation of the Typography component with variant mapping and polymorphic element support."
-            tags={["React", "Tailwind", "UI Component", "Typography"]}
+            description="Core implementation of the Typography component."
+            tags={["React", "Typography", "Headings", "Text"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Headings */}
+      {/* Default */}
       <DocsComponent
-        title="Headings"
-        description="Use variant h1 through h6 for semantic section headers."
+        title="Default"
+        description="Standard paragraph text typography element."
         preview={
-          <div className="space-y-3 w-full">
-            <Typography variant="h1">Heading 1 (h1)</Typography>
-            <Typography variant="h2">Heading 2 (h2)</Typography>
-            <Typography variant="h3">Heading 3 (h3)</Typography>
-            <Typography variant="h4">Heading 4 (h4)</Typography>
-            <Typography variant="h5">Heading 5 (h5)</Typography>
-            <Typography variant="h6">Heading 6 (h6)</Typography>
+          <div className="max-w-md w-full">
+            <Typography variant="p">
+              Bloom UI is an accessible, customizable, and high-performance React component library designed with modern aesthetic tokens.
+            </Typography>
           </div>
         }
-        code={`<div className="space-y-3 w-full">
-  <Typography variant="h1">Heading 1 (h1)</Typography>
-  <Typography variant="h2">Heading 2 (h2)</Typography>
-  <Typography variant="h3">Heading 3 (h3)</Typography>
-  <Typography variant="h4">Heading 4 (h4)</Typography>
-  <Typography variant="h5">Heading 5 (h5)</Typography>
-  <Typography variant="h6">Heading 6 (h6)</Typography>
-</div>`}
+        code={`<Typography variant="p">
+  Bloom UI is an accessible, customizable, and high-performance React component library...
+</Typography>`}
+      />
+
+      {/* Headings Scale (H1-H6) */}
+      <DocsComponent
+        title="Headings Scale (H1 - H6)"
+        description="Typographic hierarchy sizes ranging from H1 to H6 headings."
+        preview={
+          <div className="space-y-4 w-full">
+            <Typography variant="h1">Heading 1 — Display</Typography>
+            <Typography variant="h2">Heading 2 — Section Title</Typography>
+            <Typography variant="h3">Heading 3 — Subsection Title</Typography>
+            <Typography variant="h4">Heading 4 — Card Header</Typography>
+            <Typography variant="h5">Heading 5 — Subheading</Typography>
+            <Typography variant="h6">Heading 6 — Small Label</Typography>
+          </div>
+        }
+        code={`<Typography variant="h1">Heading 1</Typography>
+<Typography variant="h2">Heading 2</Typography>
+<Typography variant="h3">Heading 3</Typography>
+<Typography variant="h4">Heading 4</Typography>`}
         props={["variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'"]}
       />
 
-      {/* Body & Text Variants */}
+      {/* Colors & Code Format */}
       <DocsComponent
-        title="Text Variants"
-        description="Paragraphs, lead copy, large text, small text, muted text, and inline code."
+        title="Colors & Code Format"
+        description="Color variants and inline code formatting."
         preview={
           <div className="space-y-4 w-full">
-            <Typography variant="lead">
-              A prominent lead paragraph for introducing key sections or articles.
+            <Typography variant="lead" color="primary">
+              Primary colored lead text for highlighting section intros.
             </Typography>
-            <Typography variant="p">
-              Standard body text for long-form narrative content. Bloom UI provides responsive design tokens, accessible contrast, and harmonized typography.
+            <Typography variant="p" color="muted">
+              Muted body paragraph text for secondary information.
             </Typography>
-            <Typography variant="large">
-              Large emphasis text for highlights.
-            </Typography>
-            <Typography variant="small">
-              Small caption text for auxiliary metadata.
-            </Typography>
-            <Typography variant="muted">
-              Muted text style for subtle secondary information.
-            </Typography>
-            <div>
-              <Typography variant="p">
-                Execute <Typography variant="code">pnpm test:unit</Typography> to run component test suites.
-              </Typography>
+            <div className="flex items-center gap-2">
+              <Typography variant="p">Install via terminal:</Typography>
+              <Typography variant="code">npm install @bloom-ui/react</Typography>
             </div>
           </div>
         }
-        code={`<div className="space-y-4 w-full">
-  <Typography variant="lead">
-    A prominent lead paragraph for introducing key sections or articles.
-  </Typography>
-  <Typography variant="p">
-    Standard body text for long-form narrative content. Bloom UI provides responsive design tokens, accessible contrast, and harmonized typography.
-  </Typography>
-  <Typography variant="large">
-    Large emphasis text for highlights.
-  </Typography>
-  <Typography variant="small">
-    Small caption text for auxiliary metadata.
-  </Typography>
-  <Typography variant="muted">
-    Muted text style for subtle secondary information.
-  </Typography>
-  <div>
-    <Typography variant="p">
-      Execute <Typography variant="code">pnpm test:unit</Typography> to run component test suites.
-    </Typography>
-  </div>
-</div>`}
-        props={["variant: 'p' | 'lead' | 'large' | 'small' | 'muted' | 'code'"]}
-      />
-
-      {/* Colors */}
-      <DocsComponent
-        title="Colors"
-        description="Semantic colors applied directly to text."
-        preview={
-          <div className="flex flex-wrap gap-4 items-center">
-            <Typography color="default">Default</Typography>
-            <Typography color="muted">Muted</Typography>
-            <Typography color="primary">Primary</Typography>
-            <Typography color="secondary">Secondary</Typography>
-            <Typography color="accent">Accent</Typography>
-            <Typography color="success">Success</Typography>
-            <Typography color="warning">Warning</Typography>
-            <Typography color="danger">Danger</Typography>
-          </div>
-        }
-        code={`<div className="flex flex-wrap gap-4 items-center">
-  <Typography color="default">Default</Typography>
-  <Typography color="muted">Muted</Typography>
-  <Typography color="primary">Primary</Typography>
-  <Typography color="secondary">Secondary</Typography>
-  <Typography color="accent">Accent</Typography>
-  <Typography color="success">Success</Typography>
-  <Typography color="warning">Warning</Typography>
-  <Typography color="danger">Danger</Typography>
-</div>`}
-        props={["color: 'default' | 'muted' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
+        code={`<Typography variant="lead" color="primary">Primary colored text...</Typography>
+<Typography variant="p" color="muted">Muted secondary text...</Typography>
+<Typography variant="code">npm install @bloom-ui/react</Typography>`}
+        props={["color: 'default' | 'muted' | 'primary' | 'secondary' | ...", "variant: 'lead' | 'code'"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — Typography"
-        description="Properties to configure the Typography component."
+        description="Supported properties for Typography."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -177,9 +128,7 @@ export default function TypographyComponentPage() {
                     'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'lead' | 'large' | 'small' | 'muted' | 'code'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'p'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Visual typographic style and default HTML tag.
-                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">Typographic size & HTML tag mapping.</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
@@ -187,23 +136,19 @@ export default function TypographyComponentPage() {
                     'default' | 'muted' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Semantic color theme of the text.
-                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">Theme color palette of typography text.</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">as</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ElementType</td>
+                  <td className="px-3 py-2 font-mono text-primary">clampLines</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Override the rendered underlying HTML element tag while preserving typography styles.
-                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">Limits text to specified number of lines with ellipsis.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }
