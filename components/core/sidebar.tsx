@@ -33,12 +33,10 @@ export function Sidebar() {
     setMounted(true);
   }, []);
 
-  // Close mobile drawer on route change
   React.useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
 
-  // Lock body scroll when mobile drawer is open
   React.useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden";
@@ -244,7 +242,6 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Mobile Top Header */}
       <header className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-200/50 dark:border-zinc-800/50 px-4 flex items-center justify-between z-40">
         <button
           onClick={() => setMobileOpen(true)}
@@ -267,7 +264,6 @@ export function Sidebar() {
         <div className="w-8" />
       </header>
 
-      {/* Mobile Drawer Backdrop */}
       {mobileOpen && (
         <div
           onClick={() => setMobileOpen(false)}
@@ -275,7 +271,6 @@ export function Sidebar() {
         />
       )}
 
-      {/* Mobile Drawer Panel */}
       <aside
         className={cn(
           "md:hidden fixed inset-y-0 left-0 w-72 max-w-[85vw] bg-white dark:bg-zinc-950 border-r border-zinc-200/50 dark:border-zinc-800/50 p-4 flex flex-col justify-between z-50 transition-transform duration-300 ease-in-out shadow-2xl",
@@ -296,8 +291,7 @@ export function Sidebar() {
         {renderFooterTheme()}
       </aside>
 
-      {/* Desktop Fixed Sidebar */}
-      <aside className="hidden md:flex fixed h-screen w-64 border-r border-zinc-200/50 dark:border-zinc-800/50 bg-white dark:bg-zinc-950/80 px-4 py-6 flex-col justify-between transition-all duration-300 z-40">
+      <aside className="hidden md:flex fixed h-screen w-64 border-r border-zinc-200/50 dark:border-zinc-800/50 bg-white dark:bg-neutral-950/80 px-4 py-6 flex-col justify-between transition-all duration-300 z-40">
         {renderNavContent()}
         {renderFooterTheme()}
       </aside>
