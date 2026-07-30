@@ -119,18 +119,18 @@ const StepperIndicator = React.forwardRef<HTMLDivElement, StepperIndicatorProps>
         className={cn(
           "flex size-9 shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-all duration-300 select-none",
           isError
-            ? "border-danger bg-danger/10 text-danger ring-4 ring-danger/15"
+            ? "border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400 ring-4 ring-rose-500/15"
             : isCompleted
-            ? "border-primary bg-primary text-primary-foreground shadow-xs"
+            ? "border-sky-500 bg-sky-500 text-white shadow-xs"
             : isActive
-            ? "border-primary bg-primary/10 text-primary ring-4 ring-primary/15"
-            : "border-border bg-muted/50 text-muted-foreground",
+            ? "border-sky-500 bg-sky-500/10 text-sky-600 dark:text-sky-400 ring-4 ring-sky-500/15"
+            : "border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/60 text-zinc-500 dark:text-zinc-400",
           className
         )}
         {...props}
       >
         {isError ? (
-          <Icon icon="hugeicons:alert-circle" className="size-4 text-danger" />
+          <Icon icon="hugeicons:alert-circle" className="size-4 text-rose-500" />
         ) : isCompleted ? (
           <Icon icon="hugeicons:tick-02" className="size-4 stroke-[3]" />
         ) : icon ? (
@@ -151,7 +151,7 @@ const StepperTitle = React.forwardRef<
   <h4
     ref={ref}
     className={cn(
-      "text-xs font-semibold text-foreground tracking-tight leading-tight group-hover:text-primary transition-colors",
+      "text-xs font-bold text-zinc-900 dark:text-zinc-100 tracking-tight leading-tight group-hover:text-sky-500 transition-colors",
       className
     )}
     {...props}
@@ -165,7 +165,7 @@ const StepperDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-[11px] text-muted-foreground leading-tight mt-0.5", className)}
+    className={cn("text-[11px] text-zinc-500 dark:text-zinc-400 leading-tight mt-0.5", className)}
     {...props}
   />
 ));
@@ -175,10 +175,10 @@ const StepperSeparator = ({ className }: React.HTMLAttributes<HTMLDivElement>) =
   const { orientation } = React.useContext(StepperContext);
 
   if (orientation === "vertical") {
-    return <div className={cn("ml-4 my-1 w-px h-6 bg-border", className)} />;
+    return <div className={cn("ml-4 my-1 w-px h-6 bg-zinc-200 dark:bg-zinc-800", className)} />;
   }
 
-  return <div className={cn("flex-1 mx-3 h-px bg-border", className)} />;
+  return <div className={cn("flex-1 mx-3 h-px bg-zinc-200 dark:bg-zinc-800", className)} />;
 };
 StepperSeparator.displayName = "StepperSeparator";
 

@@ -7,10 +7,10 @@ const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref) => (
-  <div className="relative w-full overflow-auto rounded-2xl border border-border">
+  <div className="relative w-full overflow-auto rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs">
     <table
       ref={ref}
-      className={cn("w-full caption-bottom text-sm", className)}
+      className={cn("w-full caption-bottom text-sm border-collapse", className)}
       {...props}
     />
   </div>
@@ -21,7 +21,7 @@ const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b border-border bg-muted/40", className)} {...props} />
+  <thead ref={ref} className={cn("[&_tr]:border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-800/40", className)} {...props} />
 ));
 TableHeader.displayName = "TableHeader";
 
@@ -44,7 +44,7 @@ const TableFooter = React.forwardRef<
   <tfoot
     ref={ref}
     className={cn(
-      "border-t border-border bg-muted/50 font-medium [&>tr]:last-child:border-b-0",
+      "border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-800/50 font-semibold text-zinc-900 dark:text-zinc-100 [&>tr]:last-child:border-b-0",
       className
     )}
     {...props}
@@ -59,7 +59,7 @@ const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={cn(
-      "border-b border-border transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+      "border-b border-zinc-200/80 dark:border-zinc-800/80 transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-800/50 data-[state=selected]:bg-sky-500/10 dark:data-[state=selected]:bg-sky-500/20",
       className
     )}
     {...props}
@@ -74,7 +74,7 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      "h-10 px-4 text-left align-middle font-bold text-xs uppercase tracking-wider text-muted-foreground [&:has([role=checkbox])]:pr-0",
+      "h-11 px-4 text-left align-middle font-bold text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-400 [&:has([role=checkbox])]:pr-0",
       className
     )}
     {...props}
@@ -88,7 +88,7 @@ const TableCell = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <td
     ref={ref}
-    className={cn("p-4 align-middle text-xs font-medium [&:has([role=checkbox])]:pr-0", className)}
+    className={cn("p-4 align-middle text-xs font-semibold text-zinc-800 dark:text-zinc-200 [&:has([role=checkbox])]:pr-0", className)}
     {...props}
   />
 ));
@@ -100,7 +100,7 @@ const TableCaption = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <caption
     ref={ref}
-    className={cn("mt-4 text-xs text-muted-foreground", className)}
+    className={cn("my-3 text-xs text-zinc-400 dark:text-zinc-500 font-medium", className)}
     {...props}
   />
 ));
@@ -115,4 +115,5 @@ export {
   TableRow,
   TableCell,
   TableCaption,
-};`;
+};
+`;

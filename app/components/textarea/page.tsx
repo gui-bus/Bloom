@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Textarea",
-  description: "Multiline text input component with character counter, validation states, auto-resize, and variants.",
-};
-
 import { Textarea } from "@/components/ui/textarea/textarea";
 import { textareaCode } from "@/components/ui/textarea/textarea.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -21,10 +17,10 @@ import {
 
 export default function TextareaComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Textarea"
-        description="A multiline text area component supporting character limit counters, visual variants, responsive height scales, and validation states."
+        description="Multi-line text input field supporting character limits, auto-expanding heights, error validation, variants, and label placements."
       />
 
       <Tabs defaultValue="textarea">
@@ -42,76 +38,80 @@ export default function TextareaComponentPage() {
             code={textareaCode}
             componentName="textarea.tsx"
             description="Core implementation of the Textarea component."
-            tags={["React", "Tailwind", "UI Component", "Forms"]}
+            tags={["React", "Textarea", "Input", "Form"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Standard textarea with label and placeholder."
+        title="Default"
+        description="Standard multi-line text input field with top label."
         preview={
-          <div className="w-full max-w-sm">
-            <Textarea label="Description" placeholder="Enter detailed description..." />
-          </div>
-        }
-        code={`<div className="w-full max-w-sm">
-  <Textarea label="Description" placeholder="Enter detailed description..." />
-</div>`}
-      />
-
-      {/* Character Counter */}
-      <DocsComponent
-        title="Character Counter"
-        description="Pass maxCount to automatically display character usage limit."
-        preview={
-          <div className="w-full max-w-sm">
+          <div className="max-w-md w-full">
             <Textarea
-              label="Bio"
-              placeholder="Tell us a little bit about yourself..."
-              maxCount={200}
-              description="Keep it short and friendly."
+              label="Bio & Description"
+              placeholder="Tell us a little bit about yourself and your background..."
             />
           </div>
         }
-        code={`<div className="w-full max-w-sm">
-  <Textarea
-    label="Bio"
-    placeholder="Tell us a little bit about yourself..."
-    maxCount={200}
-    description="Keep it short and friendly."
-  />
-</div>`}
-        props={["maxCount: number"]}
+        code={`<Textarea label="Bio" placeholder="Tell us about yourself..." />`}
       />
 
-      {/* Variants */}
+      {/* Character Counter & Auto Resize */}
       <DocsComponent
-        title="Variants"
-        description="Available in default, bordered, flat, and underlined styles."
+        title="Character Counter & Auto Resize"
+        description="Tracks character limits and expands container height automatically as content grows."
         preview={
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
-            <Textarea variant="default" label="Default" placeholder="Default style" />
-            <Textarea variant="bordered" label="Bordered" placeholder="Bordered style" />
-            <Textarea variant="flat" label="Flat" placeholder="Flat style" />
-            <Textarea variant="underlined" label="Underlined" placeholder="Underlined style" />
+          <div className="max-w-md w-full space-y-4">
+            <Textarea
+              label="Project Summary"
+              placeholder="Write a detailed summary..."
+              maxCount={250}
+              autoResize
+              minRows={3}
+              description="Keep summaries concise for team reviews."
+            />
           </div>
         }
-        code={`<div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
-  <Textarea variant="default" label="Default" placeholder="Default style" />
-  <Textarea variant="bordered" label="Bordered" placeholder="Bordered style" />
-  <Textarea variant="flat" label="Flat" placeholder="Flat style" />
-  <Textarea variant="underlined" label="Underlined" placeholder="Underlined style" />
-</div>`}
-        props={["variant: 'default' | 'bordered' | 'flat' | 'underlined'"]}
+        code={`<Textarea
+  label="Project Summary"
+  placeholder="Write a summary..."
+  maxCount={250}
+  autoResize
+  minRows={3}
+/>`}
+        props={["maxCount: number", "autoResize: boolean", "minRows: number"]}
+      />
+
+      {/* Invalid State */}
+      <DocsComponent
+        title="Invalid State"
+        description="Renders high-visibility error message and border highlights."
+        preview={
+          <div className="max-w-md w-full">
+            <Textarea
+              isInvalid
+              label="Feedback"
+              defaultValue="Too short"
+              errorMessage="Feedback message must be at least 20 characters long."
+            />
+          </div>
+        }
+        code={`<Textarea
+  isInvalid
+  label="Feedback"
+  errorMessage="Feedback must be at least 20 characters long."
+/>`}
+        props={["isInvalid: boolean", "errorMessage: ReactNode"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — Textarea"
-        description="Properties to configure the Textarea component."
+        description="Supported properties for Textarea."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -125,36 +125,28 @@ export default function TextareaComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'bordered' | 'flat' | 'underlined'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Visual style variant.</td>
+                  <td className="px-3 py-2 font-mono text-primary">autoResize</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Automatically resizes height as user types.</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">maxCount</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Maximum character length counter limit.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Maximum character length counter.</td>
                 </tr>
-                <tr className="border-b border-border">
+                <tr>
                   <td className="px-3 py-2 font-mono text-primary">isInvalid</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Applies error state styles.</td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">errorMessage</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Error message string displayed when invalid.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders red error validation borders.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }

@@ -16,16 +16,17 @@ export interface SwitchProps
   startLabel?: React.ReactNode;
   endLabel?: React.ReactNode;
   isCard?: boolean;
+  isDisabled?: boolean;
 }
 
 const colorMap = {
-  default: "data-[state=checked]:bg-foreground",
-  primary: "data-[state=checked]:bg-primary",
-  secondary: "data-[state=checked]:bg-secondary",
-  accent: "data-[state=checked]:bg-accent",
-  success: "data-[state=checked]:bg-success",
-  warning: "data-[state=checked]:bg-warning",
-  danger: "data-[state=checked]:bg-danger",
+  default: "data-[state=checked]:bg-zinc-900 dark:data-[state=checked]:bg-zinc-100",
+  primary: "data-[state=checked]:bg-sky-500",
+  secondary: "data-[state=checked]:bg-purple-500",
+  accent: "data-[state=checked]:bg-pink-500",
+  success: "data-[state=checked]:bg-emerald-500",
+  warning: "data-[state=checked]:bg-amber-500",
+  danger: "data-[state=checked]:bg-rose-500",
 };
 
 const sizeMap = {
@@ -62,22 +63,24 @@ const Switch = React.forwardRef<
       isCard = false,
       id,
       disabled,
+      isDisabled,
       ...props
     },
     ref
   ) => {
     const generatedId = React.useId();
     const switchId = id || generatedId;
+    const isSwitchDisabled = disabled || isDisabled;
 
     const switchElement = (
-      <div className="inline-flex items-center gap-2">
-        {startLabel && <span className="text-xs font-medium text-muted-foreground select-none">{startLabel}</span>}
+      <div className="inline-flex items-center gap-2 shrink-0">
+        {startLabel && <span className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 select-none">{startLabel}</span>}
         <SwitchPrimitives.Root
           ref={ref}
           id={switchId}
-          disabled={disabled}
+          disabled={isSwitchDisabled}
           className={cn(
-            "peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=unchecked]:bg-input",
+            "peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors outline-none focus-visible:ring-2 focus-visible:ring-sky-500/20 disabled:cursor-not-allowed disabled:opacity-35 data-[state=unchecked]:bg-zinc-200 dark:data-[state=unchecked]:bg-zinc-800",
             sizeMap[size].root,
             colorMap[color],
             className
@@ -86,7 +89,7 @@ const Switch = React.forwardRef<
         >
           <SwitchPrimitives.Thumb
             className={cn(
-              "pointer-events-none flex items-center justify-center rounded-full bg-background shadow-lg ring-0 transition-transform duration-200 text-[10px]",
+              "pointer-events-none flex items-center justify-center rounded-full bg-white dark:bg-zinc-900 shadow-xs ring-0 transition-transform duration-200 text-[10px] text-zinc-700 dark:text-zinc-300",
               sizeMap[size].thumb
             )}
           >
@@ -98,25 +101,25 @@ const Switch = React.forwardRef<
             )}
           </SwitchPrimitives.Thumb>
         </SwitchPrimitives.Root>
-        {endLabel && <span className="text-xs font-medium text-muted-foreground select-none">{endLabel}</span>}
+        {endLabel && <span className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 select-none">{endLabel}</span>}
       </div>
     );
 
     const content = (
-      <div className="inline-flex items-center gap-3">
+      <div className="flex items-center gap-3 w-full">
         {switchElement}
         {(label || description) && (
-          <div className="flex flex-col gap-0.5 select-none">
+          <div className="flex flex-col gap-0.5 select-none flex-1">
             {label && (
               <label
                 htmlFor={switchId}
-                className="text-sm font-medium leading-none cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-xs font-bold text-zinc-900 dark:text-zinc-100 leading-none cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-40"
               >
                 {label}
               </label>
             )}
             {description && (
-              <p className="text-xs text-muted-foreground">{description}</p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-snug">{description}</p>
             )}
           </div>
         )}
@@ -125,14 +128,15 @@ const Switch = React.forwardRef<
 
     if (isCard) {
       return (
-        <div
+        <label
+          htmlFor={switchId}
           className={cn(
-            "relative flex items-center justify-between p-4 rounded-xl border border-border bg-card transition-all duration-200 cursor-pointer hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 shadow-xs",
-            disabled && "opacity-50 cursor-not-allowed pointer-events-none"
+            "relative flex items-center justify-between p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 transition-all duration-200 cursor-pointer hover:border-zinc-300 dark:hover:border-zinc-700 has-[:checked]:border-sky-500/50 has-[:checked]:bg-sky-500/5 shadow-xs w-full",
+            isSwitchDisabled && "opacity-35 grayscale cursor-not-allowed pointer-events-none"
           )}
         >
           {content}
-        </div>
+        </label>
       );
     }
 

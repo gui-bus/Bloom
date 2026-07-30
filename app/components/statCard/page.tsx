@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Stat Card",
-  description: "Metric KPI stat card component with trend indicators.",
-};
-
 import { StatCard } from "@/components/ui/statCard/statCard";
 import { statCardCode } from "@/components/ui/statCard/statCard.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -21,10 +17,10 @@ import {
 
 export default function StatCardComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Stat Card"
-        description="A dashboard card component for displaying metrics, numbers, and trend directional indicators."
+        description="Displays key performance metrics, numeric values, trend indicators (+/-), icons, and contextual descriptions."
       />
 
       <Tabs defaultValue="statCard">
@@ -42,48 +38,79 @@ export default function StatCardComponentPage() {
             code={statCardCode}
             componentName="statCard.tsx"
             description="Core implementation of the StatCard component."
-            tags={["React", "Tailwind", "Dashboard", "Metrics"]}
+            tags={["React", "StatCard", "Metrics", "Dashboard"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Usage */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Metric cards with trends."
+        title="Default"
+        description="Standard KPI metric summary card."
         preview={
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          <div className="max-w-sm w-full">
             <StatCard
               title="Total Revenue"
-              value="$45,231.89"
-              change="+20.1%"
+              value="$124,500.00"
+              change="+14.2%"
               trend="up"
-              description="from last month"
-            />
-            <StatCard
-              title="Active Users"
-              value="2,350"
-              change="-4.5%"
-              trend="down"
-              description="from last week"
-            />
-            <StatCard
-              title="Conversion Rate"
-              value="3.2%"
-              change="0.0%"
-              trend="neutral"
-              description="same as yesterday"
+              icon={<Icon icon="hugeicons:dollar-02" className="size-5" />}
+              description="Compared to $108,900.00 last month"
             />
           </div>
         }
-        code={`<StatCard title="Total Revenue" value="$45,231.89" change="+20.1%" trend="up" />`}
+        code={`<StatCard
+  title="Total Revenue"
+  value="$124,500.00"
+  change="+14.2%"
+  trend="up"
+  icon={<Icon icon="hugeicons:dollar-02" className="size-5" />}
+  description="Compared to $108,900.00 last month"
+/>`}
+      />
+
+      {/* Metrics Dashboard Grid */}
+      <DocsComponent
+        title="Metrics Dashboard Grid"
+        description="Multiple KPI cards arranged in a responsive grid layout."
+        preview={
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+            <StatCard
+              title="Active Users"
+              value="18,420"
+              change="+8.4%"
+              trend="up"
+              icon={<Icon icon="hugeicons:user-group" className="size-5" />}
+            />
+            <StatCard
+              title="Bounce Rate"
+              value="34.2%"
+              change="-2.1%"
+              trend="down"
+              icon={<Icon icon="hugeicons:chart-breakout-square" className="size-5" />}
+            />
+            <StatCard
+              title="Avg Session"
+              value="4m 12s"
+              change="0.0%"
+              trend="neutral"
+              icon={<Icon icon="hugeicons:clock-01" className="size-5" />}
+            />
+          </div>
+        }
+        code={`<div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+  <StatCard title="Active Users" value="18,420" change="+8.4%" trend="up" />
+  <StatCard title="Bounce Rate" value="34.2%" change="-2.1%" trend="down" />
+  <StatCard title="Avg Session" value="4m 12s" change="0.0%" trend="neutral" />
+</div>`}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Table */}
       <DocsComponent
         title="Props — StatCard"
-        description="Properties to configure the StatCard component."
+        description="Supported properties for StatCard."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -97,22 +124,42 @@ export default function StatCardComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">trend</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'up' | 'down' | 'neutral'</td>
-                  <td className="px-3 py-2 text-muted-foreground">'neutral'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Directional trend indicator styling.</td>
+                  <td className="px-3 py-2 font-mono text-primary">title</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Header title label of the metric card.</td>
                 </tr>
-                <tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">value</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Primary numeric value or formatted string.</td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">change</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string | number</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Percentage or value delta text string.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Percentage or value change badge label.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">trend</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'up' | 'down' | 'neutral'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'neutral'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Trend indicator color & arrow direction.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">icon</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Header icon graphic element.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    </main>
+    </div>
   );
 }
