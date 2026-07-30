@@ -73,9 +73,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex gap-5">
+          <div className="flex min-h-screen">
             <Sidebar />
-            <main className="ml-64 p-8 transition-all duration-300">
+            <main className="flex-1 ml-0 md:ml-64 p-4 sm:p-6 md:p-8 pt-20 md:pt-8 transition-all duration-300 max-w-full min-w-0">
               {children}
             </main>
           </div>

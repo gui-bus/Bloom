@@ -18,7 +18,7 @@ A biblioteca inclui controles de layout robustos, animações fluidas via Framer
 ## 🚀 Deploy & Demonstração
 
 O projeto de documentação e demonstração interativa dos componentes estará disponível no seguinte endereço:
-👉 **EM BREVE**
+👉 **[https://bloom.guibus.dev/](https://bloom.guibus.dev/)**
 
 ---
 

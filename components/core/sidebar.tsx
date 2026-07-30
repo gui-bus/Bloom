@@ -2,13 +2,14 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scrollArea/scrollArea";
 import { Input } from "@/components/ui/input/input";
 import { SidebarHeader } from "./sidebar-header";
-import { Sun, Moon, Search } from "lucide-react";
+import { Sun, Moon, Search, Menu, X } from "lucide-react";
 
 interface SidebarLink {
   href: string;
@@ -25,11 +26,29 @@ export function Sidebar() {
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState("");
+  const [mobileOpen, setMobileOpen] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Close mobile drawer on route change
+  React.useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile drawer is open
+  React.useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   React.useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -45,9 +64,7 @@ export function Sidebar() {
   const sections: SidebarSection[] = [
     {
       title: "Overview",
-      links: [
-        { href: "/", label: "Introduction" },
-      ],
+      links: [{ href: "/", label: "Introduction" }],
     },
     {
       title: "Components",
@@ -131,96 +148,159 @@ export function Sidebar() {
 
   const isDark = mounted && resolvedTheme === "dark";
 
-  return (
-    <aside className="fixed h-screen w-64 border-r border-zinc-200/50 dark:border-zinc-800/50 bg-white dark:bg-zinc-950/80 px-4 py-6 flex flex-col justify-between transition-all duration-300 z-50">
-      <div className="flex flex-col gap-5 overflow-hidden flex-1">
-        <div className="px-1">
-          <SidebarHeader />
-        </div>
+  const renderNavContent = () => (
+    <div className="flex flex-col gap-5 overflow-hidden flex-1">
+      <div className="px-1">
+        <SidebarHeader />
+      </div>
 
-        <div className="w-full px-1">
-          <Input
-            ref={inputRef}
-            size="sm"
-            variant="flat"
-            placeholder="Search documentation..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            startContent={<Search className="size-3.5 text-zinc-400" />}
-          />
-        </div>
+      <div className="w-full px-1">
+        <Input
+          ref={inputRef}
+          size="sm"
+          variant="flat"
+          placeholder="Search documentation..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          startContent={<Search className="size-3.5 text-zinc-400" />}
+        />
+      </div>
 
-        <ScrollArea className="flex-1 pr-2">
-          <nav className="space-y-6 pb-4">
-            {filteredSections.length === 0 ? (
-              <div className="px-3 py-4 text-xs text-muted-foreground text-center">
-                No components found matching "{searchQuery}"
+      <ScrollArea className="flex-1 pr-2">
+        <nav className="space-y-6 pb-4">
+          {filteredSections.length === 0 ? (
+            <div className="px-3 py-4 text-xs text-muted-foreground text-center">
+              No components found matching "{searchQuery}"
+            </div>
+          ) : (
+            filteredSections.map((section) => (
+              <div key={section.title} className="space-y-1">
+                <h4 className="text-[10px] font-bold uppercase tracking-wider text-zinc-400/80 dark:text-zinc-500/80 px-3 mb-2">
+                  {section.title}
+                </h4>
+                {section.links.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={cn(
+                        "group flex items-center rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200 cursor-pointer relative",
+                        isActive
+                          ? "bg-sky-500/10 text-sky-600 dark:bg-sky-500/15 dark:text-sky-400"
+                          : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/40 dark:text-zinc-450 dark:hover:text-zinc-100 dark:hover:bg-zinc-900/40"
+                      )}
+                    >
+                      {isActive && (
+                        <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-r-md bg-sky-500 dark:bg-sky-400" />
+                      )}
+                      <span className="pl-1">{link.label}</span>
+                    </Link>
+                  );
+                })}
               </div>
-            ) : (
-              filteredSections.map((section) => (
-                <div key={section.title} className="space-y-1">
-                  <h4 className="text-[10px] font-bold uppercase tracking-wider text-zinc-400/80 dark:text-zinc-500/80 px-3 mb-2">
-                    {section.title}
-                  </h4>
-                  {section.links.map((link) => {
-                    const isActive = pathname === link.href;
-                    return (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className={cn(
-                          "group flex items-center rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200 cursor-pointer relative",
-                          isActive
-                            ? "bg-sky-500/10 text-sky-600 dark:bg-sky-500/15 dark:text-sky-400"
-                            : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/40 dark:text-zinc-450 dark:hover:text-zinc-100 dark:hover:bg-zinc-900/40"
-                        )}
-                      >
-                        {isActive && (
-                          <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-r-md bg-sky-500 dark:bg-sky-400" />
-                        )}
-                        <span className="pl-1">{link.label}</span>
-                      </Link>
-                    );
-                  })}
-                </div>
-              ))
-            )}
-          </nav>
-        </ScrollArea>
-      </div>
+            ))
+          )}
+        </nav>
+      </ScrollArea>
+    </div>
+  );
 
-      <div className="border-t border-zinc-200/50 dark:border-zinc-800/50 pt-4">
-        {!mounted ? (
-          <div className="h-9 w-full bg-zinc-200/40 dark:bg-zinc-900/40 rounded-xl animate-pulse" />
-        ) : (
-          <div className="flex items-center justify-between w-full p-1 bg-zinc-200/45 dark:bg-zinc-900/45 border border-zinc-200/50 dark:border-zinc-800/50 rounded-xl">
-            <button
-              onClick={() => setTheme("light")}
-              className={cn(
-                "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer",
-                !isDark
-                  ? "bg-white text-zinc-900 shadow-xs dark:bg-zinc-800 dark:text-white"
-                  : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
-              )}
-            >
-              <Sun className="h-3.5 w-3.5" />
-              <span>Light</span>
-            </button>
-            <button
-              onClick={() => setTheme("dark")}
-              className={cn(
-                "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer",
-                isDark
-                  ? "bg-white text-zinc-900 shadow-xs dark:bg-zinc-800 dark:text-white"
-                  : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
-              )}
-            >
-              <Moon className="h-3.5 w-3.5" />
-              <span>Dark</span>
-            </button>
-          </div>
+  const renderFooterTheme = () => (
+    <div className="border-t border-zinc-200/50 dark:border-zinc-800/50 pt-4">
+      {!mounted ? (
+        <div className="h-9 w-full bg-zinc-200/40 dark:bg-zinc-900/40 rounded-xl animate-pulse" />
+      ) : (
+        <div className="flex items-center justify-between w-full p-1 bg-zinc-200/45 dark:bg-zinc-900/45 border border-zinc-200/50 dark:border-zinc-800/50 rounded-xl">
+          <button
+            onClick={() => setTheme("light")}
+            className={cn(
+              "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer",
+              !isDark
+                ? "bg-white text-zinc-900 shadow-xs dark:bg-zinc-800 dark:text-white"
+                : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
+            )}
+          >
+            <Sun className="h-3.5 w-3.5" />
+            <span>Light</span>
+          </button>
+          <button
+            onClick={() => setTheme("dark")}
+            className={cn(
+              "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer",
+              isDark
+                ? "bg-white text-zinc-900 shadow-xs dark:bg-zinc-800 dark:text-white"
+                : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
+            )}
+          >
+            <Moon className="h-3.5 w-3.5" />
+            <span>Dark</span>
+          </button>
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <>
+      {/* Mobile Top Header */}
+      <header className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-200/50 dark:border-zinc-800/50 px-4 flex items-center justify-between z-40">
+        <button
+          onClick={() => setMobileOpen(true)}
+          className="p-2 -ml-2 rounded-lg text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+          aria-label="Open Navigation Menu"
+        >
+          <Menu className="size-6" />
+        </button>
+
+        <Link href="/" className="relative h-9 w-28 block">
+          <Image
+            src={isDark ? "/logo/logo_white.svg" : "/logo/logo_black.svg"}
+            alt="Bloom Logo"
+            fill
+            className="object-contain"
+            priority
+          />
+        </Link>
+
+        <div className="w-8" />
+      </header>
+
+      {/* Mobile Drawer Backdrop */}
+      {mobileOpen && (
+        <div
+          onClick={() => setMobileOpen(false)}
+          className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-xs z-50 transition-opacity duration-300"
+        />
+      )}
+
+      {/* Mobile Drawer Panel */}
+      <aside
+        className={cn(
+          "md:hidden fixed inset-y-0 left-0 w-72 max-w-[85vw] bg-white dark:bg-zinc-950 border-r border-zinc-200/50 dark:border-zinc-800/50 p-4 flex flex-col justify-between z-50 transition-transform duration-300 ease-in-out shadow-2xl",
+          mobileOpen ? "translate-x-0" : "-translate-x-full"
         )}
-      </div>
-    </aside>
+      >
+        <div className="flex items-center justify-between pb-2 mb-2 border-b border-zinc-200/50 dark:border-zinc-800/50">
+          <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">Navigation</span>
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="p-1.5 rounded-lg text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+            aria-label="Close Navigation Menu"
+          >
+            <X className="size-5" />
+          </button>
+        </div>
+        {renderNavContent()}
+        {renderFooterTheme()}
+      </aside>
+
+      {/* Desktop Fixed Sidebar */}
+      <aside className="hidden md:flex fixed h-screen w-64 border-r border-zinc-200/50 dark:border-zinc-800/50 bg-white dark:bg-zinc-950/80 px-4 py-6 flex-col justify-between transition-all duration-300 z-40">
+        {renderNavContent()}
+        {renderFooterTheme()}
+      </aside>
+    </>
   );
 }
