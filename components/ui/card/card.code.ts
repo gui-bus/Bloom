@@ -1,4 +1,5 @@
-export const cardCode = `import { cva, type VariantProps } from "class-variance-authority";
+export const cardCode = `"use client";
+
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { designRadius } from "@/lib/design-system";
@@ -12,7 +13,7 @@ type CardColor =
   | "warning"
   | "danger";
 
-type CardVariant = "default" | "bordered" | "flat" | "ghost" | "shadow";
+type CardVariant = "default" | "bordered" | "flat" | "ghost" | "shadow" | "glassmorphism" | "gradient";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: CardVariant;
@@ -26,53 +27,67 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const cardColorMap: Record<CardColor, Record<CardVariant, string>> = {
   default: {
-    default: "bg-card text-card-foreground border border-border/50 shadow-xs",
-    bordered: "bg-transparent text-card-foreground border border-border",
-    flat: "bg-muted/50 text-card-foreground border-transparent",
-    ghost: "bg-transparent text-card-foreground border-transparent",
-    shadow: "bg-card text-card-foreground border-transparent shadow-md",
+    default: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200/80 dark:border-zinc-800/80 shadow-xs",
+    bordered: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800",
+    flat: "bg-zinc-100 dark:bg-zinc-800/60 text-zinc-900 dark:text-zinc-100 border-transparent",
+    ghost: "bg-transparent text-zinc-900 dark:text-zinc-100 border-transparent",
+    shadow: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200/50 dark:border-zinc-800/50 shadow-md",
+    glassmorphism: "backdrop-blur-md bg-white/70 dark:bg-zinc-900/70 text-zinc-900 dark:text-zinc-100 border border-zinc-200/50 dark:border-zinc-800/50 shadow-lg",
+    gradient: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800",
   },
   primary: {
-    default: "bg-primary text-primary-foreground border-transparent shadow-xs",
-    bordered: "bg-transparent text-primary border border-primary",
-    flat: "bg-primary/10 text-primary border-transparent",
-    ghost: "bg-transparent text-primary border-transparent",
-    shadow: "bg-primary text-primary-foreground border-transparent shadow-md shadow-primary/20",
+    default: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-sky-500 shadow-xs",
+    bordered: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-sky-500/50 shadow-xs",
+    flat: "bg-sky-500/5 dark:bg-sky-500/10 text-zinc-900 dark:text-zinc-100 border border-sky-500/20",
+    ghost: "bg-transparent text-zinc-900 dark:text-zinc-100 border-transparent",
+    shadow: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-sky-500 shadow-md",
+    glassmorphism: "backdrop-blur-md bg-white/70 dark:bg-zinc-900/70 text-zinc-900 dark:text-zinc-100 border border-sky-500/30 shadow-lg",
+    gradient: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-sky-500",
   },
   secondary: {
-    default: "bg-secondary text-secondary-foreground border-transparent shadow-xs",
-    bordered: "bg-transparent text-secondary border border-secondary",
-    flat: "bg-secondary/10 text-secondary border-transparent",
-    ghost: "bg-transparent text-secondary border-transparent",
-    shadow: "bg-secondary text-secondary-foreground border-transparent shadow-md shadow-secondary/20",
+    default: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-purple-500 shadow-xs",
+    bordered: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-purple-500/50 shadow-xs",
+    flat: "bg-purple-500/5 dark:bg-purple-500/10 text-zinc-900 dark:text-zinc-100 border border-purple-500/20",
+    ghost: "bg-transparent text-zinc-900 dark:text-zinc-100 border-transparent",
+    shadow: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-purple-500 shadow-md",
+    glassmorphism: "backdrop-blur-md bg-white/70 dark:bg-zinc-900/70 text-zinc-900 dark:text-zinc-100 border border-purple-500/30 shadow-lg",
+    gradient: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-purple-500",
   },
   accent: {
-    default: "bg-accent text-accent-foreground border-transparent shadow-xs",
-    bordered: "bg-transparent text-accent border border-accent",
-    flat: "bg-accent/10 text-accent border-transparent",
-    ghost: "bg-transparent text-accent border-transparent",
-    shadow: "bg-accent text-accent-foreground border-transparent shadow-md shadow-accent/20",
+    default: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-pink-500 shadow-xs",
+    bordered: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-pink-500/50 shadow-xs",
+    flat: "bg-pink-500/5 dark:bg-pink-500/10 text-zinc-900 dark:text-zinc-100 border border-pink-500/20",
+    ghost: "bg-transparent text-zinc-900 dark:text-zinc-100 border-transparent",
+    shadow: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-pink-500 shadow-md",
+    glassmorphism: "backdrop-blur-md bg-white/70 dark:bg-zinc-900/70 text-zinc-900 dark:text-zinc-100 border border-pink-500/30 shadow-lg",
+    gradient: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-pink-500",
   },
   success: {
-    default: "bg-success text-success-foreground border-transparent shadow-xs",
-    bordered: "bg-transparent text-success border border-success",
-    flat: "bg-success/10 text-success border-transparent",
-    ghost: "bg-transparent text-success border-transparent",
-    shadow: "bg-success text-success-foreground border-transparent shadow-md shadow-success/20",
+    default: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-emerald-500 shadow-xs",
+    bordered: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-emerald-500/50 shadow-xs",
+    flat: "bg-emerald-500/5 dark:bg-emerald-500/10 text-zinc-900 dark:text-zinc-100 border border-emerald-500/20",
+    ghost: "bg-transparent text-zinc-900 dark:text-zinc-100 border-transparent",
+    shadow: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-emerald-500 shadow-md",
+    glassmorphism: "backdrop-blur-md bg-white/70 dark:bg-zinc-900/70 text-zinc-900 dark:text-zinc-100 border border-emerald-500/30 shadow-lg",
+    gradient: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-emerald-500",
   },
   warning: {
-    default: "bg-warning text-warning-foreground border-transparent shadow-xs",
-    bordered: "bg-transparent text-warning border border-warning",
-    flat: "bg-warning/10 text-warning border-transparent",
-    ghost: "bg-transparent text-warning border-transparent",
-    shadow: "bg-warning text-warning-foreground border-transparent shadow-md shadow-warning/20",
+    default: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-amber-500 shadow-xs",
+    bordered: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-amber-500/50 shadow-xs",
+    flat: "bg-amber-500/5 dark:bg-amber-500/10 text-zinc-900 dark:text-zinc-100 border border-amber-500/20",
+    ghost: "bg-transparent text-zinc-900 dark:text-zinc-100 border-transparent",
+    shadow: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-amber-500 shadow-md",
+    glassmorphism: "backdrop-blur-md bg-white/70 dark:bg-zinc-900/70 text-zinc-900 dark:text-zinc-100 border border-amber-500/30 shadow-lg",
+    gradient: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-amber-500",
   },
   danger: {
-    default: "bg-danger text-danger-foreground border-transparent shadow-xs",
-    bordered: "bg-transparent text-danger border border-danger",
-    flat: "bg-danger/10 text-danger border-transparent",
-    ghost: "bg-transparent text-danger border-transparent",
-    shadow: "bg-danger text-danger-foreground border-transparent shadow-md shadow-danger/20",
+    default: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-rose-500 shadow-xs",
+    bordered: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-rose-500/50 shadow-xs",
+    flat: "bg-rose-500/5 dark:bg-rose-500/10 text-zinc-900 dark:text-zinc-100 border border-rose-500/20",
+    ghost: "bg-transparent text-zinc-900 dark:text-zinc-100 border-transparent",
+    shadow: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-rose-500 shadow-md",
+    glassmorphism: "backdrop-blur-md bg-white/70 dark:bg-zinc-900/70 text-zinc-900 dark:text-zinc-100 border border-rose-500/30 shadow-lg",
+    gradient: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 border-l-4 border-l-rose-500",
   },
 };
 
@@ -102,7 +117,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
           designRadius[radius],
           cardColorMap[color][variant],
           isHoverable && !isDisabled && "hover:-translate-y-0.5 hover:shadow-lg",
-          isPressable && !isDisabled && "cursor-pointer active:scale-[0.98]",
+          isPressable && !isDisabled && "cursor-pointer hover:scale-[1.01] active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           isDisabled && "opacity-50 pointer-events-none cursor-not-allowed",
           className
         )}
@@ -134,7 +149,7 @@ const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
   ({ className, children, ...props }, ref) => (
     <h3
       ref={ref}
-      className={cn("font-semibold leading-none tracking-tight text-lg", className)}
+      className={cn("font-semibold leading-none tracking-tight text-lg text-zinc-900 dark:text-zinc-100", className)}
       {...props}
     >
       {children}
@@ -149,7 +164,7 @@ const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescriptionPr
   ({ className, ...props }, ref) => (
     <p
       ref={ref}
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn("text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed", className)}
       {...props}
     />
   )
@@ -160,18 +175,24 @@ export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+    <div ref={ref} className={cn("p-6 pt-0 text-sm text-zinc-700 dark:text-zinc-300", className)} {...props} />
   )
 );
 CardBody.displayName = "CardBody";
 
-export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
+  isBlurred?: boolean;
+}
 
 const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
-  ({ className, ...props }, ref) => (
+  ({ className, isBlurred = false, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("flex items-center p-6 pt-0", className)}
+      className={cn(
+        "flex items-center p-6 pt-0",
+        isBlurred && "backdrop-blur-md bg-white/60 dark:bg-zinc-900/60 absolute bottom-0 left-0 right-0 z-10 rounded-b-xl border-t border-zinc-200/50 dark:border-zinc-800/50",
+        className
+      )}
       {...props}
     />
   )
@@ -185,4 +206,5 @@ export {
   CardTitle,
   CardDescription,
   CardBody,
-};`;
+};
+`;

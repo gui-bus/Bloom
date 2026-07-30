@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Card",
-  description: "Flexible card container with headers, body, footer, interactive states, and semantic color variants.",
-};
-
 import {
   Card,
   CardHeader,
@@ -30,10 +26,10 @@ import {
 
 export default function CardComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Card"
-        description="A content container component supporting headers, bodies, footers, interactive states (hoverable, pressable), custom radii, variants, and semantic color themes."
+        description="A content container component supporting headers, bodies, footers, interactive states (hoverable, pressable), custom radii, variants, and clean neutral theme backgrounds."
       />
 
       <Tabs defaultValue="card">
@@ -51,43 +47,45 @@ export default function CardComponentPage() {
             code={cardCode}
             componentName="card.tsx"
             description="Core implementation of the Card component with modular subcomponents and full style variance support."
-            tags={["React", "Tailwind", "UI Component", "Layout"]}
+            tags={["React", "Tailwind", "UI Component", "Layout", "Card"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic Example */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Standard card layout with CardHeader, CardTitle, CardDescription, CardBody, and CardFooter."
+        title="Default"
+        description="Standard card layout composed of CardHeader, CardTitle, CardDescription, CardBody, and CardFooter."
         preview={
-          <Card className="w-full max-w-sm">
-            <CardHeader>
-              <CardTitle>Notifications</CardTitle>
-              <CardDescription>You have 3 unread messages.</CardDescription>
-            </CardHeader>
-            <CardBody>
-              <p className="text-sm text-muted-foreground">
-                Your subscription is set to renew automatically on August 15, 2026.
-              </p>
-            </CardBody>
-            <CardFooter className="flex justify-between">
-              <Button variant="flat" color="default">Dismiss</Button>
-              <Button color="primary">View all</Button>
-            </CardFooter>
-          </Card>
+          <div className="w-full">
+            <Card className="w-full sm:w-96">
+              <CardHeader>
+                <CardTitle>Notifications</CardTitle>
+                <CardDescription>You have 3 unread messages.</CardDescription>
+              </CardHeader>
+              <CardBody>
+                <p>
+                  Your subscription is set to renew automatically on August 15, 2026.
+                </p>
+              </CardBody>
+              <CardFooter className="flex justify-between gap-3">
+                <Button variant="flat" color="default">Dismiss</Button>
+                <Button color="primary">View all</Button>
+              </CardFooter>
+            </Card>
+          </div>
         }
-        code={`<Card className="w-full max-w-sm">
+        code={`<Card className="w-full sm:w-96">
   <CardHeader>
     <CardTitle>Notifications</CardTitle>
     <CardDescription>You have 3 unread messages.</CardDescription>
   </CardHeader>
   <CardBody>
-    <p className="text-sm text-muted-foreground">
+    <p>
       Your subscription is set to renew automatically on August 15, 2026.
     </p>
   </CardBody>
-  <CardFooter className="flex justify-between">
+  <CardFooter className="flex justify-between gap-3">
     <Button variant="flat" color="default">Dismiss</Button>
     <Button color="primary">View all</Button>
   </CardFooter>
@@ -97,9 +95,9 @@ export default function CardComponentPage() {
       {/* Variants */}
       <DocsComponent
         title="Variants"
-        description="Cards support default, bordered, flat, ghost, and shadow visual styles."
+        description="Cards support default, bordered, flat, ghost, shadow, glassmorphism, and gradient visual variants."
         preview={
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <Card variant="default">
               <CardHeader>
                 <CardTitle>Default</CardTitle>
@@ -124,7 +122,7 @@ export default function CardComponentPage() {
             <Card variant="ghost">
               <CardHeader>
                 <CardTitle>Ghost</CardTitle>
-                <CardDescription>Completely transparent until hovered or focused.</CardDescription>
+                <CardDescription>Completely transparent content container.</CardDescription>
               </CardHeader>
             </Card>
 
@@ -134,94 +132,114 @@ export default function CardComponentPage() {
                 <CardDescription>Elevated card with deep shadow projection.</CardDescription>
               </CardHeader>
             </Card>
+
+            <Card variant="glassmorphism">
+              <CardHeader>
+                <CardTitle>Glassmorphism</CardTitle>
+                <CardDescription>Frosted glass backdrop-blur effect.</CardDescription>
+              </CardHeader>
+            </Card>
           </div>
         }
-        code={`<div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
-  <Card variant="default">
-    <CardHeader>
-      <CardTitle>Default</CardTitle>
-      <CardDescription>Standard background with border and subtle shadow.</CardDescription>
-    </CardHeader>
-  </Card>
-
-  <Card variant="bordered">
-    <CardHeader>
-      <CardTitle>Bordered</CardTitle>
-      <CardDescription>Transparent background with standard border.</CardDescription>
-    </CardHeader>
-  </Card>
-
-  <Card variant="flat">
-    <CardHeader>
-      <CardTitle>Flat</CardTitle>
-      <CardDescription>Muted background without border.</CardDescription>
-    </CardHeader>
-  </Card>
-
-  <Card variant="ghost">
-    <CardHeader>
-      <CardTitle>Ghost</CardTitle>
-      <CardDescription>Completely transparent until hovered or focused.</CardDescription>
-    </CardHeader>
-  </Card>
-
-  <Card variant="shadow">
-    <CardHeader>
-      <CardTitle>Shadow</CardTitle>
-      <CardDescription>Elevated card with deep shadow projection.</CardDescription>
-    </CardHeader>
-  </Card>
+        code={`<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+  <Card variant="default">...</Card>
+  <Card variant="bordered">...</Card>
+  <Card variant="flat">...</Card>
+  <Card variant="ghost">...</Card>
+  <Card variant="shadow">...</Card>
+  <Card variant="glassmorphism">...</Card>
 </div>`}
-        props={["variant: 'default' | 'bordered' | 'flat' | 'ghost' | 'shadow'"]}
+        props={["variant: 'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' | 'glassmorphism' | 'gradient'"]}
       />
 
-      {/* Colors */}
+      {/* Color Themes */}
       <DocsComponent
         title="Color Themes"
-        description="Apply semantic color palettes to cards."
+        description="Apply subtle status accent indicators to cards while preserving a clean, neutral white/zinc dark theme card background."
         preview={
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
-            <Card color="primary" variant="flat">
-              <CardHeader>
-                <CardTitle>Primary Flat</CardTitle>
-                <CardDescription className="text-primary/80">Soft tinted primary card</CardDescription>
-              </CardHeader>
-            </Card>
+          <div className="w-full flex flex-col gap-4">
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">color="primary"</span>
+              <Card color="primary" className="w-full">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Icon icon="hugeicons:information-circle" className="size-5 text-sky-500" />
+                      <CardTitle>System Information</CardTitle>
+                    </div>
+                    <Badge color="primary">Primary</Badge>
+                  </div>
+                  <CardDescription>Clean neutral card container with a subtle primary border indicator.</CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
 
-            <Card color="success" variant="bordered">
-              <CardHeader>
-                <CardTitle>Success Bordered</CardTitle>
-                <CardDescription className="text-success/80">Outline success card</CardDescription>
-              </CardHeader>
-            </Card>
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">color="success"</span>
+              <Card color="success" className="w-full">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Icon icon="hugeicons:checkmark-circle-02" className="size-5 text-emerald-500" />
+                      <CardTitle>Deployment Successful</CardTitle>
+                    </div>
+                    <Badge color="success">Success</Badge>
+                  </div>
+                  <CardDescription>All 12 microservices deployed without errors.</CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
 
-            <Card color="danger" variant="shadow">
-              <CardHeader>
-                <CardTitle>Danger Shadow</CardTitle>
-                <CardDescription className="text-danger-foreground/80">Solid danger card</CardDescription>
-              </CardHeader>
-            </Card>
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">color="warning"</span>
+              <Card color="warning" className="w-full">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Icon icon="hugeicons:alert-02" className="size-5 text-amber-500" />
+                      <CardTitle>Storage Warning</CardTitle>
+                    </div>
+                    <Badge color="warning">Warning</Badge>
+                  </div>
+                  <CardDescription>Your database storage is at 84% capacity.</CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">color="danger"</span>
+              <Card color="danger" className="w-full">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Icon icon="hugeicons:cancel-circle" className="size-5 text-rose-500" />
+                      <CardTitle>Connection Error</CardTitle>
+                    </div>
+                    <Badge color="danger">Danger</Badge>
+                  </div>
+                  <CardDescription>Failed to reach primary API cluster endpoint.</CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
           </div>
         }
-        code={`<div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
-  <Card color="primary" variant="flat">
+        code={`<div className="space-y-4 w-full">
+  <Card color="primary">
     <CardHeader>
-      <CardTitle>Primary Flat</CardTitle>
-      <CardDescription className="text-primary/80">Soft tinted primary card</CardDescription>
+      <CardTitle>System Information</CardTitle>
+      <CardDescription>Neutral background with primary accent indicator</CardDescription>
     </CardHeader>
   </Card>
 
-  <Card color="success" variant="bordered">
+  <Card color="success">
     <CardHeader>
-      <CardTitle>Success Bordered</CardTitle>
-      <CardDescription className="text-success/80">Outline success card</CardDescription>
+      <CardTitle>Deployment Successful</CardTitle>
     </CardHeader>
   </Card>
 
-  <Card color="danger" variant="shadow">
+  <Card color="danger">
     <CardHeader>
-      <CardTitle>Danger Shadow</CardTitle>
-      <CardDescription className="text-danger-foreground/80">Solid danger card</CardDescription>
+      <CardTitle>Connection Error</CardTitle>
     </CardHeader>
   </Card>
 </div>`}
@@ -231,16 +249,16 @@ export default function CardComponentPage() {
       {/* Interactive */}
       <DocsComponent
         title="Interactive Cards"
-        description="Use isHoverable and isPressable to create interactive cards with hover translation and click animations."
+        description="Use 'isHoverable' and 'isPressable' to create interactive cards with hover translation and active press micro-animations."
         preview={
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Card isHoverable className="w-full">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Hoverable Card</CardTitle>
                   <Badge color="primary">Hover Me</Badge>
                 </div>
-                <CardDescription>Translates slightly upward on hover.</CardDescription>
+                <CardDescription>Translates slightly upward on hover with shadow depth.</CardDescription>
               </CardHeader>
             </Card>
 
@@ -250,29 +268,21 @@ export default function CardComponentPage() {
                   <CardTitle>Pressable Card</CardTitle>
                   <Badge color="success">Click Me</Badge>
                 </div>
-                <CardDescription>Scales down on press/click feedback.</CardDescription>
+                <CardDescription>Scales down on click/press feedback.</CardDescription>
               </CardHeader>
             </Card>
           </div>
         }
-        code={`<div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-  <Card isHoverable className="w-full">
+        code={`<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+  <Card isHoverable>
     <CardHeader>
-      <div className="flex items-center justify-between">
-        <CardTitle>Hoverable Card</CardTitle>
-        <Badge color="primary">Hover Me</Badge>
-      </div>
-      <CardDescription>Translates slightly upward on hover.</CardDescription>
+      <CardTitle>Hoverable Card</CardTitle>
     </CardHeader>
   </Card>
 
-  <Card isPressable isHoverable className="w-full">
+  <Card isPressable isHoverable>
     <CardHeader>
-      <div className="flex items-center justify-between">
-        <CardTitle>Pressable Card</CardTitle>
-        <Badge color="success">Click Me</Badge>
-      </div>
-      <CardDescription>Scales down on press/click feedback.</CardDescription>
+      <CardTitle>Pressable Card</CardTitle>
     </CardHeader>
   </Card>
 </div>`}
@@ -281,6 +291,7 @@ export default function CardComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props Card Table */}
       <DocsComponent
         title="Props — Card"
         description="Properties to configure the Card component."
@@ -299,7 +310,7 @@ export default function CardComponentPage() {
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'bordered' | 'flat' | 'ghost' | 'shadow'
+                    'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' | 'glassmorphism' | 'gradient'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
                   <td className="px-3 py-2 text-muted-foreground">
@@ -313,7 +324,7 @@ export default function CardComponentPage() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Semantic color theme of the card.
+                    Semantic color theme of the card accent indicator.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -355,6 +366,6 @@ export default function CardComponentPage() {
           </div>
         }
       />
-    </main>
+    </div>
   );
 }
