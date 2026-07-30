@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock as CoreCodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Code Block",
-  description: "Syntax-highlighted code block component with copy functionality, language icons, and expandable containers.",
-};
-
 import { CodeBlock } from "@/components/ui/codeBlock/codeBlock";
 import { codeBlockCode } from "@/components/ui/codeBlock/codeBlock.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -30,12 +26,43 @@ export function ExampleApp() {
   );
 }`;
 
+const longSnippet = `"use client";
+
+import * as React from "react";
+import { cn } from "@/lib/utils";
+
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: "default" | "bordered" | "flat";
+  color?: "default" | "primary" | "success" | "warning" | "danger";
+  radius?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full";
+}
+
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ className, variant = "default", color = "default", radius = "2xl", children, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+);
+Card.displayName = "Card";
+
+export { Card };`;
+
 export default function CodeBlockComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Code Block"
-        description="A stylized syntax-highlighted code block component with integrated copy button, file tags, language badges, and optional container expansion."
+        description="A stylized syntax-highlighted code block component with integrated copy button, file name header, language badges, description text, tag pills, and optional expandable container."
       />
 
       <Tabs defaultValue="codeBlock">
@@ -52,16 +79,16 @@ export default function CodeBlockComponentPage() {
           <CoreCodeBlock
             code={codeBlockCode}
             componentName="codeBlock.tsx"
-            description="Core implementation of the CodeBlock UI component."
+            description="Core implementation of the CodeBlock UI component with syntax highlighting and clipboard copy."
             tags={["React", "Tailwind", "Highlight.js", "UI Component"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Basic CodeBlock */}
+      {/* Default */}
       <DocsComponent
-        title="Basic Usage"
-        description="Standard CodeBlock displaying TypeScript React source code."
+        title="Default"
+        description="Standard code block displaying TypeScript source code with header, description, and tag pills."
         preview={
           <div className="w-full">
             <CodeBlock
@@ -73,21 +100,26 @@ export default function CodeBlockComponentPage() {
           </div>
         }
         code={`<CodeBlock
-  code={\`${sampleSnippet}\`}
+  code={sampleSnippet}
   componentName="example.tsx"
   description="Basic component usage example"
   tags={["React", "TypeScript"]}
 />`}
       />
 
-      {/* Languages */}
+      {/* Language Support */}
       <DocsComponent
         title="Language Support"
-        description="Supports TypeScript, CSS, HTML, JSON, Bash, and more."
+        description="Supports TypeScript, JavaScript, CSS, HTML, JSON, and Bash with automatic language icon resolution."
         preview={
-          <div className="space-y-4 w-full">
+          <div className="w-full flex flex-col gap-4">
             <CodeBlock
-              code={`/* Custom style tokens */\n.custom-card {\n  background: var(--background);\n  border-radius: 1rem;\n}`}
+              code={`/* Custom style tokens */
+.custom-card {
+  background: var(--background);
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}`}
               componentName="styles.css"
               language="css"
             />
@@ -96,25 +128,87 @@ export default function CodeBlockComponentPage() {
               componentName="install.sh"
               language="bash"
             />
+            <CodeBlock
+              code={`{
+  "name": "bloom-ui",
+  "version": "1.0.0",
+  "description": "Modern React component library"
+}`}
+              componentName="package.json"
+              language="json"
+            />
           </div>
         }
-        code={`<div className="space-y-4 w-full">
-  <CodeBlock
-    code={\`/* Custom style tokens */\\n.custom-card {\\n  background: var(--background);\\n  border-radius: 1rem;\\n}\`}
-    componentName="styles.css"
-    language="css"
-  />
-  <CodeBlock
-    code="pnpm add @radix-ui/react-slot class-variance-authority"
-    componentName="install.sh"
-    language="bash"
-  />
-</div>`}
+        code={`<CodeBlock
+  code={cssCode}
+  componentName="styles.css"
+  language="css"
+/>
+
+<CodeBlock
+  code="pnpm add @radix-ui/react-slot class-variance-authority"
+  componentName="install.sh"
+  language="bash"
+/>
+
+<CodeBlock
+  code={jsonCode}
+  componentName="package.json"
+  language="json"
+/>`}
         props={["language: 'typescript' | 'javascript' | 'css' | 'html' | 'json' | 'bash'"]}
+      />
+
+      {/* Expandable Container */}
+      <DocsComponent
+        title="Expandable Container"
+        description="When the code exceeds the 'maxHeight' threshold, a gradient fade and 'Show more' toggle button appear automatically."
+        preview={
+          <div className="w-full">
+            <CodeBlock
+              code={longSnippet}
+              componentName="card.tsx"
+              description="Full component source with expandable overflow container"
+              tags={["React", "TypeScript", "Tailwind"]}
+              maxHeight={200}
+            />
+          </div>
+        }
+        code={`<CodeBlock
+  code={longSnippet}
+  componentName="card.tsx"
+  description="Full component source with expandable overflow container"
+  tags={["React", "TypeScript", "Tailwind"]}
+  maxHeight={200}
+/>`}
+        props={["maxHeight: number"]}
+      />
+
+      {/* Without Copy Button */}
+      <DocsComponent
+        title="Without Copy Button"
+        description="Set 'showCopy' to false to hide the clipboard copy action button."
+        preview={
+          <div className="w-full">
+            <CodeBlock
+              code={`const greeting = "Hello, World!";
+console.log(greeting);`}
+              componentName="hello.ts"
+              showCopy={false}
+            />
+          </div>
+        }
+        code={`<CodeBlock
+  code={snippet}
+  componentName="hello.ts"
+  showCopy={false}
+/>`}
+        props={["showCopy: boolean"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      {/* Props CodeBlock Table */}
       <DocsComponent
         title="Props — CodeBlock"
         description="Properties to configure the CodeBlock component."
@@ -133,9 +227,9 @@ export default function CodeBlockComponentPage() {
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">code</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">required</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    The source code string to display and highlight.
+                    The source code string to display and syntax-highlight.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -143,7 +237,7 @@ export default function CodeBlockComponentPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Header filename label (e.g. "button.tsx").
+                    File name label displayed in the header (e.g. "button.tsx").
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -161,7 +255,7 @@ export default function CodeBlockComponentPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Subheader description text.
+                    Subheader description text below the file name.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -169,7 +263,7 @@ export default function CodeBlockComponentPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string[]</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Array of tag pill labels.
+                    Array of tag pill labels rendered below the description.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -177,7 +271,7 @@ export default function CodeBlockComponentPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Renders the copy to clipboard action button.
+                    Renders the copy-to-clipboard action button in the header.
                   </td>
                 </tr>
                 <tr>
@@ -185,7 +279,7 @@ export default function CodeBlockComponentPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
                   <td className="px-3 py-2 text-muted-foreground">280</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Max container height in pixels before showing expand toggle.
+                    Max container height in pixels before showing the expand/collapse toggle.
                   </td>
                 </tr>
               </tbody>
@@ -193,6 +287,6 @@ export default function CodeBlockComponentPage() {
           </div>
         }
       />
-    </main>
+    </div>
   );
 }
