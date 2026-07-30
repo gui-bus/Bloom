@@ -31,40 +31,58 @@ export function Chart({
   yKey,
   height = 300,
   className,
-  color = "#3b82f6",
+  color = "#0284c7",
 }: ChartProps) {
   return (
-    <div className={cn("w-full rounded-2xl border border-border p-4 bg-background shadow-xs", className)}>
+    <div
+      className={cn(
+        "w-full rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 bg-white dark:bg-zinc-900 shadow-xs text-zinc-900 dark:text-zinc-100",
+        className
+      )}
+    >
       <ResponsiveContainer width="100%" height={height}>
         {type === "bar" ? (
           <ReBarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-            <XAxis dataKey={xKey} stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-            <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+            <CartesianGrid strokeDasharray="3 3" opacity={0.15} stroke="#a1a1aa" />
+            <XAxis dataKey={xKey} stroke="#71717a" fontSize={12} tickLine={false} axisLine={false} />
+            <YAxis stroke="#71717a" fontSize={12} tickLine={false} axisLine={false} />
             <Tooltip
               contentStyle={{
-                backgroundColor: "var(--background)",
-                borderColor: "var(--border)",
+                backgroundColor: "rgba(24, 24, 27, 0.95)",
+                borderColor: "#27272a",
                 borderRadius: "0.75rem",
+                color: "#f4f4f5",
                 fontSize: "12px",
+                boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3)",
               }}
+              itemStyle={{ color: "#f4f4f5" }}
             />
             <Bar dataKey={yKey} fill={color} radius={[6, 6, 0, 0]} />
           </ReBarChart>
         ) : (
           <ReLineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-            <XAxis dataKey={xKey} stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-            <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+            <CartesianGrid strokeDasharray="3 3" opacity={0.15} stroke="#a1a1aa" />
+            <XAxis dataKey={xKey} stroke="#71717a" fontSize={12} tickLine={false} axisLine={false} />
+            <YAxis stroke="#71717a" fontSize={12} tickLine={false} axisLine={false} />
             <Tooltip
               contentStyle={{
-                backgroundColor: "var(--background)",
-                borderColor: "var(--border)",
+                backgroundColor: "rgba(24, 24, 27, 0.95)",
+                borderColor: "#27272a",
                 borderRadius: "0.75rem",
+                color: "#f4f4f5",
                 fontSize: "12px",
+                boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3)",
               }}
+              itemStyle={{ color: "#f4f4f5" }}
             />
-            <Line type="monotone" dataKey={yKey} stroke={color} strokeWidth={2.5} dot={{ r: 4 }} />
+            <Line
+              type="monotone"
+              dataKey={yKey}
+              stroke={color}
+              strokeWidth={3}
+              dot={{ r: 4, fill: color }}
+              activeDot={{ r: 6, fill: color }}
+            />
           </ReLineChart>
         )}
       </ResponsiveContainer>
