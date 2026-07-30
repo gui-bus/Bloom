@@ -4,6 +4,7 @@ import "./globals.css";
 import "highlight.js/styles/atom-one-dark.css";
 import { ThemeProvider } from "@/components/core/theme-provider";
 import { Sidebar } from "@/components/core/sidebar";
+import { TableOfContents } from "@/components/core/toc";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -73,11 +74,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex ">
+          <div className="flex min-h-screen">
             <Sidebar />
-            <main className="flex-1 ml-0 md:ml-64 p-4 sm:p-6 md:p-8 pt-20 md:pt-8 transition-all duration-300 max-w-full min-w-0">
+            <main className="flex-1 ml-0 md:ml-64 p-4 sm:p-6 md:p-8 pt-20 md:pt-8 pb-12 transition-all duration-300 max-w-full min-w-0">
               {children}
             </main>
+            <TableOfContents />
           </div>
         </ThemeProvider>
       </body>

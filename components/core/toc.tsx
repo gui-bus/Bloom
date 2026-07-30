@@ -1,0 +1,124 @@
+"use client";
+
+import * as React from "react";
+import { usePathname } from "next/navigation";
+import { useQueryState } from "@/lib/useQueryState";
+import { cn } from "@/lib/utils";
+
+interface TOCItem {
+  id: string;
+  title: string;
+}
+
+export function TableOfContents() {
+  const pathname = usePathname();
+  const [items, setItems] = React.useState<TOCItem[]>([]);
+  const [sectionParam, setSectionParam] = useQueryState("section", {
+    history: "replace",
+    shallow: true,
+  });
+
+  const [activeId, setActiveId] = React.useState<string>(sectionParam || "");
+
+  // Scan page for section[id] elements
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      const sections = Array.from(
+        document.querySelectorAll<HTMLElement>("section[id]")
+      );
+      const tocItems: TOCItem[] = [];
+
+      sections.forEach((section) => {
+        const heading = section.querySelector("h3");
+        if (heading && section.id) {
+          tocItems.push({
+            id: section.id,
+            title: heading.textContent || section.id,
+          });
+        }
+      });
+
+      setItems(tocItems);
+
+      // If initial section param exists in URL, scroll to it
+      if (sectionParam) {
+        const target = document.getElementById(sectionParam);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+          setActiveId(sectionParam);
+        }
+      }
+    }, 150);
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
+
+  // Observer active section on scroll and update URL query state
+  React.useEffect(() => {
+    if (items.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            setActiveId(id);
+            setSectionParam(id);
+          }
+        });
+      },
+      {
+        rootMargin: "-80px 0px -60% 0px",
+        threshold: 0.1,
+      }
+    );
+
+    items.forEach((item) => {
+      const el = document.getElementById(item.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [items, setSectionParam]);
+
+  if (items.length === 0) return null;
+
+  const handleClick = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      setActiveId(id);
+      setSectionParam(id);
+    }
+  };
+
+  return (
+    <aside className="hidden md:block w-64 shrink-0 px-4 py-8 sticky top-8 h-[calc(100vh-4rem)] overflow-y-auto select-none">
+      <div className="space-y-3">
+        <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+          On this page
+        </p>
+
+        <nav className="space-y-1 text-xs border-l border-zinc-200 dark:border-zinc-800 pl-3">
+          {items.map((item) => {
+            const isActive = activeId === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleClick(item.id)}
+                className={cn(
+                  "block w-full text-left py-1 transition-all duration-200 truncate cursor-pointer",
+                  isActive
+                    ? "text-sky-600 dark:text-sky-400 font-semibold -ml-3.5 pl-3 border-l-2 border-sky-500"
+                    : "text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200"
+                )}
+              >
+                {item.title}
+              </button>
+            );
+          })}
+        </nav>
+      </div>
+    </aside>
+  );
+}

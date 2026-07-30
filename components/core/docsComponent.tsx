@@ -24,6 +24,13 @@ export function DocsComponent({
   code,
   props,
 }: DocsComponentProps) {
+  const sectionId = React.useMemo(() => {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+  }, [title]);
+
   function renderWithInlineCode(text: string) {
     const elements: React.ReactNode[] = [];
     let lastIndex = 0;
@@ -72,7 +79,10 @@ export function DocsComponent({
   }, [code]);
 
   return (
-    <section className="space-y-4 rounded-3xl p-10  bg-white dark:bg-neutral-950/80">
+    <section
+      id={sectionId}
+      className="space-y-4 rounded-3xl p-10 bg-white dark:bg-neutral-950/80 scroll-mt-24 transition-colors duration-200"
+    >
       <div className="space-y-1">
         <h3 className="font-semibold text-xl text-foreground">{title}</h3>
 
@@ -120,10 +130,7 @@ export function DocsComponent({
           )}
         </TabsList>
 
-        <TabsContent
-          value="preview"
-          className="mt-4"
-        >
+        <TabsContent value="preview" className="mt-4">
           {preview}
         </TabsContent>
 
