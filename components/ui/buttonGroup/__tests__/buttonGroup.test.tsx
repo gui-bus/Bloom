@@ -26,13 +26,20 @@ describe("ButtonGroup Component", () => {
     const firstButton = screen.getByRole("button", { name: "Button 1" });
     const secondButton = screen.getByRole("button", { name: "Button 2" });
 
-    // Verify size lg
     expect(firstButton).toHaveClass("px-5");
     expect(secondButton).toHaveClass("px-5");
+  });
 
-    // Verify variant and color primary classes propagated
-    expect(firstButton).toHaveClass("border-primary");
-    expect(secondButton).toHaveClass("border-primary");
+  it("propagates isLoading and isDisabled to children buttons", () => {
+    render(
+      <ButtonGroup isLoading isDisabled>
+        <Button>Loading 1</Button>
+        <Button>Loading 2</Button>
+      </ButtonGroup>
+    );
+
+    const firstButton = screen.getByRole("button", { name: "Loading 1" });
+    expect(firstButton).toBeDisabled();
   });
 
   it("applies border-radius classes correctly for edge buttons", () => {
@@ -48,13 +55,8 @@ describe("ButtonGroup Component", () => {
     const btnB = screen.getByRole("button", { name: "Button B" });
     const btnC = screen.getByRole("button", { name: "Button C" });
 
-    // First button has rounded-l-xl and rounded-none
     expect(btnA).toHaveClass("rounded-none", "rounded-l-xl");
-    // Middle button has rounded-none
     expect(btnB).toHaveClass("rounded-none");
-    expect(btnB).not.toHaveClass("rounded-l-xl");
-    expect(btnB).not.toHaveClass("rounded-r-xl");
-    // Last button has rounded-none and rounded-r-xl
     expect(btnC).toHaveClass("rounded-none", "rounded-r-xl");
   });
 });

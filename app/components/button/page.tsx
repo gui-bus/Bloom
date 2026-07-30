@@ -1,18 +1,14 @@
+"use client";
 
-
-import type { Metadata } from "next";
+import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-
-export const metadata: Metadata = {
-  title: "Button",
-  description: "Interactive button component supporting multiple variants, sizes, colors, icons, loading states, and ripple effect.",
-};
 import { Button } from "@/components/ui/button/button";
 import { buttonCode } from "@/components/ui/button/button.code";
 import { buttonCSSCode } from "@/components/ui/button/button.css.code";
+import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
   TabsContent,
@@ -24,10 +20,10 @@ import { useRippleCode } from "@/lib/ripple/useRipple.code";
 
 export default function ButtonComponentPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Button"
-        description="A button is a UI element used to trigger an action, such as navigation, form submission, or other frequent interactions within the interface."
+        description="A button is an interactive UI element used to trigger actions such as navigation, form submissions, or contextual commands."
       />
 
       <Tabs defaultValue="button">
@@ -68,7 +64,7 @@ export default function ButtonComponentPage() {
             code={buttonCode}
             componentName="button.tsx"
             description="Main implementation of the Button component, handling all visual variants, interactive states, and user interactions."
-            tags={["React", "Tailwind", "UI Component", "Accessibility"]}
+            tags={["React", "Tailwind", "UI Component", "Accessibility", "Button"]}
           />
         </TabsContent>
 
@@ -103,31 +99,38 @@ export default function ButtonComponentPage() {
         </TabsContent>
       </Tabs>
 
+      {/* Default */}
+      <DocsComponent
+        title="Default"
+        description="A standard button component displaying a neutral primary action state."
+        preview={
+          <div className="w-full flex items-center gap-4">
+            <Button>Default Button</Button>
+          </div>
+        }
+        code={`<Button>Default Button</Button>`}
+      />
+
+      {/* Variants */}
       <DocsComponent
         title="Variants"
-        description="Defines the visual appearance of the tabs through the 'variant' prop, allowing the style to adapt to the interface context. When not specified, the default variant is used."
+        description="Defines the visual appearance of buttons through the 'variant' prop."
         preview={
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
+          <div className="w-full flex flex-wrap gap-4">
             <Button variant="default">Default</Button>
-
             <Button variant="bordered">Bordered</Button>
-
-            <Button variant="light">Light</Button>
-
             <Button variant="flat">Flat</Button>
-
+            <Button variant="light">Light</Button>
             <Button variant="ghost">Ghost</Button>
-
             <Button variant="shadow">Shadow</Button>
-
             <Button variant="link">Link</Button>
           </div>
         }
-        code={`<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
+        code={`<div className="flex flex-wrap gap-4">
   <Button variant="default">Default</Button>
   <Button variant="bordered">Bordered</Button>
-  <Button variant="light">Light</Button>
   <Button variant="flat">Flat</Button>
+  <Button variant="light">Light</Button>
   <Button variant="ghost">Ghost</Button>
   <Button variant="shadow">Shadow</Button>
   <Button variant="link">Link</Button>
@@ -137,492 +140,342 @@ export default function ButtonComponentPage() {
         ]}
       />
 
+      {/* Colors */}
       <DocsComponent
         title="Colors"
-        description="Defines the button color scheme through the 'color' prop. This approach ensures visual consistency without limiting design flexibility."
+        description="Defines the button color scheme through the 'color' prop. Stacked vertically for clear visual comparison."
         preview={
-          <div className="space-y-5">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              <Button variant="default" color="default">Default</Button>
-              <Button variant="default" color="primary">Primary</Button>
-              <Button variant="default" color="secondary">Secondary</Button>
-              <Button variant="default" color="accent">Accent</Button>
-              <Button variant="default" color="success">Success</Button>
-              <Button variant="default" color="warning">Warning</Button>
-              <Button variant="default" color="danger">Danger</Button>
+          <div className="w-full flex flex-col gap-4">
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">color="default"</span>
+              <div className="flex flex-wrap gap-3">
+                <Button color="default" variant="default">Solid</Button>
+                <Button color="default" variant="bordered">Bordered</Button>
+                <Button color="default" variant="flat">Flat</Button>
+              </div>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">color="primary"</span>
+              <div className="flex flex-wrap gap-3">
+                <Button color="primary" variant="default">Solid</Button>
+                <Button color="primary" variant="bordered">Bordered</Button>
+                <Button color="primary" variant="flat">Flat</Button>
+              </div>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">color="secondary"</span>
+              <div className="flex flex-wrap gap-3">
+                <Button color="secondary" variant="default">Solid</Button>
+                <Button color="secondary" variant="bordered">Bordered</Button>
+                <Button color="secondary" variant="flat">Flat</Button>
+              </div>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">color="accent"</span>
+              <div className="flex flex-wrap gap-3">
+                <Button color="accent" variant="default">Solid</Button>
+                <Button color="accent" variant="bordered">Bordered</Button>
+                <Button color="accent" variant="flat">Flat</Button>
+              </div>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">color="success"</span>
+              <div className="flex flex-wrap gap-3">
+                <Button color="success" variant="default">Solid</Button>
+                <Button color="success" variant="bordered">Bordered</Button>
+                <Button color="success" variant="flat">Flat</Button>
+              </div>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">color="warning"</span>
+              <div className="flex flex-wrap gap-3">
+                <Button color="warning" variant="default">Solid</Button>
+                <Button color="warning" variant="bordered">Bordered</Button>
+                <Button color="warning" variant="flat">Flat</Button>
+              </div>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">color="danger"</span>
+              <div className="flex flex-wrap gap-3">
+                <Button color="danger" variant="default">Solid</Button>
+                <Button color="danger" variant="bordered">Bordered</Button>
+                <Button color="danger" variant="flat">Flat</Button>
+              </div>
             </div>
           </div>
         }
-        code={`<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-  <Button variant="default" color="default">Default</Button>
-  <Button variant="default" color="primary">Primary</Button>
-  <Button variant="default" color="secondary">Secondary</Button>
-  <Button variant="default" color="accent">Accent</Button>
-  <Button variant="default" color="success">Success</Button>
-  <Button variant="default" color="warning">Warning</Button>
-  <Button variant="default" color="danger">Danger</Button>
+        code={`<div className="space-y-4">
+  <Button color="default">Default</Button>
+  <Button color="primary">Primary</Button>
+  <Button color="secondary">Secondary</Button>
+  <Button color="accent">Accent</Button>
+  <Button color="success">Success</Button>
+  <Button color="warning">Warning</Button>
+  <Button color="danger">Danger</Button>
 </div>`}
         props={[
-          "color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'",
+          "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
         ]}
       />
 
+      {/* Sizes */}
       <DocsComponent
         title="Sizes"
-        description="Allows adjusting the visual scale of buttons through the 'size' prop. The default size is 'md', with options that adapt to different interface densities and contexts."
+        description="Adjusts the visual scale of buttons through the 'size' prop."
         preview={
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
-            <Button variant="default" size="xs">xs</Button>
-            <Button variant="default" size="sm">sm</Button>
-            <Button variant="default" size="md">md</Button>
-            <Button variant="default" size="lg">lg</Button>
-            <Button variant="default" size="xl">xl</Button>
-            <Button variant="default" size="2xl">2xl</Button>
-            <Button variant="default" size="3xl">3xl</Button>
+          <div className="w-full flex flex-wrap items-center gap-3">
+            <Button size="xs">xs</Button>
+            <Button size="sm">sm</Button>
+            <Button size="md">md</Button>
+            <Button size="lg">lg</Button>
+            <Button size="xl">xl</Button>
+            <Button size="2xl">2xl</Button>
+            <Button size="3xl">3xl</Button>
           </div>
         }
-        code={`<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
-  <Button variant="default" size="xs">xs</Button>
-  <Button variant="default" size="sm">sm</Button>
-  <Button variant="default" size="md">md</Button>
-  <Button variant="default" size="lg">lg</Button>
-  <Button variant="default" size="xl">xl</Button>
-  <Button variant="default" size="2xl">2xl</Button>
-  <Button variant="default" size="3xl">3xl</Button>
+        code={`<div className="flex flex-wrap items-center gap-3">
+  <Button size="xs">xs</Button>
+  <Button size="sm">sm</Button>
+  <Button size="md">md</Button>
+  <Button size="lg">lg</Button>
+  <Button size="xl">xl</Button>
+  <Button size="2xl">2xl</Button>
+  <Button size="3xl">3xl</Button>
 </div>`}
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
 
+      {/* Radius */}
       <DocsComponent
         title="Radius"
-        description="Allows adjusting the visual radius of buttons through the 'radius' prop. The default radius is 'lg', with options that adapt to different interface densities and contexts."
+        description="Adjusts the border radius of buttons through the 'radius' prop."
         preview={
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-5">
-            <Button variant="default" radius="none" size="2xl">none</Button>
-            <Button variant="default" radius="xs" size="2xl">xs</Button>
-            <Button variant="default" radius="sm" size="2xl">sm</Button>
-            <Button variant="default" radius="md" size="2xl">md</Button>
-            <Button variant="default" radius="lg" size="2xl">lg</Button>
-            <Button variant="default" radius="xl" size="2xl">xl</Button>
-            <Button variant="default" radius="2xl" size="2xl">2xl</Button>
-            <Button variant="default" radius="3xl" size="2xl">3xl</Button>
-            <Button variant="default" radius="full" size="2xl">Full</Button>
+          <div className="w-full flex flex-wrap items-center gap-3">
+            <Button radius="none">none</Button>
+            <Button radius="xs">xs</Button>
+            <Button radius="sm">sm</Button>
+            <Button radius="md">md</Button>
+            <Button radius="lg">lg</Button>
+            <Button radius="xl">xl</Button>
+            <Button radius="2xl">2xl</Button>
+            <Button radius="3xl">3xl</Button>
+            <Button radius="full">Full</Button>
           </div>
         }
-        code={`<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-5">
-  <Button variant="default" radius="none" size="2xl">none</Button>
-  <Button variant="default" radius="xs" size="2xl">xs</Button>
-  <Button variant="default" radius="sm" size="2xl">sm</Button>
-  <Button variant="default" radius="md" size="2xl">md</Button>
-  <Button variant="default" radius="lg" size="2xl">lg</Button>
-  <Button variant="default" radius="xl" size="2xl">xl</Button>
-  <Button variant="default" radius="2xl" size="2xl">2xl</Button>
-  <Button variant="default" radius="3xl" size="2xl">3xl</Button>
-  <Button variant="default" radius="full" size="2xl">Full</Button>
+        code={`<div className="flex flex-wrap items-center gap-3">
+  <Button radius="none">none</Button>
+  <Button radius="sm">sm</Button>
+  <Button radius="md">md</Button>
+  <Button radius="lg">lg</Button>
+  <Button radius="xl">xl</Button>
+  <Button radius="full">Full</Button>
 </div>`}
         props={[
           "radius: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'",
         ]}
       />
 
+      {/* Hovers */}
       <DocsComponent
         title="Hovers"
-        description="Defines how the button behaves on user interaction, such as hover and active states. Use the 'hover' prop to control motion, depth, and feedback without affecting the button color."
+        description="Controls micro-interaction motion on user hover using the 'hover' prop ('scale' or 'lift')."
         preview={
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
-            <Button variant="default" hover="scale">Scale</Button>
-            <Button variant="default" hover="lift">Lift</Button>
+          <div className="w-full flex flex-wrap items-center gap-4">
+            <Button hover="scale">Scale Hover</Button>
+            <Button hover="lift">Lift Hover</Button>
           </div>
         }
-        code={`<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
-  <Button variant="default" hover="scale">Scale</Button>
-  <Button variant="default" hover="lift">Lift</Button>
+        code={`<div className="flex items-center gap-4">
+  <Button hover="scale">Scale Hover</Button>
+  <Button hover="lift">Lift Hover</Button>
 </div>`}
         props={["hover: 'scale' | 'lift'"]}
       />
 
+      {/* Icons */}
       <DocsComponent
         title="Icons"
-        description="Adds icons to the button, either at the start or end, to enhance visual context and improve recognition. Use 'startContent' or 'endContent' props to pass a ReactNode icon."
+        description="Adds icons to the button at the start or end position to enhance visual recognition."
         preview={
-          <div className="space-y-5">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              <Button
-                variant="default"
-                startContent={
-                  <Icon icon="hugeicons:home-03" className="size-5" />
-                }
-              >
-                Home
-              </Button>
-              <Button
-                variant="bordered"
-                startContent={
-                  <Icon icon="hugeicons:home-03" className="size-5" />
-                }
-              >
-                Home
-              </Button>
-            </div>
+          <div className="w-full flex flex-wrap gap-4">
+            <Button
+              color="primary"
+              startContent={<Icon icon="hugeicons:home-03" className="size-5" />}
+            >
+              Home
+            </Button>
+            <Button
+              color="success"
+              variant="bordered"
+              endContent={<Icon icon="hugeicons:arrow-right-01" className="size-5" />}
+            >
+              Continue
+            </Button>
           </div>
         }
         code={`<Button
-  variant="default"
+  color="primary"
   startContent={<Icon icon="hugeicons:home-03" className="size-5" />}
 >
   Home
 </Button>`}
-        props={["startContent: 'ReactNode'", "endContent: 'ReactNode'"]}
+        props={["startContent: ReactNode", "endContent: ReactNode"]}
       />
 
+      {/* Icon Only */}
       <DocsComponent
-        title="Badges"
-        description="Displays a badge on the button to provide additional contextual information, such as counts or notifications. Use the 'badgeContent' prop to define the badge value and 'badgePosition' to set whether it appears at the start or end of the button."
+        title="Icon Only (isIconOnly)"
+        description="Displays a compact button with only an icon. Mandatory 'ariaLabel' ensures full accessibility."
         preview={
-          <div className="space-y-5">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-              <Button variant="default" badgeContent="20">
-                Inbox
-              </Button>
-              <Button variant="default" badgeContent="20" badgePosition="start">
-                Inbox
-              </Button>
-            </div>
-          </div>
-        }
-        code={`<Button variant="default" badgeContent="20">
-  Inbox
-</Button>`}
-        props={["badgeContent: 'string'", "badgePosition: 'start' | 'end'"]}
-      />
-
-      <DocsComponent
-        title="Custom badges"
-        description="Allows customizing the badge appearance using any Tailwind CSS classes. Use 'badgeCustomClassname' to apply custom styles."
-        preview={
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
+          <div className="w-full flex flex-wrap items-center gap-4">
             <Button
-              variant="default"
-              badgeContent="20"
-              badgeCustomClassname="bg-sky-600"
-            >
-              Inbox
-            </Button>
-          </div>
-        }
-        code={`<Button
-  variant="default"
-  badgeContent="20"
-  badgeCustomClassname="bg-sky-600"
->
-  Inbox
-</Button>`}
-        props={["badgeCustomClassname: 'string'"]}
-      />
-
-      <DocsComponent
-        title="Icon Only"
-        description="Displays the button with only an icon, without any text, for compact or minimalist UI patterns. Use the 'isIconOnly' prop to enable this mode. When 'isIconOnly' is true, the 'ariaLabel' prop is required to ensure accessibility."
-        preview={
-          <div className="flex items-center gap-5">
-            <Button
-              variant="default"
-              startContent={
-                <Icon icon="hugeicons:home-03" className="size-5" />
-              }
               isIconOnly
               ariaLabel="Home"
+              startContent={<Icon icon="hugeicons:home-03" className="size-5" />}
+            />
+            <Button
+              isIconOnly
+              color="primary"
+              ariaLabel="Settings"
+              startContent={<Icon icon="hugeicons:settings-01" className="size-5" />}
+            />
+            <Button
+              isIconOnly
+              color="danger"
+              variant="bordered"
+              ariaLabel="Delete"
+              startContent={<Icon icon="hugeicons:delete-02" className="size-5" />}
             />
           </div>
         }
         code={`<Button
-  variant="default"
-  startContent={<Icon icon="hugeicons:home-03" className="size-5" />}
   isIconOnly
-  ariaLabel="Home"
+  color="primary"
+  ariaLabel="Settings"
+  startContent={<Icon icon="hugeicons:settings-01" className="size-5" />}
 />`}
-        props={["isIconOnly: 'true' | 'false'", "ariaLabel: 'string'"]}
+        props={["isIconOnly: boolean", "ariaLabel: string"]}
       />
 
-      <DocsComponent
-        title="Animations"
-        description="Controls the ripple effect on button clicks, providing visual feedback of user interaction. By default, the ripple animation is enabled; set 'disableRipple' to 'true' to turn it off."
-        preview={
-          <div className="flex items-center gap-5">
-            <Button variant="default">Click me (with ripple animation)</Button>
-            <Button variant="default" disableRipple>
-              Click me (without ripple animation)
-            </Button>
-          </div>
-        }
-        code={`<div className="flex items-center gap-5">
-  <Button variant="default">Click me (with ripple animation)</Button>
-  <Button variant="default" disableRipple>
-    Click me (without ripple animation)
-  </Button>
-</div>`}
-        props={["disableRipple: 'true' | 'false'"]}
-      />
-
+      {/* Loading state */}
       <DocsComponent
         title="Loading state"
-        description="Displays the button in a loading state to provide visual feedback that an action is in progress. Use the 'isLoading' prop to toggle the loading state. Optionally, use the 'loadingText' prop to show custom text while the button is loading."
+        description="Displays an active loading spinner and disables user interaction during async processes."
         preview={
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-            <Button variant="default" isLoading>
-              Default
-            </Button>
-            <Button variant="bordered" isLoading>
-              Bordered
-            </Button>
+          <div className="w-full flex flex-wrap gap-4">
+            <Button isLoading color="primary">Loading...</Button>
+            <Button isLoading variant="bordered">Processing</Button>
           </div>
         }
-        code={`<Button variant="default" isLoading>
-  Default
-</Button>`}
-        props={["isLoading: 'true' | 'false'", "loadingText: 'string'"]}
+        code={`<Button isLoading color="primary">Loading...</Button>`}
+        props={["isLoading: boolean", "loadingText: string"]}
       />
 
-      <DocsComponent
-        title="Loading icon"
-        description="Allows replacing the default loading spinner with any custom ReactNode. Use the 'loadingIcon' prop to pass your own icon or animation."
-        preview={
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            <Button
-              variant="default"
-              isLoading
-              loadingIcon={
-                <div className="flex space-x-1">
-                  <span className="h-1 w-1 bg-current rounded-full animate-bounce"></span>
-                  <span className="h-1 w-1 bg-current rounded-full animate-bounce delay-150"></span>
-                  <span className="h-1 w-1 bg-current rounded-full animate-bounce delay-300"></span>
-                </div>
-              }
-            >
-              Default
-            </Button>
-          </div>
-        }
-        code={`<Button
-  variant="default"
-  isLoading
-  loadingIcon={
-    <div className="flex space-x-1">
-      <span className="h-1 w-1 bg-current rounded-full animate-bounce"></span>
-      <span className="h-1 w-1 bg-current rounded-full animate-bounce delay-150"></span>
-      <span className="h-1 w-1 bg-current rounded-full animate-bounce delay-300"></span>
-    </div>
-  }
->
-  Default
-</Button>`}
-        props={["loadingIcon: 'ReactNode'"]}
-      />
-
+      {/* Disabled state */}
       <DocsComponent
         title="Disabled state"
-        description="Disables the button, preventing any user interaction and visually indicating that the action is unavailable. The 'isDisabled' prop accepts 'true' or 'false' to toggle this state."
+        description="Disables the button, preventing interaction and applying muted opacity styling."
         preview={
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5">
-            <Button variant="default" isDisabled>
-              Default
-            </Button>
+          <div className="w-full flex flex-wrap gap-4">
+            <Button isDisabled>Disabled Button</Button>
+            <Button isDisabled color="primary">Disabled Primary</Button>
           </div>
         }
-        code={`<Button variant="default" isDisabled>
-  Default
-</Button>`}
-        props={["isDisabled: 'true' | 'false'"]}
+        code={`<Button isDisabled color="primary">Disabled Primary</Button>`}
+        props={["isDisabled: boolean"]}
       />
 
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
+
+      {/* Props Button Table */}
       <DocsComponent
-        title="Props — Button (Base)"
-        description="Core properties for the Button component."
+        title="Props — Button"
+        description="Core properties for configuring the Button component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
               <thead>
-                <tr className="border-b">
-                  <th className="text-left py-2 px-3">Prop</th>
-                  <th className="text-left py-2 px-3">Type</th>
-                  <th className="text-left py-2 px-3">Default</th>
-                  <th className="text-left py-2 px-3">Description</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b">
-                  <td className="px-3 py-2 font-mono">variant</td>
-                  <td className="px-3 py-2 font-mono">string</td>
-                  <td className="px-3 py-2">default</td>
-                  <td className="px-3 py-2">Visual style of the button.</td>
-                </tr>
-
-                <tr className="border-b">
-                  <td className="px-3 py-2 font-mono">size</td>
-                  <td className="px-3 py-2 font-mono">string</td>
-                  <td className="px-3 py-2">md</td>
-                  <td className="px-3 py-2">
-                    Controls the button's size and density.
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">variant</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'default' | 'bordered' | 'light' | 'flat' | 'ghost' | 'shadow' | 'link'
                   </td>
+                  <td className="px-3 py-2 text-muted-foreground">'default'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Visual style variant of the button.</td>
                 </tr>
-
-                <tr className="border-b">
-                  <td className="px-3 py-2 font-mono">color</td>
-                  <td className="px-3 py-2 font-mono">string</td>
-                  <td className="px-3 py-2">default</td>
-                  <td className="px-3 py-2">Color scheme of the button.</td>
-                </tr>
-
-                <tr className="border-b">
-                  <td className="px-3 py-2 font-mono">radius</td>
-                  <td className="px-3 py-2 font-mono">string</td>
-                  <td className="px-3 py-2">xl</td>
-                  <td className="px-3 py-2">Border radius of the button.</td>
-                </tr>
-
-                <tr className="border-b">
-                  <td className="px-3 py-2 font-mono">hover</td>
-                  <td className="px-3 py-2 font-mono">string</td>
-                  <td className="px-3 py-2">scale</td>
-                  <td className="px-3 py-2">Hover behavior of the button.</td>
-                </tr>
-
-                <tr className="border-b">
-                  <td className="px-3 py-2 font-mono">isDisabled</td>
-                  <td className="px-3 py-2 font-mono">boolean</td>
-                  <td className="px-3 py-2">false</td>
-                  <td className="px-3 py-2">
-                    Disables the button, preventing any interaction.
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">color</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
                   </td>
+                  <td className="px-3 py-2 text-muted-foreground">'default'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Color theme of the button.</td>
                 </tr>
-
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">size</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Controls size scale and density.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">radius</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'xl'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Border radius scale.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">hover</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'scale' | 'lift'</td>
+                  <td className="px-3 py-2 text-muted-foreground">'scale'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Micro-animation hover behavior.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isIconOnly</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Compact icon-only button mode. Requires 'ariaLabel'.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isLoading</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Shows loading spinner and disables interactions.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isDisabled</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Disables user interaction.</td>
+                </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono">disableRipple</td>
-                  <td className="px-3 py-2 font-mono">boolean</td>
-                  <td className="px-3 py-2">false</td>
-                  <td className="px-3 py-2">
-                    Disables the ripple click effect.
-                  </td>
+                  <td className="px-3 py-2 font-mono text-primary">disableRipple</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Disables click ripple effect.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-
-      <DocsComponent
-        title="Props — Button (Badge)"
-        description="Properties related to badges displayed on the button."
-        preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="border-b">
-                  <th className="text-left py-2 px-3">Prop</th>
-                  <th className="text-left py-2 px-3">Type</th>
-                  <th className="text-left py-2 px-3">Default</th>
-                  <th className="text-left py-2 px-3">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b">
-                  <td className="px-3 py-2 font-mono">badgeContent</td>
-                  <td className="px-3 py-2 font-mono">string</td>
-                  <td className="px-3 py-2">—</td>
-                  <td className="px-3 py-2">
-                    Displays a badge with informative content on the button.
-                  </td>
-                </tr>
-
-                <tr className="border-b">
-                  <td className="px-3 py-2 font-mono">badgePosition</td>
-                  <td className="px-3 py-2 font-mono">string</td>
-                  <td className="px-3 py-2">end</td>
-                  <td className="px-3 py-2">
-                    Badge position relative to button text ('start' or 'end').
-                  </td>
-                </tr>
-
-                <tr>
-                  <td className="px-3 py-2 font-mono">badgeCustomClassname</td>
-                  <td className="px-3 py-2 font-mono">string</td>
-                  <td className="px-3 py-2">—</td>
-                  <td className="px-3 py-2">
-                    Custom CSS classes for the badge container.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        }
-      />
-
-      <DocsComponent
-        title="Props — Button (Loading & Icon Only)"
-        description="Properties controlling loading states and icon-only buttons. Note: 'ariaLabel' is required when 'isIconOnly' is true."
-        preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="border-b">
-                  <th className="text-left py-2 px-3">Prop</th>
-                  <th className="text-left py-2 px-3">Type</th>
-                  <th className="text-left py-2 px-3">Default</th>
-                  <th className="text-left py-2 px-3">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b">
-                  <td className="px-3 py-2 font-mono">isLoading</td>
-                  <td className="px-3 py-2 font-mono">boolean</td>
-                  <td className="px-3 py-2">false</td>
-                  <td className="px-3 py-2">
-                    Shows a loading spinner and blocks interaction.
-                  </td>
-                </tr>
-
-                <tr className="border-b">
-                  <td className="px-3 py-2 font-mono">loadingText</td>
-                  <td className="px-3 py-2 font-mono">string</td>
-                  <td className="px-3 py-2">—</td>
-                  <td className="px-3 py-2">
-                    Text displayed alongside the loading spinner.
-                  </td>
-                </tr>
-
-                <tr className="border-b">
-                  <td className="px-3 py-2 font-mono">loadingIcon</td>
-                  <td className="px-3 py-2 font-mono">ReactNode</td>
-                  <td className="px-3 py-2">—</td>
-                  <td className="px-3 py-2">
-                    Custom icon displayed during loading.
-                  </td>
-                </tr>
-
-                <tr className="border-b">
-                  <td className="px-3 py-2 font-mono">isIconOnly</td>
-                  <td className="px-3 py-2 font-mono">boolean</td>
-                  <td className="px-3 py-2">false</td>
-                  <td className="px-3 py-2">
-                    Displays only the icon. Requires 'ariaLabel' for
-                    accessibility
-                  </td>
-                </tr>
-
-                <tr>
-                  <td className="px-3 py-2 font-mono">ariaLabel</td>
-                  <td className="px-3 py-2 font-mono">string</td>
-                  <td className="px-3 py-2">—</td>
-                  <td className="px-3 py-2">
-                    Descriptive text for screen readers. Mandatory if
-                    'isIconOnly' is true.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        }
-      />
-    </main>
+    </div>
   );
 }
