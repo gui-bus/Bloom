@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -44,6 +48,8 @@ export default function ContextMenuComponentPage() {
         title="Context Menu"
         description="Displays an interactive context menu popup upon right-click or tap-and-hold interaction, without causing page layout shift."
       />
+
+      <ImportSnippet importCode={`import { ContextMenu } from "@/components/ui/contextMenu/contextMenu";`} />
 
       <InstallationBlock componentName="contextMenu" />
 
@@ -285,6 +291,8 @@ export default function ContextMenuComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

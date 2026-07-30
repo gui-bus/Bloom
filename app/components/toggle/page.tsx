@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -28,6 +30,8 @@ export default function ToggleComponentPage() {
         title="Toggle"
         description="A two-state button component that can be toggled on or off for formatting controls, filters, and feature toggles."
       />
+
+      <ImportSnippet importCode={`import { Toggle } from "@/components/ui/toggle/toggle";`} />
 
       <InstallationBlock componentName="toggle" />
 

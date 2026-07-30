@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function BadgeComponentPage() {
         title="Badge"
         description="A compact label used to highlight status, categories, or contextual metadata. Supports multiple color palettes, visual variants, sizes, pressable interactions, and optional dot indicators or icon slots."
       />
+
+      <ImportSnippet importCode={`import { Badge } from "@/components/ui/badge/badge";`} />
 
       <InstallationBlock componentName="badge" />
 

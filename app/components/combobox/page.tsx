@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -42,6 +46,8 @@ export default function ComboboxComponentPage() {
         title="Combobox"
         description="An autocomplete input combo box component allowing users to filter and select options with live search, support for icons, descriptions, clearable values, and individual disabled items."
       />
+
+      <ImportSnippet importCode={`import { Combobox } from "@/components/ui/combobox/combobox";`} />
 
       <InstallationBlock componentName="combobox" />
 
@@ -304,6 +310,8 @@ export default function ComboboxComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

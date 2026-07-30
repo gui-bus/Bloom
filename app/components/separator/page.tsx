@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -25,6 +27,8 @@ export default function SeparatorComponentPage() {
         title="Separator"
         description="Visually or semantically separates content with horizontal/vertical lines, gradients, and section labels."
       />
+
+      <ImportSnippet importCode={`import { Separator } from "@/components/ui/separator/separator";`} />
 
       <InstallationBlock componentName="separator" />
 

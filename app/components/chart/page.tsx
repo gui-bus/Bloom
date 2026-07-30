@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -35,6 +37,8 @@ export default function ChartComponentPage() {
         title="Chart"
         description="A responsive data visualization chart component built on Recharts supporting line and bar series with customizable height, colors, and tooltips."
       />
+
+      <ImportSnippet importCode={`import { Chart } from "@/components/ui/chart/chart";`} />
 
       <InstallationBlock componentName="chart" />
 

@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -42,6 +46,8 @@ export default function DrawerComponentPage() {
         title="Drawer"
         description="A sliding panel primitive supporting positions (bottom, top, left, right), size scales (sm, md, lg, xl, full), customizable backdrop overlays (blur, dark, light), keyboard accessibility, and zero page layout shift."
       />
+
+      <ImportSnippet importCode={`import { Drawer } from "@/components/ui/drawer/drawer";`} />
 
       <InstallationBlock componentName="drawer" />
 
@@ -363,6 +369,8 @@ export default function DrawerComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

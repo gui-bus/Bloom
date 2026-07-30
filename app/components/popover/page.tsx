@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -36,6 +40,8 @@ export default function PopoverComponentPage() {
         title="Popover"
         description="Displays rich content in a portal layer triggered by a button click, with custom backdrop overlays (blur, dark, light) similar to Dialog and Drawer."
       />
+
+      <ImportSnippet importCode={`import { Popover } from "@/components/ui/popover/popover";`} />
 
       <InstallationBlock componentName="popover" />
 
@@ -209,6 +215,8 @@ export default function PopoverComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

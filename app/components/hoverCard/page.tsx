@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -32,6 +36,8 @@ export default function HoverCardComponentPage() {
         title="Hover Card"
         description="For sighted users to preview content available behind a link or trigger when hovered over."
       />
+
+      <ImportSnippet importCode={`import { HoverCard } from "@/components/ui/hoverCard/hoverCard";`} />
 
       <InstallationBlock componentName="hoverCard" />
 
@@ -187,6 +193,8 @@ export default function HoverCardComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

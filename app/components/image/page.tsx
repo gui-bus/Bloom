@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -28,6 +30,8 @@ export default function ImageComponentPage() {
         title="Image"
         description="Enhanced image container with placeholder graphics, loading skeletons, error fallbacks, radius options, zoomable hover effects, and blurred glow backdrop shadow."
       />
+
+      <ImportSnippet importCode={`import { Image } from "@/components/ui/image/image";`} />
 
       <InstallationBlock componentName="image" />
 

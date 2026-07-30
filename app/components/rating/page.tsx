@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -28,6 +30,8 @@ export default function RatingComponentPage() {
         title="Rating"
         description="Interactive star rating component supporting full & half star granularity (allowHalf), custom star counts, color themes, and read-only states."
       />
+
+      <ImportSnippet importCode={`import { Rating } from "@/components/ui/rating/rating";`} />
 
       <InstallationBlock componentName="rating" />
 

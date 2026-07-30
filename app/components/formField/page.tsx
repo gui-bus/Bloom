@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -27,6 +29,8 @@ export default function FormFieldComponentPage() {
         title="Form Field"
         description="A wrapper component providing layout structure, label association, helper descriptions, and error state validation messaging for inputs."
       />
+
+      <ImportSnippet importCode={`import { FormField } from "@/components/ui/formField/formField";`} />
 
       <InstallationBlock componentName="formField" />
 

@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -30,6 +32,8 @@ export default function ResizableComponentPage() {
         title="Resizable"
         description="Accessible resizable panel layout groups with horizontal and vertical drag handles built on react-resizable-panels."
       />
+
+      <ImportSnippet importCode={`import { Resizable } from "@/components/ui/resizable/resizable";`} />
 
       <InstallationBlock componentName="resizable" />
 

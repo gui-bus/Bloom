@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function LinkComponentPage() {
         title="Link"
         description="Accessible navigation hyperlink component built on top of Next.js Link and HTML anchor primitives with variants and external indicators."
       />
+
+      <ImportSnippet importCode={`import { Link } from "@/components/ui/link/link";`} />
 
       <InstallationBlock componentName="link" />
 

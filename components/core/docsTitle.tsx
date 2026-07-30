@@ -44,7 +44,7 @@ const DocsTitle = ({ title, description }: DocsTitleProps) => {
 
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
-      <div>
+      <div className="w-full max-w-3xl">
         <h1 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-100">{title}</h1>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">{description}</p>
       </div>

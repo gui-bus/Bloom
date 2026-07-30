@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -36,6 +38,8 @@ export default function TableComponentPage() {
         title="Table"
         description="A responsive data table for presenting tabular information with custom row highlights, headers, status badges, and captions."
       />
+
+      <ImportSnippet importCode={`import { Table } from "@/components/ui/table/table";`} />
 
       <InstallationBlock componentName="table" />
 

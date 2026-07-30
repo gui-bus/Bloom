@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -27,6 +29,8 @@ export default function ButtonGroupPage() {
         title="Button Group"
         description="ButtonGroup allows grouping multiple buttons together, creating a visually connected set. Propagates variants, colors, sizes, loading, and disabled states to child buttons."
       />
+
+      <ImportSnippet importCode={`import { ButtonGroup } from "@/components/ui/buttonGroup/buttonGroup";`} />
 
       <InstallationBlock componentName="buttonGroup" />
 

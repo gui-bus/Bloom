@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -40,6 +42,8 @@ export default function ScrollAreaComponentPage() {
         title="Scroll Area"
         description="Augments native scroll functionality with custom cross-browser styled scrollbars built on Radix UI primitives."
       />
+
+      <ImportSnippet importCode={`import { ScrollArea } from "@/components/ui/scrollArea/scrollArea";`} />
 
       <InstallationBlock componentName="scrollArea" />
 

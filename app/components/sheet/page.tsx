@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -38,6 +42,8 @@ export default function SheetComponentPage() {
         title="Sheet"
         description="Extends modal dialogs with side drawer panels (left, right, top, bottom) featuring customizable backdrop overlays matching Drawer."
       />
+
+      <ImportSnippet importCode={`import { Sheet } from "@/components/ui/sheet/sheet";`} />
 
       <InstallationBlock componentName="sheet" />
 
@@ -255,6 +261,8 @@ export default function SheetComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

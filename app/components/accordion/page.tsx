@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -34,6 +38,8 @@ export default function AccordionPage() {
         title="Accordion"
         description="A vertically stacked set of interactive headings that expand or collapse associated content sections, supporting controlled states, custom icons, and disabled items."
       />
+
+      <ImportSnippet importCode={`import { Accordion } from "@/components/ui/accordion/accordion";`} />
 
       <InstallationBlock componentName="accordion" />
 
@@ -565,6 +571,8 @@ return (
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

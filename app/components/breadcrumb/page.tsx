@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -40,6 +42,8 @@ export default function BreadcrumbDocsPage() {
         title="Breadcrumb"
         description="A navigational helper that reveals the user's location within a website or web application hierarchy."
       />
+
+      <ImportSnippet importCode={`import { Breadcrumb } from "@/components/ui/breadcrumb/breadcrumb";`} />
 
       <InstallationBlock componentName="breadcrumb" />
 

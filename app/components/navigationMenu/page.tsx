@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -34,6 +38,8 @@ export default function NavigationMenuComponentPage() {
         title="Navigation Menu"
         description="A collection of navigation links and dropdown content cards for site headers built on Radix UI Navigation Menu."
       />
+
+      <ImportSnippet importCode={`import { NavigationMenu } from "@/components/ui/navigationMenu/navigationMenu";`} />
 
       <InstallationBlock componentName="navigationMenu" />
 
@@ -176,6 +182,8 @@ export default function NavigationMenuComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

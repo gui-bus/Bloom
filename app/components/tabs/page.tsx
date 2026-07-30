@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -25,6 +29,8 @@ export default function TabsComponentPage() {
         title="Tabs"
         description="Organizes content into multiple panel views with animated transitions, tab variants (contained, pills, underline, bordered), badges, and icons."
       />
+
+      <ImportSnippet importCode={`import { Tabs } from "@/components/ui/tabs/tabs";`} />
 
       <InstallationBlock componentName="tabs" />
 
@@ -170,6 +176,8 @@ export default function TabsComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

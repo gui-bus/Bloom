@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -37,6 +41,8 @@ export default function DialogComponentPage() {
         title="Dialog"
         description="A modal window component overlaid on the primary view with customizable backdrop blur/dark overlays, size options, keyboard accessibility, and zero layout shift."
       />
+
+      <ImportSnippet importCode={`import { Dialog } from "@/components/ui/dialog/dialog";`} />
 
       <InstallationBlock componentName="dialog" />
 
@@ -272,6 +278,8 @@ export default function DialogComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

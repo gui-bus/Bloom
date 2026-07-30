@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function StatCardComponentPage() {
         title="Stat Card"
         description="Displays key performance metrics, numeric values, trend indicators (+/-), icons, and contextual descriptions."
       />
+
+      <ImportSnippet importCode={`import { StatCard } from "@/components/ui/statCard/statCard";`} />
 
       <InstallationBlock componentName="statCard" />
 

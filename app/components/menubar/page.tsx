@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -38,6 +42,8 @@ export default function MenubarComponentPage() {
         title="Menubar"
         description="A desktop-style horizontal top navigation bar menu with keyboard shortcuts, checkboxes, and submenus."
       />
+
+      <ImportSnippet importCode={`import { Menubar } from "@/components/ui/menubar/menubar";`} />
 
       <InstallationBlock componentName="menubar" />
 
@@ -178,6 +184,8 @@ export default function MenubarComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

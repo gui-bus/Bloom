@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -35,6 +37,8 @@ export default function InputOtpComponentPage() {
         title="Input OTP"
         description="Accessible one-time password input component supporting input mode validation (numeric only, letters only, alphanumeric), custom lengths, separators, and sizes."
       />
+
+      <ImportSnippet importCode={`import { InputOtp } from "@/components/ui/inputOtp/inputOtp";`} />
 
       <InstallationBlock componentName="inputOtp" />
 

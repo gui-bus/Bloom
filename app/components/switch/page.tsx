@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -28,6 +30,8 @@ export default function SwitchComponentPage() {
         title="Switch"
         description="A toggle control allowing users to switch between on and off states with support for labels, descriptions, icons, card layout, and color variants."
       />
+
+      <ImportSnippet importCode={`import { Switch } from "@/components/ui/switch/switch";`} />
 
       <InstallationBlock componentName="switch" />
 

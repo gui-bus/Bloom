@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -27,6 +29,8 @@ export default function LabelComponentPage() {
         title="Label"
         description="Renders an accessible label associated with form controls using Radix UI primitives."
       />
+
+      <ImportSnippet importCode={`import { Label } from "@/components/ui/label/label";`} />
 
       <InstallationBlock componentName="label" />
 

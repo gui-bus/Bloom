@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -65,6 +67,8 @@ export default function DataTableComponentPage() {
         title="Data Table"
         description="A feature-rich data grid component built on TanStack Table supporting client-side searching, column sorting, pagination controls, and CSV data export."
       />
+
+      <ImportSnippet importCode={`import { DataTable } from "@/components/ui/dataTable/dataTable";`} />
 
       <InstallationBlock componentName="dataTable" />
 

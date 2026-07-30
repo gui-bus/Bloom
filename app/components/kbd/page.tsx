@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function KbdComponentPage() {
         title="Kbd"
         description="Display key bindings and keyboard shortcuts with sleek typography, variants, and size scales."
       />
+
+      <ImportSnippet importCode={`import { Kbd } from "@/components/ui/kbd/kbd";`} />
 
       <InstallationBlock componentName="kbd" />
 

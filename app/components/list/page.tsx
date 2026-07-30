@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -27,6 +29,8 @@ export default function ListComponentPage() {
         title="List"
         description="Clean list component for displaying structured items with icons, badges, borders, hover states, and active selection."
       />
+
+      <ImportSnippet importCode={`import { List } from "@/components/ui/list/list";`} />
 
       <InstallationBlock componentName="list" />
 

@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -29,6 +33,8 @@ export default function AlertComponentPage() {
         title="Alert"
         description="Displays a clean contextual banner for user attention with theme-adaptive neutral backgrounds, colored titles & icons, and custom slot support."
       />
+
+      <ImportSnippet importCode={`import { Alert } from "@/components/ui/alert/alert";`} />
 
       <InstallationBlock componentName="alert" />
 
@@ -412,6 +418,8 @@ export default function AlertComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

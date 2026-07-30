@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function SkeletonComponentPage() {
         title="Skeleton"
         description="Renders subtle animated pulse loading placeholders while data or media content is fetching."
       />
+
+      <ImportSnippet importCode={`import { Skeleton } from "@/components/ui/skeleton/skeleton";`} />
 
       <InstallationBlock componentName="skeleton" />
 

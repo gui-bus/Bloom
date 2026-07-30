@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function ColorPickerComponentPage() {
         title="Color Picker"
         description="A visual color selection component featuring a native color input preview, HEX/RGB/HSL format switcher with copy button, and an interactive canvas-based color wheel."
       />
+
+      <ImportSnippet importCode={`import { ColorPicker } from "@/components/ui/colorPicker/colorPicker";`} />
 
       <InstallationBlock componentName="colorPicker" />
 

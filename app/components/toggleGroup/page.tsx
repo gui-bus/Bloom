@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -32,6 +34,8 @@ export default function ToggleGroupComponentPage() {
         title="Toggle Group"
         description="A group of two-state toggle buttons used for single-choice segmented selection or multi-choice formatting toolbars."
       />
+
+      <ImportSnippet importCode={`import { ToggleGroup } from "@/components/ui/toggleGroup/toggleGroup";`} />
 
       <InstallationBlock componentName="toggleGroup" />
 

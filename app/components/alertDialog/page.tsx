@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -37,6 +41,8 @@ export default function AlertDialogComponentPage() {
         title="Alert Dialog"
         description="A confirmation dialog modal that interrupts the user with critical content requiring an explicit response before proceeding."
       />
+
+      <ImportSnippet importCode={`import { AlertDialog } from "@/components/ui/alertDialog/alertDialog";`} />
 
       <InstallationBlock componentName="alertDialog" />
 
@@ -259,6 +265,8 @@ export default function AlertDialogComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

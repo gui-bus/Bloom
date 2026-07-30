@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -38,6 +40,8 @@ export default function PaginationComponentPage() {
         title="Pagination"
         description="Pagination component with page numbers, prev/next controls, first/last jumps, shapes, variants, and sizes."
       />
+
+      <ImportSnippet importCode={`import { Pagination } from "@/components/ui/pagination/pagination";`} />
 
       <InstallationBlock componentName="pagination" />
 

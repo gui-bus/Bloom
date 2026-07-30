@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function TypographyComponentPage() {
         title="Typography"
         description="Standardized typographic text hierarchy styles including headings, body paragraphs, lead copy, colors, and inline code elements."
       />
+
+      <ImportSnippet importCode={`import { Typography } from "@/components/ui/typography/typography";`} />
 
       <InstallationBlock componentName="typography" />
 

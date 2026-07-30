@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -27,6 +29,8 @@ export default function AvatarGroupPage() {
         title="Avatar Group"
         description="Stack multiple avatars together with smooth cubic-bezier hover expansion, orientation support (horizontal or vertical), count truncation, and clean dark/light neutral theme styling."
       />
+
+      <ImportSnippet importCode={`import { AvatarGroup } from "@/components/ui/avatarGroup/avatarGroup";`} />
 
       <InstallationBlock componentName="avatarGroup" />
 

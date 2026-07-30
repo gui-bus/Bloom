@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function ProgressComponentPage() {
         title="Progress"
         description="Displays an indicator showing the completion progress of a task, typically displayed as a progress bar."
       />
+
+      <ImportSnippet importCode={`import { Progress } from "@/components/ui/progress/progress";`} />
 
       <InstallationBlock componentName="progress" />
 

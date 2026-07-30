@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -29,6 +31,8 @@ export default function ToastComponentPage() {
       />
 
       <Toast position="bottom-right" />
+
+      <ImportSnippet importCode={`import { Toast } from "@/components/ui/toast/toast";`} />
 
       <InstallationBlock componentName="toast" />
 

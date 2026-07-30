@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function TextareaComponentPage() {
         title="Textarea"
         description="Multi-line text input field supporting character limits, auto-expanding heights, error validation, variants, and label placements."
       />
+
+      <ImportSnippet importCode={`import { Textarea } from "@/components/ui/textarea/textarea";`} />
 
       <InstallationBlock componentName="textarea" />
 

@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -47,6 +49,8 @@ export default function FormComponentPage() {
         title="Form"
         description="A wrapper component for building forms with React Hook Form integration, validation handlers, and accessible field controls."
       />
+
+      <ImportSnippet importCode={`import { Form } from "@/components/ui/form/form";`} />
 
       <InstallationBlock componentName="form" />
 

@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function CheckboxComponentPage() {
         title="Checkbox"
         description="An accessible control that allows toggling between checked and unchecked states, powered by Radix UI with support for colors, labels, descriptions, and card mode."
       />
+
+      <ImportSnippet importCode={`import { Checkbox } from "@/components/ui/checkbox/checkbox";`} />
 
       <InstallationBlock componentName="checkbox" />
 

@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -29,6 +31,8 @@ export default function ButtonComponentPage() {
         title="Button"
         description="A button is an interactive UI element used to trigger actions such as navigation, form submissions, or contextual commands."
       />
+
+      <ImportSnippet importCode={`import { Button } from "@/components/ui/button/button";`} />
 
       <InstallationBlock componentName="button" />
 

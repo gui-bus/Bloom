@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -32,6 +36,8 @@ export default function TooltipComponentPage() {
         title="Tooltip"
         description="A popup hint label displaying contextual text when hovering or focusing an interactive element."
       />
+
+      <ImportSnippet importCode={`import { Tooltip } from "@/components/ui/tooltip/tooltip";`} />
 
       <InstallationBlock componentName="tooltip" />
 
@@ -167,6 +173,8 @@ export default function TooltipComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

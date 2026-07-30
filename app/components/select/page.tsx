@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -34,6 +38,8 @@ export default function SelectComponentPage() {
         title="Select"
         description="Displays a custom select menu with options, group labels, item indicators, and sizes built on Radix UI Select."
       />
+
+      <ImportSnippet importCode={`import { Select } from "@/components/ui/select/select";`} />
 
       <InstallationBlock componentName="select" />
 
@@ -207,6 +213,8 @@ export default function SelectComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

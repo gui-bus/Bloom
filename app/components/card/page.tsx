@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -35,6 +37,8 @@ export default function CardComponentPage() {
         title="Card"
         description="A content container component supporting headers, bodies, footers, interactive states (hoverable, pressable), custom radii, variants, and clean neutral theme backgrounds."
       />
+
+      <ImportSnippet importCode={`import { Card } from "@/components/ui/card/card";`} />
 
       <InstallationBlock componentName="card" />
 

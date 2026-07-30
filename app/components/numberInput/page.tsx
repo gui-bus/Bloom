@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -28,6 +30,8 @@ export default function NumberInputComponentPage() {
         title="Number Input"
         description="Numeric stepper input control with increment/decrement buttons, min/max limits, custom step sizes, and size options."
       />
+
+      <ImportSnippet importCode={`import { NumberInput } from "@/components/ui/numberInput/numberInput";`} />
 
       <InstallationBlock componentName="numberInput" />
 

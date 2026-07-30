@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -67,6 +69,8 @@ export default function CodeBlockComponentPage() {
         title="Code Block"
         description="A stylized syntax-highlighted code block component with integrated copy button, file name header, language badges, description text, tag pills, and optional expandable container."
       />
+
+      <ImportSnippet importCode={`import { CodeBlock } from "@/components/ui/codeBlock/codeBlock";`} />
 
       <InstallationBlock componentName="codeBlock" />
 

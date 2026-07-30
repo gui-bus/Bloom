@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function SpinnerComponentPage() {
         title="Spinner"
         description="Animated loading indicator featuring multiple visual styles (default, dots, bars, pulse, ring, gradient), color palettes, size scale, and text labels."
       />
+
+      <ImportSnippet importCode={`import { Spinner } from "@/components/ui/spinner/spinner";`} />
 
       <InstallationBlock componentName="spinner" />
 

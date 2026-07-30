@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -29,6 +31,8 @@ export default function SliderComponentPage() {
         title="Slider"
         description="An interactive range slider input allowing users to select single values or range spans with marks, tooltips, and custom formatting."
       />
+
+      <ImportSnippet importCode={`import { Slider } from "@/components/ui/slider/slider";`} />
 
       <InstallationBlock componentName="slider" />
 

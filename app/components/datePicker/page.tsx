@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function DatePickerComponentPage() {
         title="Date Picker"
         description="A visual date selection component featuring an interactive calendar dropdown, date formatting, clearable selection, and error state validation."
       />
+
+      <ImportSnippet importCode={`import { DatePicker } from "@/components/ui/datePicker/datePicker";`} />
 
       <InstallationBlock componentName="datePicker" />
 

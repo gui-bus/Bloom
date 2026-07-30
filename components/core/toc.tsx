@@ -20,7 +20,6 @@ export function TableOfContents() {
 
   const [activeId, setActiveId] = React.useState<string>(sectionParam || "");
 
-  // Scan page for section[id] elements
   React.useEffect(() => {
     const timer = setTimeout(() => {
       const sections = Array.from(
@@ -40,7 +39,6 @@ export function TableOfContents() {
 
       setItems(tocItems);
 
-      // If initial section param exists in URL, scroll to it
       if (sectionParam) {
         const target = document.getElementById(sectionParam);
         if (target) {
@@ -53,7 +51,6 @@ export function TableOfContents() {
     return () => clearTimeout(timer);
   }, [pathname]);
 
-  // Observer active section on scroll and update URL query state
   React.useEffect(() => {
     if (items.length === 0) return;
 
@@ -93,7 +90,7 @@ export function TableOfContents() {
   };
 
   return (
-    <aside className="hidden md:block w-64 shrink-0 px-4 py-8 sticky top-8 h-[calc(100vh-4rem)] overflow-y-auto select-none">
+    <aside className="hidden lg:block w-64 shrink-0 px-4 py-8 sticky top-8 h-[calc(100vh-4rem)] overflow-y-auto select-none">
       <div className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
           On this page

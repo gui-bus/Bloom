@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -46,6 +50,8 @@ export default function DropdownMenuDocsPage() {
         title="Dropdown Menu"
         description="A contextual popover menu presenting a list of actions or shortcuts, powered by Radix UI primitives with zero layout shift."
       />
+
+      <ImportSnippet importCode={`import { DropdownMenu } from "@/components/ui/dropdownMenu/dropdownMenu";`} />
 
       <InstallationBlock componentName="dropdownMenu" />
 
@@ -296,6 +302,8 @@ export default function DropdownMenuDocsPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function AvatarPage() {
         title="Avatar"
         description="Avatars represent a user or entity using an image, initials fallback, or status indicator. Built on top of Radix UI primitive with support for interactive press states and standardized neutral dark/light themes."
       />
+
+      <ImportSnippet importCode={`import { Avatar } from "@/components/ui/avatar/avatar";`} />
 
       <InstallationBlock componentName="avatar" />
 

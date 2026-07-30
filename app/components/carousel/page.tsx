@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -89,6 +91,8 @@ export default function CarouselPage() {
         title="Carousel"
         description="A touch-enabled, responsive slider component for cycling through images, cards, or custom content with support for autoplay, vertical orientation, and pagination dots with navigation controls."
       />
+
+      <ImportSnippet importCode={`import { Carousel } from "@/components/ui/carousel/carousel";`} />
 
       <InstallationBlock componentName="carousel" />
 

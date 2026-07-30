@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function FileUploadComponentPage() {
         title="File Upload"
         description="Drag & drop file upload zone supporting file format restrictions, size limits, multi-file attachments, and staged file item removals."
       />
+
+      <ImportSnippet importCode={`import { FileUpload } from "@/components/ui/fileUpload/fileUpload";`} />
 
       <InstallationBlock componentName="fileUpload" />
 

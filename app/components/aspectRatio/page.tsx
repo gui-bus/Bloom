@@ -1,3 +1,4 @@
+import { ImportSnippet } from "@/components/core/importSnippet";
 import { DocsPagination } from "@/components/core/docsPagination";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import type { Metadata } from "next";
@@ -27,6 +28,8 @@ export default function AspectRatioPage() {
         title="Aspect Ratio"
         description="Displays content within a desired aspect ratio, preserving proportions responsively across viewport sizes."
       />
+
+      <ImportSnippet importCode={`import { AspectRatio } from "@/components/ui/aspectRatio/aspectRatio";`} />
 
       <InstallationBlock componentName="aspectRatio" />
 

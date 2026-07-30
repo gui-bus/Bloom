@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -28,6 +30,8 @@ export default function RadioGroupComponentPage() {
         title="Radio Group"
         description="A set of checkable radio buttons where only one option can be checked at a time, featuring card selection styles and descriptions."
       />
+
+      <ImportSnippet importCode={`import { RadioGroup } from "@/components/ui/radioGroup/radioGroup";`} />
 
       <InstallationBlock componentName="radioGroup" />
 

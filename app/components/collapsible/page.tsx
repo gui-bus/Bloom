@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -169,6 +171,8 @@ export default function CollapsiblePage() {
         title="Collapsible"
         description="An interactive component that expands and collapses content panels with smooth height transitions, built on Radix UI Primitives."
       />
+
+      <ImportSnippet importCode={`import { Collapsible } from "@/components/ui/collapsible/collapsible";`} />
 
       <InstallationBlock componentName="collapsible" />
 

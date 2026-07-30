@@ -1,5 +1,9 @@
 "use client";
 
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -35,6 +39,8 @@ export default function CommandComponentPage() {
         title="Command"
         description="A fast, composable, spotlight-style command menu palette built on cmdk for keyboard-driven navigation and search actions."
       />
+
+      <ImportSnippet importCode={`import { Command } from "@/components/ui/command/command";`} />
 
       <InstallationBlock componentName="command" />
 
@@ -172,6 +178,8 @@ export default function CommandComponentPage() {
         }
       />
     
+      <AccessibilityCard />
+
       <DocsPagination />
     </div>
   );

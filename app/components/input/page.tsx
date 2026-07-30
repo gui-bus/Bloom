@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -26,6 +28,8 @@ export default function InputComponentPage() {
         title="Input"
         description="A flexible, accessible text input field supporting visual style variants, size scales, prefix/suffix icon slots, clearable buttons, password toggles, and validation feedback."
       />
+
+      <ImportSnippet importCode={`import { Input } from "@/components/ui/input/input";`} />
 
       <InstallationBlock componentName="input" />
 

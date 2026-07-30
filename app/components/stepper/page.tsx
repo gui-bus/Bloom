@@ -1,5 +1,7 @@
 "use client";
 
+import { ImportSnippet } from "@/components/core/importSnippet";
+
 import { DocsPagination } from "@/components/core/docsPagination";
 
 import { InstallationBlock } from "@/components/core/installationBlock";
@@ -36,6 +38,8 @@ export default function StepperComponentPage() {
         title="Stepper"
         description="Guides users through multi-step forms or workflows with progress indicators, status titles, icons, and interactive step navigation."
       />
+
+      <ImportSnippet importCode={`import { Stepper } from "@/components/ui/stepper/stepper";`} />
 
       <InstallationBlock componentName="stepper" />
 
