@@ -132,7 +132,7 @@ export function Sidebar() {
   const isDark = mounted && resolvedTheme === "dark";
 
   return (
-    <aside className="fixed top-0 left-0 h-screen w-64 border-r border-zinc-200/50 dark:border-zinc-800/50 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-xl px-4 py-6 flex flex-col justify-between transition-all duration-300 z-50">
+    <aside className="fixed h-screen w-64 border-r border-zinc-200/50 dark:border-zinc-800/50 bg-white dark:bg-zinc-950/80 px-4 py-6 flex flex-col justify-between transition-all duration-300 z-50">
       <div className="flex flex-col gap-5 overflow-hidden flex-1">
         <div className="px-1">
           <SidebarHeader />

@@ -17,13 +17,13 @@ export function SidebarHeader() {
 
   return (
     <div className="flex flex-col gap-4 mb-2">
-      <div className="flex items-center justify-between">
-        <Link href="/" className="relative h-10 w-28 block">
+      <div className="flex items-center justify-center w-full">
+        <Link href="/" className="relative h-32 w-44 block">
           <Image
             src={isDark ? "/logo/logo_white.svg" : "/logo/logo_black.svg"}
             alt="Bloom Logo"
             fill
-            className="object-contain object-left cursor-pointer"
+            className="object-contain cursor-pointer"
             priority
           />
         </Link>

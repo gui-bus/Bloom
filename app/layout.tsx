@@ -65,7 +65,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${montserrat.variable} ${firacode.variable} antialiased font-sans bg-background text-foreground transition-colors duration-200`}
+        className={`${montserrat.variable} ${firacode.variable} antialiased font-sans bg-background dark:bg-neutral-950/80 text-foreground transition-colors duration-200 w-full! max-w-[110rem]! mx-auto!`}
       >
         <ThemeProvider
           attribute="class"
@@ -73,9 +73,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative mx-auto w-full max-w-[110rem] min-h-screen">
+          <div className="flex gap-5">
             <Sidebar />
-            <main className="ml-64 min-h-screen p-8 transition-all duration-300">
+            <main className="ml-64 p-8 transition-all duration-300">
               {children}
             </main>
           </div>

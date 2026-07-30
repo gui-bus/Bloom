@@ -66,7 +66,7 @@ export function CodeBlock({
     : language;
 
   return (
-    <div className="relative bg-[#282a36] rounded-3xl p-5">
+    <div className="relative bg-[#282C34] rounded-3xl p-5">
       
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between gap-5">

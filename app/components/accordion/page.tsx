@@ -56,7 +56,7 @@ export default function AccordionPage() {
         title="Default"
         description="A standard, uncontrolled accordion allowing vertical expansion and collapse of content sections."
         preview={
-          <div className="w-full max-w-xl">
+          <div className="w-full">
             <Accordion type="single" collapsible defaultValue="item-1">
               <AccordionItem value="item-1">
                 <AccordionTrigger>Is it accessible?</AccordionTrigger>
@@ -101,7 +101,7 @@ export default function AccordionPage() {
         title="Controlled"
         description="Control which panel is currently open programmatically using the 'value' and 'onValueChange' props."
         preview={
-          <div className="w-full max-w-xl space-y-4">
+          <div className="w-full  space-y-4">
             <div className="flex flex-wrap items-center gap-2">
               <Button
                 size="sm"
@@ -195,7 +195,7 @@ return (
         title="Start & End Icons (startContent & endContent)"
         description="Add custom icons before the title using 'startContent', or customize/replace the right-side arrow indicator using 'endContent'."
         preview={
-          <div className="w-full max-w-xl">
+          <div className="w-full ">
             <Accordion type="single" collapsible defaultValue="item-1" variant="splitted">
               <AccordionItem value="item-1">
                 <AccordionTrigger
@@ -257,7 +257,7 @@ return (
         title="Disabled State (isDisabled)"
         description="Disable specific accordion items or an entire accordion block using the 'isDisabled' (or 'disabled') prop."
         preview={
-          <div className="w-full max-w-xl space-y-6">
+          <div className="w-full  space-y-6">
             <div>
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
                 Specific Disabled Item
@@ -322,7 +322,7 @@ return (
         title="Variants"
         description="Choose from multiple visual styles using the 'variant' prop ('default', 'bordered', 'splitted', 'shadow', 'compact')."
         preview={
-          <div className="w-full max-w-xl space-y-6">
+          <div className="w-full  space-y-6">
             <div>
               <span className="text-xs font-mono text-muted-foreground block mb-2">variant="default"</span>
               <Accordion type="single" collapsible defaultValue="item-1" variant="default">
