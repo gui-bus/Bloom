@@ -11,7 +11,8 @@ type BadgeColor =
   | "accent"
   | "success"
   | "warning"
-  | "danger";
+  | "danger"
+  | "info";
 
 type BadgeVariant = "default" | "bordered" | "flat" | "ghost" | "shadow" | "dot";
 
@@ -98,6 +99,14 @@ const badgeColorMap: Record<BadgeColor, Record<BadgeVariant, string>> = {
     shadow: "bg-rose-600 text-white dark:bg-rose-500 shadow-md shadow-rose-500/20",
     dot: "bg-transparent text-rose-600 dark:text-rose-400 border border-transparent",
   },
+  info: {
+    default: "bg-blue-600 text-white dark:bg-blue-500 dark:text-white",
+    bordered: "border border-blue-500 text-blue-600 dark:text-blue-400 bg-transparent",
+    flat: "bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-transparent",
+    ghost: "bg-transparent text-blue-600 dark:text-blue-400 border border-transparent",
+    shadow: "bg-blue-600 text-white dark:bg-blue-500 shadow-md shadow-blue-500/20",
+    dot: "bg-transparent text-blue-600 dark:text-blue-400 border border-transparent",
+  },
 };
 
 const dotColorMap: Record<BadgeColor, string> = {
@@ -108,6 +117,7 @@ const dotColorMap: Record<BadgeColor, string> = {
   success: "bg-emerald-500",
   warning: "bg-amber-500",
   danger: "bg-rose-500",
+  info: "bg-blue-500",
 };
 
 const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(

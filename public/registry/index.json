@@ -261,12 +261,6 @@
     ]
   },
   {
-    "name": "sidebar",
-    "dependencies": [
-      "lucide-react"
-    ]
-  },
-  {
     "name": "label",
     "dependencies": [
       "@radix-ui/react-label",

@@ -142,9 +142,9 @@ export default function TreeViewPage() {
       <Separator label={<span className="px-2">Accessibility</span>} gradient />
 
       <AccessibilityCard
-        keyboardShortcuts={[
-          { keys: ["Enter", "Space"], description: "Select and toggle expand/collapse of focused node" },
-          { keys: ["Tab"], description: "Move focus to the next focusable element" },
+        shortcuts={[
+          { key: "Enter / Space", description: "Select and toggle expand/collapse of focused node" },
+          { key: "Tab", description: "Move focus to the next focusable element" },
         ]}
       />
 

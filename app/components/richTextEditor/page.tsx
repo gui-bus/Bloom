@@ -113,15 +113,15 @@ export default function RichTextEditorPage() {
       <Separator label={<span className="px-2">Accessibility</span>} gradient />
 
       <AccessibilityCard
-        keyboardShortcuts={[
-          { keys: ["Ctrl/⌘", "B"], description: "Toggle bold formatting" },
-          { keys: ["Ctrl/⌘", "I"], description: "Toggle italic formatting" },
-          { keys: ["Ctrl/⌘", "Shift", "X"], description: "Toggle strikethrough" },
-          { keys: ["Ctrl/⌘", "Shift", "7"], description: "Toggle ordered list" },
-          { keys: ["Ctrl/⌘", "Shift", "8"], description: "Toggle bullet list" },
-          { keys: ["Ctrl/⌘", "Shift", "B"], description: "Toggle blockquote" },
-          { keys: ["Tab"], description: "Indent list item" },
-          { keys: ["Shift", "Tab"], description: "Outdent list item" },
+        shortcuts={[
+          { key: "Ctrl/⌘ + B", description: "Toggle bold formatting" },
+          { key: "Ctrl/⌘ + I", description: "Toggle italic formatting" },
+          { key: "Ctrl/⌘ + Shift + X", description: "Toggle strikethrough" },
+          { key: "Ctrl/⌘ + Shift + 7", description: "Toggle ordered list" },
+          { key: "Ctrl/⌘ + Shift + 8", description: "Toggle bullet list" },
+          { key: "Ctrl/⌘ + Shift + B", description: "Toggle blockquote" },
+          { key: "Tab", description: "Indent list item" },
+          { key: "Shift + Tab", description: "Outdent list item" },
         ]}
       />
 

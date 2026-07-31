@@ -21,22 +21,25 @@ const Breadcrumb = React.forwardRef<
 
     React.Children.forEach(children, (child) => {
       if (React.isValidElement(child) && child.type === BreadcrumbList) {
-        React.Children.forEach(child.props.children, (item) => {
+        const listProps = (child as React.ReactElement<any>).props;
+        React.Children.forEach(listProps.children, (item) => {
           if (React.isValidElement(item) && item.type === BreadcrumbItem) {
-            React.Children.forEach(item.props.children, (link) => {
+            const itemProps = (item as React.ReactElement<any>).props;
+            React.Children.forEach(itemProps.children, (link) => {
               if (React.isValidElement(link)) {
-                if (link.type === BreadcrumbLink && link.props.href) {
+                const linkEl = link as React.ReactElement<any>;
+                if (linkEl.type === BreadcrumbLink && linkEl.props.href) {
                   itemListElement.push({
                     "@type": "ListItem",
                     position: position++,
-                    name: link.props.children,
-                    item: link.props.href,
+                    name: linkEl.props.children,
+                    item: linkEl.props.href,
                   });
-                } else if (link.type === BreadcrumbPage) {
+                } else if (linkEl.type === BreadcrumbPage) {
                   itemListElement.push({
                     "@type": "ListItem",
                     position: position++,
-                    name: link.props.children,
+                    name: linkEl.props.children,
                   });
                 }
               }
@@ -138,7 +141,7 @@ const BreadcrumbEllipsisDropdown = ({
             {cleanItems.map((item, idx) => (
               <div key={idx} className="px-2 py-1 text-xs hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg">
                 {React.isValidElement(item) && item.type === BreadcrumbItem
-                  ? item.props.children
+                  ? (item as React.ReactElement<any>).props.children
                   : item}
               </div>
             ))}

@@ -31,24 +31,26 @@ function DefaultDemo() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full space-y-2">
-      <div className="flex items-center justify-between gap-4 px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-        <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">@guilherme starred 3 repositories</h4>
-        <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="sm" isIconOnly ariaLabel="Toggle details">
+    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full space-y-3">
+      <CollapsibleTrigger asChild>
+        <button
+          type="button"
+          className="w-full flex items-center justify-between gap-4 px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 text-left cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+        >
+          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">@guilherme starred 3 repositories</h4>
+          <span className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 transition-colors">
             <Icon
               icon="hugeicons:arrow-down-01"
               className={`size-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
             />
-          </Button>
-        </CollapsibleTrigger>
-      </div>
+          </span>
+        </button>
+      </CollapsibleTrigger>
 
-      <div className="px-4 py-3 font-mono text-sm border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 text-zinc-700 dark:text-zinc-300">
-        @bloomui/core
-      </div>
-
-      <CollapsibleContent className="space-y-2">
+      <CollapsibleContent className="space-y-3">
+        <div className="px-4 py-3 font-mono text-sm border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 text-zinc-700 dark:text-zinc-300">
+          @bloomui/core
+        </div>
         <div className="px-4 py-3 font-mono text-sm border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 text-zinc-700 dark:text-zinc-300">
           @bloomui/cli
         </div>
@@ -64,20 +66,23 @@ function DefaultOpenDemo() {
   const [isOpen, setIsOpen] = React.useState(true);
 
   return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full space-y-2">
-      <div className="flex items-center justify-between gap-4 px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-        <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Project Settings</h4>
-        <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="sm" isIconOnly ariaLabel="Toggle settings">
+    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full space-y-3">
+      <CollapsibleTrigger asChild>
+        <button
+          type="button"
+          className="w-full flex items-center justify-between gap-4 px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 text-left cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+        >
+          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Project Settings</h4>
+          <span className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 transition-colors">
             <Icon
               icon="hugeicons:arrow-down-01"
               className={`size-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
             />
-          </Button>
-        </CollapsibleTrigger>
-      </div>
+          </span>
+        </button>
+      </CollapsibleTrigger>
 
-      <CollapsibleContent className="space-y-2">
+      <CollapsibleContent className="space-y-3">
         <div className="px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 flex items-center justify-between">
           <span className="text-sm text-zinc-700 dark:text-zinc-300">Notifications</span>
           <Badge color="success">Enabled</Badge>
@@ -98,14 +103,18 @@ function DefaultOpenDemo() {
 function DisabledDemo() {
   return (
     <Collapsible disabled className="w-full space-y-2">
-      <div className="flex items-center justify-between gap-4 px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 opacity-60">
-        <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Archived Project (disabled)</h4>
-        <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="sm" isIconOnly ariaLabel="Disabled toggle" isDisabled>
+      <CollapsibleTrigger asChild>
+        <button
+          type="button"
+          disabled
+          className="w-full flex items-center justify-between gap-4 px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 text-left opacity-60 cursor-not-allowed"
+        >
+          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Archived Project (disabled)</h4>
+          <span className="p-1.5 rounded-lg text-zinc-500">
             <Icon icon="hugeicons:arrow-down-01" className="size-4" />
-          </Button>
-        </CollapsibleTrigger>
-      </div>
+          </span>
+        </button>
+      </CollapsibleTrigger>
 
       <CollapsibleContent className="space-y-2">
         <div className="px-4 py-3 font-mono text-sm border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 text-zinc-700 dark:text-zinc-300">
@@ -164,12 +173,47 @@ function CardStyleDemo() {
   );
 }
 
+function LazyRenderingDemo() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full space-y-2">
+      <CollapsibleTrigger asChild>
+        <button
+          type="button"
+          className="w-full flex items-center justify-between gap-4 px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 text-left cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+        >
+          <div>
+            <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Heavy Analytics Module (Lazy)</h4>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">Content only renders in DOM when expanded for the first time</p>
+          </div>
+          <span className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 transition-colors">
+            <Icon
+              icon="hugeicons:arrow-down-01"
+              className={`size-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+            />
+          </span>
+        </button>
+      </CollapsibleTrigger>
+
+      <CollapsibleContent lazy className="space-y-2">
+        <div className="p-4 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 space-y-2">
+          <p className="text-sm text-zinc-700 dark:text-zinc-300">
+            📊 Heavy charts and complex datasets loaded lazily!
+          </p>
+          <Badge color="primary">Lazy Mounted</Badge>
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
+
 export default function CollapsiblePage() {
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Collapsible"
-        description="An interactive component that expands and collapses content panels with smooth height transitions, built on Radix UI Primitives."
+        description="An interactive component that expands and collapses content panels with smooth CSS Grid auto-height transitions and optional lazy content rendering."
       />
 
       <ImportSnippet importCode={`import { Collapsible } from "@/components/ui/collapsible/collapsible";`} />
@@ -218,6 +262,30 @@ export default function CollapsiblePage() {
     <div className="px-4 py-3 font-mono text-sm border rounded-xl">@bloomui/react</div>
   </CollapsibleContent>
 </Collapsible>`}
+      />
+
+      {/* Lazy Content Rendering */}
+      <DocsComponent
+        title="Lazy Content Rendering"
+        description="Defers rendering of child components until the panel is expanded for the first time, optimizing initial load performance."
+        preview={<LazyRenderingDemo />}
+        code={`<Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full space-y-2">
+  <div className="flex items-center justify-between gap-4 px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+    <h4>Heavy Analytics Module (Lazy)</h4>
+    <CollapsibleTrigger asChild>
+      <Button variant="ghost" size="sm" isIconOnly ariaLabel="Toggle analytics">
+        <Icon icon="hugeicons:arrow-down-01" className={\`size-4 transition-transform \${isOpen ? "rotate-180" : ""}\`} />
+      </Button>
+    </CollapsibleTrigger>
+  </div>
+
+  <CollapsibleContent lazy className="space-y-2">
+    <div className="p-4 border rounded-xl">
+      📊 Heavy charts and complex datasets loaded lazily!
+    </div>
+  </CollapsibleContent>
+</Collapsible>`}
+        props={["lazy: boolean"]}
       />
 
       {/* Default Open */}
@@ -301,8 +369,8 @@ export default function CollapsiblePage() {
 
       {/* Props Collapsible Table */}
       <DocsComponent
-        title="Props — Collapsible"
-        description="Properties for configuring the Collapsible component."
+        title="Props — Collapsible & CollapsibleContent"
+        description="Properties for configuring the Collapsible and CollapsibleContent components."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -339,12 +407,20 @@ export default function CollapsiblePage() {
                     Callback function fired when the open state changes.
                   </td>
                 </tr>
-                <tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">disabled</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Disables interaction with the collapsible trigger.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">lazy</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Defers rendering child DOM elements until expanded for the first time.
                   </td>
                 </tr>
               </tbody>

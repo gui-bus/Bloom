@@ -214,7 +214,7 @@ const Checkbox = React.forwardRef<
 
     const isGrouped = groupContext && itemValue !== undefined;
     const isChecked = isGrouped
-      ? groupContext.value.includes(itemValue)
+      ? groupContext.value.includes(String(itemValue))
       : checked;
     const effectiveDisabled = disabled || groupContext?.isDisabled;
     const effectiveInvalid = isInvalid || groupContext?.isInvalid;
@@ -223,7 +223,7 @@ const Checkbox = React.forwardRef<
 
     const handleCheckedChange = (newChecked: CheckboxPrimitive.CheckedState) => {
       if (isGrouped) {
-        groupContext.toggleValue(itemValue);
+        groupContext.toggleValue(String(itemValue));
       } else {
         onCheckedChange?.(newChecked);
       }
@@ -316,5 +316,5 @@ const Checkbox = React.forwardRef<
 );
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 
-export { Checkbox, CheckboxGroup, useCheckboxGroup };
+export { Checkbox, CheckboxGroup };
 `;

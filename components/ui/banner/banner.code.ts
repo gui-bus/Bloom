@@ -1,4 +1,4 @@
-"use client";
+export const bannerCode = `"use client";
 
 import React from "react";
 import { cn } from "@/lib/utils";
@@ -40,7 +40,7 @@ export function Banner({
 
   React.useEffect(() => {
     if (storageKey && typeof window !== "undefined") {
-      const dismissed = localStorage.getItem(`bloom-banner-dismissed-${storageKey}`);
+      const dismissed = localStorage.getItem(\`bloom-banner-dismissed-\${storageKey}\`);
       if (dismissed === "true") {
         setIsDismissed(true);
       }
@@ -50,7 +50,7 @@ export function Banner({
   const handleDismiss = () => {
     setIsDismissed(true);
     if (storageKey && typeof window !== "undefined") {
-      localStorage.setItem(`bloom-banner-dismissed-${storageKey}`, "true");
+      localStorage.setItem(\`bloom-banner-dismissed-\${storageKey}\`, "true");
     }
     onDismiss?.();
   };
@@ -161,3 +161,4 @@ export function Banner({
     </div>
   );
 }
+`;

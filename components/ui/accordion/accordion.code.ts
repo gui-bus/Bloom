@@ -29,7 +29,7 @@ type AccordionProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.R
 const Accordion = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Root>,
   AccordionProps
->(({ className, variant = "default", isDisabled, disabled, isKeepMounted = false, type = "single", collapsible = true, ...props }, ref) => {
+>(({ className, variant = "default", isDisabled, disabled, isKeepMounted = false, ...props }, ref) => {
   const isAccordionDisabled = isDisabled || disabled;
 
   const rootClasses = cn(
@@ -44,8 +44,6 @@ const Accordion = React.forwardRef<
     <AccordionContext.Provider value={{ variant, isKeepMounted }}>
       <AccordionPrimitive.Root
         ref={ref}
-        type={type as any}
-        collapsible={collapsible as any}
         disabled={isAccordionDisabled}
         className={rootClasses}
         {...props}
