@@ -209,26 +209,6 @@ pnpm test:e2e
 
 ---
 
-## 🏁 Inicialização Local
-
-### 1. Clonar e Instalar
-
-```bash
-git clone https://github.com/gui-bus/Bloom.git
-cd Bloom
-pnpm install
-```
-
-### 2. Rodar Ambiente de Desenvolvimento
-
-```bash
-pnpm dev
-```
-
-Abra [http://localhost:3000](http://localhost:3000) no seu navegador para explorar o portal de documentação interativo.
-
----
-
 ## 📑 Documentação Técnica Adicional
 
 Consulte a pasta [`/docs`](./docs/README.md) para detalhamentos adicionais de arquitetura:
