@@ -7,7 +7,6 @@ Este documento especifica a infraestrutura técnica do portal de documentação 
 ## 🏛️ Estrutura de Pastas do Monorepo
 
 ```bash
-├── .github/workflows/    # Esteira de Integração Contínua (GitHub Actions)
 ├── __tests__/           # Configurações globais e mocks do Vitest
 ├── app/                  # Rotas e páginas da documentação (Next.js App Router)
 │   ├── components/       # Páginas de visualização dos componentes (Button, Tabs, Stepper, etc.)

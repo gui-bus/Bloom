@@ -61,7 +61,6 @@ A CLI detecta automaticamente o seu gerenciador de pacotes (`npm`, `pnpm`, `yarn
   <img alt="Vitest" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Vitest.svg">
   <img alt="Playwright" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Playwright.svg">
   <img alt="Biome" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Biome.svg">
-  <img alt="Github Actions" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Github%20Actions.svg">
 </div>
 
 ---
@@ -94,7 +93,6 @@ graph TB
     subgraph CI ["🧪 Testing & Quality Gate"]
         Vitest["🧪 Vitest + JSDOM (Unit Tests)"]
         Playwright["🎭 Playwright (E2E Integration)"]
-        Actions["🚀 GitHub Actions Workflow"]
     end
 
     DocPage -->|Exibe| DocsComponent
@@ -109,8 +107,6 @@ graph TB
     
     UI -.->|Validado por| Vitest
     DocPage -.->|Automatizado por| Playwright
-    Vitest -.->|Garante aprovação no| Actions
-    Playwright -.->|Garante aprovação no| Actions
 ```
 
 ---
