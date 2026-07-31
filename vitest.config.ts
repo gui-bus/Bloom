@@ -20,6 +20,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./"),
     },
     maxWorkers: 1,
-    minWorkers: 1,
   },
 });
