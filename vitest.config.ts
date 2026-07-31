@@ -13,6 +13,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
+    isolate: false,
     pool: "forks",
     execArgv: ["--max-old-space-size=8192"],
   },
