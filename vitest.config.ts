@@ -19,7 +19,6 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
-    fileParallelism: false,
-    pool: "threads",
+    pool: "vmThreads",
   },
 });
