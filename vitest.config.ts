@@ -6,7 +6,7 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: "happy-dom",
+    environment: "jsdom",
     globals: true,
     setupFiles: "./__tests__/setup.ts",
     exclude: [
@@ -19,6 +19,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
+    fileParallelism: false,
     pool: "threads",
   },
 });
