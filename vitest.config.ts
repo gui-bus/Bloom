@@ -19,6 +19,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
-    pool: "vmThreads",
+    maxWorkers: 1,
+    minWorkers: 1,
   },
 });
