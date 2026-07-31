@@ -15,6 +15,9 @@ afterEach(() => {
     document.body.innerHTML = "";
     document.head.innerHTML = "";
   }
+  if (typeof global.gc === "function") {
+    global.gc();
+  }
 });
 
 // Mock ResizeObserver
