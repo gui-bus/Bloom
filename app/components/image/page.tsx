@@ -154,6 +154,31 @@ export default function ImageComponentPage() {
         props={["aspectRatio: 'auto' | 'square' | 'video' | '4/3' | '21/9'"]}
       />
 
+      {/* Lightbox Zoom, Blur-up & Fallback */}
+      <DocsComponent
+        title="Lightbox Zoom Modal, Progressive Blur-up & Fallback URL"
+        description="Click an image with 'enableLightbox' to open full-screen lightbox preview, show smooth low-res blur-up placeholders, and recover with 'fallbackSrc' when primary image URL fails."
+        preview={
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl w-full">
+            <Image
+              src={sampleImage}
+              enableLightbox
+              alt="Lightbox landscape"
+              caption="Click image to launch full-screen Lightbox modal"
+            />
+            <Image
+              src="https://invalid-broken-domain.com/broken.jpg"
+              fallbackSrc={sampleImage}
+              alt="Recovered fallback"
+              caption="Broken primary URL recovered using fallbackSrc"
+            />
+          </div>
+        }
+        code={`<Image src="..." enableLightbox caption="Click for lightbox modal" />
+<Image src="broken.jpg" fallbackSrc="https://..." caption="URL Recovery fallback" />`}
+        props={["enableLightbox: boolean", "fallbackSrc: string", "blurUpPlaceholder: string"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}
@@ -173,44 +198,28 @@ export default function ImageComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">enableLightbox</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Opens full-screen lightbox modal on click preview.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">fallbackSrc</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Backup image source loaded automatically if main URL fails.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">blurUpPlaceholder</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Low-res placeholder image URL displayed with blur effect during load.</td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">placeholder</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">Renders the default placeholder vector SVG graphic.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">src</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">URL source of the image.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isZoomable</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables smooth zoom effect on hover.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isBlurred</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders ambient glow backdrop shadow.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'2xl'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Border radius style variant.</td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">aspectRatio</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'auto' | 'square' | 'video' | '4/3' | '21/9'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'auto'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Aspect ratio constraint.</td>
                 </tr>
               </tbody>
             </table>

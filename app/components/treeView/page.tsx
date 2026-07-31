@@ -139,6 +139,95 @@ export default function TreeViewPage() {
 </TreeView>`}
       />
 
+      {/* Checkbox Multi-Selection */}
+      <DocsComponent
+        title="Checkbox Multi-Selection"
+        description="Enable checkbox selection on nodes with isCheckable={true} and monitor selected nodes with onCheckedChange."
+        preview={
+          <div className="w-full max-w-sm p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 space-y-3">
+            <TreeView isCheckable defaultExpanded={["src"]}>
+              <TreeNode id="src" label="src">
+                <TreeNode id="components" label="components.tsx" />
+                <TreeNode id="styles" label="globals.css" />
+              </TreeNode>
+              <TreeNode id="readme" label="README.md" />
+            </TreeView>
+          </div>
+        }
+        code={`<TreeView isCheckable defaultExpanded={["src"]} onCheckedChange={(ids) => console.log(ids)}>
+  <TreeNode id="src" label="src">
+    <TreeNode id="components" label="components.tsx" />
+  </TreeNode>
+</TreeView>`}
+        props={["isCheckable: boolean", "onCheckedChange?: (ids: string[]) => void"]}
+      />
+
+      {/* Drag & Drop Reordering */}
+      <DocsComponent
+        title="Drag & Drop Node Reordering"
+        description="Enable interactive drag-and-drop node reordering and nesting with isReorderable={true} and save state with onReorder."
+        preview={
+          <React.Fragment>
+            {(() => {
+              const ReorderDemo = () => {
+                const [treeData, setTreeData] = React.useState<import("@/components/ui/treeView/treeView").TreeDataItem[]>([
+                  { id: "folder-1", label: "Folder 1", children: [{ id: "file-1", label: "File A.tsx" }, { id: "file-2", label: "File B.tsx" }] },
+                  { id: "folder-2", label: "Folder 2", children: [{ id: "file-3", label: "File C.tsx" }] },
+                ]);
+
+                return (
+                  <div className="w-full max-w-sm p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+                    <p className="text-xs text-zinc-400 mb-2 font-mono">Drag nodes to reorder</p>
+                    <TreeView
+                      isReorderable
+                      defaultExpanded={["folder-1", "folder-2"]}
+                      data={treeData}
+                      onReorder={(newData) => setTreeData(newData)}
+                    />
+                  </div>
+                );
+              };
+              return <ReorderDemo />;
+            })()}
+          </React.Fragment>
+        }
+        code={`const [treeData, setTreeData] = useState(initialTree);
+
+<TreeView
+  isReorderable
+  data={treeData}
+  onReorder={(newData) => setTreeData(newData)}
+/>`}
+        props={["isReorderable: boolean", "onReorder: (newData) => void"]}
+      />
+
+      {/* Async Lazy Loading */}
+      <DocsComponent
+        title="Async Lazy Loading"
+        description="Fetch child nodes dynamically on demand when expanding folders using onLoadChildren."
+        preview={
+          <div className="w-full max-w-sm p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+            <TreeView
+              data={[
+                { id: "remote-1", label: "Remote Server Logs (Click to load)" },
+                { id: "remote-2", label: "Cloud Backups (Click to load)" },
+              ]}
+              onLoadChildren={async (id) => {
+                await new Promise((resolve) => setTimeout(resolve, 1500));
+              }}
+            />
+          </div>
+        }
+        code={`<TreeView
+  data={initialData}
+  onLoadChildren={async (nodeId) => {
+    const children = await fetchChildNodes(nodeId);
+    return children;
+  }}
+/>`}
+        props={["onLoadChildren: (id: string) => Promise<TreeDataItem[]>"]}
+      />
+
       <Separator label={<span className="px-2">Accessibility</span>} gradient />
 
       <AccessibilityCard

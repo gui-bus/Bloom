@@ -37,6 +37,48 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
 
+function TargetWrapperDemo() {
+  const targetRef = React.useRef<HTMLDivElement>(null);
+
+  return (
+    <div className="w-full space-y-4">
+      <div
+        ref={targetRef}
+        className="p-6 rounded-2xl border border-sky-200 dark:border-sky-900/40 bg-sky-50/50 dark:bg-sky-950/20 text-center select-none cursor-pointer"
+      >
+        <p className="text-sm font-semibold text-sky-900 dark:text-sky-200">
+          Target Element Attached via Ref
+        </p>
+        <p className="text-xs text-sky-600 dark:text-sky-400 mt-1">
+          Right click anywhere on this custom card box
+        </p>
+      </div>
+
+      <ContextMenu>
+        <ContextMenuTrigger target={targetRef} />
+        <ContextMenuContent>
+          <ContextMenuItem>
+            <Icon icon="hugeicons:copy-01" className="size-4 mr-2" />
+            <span>Copy Target Content</span>
+            <ContextMenuShortcut>Ctrl + C</ContextMenuShortcut>
+          </ContextMenuItem>
+          <ContextMenuItem>
+            <Icon icon="hugeicons:share-01" className="size-4 mr-2" />
+            <span>Share Element</span>
+            <ContextMenuShortcut>Ctrl + S</ContextMenuShortcut>
+          </ContextMenuItem>
+          <ContextMenuSeparator />
+          <ContextMenuItem color="danger">
+            <Icon icon="hugeicons:delete-02" className="size-4 mr-2" />
+            <span>Remove Target</span>
+            <ContextMenuShortcut>Shift + Del</ContextMenuShortcut>
+          </ContextMenuItem>
+        </ContextMenuContent>
+      </ContextMenu>
+    </div>
+  );
+}
+
 export default function ContextMenuComponentPage() {
   const [showBookmarks, setShowBookmarks] = React.useState(true);
   const [showFullUrls, setShowFullUrls] = React.useState(false);
@@ -46,10 +88,10 @@ export default function ContextMenuComponentPage() {
     <div className="space-y-8">
       <DocsTitle
         title="Context Menu"
-        description="Displays an interactive context menu popup upon right-click or tap-and-hold interaction, without causing page layout shift."
+        description="Displays an interactive context menu popup upon right-click or tap-and-hold interaction, supporting target element binding, nested submenus with smooth hover delays, keyboard shortcuts, and selectable toggles."
       />
 
-      <ImportSnippet importCode={`import { ContextMenu } from "@/components/ui/contextMenu/contextMenu";`} />
+      <ImportSnippet importCode={`import { ContextMenu, ContextMenuTrigger, ContextMenuContent } from "@/components/ui/contextMenu/contextMenu";`} />
 
       <InstallationBlock componentName="contextMenu" />
 
@@ -67,82 +109,39 @@ export default function ContextMenuComponentPage() {
           <CodeBlock
             code={contextMenuCode}
             componentName="contextMenu.tsx"
-            description="Core implementation of the ContextMenu component with modal=false scroll locking fix."
+            description="Core implementation of the ContextMenu component with target element wrapping and nested submenu primitives."
             tags={["React", "Radix UI", "Tailwind", "Overlays", "ContextMenu"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
+      {/* Target Element Wrapper */}
       <DocsComponent
-        title="Default"
-        description="Right-click target area displaying standard menu items, shortcuts, and action colors."
-        preview={
-          <div className="w-full">
-            <ContextMenu>
-              <ContextMenuTrigger className="flex h-36 w-full items-center justify-center rounded-2xl border-2 border-dashed border-zinc-300 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 text-xs font-semibold text-zinc-500 dark:text-zinc-400 select-none">
-                Right click inside this container
-              </ContextMenuTrigger>
-              <ContextMenuContent>
-                <ContextMenuItem>
-                  <Icon icon="hugeicons:arrow-left-01" className="size-4 mr-2" />
-                  <span>Back</span>
-                  <ContextMenuShortcut>⌘[</ContextMenuShortcut>
-                </ContextMenuItem>
-                <ContextMenuItem>
-                  <Icon icon="hugeicons:arrow-right-01" className="size-4 mr-2" />
-                  <span>Forward</span>
-                  <ContextMenuShortcut>⌘]</ContextMenuShortcut>
-                </ContextMenuItem>
-                <ContextMenuItem>
-                  <Icon icon="hugeicons:refresh" className="size-4 mr-2" />
-                  <span>Reload</span>
-                  <ContextMenuShortcut>⌘R</ContextMenuShortcut>
-                </ContextMenuItem>
-                <ContextMenuSeparator />
-                <ContextMenuItem>
-                  <Icon icon="hugeicons:bookmark-02" className="size-4 mr-2" />
-                  <span>Save Page As...</span>
-                  <ContextMenuShortcut>⌘S</ContextMenuShortcut>
-                </ContextMenuItem>
-                <ContextMenuSeparator />
-                <ContextMenuItem color="danger">
-                  <Icon icon="hugeicons:delete-02" className="size-4 mr-2" />
-                  <span>Delete Element</span>
-                  <ContextMenuShortcut>⌫</ContextMenuShortcut>
-                </ContextMenuItem>
-              </ContextMenuContent>
-            </ContextMenu>
-          </div>
-        }
-        code={`<ContextMenu>
-  <ContextMenuTrigger className="flex h-36 w-full items-center justify-center border-dashed rounded-2xl">
-    Right click inside this container
-  </ContextMenuTrigger>
+        title="Custom Target Element Binding (ContextMenuTrigger target={...})"
+        description="Bind the right-click context menu trigger to any standalone DOM element or ref using the 'target' prop on ContextMenuTrigger."
+        preview={<TargetWrapperDemo />}
+        code={`const targetRef = React.useRef<HTMLDivElement>(null);
+
+<div ref={targetRef} className="p-6 rounded-2xl border bg-sky-50">
+  Right click anywhere on this custom card box
+</div>
+
+<ContextMenu>
+  <ContextMenuTrigger target={targetRef} />
   <ContextMenuContent>
     <ContextMenuItem>
-      <Icon icon="hugeicons:arrow-left-01" className="size-4 mr-2" />
-      <span>Back</span>
-      <ContextMenuShortcut>⌘[</ContextMenuShortcut>
-    </ContextMenuItem>
-    <ContextMenuItem>
-      <Icon icon="hugeicons:refresh" className="size-4 mr-2" />
-      <span>Reload</span>
-      <ContextMenuShortcut>⌘R</ContextMenuShortcut>
-    </ContextMenuItem>
-    <ContextMenuSeparator />
-    <ContextMenuItem color="danger">
-      <Icon icon="hugeicons:delete-02" className="size-4 mr-2" />
-      <span>Delete</span>
+      <span>Copy Target Content</span>
+      <ContextMenuShortcut>Ctrl + C</ContextMenuShortcut>
     </ContextMenuItem>
   </ContextMenuContent>
 </ContextMenu>`}
+        props={["target: HTMLElement | RefObject<HTMLElement> | string"]}
       />
 
-      {/* With Submenus */}
+      {/* Submenu Nesting with Smooth Hover Delay */}
       <DocsComponent
-        title="With Submenus"
-        description="Nested context menus for hierarchical options and developer tools."
+        title="Submenu Nesting with Smooth Hover Delay"
+        description="Hierarchical submenu nesting with smooth delay transitions. Hover over items with sub-options to expand them."
         preview={
           <div className="w-full">
             <ContextMenu>
@@ -150,23 +149,41 @@ export default function ContextMenuComponentPage() {
                 Right click for nested submenus
               </ContextMenuTrigger>
               <ContextMenuContent>
-                <ContextMenuItem>New Tab</ContextMenuItem>
-                <ContextMenuItem>New Window</ContextMenuItem>
-                <ContextMenuSeparator />
+                <ContextMenuItem>
+                  <Icon icon="hugeicons:file-01" className="size-4 mr-2" />
+                  <span>New File</span>
+                  <ContextMenuShortcut>Ctrl + N</ContextMenuShortcut>
+                </ContextMenuItem>
                 <ContextMenuSub>
-                  <ContextMenuSubTrigger>Developer Tools</ContextMenuSubTrigger>
+                  <ContextMenuSubTrigger>
+                    <Icon icon="hugeicons:folder-01" className="size-4 mr-2" />
+                    <span>Open Recent</span>
+                  </ContextMenuSubTrigger>
                   <ContextMenuSubContent>
-                    <ContextMenuItem>Inspect Element</ContextMenuItem>
-                    <ContextMenuItem>View Source</ContextMenuItem>
-                    <ContextMenuItem>JavaScript Console</ContextMenuItem>
+                    <ContextMenuItem>Project Alpha</ContextMenuItem>
+                    <ContextMenuItem>ZoeUI Core</ContextMenuItem>
+                    <ContextMenuSub>
+                      <ContextMenuSubTrigger>More Projects</ContextMenuSubTrigger>
+                      <ContextMenuSubContent>
+                        <ContextMenuItem>Acme Dashboard</ContextMenuItem>
+                        <ContextMenuItem>Bloom Design System</ContextMenuItem>
+                      </ContextMenuSubContent>
+                    </ContextMenuSub>
                   </ContextMenuSubContent>
                 </ContextMenuSub>
+                <ContextMenuSeparator />
                 <ContextMenuSub>
-                  <ContextMenuSubTrigger>Share Link</ContextMenuSubTrigger>
+                  <ContextMenuSubTrigger>
+                    <Icon icon="hugeicons:developer" className="size-4 mr-2" />
+                    <span>Developer Tools</span>
+                  </ContextMenuSubTrigger>
                   <ContextMenuSubContent>
-                    <ContextMenuItem>Copy Link</ContextMenuItem>
-                    <ContextMenuItem>Email Link</ContextMenuItem>
-                    <ContextMenuItem>AirDrop</ContextMenuItem>
+                    <ContextMenuItem>
+                      <span>Inspect Element</span>
+                      <ContextMenuShortcut>Ctrl + Shift + I</ContextMenuShortcut>
+                    </ContextMenuItem>
+                    <ContextMenuItem>View Source</ContextMenuItem>
+                    <ContextMenuItem>Console Logs</ContextMenuItem>
                   </ContextMenuSubContent>
                 </ContextMenuSub>
               </ContextMenuContent>
@@ -174,19 +191,58 @@ export default function ContextMenuComponentPage() {
           </div>
         }
         code={`<ContextMenu>
-  <ContextMenuTrigger className="border-dashed p-8">
-    Right click for nested submenus
-  </ContextMenuTrigger>
+  <ContextMenuTrigger className="border-dashed p-8">Right click for submenus</ContextMenuTrigger>
   <ContextMenuContent>
     <ContextMenuSub>
-      <ContextMenuSubTrigger>Developer Tools</ContextMenuSubTrigger>
+      <ContextMenuSubTrigger>Open Recent</ContextMenuSubTrigger>
       <ContextMenuSubContent>
-        <ContextMenuItem>Inspect Element</ContextMenuItem>
-        <ContextMenuItem>View Source</ContextMenuItem>
+        <ContextMenuItem>Project Alpha</ContextMenuItem>
       </ContextMenuSubContent>
     </ContextMenuSub>
   </ContextMenuContent>
 </ContextMenu>`}
+      />
+
+      {/* Shortcut Key Column Display */}
+      <DocsComponent
+        title="Shortcut Key Hints Display Column"
+        description="Render aligned keyboard shortcut hints on the right side of menu items using ContextMenuShortcut."
+        preview={
+          <div className="w-full">
+            <ContextMenu>
+              <ContextMenuTrigger className="flex h-36 w-full items-center justify-center rounded-2xl border-2 border-dashed border-zinc-300 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 text-xs font-semibold text-zinc-500 dark:text-zinc-400 select-none">
+                Right click to see keyboard shortcuts
+              </ContextMenuTrigger>
+              <ContextMenuContent>
+                <ContextMenuItem>
+                  <span>Cut</span>
+                  <ContextMenuShortcut>Ctrl + X</ContextMenuShortcut>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                  <span>Copy</span>
+                  <ContextMenuShortcut>Ctrl + C</ContextMenuShortcut>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                  <span>Paste</span>
+                  <ContextMenuShortcut>Ctrl + V</ContextMenuShortcut>
+                </ContextMenuItem>
+                <ContextMenuSeparator />
+                <ContextMenuItem color="danger">
+                  <span>Delete Permanently</span>
+                  <ContextMenuShortcut>Shift + Del</ContextMenuShortcut>
+                </ContextMenuItem>
+              </ContextMenuContent>
+            </ContextMenu>
+          </div>
+        }
+        code={`<ContextMenuItem>
+  <span>Copy</span>
+  <ContextMenuShortcut>Ctrl + C</ContextMenuShortcut>
+</ContextMenuItem>
+<ContextMenuItem color="danger">
+  <span>Delete Permanently</span>
+  <ContextMenuShortcut>Shift + Del</ContextMenuShortcut>
+</ContextMenuItem>`}
       />
 
       {/* With Checkboxes and Radio Groups */}

@@ -65,7 +65,7 @@ export default function DataTableComponentPage() {
     <div className="space-y-8">
       <DocsTitle
         title="Data Table"
-        description="A feature-rich data grid component built on TanStack Table supporting client-side searching, column sorting, pagination controls, and CSV data export."
+        description="A feature-rich data grid component built on TanStack Table supporting column reordering via drag-and-drop handles, column visibility picker dropdowns, global & per-column filter builders, and CSV / Excel data export."
       />
 
       <ImportSnippet importCode={`import { DataTable } from "@/components/ui/dataTable/dataTable";`} />
@@ -86,49 +86,100 @@ export default function DataTableComponentPage() {
           <CodeBlock
             code={dataTableCode}
             componentName="dataTable.tsx"
-            description="Core implementation of the DataTable component."
-            tags={["React", "TanStack Table", "Tailwind", "Data Grid", "DataTable"]}
+            description="Core implementation of the DataTable component with column reordering, visibility menu, filter builder, and spreadsheet export."
+            tags={["React", "TanStack Table", "Tailwind", "Data Grid", "DataTable", "Export"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
+      {/* Full Feature Data Table */}
       <DocsComponent
-        title="Default"
-        description="Standard data table with live search input, sorting column headers, pagination controls, and CSV export action."
+        title="Full-Featured Data Table"
+        description="Includes drag-and-drop column reordering, column visibility toggle menu, global search, per-column filter builder, and CSV/Excel spreadsheet export."
         preview={
           <div className="w-full">
-            <DataTable columns={columns} data={sampleData} searchPlaceholder="Search team members..." />
+            <DataTable
+              columns={columns}
+              data={sampleData}
+              searchPlaceholder="Search team members..."
+              enableColumnReorder
+              enableColumnVisibility
+              enableColumnFilters
+              enableExport
+            />
           </div>
         }
         code={`<DataTable
   columns={columns}
   data={data}
   searchPlaceholder="Search team members..."
+  enableColumnReorder
+  enableColumnVisibility
+  enableColumnFilters
+  enableExport
+  exportFileName="team-members"
 />`}
       />
 
-      {/* Without Export */}
+      {/* Per-Column Filter Builder Demo */}
       <DocsComponent
-        title="Without CSV Export"
-        description="Set 'enableExport' to false to hide the CSV export button."
+        title="Per-Column Filter Builder & Drag-and-Drop Reordering"
+        description="Click 'Filters' to open individual column input filters. Drag column headers horizontally by hover handles to reorder columns on the fly."
         preview={
           <div className="w-full">
             <DataTable
-              enableExport={false}
               columns={columns}
               data={sampleData}
-              searchPlaceholder="Filter records..."
+              enableColumnFilters
+              enableColumnReorder
+              enableColumnVisibility={false}
+              enableExport={false}
             />
           </div>
         }
         code={`<DataTable
-  enableExport={false}
   columns={columns}
   data={data}
-  searchPlaceholder="Filter records..."
+  enableColumnFilters
+  enableColumnReorder
 />`}
-        props={["enableExport: boolean"]}
+        props={["enableColumnFilters: boolean", "enableColumnReorder: boolean"]}
+      />
+
+      {/* CSV and Excel Spreadsheet Export */}
+      <DocsComponent
+        title="CSV & Excel Export Callback Hooks"
+        description="Attach custom 'onExportCSV' or 'onExportExcel' event handlers to process table data without initiating mandatory browser downloads."
+        preview={
+          <div className="w-full">
+            <DataTable
+              columns={columns}
+              data={sampleData}
+              enableExport
+              onExportCSV={(tableInstance) => {
+                alert(`Custom CSV export handler triggered for ${tableInstance.getFilteredRowModel().rows.length} rows!`);
+              }}
+              onExportExcel={(tableInstance) => {
+                alert(`Custom Excel export handler triggered for ${tableInstance.getFilteredRowModel().rows.length} rows!`);
+              }}
+              enableColumnFilters={false}
+              enableColumnReorder={false}
+              enableColumnVisibility={false}
+            />
+          </div>
+        }
+        code={`<DataTable
+  columns={columns}
+  data={data}
+  enableExport
+  onExportCSV={(table) => {
+    // Custom handling for CSV export
+  }}
+  onExportExcel={(table) => {
+    // Custom handling for Excel export
+  }}
+/>`}
+        props={["onExportCSV: (table) => void", "onExportExcel: (table) => void"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -162,22 +213,34 @@ export default function DataTableComponentPage() {
                   <td className="px-3 py-2 text-muted-foreground">Array of data row objects.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">searchPlaceholder</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">'Filter rows...'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Placeholder text for global filter input.</td>
+                  <td className="px-3 py-2 font-mono text-primary">enableColumnReorder</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables drag-and-drop column reordering handles.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">enableColumnVisibility</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders column visibility picker dropdown menu.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">enableColumnFilters</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables per-column filter builder bar.</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">enableExport</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders the Export CSV action button.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders CSV and Excel data export action buttons.</td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">exportFileName</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
                   <td className="px-3 py-2 text-muted-foreground">'data-table-export'</td>
-                  <td className="px-3 py-2 text-muted-foreground">File name string used when downloading CSV.</td>
+                  <td className="px-3 py-2 text-muted-foreground">File name string used when downloading exported spreadsheets.</td>
                 </tr>
               </tbody>
             </table>

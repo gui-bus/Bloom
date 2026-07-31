@@ -116,6 +116,56 @@ export default function ScrollAreaComponentPage() {
         props={["orientation: 'vertical' | 'horizontal' | 'both'"]}
       />
 
+      {/* Floating Action Scroll Buttons */}
+      <DocsComponent
+        title="Floating Action Scroll Buttons"
+        description="Enable floating scroll-to-top and scroll-to-bottom action buttons on hover with 'showScrollButtons'."
+        preview={
+          <ScrollArea
+            showScrollButtons
+            className="h-60 w-80 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-xs"
+          >
+            <div className="space-y-3">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-sky-500">Long Document</h4>
+              {Array.from({ length: 20 }).map((_, i) => (
+                <p key={i} className="text-xs text-zinc-600 dark:text-zinc-400">
+                  Item {i + 1}: Hover over this container to see the floating scroll-to-top and scroll-to-bottom action buttons.
+                </p>
+              ))}
+            </div>
+          </ScrollArea>
+        }
+        code={`<ScrollArea showScrollButtons className="h-60 w-80 border rounded-2xl p-4">
+  {content}
+</ScrollArea>`}
+        props={["showScrollButtons: boolean"]}
+      />
+
+      {/* Scroll Progress Bar */}
+      <DocsComponent
+        title="Scroll Progress Bar"
+        description="Display a top progress indicator bar showing current scroll percentage with 'showProgressBar'."
+        preview={
+          <ScrollArea
+            showProgressBar
+            className="h-60 w-80 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-xs"
+          >
+            <div className="space-y-3">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-500">Reading Progress</h4>
+              {Array.from({ length: 20 }).map((_, i) => (
+                <p key={i} className="text-xs text-zinc-600 dark:text-zinc-400">
+                  Paragraph {i + 1}: Scroll down to watch the top progress bar dynamically fill.
+                </p>
+              ))}
+            </div>
+          </ScrollArea>
+        }
+        code={`<ScrollArea showProgressBar className="h-60 w-80 border rounded-2xl p-4">
+  {content}
+</ScrollArea>`}
+        props={["showProgressBar: boolean"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}
@@ -134,6 +184,18 @@ export default function ScrollAreaComponentPage() {
                 </tr>
               </thead>
               <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">showScrollButtons</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Displays floating scroll-to-top / scroll-to-bottom action buttons on hover.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">showProgressBar</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Displays top scroll progress indicator line.</td>
+                </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">orientation</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">

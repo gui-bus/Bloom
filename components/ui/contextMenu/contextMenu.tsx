@@ -12,7 +12,58 @@ const ContextMenu = ({
   <ContextMenuPrimitive.Root modal={modal} {...props} />
 );
 
-const ContextMenuTrigger = ContextMenuPrimitive.Trigger;
+interface ContextMenuTriggerProps extends React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Trigger> {
+  target?: HTMLElement | React.RefObject<HTMLElement | null> | string;
+}
+
+const ContextMenuTrigger = React.forwardRef<
+  React.ElementRef<typeof ContextMenuPrimitive.Trigger>,
+  ContextMenuTriggerProps
+>(({ target, children, ...props }, ref) => {
+  const triggerRef = React.useRef<HTMLSpanElement>(null);
+
+  React.useEffect(() => {
+    if (!target) return;
+
+    let element: HTMLElement | null = null;
+    if (typeof target === "string") {
+      element = document.querySelector(target);
+    } else if ("current" in target) {
+      element = target.current;
+    } else if (target instanceof HTMLElement) {
+      element = target;
+    }
+
+    if (!element) return;
+
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+      if (triggerRef.current) {
+        const syntheticEvent = new MouseEvent("contextmenu", {
+          bubbles: true,
+          cancelable: true,
+          clientX: e.clientX,
+          clientY: e.clientY,
+          screenX: e.screenX,
+          screenY: e.screenY,
+        });
+        triggerRef.current.dispatchEvent(syntheticEvent);
+      }
+    };
+
+    element.addEventListener("contextmenu", handleContextMenu);
+    return () => {
+      element?.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, [target]);
+
+  return (
+    <ContextMenuPrimitive.Trigger ref={ref} asChild={Boolean(target)} {...props}>
+      {target ? <span ref={triggerRef} className="hidden" /> : children}
+    </ContextMenuPrimitive.Trigger>
+  );
+});
+ContextMenuTrigger.displayName = ContextMenuPrimitive.Trigger.displayName;
 
 const ContextMenuGroup = ContextMenuPrimitive.Group;
 
@@ -31,7 +82,7 @@ const ContextMenuSubTrigger = React.forwardRef<
   <ContextMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "flex cursor-pointer select-none items-center rounded-lg px-2.5 py-1.5 text-xs font-medium outline-none text-zinc-900 dark:text-zinc-100 focus:bg-zinc-100 dark:focus:bg-zinc-800 data-[state=open]:bg-zinc-100 dark:data-[state=open]:bg-zinc-800 transition-colors",
+      "flex cursor-pointer select-none items-center rounded-lg px-2.5 py-1.5 text-xs font-medium outline-none text-zinc-900 dark:text-zinc-100 focus:bg-zinc-100 dark:focus:bg-zinc-800 data-[state=open]:bg-zinc-100 dark:data-[state=open]:bg-zinc-800 transition-colors duration-150",
       inset && "pl-8",
       className
     )}

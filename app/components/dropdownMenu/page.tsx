@@ -29,6 +29,8 @@ import {
   DropdownMenuSub,
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
+  DropdownMenuArrow,
+  DropdownMenuSearchInput,
 } from "@/components/ui/dropdownMenu/dropdownMenu";
 import { dropdownMenuCode } from "@/components/ui/dropdownMenu/dropdownMenu.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -39,6 +41,45 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
 
+function SearchFilterMenuDemo() {
+  const [search, setSearch] = React.useState("");
+  const countries = [
+    "Argentina", "Australia", "Brazil", "Canada", "Denmark",
+    "Egypt", "France", "Germany", "India", "Japan",
+    "Mexico", "Netherlands", "Portugal", "Spain", "United States"
+  ];
+
+  const filtered = countries.filter((c) => c.toLowerCase().includes(search.toLowerCase()));
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="bordered" startContent={<Icon icon="hugeicons:globe-02" className="size-4" />}>
+          Select Country (Filtered Menu)
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56" showArrow>
+        <DropdownMenuSearchInput
+          placeholder="Filter countries..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <div className="max-h-48 overflow-y-auto space-y-0.5">
+          {filtered.length === 0 ? (
+            <p className="px-3 py-2 text-xs text-zinc-400 text-center">No countries match</p>
+          ) : (
+            filtered.map((country) => (
+              <DropdownMenuItem key={country}>
+                <span>{country}</span>
+              </DropdownMenuItem>
+            ))
+          )}
+        </div>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
 export default function DropdownMenuDocsPage() {
   const [showStatusBar, setShowStatusBar] = React.useState(true);
   const [showActivityBar, setShowActivityBar] = React.useState(false);
@@ -48,10 +89,10 @@ export default function DropdownMenuDocsPage() {
     <div className="space-y-8">
       <DocsTitle
         title="Dropdown Menu"
-        description="A contextual popover menu presenting a list of actions or shortcuts, powered by Radix UI primitives with zero layout shift."
+        description="A contextual popover menu presenting a list of actions or shortcuts, featuring radio item groups, checkable item groups, search input filters, custom arrow pointers, and submenus."
       />
 
-      <ImportSnippet importCode={`import { DropdownMenu } from "@/components/ui/dropdownMenu/dropdownMenu";`} />
+      <ImportSnippet importCode={`import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdownMenu/dropdownMenu";`} />
 
       <InstallationBlock componentName="dropdownMenu" />
 
@@ -69,7 +110,7 @@ export default function DropdownMenuDocsPage() {
           <CodeBlock
             code={dropdownMenuCode}
             componentName="dropdownMenu.tsx"
-            description="Dropdown menu component built on Radix Primitives supporting submenus, keyboard shortcuts, and checkbox/radio items."
+            description="Dropdown menu component supporting search input filters, arrow pointers, radio/checkbox groups, and submenus."
             tags={["React", "Radix UI", "Tailwind", "UI Component", "Menu"]}
           />
         </TabsContent>
@@ -144,7 +185,7 @@ export default function DropdownMenuDocsPage() {
 
       {/* Checkboxes & Radio Items */}
       <DocsComponent
-        title="Checkboxes & Radio Items"
+        title="Checkboxes & Radio Item Groups"
         description="Supports toggleable checkbox items and single-selection radio groups inside the popover."
         preview={
           <div className="w-full flex flex-wrap gap-4">
@@ -248,6 +289,37 @@ export default function DropdownMenuDocsPage() {
 </DropdownMenu>`}
       />
 
+      {/* Search Input Filter & Arrow Pointer */}
+      <DocsComponent
+        title="Search Filter Input & Custom Arrow Pointer"
+        description="Pass 'showArrow' on DropdownMenuContent to render a pointing arrow stem, and use 'DropdownMenuSearchInput' to filter long list items dynamically."
+        preview={
+          <div className="w-full">
+            <SearchFilterMenuDemo />
+          </div>
+        }
+        code={`const [search, setSearch] = React.useState("");
+
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="bordered">Select Country</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent showArrow className="w-56">
+    <DropdownMenuSearchInput
+      placeholder="Filter countries..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+    />
+    <div className="max-h-48 overflow-y-auto">
+      {filtered.map((country) => (
+        <DropdownMenuItem key={country}>{country}</DropdownMenuItem>
+      ))}
+    </div>
+  </DropdownMenuContent>
+</DropdownMenu>`}
+        props={["showArrow: boolean", "DropdownMenuSearchInput"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props DropdownMenu Table */}
@@ -265,36 +337,24 @@ export default function DropdownMenuDocsPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">DropdownMenu</td>
-                  <td className="px-3 py-2 text-muted-foreground">Root container managing menu state (defaults to modal=false).</td>
+                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuContent showArrow</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders a directional pointing arrow stem pointing back to trigger element.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuTrigger</td>
-                  <td className="px-3 py-2 text-muted-foreground">The button or element that toggles the menu open/closed.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuContent</td>
-                  <td className="px-3 py-2 text-muted-foreground">Floating popover container containing menu items.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuItem</td>
-                  <td className="px-3 py-2 text-muted-foreground">Interactive menu item with optional color="danger" support.</td>
+                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuSearchInput</td>
+                  <td className="px-3 py-2 text-muted-foreground">Header input field for filtering items inside long dropdown menus.</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">DropdownMenuCheckboxItem</td>
                   <td className="px-3 py-2 text-muted-foreground">Menu item supporting checkable boolean state.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuRadioItem</td>
-                  <td className="px-3 py-2 text-muted-foreground">Menu item for single choice radio selection.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuSeparator</td>
-                  <td className="px-3 py-2 text-muted-foreground">Horizontal line separating groups of items.</td>
+                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuRadioGroup / RadioItem</td>
+                  <td className="px-3 py-2 text-muted-foreground">Group and item primitives for single choice radio selection.</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuShortcut</td>
-                  <td className="px-3 py-2 text-muted-foreground">Right-aligned keyboard hotkey indicator text.</td>
+                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuSub / SubTrigger / SubContent</td>
+                  <td className="px-3 py-2 text-muted-foreground">Primitives for constructing recursive nested submenus.</td>
                 </tr>
               </tbody>
             </table>

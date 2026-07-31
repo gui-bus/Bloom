@@ -157,6 +157,17 @@ export function Sidebar() {
 
   const isDark = mounted && resolvedTheme === "dark";
 
+  const activeLinkRef = React.useRef<HTMLAnchorElement>(null);
+
+  React.useEffect(() => {
+    if (activeLinkRef.current) {
+      activeLinkRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  }, [pathname]);
+
   const renderNavContent = () => (
     <div className="flex flex-col gap-5 overflow-hidden flex-1">
       <div className="px-1">
@@ -192,6 +203,7 @@ export function Sidebar() {
                   return (
                     <Link
                       key={link.href}
+                      ref={isActive ? activeLinkRef : undefined}
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
                       className={cn(

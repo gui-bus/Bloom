@@ -321,6 +321,53 @@ export default function DrawerComponentPage() {
         props={["size: 'sm' | 'md' | 'lg' | 'xl' | 'full'"]}
       />
 
+      {/* Swipe-to-Close Touch Sheet (Vaul-style) */}
+      <DocsComponent
+        title="Swipe-to-Close Drag Handle (Vaul-style Bottom Sheet)"
+        description="Features touch gesture listeners (onTouchStart, onTouchMove, onTouchEnd) allowing mobile users to drag down the handle or sheet content (>100px threshold) to dismiss the drawer smoothly."
+        preview={
+          <div className="w-full">
+            <Drawer>
+              <DrawerTrigger asChild>
+                <Button variant="bordered" startContent={<Icon icon="hugeicons:drag-drop-vertical" className="size-4" />}>
+                  Open Swipeable Bottom Sheet
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent position="bottom" size="md" swipeToClose>
+                <div className="mx-auto w-full max-w-sm text-center space-y-3">
+                  <DrawerHeader>
+                    <DrawerTitle>Swipe Down to Close</DrawerTitle>
+                    <DrawerDescription>
+                      Drag down the top handle or touch area on mobile devices to dismiss this bottom sheet.
+                    </DrawerDescription>
+                  </DrawerHeader>
+                  <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800 text-xs font-mono text-zinc-600 dark:text-zinc-300">
+                    Touch & Drag Threshold: &gt; 100px
+                  </div>
+                  <DrawerFooter>
+                    <DrawerClose asChild>
+                      <Button color="primary">Got it</Button>
+                    </DrawerClose>
+                  </DrawerFooter>
+                </div>
+              </DrawerContent>
+            </Drawer>
+          </div>
+        }
+        code={`<Drawer>
+  <DrawerTrigger asChild>
+    <Button>Open Swipeable Bottom Sheet</Button>
+  </DrawerTrigger>
+  <DrawerContent position="bottom" size="md" swipeToClose>
+    <DrawerHeader>
+      <DrawerTitle>Swipe Down to Close</DrawerTitle>
+      <DrawerDescription>Drag down the top handle to dismiss on touch devices.</DrawerDescription>
+    </DrawerHeader>
+  </DrawerContent>
+</Drawer>`}
+        props={["swipeToClose: boolean"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}
@@ -339,6 +386,12 @@ export default function DrawerComponentPage() {
                 </tr>
               </thead>
               <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">swipeToClose</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables touch drag gestures (Vaul-style) to swipe down/away to close.</td>
+                </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">position</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">

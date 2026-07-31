@@ -29,6 +29,35 @@ interface DemoFormValues {
   email: string;
 }
 
+function AdvancedFormDemo() {
+  const form = useForm({
+    defaultValues: {
+      bio: "Software Engineer",
+      website: "https://example.com",
+    },
+  });
+
+  return (
+    <Form
+      form={form}
+      onSubmit={(data) => alert("Saved: " + JSON.stringify(data))}
+      confirmUnsavedChanges
+      showResetButton
+      scrollToFirstError
+    >
+      <FormField label="Bio" description="Short biography for profile.">
+        <Input {...form.register("bio", { required: true })} />
+      </FormField>
+      <FormField label="Website URL">
+        <Input {...form.register("website")} />
+      </FormField>
+      <Button type="submit" color="primary">
+        Save Profile
+      </Button>
+    </Form>
+  );
+}
+
 export default function FormComponentPage() {
   const form = useForm<DemoFormValues>({
     defaultValues: {
@@ -47,7 +76,7 @@ export default function FormComponentPage() {
     <div className="space-y-8">
       <DocsTitle
         title="Form"
-        description="A wrapper component for building forms with React Hook Form integration, validation handlers, and accessible field controls."
+        description="A wrapper component for building forms with React Hook Form integration, automatic scroll to first error, unsaved changes confirmation guard, and reset button support."
       />
 
       <ImportSnippet importCode={`import { Form } from "@/components/ui/form/form";`} />
@@ -68,7 +97,7 @@ export default function FormComponentPage() {
           <CodeBlock
             code={formCode}
             componentName="form.tsx"
-            description="Core implementation of the Form component."
+            description="Core implementation of the Form component with scroll-to-error, dirty state guard, and reset button."
             tags={["React", "Form", "React Hook Form", "Validation"]}
           />
         </TabsContent>
@@ -112,6 +141,29 @@ export default function FormComponentPage() {
 </Form>`}
       />
 
+      {/* Advanced Features (Scroll to error, Dirty Guard, Reset Button) */}
+      <DocsComponent
+        title="Dirty State Guard, Auto Scroll & Reset Button"
+        description="Features automatic scroll-to-invalid-input, confirm unsaved changes navigation guard when dirty, and a reset button."
+        preview={
+          <div className="max-w-md w-full">
+            <AdvancedFormDemo />
+          </div>
+        }
+        code={`<Form
+  form={form}
+  onSubmit={onSubmit}
+  scrollToFirstError
+  confirmUnsavedChanges
+  showResetButton
+>
+  <FormField label="Bio">
+    <Input {...form.register("bio")} />
+  </FormField>
+</Form>`}
+        props={["scrollToFirstError: boolean", "confirmUnsavedChanges: boolean", "showResetButton: boolean"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}
@@ -131,16 +183,22 @@ export default function FormComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">form</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">UseFormReturn</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">React Hook Form instance created by useForm().</td>
+                  <td className="px-3 py-2 font-mono text-primary">scrollToFirstError</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Automatically scrolls viewport to first invalid field input on submit.</td>
                 </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">onSubmit</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">SubmitHandler</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback function triggered when form submits successfully.</td>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">confirmUnsavedChanges</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Adds beforeunload navigation guard and unsaved changes banner when form is dirty.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">showResetButton</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders a button to restore initial default values when form is dirty.</td>
                 </tr>
               </tbody>
             </table>

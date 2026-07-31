@@ -56,6 +56,7 @@ InputOTPGroup.displayName = "InputOTPGroup";
 export interface InputOTPSlotProps extends React.ComponentPropsWithoutRef<"div"> {
   index: number;
   size?: OTPSize;
+  maskCode?: boolean;
 }
 
 const slotSizeStyles: Record<OTPSize, string> = {
@@ -67,7 +68,7 @@ const slotSizeStyles: Record<OTPSize, string> = {
 const InputOTPSlot = React.forwardRef<
   React.ElementRef<"div">,
   InputOTPSlotProps
->(({ index, size = "md", className, ...props }, ref) => {
+>(({ index, size = "md", maskCode = false, className, ...props }, ref) => {
   const inputOTPContext = React.useContext(OTPInputContext);
   const slot = inputOTPContext.slots[index];
   const { char, hasFakeCaret, isActive } = slot || {};
@@ -83,7 +84,13 @@ const InputOTPSlot = React.forwardRef<
       )}
       {...props}
     >
-      {char}
+      {char ? (
+        maskCode ? (
+          <span className="size-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 animate-in zoom-in-50" />
+        ) : (
+          char
+        )
+      ) : null}
       {hasFakeCaret && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-4 w-0.5 animate-pulse bg-sky-500 duration-1000" />

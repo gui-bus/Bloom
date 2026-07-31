@@ -380,7 +380,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                     {/* Render Grouped */}
                     {Object.entries(groupedOptions.groups).map(([groupName, groupOpts]) => (
                       <div key={groupName} className="space-y-0.5">
-                        <div className="px-2 py-1 text-[10px] font-bold tracking-wider text-zinc-400 uppercase">
+                        <div className="px-2.5 py-1 text-[10px] font-bold tracking-wider text-zinc-400 uppercase sticky top-0 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md z-10 border-b border-zinc-100 dark:border-zinc-800/50">
                           {groupName}
                         </div>
                         {groupOpts.map((opt) =>

@@ -160,6 +160,118 @@ export default function TableComponentPage() {
 </TableRow>`}
       />
 
+      {/* Zebra Striped Rows */}
+      <DocsComponent
+        title="Zebra Striping"
+        description="Alternate background shading for even table rows using striped={true}."
+        preview={
+          <div className="w-full">
+            <Table striped>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>ID</TableHead>
+                  <TableHead>Product Name</TableHead>
+                  <TableHead>Category</TableHead>
+                  <TableHead className="text-right">Price</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow><TableCell className="font-mono">#101</TableCell><TableCell>Pro Mac M3 Max</TableCell><TableCell>Hardware</TableCell><TableCell className="text-right">$3,499.00</TableCell></TableRow>
+                <TableRow><TableCell className="font-mono">#102</TableCell><TableCell>Ultrawide Monitor 49"</TableCell><TableCell>Displays</TableCell><TableCell className="text-right">$1,299.00</TableCell></TableRow>
+                <TableRow><TableCell className="font-mono">#103</TableCell><TableCell>Ergonomic Chair</TableCell><TableCell>Furniture</TableCell><TableCell className="text-right">$599.00</TableCell></TableRow>
+                <TableRow><TableCell className="font-mono">#104</TableCell><TableCell>Mechanical Keyboard</TableCell><TableCell>Accessories</TableCell><TableCell className="text-right">$199.00</TableCell></TableRow>
+              </TableBody>
+            </Table>
+          </div>
+        }
+        code={`<Table striped>
+  <TableHeader>...</TableHeader>
+  <TableBody>...</TableBody>
+</Table>`}
+        props={["striped: boolean"]}
+      />
+
+      {/* Compact Density */}
+      <DocsComponent
+        title="Compact Density"
+        description="Reduce padding inside table cells for dense data grids using density='compact'."
+        preview={
+          <div className="w-full">
+            <Table density="compact" striped>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>System Metric</TableHead>
+                  <TableHead>Current Value</TableHead>
+                  <TableHead>Status</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow><TableCell>CPU Utilization</TableCell><TableCell className="font-mono">42.8%</TableCell><TableCell><Badge color="success">Optimal</Badge></TableCell></TableRow>
+                <TableRow><TableCell>Memory Usage</TableCell><TableCell className="font-mono">11.4 GB / 32 GB</TableCell><TableCell><Badge color="success">Normal</Badge></TableCell></TableRow>
+                <TableRow><TableCell>Disk I/O Rate</TableCell><TableCell className="font-mono">485 MB/s</TableCell><TableCell><Badge color="warning">Elevated</Badge></TableCell></TableRow>
+                <TableRow><TableCell>Network Bandwidth</TableCell><TableCell className="font-mono">1.2 Gbps</TableCell><TableCell><Badge color="primary">Active</Badge></TableCell></TableRow>
+              </TableBody>
+            </Table>
+          </div>
+        }
+        code={`<Table density="compact" striped>
+  <TableHeader>...</TableHeader>
+  <TableBody>...</TableBody>
+</Table>`}
+        props={["density: 'default' | 'compact'"]}
+      />
+
+      {/* Sticky Header & Sticky First Column */}
+      <DocsComponent
+        title="Sticky Header & Sticky First Column"
+        description="Freeze table headers at top during vertical scrolling and freeze the first column during horizontal scrolling."
+        preview={
+          <div className="w-full">
+            <Table stickyHeader stickyFirstColumn>
+              <TableHeader isSticky>
+                <TableRow>
+                  <TableHead isStickyColumn>Member</TableHead>
+                  <TableHead>Q1 Sales</TableHead>
+                  <TableHead>Q2 Sales</TableHead>
+                  <TableHead>Q3 Sales</TableHead>
+                  <TableHead>Q4 Sales</TableHead>
+                  <TableHead>Annual Total</TableHead>
+                  <TableHead>Performance Rating</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <TableRow key={i}>
+                    <TableCell isStickyColumn className="font-bold">Engineer #{i + 1}</TableCell>
+                    <TableCell className="font-mono">$45,200</TableCell>
+                    <TableCell className="font-mono">$52,400</TableCell>
+                    <TableCell className="font-mono">$61,000</TableCell>
+                    <TableCell className="font-mono">$74,800</TableCell>
+                    <TableCell className="font-mono font-bold">$233,400</TableCell>
+                    <TableCell><Badge color="success">Exceeds</Badge></TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        }
+        code={`<Table stickyHeader stickyFirstColumn>
+  <TableHeader isSticky>
+    <TableRow>
+      <TableHead isStickyColumn>Member</TableHead>
+      <TableHead>Q1 Sales</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell isStickyColumn className="font-bold">Engineer #1</TableCell>
+      <TableCell>$45,200</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>`}
+        props={["stickyHeader: boolean", "stickyFirstColumn: boolean", "isSticky: boolean", "isStickyColumn: boolean"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}

@@ -21,6 +21,14 @@ export interface ComboboxProps {
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
+  isMulti?: boolean;
+  multiValue?: string[];
+  defaultMultiValue?: string[];
+  onMultiChange?: (values: string[]) => void;
+  allowCreate?: boolean;
+  onCreate?: (searchQuery: string) => void;
+  isVirtualized?: boolean;
+  itemHeight?: number;
   placeholder?: string;
   searchPlaceholder?: string;
   emptyText?: string;
@@ -28,26 +36,21 @@ export interface ComboboxProps {
   disabled?: boolean;
   isInvalid?: boolean;
   isClearable?: boolean;
-  isFuzzySearch?: boolean; // Enable fuzzy matching mode
+  isFuzzySearch?: boolean;
   className?: string;
 }
 
 /**
  * Simple Fuzzy matching algorithm
- * Calculates text similarity score allowing minor typos/misspellings/subsequence matches.
  */
 function fuzzyScore(target: string, query: string): number {
   const t = target.toLowerCase();
   const q = query.toLowerCase();
 
-  // Exact match
   if (t === q) return 100;
-  // Prefix match
   if (t.startsWith(q)) return 80;
-  // Includes match
   if (t.includes(q)) return 60;
 
-  // Subsequence fuzzy match (checking if characters appear in order)
   let qIdx = 0;
   let matches = 0;
   for (let i = 0; i < t.length && qIdx < q.length; i++) {
@@ -58,7 +61,6 @@ function fuzzyScore(target: string, query: string): number {
   }
 
   if (qIdx === q.length) {
-    // Percentage of match score
     return Math.floor((matches / t.length) * 40);
   }
 
@@ -70,6 +72,14 @@ export function Combobox({
   value,
   defaultValue = "",
   onValueChange,
+  isMulti = false,
+  multiValue,
+  defaultMultiValue = [],
+  onMultiChange,
+  allowCreate = false,
+  onCreate,
+  isVirtualized = false,
+  itemHeight = 44,
   placeholder = "Select an option...",
   searchPlaceholder = "Search...",
   emptyText = "No options found.",
@@ -82,16 +92,28 @@ export function Combobox({
 }: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
-  const [selected, setSelected] = React.useState<string>(
+  const [selectedSingle, setSelectedSingle] = React.useState<string>(
     value !== undefined ? value : defaultValue
   );
+  const [selectedMulti, setSelectedMulti] = React.useState<string[]>(
+    multiValue !== undefined ? multiValue : defaultMultiValue
+  );
+
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const listRef = React.useRef<HTMLDivElement>(null);
+  const [scrollTop, setScrollTop] = React.useState(0);
 
   React.useEffect(() => {
     if (value !== undefined) {
-      setSelected(value);
+      setSelectedSingle(value);
     }
   }, [value]);
+
+  React.useEffect(() => {
+    if (multiValue !== undefined) {
+      setSelectedMulti(multiValue);
+    }
+  }, [multiValue]);
 
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -116,7 +138,6 @@ export function Combobox({
       );
     }
 
-    // Fuzzy matching score & sort
     return options
       .map((opt) => {
         const labelScore = fuzzyScore(opt.label, q);
@@ -128,6 +149,14 @@ export function Combobox({
       .sort((a, b) => b.score - a.score)
       .map((item) => item.option);
   }, [options, search, isFuzzySearch]);
+
+  // Check if search exact match exists
+  const exactMatchExists = React.useMemo(() => {
+    if (!search.trim()) return true;
+    return options.some(
+      (opt) => opt.label.toLowerCase() === search.trim().toLowerCase()
+    );
+  }, [options, search]);
 
   // Group options with sticky headers
   const groupedOptions = React.useMemo(() => {
@@ -146,31 +175,86 @@ export function Combobox({
     return { groups, ungrouped };
   }, [filteredOptions]);
 
-  const selectedOption = options.find((opt) => opt.value === selected);
+  // Single selected option reference
+  const selectedOption = options.find((opt) => opt.value === selectedSingle);
+
+  // Multi selected option objects
+  const selectedMultiOptions = React.useMemo(() => {
+    return selectedMulti.map((val) => {
+      const found = options.find((o) => o.value === val);
+      return found ?? { value: val, label: val };
+    });
+  }, [selectedMulti, options]);
 
   const handleSelect = (option: ComboboxOption) => {
     if (option.disabled) return;
-    setSelected(option.value);
-    onValueChange?.(option.value);
-    setOpen(false);
-    setSearch("");
+
+    if (isMulti) {
+      const isAlreadySelected = selectedMulti.includes(option.value);
+      const nextMulti = isAlreadySelected
+        ? selectedMulti.filter((v) => v !== option.value)
+        : [...selectedMulti, option.value];
+      setSelectedMulti(nextMulti);
+      onMultiChange?.(nextMulti);
+    } else {
+      setSelectedSingle(option.value);
+      onValueChange?.(option.value);
+      setOpen(false);
+      setSearch("");
+    }
+  };
+
+  const handleRemoveTag = (val: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const nextMulti = selectedMulti.filter((v) => v !== val);
+    setSelectedMulti(nextMulti);
+    onMultiChange?.(nextMulti);
   };
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setSelected("");
-    onValueChange?.("");
+    if (isMulti) {
+      setSelectedMulti([]);
+      onMultiChange?.([]);
+    } else {
+      setSelectedSingle("");
+      onValueChange?.("");
+    }
   };
 
+  const handleCreateNew = () => {
+    const trimmed = search.trim();
+    if (!trimmed) return;
+    onCreate?.(trimmed);
+    if (isMulti) {
+      const nextMulti = [...selectedMulti, trimmed];
+      setSelectedMulti(nextMulti);
+      onMultiChange?.(nextMulti);
+    } else {
+      setSelectedSingle(trimmed);
+      onValueChange?.(trimmed);
+      setOpen(false);
+    }
+    setSearch("");
+  };
+
+  // Virtualization windowing calculations
+  const totalCount = filteredOptions.length;
+  const containerHeight = 224; // ~ max-h-56
+  const visibleCount = Math.ceil(containerHeight / itemHeight) + 3;
+  const startIndex = Math.max(0, Math.floor(scrollTop / itemHeight) - 1);
+  const endIndex = Math.min(totalCount, startIndex + visibleCount);
+  const visibleOptions = filteredOptions.slice(startIndex, endIndex);
+
   return (
-    <div ref={containerRef} className={cn("relative w-full max-w-xs flex flex-col gap-1.5", className)}>
+    <div ref={containerRef} className={cn("relative w-full flex flex-col gap-1.5", className)}>
       {label && (
         <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
           {label}
         </label>
       )}
 
-      {/* Main Trigger as div with role="button" to prevent nested button issues */}
+      {/* Main Trigger */}
       <div
         role="button"
         tabIndex={disabled ? -1 : 0}
@@ -182,20 +266,52 @@ export function Combobox({
           }
         }}
         className={cn(
-          "h-10 w-full flex items-center justify-between rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 shadow-xs outline-none focus:ring-2 focus:ring-sky-500/40 transition-all cursor-pointer select-none",
+          "min-h-10 w-full flex items-center justify-between rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-1.5 text-sm text-zinc-900 dark:text-zinc-100 shadow-xs outline-none focus:ring-2 focus:ring-sky-500/40 transition-all cursor-pointer select-none",
           isInvalid && "border-rose-500 dark:border-rose-500 text-rose-500",
           disabled && "opacity-50 cursor-not-allowed pointer-events-none"
         )}
       >
-        <span className="flex items-center gap-2 truncate">
-          {selectedOption?.icon && <Icon icon={selectedOption.icon} className="size-4 shrink-0 text-sky-500" />}
-          <span className={cn("truncate", !selectedOption && "text-zinc-400 dark:text-zinc-500")}>
-            {selectedOption ? selectedOption.label : placeholder}
-          </span>
-        </span>
+        <div className="flex flex-wrap items-center gap-1.5 flex-1 min-w-0 pr-2">
+          {isMulti ? (
+            selectedMultiOptions.length === 0 ? (
+              <span className="text-zinc-400 dark:text-zinc-500 text-sm truncate">{placeholder}</span>
+            ) : (
+              selectedMultiOptions.map((opt) => (
+                <span
+                  key={opt.value}
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-xs"
+                >
+                  {opt.icon && <Icon icon={opt.icon} className="size-3 text-sky-500 shrink-0" />}
+                  <span className="truncate max-w-28">{opt.label}</span>
+                  <span
+                    role="button"
+                    tabIndex={0}
+                    onClick={(e) => handleRemoveTag(opt.value, e)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handleRemoveTag(opt.value, e as any);
+                      }
+                    }}
+                    className="p-0.5 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-100 transition-colors"
+                  >
+                    <Icon icon="hugeicons:cancel-01" className="size-3" />
+                  </span>
+                </span>
+              ))
+            )
+          ) : (
+            <span className="flex items-center gap-2 truncate">
+              {selectedOption?.icon && <Icon icon={selectedOption.icon} className="size-4 shrink-0 text-sky-500" />}
+              <span className={cn("truncate", !selectedOption && "text-zinc-400 dark:text-zinc-500")}>
+                {selectedOption ? selectedOption.label : placeholder}
+              </span>
+            </span>
+          )}
+        </div>
 
-        <div className="flex items-center gap-1 shrink-0 ml-2">
-          {isClearable && selected && (
+        <div className="flex items-center gap-1 shrink-0">
+          {isClearable && (isMulti ? selectedMulti.length > 0 : Boolean(selectedSingle)) && (
             <span
               role="button"
               tabIndex={0}
@@ -227,30 +343,84 @@ export function Combobox({
             startContent={<Icon icon="hugeicons:search-01" className="size-3.5 text-zinc-400" />}
           />
 
-          <div className="max-h-56 overflow-y-auto space-y-1">
-            {filteredOptions.length === 0 ? (
-              <p className="py-4 px-3 text-xs text-zinc-400 dark:text-zinc-500 text-center">{emptyText}</p>
-            ) : (
-              <>
-                {/* Grouped Options with Sticky Headers */}
-                {Object.entries(groupedOptions.groups).map(([groupName, groupOpts]) => (
-                  <div key={groupName} className="space-y-0.5">
-                    <div className="sticky top-0 z-10 bg-zinc-100/90 dark:bg-zinc-800/90 backdrop-blur-xs px-2.5 py-1 rounded-lg text-[10px] font-bold tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
-                      {groupName}
-                    </div>
-                    {groupOpts.map((option) =>
-                      renderOptionItem(option, selected, handleSelect)
-                    )}
-                  </div>
-                ))}
+          {allowCreate && search.trim() && !exactMatchExists && (
+            <button
+              type="button"
+              onClick={handleCreateNew}
+              className="w-full flex items-center gap-2 px-3 py-2 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-semibold hover:bg-sky-500/20 transition-colors cursor-pointer"
+            >
+              <Icon icon="hugeicons:add-01" className="size-3.5" />
+              <span>Create "{search.trim()}"</span>
+            </button>
+          )}
 
-                {/* Ungrouped Options */}
-                {groupedOptions.ungrouped.map((option) =>
-                  renderOptionItem(option, selected, handleSelect)
-                )}
-              </>
-            )}
-          </div>
+          {isVirtualized ? (
+            <div
+              ref={listRef}
+              onScroll={(e) => setScrollTop((e.target as HTMLDivElement).scrollTop)}
+              style={{ height: Math.min(containerHeight, totalCount * itemHeight) }}
+              className="overflow-y-auto relative w-full"
+            >
+              {totalCount === 0 ? (
+                <p className="py-4 px-3 text-xs text-zinc-400 dark:text-zinc-500 text-center">{emptyText}</p>
+              ) : (
+                <div style={{ height: totalCount * itemHeight, position: "relative" }}>
+                  {visibleOptions.map((option, idx) => {
+                    const realIndex = startIndex + idx;
+                    const isSelected = isMulti
+                      ? selectedMulti.includes(option.value)
+                      : selectedSingle === option.value;
+                    return (
+                      <div
+                        key={option.value}
+                        style={{
+                          position: "absolute",
+                          top: realIndex * itemHeight,
+                          left: 0,
+                          right: 0,
+                          height: itemHeight,
+                        }}
+                        className="px-1 py-0.5"
+                      >
+                        {renderOptionItem(option, isSelected, isMulti, handleSelect)}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="max-h-56 overflow-y-auto space-y-1">
+              {filteredOptions.length === 0 ? (
+                <p className="py-4 px-3 text-xs text-zinc-400 dark:text-zinc-500 text-center">{emptyText}</p>
+              ) : (
+                <>
+                  {/* Grouped Options with Sticky Headers */}
+                  {Object.entries(groupedOptions.groups).map(([groupName, groupOpts]) => (
+                    <div key={groupName} className="space-y-0.5">
+                      <div className="sticky top-0 z-10 bg-zinc-100/90 dark:bg-zinc-800/90 backdrop-blur-xs px-2.5 py-1 rounded-lg text-[10px] font-bold tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
+                        {groupName}
+                      </div>
+                      {groupOpts.map((option) => {
+                        const isSelected = isMulti
+                          ? selectedMulti.includes(option.value)
+                          : selectedSingle === option.value;
+                        return renderOptionItem(option, isSelected, isMulti, handleSelect);
+                      })}
+                    </div>
+                  ))}
+
+                  {/* Ungrouped Options */}
+                  {groupedOptions.ungrouped.map((option) => {
+                    const isSelected = isMulti
+                      ? selectedMulti.includes(option.value)
+                      : selectedSingle === option.value;
+                    return renderOptionItem(option, isSelected, isMulti, handleSelect);
+                  })}
+                </>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -259,10 +429,10 @@ export function Combobox({
 
 function renderOptionItem(
   option: ComboboxOption,
-  selected: string,
+  isSelected: boolean,
+  isMulti: boolean,
   handleSelect: (opt: ComboboxOption) => void
 ) {
-  const isSelected = selected === option.value;
   return (
     <div
       key={option.value}
@@ -276,7 +446,7 @@ function renderOptionItem(
         }
       }}
       className={cn(
-        "w-full flex items-center justify-between rounded-xl px-3 py-2 text-xs text-left transition-colors cursor-pointer select-none",
+        "w-full flex items-center justify-between rounded-xl px-3 py-2 text-xs text-left transition-colors cursor-pointer select-none h-full",
         isSelected
           ? "bg-sky-500/10 text-sky-600 dark:text-sky-400 font-semibold"
           : "hover:bg-zinc-100 dark:hover:bg-zinc-800/70 text-zinc-700 dark:text-zinc-300",

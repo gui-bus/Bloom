@@ -94,6 +94,30 @@ export default function SkeletonComponentPage() {
 </div>`}
       />
 
+      {/* Animation Switcher (Pulse vs Shimmer) */}
+      <DocsComponent
+        title="Animation Switcher (Pulse vs Shimmer)"
+        description='Switch between classic pulse animation (animation="pulse") and glowing gradient shimmer wave (animation="shimmer").'
+        preview={
+          <div className="flex flex-col md:flex-row gap-6 w-full max-w-lg">
+            <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex-1 space-y-3 shadow-xs">
+              <span className="block text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-2">Pulse Animation</span>
+              <Skeleton animation="pulse" variant="rectangle" className="w-full h-24 rounded-xl" />
+              <Skeleton animation="pulse" variant="text" className="w-3/4 h-4" />
+            </div>
+
+            <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex-1 space-y-3 shadow-xs">
+              <span className="block text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-2">Shimmer Wave Animation</span>
+              <Skeleton animation="shimmer" variant="rectangle" className="w-full h-24 rounded-xl" />
+              <Skeleton animation="shimmer" variant="text" className="w-3/4 h-4" />
+            </div>
+          </div>
+        }
+        code={`<Skeleton animation="pulse" variant="rectangle" className="w-full h-24" />
+<Skeleton animation="shimmer" variant="rectangle" className="w-full h-24" />`}
+        props={["animation: 'pulse' | 'shimmer' | 'none'"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}
@@ -113,20 +137,20 @@ export default function SkeletonComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">animation</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'pulse' | 'shimmer' | 'none'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'pulse'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Animation effect switcher (pulse fade or shimmer gradient wave).</td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'circle' | 'rectangle' | 'text'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'rectangle'</td>
                   <td className="px-3 py-2 text-muted-foreground">Shape layout of the loading placeholder.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    keyof typeof designRadius
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'lg'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Border radius style variant.</td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">isLoaded</td>

@@ -82,12 +82,38 @@ function MaxCountDemo() {
   );
 }
 
+const groupedTechOptions = [
+  { label: "React", value: "react", category: "Frontend Frameworks", icon: <Icon icon="devicon:react" className="size-4" /> },
+  { label: "Vue.js", value: "vue", category: "Frontend Frameworks", icon: <Icon icon="devicon:vuejs" className="size-4" /> },
+  { label: "Next.js", value: "nextjs", category: "Frontend Frameworks", icon: <Icon icon="devicon:nextjs" className="size-4" /> },
+  { label: "Node.js", value: "nodejs", category: "Backend Runtime", icon: <Icon icon="devicon:nodejs" className="size-4" /> },
+  { label: "Python", value: "python", category: "Backend Runtime", icon: <Icon icon="devicon:python" className="size-4" /> },
+  { label: "PostgreSQL", value: "postgres", category: "Databases", icon: <Icon icon="devicon:postgresql" className="size-4" /> },
+  { label: "MongoDB", value: "mongodb", category: "Databases", icon: <Icon icon="devicon:mongodb" className="size-4" /> },
+];
+
+function GroupedCategoryDemo() {
+  const [value, setValue] = React.useState<string[]>(["react", "nodejs", "postgres"]);
+  return (
+    <div className="w-full max-w-md">
+      <MultiSelect
+        options={groupedTechOptions}
+        value={value}
+        onChange={setValue}
+        placeholder="Select ecosystem tools..."
+        label="Ecosystem Stack (Select All & Collapsible Groups)"
+        showSelectAll
+      />
+    </div>
+  );
+}
+
 export default function MultiSelectPage() {
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Multi Select"
-        description="A searchable multi-selection input with removable pill badges, keyboard navigation, and limit enforcement for controlled selection of multiple items."
+        description="A searchable multi-selection input with removable pill badges, Select All / Deselect All batch actions, collapsible header categories, keyboard navigation, and max count enforcement."
       />
 
       <ImportSnippet importCode={`import { MultiSelect } from "@/components/ui/multiSelect/multiSelect";`} />
@@ -108,8 +134,8 @@ export default function MultiSelectPage() {
           <CodeBlock
             code={multiSelectCode}
             componentName="multiSelect.tsx"
-            description="Searchable multi-select input with pill badges, search filter, and keyboard support."
-            tags={["React", "Tailwind", "UI Component", "Form", "Multi Select"]}
+            description="Searchable multi-select input supporting batch select/deselect actions and collapsible category grouping."
+            tags={["React", "Tailwind", "UI Component", "Form", "Multi Select", "Categories"]}
           />
         </TabsContent>
       </Tabs>
@@ -170,6 +196,23 @@ export default function MultiSelectPage() {
 />`}
       />
 
+      {/* Select All Bar & Collapsible Categories */}
+      <DocsComponent
+        title="Select All Batch Actions & Collapsible Category Headers"
+        description="Batch select or clear all filtered options with 'showSelectAll', and group items into collapsible category sections via the 'category' option field."
+        preview={<GroupedCategoryDemo />}
+        code={`<MultiSelect
+  options={[
+    { label: "React", value: "react", category: "Frontend Frameworks" },
+    { label: "Node.js", value: "nodejs", category: "Backend Runtime" },
+  ]}
+  value={value}
+  onChange={setValue}
+  showSelectAll
+/>`}
+        props={["showSelectAll: boolean", "category?: string (in option)"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800">
@@ -183,14 +226,10 @@ export default function MultiSelectPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">options</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">MultiSelectOption[]</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Array of selectable options.</td></tr>
+            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">showSelectAll</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">boolean</td><td className="px-4 py-3 text-zinc-400">true</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Renders batch action bar for Select All and Clear.</td></tr>
+            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">options</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">MultiSelectOption[]</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Array of selectable options (with optional category & icon).</td></tr>
             <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">value</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">string[]</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Currently selected values.</td></tr>
             <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">onChange</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">(value: string[]) =&gt; void</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Callback when selection changes.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">placeholder</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">string</td><td className="px-4 py-3 text-zinc-400">&quot;Select options...&quot;</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Placeholder text when empty.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">label</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">ReactNode</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Label displayed above the input.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">maxCount</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">number</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Maximum number of selectable items.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">isDisabled</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">boolean</td><td className="px-4 py-3 text-zinc-400">false</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Disables the component.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">isInvalid</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">boolean</td><td className="px-4 py-3 text-zinc-400">false</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Applies error styling.</td></tr>
           </tbody>
         </table>
       </div>

@@ -226,6 +226,54 @@ export default function SelectComponentPage() {
 </Select>`}
       />
 
+      {/* Option Search Filter */}
+      <DocsComponent
+        title="Option Search Filter"
+        description="Filter options dynamically using an inline search input inside the popover with 'isSearchable'."
+        preview={
+          <div className="max-w-xs w-full">
+            <Select
+              isSearchable
+              options={sampleOptions}
+              label="Filter Technologies"
+              defaultValue="react"
+            />
+          </div>
+        }
+        code={`<Select isSearchable options={sampleOptions} label="Filter Technologies" />`}
+        props={["isSearchable: boolean"]}
+      />
+
+      {/* Sticky Category Headers */}
+      <DocsComponent
+        title="Sticky Category Headers"
+        description="Group options under category headers that stick to the top of the popover menu during scroll."
+        preview={
+          <div className="max-w-xs w-full">
+            <Select
+              options={[
+                { value: "react", label: "React.js", group: "Frontend Frameworks", icon: "devicon:react" },
+                { value: "vue", label: "Vue 3", group: "Frontend Frameworks", icon: "devicon:vuejs" },
+                { value: "next", label: "Next.js 16", group: "Fullstack Frameworks", icon: "devicon:nextjs" },
+                { value: "nuxt", label: "Nuxt 3", group: "Fullstack Frameworks", icon: "devicon:nuxtjs" },
+                { value: "node", label: "Node.js", group: "Backend Runtimes", icon: "devicon:nodejs" },
+                { value: "bun", label: "Bun", group: "Backend Runtimes", icon: "devicon:bun" },
+              ]}
+              label="Ecosystem Stack (Grouped)"
+              defaultValue="react"
+            />
+          </div>
+        }
+        code={`<Select
+  options={[
+    { value: "react", label: "React.js", group: "Frontend Frameworks" },
+    { value: "next", label: "Next.js 16", group: "Fullstack Frameworks" },
+  ]}
+  label="Ecosystem Stack"
+/>`}
+        props={["group?: string (in option)"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}
@@ -245,42 +293,22 @@ export default function SelectComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isMultiSelect</td>
+                  <td className="px-3 py-2 font-mono text-primary">isSearchable</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables multi-selection mode with removable tags.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">maxTagsVisible</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
-                  <td className="px-3 py-2 text-muted-foreground">2</td>
-                  <td className="px-3 py-2 text-muted-foreground">Limit of chip tags visible before showing +N overflow indicator.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showBatchActions</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Displays 'Select All' and 'Deselect All' buttons in dropdown header.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'bordered' | 'flat' | 'underlined' | 'faded'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Visual style variant of the trigger button.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Adds search input filter inside the select popover.</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">renderOption</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(option: SelectOption) =&gt; ReactNode</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Custom slot to render option items in the menu.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Custom item template slot for option items inside popover.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">renderValue</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(selected) =&gt; ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-primary">group (in option)</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Custom slot to render the selected value inside the trigger.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Category name to group options with sticky headers.</td>
                 </tr>
               </tbody>
             </table>

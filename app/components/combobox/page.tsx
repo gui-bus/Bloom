@@ -29,12 +29,85 @@ const groupedTechStack: ComboboxOption[] = [
   { value: "redis", label: "Redis", description: "In-memory Data Store", icon: "logos:redis", group: "Database" },
 ];
 
+function MultiSelectDemo() {
+  const [selected, setSelected] = React.useState(["react", "nextjs"]);
+  return (
+    <div className="w-full max-w-sm">
+      <Combobox
+        isMulti
+        isClearable
+        label="Select Frameworks (Multi-Select)"
+        options={groupedTechStack}
+        multiValue={selected}
+        onMultiChange={setSelected}
+      />
+    </div>
+  );
+}
+
+function CreateOnFlyDemo() {
+  const [options, setOptions] = React.useState<ComboboxOption[]>([
+    { value: "react", label: "React" },
+    { value: "vue", label: "Vue" },
+    { value: "angular", label: "Angular" },
+  ]);
+  const [selected, setSelected] = React.useState("react");
+
+  const handleCreate = (newTag: string) => {
+    const newOption: ComboboxOption = {
+      value: newTag.toLowerCase().replace(/\s+/g, "-"),
+      label: newTag,
+    };
+    setOptions((prev) => [...prev, newOption]);
+    setSelected(newOption.value);
+  };
+
+  return (
+    <div className="w-full max-w-sm">
+      <Combobox
+        allowCreate
+        label="Create Custom Option on the Fly"
+        options={options}
+        value={selected}
+        onValueChange={setSelected}
+        onCreate={handleCreate}
+        placeholder="Select or type to create..."
+      />
+    </div>
+  );
+}
+
+function VirtualizedListDemo() {
+  const [selected, setSelected] = React.useState("item-42");
+
+  const thousandOptions: ComboboxOption[] = React.useMemo(() => {
+    return Array.from({ length: 10000 }, (_, i) => ({
+      value: `item-${i + 1}`,
+      label: `Option #${i + 1} — Dataset Item`,
+      description: `Virtualized item index ${i + 1}`,
+    }));
+  }, []);
+
+  return (
+    <div className="w-full max-w-sm">
+      <Combobox
+        isVirtualized
+        label="Virtualized List (10,000 Items)"
+        options={thousandOptions}
+        value={selected}
+        onValueChange={setSelected}
+        placeholder="Scroll through 10,000 options smoothly..."
+      />
+    </div>
+  );
+}
+
 export default function ComboboxComponentPage() {
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Combobox"
-        description="An autocomplete combo box featuring smart fuzzy text similarity search, grouped sections with sticky headers, custom icons, descriptions, and quick clear triggers."
+        description="An autocomplete combo box featuring smart fuzzy text similarity search, multi-select mode with tag pills, on-the-fly option creation, virtualized rendering for 10,000+ items, and sticky section headers."
       />
 
       <ImportSnippet importCode={`import { Combobox } from "@/components/ui/combobox/combobox";`} />
@@ -55,11 +128,67 @@ export default function ComboboxComponentPage() {
           <CodeBlock
             code={comboboxCode}
             componentName="combobox.tsx"
-            description="Core implementation of the Combobox component with fuzzy search and sticky group headers."
-            tags={["React", "Tailwind", "Autocomplete", "Fuzzy Search", "Combobox"]}
+            description="Core implementation of the Combobox component with multi-select tag pills, creation on the fly, and virtualized list rendering."
+            tags={["React", "Tailwind", "Autocomplete", "Fuzzy Search", "Virtualized", "Combobox"]}
           />
         </TabsContent>
       </Tabs>
+
+      {/* Multi Select Mode */}
+      <DocsComponent
+        title="Multi-Select Mode with Tag Pills"
+        description="Set 'isMulti' to enable selecting multiple items rendered as removable tag pills inside the input trigger."
+        preview={<MultiSelectDemo />}
+        code={`const [selected, setSelected] = React.useState(["react", "nextjs"]);
+
+<Combobox
+  isMulti
+  isClearable
+  label="Select Frameworks"
+  options={groupedTechStack}
+  multiValue={selected}
+  onMultiChange={setSelected}
+/>`}
+        props={["isMulti: boolean", "multiValue: string[]", "onMultiChange: (values: string[]) => void"]}
+      />
+
+      {/* Create Option on the Fly */}
+      <DocsComponent
+        title="Create New Option on the Fly"
+        description="Enable 'allowCreate' to allow users to add new custom options directly from the search input via the 'onCreate' callback."
+        preview={<CreateOnFlyDemo />}
+        code={`<Combobox
+  allowCreate
+  label="Create Custom Option"
+  options={options}
+  value={selected}
+  onValueChange={setSelected}
+  onCreate={(newTag) => {
+    setOptions((prev) => [...prev, { value: newTag.toLowerCase(), label: newTag }]);
+  }}
+/>`}
+        props={["allowCreate: boolean", "onCreate: (searchQuery: string) => void"]}
+      />
+
+      {/* Virtualized List for 1,000+ Items */}
+      <DocsComponent
+        title="Virtualized List (10,000+ Items)"
+        description="Enable 'isVirtualized' for high-performance rendering of datasets with thousands of items without DOM lag."
+        preview={<VirtualizedListDemo />}
+        code={`const thousandOptions = Array.from({ length: 10000 }, (_, i) => ({
+  value: \`item-\${i + 1}\`,
+  label: \`Option #\${i + 1} — Dataset Item\`,
+}));
+
+<Combobox
+  isVirtualized
+  label="Virtualized List"
+  options={thousandOptions}
+  value={selected}
+  onValueChange={setSelected}
+/>`}
+        props={["isVirtualized: boolean", "itemHeight: number"]}
+      />
 
       {/* Fuzzy Matching Search */}
       <DocsComponent
@@ -112,31 +241,6 @@ export default function ComboboxComponentPage() {
         props={["options[].group: string"]}
       />
 
-      {/* Clearable and Invalid State */}
-      <DocsComponent
-        title="Clearable Action & Validation State"
-        description="One-click clear button to reset selection and visual validation error state."
-        preview={
-          <div className="flex flex-col md:flex-row gap-4 w-full max-w-xl">
-            <Combobox
-              isClearable
-              label="Clearable Field"
-              options={groupedTechStack}
-              defaultValue="nextjs"
-            />
-            <Combobox
-              isInvalid
-              label="Required Selection"
-              options={groupedTechStack}
-              placeholder="Selection required"
-            />
-          </div>
-        }
-        code={`<Combobox isClearable label="Clearable Field" options={groupedTechStack} defaultValue="nextjs" />
-<Combobox isInvalid label="Required Selection" options={groupedTechStack} />`}
-        props={["isClearable: boolean", "isInvalid: boolean"]}
-      />
-
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Combobox Table */}
@@ -156,28 +260,52 @@ export default function ComboboxComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isMulti</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables multi-selection mode with tag pills inside trigger.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">multiValue</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">Selected values array in multi-select mode.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">onMultiChange</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(values: string[]) =&gt; void</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback fired when selected values array changes in multi-select mode.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">allowCreate</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables creating new options on the fly when search term doesn't match existing options.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">onCreate</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(query: string) =&gt; void</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback fired when user clicks to create a new option.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isVirtualized</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables virtualized list rendering for large datasets (1,000+ items).</td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">isFuzzySearch</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
                   <td className="px-3 py-2 text-muted-foreground">Enables fuzzy matching text search and sorting algorithm.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">options[].group</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Group/category label name for rendering sticky section headers.</td>
-                </tr>
-                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">isClearable</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Displays a clear button to reset the selected value.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isInvalid</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Applies error validation state styling.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Displays a clear button to reset selected value(s).</td>
                 </tr>
               </tbody>
             </table>

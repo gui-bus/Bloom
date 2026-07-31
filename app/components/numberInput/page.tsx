@@ -69,10 +69,10 @@ export default function NumberInputComponentPage() {
         props={["stepperPosition: 'split' | 'right' | 'inline'"]}
       />
 
-      {/* Internationalized Currency Formatting */}
+      {/* Currency Formatting */}
       <DocsComponent
-        title="Internationalized Formatting (Currency & Percent)"
-        description="Pass format='currency', currency='BRL', locale='pt-BR', and precision={2} for native locale currency formatting."
+        title="Currency Formatting"
+        description="Format numeric values as currency using format='currency', currency='BRL' / 'USD', and locale='pt-BR' / 'en-US'."
         preview={
           <div className="flex flex-col gap-4 max-w-xs w-full">
             <NumberInput
@@ -99,9 +99,7 @@ export default function NumberInputComponentPage() {
   currency="BRL"
   locale="pt-BR"
   defaultValue={1499.90}
-  step={100}
 />
-
 <NumberInput
   label="US Dollar"
   format="currency"
@@ -109,7 +107,27 @@ export default function NumberInputComponentPage() {
   locale="en-US"
   defaultValue={2500}
 />`}
-        props={["format: 'currency' | 'decimal' | 'percent'", "currency: string", "locale: string", "precision: number"]}
+        props={["format: 'currency'", "currency: string", "locale: string"]}
+      />
+
+      {/* Percentage Formatting */}
+      <DocsComponent
+        title="Percentage Formatting"
+        description="Format numeric values as percentages using format='percent' and precision={2}."
+        preview={
+          <div className="max-w-xs w-full">
+            <NumberInput
+              label="Discount Percentage"
+              format="percent"
+              defaultValue={15}
+              step={5}
+              min={0}
+              max={100}
+            />
+          </div>
+        }
+        code={`<NumberInput label="Discount Percentage" format="percent" defaultValue={15} step={5} />`}
+        props={["format: 'percent'", "precision?: number"]}
       />
 
       {/* Mouse Wheel Scroll Control */}

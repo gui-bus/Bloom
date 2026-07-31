@@ -23,7 +23,7 @@ export default function FileUploadComponentPage() {
     <div className="space-y-8">
       <DocsTitle
         title="File Upload"
-        description="Interactive drag & drop file upload zone with drop-zone highlight animations, immediate image/video thumbnail previews, and per-file progress tracking with pause/resume controls."
+        description="Interactive drag & drop file upload zone with drop-zone highlight animations, immediate image/video thumbnail previews, image crop & rotation modal, clipboard image pasting, resolution/aspect ratio validation, and per-file progress tracking."
       />
 
       <ImportSnippet importCode={`import { FileUpload } from "@/components/ui/fileUpload/fileUpload";`} />
@@ -44,15 +44,15 @@ export default function FileUploadComponentPage() {
           <CodeBlock
             code={fileUploadCode}
             componentName="fileUpload.tsx"
-            description="Core implementation of the FileUpload component."
-            tags={["React", "File Upload", "Drag and Drop", "Previews", "Progress"]}
+            description="Core implementation of the FileUpload component supporting image cropping/rotation, clipboard pasting, and file validation rules."
+            tags={["React", "File Upload", "Drag and Drop", "Image Crop", "Validation"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Drag and Drop with Progress */}
+      {/* Default (Drag and Drop with Progress) */}
       <DocsComponent
-        title="Drag & Drop with Animated Progress Tracking"
+        title="Default (Drag & Drop with Animated Progress)"
         description="Interactive drop zone featuring live progress bars per file with pause, resume, and cancellation buttons."
         preview={
           <div className="max-w-md w-full">
@@ -78,7 +78,7 @@ export default function FileUploadComponentPage() {
 
       {/* Image & Video Thumbnails Preview */}
       <DocsComponent
-        title="Thumbnails & Immediate Previews (showPreviews)"
+        title="Thumbnails & Immediate Previews"
         description="Renders instant preview thumbnails for uploaded images, videos, and document file types."
         preview={
           <div className="max-w-md w-full">
@@ -117,6 +117,78 @@ export default function FileUploadComponentPage() {
         props={["disabled: boolean"]}
       />
 
+      {/* Image Cropping & Rotation Modal */}
+      <DocsComponent
+        title="Image Cropping & Rotation Preview Modal"
+        description="Pass 'enableCrop' to allow users to rotate (90° steps) and zoom/crop uploaded images inside a dedicated interactive modal."
+        preview={
+          <div className="max-w-md w-full">
+            <FileUpload
+              label="Profile Photo (Crop & Rotate Enabled)"
+              accept="image/*"
+              enableCrop
+              description="Upload an image to trigger the crop & rotation preview modal"
+            />
+          </div>
+        }
+        code={`<FileUpload
+  label="Profile Photo"
+  accept="image/*"
+  enableCrop
+/>`}
+        props={["enableCrop: boolean"]}
+      />
+
+      {/* Paste from Clipboard */}
+      <DocsComponent
+        title="Paste from Clipboard (allowPaste)"
+        description="Pass 'allowPaste' to intercept global Ctrl+V image clipboard events and automatically upload captured screenshots or copied images."
+        preview={
+          <div className="max-w-md w-full">
+            <FileUpload
+              label="Paste Screenshots"
+              allowPaste
+              description="Copy any image to clipboard and press Ctrl+V on this page"
+            />
+          </div>
+        }
+        code={`<FileUpload
+  label="Paste Screenshots"
+  allowPaste
+/>`}
+        props={["allowPaste: boolean"]}
+      />
+
+      {/* File Validation Rules (Min/Max Resolution & Aspect Ratio) */}
+      <DocsComponent
+        title="Resolution & Aspect Ratio Validation Rules"
+        description="Pass 'validationRules' to enforce minimum/maximum pixel dimensions or required aspect ratios (e.g. 1:1 square, 16:9 widescreen)."
+        preview={
+          <div className="max-w-md w-full">
+            <FileUpload
+              label="Banner Upload (Required 16:9 Aspect Ratio)"
+              accept="image/*"
+              validationRules={{
+                minWidth: 400,
+                minHeight: 200,
+                aspectRatio: 1.7778, // 16:9
+              }}
+              description="Upload a 16:9 image (min 400x200px)"
+            />
+          </div>
+        }
+        code={`<FileUpload
+  label="Banner Upload (Required 16:9)"
+  accept="image/*"
+  validationRules={{
+    minWidth: 400,
+    minHeight: 200,
+    aspectRatio: 1.7778,
+  }}
+/>`}
+        props={["validationRules: FileValidationRules"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}
@@ -136,6 +208,24 @@ export default function FileUploadComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">enableCrop</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Opens interactive image crop and rotation modal before uploading.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">allowPaste</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Allows pasting images directly from the clipboard via Ctrl+V shortcut.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">validationRules</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">FileValidationRules</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Validation object enforcing min/max pixel resolution or aspect ratio.</td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">showPreviews</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
@@ -146,12 +236,6 @@ export default function FileUploadComponentPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
                   <td className="px-3 py-2 text-muted-foreground">Enables individual file upload progress tracking with pause/resume controls.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">multiple</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Allows selecting multiple files at once.</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">maxSizeMB</td>

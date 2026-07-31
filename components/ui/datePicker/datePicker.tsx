@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
 export type DatePickerMode = "single" | "range" | "multiple";
+export type DatePickerViewMode = "date" | "fiscalQuarter" | "fiscalYear";
 
 export interface DatePickerPreset {
   label: string;
@@ -13,6 +14,9 @@ export interface DatePickerPreset {
 
 export interface DatePickerProps {
   mode?: DatePickerMode;
+  viewMode?: DatePickerViewMode;
+  fiscalYearStartMonth?: number; // 1-12 (e.g. 1 = Jan, 4 = Apr, 10 = Oct)
+  showTimePicker?: boolean;
   value?: Date;
   onChange?: (date: Date | undefined) => void;
   rangeValue?: [Date | undefined, Date | undefined];
@@ -97,8 +101,29 @@ function isDateDisabled(date: Date, minDate?: Date, maxDate?: Date): boolean {
   return false;
 }
 
+/**
+ * Calculates Fiscal Quarter (Q1..Q4) and Fiscal Year given start month offset (1-12)
+ */
+function getFiscalQuarter(date: Date, startMonth = 1) {
+  const month = date.getMonth() + 1; // 1-12
+  const offset = (month - startMonth + 12) % 12; // 0..11
+  const quarter = Math.floor(offset / 3) + 1; // 1..4
+
+  let fiscalYear = date.getFullYear();
+  if (month < startMonth) {
+    fiscalYear = date.getFullYear();
+  } else if (startMonth !== 1) {
+    fiscalYear = date.getFullYear() + 1;
+  }
+
+  return { quarter, fiscalYear };
+}
+
 export function DatePicker({
   mode = "single",
+  viewMode = "date",
+  fiscalYearStartMonth = 1,
+  showTimePicker = false,
   value,
   onChange,
   rangeValue,
@@ -125,10 +150,18 @@ export function DatePicker({
   );
   const [multipleDates, setMultipleDates] = React.useState<Date[]>(multipleValue || []);
 
+  // Time state
+  const [hours, setHours] = React.useState<number>(value ? value.getHours() : 12);
+  const [minutes, setMinutes] = React.useState<number>(value ? value.getMinutes() : 0);
+
   const [isOpen, setIsOpen] = React.useState(false);
   const [currentMonth, setCurrentMonth] = React.useState<Date>(
     value || rangeValue?.[0] || multipleValue?.[0] || new Date()
   );
+  const [fiscalYearView, setFiscalYearView] = React.useState<number>(
+    (value || new Date()).getFullYear()
+  );
+
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   const weekdaysShort = React.useMemo(() => {
@@ -142,7 +175,11 @@ export function DatePicker({
   }, [locale, timeZone]);
 
   React.useEffect(() => {
-    if (value !== undefined) setSingleDate(value);
+    if (value !== undefined) {
+      setSingleDate(value);
+      setHours(value.getHours());
+      setMinutes(value.getMinutes());
+    }
   }, [value]);
 
   React.useEffect(() => {
@@ -173,13 +210,18 @@ export function DatePicker({
     setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1));
   };
 
+  const updateDateTime = (d: Date, h: number, m: number) => {
+    const updated = new Date(d.getFullYear(), d.getMonth(), d.getDate(), h, m);
+    setSingleDate(updated);
+    onChange?.(updated);
+  };
+
   const handleSelectDay = (targetDate: Date) => {
     if (isDateDisabled(targetDate, minDate, maxDate)) return;
 
     if (mode === "single") {
-      setSingleDate(targetDate);
-      onChange?.(targetDate);
-      setIsOpen(false);
+      updateDateTime(targetDate, hours, minutes);
+      if (!showTimePicker) setIsOpen(false);
     } else if (mode === "range") {
       const [start, end] = dateRange;
       if (!start || (start && end)) {
@@ -207,6 +249,34 @@ export function DatePicker({
       }
       setMultipleDates(nextDates);
       onMultipleChange?.(nextDates);
+    }
+  };
+
+  const handleSelectFiscalQuarter = (qNumber: number) => {
+    // Determine start month of quarter
+    const startMonthIdx = ((fiscalYearStartMonth - 1) + (qNumber - 1) * 3) % 12;
+    let targetYear = fiscalYearView;
+    if (fiscalYearStartMonth !== 1 && startMonthIdx < fiscalYearStartMonth - 1) {
+      targetYear = fiscalYearView;
+    }
+    const qStartDate = new Date(targetYear, startMonthIdx, 1);
+    setSingleDate(qStartDate);
+    onChange?.(qStartDate);
+    setIsOpen(false);
+  };
+
+  const handleSelectFiscalYear = (fyYear: number) => {
+    const fyStartDate = new Date(fyYear, fiscalYearStartMonth - 1, 1);
+    setSingleDate(fyStartDate);
+    onChange?.(fyStartDate);
+    setIsOpen(false);
+  };
+
+  const handleTimeChange = (newHours: number, newMinutes: number) => {
+    setHours(newHours);
+    setMinutes(newMinutes);
+    if (singleDate) {
+      updateDateTime(singleDate, newHours, newMinutes);
     }
   };
 
@@ -252,12 +322,30 @@ export function DatePicker({
   };
 
   const formatDate = (date: Date) => {
-    return new Intl.DateTimeFormat(locale, {
+    if (viewMode === "fiscalQuarter") {
+      const f = getFiscalQuarter(date, fiscalYearStartMonth);
+      return `Q${f.quarter} FY${f.fiscalYear}`;
+    }
+    if (viewMode === "fiscalYear") {
+      const f = getFiscalQuarter(date, fiscalYearStartMonth);
+      return `FY${f.fiscalYear}`;
+    }
+
+    const dateStr = new Intl.DateTimeFormat(locale, {
       month: "short",
       day: "numeric",
       year: "numeric",
       timeZone: timeZone,
     }).format(date);
+
+    if (showTimePicker) {
+      const timeStr = `${String(date.getHours()).padStart(2, "0")}:${String(
+        date.getMinutes()
+      ).padStart(2, "0")}`;
+      return `${dateStr} ${timeStr}`;
+    }
+
+    return dateStr;
   };
 
   const renderTriggerText = () => {
@@ -340,7 +428,7 @@ export function DatePicker({
             "absolute top-full left-0 z-50 mt-1 flex flex-col md:flex-row rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl text-zinc-900 dark:text-zinc-100 shadow-2xl p-3 animate-in fade-in-80 gap-4"
           )}
         >
-          {showPresets && (
+          {showPresets && viewMode === "date" && (
             <div className="flex flex-col gap-1 border-b md:border-b-0 md:border-r border-zinc-200 dark:border-zinc-800 pb-2 md:pb-0 md:pr-3 min-w-[110px]">
               <span className="text-[10px] font-bold tracking-wider text-zinc-400 uppercase mb-1">
                 Presets
@@ -358,44 +446,159 @@ export function DatePicker({
             </div>
           )}
 
-          <div className="flex flex-col md:flex-row gap-4">
-            {renderMonthCalendar(
-              currentMonth,
-              handlePrevMonth,
-              handleNextMonth,
-              mode,
-              locale,
-              timeZone,
-              weekdaysShort,
-              singleDate,
-              dateRange,
-              multipleDates,
-              minDate,
-              maxDate,
-              handleSelectDay,
-              true,
-              !showDoubleMonth
-            )}
+          {viewMode === "fiscalQuarter" && (
+            <div className="w-60 flex flex-col gap-3">
+              <div className="flex items-center justify-between h-7">
+                <button
+                  type="button"
+                  onClick={() => setFiscalYearView((prev) => prev - 1)}
+                  className="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg text-zinc-500"
+                >
+                  <Icon icon="hugeicons:arrow-left-01" className="size-4" />
+                </button>
+                <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100">
+                  Fiscal Year {fiscalYearView}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setFiscalYearView((prev) => prev + 1)}
+                  className="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg text-zinc-500"
+                >
+                  <Icon icon="hugeicons:arrow-right-01" className="size-4" />
+                </button>
+              </div>
 
-            {showDoubleMonth &&
-              renderMonthCalendar(
-                nextMonth,
-                handlePrevMonth,
-                handleNextMonth,
-                mode,
-                locale,
-                timeZone,
-                weekdaysShort,
-                singleDate,
-                dateRange,
-                multipleDates,
-                minDate,
-                maxDate,
-                handleSelectDay,
-                false,
-                true
+              <div className="grid grid-cols-2 gap-2">
+                {[1, 2, 3, 4].map((q) => {
+                  const currentF = singleDate ? getFiscalQuarter(singleDate, fiscalYearStartMonth) : null;
+                  const isSelected = currentF?.quarter === q && currentF?.fiscalYear === fiscalYearView;
+                  return (
+                    <button
+                      key={q}
+                      type="button"
+                      onClick={() => handleSelectFiscalQuarter(q)}
+                      className={cn(
+                        "h-12 rounded-xl border border-zinc-200 dark:border-zinc-800 flex flex-col items-center justify-center text-xs font-semibold transition-colors cursor-pointer",
+                        isSelected
+                          ? "bg-sky-600 text-white border-sky-600"
+                          : "hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200"
+                      )}
+                    >
+                      <span>Q{q}</span>
+                      <span className="text-[9px] opacity-80">Quarter {q}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {viewMode === "fiscalYear" && (
+            <div className="w-60 flex flex-col gap-3">
+              <span className="text-xs font-bold text-center text-zinc-900 dark:text-zinc-100 h-7 flex items-center justify-center">
+                Select Fiscal Year
+              </span>
+              <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
+                {Array.from({ length: 10 }, (_, i) => fiscalYearView - 4 + i).map((fy) => {
+                  const currentF = singleDate ? getFiscalQuarter(singleDate, fiscalYearStartMonth) : null;
+                  const isSelected = currentF?.fiscalYear === fy;
+                  return (
+                    <button
+                      key={fy}
+                      type="button"
+                      onClick={() => handleSelectFiscalYear(fy)}
+                      className={cn(
+                        "h-10 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-xs font-semibold transition-colors cursor-pointer",
+                        isSelected
+                          ? "bg-sky-600 text-white border-sky-600"
+                          : "hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200"
+                      )}
+                    >
+                      FY{fy}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {viewMode === "date" && (
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-col md:flex-row gap-4">
+                {renderMonthCalendar(
+                  currentMonth,
+                  handlePrevMonth,
+                  handleNextMonth,
+                  mode,
+                  locale,
+                  timeZone,
+                  weekdaysShort,
+                  singleDate,
+                  dateRange,
+                  multipleDates,
+                  minDate,
+                  maxDate,
+                  handleSelectDay,
+                  true,
+                  !showDoubleMonth
+                )}
+
+                {showDoubleMonth &&
+                  renderMonthCalendar(
+                    nextMonth,
+                    handlePrevMonth,
+                    handleNextMonth,
+                    mode,
+                    locale,
+                    timeZone,
+                    weekdaysShort,
+                    singleDate,
+                    dateRange,
+                    multipleDates,
+                    minDate,
+                    maxDate,
+                    handleSelectDay,
+                    false,
+                    true
+                  )}
+              </div>
+
+              {/* Integrated Time Picker Controls */}
+              {showTimePicker && mode === "single" && (
+                <div className="pt-2 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+                  <div className="flex items-center gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+                    <Icon icon="hugeicons:clock-01" className="size-4 text-sky-500" />
+                    <span>Time</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <select
+                      value={hours}
+                      onChange={(e) => handleTimeChange(Number(e.target.value), minutes)}
+                      className="px-2 py-1 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 focus:outline-none focus:ring-1 focus:ring-sky-500"
+                    >
+                      {Array.from({ length: 24 }, (_, i) => i).map((h) => (
+                        <option key={h} value={h}>
+                          {String(h).padStart(2, "0")}
+                        </option>
+                      ))}
+                    </select>
+                    <span className="font-mono text-zinc-400 font-bold">:</span>
+                    <select
+                      value={minutes}
+                      onChange={(e) => handleTimeChange(hours, Number(e.target.value))}
+                      className="px-2 py-1 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 focus:outline-none focus:ring-1 focus:ring-sky-500"
+                    >
+                      {Array.from({ length: 12 }, (_, i) => i * 5).map((m) => (
+                        <option key={m} value={m}>
+                          {String(m).padStart(2, "0")}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
               )}
-          </div>
+            </div>
+          )}
         </div>
       )}
     </div>

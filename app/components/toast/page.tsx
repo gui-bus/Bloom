@@ -145,6 +145,119 @@ toast.info("System Update Available", { description: "Version v2.4.0 is ready." 
 });`}
       />
 
+      {/* Loading Toast Variations */}
+      <DocsComponent
+        title="Loading Toast Variations (Loading -> Success / Error)"
+        description="Trigger animated loading spinner toasts, and dynamically update them to success or error results after asynchronous tasks."
+        preview={
+          <div className="flex flex-wrap gap-3">
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() => {
+                const id = "loading-toast-1";
+                toast.loading("Synchronizing Data...", { id, description: "Connecting to remote cloud storage." });
+              }}
+            >
+              Loading Only
+            </Button>
+
+            <Button
+              color="success"
+              onClick={() => {
+                const id = "async-success-toast";
+                toast.loading("Uploading Assets...", { id, description: "Sending 5 files to bucket." });
+                setTimeout(() => {
+                  toast.success("Upload Complete!", { id, description: "All assets are now live in CDN." });
+                }, 2500);
+              }}
+            >
+              Loading → Success
+            </Button>
+
+            <Button
+              color="danger"
+              onClick={() => {
+                const id = "async-error-toast";
+                toast.loading("Connecting to Database...", { id, description: "Establishing TLS connection." });
+                setTimeout(() => {
+                  toast.error("Connection Failed!", { id, description: "Timeout reaching db-primary:5432." });
+                }, 2500);
+              }}
+            >
+              Loading → Error
+            </Button>
+          </div>
+        }
+        code={`// 1. Loading Only
+toast.loading("Synchronizing Data...", { id: "my-toast" });
+
+// 2. Loading -> Success
+const id = "upload-toast";
+toast.loading("Uploading Assets...", { id });
+setTimeout(() => {
+  toast.success("Upload Complete!", { id, description: "All assets are live." });
+}, 2500);
+
+// 3. Loading -> Error
+toast.loading("Connecting to DB...", { id: "db-toast" });
+setTimeout(() => {
+  toast.error("Connection Failed!", { id: "db-toast" });
+}, 2500);`}
+        props={["toast.loading(title, options)", "id?: string | number"]}
+      />
+
+      {/* Custom Spinner Variants */}
+      <DocsComponent
+        title="Custom Spinner Variants"
+        description="Choose custom spinner animation styles for loading toasts using spinnerVariant ('dots', 'bars', 'pulse', 'ring', 'gradient')."
+        preview={
+          <div className="flex flex-wrap gap-3">
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() => toast.loading("Fetching Records...", { spinnerVariant: "dots" })}
+            >
+              Spinner: Dots
+            </Button>
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() => toast.loading("Processing Order...", { spinnerVariant: "bars" })}
+            >
+              Spinner: Bars
+            </Button>
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() => toast.loading("Syncing Files...", { spinnerVariant: "pulse" })}
+            >
+              Spinner: Pulse
+            </Button>
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() => toast.loading("Generating PDF...", { spinnerVariant: "ring" })}
+            >
+              Spinner: Ring
+            </Button>
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() => toast.loading("Compiling Code...", { spinnerVariant: "gradient" })}
+            >
+              Spinner: Gradient
+            </Button>
+          </div>
+        }
+        code={`toast.loading("Fetching Records...", { spinnerVariant: "dots" });
+toast.loading("Processing Order...", { spinnerVariant: "bars" });
+toast.loading("Syncing Files...", { spinnerVariant: "pulse" });
+toast.loading("Generating PDF...", { spinnerVariant: "ring" });
+toast.loading("Compiling Code...", { spinnerVariant: "gradient" });`}
+        props={["spinnerVariant: 'default' | 'dots' | 'bars' | 'pulse' | 'ring' | 'gradient'"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}

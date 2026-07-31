@@ -114,6 +114,25 @@ export default function TypographyComponentPage() {
         props={["color: 'default' | 'muted' | 'primary' | 'secondary' | ...", "variant: 'lead' | 'code'"]}
       />
 
+      {/* Line Clamping & Read More Toggle */}
+      <DocsComponent
+        title="Line Clamping & Read More Toggle"
+        description="Clamp long paragraphs to a max line count (e.g. clampLines={2}) and toggle full text with showExpandToggle={true}."
+        preview={
+          <div className="max-w-md w-full p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+            <Typography clampLines={2} showExpandToggle variant="p">
+              ZoeUI provides a rich collection of modular, accessible components designed for modern web applications. Every component adheres strictly to dark/light neutral design tokens and provides smooth micro-animations, customizable variants, and comprehensive API documentation.
+            </Typography>
+          </div>
+        }
+        code={`<Typography clampLines={2} showExpandToggle variant="p">
+  ZoeUI provides a rich collection of modular, accessible components...
+</Typography>`}
+        props={["clampLines: number", "showExpandToggle: boolean"]}
+      />
+
+
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}

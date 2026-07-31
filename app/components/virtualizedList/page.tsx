@@ -74,7 +74,7 @@ export default function VirtualizedListPage() {
               items={largeDataset}
               itemHeight={40}
               height={320}
-              renderItem={(item) => (
+              renderItem={(item: { id: number; label: string }) => (
                 <div className="flex items-center px-4 h-full text-sm text-zinc-700 dark:text-zinc-300 border-b border-zinc-100 dark:border-zinc-800/50">
                   <span className="font-mono text-xs text-zinc-400 w-16">#{item.id + 1}</span>
                   <span>{item.label}</span>
@@ -112,7 +112,7 @@ export default function VirtualizedListPage() {
               items={userDataset}
               itemHeight={56}
               height={336}
-              renderItem={(item) => (
+              renderItem={(item: { id: number; name: string; email: string; role: string }) => (
                 <div className="flex items-center gap-3 px-4 h-full border-b border-zinc-100 dark:border-zinc-800/50">
                   <div className="flex items-center justify-center size-8 rounded-full bg-sky-500/10 text-sky-500 text-xs font-bold shrink-0">
                     {item.name.charAt(5)}
@@ -157,6 +157,125 @@ export default function VirtualizedListPage() {
     </div>
   )}
 />`}
+      />
+
+      {/* Dynamic Item Height */}
+      <DocsComponent
+        title="Dynamic Item Height Calculation"
+        description="Calculate varying row heights dynamically using getItemHeight={(item, index) => number}."
+        preview={
+          <div className="w-full max-w-lg">
+            <VirtualizedList
+              items={largeDataset.slice(0, 100)}
+              getItemHeight={(_, index) => (index % 2 === 0 ? 44 : 64)}
+              height={300}
+              renderItem={(item: { id: number; label: string }, index) => (
+                <div
+                  className={`flex items-center px-4 h-full border-b border-zinc-100 dark:border-zinc-800/50 ${
+                    index % 2 === 0 ? "bg-zinc-50/50 dark:bg-zinc-850/40" : "bg-white dark:bg-zinc-900"
+                  }`}
+                >
+                  <span className="font-mono text-xs text-zinc-400 w-24">Row #{index + 1}</span>
+                  <span className="text-xs text-zinc-700 dark:text-zinc-300">
+                    {index % 2 === 0 ? "Compact Row (44px)" : "Expanded Tall Row (64px)"}
+                  </span>
+                </div>
+              )}
+            />
+          </div>
+        }
+        code={`<VirtualizedList
+  items={items}
+  getItemHeight={(item, index) => (index % 2 === 0 ? 44 : 64)}
+  height={300}
+  renderItem={renderRow}
+/>`}
+        props={["getItemHeight: (item, index) => number"]}
+      />
+
+      {/* Scroll to Index Helper */}
+      <DocsComponent
+        title="Scroll to Index Method"
+        description="Imperatively jump to any item index in the virtualized list using listRef.current.scrollToIndex(index)."
+        preview={
+          <div className="w-full max-w-lg space-y-3">
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => (window as any).__listRef?.scrollToIndex(0)}
+                className="px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+              >
+                Jump to #1
+              </button>
+              <button
+                type="button"
+                onClick={() => (window as any).__listRef?.scrollToIndex(500)}
+                className="px-3 py-1.5 rounded-lg bg-sky-500 text-white text-xs font-semibold hover:bg-sky-600"
+              >
+                Jump to #501
+              </button>
+              <button
+                type="button"
+                onClick={() => (window as any).__listRef?.scrollToIndex(9999)}
+                className="px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+              >
+                Jump to Bottom (#10000)
+              </button>
+            </div>
+
+            <VirtualizedList
+              ref={(ref) => {
+                if (typeof window !== "undefined") (window as any).__listRef = ref;
+              }}
+              items={largeDataset}
+              itemHeight={40}
+              height={280}
+              renderItem={(item: { id: number; label: string }) => (
+                <div className="flex items-center px-4 h-full text-sm text-zinc-700 dark:text-zinc-300 border-b border-zinc-100 dark:border-zinc-800/50">
+                  <span className="font-mono text-xs text-sky-500 font-bold w-20">#{item.id + 1}</span>
+                  <span>{item.label}</span>
+                </div>
+              )}
+            />
+          </div>
+        }
+        code={`const listRef = useRef<VirtualizedListRef>(null);
+
+<button onClick={() => listRef.current?.scrollToIndex(500)}>
+  Jump to #501
+</button>
+
+<VirtualizedList ref={listRef} items={largeDataset} height={280} />`}
+        props={["scrollToIndex: (index: number) => void (via ref)"]}
+      />
+
+      {/* Infinite Scroll Trigger */}
+      <DocsComponent
+        title="Infinite Scroll Loading (onEndReached)"
+        description="Automatically trigger data fetching when scrolling near bottom threshold with onEndReached."
+        preview={
+          <div className="w-full max-w-lg">
+            <VirtualizedList
+              items={largeDataset.slice(0, 50)}
+              itemHeight={40}
+              height={260}
+              onEndReached={() => console.log("End reached! Fetching more items...")}
+              renderItem={(item: { id: number; label: string }) => (
+                <div className="flex items-center px-4 h-full text-sm text-zinc-700 dark:text-zinc-300 border-b border-zinc-100 dark:border-zinc-800/50">
+                  <span className="font-mono text-xs text-zinc-400 w-16">#{item.id + 1}</span>
+                  <span>{item.label}</span>
+                </div>
+              )}
+            />
+          </div>
+        }
+        code={`<VirtualizedList
+  items={items}
+  itemHeight={40}
+  height={260}
+  onEndReached={() => fetchNextPage()}
+/>`}
+        props={["onEndReached: () => void", "endReachedThreshold?: number"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />

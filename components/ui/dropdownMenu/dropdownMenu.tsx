@@ -13,14 +13,42 @@ const DropdownMenu = ({
 );
 
 const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
-
 const DropdownMenuGroup = DropdownMenuPrimitive.Group;
-
 const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
-
 const DropdownMenuSub = DropdownMenuPrimitive.Sub;
-
 const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
+
+const DropdownMenuArrow = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Arrow>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Arrow>
+>(({ className, ...props }, ref) => (
+  <DropdownMenuPrimitive.Arrow
+    ref={ref}
+    className={cn("fill-white dark:fill-zinc-900 border-zinc-200 dark:border-zinc-800", className)}
+    width={10}
+    height={5}
+    {...props}
+  />
+));
+DropdownMenuArrow.displayName = DropdownMenuPrimitive.Arrow.displayName;
+
+const DropdownMenuSearchInput = React.forwardRef<
+  HTMLInputElement,
+  React.InputHTMLAttributes<HTMLInputElement>
+>(({ className, ...props }, ref) => (
+  <div className="px-2 py-1.5 border-b border-zinc-200 dark:border-zinc-800 mb-1 flex items-center gap-2">
+    <Icon icon="hugeicons:search-01" className="size-3.5 text-zinc-400 shrink-0" />
+    <input
+      ref={ref}
+      className={cn(
+        "w-full bg-transparent text-xs text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 outline-none border-none",
+        className
+      )}
+      {...props}
+    />
+  </div>
+));
+DropdownMenuSearchInput.displayName = "DropdownMenuSearchInput";
 
 const DropdownMenuSubTrigger = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>,
@@ -60,10 +88,15 @@ const DropdownMenuSubContent = React.forwardRef<
 DropdownMenuSubContent.displayName =
   DropdownMenuPrimitive.SubContent.displayName;
 
+export interface DropdownMenuContentProps
+  extends React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content> {
+  showArrow?: boolean;
+}
+
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
+  DropdownMenuContentProps
+>(({ className, sideOffset = 4, showArrow = false, children, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
       ref={ref}
@@ -73,7 +106,10 @@ const DropdownMenuContent = React.forwardRef<
         className
       )}
       {...props}
-    />
+    >
+      {showArrow && <DropdownMenuArrow />}
+      {children}
+    </DropdownMenuPrimitive.Content>
   </DropdownMenuPrimitive.Portal>
 ));
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
@@ -209,4 +245,6 @@ export {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
+  DropdownMenuArrow,
+  DropdownMenuSearchInput,
 };

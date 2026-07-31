@@ -209,3 +209,12 @@
   animation: orbit 1s linear infinite;
   transform-origin: center center;
 }
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.animate-shimmer {
+  animation: shimmer 1.8s infinite;
+}

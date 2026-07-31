@@ -5,6 +5,8 @@ import { Toaster as SonnerToaster, toast as sonnerToast } from "sonner";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
+import { Spinner, type SpinnerVariant } from "@/components/ui/spinner/spinner";
+
 export interface ToastProps {
   theme?: "light" | "dark" | "system";
   position?: "top-left" | "top-right" | "bottom-left" | "bottom-right" | "top-center" | "bottom-center";
@@ -34,12 +36,13 @@ export interface ToastOptions {
     onClick: () => void;
   };
   duration?: number;
+  spinnerVariant?: SpinnerVariant;
 }
 
 const createCustomToast = (
-  type: "success" | "error" | "warning" | "info" | "default",
+  type: "success" | "error" | "warning" | "info" | "default" | "loading",
   title: React.ReactNode,
-  options?: ToastOptions
+  options?: ToastOptions & { id?: string | number }
 ) => {
   const iconMap = {
     success: {
@@ -48,17 +51,22 @@ const createCustomToast = (
       bar: "bg-emerald-500",
     },
     error: {
-      icon: "hugeicons:cancel-circle-02",
+      icon: "hugeicons:alert-circle",
       bg: "bg-rose-500/10 text-rose-500 border-rose-500/20",
       bar: "bg-rose-500",
     },
     warning: {
-      icon: "hugeicons:alert-circle",
+      icon: "hugeicons:alert-02",
       bg: "bg-amber-500/10 text-amber-500 border-amber-500/20",
       bar: "bg-amber-500",
     },
     info: {
       icon: "hugeicons:information-circle",
+      bg: "bg-sky-500/10 text-sky-500 border-sky-500/20",
+      bar: "bg-sky-500",
+    },
+    loading: {
+      icon: null,
       bg: "bg-sky-500/10 text-sky-500 border-sky-500/20",
       bar: "bg-sky-500",
     },
@@ -71,57 +79,67 @@ const createCustomToast = (
 
   const style = iconMap[type];
 
-  return sonnerToast.custom((t) => (
-    <div
-      className={cn(
-        "relative flex items-start gap-3.5 w-80 max-w-sm p-4 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl text-zinc-900 dark:text-zinc-100 shadow-2xl transition-all duration-300 overflow-hidden"
-      )}
-    >
-      <div className={cn("absolute left-0 top-0 bottom-0 w-1", style.bar)} />
-
-      <div className={cn("size-9 rounded-xl flex items-center justify-center border shrink-0 mt-0.5", style.bg)}>
-        <Icon icon={style.icon} className="size-5" />
-      </div>
-
-      <div className="flex-1 min-w-0 pr-5">
-        <h5 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 leading-tight">
-          {title}
-        </h5>
-        {options?.description && (
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
-            {options.description}
-          </p>
+  return sonnerToast.custom(
+    (t) => (
+      <div
+        className={cn(
+          "relative flex items-start gap-3.5 w-80 max-w-sm p-4 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl text-zinc-900 dark:text-zinc-100 shadow-2xl transition-all duration-300 overflow-hidden"
         )}
-        {options?.action && (
-          <button
-            onClick={() => {
-              options.action?.onClick();
-              sonnerToast.dismiss(t);
-            }}
-            className="mt-2 text-xs font-extrabold text-sky-500 hover:text-sky-600 dark:hover:text-sky-400 transition-colors underline cursor-pointer"
-          >
-            {options.action.label}
-          </button>
-        )}
-      </div>
-
-      <button
-        onClick={() => sonnerToast.dismiss(t)}
-        className="absolute right-2.5 top-2.5 p-1 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
       >
-        <Icon icon="hugeicons:cancel-01" className="size-4" />
-      </button>
-    </div>
-  ), { duration: options?.duration || 4000 });
+        <div className={cn("absolute left-0 top-0 bottom-0 w-1", style.bar)} />
+
+        <div className={cn("size-9 rounded-xl flex items-center justify-center border shrink-0 mt-0.5", style.bg)}>
+          {type === "loading" ? (
+            <Spinner variant={options?.spinnerVariant || "default"} color="primary" size="sm" />
+          ) : (
+            <Icon icon={style.icon!} className="size-5" />
+          )}
+        </div>
+
+        <div className="flex-1 min-w-0 pr-5">
+          <h5 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 leading-tight">
+            {title}
+          </h5>
+          {options?.description && (
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
+              {options.description}
+            </p>
+          )}
+          {options?.action && (
+            <button
+              onClick={() => {
+                options.action?.onClick();
+                sonnerToast.dismiss(t);
+              }}
+              className="mt-2 text-xs font-extrabold text-sky-500 hover:text-sky-600 dark:hover:text-sky-400 transition-colors underline cursor-pointer"
+            >
+              {options.action.label}
+            </button>
+          )}
+        </div>
+
+        <button
+          type="button"
+          onClick={() => sonnerToast.dismiss(t)}
+          className="absolute right-2.5 top-2.5 p-1 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
+          aria-label="Dismiss toast"
+        >
+          <Icon icon="hugeicons:cancel-01" className="size-4" />
+        </button>
+      </div>
+    ),
+    { id: options?.id, duration: type === "loading" ? 100000 : options?.duration || 4000 }
+  );
 };
 
 export const toast = Object.assign(
   (title: React.ReactNode, options?: ToastOptions) => createCustomToast("default", title, options),
   {
-    success: (title: React.ReactNode, options?: ToastOptions) => createCustomToast("success", title, options),
-    error: (title: React.ReactNode, options?: ToastOptions) => createCustomToast("error", title, options),
-    warning: (title: React.ReactNode, options?: ToastOptions) => createCustomToast("warning", title, options),
-    info: (title: React.ReactNode, options?: ToastOptions) => createCustomToast("info", title, options),
+    success: (title: React.ReactNode, options?: ToastOptions & { id?: string | number }) => createCustomToast("success", title, options),
+    error: (title: React.ReactNode, options?: ToastOptions & { id?: string | number }) => createCustomToast("error", title, options),
+    warning: (title: React.ReactNode, options?: ToastOptions & { id?: string | number }) => createCustomToast("warning", title, options),
+    info: (title: React.ReactNode, options?: ToastOptions & { id?: string | number }) => createCustomToast("info", title, options),
+    loading: (title: React.ReactNode, options?: ToastOptions & { id?: string | number }) => createCustomToast("loading", title, options),
     dismiss: (toastId?: string | number) => sonnerToast.dismiss(toastId),
   }
 );

@@ -108,6 +108,42 @@ export default function TimePickerPage() {
           code={`<TimePicker isDisabled value="10:00 AM" label="Disabled" />
 <TimePicker isInvalid value="13:99 PM" label="Invalid" />`} 
         />
+
+        {/* Minute Step Intervals */}
+        <DocsComponent 
+          title="Minute Step Intervals" 
+          description="Configure custom minute increment steps (e.g., step={15} for quarter-hour slots)." 
+          preview={
+            <div className="flex flex-col items-center justify-center space-y-4">
+              <TimePicker 
+                step={15}
+                value="09:15 AM"
+                label="Schedule Slot (15-min steps)"
+                description="Clicking arrows increments by 15 minutes."
+              />
+            </div>
+          } 
+          code={`<TimePicker step={15} value="09:15 AM" label="15-min Step Slot" />`} 
+          props={["step: number"]}
+        />
+
+        {/* Scrollable Wheel Time Selector Columns */}
+        <DocsComponent 
+          title="Scrollable Wheel Time Selector" 
+          description="Render intuitive scrollable wheel column selectors for picking hours, minutes, and period with useWheel={true}." 
+          preview={
+            <div className="flex flex-col items-center justify-center space-y-4">
+              <TimePicker 
+                useWheel
+                step={15}
+                value="10:30 AM"
+                label="Wheel Column Picker"
+              />
+            </div>
+          } 
+          code={`<TimePicker useWheel step={15} value="10:30 AM" label="Wheel Column Picker" />`} 
+          props={["useWheel: boolean", "step: number"]}
+        />
         
         <Separator label={<span className="px-2">API Reference</span>} gradient />
         

@@ -96,6 +96,7 @@ export function NumberInput({
 
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     if (!allowMouseWheel || disabled) return;
+    e.preventDefault();
     if (e.deltaY < 0) {
       handleIncrement();
     } else {

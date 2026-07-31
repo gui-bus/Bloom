@@ -31,6 +31,7 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   variant?: TypographyVariant;
   color?: TypographyColor;
   clampLines?: number;
+  showExpandToggle?: boolean;
   as?: React.ElementType;
   children?: React.ReactNode;
 }
@@ -82,6 +83,7 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
       variant = "p",
       color = "default",
       clampLines,
+      showExpandToggle = false,
       as,
       className,
       children,
@@ -90,20 +92,35 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
     ref
   ) => {
     const Component = as || defaultElementMap[variant] || "p";
+    const [isExpanded, setIsExpanded] = React.useState(false);
+
+    const shouldClamp = clampLines && !isExpanded;
 
     return (
-      <Component
-        ref={ref as any}
-        style={clampLines ? { display: "-webkit-box", WebkitLineClamp: clampLines, WebkitBoxOrient: "vertical", overflow: "hidden" } : undefined}
-        className={cn(
-          variantStyles[variant],
-          color !== "default" && colorStyles[color],
-          className
+      <div className="inline-block w-full">
+        <Component
+          ref={ref as any}
+          style={shouldClamp ? { display: "-webkit-box", WebkitLineClamp: clampLines, WebkitBoxOrient: "vertical", overflow: "hidden" } : undefined}
+          className={cn(
+            variantStyles[variant],
+            color !== "default" && colorStyles[color],
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </Component>
+
+        {clampLines && showExpandToggle && (
+          <button
+            type="button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="mt-1 text-xs font-bold text-sky-500 hover:text-sky-600 dark:hover:text-sky-400 transition-colors underline cursor-pointer"
+          >
+            {isExpanded ? "Show Less" : "Read More"}
+          </button>
         )}
-        {...props}
-      >
-        {children}
-      </Component>
+      </div>
     );
   }
 );

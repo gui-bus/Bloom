@@ -202,6 +202,84 @@ export default function TimelinePage() {
 </Timeline>`}
       />
 
+      {/* Alternating Left/Right Layout */}
+      <DocsComponent
+        title="Alternating Left & Right Layout"
+        description="Render alternating timeline events on left and right sides using mode='alternate'."
+        preview={
+          <div className="w-full max-w-lg">
+            <Timeline mode="alternate">
+              <TimelineItem
+                status="completed"
+                title="Project Kickoff"
+                description="Initial scope alignment meeting with stakeholders."
+                time="Q1 2026"
+              />
+              <TimelineItem
+                status="active"
+                title="Sprint 1 - Core UI"
+                description="Building design system components and tokens."
+                time="Q2 2026"
+              />
+              <TimelineItem
+                status="pending"
+                title="Security Audit"
+                description="Penetration testing and vulnerability assessment."
+                time="Q3 2026"
+              />
+            </Timeline>
+          </div>
+        }
+        code={`<Timeline mode="alternate">
+  <TimelineItem status="completed" title="Project Kickoff" time="Q1 2026" />
+  <TimelineItem status="active" title="Sprint 1 - Core UI" time="Q2 2026" />
+</Timeline>`}
+        props={["mode: 'left' | 'alternate'"]}
+      />
+
+      {/* Interactive Expandable Node Details */}
+      <DocsComponent
+        title="Interactive Expandable Details"
+        description="Add expandable detail panels to timeline nodes with details={ReactNode}."
+        preview={
+          <div className="w-full max-w-lg">
+            <Timeline>
+              <TimelineItem
+                status="completed"
+                title="Database Migration"
+                description="Migrated PostgreSQL database to v16 with zero downtime."
+                time="10:00 AM"
+                details={
+                  <div className="space-y-1 font-mono text-[11px]">
+                    <p>✓ Tables migrated: 48/48</p>
+                    <p>✓ Migration duration: 1.4s</p>
+                    <p>✓ Hash checksum verified: 0x8F9A</p>
+                  </div>
+                }
+              />
+              <TimelineItem
+                status="error"
+                title="Cache Warmup Failed"
+                description="Redis cache flush failed on node redis-cluster-02."
+                time="10:15 AM"
+                details={
+                  <p className="font-mono text-[11px] text-rose-500">
+                    Error: ECONNREFUSED 127.0.0.1:6379 (Connection timed out after 5000ms)
+                  </p>
+                }
+              />
+            </Timeline>
+          </div>
+        }
+        code={`<TimelineItem
+  status="completed"
+  title="Database Migration"
+  time="10:00 AM"
+  details={<div>Migration duration: 1.4s</div>}
+/>`}
+        props={["details?: ReactNode"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <div className="space-y-6">

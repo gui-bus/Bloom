@@ -154,6 +154,32 @@ export default function KbdComponentPage() {
 </div>`}
       />
 
+      {/* Key Combination Sequence Formatter */}
+      <DocsComponent
+        title="Key Combination Sequence Formatter"
+        description="Pass an array of key names via 'keys' to automatically render symbols like ⌘, ⇧, ⌃, ⌥, ↵, and Esc."
+        preview={
+          <div className="flex flex-wrap items-center gap-4">
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-zinc-500">Shortcut:</span>
+              <Kbd keys={["command", "shift", "k"]} size="md" />
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-zinc-500">Navigation:</span>
+              <Kbd keys={["option", "enter"]} size="md" />
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-zinc-500">Cancel:</span>
+              <Kbd keys={["escape"]} size="md" />
+            </div>
+          </div>
+        }
+        code={`<Kbd keys={["command", "shift", "k"]} size="md" />
+<Kbd keys={["option", "enter"]} size="md" />
+<Kbd keys={["escape"]} size="md" />`}
+        props={["keys: KbdKey[]"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}
@@ -172,6 +198,12 @@ export default function KbdComponentPage() {
                 </tr>
               </thead>
               <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">keys</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">KbdKey[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Array of key names formatted with mac/windows shortcut symbols.</td>
+                </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">

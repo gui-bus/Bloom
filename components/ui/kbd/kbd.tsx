@@ -24,19 +24,55 @@ const kbdVariants = cva(
   }
 );
 
+export type KbdKey =
+  | "command"
+  | "cmd"
+  | "shift"
+  | "ctrl"
+  | "option"
+  | "alt"
+  | "enter"
+  | "delete"
+  | "escape"
+  | "tab"
+  | "space text"
+  | string;
+
+const keySymbolMap: Record<string, string> = {
+  command: "⌘",
+  cmd: "⌘",
+  shift: "⇧",
+  ctrl: "⌃",
+  option: "⌥",
+  alt: "⌥",
+  enter: "↵",
+  delete: "⌫",
+  escape: "Esc",
+  tab: "⇥",
+};
+
 export interface KbdProps
   extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof kbdVariants> {}
+    VariantProps<typeof kbdVariants> {
+  keys?: KbdKey[];
+}
 
 const Kbd = React.forwardRef<HTMLElement, KbdProps>(
-  ({ className, variant, size, children, ...props }, ref) => {
+  ({ className, variant, size = "md", keys, children, ...props }, ref) => {
+    const renderKeys = () => {
+      if (keys && keys.length > 0) {
+        return keys.map((k) => keySymbolMap[k.toLowerCase()] || k.toUpperCase()).join("");
+      }
+      return children;
+    };
+
     return (
       <kbd
         ref={ref}
         className={cn(kbdVariants({ variant, size, className }))}
         {...props}
       >
-        {children}
+        {renderKeys()}
       </kbd>
     );
   }

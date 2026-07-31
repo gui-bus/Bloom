@@ -118,17 +118,61 @@ export default function ProgressComponentPage() {
         props={["color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
       />
 
-      {/* Indeterminate */}
+      {/* Indeterminate & Barber Pole */}
       <DocsComponent
-        title="Indeterminate State"
-        description="Animated loading indicator for ongoing tasks of unknown duration using 'isIndeterminate'."
+        title="Indeterminate & Barber-Pole Animated Stripes"
+        description="Indeterminate loading bar with smooth barber-pole animated stripes using 'isBarberPole'."
         preview={
-          <div className="max-w-md w-full">
+          <div className="flex flex-col gap-4 max-w-md w-full">
             <Progress label="Connecting to Server..." isIndeterminate color="primary" />
+            <Progress label="Uploading Assets (Barber Pole)..." isIndeterminate isBarberPole color="success" />
           </div>
         }
-        code={`<Progress label="Connecting to Server..." isIndeterminate />`}
-        props={["isIndeterminate: boolean"]}
+        code={`<Progress label="Connecting..." isIndeterminate />
+<Progress label="Uploading..." isIndeterminate isBarberPole color="success" />`}
+        props={["isIndeterminate: boolean", "isBarberPole: boolean"]}
+      />
+
+      {/* Circular Progress Ring */}
+      <DocsComponent
+        title="Circular Progress Ring"
+        description='Circular progress ring variant rendered as responsive SVG with type="circle".'
+        preview={
+          <div className="flex items-center gap-6">
+            <Progress type="circle" value={45} size="sm" showValueLabel color="primary" label="Storage" />
+            <Progress type="circle" value={75} size="md" showValueLabel color="success" label="Memory" />
+            <Progress type="circle" value={92} size="lg" showValueLabel color="danger" label="CPU Load" />
+          </div>
+        }
+        code={`<Progress type="circle" value={45} size="sm" showValueLabel label="Storage" />
+<Progress type="circle" value={75} size="md" showValueLabel label="Memory" />
+<Progress type="circle" value={92} size="lg" showValueLabel label="CPU Load" />`}
+        props={["type: 'line' | 'circle'"]}
+      />
+
+      {/* Milestone Step Markers */}
+      <DocsComponent
+        title="Milestone Step Markers"
+        description="Render step milestone dots along the progress track with the 'steps' prop."
+        preview={
+          <div className="max-w-md w-full">
+            <Progress
+              value={60}
+              color="primary"
+              label="Onboarding Progress (25%, 50%, 75% steps)"
+              showValueLabel
+              steps={[{ value: 25 }, { value: 50 }, { value: 75 }]}
+            />
+          </div>
+        }
+        code={`<Progress
+  value={60}
+  color="primary"
+  label="Onboarding Progress"
+  showValueLabel
+  steps={[{ value: 25 }, { value: 50 }, { value: 75 }]}
+/>`}
+        props={["steps: (number | ProgressStep)[]"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -150,44 +194,22 @@ export default function ProgressComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">value</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
-                  <td className="px-3 py-2 text-muted-foreground">0</td>
-                  <td className="px-3 py-2 text-muted-foreground">Current percentage value (0 to 100).</td>
+                  <td className="px-3 py-2 font-mono text-primary">type</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'line' | 'circle'</td>
+                  <td className="px-3 py-2 text-muted-foreground">'line'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Progress visual format (horizontal bar or circular ring).</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">size</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'sm' | 'md' | 'lg'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Progress bar track height scale.</td>
+                  <td className="px-3 py-2 font-mono text-primary">isBarberPole</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Applies animated barber-pole diagonal stripes overlay.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">color</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'primary'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Indicator theme color accent.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">label</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-primary">steps</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(number | ProgressStep)[]</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Text title above progress bar.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showValueLabel</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Displays percentage label text.</td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">isIndeterminate</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders infinite looping animation for pending tasks.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Milestone step markers rendered along the track.</td>
                 </tr>
               </tbody>
             </table>

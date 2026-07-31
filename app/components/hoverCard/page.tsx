@@ -149,6 +149,40 @@ export default function HoverCardComponentPage() {
         props={["align: 'start' | 'center' | 'end'"]}
       />
 
+      {/* Configurable Delays & Collision Detection */}
+      <DocsComponent
+        title="Configurable Delays & Automatic Collision Flip"
+        description="Configure hover open and close timing with 'openDelay' and 'closeDelay', while automatic collision detection flips placement at viewport boundaries."
+        preview={
+          <div className="flex flex-wrap gap-4">
+            <HoverCard openDelay={0} closeDelay={100}>
+              <HoverCardTrigger asChild>
+                <Button variant="bordered" size="sm">Instant Hover (0ms)</Button>
+              </HoverCardTrigger>
+              <HoverCardContent>
+                <p className="text-xs">Opens instantly with 0ms delay!</p>
+              </HoverCardContent>
+            </HoverCard>
+
+            <HoverCard openDelay={800} closeDelay={300}>
+              <HoverCardTrigger asChild>
+                <Button variant="bordered" size="sm">Delayed Hover (800ms)</Button>
+              </HoverCardTrigger>
+              <HoverCardContent>
+                <p className="text-xs">Opened after 800ms hover delay.</p>
+              </HoverCardContent>
+            </HoverCard>
+          </div>
+        }
+        code={`<HoverCard openDelay={0} closeDelay={100}>
+  <HoverCardTrigger asChild>
+    <Button>Instant Hover</Button>
+  </HoverCardTrigger>
+  <HoverCardContent avoidCollisions>...</HoverCardContent>
+</HoverCard>`}
+        props={["openDelay: number", "closeDelay: number", "avoidCollisions: boolean"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}
@@ -168,24 +202,22 @@ export default function HoverCardComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">align</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'start' | 'center' | 'end'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'center'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Alignment of the content relative to the trigger.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">sideOffset</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
-                  <td className="px-3 py-2 text-muted-foreground">6</td>
-                  <td className="px-3 py-2 text-muted-foreground">Pixel distance offset from the trigger button.</td>
-                </tr>
-                <tr>
                   <td className="px-3 py-2 font-mono text-primary">openDelay</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
-                  <td className="px-3 py-2 text-muted-foreground">700</td>
+                  <td className="px-3 py-2 text-muted-foreground">200</td>
                   <td className="px-3 py-2 text-muted-foreground">Duration in ms to wait before opening on hover.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">closeDelay</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">150</td>
+                  <td className="px-3 py-2 text-muted-foreground">Duration in ms to wait before closing on mouse leave.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">avoidCollisions</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Prevents card overflow by flipping placement dynamically.</td>
                 </tr>
               </tbody>
             </table>

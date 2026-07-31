@@ -129,6 +129,72 @@ export default function TooltipComponentPage() {
         props={["side: 'top' | 'right' | 'bottom' | 'left'"]}
       />
 
+      {/* Rich HTML Popover Content */}
+      <DocsComponent
+        title="Rich HTML Content & Interactive Links"
+        description="Render rich formatted HTML inside tooltips with interactive links and buttons using interactive={true}."
+        preview={
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button color="primary" variant="flat">Interactive Card Tooltip</Button>
+              </TooltipTrigger>
+              <TooltipContent interactive side="top" className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Icon icon="hugeicons:information-circle" className="size-4 text-sky-400" />
+                  <span className="font-bold text-xs">Bloom UI Design System</span>
+                </div>
+                <p className="text-[11px] text-zinc-300">
+                  Explore full component specifications and interactive playground in our official docs.
+                </p>
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs font-bold text-sky-400 hover:underline inline-flex items-center gap-1"
+                >
+                  View Documentation →
+                </a>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        }
+        code={`<TooltipContent interactive side="top">
+  <div className="font-bold text-xs">Bloom UI Design System</div>
+  <p className="text-[11px]">Explore full component specifications...</p>
+  <a href="https://github.com" target="_blank" className="text-sky-400 underline">View Docs →</a>
+</TooltipContent>`}
+        props={["interactive: boolean"]}
+      />
+
+      {/* Arrow Pointer Toggle & Custom Offsets */}
+      <DocsComponent
+        title="Arrow Pointer Toggle & Custom Offsets"
+        description="Toggle pointing arrow visibility with showArrow={false} and adjust sideOffset distance."
+        preview={
+          <TooltipProvider>
+            <div className="flex flex-wrap gap-4">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="bordered">No Arrow</Button>
+                </TooltipTrigger>
+                <TooltipContent showArrow={false}>Clean tooltip without pointing arrow</TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="bordered">Custom Offset (20px)</Button>
+                </TooltipTrigger>
+                <TooltipContent sideOffset={20}>Positioned 20px away from trigger</TooltipContent>
+              </Tooltip>
+            </div>
+          </TooltipProvider>
+        }
+        code={`<TooltipContent showArrow={false}>No Arrow</TooltipContent>
+<TooltipContent sideOffset={20}>20px Offset</TooltipContent>`}
+        props={["showArrow: boolean", "sideOffset: number"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}

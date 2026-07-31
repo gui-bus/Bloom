@@ -239,6 +239,37 @@ export default function InputOtpComponentPage() {
         props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
+      {/* Masked Password Dot Mode */}
+      <DocsComponent
+        title="Masked Password Dot Mode"
+        description="Hide sensitive verification PIN codes with masked dot indicators using 'maskCode={true}' on slots."
+        preview={
+          <div className="space-y-3">
+            <InputOTP maxLength={6} value={val1} onChange={setVal1}>
+              <InputOTPGroup>
+                <InputOTPSlot index={0} maskCode />
+                <InputOTPSlot index={1} maskCode />
+                <InputOTPSlot index={2} maskCode />
+                <InputOTPSlot index={3} maskCode />
+                <InputOTPSlot index={4} maskCode />
+                <InputOTPSlot index={5} maskCode />
+              </InputOTPGroup>
+            </InputOTP>
+          </div>
+        }
+        code={`<InputOTP maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} maskCode />
+    <InputOTPSlot index={1} maskCode />
+    <InputOTPSlot index={2} maskCode />
+    <InputOTPSlot index={3} maskCode />
+    <InputOTPSlot index={4} maskCode />
+    <InputOTPSlot index={5} maskCode />
+  </InputOTPGroup>
+</InputOTP>`}
+        props={["maskCode: boolean"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}
@@ -258,6 +289,12 @@ export default function InputOtpComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">maskCode (on Slot)</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Masks digits into password dots for PIN security.</td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">allowedType</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'numeric' | 'alphabetic' | 'alphanumeric'
@@ -265,19 +302,11 @@ export default function InputOtpComponentPage() {
                   <td className="px-3 py-2 text-muted-foreground">'numeric'</td>
                   <td className="px-3 py-2 text-muted-foreground">Restricts allowed input characters (numbers, letters, or mixed).</td>
                 </tr>
-                <tr className="border-b border-border">
+                <tr>
                   <td className="px-3 py-2 font-mono text-primary">maxLength</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
                   <td className="px-3 py-2 text-muted-foreground">6</td>
                   <td className="px-3 py-2 text-muted-foreground">Total number of OTP input digit slots.</td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">size (on Slot)</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'sm' | 'md' | 'lg'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Dimensional size variant for slot boxes.</td>
                 </tr>
               </tbody>
             </table>

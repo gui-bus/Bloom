@@ -26,7 +26,7 @@ export default function DatePickerComponentPage() {
     <div className="space-y-8">
       <DocsTitle
         title="Date Picker"
-        description="A visual date selection component supporting single, range, and multiple selection modes, quick presets, side-by-side double month view, min/max date boundary constraints, and full internationalization (Locale & Timezone)."
+        description="A visual date selection component supporting single, range, and multiple selection modes, integrated time picker selectors, fiscal quarter & year picker modes, quick presets, double month view, and full internationalization."
       />
 
       <ImportSnippet importCode={`import { DatePicker } from "@/components/ui/datePicker/datePicker";`} />
@@ -47,13 +47,68 @@ export default function DatePickerComponentPage() {
           <CodeBlock
             code={datePickerCode}
             componentName="datePicker.tsx"
-            description="Core implementation of the DatePicker component."
-            tags={["React", "Tailwind", "Calendar", "Locale", "Timezone", "DatePicker"]}
+            description="Core implementation of the DatePicker component with integrated time picker and fiscal quarter/year modes."
+            tags={["React", "Tailwind", "Calendar", "TimePicker", "FiscalYear", "DatePicker"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Default (Single Mode) */}
+      {/* Integrated Time Picker */}
+      <DocsComponent
+        title="Integrated Time Picker Selection"
+        description="Enable 'showTimePicker' to display interactive hours and minutes dropdown selectors at the bottom of the date calendar popup."
+        preview={
+          <div className="w-full max-w-sm">
+            <DatePicker
+              showTimePicker
+              label="Schedule Meeting (Date & Time)"
+              placeholder="Select date & time..."
+              value={today}
+            />
+          </div>
+        }
+        code={`<DatePicker
+  showTimePicker
+  label="Schedule Meeting (Date & Time)"
+  placeholder="Select date & time..."
+  value={new Date()}
+/>`}
+        props={["showTimePicker: boolean"]}
+      />
+
+      {/* Fiscal Quarter & Fiscal Year Modes */}
+      <DocsComponent
+        title="Fiscal Quarter & Year Picker Modes"
+        description="Set 'viewMode' to 'fiscalQuarter' or 'fiscalYear' to select financial reporting periods (Q1-Q4, FY2026). Customize start month with 'fiscalYearStartMonth' (e.g. 4 for April)."
+        preview={
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-xl">
+            <DatePicker
+              viewMode="fiscalQuarter"
+              fiscalYearStartMonth={4}
+              label="Financial Quarter (FY Starts April)"
+              placeholder="Select Quarter..."
+            />
+            <DatePicker
+              viewMode="fiscalYear"
+              label="Fiscal Year"
+              placeholder="Select Fiscal Year..."
+            />
+          </div>
+        }
+        code={`<DatePicker
+  viewMode="fiscalQuarter"
+  fiscalYearStartMonth={4}
+  label="Financial Quarter (April Start)"
+/>
+
+<DatePicker
+  viewMode="fiscalYear"
+  label="Fiscal Year"
+/>`}
+        props={["viewMode: 'date' | 'fiscalQuarter' | 'fiscalYear'", "fiscalYearStartMonth: number (1-12)"]}
+      />
+
+      {/* Single Selection Mode */}
       <DocsComponent
         title="Single Selection Mode"
         description="Standard single date picker input with interactive calendar grid popup."
@@ -147,50 +202,6 @@ export default function DatePickerComponentPage() {
         props={["showPresets: boolean", "customPresets: DatePickerPreset[]"]}
       />
 
-      {/* Multiple Dates Mode */}
-      <DocsComponent
-        title="Multiple Dates Selection"
-        description="Select multiple individual dates across different months."
-        preview={
-          <div className="w-full max-w-sm">
-            <DatePicker
-              mode="multiple"
-              isClearable
-              label="Meeting Slots (Multiple Dates)"
-              placeholder="Click dates to toggle selection..."
-            />
-          </div>
-        }
-        code={`<DatePicker
-  mode="multiple"
-  isClearable
-  label="Meeting Slots (Multiple Dates)"
-/>`}
-        props={["mode: 'multiple'"]}
-      />
-
-      {/* Min / Max Date Constraints */}
-      <DocsComponent
-        title="Min / Max Allowed Dates"
-        description="Visual disabled locking for dates outside allowed min and max boundaries."
-        preview={
-          <div className="w-full max-w-sm">
-            <DatePicker
-              minDate={today}
-              maxDate={nextMonth}
-              label="Booking Window (Today to Next Month)"
-              placeholder="Select date within allowed window..."
-            />
-          </div>
-        }
-        code={`<DatePicker
-  minDate={new Date()}
-  maxDate={new Date(2026, 8, 15)}
-  label="Booking Window"
-/>`}
-        props={["minDate: Date", "maxDate: Date"]}
-      />
-
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props DatePicker Table */}
@@ -210,16 +221,22 @@ export default function DatePickerComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">locale</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">'en-US'</td>
-                  <td className="px-3 py-2 text-muted-foreground">BCC 47 language tag (e.g. 'pt-BR', 'en-US', 'es-ES') for localizing month names, weekdays, and formats.</td>
+                  <td className="px-3 py-2 font-mono text-primary">showTimePicker</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Integrates hours and minutes time dropdown selectors inside calendar popup.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">timeZone</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">IANA time zone string (e.g. 'America/Sao_Paulo', 'UTC', 'America/New_York').</td>
+                  <td className="px-3 py-2 font-mono text-primary">viewMode</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'date' | 'fiscalQuarter' | 'fiscalYear'</td>
+                  <td className="px-3 py-2 text-muted-foreground">'date'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Display view mode for standard calendar dates, fiscal quarters (Q1-Q4), or fiscal years.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">fiscalYearStartMonth</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number (1-12)</td>
+                  <td className="px-3 py-2 text-muted-foreground">1</td>
+                  <td className="px-3 py-2 text-muted-foreground">Starting month offset for fiscal quarter calculations (e.g. 1 = Jan, 4 = Apr, 10 = Oct).</td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">mode</td>
@@ -228,16 +245,10 @@ export default function DatePickerComponentPage() {
                   <td className="px-3 py-2 text-muted-foreground">Selection mode for single date, date range interval, or multiple dates.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showPresets</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders quick shortcut presets sidebar (e.g. Today, Last 7 Days, This Month).</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showDoubleMonth</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Displays 2 consecutive months side-by-side in the popup calendar.</td>
+                  <td className="px-3 py-2 font-mono text-primary">locale</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 text-muted-foreground">'en-US'</td>
+                  <td className="px-3 py-2 text-muted-foreground">BCC 47 language tag (e.g. 'pt-BR', 'en-US', 'es-ES') for localizing month names, weekdays, and formats.</td>
                 </tr>
               </tbody>
             </table>
