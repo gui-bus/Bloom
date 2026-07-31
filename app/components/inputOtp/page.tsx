@@ -1,11 +1,8 @@
 "use client";
 
 import { ImportSnippet } from "@/components/core/importSnippet";
-
 import { DocsPagination } from "@/components/core/docsPagination";
-
 import { InstallationBlock } from "@/components/core/installationBlock";
-
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -30,15 +27,16 @@ export default function InputOtpComponentPage() {
   const [val1, setVal1] = React.useState("");
   const [val2, setVal2] = React.useState("");
   const [val3, setVal3] = React.useState("");
+  const [val4, setVal4] = React.useState("");
 
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Input OTP"
-        description="Accessible one-time password input component supporting input mode validation (numeric only, letters only, alphanumeric), custom lengths, separators, and sizes."
+        description="One-time password input component built on input-otp with instant auto-paste clipboards, flexible group separators (3 - 3, 2 - 2 - 2), character type filters, and custom slot sizes."
       />
 
-      <ImportSnippet importCode={`import { InputOtp } from "@/components/ui/inputOtp/inputOtp";`} />
+      <ImportSnippet importCode={`import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@/components/ui/inputOtp/inputOtp";`} />
 
       <InstallationBlock componentName="inputOtp" />
 
@@ -57,36 +55,86 @@ export default function InputOtpComponentPage() {
             code={inputOtpCode}
             componentName="inputOtp.tsx"
             description="Core implementation of the InputOTP component."
-            tags={["React", "Input OTP", "Tailwind", "Form"]}
+            tags={["React", "Input OTP", "Auto-Paste", "Separators"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
+      {/* Auto Paste & Group Separator (3 - 3) */}
       <DocsComponent
-        title="Default"
-        description="Standard 6-digit numeric verification code input."
+        title="Group Separators (3 - 3)"
+        description="Split 6-digit OTP codes into two groups of 3 using <InputOTPSeparator />."
         preview={
-          <div className="space-y-2">
-            <InputOTP maxLength={6} value={val1} onChange={setVal1} allowedType="numeric">
+          <div className="space-y-3">
+            <InputOTP maxLength={6} value={val3} onChange={setVal3}>
               <InputOTPGroup>
                 <InputOTPSlot index={0} />
                 <InputOTPSlot index={1} />
                 <InputOTPSlot index={2} />
+              </InputOTPGroup>
+              <InputOTPSeparator />
+              <InputOTPGroup>
                 <InputOTPSlot index={3} />
                 <InputOTPSlot index={4} />
                 <InputOTPSlot index={5} />
               </InputOTPGroup>
             </InputOTP>
-            <div className="text-xs text-muted-foreground font-mono">Entered Value: {val1 || "—"}</div>
+            <p className="text-xs text-muted-foreground font-mono">
+              Copy a 6-digit code (e.g., <span className="text-sky-500 font-bold">123456</span>) to test instant auto-paste.
+            </p>
           </div>
         }
-        code={`<InputOTP maxLength={6} allowedType="numeric">
+        code={`<InputOTP maxLength={6}>
   <InputOTPGroup>
     <InputOTPSlot index={0} />
     <InputOTPSlot index={1} />
     <InputOTPSlot index={2} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
     <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>`}
+      />
+
+      {/* Multiple Group Separators (2 - 2 - 2) */}
+      <DocsComponent
+        title="Custom Multi-Group Separators (2 - 2 - 2)"
+        description="Divide codes into any custom layout such as three groups of two digits with multiple separators."
+        preview={
+          <div className="space-y-3">
+            <InputOTP maxLength={6} value={val4} onChange={setVal4}>
+              <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+              </InputOTPGroup>
+              <InputOTPSeparator />
+              <InputOTPGroup>
+                <InputOTPSlot index={2} />
+                <InputOTPSlot index={3} />
+              </InputOTPGroup>
+              <InputOTPSeparator />
+              <InputOTPGroup>
+                <InputOTPSlot index={4} />
+                <InputOTPSlot index={5} />
+              </InputOTPGroup>
+            </InputOTP>
+          </div>
+        }
+        code={`<InputOTP maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
     <InputOTPSlot index={4} />
     <InputOTPSlot index={5} />
   </InputOTPGroup>
@@ -142,40 +190,6 @@ export default function InputOtpComponentPage() {
 <InputOTP maxLength={4} allowedType="alphabetic">...</InputOTP>
 <InputOTP maxLength={6} allowedType="alphanumeric">...</InputOTP>`}
         props={["allowedType: 'numeric' | 'alphabetic' | 'alphanumeric'"]}
-      />
-
-      {/* Group Separator */}
-      <DocsComponent
-        title="Digit Lengths & Group Separators"
-        description="Split OTP digits into formatted groups using <InputOTPSeparator />."
-        preview={
-          <InputOTP maxLength={6} value={val3} onChange={setVal3}>
-            <InputOTPGroup>
-              <InputOTPSlot index={0} />
-              <InputOTPSlot index={1} />
-              <InputOTPSlot index={2} />
-            </InputOTPGroup>
-            <InputOTPSeparator />
-            <InputOTPGroup>
-              <InputOTPSlot index={3} />
-              <InputOTPSlot index={4} />
-              <InputOTPSlot index={5} />
-            </InputOTPGroup>
-          </InputOTP>
-        }
-        code={`<InputOTP maxLength={6}>
-  <InputOTPGroup>
-    <InputOTPSlot index={0} />
-    <InputOTPSlot index={1} />
-    <InputOTPSlot index={2} />
-  </InputOTPGroup>
-  <InputOTPSeparator />
-  <InputOTPGroup>
-    <InputOTPSlot index={3} />
-    <InputOTPSlot index={4} />
-    <InputOTPSlot index={5} />
-  </InputOTPGroup>
-</InputOTP>`}
       />
 
       {/* Sizes */}

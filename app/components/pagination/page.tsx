@@ -1,11 +1,8 @@
 "use client";
 
 import { ImportSnippet } from "@/components/core/importSnippet";
-
 import { DocsPagination } from "@/components/core/docsPagination";
-
 import { InstallationBlock } from "@/components/core/installationBlock";
-
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -21,6 +18,7 @@ import {
   PaginationEllipsis,
   PaginationFirst,
   PaginationLast,
+  PaginationToolbar,
 } from "@/components/ui/pagination/pagination";
 import { paginationCode } from "@/components/ui/pagination/pagination.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -32,16 +30,17 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 export default function PaginationComponentPage() {
-  const [page, setPage] = React.useState(2);
+  const [page, setPage] = React.useState(1);
+  const [pageSize, setPageSize] = React.useState(10);
 
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Pagination"
-        description="Pagination component with page numbers, prev/next controls, first/last jumps, shapes, variants, and sizes."
+        description="Comprehensive pagination suite supporting high-level toolbar integration (showRowsPerPage, showJumper, showTotal, first/last buttons), 6 visual variants (default, bordered, flat, light, pills, line), and 3 button shapes."
       />
 
-      <ImportSnippet importCode={`import { Pagination } from "@/components/ui/pagination/pagination";`} />
+      <ImportSnippet importCode={`import { Pagination, PaginationToolbar } from "@/components/ui/pagination/pagination";`} />
 
       <InstallationBlock componentName="pagination" />
 
@@ -59,59 +58,143 @@ export default function PaginationComponentPage() {
           <CodeBlock
             code={paginationCode}
             componentName="pagination.tsx"
-            description="Core implementation of the Pagination component."
-            tags={["React", "Pagination", "Navigation", "Table"]}
+            description="Core implementation of the Pagination suite."
+            tags={["React", "Pagination", "Table", "Toolbar"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
+      {/* Full Pagination Toolbar */}
       <DocsComponent
-        title="Default"
-        description="Standard pagination bar."
+        title="Full Pagination Toolbar Suite"
+        description="High-level toolbar containing rows per page dropdown, total records summary, quick page jumper, and first/last buttons."
         preview={
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious onClick={() => setPage(Math.max(1, page - 1))} />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink isActive={page === 1} onClick={() => setPage(1)}>
-                  1
-                </PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink isActive={page === 2} onClick={() => setPage(2)}>
-                  2
-                </PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink isActive={page === 3} onClick={() => setPage(3)}>
-                  3
-                </PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationNext onClick={() => setPage(Math.min(5, page + 1))} />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
+          <div className="w-full">
+            <PaginationToolbar
+              page={page}
+              total={150}
+              pageSize={pageSize}
+              onPageChange={setPage}
+              onPageSizeChange={setPageSize}
+              showTotal
+              showRowsPerPage
+              showJumper
+              showFirstButton
+              showLastButton
+            />
+          </div>
         }
-        code={`<Pagination>
-  <PaginationContent>
-    <PaginationItem><PaginationPrevious /></PaginationItem>
-    <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
-    <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
-    <PaginationItem><PaginationNext /></PaginationItem>
-  </PaginationContent>
-</Pagination>`}
+        code={`const [page, setPage] = React.useState(1);
+const [pageSize, setPageSize] = React.useState(10);
+
+<PaginationToolbar
+  page={page}
+  total={150}
+  pageSize={pageSize}
+  onPageChange={setPage}
+  onPageSizeChange={setPageSize}
+  showTotal
+  showRowsPerPage
+  showJumper
+  showFirstButton
+  showLastButton
+/>`}
+        props={[
+          "showRowsPerPage: boolean",
+          "showJumper: boolean",
+          "showTotal: boolean",
+          "showFirstButton: boolean",
+          "showLastButton: boolean",
+        ]}
+      />
+
+      {/* Variants (6 styles) */}
+      <DocsComponent
+        title="Variants (default, bordered, flat, light, pills, line)"
+        description="Choose from 6 visual surface variants for active page links."
+        preview={
+          <div className="flex flex-col gap-4 w-full">
+            <div>
+              <span className="text-xs text-muted-foreground block mb-1 font-semibold">1. Default</span>
+              <Pagination variant="default">
+                <PaginationContent>
+                  <PaginationItem><PaginationPrevious /></PaginationItem>
+                  <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationNext /></PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+
+            <div>
+              <span className="text-xs text-muted-foreground block mb-1 font-semibold">2. Bordered</span>
+              <Pagination variant="bordered">
+                <PaginationContent>
+                  <PaginationItem><PaginationPrevious /></PaginationItem>
+                  <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationNext /></PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+
+            <div>
+              <span className="text-xs text-muted-foreground block mb-1 font-semibold">3. Flat</span>
+              <Pagination variant="flat">
+                <PaginationContent>
+                  <PaginationItem><PaginationPrevious /></PaginationItem>
+                  <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationNext /></PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+
+            <div>
+              <span className="text-xs text-muted-foreground block mb-1 font-semibold">4. Light</span>
+              <Pagination variant="light">
+                <PaginationContent>
+                  <PaginationItem><PaginationPrevious /></PaginationItem>
+                  <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationNext /></PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+
+            <div>
+              <span className="text-xs text-muted-foreground block mb-1 font-semibold">5. Pills</span>
+              <Pagination variant="pills">
+                <PaginationContent>
+                  <PaginationItem><PaginationPrevious /></PaginationItem>
+                  <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationNext /></PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+
+            <div>
+              <span className="text-xs text-muted-foreground block mb-1 font-semibold">6. Line</span>
+              <Pagination variant="line">
+                <PaginationContent>
+                  <PaginationItem><PaginationPrevious /></PaginationItem>
+                  <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationNext /></PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+          </div>
+        }
+        code={`<Pagination variant="default">...</Pagination>
+<Pagination variant="line">...</Pagination>`}
+        props={["variant: 'default' | 'bordered' | 'flat' | 'light' | 'pills' | 'line'"]}
       />
 
       {/* Shapes */}
       <DocsComponent
-        title="Shapes"
+        title="Shapes (square, rounded, circle)"
         description="Button border radius shape using the 'shape' prop: 'square', 'rounded', or 'circle'."
         preview={
           <div className="flex flex-col gap-6 w-full">
@@ -139,42 +222,12 @@ export default function PaginationComponentPage() {
         props={["shape: 'square' | 'rounded' | 'circle'"]}
       />
 
-      {/* Sizes */}
-      <DocsComponent
-        title="Sizes"
-        description="Scale pagination button size using the 'size' prop: 'sm', 'md', or 'lg'."
-        preview={
-          <div className="flex flex-col gap-6 w-full">
-            <Pagination size="sm">
-              <PaginationContent>
-                <PaginationItem><PaginationPrevious /></PaginationItem>
-                <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
-                <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
-                <PaginationItem><PaginationNext /></PaginationItem>
-              </PaginationContent>
-            </Pagination>
-
-            <Pagination size="lg">
-              <PaginationContent>
-                <PaginationItem><PaginationPrevious /></PaginationItem>
-                <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
-                <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
-                <PaginationItem><PaginationNext /></PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </div>
-        }
-        code={`<Pagination size="sm">...</Pagination>
-<Pagination size="lg">...</Pagination>`}
-        props={["size: 'sm' | 'md' | 'lg'"]}
-      />
-
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}
       <DocsComponent
-        title="Props — Pagination"
-        description="Supported properties for the Pagination component."
+        title="Props — PaginationToolbar"
+        description="Supported properties for the PaginationToolbar component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -188,34 +241,28 @@ export default function PaginationComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'bordered' | 'flat' | 'light' | 'pills'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Visual button surface style variant.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">shape</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'square' | 'rounded' | 'circle'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'rounded'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Border radius shape variant.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">size</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'sm' | 'md' | 'lg'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Button dimensions scale.</td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">isActive (on Link)</td>
+                  <td className="px-3 py-2 font-mono text-primary">showRowsPerPage</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Highlights current active page link.</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders page size selector dropdown (10, 25, 50, 100).</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">showJumper</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders direct page jump input box.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">showTotal</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Displays total record summary string (e.g., '1-10 of 150 items').</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">showFirstButton / showLastButton</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders double arrow buttons to jump directly to page 1 or totalPages.</td>
                 </tr>
               </tbody>
             </table>

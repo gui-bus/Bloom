@@ -1,11 +1,8 @@
 "use client";
 
 import { ImportSnippet } from "@/components/core/importSnippet";
-
 import { DocsPagination } from "@/components/core/docsPagination";
-
 import { InstallationBlock } from "@/components/core/installationBlock";
-
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -26,7 +23,7 @@ export default function FileUploadComponentPage() {
     <div className="space-y-8">
       <DocsTitle
         title="File Upload"
-        description="Drag & drop file upload zone supporting file format restrictions, size limits, multi-file attachments, and staged file item removals."
+        description="Interactive drag & drop file upload zone with drop-zone highlight animations, immediate image/video thumbnail previews, and per-file progress tracking with pause/resume controls."
       />
 
       <ImportSnippet importCode={`import { FileUpload } from "@/components/ui/fileUpload/fileUpload";`} />
@@ -48,47 +45,59 @@ export default function FileUploadComponentPage() {
             code={fileUploadCode}
             componentName="fileUpload.tsx"
             description="Core implementation of the FileUpload component."
-            tags={["React", "File Upload", "Drag and Drop", "Form"]}
+            tags={["React", "File Upload", "Drag and Drop", "Previews", "Progress"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
+      {/* Drag and Drop with Progress */}
       <DocsComponent
-        title="Default"
-        description="Standard single file drag & drop upload zone."
+        title="Drag & Drop with Animated Progress Tracking"
+        description="Interactive drop zone featuring live progress bars per file with pause, resume, and cancellation buttons."
         preview={
           <div className="max-w-md w-full">
             <FileUpload
-              label="Upload Profile Avatar"
-              description="Drop an image file here or click to browse"
-              maxSizeMB={5}
+              label="Project Assets & Media"
+              description="Drag and drop images, videos or documents here"
+              multiple
+              showPreviews
+              simulateProgress
+              maxSizeMB={25}
             />
           </div>
         }
         code={`<FileUpload
-  label="Upload Profile Avatar"
-  description="Drop an image file here or click to browse"
-  maxSizeMB={5}
+  label="Project Assets & Media"
+  multiple
+  showPreviews
+  simulateProgress
+  maxSizeMB={25}
 />`}
+        props={["simulateProgress: boolean", "showPreviews: boolean"]}
       />
 
-      {/* Multiple Files */}
+      {/* Image & Video Thumbnails Preview */}
       <DocsComponent
-        title="Multiple Files Support"
-        description="Allow attaching multiple files using the 'multiple' prop."
+        title="Thumbnails & Immediate Previews (showPreviews)"
+        description="Renders instant preview thumbnails for uploaded images, videos, and document file types."
         preview={
           <div className="max-w-md w-full">
             <FileUpload
-              label="Project Attachments"
-              description="Upload PDF documents or images"
-              multiple
-              maxSizeMB={15}
+              label="Avatar & Cover Photo"
+              accept="image/*"
+              showPreviews
+              maxSizeMB={5}
+              description="Drop an avatar image to see immediate preview"
             />
           </div>
         }
-        code={`<FileUpload label="Project Attachments" multiple maxSizeMB={15} />`}
-        props={["multiple: boolean"]}
+        code={`<FileUpload
+  label="Avatar & Cover Photo"
+  accept="image/*"
+  showPreviews
+  maxSizeMB={5}
+/>`}
+        props={["showPreviews: boolean", "accept: string"]}
       />
 
       {/* Disabled State */}
@@ -127,6 +136,18 @@ export default function FileUploadComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">showPreviews</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders thumbnail previews for images and videos.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">simulateProgress</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables individual file upload progress tracking with pause/resume controls.</td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">multiple</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
@@ -137,20 +158,6 @@ export default function FileUploadComponentPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
                   <td className="px-3 py-2 text-muted-foreground">10</td>
                   <td className="px-3 py-2 text-muted-foreground">Maximum allowable file size limit in megabytes.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">accept</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">MIME types or file extensions filter string (e.g. 'image/*,.pdf').</td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">onFilesSelected</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    {"(files: File[]) => void"}
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback function triggered whenever file list changes.</td>
                 </tr>
               </tbody>
             </table>

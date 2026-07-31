@@ -1,11 +1,8 @@
 "use client";
 
 import { ImportSnippet } from "@/components/core/importSnippet";
-
 import { DocsPagination } from "@/components/core/docsPagination";
-
 import { InstallationBlock } from "@/components/core/installationBlock";
-
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -23,12 +20,13 @@ import {
 
 export default function RatingComponentPage() {
   const [val1, setVal1] = React.useState(3.5);
+  const [emojiVal, setEmojiVal] = React.useState(4);
 
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Rating"
-        description="Interactive star rating component supporting full & half star granularity (allowHalf), custom star counts, color themes, and read-only states."
+        description="Interactive rating component supporting half-star precision (allowHalf), custom icons (e.g. hearts), dynamic emojis, and score tooltips."
       />
 
       <ImportSnippet importCode={`import { Rating } from "@/components/ui/rating/rating";`} />
@@ -50,24 +48,24 @@ export default function RatingComponentPage() {
             code={ratingCode}
             componentName="rating.tsx"
             description="Core implementation of the Rating component."
-            tags={["React", "Rating", "Star", "Feedback"]}
+            tags={["React", "Rating", "Star", "Emoji", "HalfStar"]}
           />
         </TabsContent>
       </Tabs>
 
       {/* Default */}
       <DocsComponent
-        title="Default"
-        description="Standard 5-star rating control."
+        title="Default Star Rating"
+        description="Standard 5-star rating control with tooltip score."
         preview={
           <div className="max-w-xs w-full">
-            <Rating label="Product Review Score" defaultValue={4} />
+            <Rating showTooltip label="Product Review Score" defaultValue={4} />
           </div>
         }
-        code={`<Rating label="Product Review Score" defaultValue={4} />`}
+        code={`<Rating showTooltip label="Product Review Score" defaultValue={4} />`}
       />
 
-      {/* Half Star Support */}
+      {/* Half Star Precision */}
       <DocsComponent
         title="Half Star Precision (allowHalf)"
         description="Enable 0.5 step star rating selection using the 'allowHalf' prop."
@@ -75,6 +73,7 @@ export default function RatingComponentPage() {
           <div className="flex flex-col gap-2 max-w-xs w-full">
             <Rating
               allowHalf
+              showTooltip
               value={val1}
               onValueChange={setVal1}
               label="Customer Rating (Half Stars Enabled)"
@@ -84,41 +83,61 @@ export default function RatingComponentPage() {
         }
         code={`const [val, setVal] = React.useState(3.5);
 
-<Rating allowHalf value={val} onValueChange={setVal} label="Half Stars Enabled" />`}
+<Rating allowHalf showTooltip value={val} onValueChange={setVal} label="Half Stars Enabled" />`}
         props={["allowHalf: boolean"]}
       />
 
-      {/* Sizes */}
+      {/* Custom Icons (Hearts) */}
       <DocsComponent
-        title="Sizes"
-        description="Scale star icon dimensions using the 'size' prop: 'sm', 'md', or 'lg'."
+        title="Custom Icons (Hearts)"
+        description="Pass custom icons like hearts ('hugeicons:favourite') and color themes ('danger')."
         preview={
           <div className="flex flex-col gap-4 max-w-xs w-full">
-            <Rating size="sm" defaultValue={5} label="Small Stars (sm)" />
-            <Rating size="md" defaultValue={4} label="Medium Stars (md)" />
-            <Rating size="lg" defaultValue={3} label="Large Stars (lg)" />
+            <Rating
+              icon="hugeicons:favourite"
+              color="danger"
+              size="lg"
+              defaultValue={4}
+              label="Favorite Level (Hearts)"
+            />
           </div>
         }
-        code={`<Rating size="sm" defaultValue={5} />
-<Rating size="md" defaultValue={4} />
-<Rating size="lg" defaultValue={3} />`}
-        props={["size: 'sm' | 'md' | 'lg'"]}
+        code={`<Rating
+  icon="hugeicons:favourite"
+  color="danger"
+  size="lg"
+  defaultValue={4}
+  label="Favorite Level"
+/>`}
+        props={["icon: string (e.g. 'hugeicons:favourite')", "color: 'danger' | 'warning' | ..."]}
       />
 
-      {/* Read Only & Colors */}
+      {/* Dynamic Emojis */}
       <DocsComponent
-        title="Read-only & Theme Colors"
-        description="Display non-interactive rating displays in different color accents."
+        title="Dynamic Emojis Rating"
+        description="Pass an emojiMap dictionary to convert numeric ratings into expressive emotional emojis."
         preview={
-          <div className="flex flex-col gap-4 max-w-xs w-full">
-            <Rating readOnly allowHalf value={4.5} color="warning" label="Warning Gold (4.5)" />
-            <Rating readOnly allowHalf value={4.0} color="primary" label="Primary Sky (4.0)" />
-            <Rating readOnly allowHalf value={5.0} color="success" label="Success Emerald (5.0)" />
+          <div className="flex flex-col gap-2 max-w-xs w-full">
+            <Rating
+              size="lg"
+              value={emojiVal}
+              onValueChange={setEmojiVal}
+              emojiMap={{ 1: "😠", 2: "🙁", 3: "😐", 4: "😃", 5: "😍" }}
+              label="User Feedback Satisfaction"
+            />
+            <span className="text-xs font-mono text-muted-foreground">Selected Mood: Rating {emojiVal}</span>
           </div>
         }
-        code={`<Rating readOnly allowHalf value={4.5} color="warning" />
-<Rating readOnly allowHalf value={4.0} color="primary" />`}
-        props={["readOnly: boolean", "color: 'default' | 'primary' | 'secondary' | 'accent' | 'warning' | 'danger'"]}
+        code={`const [val, setVal] = React.useState(4);
+
+<Rating
+  size="lg"
+  value={val}
+  onValueChange={setVal}
+  emojiMap={{ 1: "😠", 2: "🙁", 3: "😐", 4: "😃", 5: "😍" }}
+  label="User Feedback Satisfaction"
+/>`}
+        props={["emojiMap: Record<number, string>"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -146,30 +165,16 @@ export default function RatingComponentPage() {
                   <td className="px-3 py-2 text-muted-foreground">Enables 0.5 half-star selection and hovering.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">value / defaultValue</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
-                  <td className="px-3 py-2 text-muted-foreground">0</td>
-                  <td className="px-3 py-2 text-muted-foreground">Current rating score.</td>
+                  <td className="px-3 py-2 font-mono text-primary">icon</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 text-muted-foreground">'hugeicons:star'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Iconify icon identifier (e.g. 'hugeicons:favourite' for hearts).</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">max</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
-                  <td className="px-3 py-2 text-muted-foreground">5</td>
-                  <td className="px-3 py-2 text-muted-foreground">Maximum total star count.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">readOnly</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Disables user star hover/click interaction.</td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">color</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'primary' | 'secondary' | 'accent' | 'warning' | 'danger'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'warning'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Filled star color variant.</td>
+                  <td className="px-3 py-2 font-mono text-primary">emojiMap</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">Record&lt;number, string&gt;</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Map of rating scores to dynamic emoji representations.</td>
                 </tr>
               </tbody>
             </table>

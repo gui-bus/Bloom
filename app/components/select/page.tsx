@@ -1,13 +1,9 @@
 "use client";
 
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
-
 import { ImportSnippet } from "@/components/core/importSnippet";
-
 import { DocsPagination } from "@/components/core/docsPagination";
-
 import { InstallationBlock } from "@/components/core/installationBlock";
-
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -21,6 +17,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
+  type SelectOption,
 } from "@/components/ui/select/select";
 import { selectCode } from "@/components/ui/select/select.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -31,12 +28,46 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
 
+const sampleOptions: SelectOption[] = [
+  { value: "react", label: "React.js", description: "UI Library by Meta", icon: "devicon:react", badge: "Popular" },
+  { value: "next", label: "Next.js 16", description: "The React Framework", icon: "devicon:nextjs", badge: "Vercel" },
+  { value: "vue", label: "Vue 3", description: "Progressive Framework", icon: "devicon:vuejs" },
+  { value: "tailwind", label: "Tailwind CSS", description: "Utility-first CSS", icon: "devicon:tailwindcss" },
+  { value: "typescript", label: "TypeScript", description: "Typed JavaScript", icon: "devicon:typescript" },
+];
+
+const userOptions: SelectOption[] = [
+  {
+    value: "guilherme",
+    label: "Guilherme S.",
+    description: "Lead UI Engineer",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+    badge: "Admin",
+  },
+  {
+    value: "sarah",
+    label: "Sarah Connor",
+    description: "Product Designer",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80",
+    badge: "Design",
+  },
+  {
+    value: "alex",
+    label: "Alex Vance",
+    description: "DevOps Architect",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
+    badge: "Ops",
+  },
+];
+
 export default function SelectComponentPage() {
+  const [multiVal, setMultiVal] = React.useState<string[]>(["react", "next", "typescript"]);
+
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Select"
-        description="Displays a custom select menu with options, group labels, item indicators, and sizes built on Radix UI Select."
+        description="A powerful select dropdown supporting single & multi-selection, removable tags, max visible chips, rich item rendering (avatars, descriptions, badges), batch actions, search filter, and 5 visual variants."
       />
 
       <ImportSnippet importCode={`import { Select } from "@/components/ui/select/select";`} />
@@ -58,7 +89,7 @@ export default function SelectComponentPage() {
             code={selectCode}
             componentName="select.tsx"
             description="Core implementation of the Select component."
-            tags={["React", "Radix UI", "Select", "Form"]}
+            tags={["React", "Select", "Form", "MultiSelect"]}
           />
         </TabsContent>
       </Tabs>
@@ -67,6 +98,111 @@ export default function SelectComponentPage() {
       <DocsComponent
         title="Default"
         description="Standard dropdown select list."
+        preview={
+          <div className="max-w-xs w-full">
+            <Select options={sampleOptions} defaultValue="react" label="Select Tech Stack" />
+          </div>
+        }
+        code={`<Select options={sampleOptions} defaultValue="react" label="Select Tech Stack" />`}
+      />
+
+      {/* Multi-Selection & Max Tags */}
+      <DocsComponent
+        title="Multi-Selection & maxTagsVisible"
+        description="Multi-selection mode with removable chip tags, search filter inside the menu, and customizable max visible chips limit."
+        preview={
+          <div className="flex flex-col gap-4 max-w-md w-full">
+            <Select
+              isMultiSelect
+              isSearchable
+              maxTagsVisible={2}
+              options={sampleOptions}
+              multiValue={multiVal}
+              onMultiValueChange={setMultiVal}
+              label="Frameworks (Max 2 tags visible)"
+            />
+          </div>
+        }
+        code={`<Select
+  isMultiSelect
+  isSearchable
+  maxTagsVisible={2}
+  options={sampleOptions}
+  multiValue={multiVal}
+  onMultiValueChange={setMultiVal}
+  label="Frameworks (Max 2 tags visible)"
+/>`}
+        props={["isMultiSelect: boolean", "maxTagsVisible: number", "isSearchable: boolean"]}
+      />
+
+      {/* Rich Rendering & Avatars */}
+      <DocsComponent
+        title="Rich Option & Value Rendering"
+        description="Render avatars, sub-descriptions, icons, and badges using built-in option properties or renderOption custom slots."
+        preview={
+          <div className="max-w-sm w-full">
+            <Select
+              options={userOptions}
+              defaultValue="guilherme"
+              label="Assign Team Member"
+            />
+          </div>
+        }
+        code={`<Select options={userOptions} defaultValue="guilherme" label="Assign Team Member" />`}
+        props={["renderOption: (option) => ReactNode", "renderValue: (option) => ReactNode"]}
+      />
+
+      {/* Batch Selection (Select / Deselect All) */}
+      <DocsComponent
+        title="Batch Selection (Select / Deselect All)"
+        description="Enable quick 1-click 'Select All' and 'Deselect All' actions at the top of the multi-select dropdown."
+        preview={
+          <div className="max-w-md w-full">
+            <Select
+              isMultiSelect
+              showBatchActions
+              isSearchable
+              options={sampleOptions}
+              label="Batch Option Picker"
+              placeholder="Choose multiple options..."
+            />
+          </div>
+        }
+        code={`<Select
+  isMultiSelect
+  showBatchActions
+  isSearchable
+  options={sampleOptions}
+  label="Batch Option Picker"
+/>`}
+        props={["showBatchActions: boolean", "selectAllLabel: string", "deselectAllLabel: string"]}
+      />
+
+      {/* Visual Variants */}
+      <DocsComponent
+        title="Visual Variants"
+        description="5 available design variants: default, bordered, flat, underlined, and faded."
+        preview={
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            <Select variant="default" label="Default" options={sampleOptions} defaultValue="react" />
+            <Select variant="bordered" label="Bordered" options={sampleOptions} defaultValue="react" />
+            <Select variant="flat" label="Flat" options={sampleOptions} defaultValue="react" />
+            <Select variant="faded" label="Faded" options={sampleOptions} defaultValue="react" />
+            <Select variant="underlined" label="Underlined" options={sampleOptions} defaultValue="react" />
+          </div>
+        }
+        code={`<Select variant="default" label="Default" options={sampleOptions} />
+<Select variant="bordered" label="Bordered" options={sampleOptions} />
+<Select variant="flat" label="Flat" options={sampleOptions} />
+<Select variant="faded" label="Faded" options={sampleOptions} />
+<Select variant="underlined" label="Underlined" options={sampleOptions} />`}
+        props={["variant: 'default' | 'bordered' | 'flat' | 'underlined' | 'faded'"]}
+      />
+
+      {/* Legacy Radix Syntax */}
+      <DocsComponent
+        title="Legacy Compositional Syntax (Radix UI)"
+        description="Full backward compatibility with Radix UI Select primitive trigger and item components."
         preview={
           <div className="max-w-xs w-full">
             <Select defaultValue="light">
@@ -90,89 +226,12 @@ export default function SelectComponentPage() {
 </Select>`}
       />
 
-      {/* Grouped Options */}
-      <DocsComponent
-        title="Grouped Options"
-        description="Group options with category labels using SelectGroup and SelectLabel."
-        preview={
-          <div className="max-w-xs w-full">
-            <Select defaultValue="next">
-              <SelectTrigger>
-                <SelectValue placeholder="Select framework..." />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Frontend Frameworks</SelectLabel>
-                  <SelectItem value="react">React.js</SelectItem>
-                  <SelectItem value="next">Next.js 16</SelectItem>
-                  <SelectItem value="vue">Vue 3</SelectItem>
-                </SelectGroup>
-                <SelectGroup>
-                  <SelectLabel>Backend Engines</SelectLabel>
-                  <SelectItem value="node">Node.js</SelectItem>
-                  <SelectItem value="python">Python FastAPI</SelectItem>
-                  <SelectItem value="go">Go Gin</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-        }
-        code={`<Select>
-  <SelectTrigger><SelectValue placeholder="Framework" /></SelectTrigger>
-  <SelectContent>
-    <SelectGroup>
-      <SelectLabel>Frontend</SelectLabel>
-      <SelectItem value="next">Next.js</SelectItem>
-    </SelectGroup>
-  </SelectContent>
-</Select>`}
-      />
-
-      {/* Sizes */}
-      <DocsComponent
-        title="Sizes"
-        description="Scale trigger size using the 'size' prop: 'sm', 'md', or 'lg'."
-        preview={
-          <div className="flex flex-col gap-4 max-w-xs w-full">
-            <Select defaultValue="sm">
-              <SelectTrigger size="sm">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="sm">Small (32px)</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select defaultValue="md">
-              <SelectTrigger size="md">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="md">Medium (40px)</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select defaultValue="lg">
-              <SelectTrigger size="lg">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="lg">Large (48px)</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        }
-        code={`<SelectTrigger size="sm">...</SelectTrigger>
-<SelectTrigger size="lg">...</SelectTrigger>`}
-        props={["size: 'sm' | 'md' | 'lg'"]}
-      />
-
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Table */}
       <DocsComponent
-        title="Props — SelectTrigger"
-        description="Supported properties for SelectTrigger."
+        title="Props — Select"
+        description="Supported properties for the Select component."
         preview={
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -186,26 +245,42 @@ export default function SelectComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">size</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'sm' | 'md' | 'lg'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Select trigger button height scale.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    keyof typeof designRadius
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'lg'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Border radius style variant.</td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">isInvalid</td>
+                  <td className="px-3 py-2 font-mono text-primary">isMultiSelect</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Applies error validation state outline.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables multi-selection mode with removable tags.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">maxTagsVisible</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">2</td>
+                  <td className="px-3 py-2 text-muted-foreground">Limit of chip tags visible before showing +N overflow indicator.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">showBatchActions</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Displays 'Select All' and 'Deselect All' buttons in dropdown header.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">variant</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'default' | 'bordered' | 'flat' | 'underlined' | 'faded'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'default'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Visual style variant of the trigger button.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">renderOption</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(option: SelectOption) =&gt; ReactNode</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Custom slot to render option items in the menu.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">renderValue</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(selected) =&gt; ReactNode</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Custom slot to render the selected value inside the trigger.</td>
                 </tr>
               </tbody>
             </table>

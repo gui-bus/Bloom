@@ -1,11 +1,8 @@
 "use client";
 
 import { ImportSnippet } from "@/components/core/importSnippet";
-
 import { DocsPagination } from "@/components/core/docsPagination";
-
 import { InstallationBlock } from "@/components/core/installationBlock";
-
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,13 +19,13 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 export default function NumberInputComponentPage() {
-  const [val, setVal] = React.useState(2);
+  const [val, setVal] = React.useState(2500);
 
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Number Input"
-        description="Numeric stepper input control with increment/decrement buttons, min/max limits, custom step sizes, and size options."
+        description="Numeric stepper input control supporting stepper positions (split, right, inline), native internationalized currency & percentage formatting, and mouse wheel scroll adjustments."
       />
 
       <ImportSnippet importCode={`import { NumberInput } from "@/components/ui/numberInput/numberInput";`} />
@@ -50,73 +47,117 @@ export default function NumberInputComponentPage() {
             code={numberInputCode}
             componentName="numberInput.tsx"
             description="Core implementation of the NumberInput component."
-            tags={["React", "NumberInput", "Stepper", "Form"]}
+            tags={["React", "NumberInput", "Stepper", "Currency", "Intl"]}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
+      {/* Stepper Position Options */}
       <DocsComponent
-        title="Default"
-        description="Standard numeric stepper with default value."
+        title="Stepper Positions (stepperPosition)"
+        description="Choose stepper button layout: 'split' (left & right), 'right' (both buttons on right), or 'inline' (compact up/down arrows)."
         preview={
-          <div className="max-w-xs w-full">
-            <NumberInput label="Item Quantity" defaultValue={1} min={1} max={10} />
+          <div className="flex flex-col gap-4 max-w-xs w-full">
+            <NumberInput label="Split Stepper (Default)" stepperPosition="split" defaultValue={5} />
+            <NumberInput label="Right Stepper" stepperPosition="right" defaultValue={10} />
+            <NumberInput label="Inline Vertical Arrows" stepperPosition="inline" defaultValue={15} />
           </div>
         }
-        code={`<NumberInput label="Item Quantity" defaultValue={1} min={1} max={10} />`}
+        code={`<NumberInput label="Split Stepper" stepperPosition="split" />
+<NumberInput label="Right Stepper" stepperPosition="right" />
+<NumberInput label="Inline Vertical Arrows" stepperPosition="inline" />`}
+        props={["stepperPosition: 'split' | 'right' | 'inline'"]}
+      />
+
+      {/* Internationalized Currency Formatting */}
+      <DocsComponent
+        title="Internationalized Formatting (Currency & Percent)"
+        description="Pass format='currency', currency='BRL', locale='pt-BR', and precision={2} for native locale currency formatting."
+        preview={
+          <div className="flex flex-col gap-4 max-w-xs w-full">
+            <NumberInput
+              label="Brazilian Real (pt-BR)"
+              format="currency"
+              currency="BRL"
+              locale="pt-BR"
+              defaultValue={1499.90}
+              step={100}
+            />
+            <NumberInput
+              label="US Dollar (en-US)"
+              format="currency"
+              currency="USD"
+              locale="en-US"
+              defaultValue={2500}
+              step={500}
+            />
+          </div>
+        }
+        code={`<NumberInput
+  label="Brazilian Real"
+  format="currency"
+  currency="BRL"
+  locale="pt-BR"
+  defaultValue={1499.90}
+  step={100}
+/>
+
+<NumberInput
+  label="US Dollar"
+  format="currency"
+  currency="USD"
+  locale="en-US"
+  defaultValue={2500}
+/>`}
+        props={["format: 'currency' | 'decimal' | 'percent'", "currency: string", "locale: string", "precision: number"]}
+      />
+
+      {/* Mouse Wheel Scroll Control */}
+      <DocsComponent
+        title="Mouse Wheel Scroll Control (allowMouseWheel)"
+        description="Enable value adjustments by hovering and scrolling the mouse wheel."
+        preview={
+          <div className="max-w-xs w-full">
+            <NumberInput
+              allowMouseWheel
+              label="Scroll with Mouse Wheel"
+              description="Hover over the input and scroll up or down to adjust value"
+              defaultValue={50}
+              step={5}
+              min={0}
+              max={100}
+            />
+          </div>
+        }
+        code={`<NumberInput
+  allowMouseWheel
+  label="Scroll with Mouse Wheel"
+  defaultValue={50}
+  step={5}
+/>`}
+        props={["allowMouseWheel: boolean"]}
       />
 
       {/* Controlled State */}
       <DocsComponent
         title="Controlled State & Limits"
-        description="Controlled number value bound to state with min=0 and max=5 constraints."
+        description="Controlled number value bound to state with min/max constraints."
         preview={
           <div className="flex flex-col gap-2 max-w-xs w-full">
             <NumberInput
-              label="Selected Tickets (Max 5)"
+              label="Budget Limit ($)"
               value={val}
               min={0}
-              max={5}
+              max={10000}
+              step={500}
               onValueChange={setVal}
             />
-            <span className="text-xs font-mono text-muted-foreground">Current Value: {val}</span>
+            <span className="text-xs font-mono text-muted-foreground">Current Value: ${val}</span>
           </div>
         }
-        code={`const [val, setVal] = React.useState(2);
+        code={`const [val, setVal] = React.useState(2500);
 
-<NumberInput label="Selected Tickets" value={val} min={0} max={5} onValueChange={setVal} />`}
-        props={["value: number", "min: number", "max: number", "onValueChange: (val: number) => void"]}
-      />
-
-      {/* Sizes */}
-      <DocsComponent
-        title="Sizes"
-        description="Control input dimensions using the 'size' prop: 'sm', 'md', or 'lg'."
-        preview={
-          <div className="flex flex-col gap-4 max-w-xs w-full">
-            <NumberInput label="Small (sm)" size="sm" defaultValue={5} />
-            <NumberInput label="Medium (md)" size="md" defaultValue={10} />
-            <NumberInput label="Large (lg)" size="lg" defaultValue={15} />
-          </div>
-        }
-        code={`<NumberInput size="sm" defaultValue={5} />
-<NumberInput size="md" defaultValue={10} />
-<NumberInput size="lg" defaultValue={15} />`}
-        props={["size: 'sm' | 'md' | 'lg'"]}
-      />
-
-      {/* Custom Step */}
-      <DocsComponent
-        title="Custom Step Increment"
-        description="Increment or decrement by custom step sizes (e.g. step=5 or step=0.5)."
-        preview={
-          <div className="max-w-xs w-full">
-            <NumberInput label="Volume Level (Step 5)" step={5} defaultValue={50} min={0} max={100} />
-          </div>
-        }
-        code={`<NumberInput label="Volume Level" step={5} defaultValue={50} min={0} max={100} />`}
-        props={["step: number"]}
+<NumberInput label="Budget Limit" value={val} min={0} max={10000} step={500} onValueChange={setVal} />`}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -138,30 +179,28 @@ export default function NumberInputComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">value / defaultValue</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
-                  <td className="px-3 py-2 text-muted-foreground">0</td>
-                  <td className="px-3 py-2 text-muted-foreground">Current numeric value.</td>
+                  <td className="px-3 py-2 font-mono text-primary">stepperPosition</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'split' | 'right' | 'inline'</td>
+                  <td className="px-3 py-2 text-muted-foreground">'split'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Layout position for increment/decrement stepper controls.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">min / max</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">format</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'decimal' | 'currency' | 'percent'</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Minimum and maximum numeric bounds.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Formulas for native Intl currency and percentage formatting.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">step</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
-                  <td className="px-3 py-2 text-muted-foreground">1</td>
-                  <td className="px-3 py-2 text-muted-foreground">Step interval for button clicks.</td>
+                  <td className="px-3 py-2 font-mono text-primary">locale / currency</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 text-muted-foreground">'en-US' / 'USD'</td>
+                  <td className="px-3 py-2 text-muted-foreground">BCC 47 locale (e.g. 'pt-BR') and ISO 4217 currency code (e.g. 'BRL').</td>
                 </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">size</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'sm' | 'md' | 'lg'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Dimensional scale of the stepper input.</td>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">allowMouseWheel</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables mouse wheel scroll to increment/decrement numeric value.</td>
                 </tr>
               </tbody>
             </table>

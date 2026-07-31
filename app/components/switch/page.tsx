@@ -1,11 +1,8 @@
 "use client";
 
 import { ImportSnippet } from "@/components/core/importSnippet";
-
 import { DocsPagination } from "@/components/core/docsPagination";
-
 import { InstallationBlock } from "@/components/core/installationBlock";
-
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,13 +19,14 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 export default function SwitchComponentPage() {
-  const [isSelected, setIsSelected] = React.useState(true);
+  const [isDarkMode, setIsDarkMode] = React.useState(true);
+  const [billingPeriod, setBillingPeriod] = React.useState(false);
 
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Switch"
-        description="A toggle control allowing users to switch between on and off states with support for labels, descriptions, icons, card layout, and color variants."
+        description="A premium toggle control allowing users to switch between on and off states featuring animated thumb icons (e.g. Sun/Moon), track background icons, dual labels on both ends, clickable card containers, and color themes."
       />
 
       <ImportSnippet importCode={`import { Switch } from "@/components/ui/switch/switch";`} />
@@ -50,14 +48,14 @@ export default function SwitchComponentPage() {
             code={switchCode}
             componentName="switch.tsx"
             description="Core implementation of the Switch component."
-            tags={["React", "Radix UI", "Switch", "Toggle", "Form"]}
+            tags={["React", "Radix UI", "Switch", "Toggle", "Thumb Icons", "Dual Labels"]}
           />
         </TabsContent>
       </Tabs>
 
       {/* Default */}
       <DocsComponent
-        title="Default"
+        title="Default Switch"
         description="Standard toggle switch with label."
         preview={
           <div className="flex items-center gap-6">
@@ -67,26 +65,62 @@ export default function SwitchComponentPage() {
         code={`<Switch label="Enable Notifications" defaultChecked />`}
       />
 
-      {/* Controlled */}
+      {/* Premium Thumb & Track Icons (Dark / Light Mode) */}
       <DocsComponent
-        title="Controlled"
-        description="Manage checked state programmatically using checked and onCheckedChange props."
+        title="Premium Dark / Light Mode Switch"
+        description="Features track icons and smooth spring animated sliding thumb."
         preview={
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             <Switch
-              checked={isSelected}
-              onCheckedChange={setIsSelected}
-              label={`Airplane Mode: ${isSelected ? "ON" : "OFF"}`}
+              size="lg"
+              color="default"
+              checked={isDarkMode}
+              onCheckedChange={setIsDarkMode}
+              checkedThumbIcon={<Icon icon="hugeicons:moon-02" className="size-3.5 text-indigo-400" />}
+              uncheckedThumbIcon={<Icon icon="hugeicons:sun-01" className="size-3.5 text-amber-500" />}
+              label={`Theme Mode: ${isDarkMode ? "Dark" : "Light"}`}
             />
-            <p className="text-xs text-zinc-500 font-mono">
-              Current state value: <span className="font-bold text-sky-500">{String(isSelected)}</span>
-            </p>
           </div>
         }
-        code={`const [isSelected, setIsSelected] = React.useState(true);
+        code={`const [isDarkMode, setIsDarkMode] = React.useState(true);
 
-<Switch checked={isSelected} onCheckedChange={setIsSelected} label={\`Airplane Mode: \${isSelected ? "ON" : "OFF"}\`} />`}
-        props={["checked: boolean", "onCheckedChange: (checked: boolean) => void"]}
+<Switch
+  size="lg"
+  color="default"
+  checked={isDarkMode}
+  onCheckedChange={setIsDarkMode}
+  checkedThumbIcon={<Icon icon="hugeicons:moon-02" className="size-3.5 text-indigo-400" />}
+  uncheckedThumbIcon={<Icon icon="hugeicons:sun-01" className="size-3.5 text-amber-500" />}
+  label="Theme Mode"
+/>`}
+        props={["checkedThumbIcon: ReactNode", "uncheckedThumbIcon: ReactNode", "thumbIcon: ReactNode"]}
+      />
+
+      {/* Dual Labels */}
+      <DocsComponent
+        title="Dual Labels (Start & End Extremities)"
+        description="Display text labels on both ends of the switch track simultaneously."
+        preview={
+          <div className="flex flex-col gap-4">
+            <Switch
+              size="md"
+              color="primary"
+              checked={billingPeriod}
+              onCheckedChange={setBillingPeriod}
+              startLabel="Monthly Billing"
+              endLabel="Annual Billing (Save 20%)"
+            />
+          </div>
+        }
+        code={`const [annual, setAnnual] = React.useState(false);
+
+<Switch
+  startLabel="Monthly Billing"
+  endLabel="Annual Billing (Save 20%)"
+  checked={annual}
+  onCheckedChange={setAnnual}
+/>`}
+        props={["startLabel: ReactNode", "endLabel: ReactNode"]}
       />
 
       {/* Card Selection Options */}
@@ -107,60 +141,28 @@ export default function SwitchComponentPage() {
               description="Require an extra verification code when logging in."
               color="success"
             />
-            <Switch
-              isCard
-              isDisabled
-              label="Legacy API Access (Disabled)"
-              description="This feature has been deprecated in your current plan."
-            />
           </div>
         }
         code={`<Switch isCard label="Automatic Updates" description="Download updates automatically." defaultChecked />
-<Switch isCard label="Two-Factor Auth" description="Extra verification code." color="success" />
-<Switch isCard isDisabled label="Legacy Access (Disabled)" />`}
+<Switch isCard label="Two-Factor Auth" description="Extra verification code." color="success" />`}
         props={["isCard: boolean", "isDisabled: boolean"]}
       />
 
-      {/* Colors */}
+      {/* Colors & Sizes */}
       <DocsComponent
-        title="Colors"
-        description="Choose from theme color variants: 'default', 'primary', 'secondary', 'accent', 'success', 'warning', or 'danger'."
-        preview={
-          <div className="flex flex-wrap items-center gap-6">
-            <Switch color="default" defaultChecked label="Default" />
-            <Switch color="primary" defaultChecked label="Primary" />
-            <Switch color="secondary" defaultChecked label="Secondary" />
-            <Switch color="accent" defaultChecked label="Accent" />
-            <Switch color="success" defaultChecked label="Success" />
-            <Switch color="warning" defaultChecked label="Warning" />
-            <Switch color="danger" defaultChecked label="Danger" />
-          </div>
-        }
-        code={`<Switch color="default" defaultChecked label="Default" />
-<Switch color="primary" defaultChecked label="Primary" />
-<Switch color="secondary" defaultChecked label="Secondary" />
-<Switch color="accent" defaultChecked label="Accent" />
-<Switch color="success" defaultChecked label="Success" />
-<Switch color="warning" defaultChecked label="Warning" />
-<Switch color="danger" defaultChecked label="Danger" />`}
-        props={["color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
-      />
-
-      {/* Sizes */}
-      <DocsComponent
-        title="Sizes"
-        description="Scale toggle dimensions: 'sm', 'md', or 'lg'."
+        title="Colors & Sizes"
+        description="Dimensions ('sm', 'md', 'lg') and color themes ('default', 'primary', 'secondary', 'accent', 'success', 'warning', 'danger')."
         preview={
           <div className="flex flex-wrap items-center gap-6">
             <Switch size="sm" color="primary" defaultChecked label="Small (sm)" />
-            <Switch size="md" color="primary" defaultChecked label="Medium (md)" />
-            <Switch size="lg" color="primary" defaultChecked label="Large (lg)" />
+            <Switch size="md" color="success" defaultChecked label="Medium (md)" />
+            <Switch size="lg" color="accent" defaultChecked label="Large (lg)" />
           </div>
         }
         code={`<Switch size="sm" color="primary" defaultChecked label="Small" />
-<Switch size="md" color="primary" defaultChecked label="Medium" />
-<Switch size="lg" color="primary" defaultChecked label="Large" />`}
-        props={["size: 'sm' | 'md' | 'lg'"]}
+<Switch size="md" color="success" defaultChecked label="Medium" />
+<Switch size="lg" color="accent" defaultChecked label="Large" />`}
+        props={["size: 'sm' | 'md' | 'lg'", "color: 'primary' | 'success' | ..."]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -182,38 +184,28 @@ export default function SwitchComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">checked / defaultChecked</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Controlled / uncontrolled active toggle state.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">label</td>
+                  <td className="px-3 py-2 font-mono text-primary">checkedThumbIcon</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Primary label text for the toggle option.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Icon rendered inside the sliding thumb when checked (e.g. Moon).</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isCard</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Wraps toggle in a full-width clickable card.</td>
+                  <td className="px-3 py-2 font-mono text-primary">uncheckedThumbIcon</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Icon rendered inside the sliding thumb when unchecked (e.g. Sun).</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">color</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'primary'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Active state track color.</td>
+                  <td className="px-3 py-2 font-mono text-primary">startLabel</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Text label placed at the left extremity of the switch track.</td>
                 </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">size</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'sm' | 'md' | 'lg'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Dimension scale of toggle track and thumb.</td>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">endLabel</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Text label placed at the right extremity of the switch track.</td>
                 </tr>
               </tbody>
             </table>

@@ -15,8 +15,12 @@ export interface SliderProps
   size?: "sm" | "md" | "lg";
   label?: React.ReactNode;
   showValue?: boolean;
+  showTooltip?: boolean;
+  formatTooltip?: (value: number) => string;
   formatValue?: (val: number[]) => string;
   marks?: SliderMark[];
+  histogramData?: number[];
+  histogramHeight?: number;
 }
 
 const trackColorMap = {
@@ -56,8 +60,12 @@ const Slider = React.forwardRef<
       size = "md",
       label,
       showValue = false,
+      showTooltip = false,
+      formatTooltip,
       formatValue,
       marks,
+      histogramData,
+      histogramHeight = 40,
       value,
       defaultValue,
       min = 0,
@@ -70,10 +78,11 @@ const Slider = React.forwardRef<
     const initialVal = React.useMemo(() => {
       if (Array.isArray(value)) return value;
       if (Array.isArray(defaultValue)) return defaultValue;
-      return [0];
-    }, [value, defaultValue]);
+      return [min];
+    }, [value, defaultValue, min]);
 
     const [currentVal, setCurrentVal] = React.useState<number[]>(initialVal);
+    const [hoveredThumbIndex, setHoveredThumbIndex] = React.useState<number | null>(null);
 
     React.useEffect(() => {
       if (Array.isArray(value)) {
@@ -93,6 +102,18 @@ const Slider = React.forwardRef<
       return currentVal.join(" - ");
     }, [currentVal, formatValue]);
 
+    const maxHistogramVal = React.useMemo(() => {
+      if (!histogramData || histogramData.length === 0) return 1;
+      return Math.max(...histogramData);
+    }, [histogramData]);
+
+    const activeRange = React.useMemo(() => {
+      if (currentVal.length === 0) return [min, max];
+      if (currentVal.length === 1) return [min, currentVal[0]];
+      const sorted = [...currentVal].sort((a, b) => a - b);
+      return [sorted[0], sorted[sorted.length - 1]];
+    }, [currentVal, min, max]);
+
     return (
       <div className="w-full flex flex-col gap-2">
         {(label || showValue) && (
@@ -105,65 +126,121 @@ const Slider = React.forwardRef<
             )}
           </div>
         )}
-        <div className="relative w-full">
-          <SliderPrimitive.Root
-            ref={ref}
-            value={value}
-            defaultValue={defaultValue}
-            min={min}
-            max={max}
-            onValueChange={handleValueChange}
-            className={cn(
-              "relative flex w-full touch-none select-none items-center cursor-pointer z-10",
-              className
-            )}
-            {...props}
-          >
-            <SliderPrimitive.Track
-              className={cn(
-                "relative w-full grow overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800",
-                sizeMap[size].track
-              )}
+
+        <div className="relative w-full flex flex-col items-center">
+          {histogramData && histogramData.length > 0 && (
+            <div
+              style={{ height: \`\${histogramHeight}px\` }}
+              className="w-full flex items-end gap-1 px-1 mb-1 select-none pointer-events-none"
             >
-              <SliderPrimitive.Range
-                className={cn("absolute h-full", trackColorMap[color])}
-              />
-            </SliderPrimitive.Track>
-            {Array.from({ length: currentVal.length }).map((_, i) => (
-              <SliderPrimitive.Thumb
-                key={i}
-                className={cn(
-                  "block rounded-full border-2 bg-white dark:bg-zinc-900 shadow-xs transition-transform focus-visible:outline-none focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50 hover:scale-110 cursor-pointer",
-                  sizeMap[size].thumb,
-                  thumbBorderMap[color]
-                )}
-              />
-            ))}
-          </SliderPrimitive.Root>
-          {marks && marks.length > 0 && (
-            <div className="relative w-full mt-2 h-4 select-none">
-              {marks.map((mark, i) => {
-                const percent = Math.min(
-                  100,
-                  Math.max(0, ((mark.value - min) / (max - min)) * 100)
-                );
+              {histogramData.map((val, idx) => {
+                const stepSize = (max - min) / histogramData.length;
+                const barMin = min + idx * stepSize;
+                const barMax = barMin + stepSize;
+                const heightPercent = Math.max(8, (val / maxHistogramVal) * 100);
+
+                const isActive =
+                  barMax >= activeRange[0] && barMin <= activeRange[1];
+
                 return (
                   <div
-                    key={i}
-                    style={{ left: percent + "%" }}
-                    className="absolute -translate-x-1/2 flex flex-col items-center"
-                  >
-                    <div className="h-1.5 w-0.5 bg-zinc-300 dark:bg-zinc-700 mb-0.5" />
-                    {mark.label && (
-                      <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-medium whitespace-nowrap">
-                        {mark.label}
-                      </span>
+                    key={idx}
+                    style={{ height: \`\${heightPercent}%\` }}
+                    className={cn(
+                      "flex-1 rounded-t transition-colors duration-200",
+                      isActive
+                        ? "bg-sky-500/80 dark:bg-sky-400/80"
+                        : "bg-zinc-200/80 dark:bg-zinc-800/80"
                     )}
-                  </div>
+                  />
                 );
               })}
             </div>
           )}
+
+          <div className="relative w-full">
+            <SliderPrimitive.Root
+              ref={ref}
+              value={value}
+              defaultValue={defaultValue}
+              min={min}
+              max={max}
+              onValueChange={handleValueChange}
+              className={cn(
+                "relative flex w-full touch-none select-none items-center cursor-pointer z-10",
+                className
+              )}
+              {...props}
+            >
+              <SliderPrimitive.Track
+                className={cn(
+                  "relative w-full grow overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800",
+                  sizeMap[size].track
+                )}
+              >
+                <SliderPrimitive.Range
+                  className={cn("absolute h-full", trackColorMap[color])}
+                />
+              </SliderPrimitive.Track>
+
+              {currentVal.map((val, i) => {
+                const isHovered = hoveredThumbIndex === i;
+
+                return (
+                  <React.Fragment key={i}>
+                    <SliderPrimitive.Thumb
+                      onMouseEnter={() => setHoveredThumbIndex(i)}
+                      onMouseLeave={() => setHoveredThumbIndex(null)}
+                      className={cn(
+                        "block rounded-full border-2 bg-white dark:bg-zinc-900 shadow-xs transition-transform focus-visible:outline-none focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50 hover:scale-110 cursor-pointer relative",
+                        sizeMap[size].thumb,
+                        thumbBorderMap[color]
+                      )}
+                    >
+                      {showTooltip && (
+                        <div
+                          className={cn(
+                            "absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] font-bold font-mono shadow-md whitespace-nowrap pointer-events-none transition-all duration-150 origin-bottom",
+                            isHovered
+                              ? "opacity-100 scale-100 translate-y-0"
+                              : "opacity-0 scale-95 translate-y-1"
+                          )}
+                        >
+                          {formatTooltip ? formatTooltip(val) : val}
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-zinc-900 dark:border-t-zinc-100" />
+                        </div>
+                      )}
+                    </SliderPrimitive.Thumb>
+                  </React.Fragment>
+                );
+              })}
+            </SliderPrimitive.Root>
+
+            {marks && marks.length > 0 && (
+              <div className="relative w-full mt-2 h-4 select-none">
+                {marks.map((mark, i) => {
+                  const percent = Math.min(
+                    100,
+                    Math.max(0, ((mark.value - min) / (max - min)) * 100)
+                  );
+                  return (
+                    <div
+                      key={i}
+                      style={{ left: \`\${percent}%\` }}
+                      className="absolute -translate-x-1/2 flex flex-col items-center"
+                    >
+                      <div className="h-1.5 w-0.5 bg-zinc-300 dark:bg-zinc-700 mb-0.5" />
+                      {mark.label && (
+                        <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-medium whitespace-nowrap">
+                          {mark.label}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );

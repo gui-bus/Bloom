@@ -4,38 +4,154 @@ import * as React from "react";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
+export type DatePickerMode = "single" | "range" | "multiple";
+
+export interface DatePickerPreset {
+  label: string;
+  getValue: () => Date | [Date, Date] | Date[];
+}
+
 export interface DatePickerProps {
+  mode?: DatePickerMode;
   value?: Date;
   onChange?: (date: Date | undefined) => void;
+  rangeValue?: [Date | undefined, Date | undefined];
+  onRangeChange?: (range: [Date | undefined, Date | undefined]) => void;
+  multipleValue?: Date[];
+  onMultipleChange?: (dates: Date[]) => void;
   label?: React.ReactNode;
   placeholder?: string;
   disabled?: boolean;
   isInvalid?: boolean;
   isClearable?: boolean;
+  minDate?: Date;
+  maxDate?: Date;
+  showPresets?: boolean;
+  customPresets?: DatePickerPreset[];
+  showDoubleMonth?: boolean;
+  locale?: string;
+  timeZone?: string;
   className?: string;
 }
 
+const DEFAULT_PRESETS: DatePickerPreset[] = [
+  {
+    label: "Today",
+    getValue: () => new Date(),
+  },
+  {
+    label: "Yesterday",
+    getValue: () => {
+      const d = new Date();
+      d.setDate(d.getDate() - 1);
+      return d;
+    },
+  },
+  {
+    label: "Last 7 Days",
+    getValue: () => {
+      const end = new Date();
+      const start = new Date();
+      start.setDate(start.getDate() - 6);
+      return [start, end];
+    },
+  },
+  {
+    label: "This Month",
+    getValue: () => {
+      const now = new Date();
+      const start = new Date(now.getFullYear(), now.getMonth(), 1);
+      const end = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+      return [start, end];
+    },
+  },
+];
+
+function isSameDay(d1?: Date, d2?: Date): boolean {
+  if (!d1 || !d2) return false;
+  return (
+    d1.getFullYear() === d2.getFullYear() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getDate() === d2.getDate()
+  );
+}
+
+function isDateInRange(date: Date, start?: Date, end?: Date): boolean {
+  if (!start || !end) return false;
+  const time = date.getTime();
+  const startTime = new Date(start.getFullYear(), start.getMonth(), start.getDate()).getTime();
+  const endTime = new Date(end.getFullYear(), end.getMonth(), end.getDate()).getTime();
+  return time >= startTime && time <= endTime;
+}
+
+function isDateDisabled(date: Date, minDate?: Date, maxDate?: Date): boolean {
+  const time = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+  if (minDate) {
+    const minTime = new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate()).getTime();
+    if (time < minTime) return true;
+  }
+  if (maxDate) {
+    const maxTime = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate()).getTime();
+    if (time > maxTime) return true;
+  }
+  return false;
+}
+
 export function DatePicker({
+  mode = "single",
   value,
   onChange,
+  rangeValue,
+  onRangeChange,
+  multipleValue,
+  onMultipleChange,
   label,
   placeholder = "Select date...",
   disabled = false,
   isInvalid = false,
   isClearable = false,
+  minDate,
+  maxDate,
+  showPresets = false,
+  customPresets,
+  showDoubleMonth = false,
+  locale = "en-US",
+  timeZone,
   className,
 }: DatePickerProps) {
-  const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(value);
+  const [singleDate, setSingleDate] = React.useState<Date | undefined>(value);
+  const [dateRange, setDateRange] = React.useState<[Date | undefined, Date | undefined]>(
+    rangeValue || [undefined, undefined]
+  );
+  const [multipleDates, setMultipleDates] = React.useState<Date[]>(multipleValue || []);
+
   const [isOpen, setIsOpen] = React.useState(false);
-  const [currentMonth, setCurrentMonth] = React.useState<Date>(value || new Date());
+  const [currentMonth, setCurrentMonth] = React.useState<Date>(
+    value || rangeValue?.[0] || multipleValue?.[0] || new Date()
+  );
   const containerRef = React.useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
-    if (value !== undefined) {
-      setSelectedDate(value);
-      if (value) setCurrentMonth(value);
+  const weekdaysShort = React.useMemo(() => {
+    const list: string[] = [];
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(2026, 0, 4 + i);
+      const name = new Intl.DateTimeFormat(locale, { weekday: "narrow", timeZone }).format(d);
+      list.push(name);
     }
+    return list;
+  }, [locale, timeZone]);
+
+  React.useEffect(() => {
+    if (value !== undefined) setSingleDate(value);
   }, [value]);
+
+  React.useEffect(() => {
+    if (rangeValue !== undefined) setDateRange(rangeValue);
+  }, [rangeValue]);
+
+  React.useEffect(() => {
+    if (multipleValue !== undefined) setMultipleDates(multipleValue);
+  }, [multipleValue]);
 
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -47,45 +163,127 @@ export function DatePicker({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const year = currentMonth.getFullYear();
-  const month = currentMonth.getMonth();
-
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const firstDayOfWeek = new Date(year, month, 1).getDay();
-
-  const monthNames = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
+  const nextMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
 
   const handlePrevMonth = () => {
-    setCurrentMonth(new Date(year, month - 1, 1));
+    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1));
   };
 
   const handleNextMonth = () => {
-    setCurrentMonth(new Date(year, month + 1, 1));
+    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1));
   };
 
-  const handleSelectDay = (day: number) => {
-    const newDate = new Date(year, month, day);
-    setSelectedDate(newDate);
-    onChange?.(newDate);
-    setIsOpen(false);
+  const handleSelectDay = (targetDate: Date) => {
+    if (isDateDisabled(targetDate, minDate, maxDate)) return;
+
+    if (mode === "single") {
+      setSingleDate(targetDate);
+      onChange?.(targetDate);
+      setIsOpen(false);
+    } else if (mode === "range") {
+      const [start, end] = dateRange;
+      if (!start || (start && end)) {
+        const nextRange: [Date, undefined] = [targetDate, undefined];
+        setDateRange(nextRange);
+        onRangeChange?.(nextRange);
+      } else {
+        let nextRange: [Date, Date];
+        if (targetDate.getTime() < start.getTime()) {
+          nextRange = [targetDate, start];
+        } else {
+          nextRange = [start, targetDate];
+        }
+        setDateRange(nextRange);
+        onRangeChange?.(nextRange);
+        setIsOpen(false);
+      }
+    } else if (mode === "multiple") {
+      const exists = multipleDates.some((d) => isSameDay(d, targetDate));
+      let nextDates: Date[];
+      if (exists) {
+        nextDates = multipleDates.filter((d) => !isSameDay(d, targetDate));
+      } else {
+        nextDates = [...multipleDates, targetDate];
+      }
+      setMultipleDates(nextDates);
+      onMultipleChange?.(nextDates);
+    }
   };
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setSelectedDate(undefined);
-    onChange?.(undefined);
+    if (mode === "single") {
+      setSingleDate(undefined);
+      onChange?.(undefined);
+    } else if (mode === "range") {
+      setDateRange([undefined, undefined]);
+      onRangeChange?.([undefined, undefined]);
+    } else if (mode === "multiple") {
+      setMultipleDates([]);
+      onMultipleChange?.([]);
+    }
+  };
+
+  const handleApplyPreset = (preset: DatePickerPreset) => {
+    const val = preset.getValue();
+    if (Array.isArray(val)) {
+      if (val.length === 2 && mode === "range") {
+        const range = val as [Date, Date];
+        setDateRange(range);
+        onRangeChange?.(range);
+        setIsOpen(false);
+      } else if (mode === "multiple") {
+        const dates = val as Date[];
+        setMultipleDates(dates);
+        onMultipleChange?.(dates);
+        setIsOpen(false);
+      }
+    } else if (val instanceof Date) {
+      if (mode === "single") {
+        setSingleDate(val);
+        onChange?.(val);
+        setIsOpen(false);
+      } else if (mode === "multiple") {
+        setMultipleDates([val]);
+        onMultipleChange?.([val]);
+        setIsOpen(false);
+      }
+    }
   };
 
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString("en-US", {
+    return new Intl.DateTimeFormat(locale, {
       month: "short",
       day: "numeric",
       year: "numeric",
-    });
+      timeZone: timeZone,
+    }).format(date);
   };
+
+  const renderTriggerText = () => {
+    if (mode === "single") {
+      return singleDate ? formatDate(singleDate) : placeholder;
+    }
+    if (mode === "range") {
+      const [start, end] = dateRange;
+      if (start && end) return \`\${formatDate(start)} - \${formatDate(end)}\`;
+      if (start) return \`\${formatDate(start)} - ...\`;
+      return placeholder;
+    }
+    if (mode === "multiple") {
+      if (multipleDates.length === 0) return placeholder;
+      if (multipleDates.length === 1) return formatDate(multipleDates[0]);
+      return \`\${multipleDates.length} dates selected\`;
+    }
+    return placeholder;
+  };
+
+  const hasValue =
+    (mode === "single" && singleDate) ||
+    (mode === "range" && (dateRange[0] || dateRange[1])) ||
+    (mode === "multiple" && multipleDates.length > 0);
+
+  const presets = customPresets || DEFAULT_PRESETS;
 
   return (
     <div ref={containerRef} className={cn("relative w-full flex flex-col gap-1.5 max-w-xs", className)}>
@@ -95,25 +293,38 @@ export function DatePicker({
         </label>
       )}
 
-      <button
-        type="button"
-        disabled={disabled}
-        onClick={() => setIsOpen((prev) => !prev)}
+      <div
+        role="button"
+        tabIndex={disabled ? -1 : 0}
+        onClick={() => !disabled && setIsOpen((prev) => !prev)}
+        onKeyDown={(e) => {
+          if (!disabled && (e.key === "Enter" || e.key === " ")) {
+            e.preventDefault();
+            setIsOpen((prev) => !prev);
+          }
+        }}
         className={cn(
-          "h-10 w-full flex items-center justify-between rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 shadow-xs outline-none focus:ring-2 focus:ring-sky-500/40 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed",
-          isInvalid && "border-rose-500 dark:border-rose-500 text-rose-500"
+          "h-10 w-full flex items-center justify-between rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 shadow-xs outline-none focus:ring-2 focus:ring-sky-500/40 transition-all cursor-pointer select-none",
+          isInvalid && "border-rose-500 dark:border-rose-500 text-rose-500",
+          disabled && "opacity-50 cursor-not-allowed pointer-events-none"
         )}
       >
-        <span className={cn("truncate", !selectedDate && "text-zinc-400 dark:text-zinc-500")}>
-          {selectedDate ? formatDate(selectedDate) : placeholder}
+        <span className={cn("truncate", !hasValue && "text-zinc-400 dark:text-zinc-500")}>
+          {renderTriggerText()}
         </span>
 
         <div className="flex items-center gap-1 shrink-0 ml-2">
-          {isClearable && selectedDate && (
+          {isClearable && hasValue && (
             <span
               role="button"
               tabIndex={0}
               onClick={handleClear}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleClear(e as any);
+                }
+              }}
               className="p-0.5 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors cursor-pointer"
             >
               <Icon icon="hugeicons:cancel-01" className="size-3.5" />
@@ -121,63 +332,190 @@ export function DatePicker({
           )}
           <Icon icon="hugeicons:calendar-01" className="size-4 text-zinc-400 dark:text-zinc-500" />
         </div>
-      </button>
+      </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 z-50 mt-1 w-64 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xl p-3 animate-in fade-in-80">
-          <div className="flex items-center justify-between mb-3">
-            <button
-              type="button"
-              onClick={handlePrevMonth}
-              className="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-pointer transition-colors"
-            >
-              <Icon icon="hugeicons:arrow-left-01" className="size-4" />
-            </button>
-            <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
-              {monthNames[month]} {year}
-            </span>
-            <button
-              type="button"
-              onClick={handleNextMonth}
-              className="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-pointer transition-colors"
-            >
-              <Icon icon="hugeicons:arrow-right-01" className="size-4" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-semibold text-zinc-400 dark:text-zinc-500 mb-1">
-            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-          </div>
-
-          <div className="grid grid-cols-7 gap-1">
-            {Array.from({ length: firstDayOfWeek }).map((_, i) => (
-              <div key={"empty-" + i} />
-            ))}
-            {Array.from({ length: daysInMonth }).map((_, i) => {
-              const day = i + 1;
-              const isSelected =
-                selectedDate &&
-                selectedDate.getDate() === day &&
-                selectedDate.getMonth() === month &&
-                selectedDate.getFullYear() === year;
-
-              return (
+        <div
+          className={cn(
+            "absolute top-full left-0 z-50 mt-1 flex flex-col md:flex-row rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl text-zinc-900 dark:text-zinc-100 shadow-2xl p-3 animate-in fade-in-80 gap-4"
+          )}
+        >
+          {showPresets && (
+            <div className="flex flex-col gap-1 border-b md:border-b-0 md:border-r border-zinc-200 dark:border-zinc-800 pb-2 md:pb-0 md:pr-3 min-w-[110px]">
+              <span className="text-[10px] font-bold tracking-wider text-zinc-400 uppercase mb-1">
+                Presets
+              </span>
+              {presets.map((preset) => (
                 <button
-                  key={day}
+                  key={preset.label}
                   type="button"
-                  onClick={() => handleSelectDay(day)}
-                  className={cn(
-                    "size-7 rounded-lg text-xs flex items-center justify-center transition-colors cursor-pointer text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800",
-                    isSelected && "bg-sky-600 text-white font-semibold hover:bg-sky-500 dark:bg-sky-500 dark:hover:bg-sky-400"
-                  )}
+                  onClick={() => handleApplyPreset(preset)}
+                  className="text-left px-2 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-300 hover:bg-sky-50 dark:hover:bg-sky-950/40 hover:text-sky-600 dark:hover:text-sky-400 transition-colors cursor-pointer"
                 >
-                  {day}
+                  {preset.label}
                 </button>
-              );
-            })}
+              ))}
+            </div>
+          )}
+
+          <div className="flex flex-col md:flex-row gap-4">
+            {renderMonthCalendar(
+              currentMonth,
+              handlePrevMonth,
+              handleNextMonth,
+              mode,
+              locale,
+              timeZone,
+              weekdaysShort,
+              singleDate,
+              dateRange,
+              multipleDates,
+              minDate,
+              maxDate,
+              handleSelectDay,
+              true,
+              !showDoubleMonth
+            )}
+
+            {showDoubleMonth &&
+              renderMonthCalendar(
+                nextMonth,
+                handlePrevMonth,
+                handleNextMonth,
+                mode,
+                locale,
+                timeZone,
+                weekdaysShort,
+                singleDate,
+                dateRange,
+                multipleDates,
+                minDate,
+                maxDate,
+                handleSelectDay,
+                false,
+                true
+              )}
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function renderMonthCalendar(
+  monthDate: Date,
+  handlePrevMonth: () => void,
+  handleNextMonth: () => void,
+  mode: DatePickerMode,
+  locale: string,
+  timeZone: string | undefined,
+  weekdaysShort: string[],
+  singleDate?: Date,
+  dateRange?: [Date | undefined, Date | undefined],
+  multipleDates?: Date[],
+  minDate?: Date,
+  maxDate?: Date,
+  handleSelectDay?: (d: Date) => void,
+  showPrevNav = true,
+  showNextNav = true
+) {
+  const year = monthDate.getFullYear();
+  const month = monthDate.getMonth();
+
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDayOfWeek = new Date(year, month, 1).getDay();
+
+  const monthTitle = new Intl.DateTimeFormat(locale, {
+    month: "long",
+    year: "numeric",
+    timeZone: timeZone,
+  }).format(monthDate);
+
+  return (
+    <div className="w-60 flex flex-col">
+      <div className="flex items-center justify-between mb-3 h-7">
+        {showPrevNav ? (
+          <button
+            type="button"
+            onClick={handlePrevMonth}
+            className="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-pointer transition-colors"
+          >
+            <Icon icon="hugeicons:arrow-left-01" className="size-4" />
+          </button>
+        ) : (
+          <div className="size-6" />
+        )}
+
+        <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 capitalize">
+          {monthTitle}
+        </span>
+
+        {showNextNav ? (
+          <button
+            type="button"
+            onClick={handleNextMonth}
+            className="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-pointer transition-colors"
+          >
+            <Icon icon="hugeicons:arrow-right-01" className="size-4" />
+          </button>
+        ) : (
+          <div className="size-6" />
+        )}
+      </div>
+
+      <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-semibold text-zinc-400 dark:text-zinc-500 mb-1">
+        {weekdaysShort.map((dayName, idx) => (
+          <span key={idx}>{dayName}</span>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-7 gap-1">
+        {Array.from({ length: firstDayOfWeek }).map((_, i) => (
+          <div key={\`empty-\${i}\`} />
+        ))}
+        {Array.from({ length: daysInMonth }).map((_, i) => {
+          const day = i + 1;
+          const targetDate = new Date(year, month, day);
+          const isDisabled = isDateDisabled(targetDate, minDate, maxDate);
+
+          let isSelected = false;
+          let isInRange = false;
+          let isRangeStart = false;
+          let isRangeEnd = false;
+
+          if (mode === "single") {
+            isSelected = isSameDay(singleDate, targetDate);
+          } else if (mode === "range" && dateRange) {
+            const [start, end] = dateRange;
+            isRangeStart = isSameDay(start, targetDate);
+            isRangeEnd = isSameDay(end, targetDate);
+            isSelected = isRangeStart || isRangeEnd;
+            isInRange = isDateInRange(targetDate, start, end);
+          } else if (mode === "multiple" && multipleDates) {
+            isSelected = multipleDates.some((d) => isSameDay(d, targetDate));
+          }
+
+          return (
+            <button
+              key={day}
+              type="button"
+              disabled={isDisabled}
+              onClick={() => handleSelectDay?.(targetDate)}
+              className={cn(
+                "size-7 rounded-lg text-xs flex items-center justify-center transition-colors cursor-pointer select-none",
+                "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800",
+                isInRange && "bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 rounded-none",
+                isRangeStart && "rounded-l-lg bg-sky-600 text-white font-semibold hover:bg-sky-500 dark:bg-sky-500",
+                isRangeEnd && "rounded-r-lg bg-sky-600 text-white font-semibold hover:bg-sky-500 dark:bg-sky-500",
+                isSelected && mode !== "range" && "bg-sky-600 text-white font-semibold hover:bg-sky-500 dark:bg-sky-500 dark:hover:bg-sky-400",
+                isDisabled && "opacity-25 cursor-not-allowed pointer-events-none hover:bg-transparent"
+              )}
+            >
+              {day}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -14,6 +14,8 @@ export interface TimePickerProps extends Omit<React.HTMLAttributes<HTMLDivElemen
   description?: React.ReactNode;
   isInvalid?: boolean;
   isDisabled?: boolean;
+  locale?: string;
+  timeZone?: string;
 }
 
 export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
@@ -28,6 +30,8 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       description,
       isInvalid,
       isDisabled,
+      locale = "en-US",
+      timeZone,
       className,
       ...props
     },

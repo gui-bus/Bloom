@@ -4,7 +4,7 @@ import * as React from "react";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
-type PaginationVariant = "default" | "bordered" | "flat" | "light" | "pills";
+type PaginationVariant = "default" | "bordered" | "flat" | "light" | "pills" | "line";
 type PaginationShape = "square" | "rounded" | "circle";
 type PaginationColor = "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
 
@@ -123,6 +123,9 @@ const PaginationLink = ({
     pills: isActive
       ? `${colorActiveMap[color]} font-semibold rounded-full`
       : "border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full",
+    line: isActive
+      ? `border-b-2 border-sky-500 text-sky-500 font-bold bg-transparent rounded-none`
+      : "border-b-2 border-transparent bg-transparent text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-none",
   };
 
   return (
@@ -134,7 +137,7 @@ const PaginationLink = ({
       className={cn(
         "inline-flex items-center justify-center font-medium transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/20 disabled:pointer-events-none disabled:opacity-50",
         sizeMap[size],
-        variant !== "pills" && shapeMap[shape],
+        variant !== "pills" && variant !== "line" && shapeMap[shape],
         variantClasses[variant],
         className
       )}
@@ -224,6 +227,155 @@ const PaginationEllipsis = ({
   </span>
 );
 PaginationEllipsis.displayName = "PaginationEllipsis";
+
+export interface PaginationToolbarProps {
+  page: number;
+  total: number;
+  pageSize: number;
+  pageSizeOptions?: number[];
+  onPageChange: (page: number) => void;
+  onPageSizeChange?: (pageSize: number) => void;
+  showTotal?: boolean;
+  showRowsPerPage?: boolean;
+  showJumper?: boolean;
+  showFirstButton?: boolean;
+  showLastButton?: boolean;
+  variant?: PaginationVariant;
+  shape?: PaginationShape;
+  color?: PaginationColor;
+  size?: "sm" | "md" | "lg";
+  className?: string;
+}
+
+export function PaginationToolbar({
+  page,
+  total,
+  pageSize,
+  pageSizeOptions = [10, 25, 50, 100],
+  onPageChange,
+  onPageSizeChange,
+  showTotal = true,
+  showRowsPerPage = true,
+  showJumper = true,
+  showFirstButton = true,
+  showLastButton = true,
+  variant = "default",
+  shape = "rounded",
+  color = "primary",
+  size = "md",
+  className,
+}: PaginationToolbarProps) {
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const startItem = total === 0 ? 0 : (page - 1) * pageSize + 1;
+  const endItem = Math.min(total, page * pageSize);
+
+  const [jumperVal, setJumperVal] = React.useState(page.toString());
+
+  React.useEffect(() => {
+    setJumperVal(page.toString());
+  }, [page]);
+
+  const handleJumperSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const targetPage = parseInt(jumperVal, 10);
+    if (!isNaN(targetPage) && targetPage >= 1 && targetPage <= totalPages) {
+      onPageChange(targetPage);
+    } else {
+      setJumperVal(page.toString());
+    }
+  };
+
+  return (
+    <div className={cn("flex flex-wrap items-center justify-between gap-4 w-full select-none text-xs text-zinc-600 dark:text-zinc-400", className)}>
+      {showTotal && (
+        <div className="flex items-center gap-1 font-medium">
+          Showing <span className="font-bold text-zinc-900 dark:text-zinc-100">{startItem}-{endItem}</span> of{" "}
+          <span className="font-bold text-zinc-900 dark:text-zinc-100">{total}</span> items
+        </div>
+      )}
+
+      <div className="flex items-center gap-3">
+        {showRowsPerPage && onPageSizeChange && (
+          <div className="flex items-center gap-1.5">
+            <span>Rows per page:</span>
+            <select
+              value={pageSize}
+              onChange={(e) => onPageSizeChange(Number(e.target.value))}
+              className="h-8 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 px-2 font-medium outline-none cursor-pointer focus:ring-2 focus:ring-sky-500/20"
+            >
+              {pageSizeOptions.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        <Pagination variant={variant} shape={shape} color={color} size={size} className="w-auto mx-0">
+          <PaginationContent>
+            {showFirstButton && (
+              <PaginationItem>
+                <PaginationFirst disabled={page <= 1} onClick={() => onPageChange(1)} />
+              </PaginationItem>
+            )}
+
+            <PaginationItem>
+              <PaginationPrevious disabled={page <= 1} onClick={() => onPageChange(page - 1)} />
+            </PaginationItem>
+
+            {Array.from({ length: totalPages }).map((_, idx) => {
+              const p = idx + 1;
+              if (
+                p === 1 ||
+                p === totalPages ||
+                (p >= page - 1 && p <= page + 1)
+              ) {
+                return (
+                  <PaginationItem key={p}>
+                    <PaginationLink isActive={p === page} onClick={() => onPageChange(p)}>
+                      {p}
+                    </PaginationLink>
+                  </PaginationItem>
+                );
+              }
+              if (p === page - 2 || p === page + 2) {
+                return (
+                  <PaginationItem key={p}>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                );
+              }
+              return null;
+            })}
+
+            <PaginationItem>
+              <PaginationNext disabled={page >= totalPages} onClick={() => onPageChange(page + 1)} />
+            </PaginationItem>
+
+            {showLastButton && (
+              <PaginationItem>
+                <PaginationLast disabled={page >= totalPages} onClick={() => onPageChange(totalPages)} />
+              </PaginationItem>
+            )}
+          </PaginationContent>
+        </Pagination>
+
+        {showJumper && (
+          <form onSubmit={handleJumperSubmit} className="flex items-center gap-1.5">
+            <span>Go to:</span>
+            <input
+              type="text"
+              value={jumperVal}
+              onChange={(e) => setJumperVal(e.target.value)}
+              className="h-8 w-12 text-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 font-bold outline-none focus:ring-2 focus:ring-sky-500/20"
+            />
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export {
   Pagination,

@@ -10,6 +10,9 @@ export type OTPSize = "sm" | "md" | "lg";
 
 export type InputOTPProps = React.ComponentPropsWithoutRef<typeof OTPInput> & {
   allowedType?: OTPType;
+  showSeparator?: boolean;
+  separatorIcon?: string;
+  autoFocus?: boolean;
 };
 
 const patternMap: Record<OTPType, string> = {
@@ -71,11 +74,11 @@ const InputOTPSlot = React.forwardRef<
 
   return (
     <div
-      ref={ref}
+      ref={ref as any}
       className={cn(
         "relative flex items-center justify-center border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 font-bold shadow-xs transition-all duration-200 select-none",
         slotSizeStyles[size],
-        isActive && "z-10 border-sky-500 ring-2 ring-sky-500/20 dark:border-sky-400 dark:ring-sky-400/20",
+        isActive && "z-10 border-sky-500 ring-2 ring-sky-500/20 dark:border-sky-400 dark:ring-sky-400/20 scale-105",
         className
       )}
       {...props}
@@ -91,12 +94,16 @@ const InputOTPSlot = React.forwardRef<
 });
 InputOTPSlot.displayName = "InputOTPSlot";
 
+export interface InputOTPSeparatorProps extends React.ComponentPropsWithoutRef<"div"> {
+  icon?: string;
+}
+
 const InputOTPSeparator = React.forwardRef<
   React.ElementRef<"div">,
-  React.ComponentPropsWithoutRef<"div">
->(({ className, ...props }, ref) => (
-  <div ref={ref} role="separator" className={cn("px-1 text-zinc-400 dark:text-zinc-600", className)} {...props}>
-    <Icon icon="hugeicons:minus-01" className="size-4" />
+  InputOTPSeparatorProps
+>(({ icon = "hugeicons:minus-01", className, ...props }, ref) => (
+  <div ref={ref} role="separator" className={cn("px-1.5 text-zinc-400 dark:text-zinc-600 flex items-center justify-center", className)} {...props}>
+    <Icon icon={icon} className="size-4" />
   </div>
 ));
 InputOTPSeparator.displayName = "InputOTPSeparator";

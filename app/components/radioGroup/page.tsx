@@ -1,11 +1,8 @@
 "use client";
 
 import { ImportSnippet } from "@/components/core/importSnippet";
-
 import { DocsPagination } from "@/components/core/docsPagination";
-
 import { InstallationBlock } from "@/components/core/installationBlock";
-
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,16 +19,16 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 export default function RadioGroupComponentPage() {
-  const [selectedPlan, setSelectedPlan] = React.useState("starter");
+  const [selectedPlan, setSelectedPlan] = React.useState("pro");
 
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Radio Group"
-        description="A set of checkable radio buttons where only one option can be checked at a time, featuring card selection styles and descriptions."
+        description="A single-choice selection group featuring animated dot indicators, interactive selection cards, grid layout columns, and custom price badges."
       />
 
-      <ImportSnippet importCode={`import { RadioGroup } from "@/components/ui/radioGroup/radioGroup";`} />
+      <ImportSnippet importCode={`import { RadioGroup, RadioGroupItem } from "@/components/ui/radioGroup/radioGroup";`} />
 
       <InstallationBlock componentName="radioGroup" />
 
@@ -50,89 +47,95 @@ export default function RadioGroupComponentPage() {
             code={radioGroupCode}
             componentName="radioGroup.tsx"
             description="Core implementation of the RadioGroup component."
-            tags={["React", "Radix UI", "RadioGroup", "Form"]}
+            tags={["React", "Radix UI", "RadioGroup", "Form", "Cards"]}
           />
         </TabsContent>
       </Tabs>
 
       {/* Default */}
       <DocsComponent
-        title="Default"
-        description="Standard vertical radio group selection."
+        title="Default Selection"
+        description="Standard radio buttons with smooth CSS indicator scale animations."
         preview={
           <div className="max-w-xs w-full">
             <RadioGroup defaultValue="default">
-              <RadioGroupItem value="default" label="Default Option" />
-              <RadioGroupItem value="comfortable" label="Comfortable Layout" />
-              <RadioGroupItem value="compact" label="Compact Grid" />
+              <RadioGroupItem value="default" label="Standard Resolution (1080p)" />
+              <RadioGroupItem value="high" label="High Definition (4K HDR)" />
+              <RadioGroupItem value="compact" label="Bandwidth Saver (720p)" />
             </RadioGroup>
           </div>
         }
         code={`<RadioGroup defaultValue="default">
-  <RadioGroupItem value="default" label="Default Option" />
-  <RadioGroupItem value="comfortable" label="Comfortable Layout" />
-  <RadioGroupItem value="compact" label="Compact Grid" />
+  <RadioGroupItem value="default" label="Standard Resolution (1080p)" />
+  <RadioGroupItem value="high" label="High Definition (4K HDR)" />
 </RadioGroup>`}
       />
 
-      {/* Card Selection */}
+      {/* Card Selection Mode (isCard) */}
       <DocsComponent
-        title="Card Selection Cards"
-        description="Renders items inside interactive selection cards with descriptions using 'isCard'."
+        title="Selectable Card Mode (isCard) with Prices & Badges"
+        description="Interactive plan selection cards featuring animated borders, icons, price tags, and badges using 'isCard'."
         preview={
-          <div className="max-w-md w-full">
-            <RadioGroup value={selectedPlan} onValueChange={setSelectedPlan}>
+          <div className="w-full max-w-xl">
+            <RadioGroup columns={2} value={selectedPlan} onValueChange={setSelectedPlan}>
               <RadioGroupItem
                 isCard
                 value="starter"
-                label="Starter Plan — Free"
-                description="Ideal for individual developers & hobby projects."
+                label="Hobby Plan"
+                price="Free"
+                description="Ideal for individual developers & side projects."
+                icon="hugeicons:developer"
               />
               <RadioGroupItem
                 isCard
                 value="pro"
-                label="Pro Team — $29/mo"
-                description="Unlimited team members, priority support & custom domains."
-              />
-              <RadioGroupItem
-                isCard
-                value="enterprise"
-                label="Enterprise — Custom"
-                description="Dedicated SLA, custom SSO authentication & security audit."
+                label="Pro Team"
+                price="$29/mo"
+                badge="Popular"
+                description="Unlimited team members & 24/7 priority support."
+                icon="hugeicons:rocket"
               />
             </RadioGroup>
           </div>
         }
-        code={`<RadioGroup value={selectedPlan} onValueChange={setSelectedPlan}>
+        code={`<RadioGroup columns={2} value={selectedPlan} onValueChange={setSelectedPlan}>
   <RadioGroupItem
     isCard
     value="starter"
-    label="Starter Plan"
-    description="Ideal for individual developers."
+    label="Hobby Plan"
+    price="Free"
+    description="For side projects."
   />
   <RadioGroupItem
     isCard
     value="pro"
     label="Pro Team"
+    price="$29/mo"
+    badge="Popular"
     description="Unlimited team members."
   />
 </RadioGroup>`}
-        props={["isCard: boolean", "label: ReactNode", "description: ReactNode"]}
+        props={["isCard: boolean", "price: string", "badge: ReactNode", "icon: string"]}
       />
 
-      {/* Disabled State */}
+      {/* Grid Layout & Columns */}
       <DocsComponent
-        title="Disabled Option"
-        description="Disable individual radio items or the entire group with 'disabled'."
+        title="Grid Layout & Horizontal Orientation"
+        description="Arrange items in grid columns (columns={3}) or horizontal flex row (orientation='horizontal')."
         preview={
-          <div className="max-w-xs w-full">
-            <RadioGroup defaultValue="opt1">
-              <RadioGroupItem value="opt1" label="Available Region (US-East)" />
-              <RadioGroupItem value="opt2" label="Maintenance Region (EU-Central)" disabled />
+          <div className="w-full">
+            <RadioGroup columns={3} defaultValue="monthly" label="Billing Frequency">
+              <RadioGroupItem isCard value="monthly" label="Monthly Billing" price="$12/mo" />
+              <RadioGroupItem isCard value="annual" label="Annual Billing" price="$9/mo" badge="Save 25%" />
+              <RadioGroupItem isCard value="lifetime" label="Lifetime Access" price="$299" />
             </RadioGroup>
           </div>
         }
-        code={`<RadioGroupItem value="opt2" label="Maintenance Region" disabled />`}
+        code={`<RadioGroup columns={3} defaultValue="monthly" label="Billing Frequency">
+  <RadioGroupItem isCard value="monthly" label="Monthly" price="$12/mo" />
+  <RadioGroupItem isCard value="annual" label="Annual" price="$9/mo" badge="Save 25%" />
+</RadioGroup>`}
+        props={["columns: 1 | 2 | 3 | 4 | 5 | 6", "orientation: 'horizontal' | 'vertical'"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -154,28 +157,22 @@ export default function RadioGroupComponentPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">value / defaultValue</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Value of currently selected radio option.</td>
-                </tr>
-                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">isCard</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders radio option as an interactive card container.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders radio option as an interactive selection card.</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">label</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-primary">columns</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">1 | 2 | 3 | 4 | 5 | 6</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Main title text for the option.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Arranges radio cards into responsive grid columns.</td>
                 </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">description</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">price</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Secondary description text for the option.</td>
+                  <td className="px-3 py-2 text-muted-foreground">Right-aligned price tag rendered inside card items.</td>
                 </tr>
               </tbody>
             </table>

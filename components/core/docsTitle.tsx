@@ -15,13 +15,11 @@ const DocsTitle = ({ title, description }: DocsTitleProps) => {
   const handleCopyMarkdown = () => {
     let markdown = `# ${title}\n\n${description}\n\n`;
 
-    // Grab CLI command from DOM if present
     const cliCode = document.querySelector('code')?.textContent || `npx @bloomui-react/cli add ${title.toLowerCase().replace(/\s+/g, '')}`;
     if (cliCode && cliCode.includes('npx @bloomui-react/cli')) {
       markdown += `## CLI Installation\n\`\`\`bash\n${cliCode.trim()}\n\`\`\`\n\n`;
     }
 
-    // Extract code blocks from the page DOM
     const codeBlocks = Array.from(document.querySelectorAll('pre code'));
 
     if (codeBlocks && codeBlocks.length > 0) {

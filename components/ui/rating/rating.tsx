@@ -17,6 +17,10 @@ export interface RatingProps {
   disabled?: boolean;
   readOnly?: boolean;
   label?: React.ReactNode;
+  icon?: string;
+  emojiMap?: Record<number, string>;
+  showTooltip?: boolean;
+  className?: string;
 }
 
 const colorActiveMap: Record<RatingColor, string> = {
@@ -30,9 +34,17 @@ const colorActiveMap: Record<RatingColor, string> = {
 };
 
 const sizeMap = {
-  sm: "size-4",
-  md: "size-5",
-  lg: "size-7",
+  sm: "size-4 text-sm",
+  md: "size-5 text-base",
+  lg: "size-7 text-2xl",
+};
+
+const DEFAULT_EMOJIS: Record<number, string> = {
+  1: "😠",
+  2: "🙁",
+  3: "😐",
+  4: "😃",
+  5: "😍",
 };
 
 export function Rating({
@@ -46,6 +58,10 @@ export function Rating({
   disabled = false,
   readOnly = false,
   label,
+  icon = "hugeicons:star",
+  emojiMap,
+  showTooltip = false,
+  className,
 }: RatingProps) {
   const [internalVal, setInternalVal] = React.useState<number>(
     value !== undefined ? value : defaultValue
@@ -83,60 +99,109 @@ export function Rating({
     onValueChange?.(selectedVal);
   };
 
+  const activeEmoji = React.useMemo(() => {
+    if (!emojiMap && !DEFAULT_EMOJIS) return null;
+    const map = emojiMap || DEFAULT_EMOJIS;
+    const roundedIndex = Math.ceil(activeVal);
+    return map[roundedIndex] || null;
+  }, [emojiMap, activeVal]);
+
   return (
-    <div className="flex flex-col gap-1.5 select-none">
-      {label && (
-        <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
-          {label}
-        </label>
+    <div className={cn("flex flex-col gap-1.5 select-none", className)}>
+      {(label || showTooltip) && (
+        <div className="flex items-center justify-between text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+          {label && <span>{label}</span>}
+          {showTooltip && (
+            <span className="font-mono text-zinc-500 dark:text-zinc-400">
+              {activeVal} / {max}
+            </span>
+          )}
+        </div>
       )}
+
       <div
         className={cn(
-          "flex items-center gap-1",
+          "flex items-center gap-1.5",
           disabled && "opacity-50 cursor-not-allowed",
           readOnly && "cursor-default"
         )}
       >
-        {Array.from({ length: max }).map((_, i) => {
-          const starIndex = i + 1;
-          const isFull = activeVal >= starIndex;
-          const isHalf = !isFull && activeVal >= starIndex - 0.5;
+        {emojiMap ? (
+          <div className="flex items-center gap-2">
+            {Array.from({ length: max }).map((_, i) => {
+              const itemVal = i + 1;
+              const isSelected = activeVal >= itemVal;
+              const emojiChar = emojiMap[itemVal] || DEFAULT_EMOJIS[itemVal] || "⭐";
 
-          return (
-            <button
-              key={starIndex}
-              type="button"
-              disabled={disabled || readOnly}
-              onClick={(e) => handleClick(e, starIndex)}
-              onMouseMove={(e) => handleMouseMove(e, starIndex)}
-              onMouseLeave={() => setHoverVal(null)}
-              className={cn(
-                "relative inline-flex items-center justify-center p-0.5 outline-none transition-transform focus-visible:scale-125 hover:scale-115 cursor-pointer disabled:cursor-not-allowed",
-                readOnly && "cursor-default hover:scale-100"
-              )}
-              aria-label={`Rate ${starIndex} out of ${max}`}
-            >
-              {/* Background outline star */}
-              <Icon
-                icon="lucide:star"
-                className={cn(sizeMap[size], "text-zinc-300 dark:text-zinc-700 fill-transparent")}
-              />
-
-              {/* Filled or half-filled star overlay */}
-              {(isFull || isHalf) && (
-                <div
-                  className="absolute left-0.5 top-0.5 overflow-hidden transition-all duration-150"
-                  style={{ width: isHalf ? "50%" : "100%" }}
+              return (
+                <button
+                  key={itemVal}
+                  type="button"
+                  disabled={disabled || readOnly}
+                  onClick={() => {
+                    if (disabled || readOnly) return;
+                    setInternalVal(itemVal);
+                    onValueChange?.(itemVal);
+                  }}
+                  onMouseEnter={() => !disabled && !readOnly && setHoverVal(itemVal)}
+                  onMouseLeave={() => setHoverVal(null)}
+                  className={cn(
+                    "transition-all duration-200 cursor-pointer outline-none focus-visible:scale-125 select-none",
+                    isSelected ? "scale-110 opacity-100 filter drop-shadow-md" : "scale-90 opacity-40 grayscale",
+                    readOnly && "cursor-default hover:scale-100"
+                  )}
                 >
-                  <Icon
-                    icon="lucide:star"
-                    className={cn(sizeMap[size], colorActiveMap[color])}
-                  />
-                </div>
-              )}
-            </button>
-          );
-        })}
+                  <span className={cn(sizeMap[size])}>{emojiChar}</span>
+                </button>
+              );
+            })}
+          </div>
+        ) : (
+          Array.from({ length: max }).map((_, i) => {
+            const starIndex = i + 1;
+            const isFull = activeVal >= starIndex;
+            const isHalf = !isFull && activeVal >= starIndex - 0.5;
+
+            return (
+              <button
+                key={starIndex}
+                type="button"
+                disabled={disabled || readOnly}
+                onClick={(e) => handleClick(e, starIndex)}
+                onMouseMove={(e) => handleMouseMove(e, starIndex)}
+                onMouseLeave={() => setHoverVal(null)}
+                className={cn(
+                  "relative inline-flex items-center justify-center p-0.5 outline-none transition-transform focus-visible:scale-125 hover:scale-115 cursor-pointer disabled:cursor-not-allowed",
+                  readOnly && "cursor-default hover:scale-100"
+                )}
+                aria-label={`Rate ${starIndex} out of ${max}`}
+              >
+                <Icon
+                  icon={icon}
+                  className={cn(sizeMap[size], "text-zinc-300 dark:text-zinc-700 fill-transparent")}
+                />
+
+                {(isFull || isHalf) && (
+                  <div
+                    className="absolute left-0.5 top-0.5 overflow-hidden transition-all duration-150"
+                    style={{ width: isHalf ? "50%" : "100%" }}
+                  >
+                    <Icon
+                      icon={icon}
+                      className={cn(sizeMap[size], colorActiveMap[color])}
+                    />
+                  </div>
+                )}
+              </button>
+            );
+          })
+        )}
+
+        {emojiMap && activeEmoji && (
+          <span className="ml-2 text-xs font-semibold text-zinc-500 animate-in fade-in-50">
+            {activeEmoji}
+          </span>
+        )}
       </div>
     </div>
   );

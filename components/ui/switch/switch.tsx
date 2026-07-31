@@ -13,6 +13,8 @@ export interface SwitchProps
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   thumbIcon?: React.ReactNode;
+  checkedThumbIcon?: React.ReactNode;
+  uncheckedThumbIcon?: React.ReactNode;
   startLabel?: React.ReactNode;
   endLabel?: React.ReactNode;
   isCard?: boolean;
@@ -31,16 +33,16 @@ const colorMap = {
 
 const sizeMap = {
   sm: {
-    root: "h-5 w-9",
-    thumb: "size-3.5 data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0.5",
+    root: "h-5.5 w-10 p-0.5",
+    thumb: "size-4.5 data-[state=checked]:translate-x-4.5 data-[state=unchecked]:translate-x-0",
   },
   md: {
-    root: "h-6 w-11",
-    thumb: "size-5 data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0.5",
+    root: "h-7 w-13 p-0.5",
+    thumb: "size-6 data-[state=checked]:translate-x-6 data-[state=unchecked]:translate-x-0",
   },
   lg: {
-    root: "h-7 w-14",
-    thumb: "size-6 data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0.5",
+    root: "h-8.5 w-16 p-1",
+    thumb: "size-6.5 data-[state=checked]:translate-x-7.5 data-[state=unchecked]:translate-x-0",
   },
 };
 
@@ -58,12 +60,17 @@ const Switch = React.forwardRef<
       startIcon,
       endIcon,
       thumbIcon,
+      checkedThumbIcon,
+      uncheckedThumbIcon,
       startLabel,
       endLabel,
       isCard = false,
       id,
       disabled,
       isDisabled,
+      checked,
+      defaultChecked,
+      onCheckedChange,
       ...props
     },
     ref
@@ -72,15 +79,47 @@ const Switch = React.forwardRef<
     const switchId = id || generatedId;
     const isSwitchDisabled = disabled || isDisabled;
 
+    const [internalChecked, setInternalChecked] = React.useState(!!defaultChecked);
+    const isChecked = checked !== undefined ? checked : internalChecked;
+
+    const handleCheckedChange = (val: boolean) => {
+      if (checked === undefined) {
+        setInternalChecked(val);
+      }
+      onCheckedChange?.(val);
+    };
+
+    const renderThumbContent = () => {
+      if (thumbIcon) return thumbIcon;
+      if (isChecked && checkedThumbIcon) return checkedThumbIcon;
+      if (!isChecked && uncheckedThumbIcon) return uncheckedThumbIcon;
+      if (isChecked && startIcon) return startIcon;
+      if (!isChecked && endIcon) return endIcon;
+      return null;
+    };
+
     const switchElement = (
-      <div className="inline-flex items-center gap-2 shrink-0">
-        {startLabel && <span className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 select-none">{startLabel}</span>}
+      <div className="inline-flex items-center gap-2.5 shrink-0">
+        {startLabel && (
+          <span
+            onClick={() => !isSwitchDisabled && handleCheckedChange(false)}
+            className={cn(
+              "text-xs font-semibold select-none cursor-pointer transition-colors",
+              !isChecked ? "text-zinc-900 dark:text-zinc-100 font-bold" : "text-zinc-400 dark:text-zinc-500"
+            )}
+          >
+            {startLabel}
+          </span>
+        )}
         <SwitchPrimitives.Root
           ref={ref}
           id={switchId}
           disabled={isSwitchDisabled}
+          checked={checked}
+          defaultChecked={defaultChecked}
+          onCheckedChange={handleCheckedChange}
           className={cn(
-            "peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors outline-none focus-visible:ring-2 focus-visible:ring-sky-500/20 disabled:cursor-not-allowed disabled:opacity-35 data-[state=unchecked]:bg-zinc-200 dark:data-[state=unchecked]:bg-zinc-800",
+            "peer relative inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-sky-500/30 disabled:cursor-not-allowed disabled:opacity-35 data-[state=unchecked]:bg-zinc-200 dark:data-[state=unchecked]:bg-zinc-800 shadow-inner",
             sizeMap[size].root,
             colorMap[color],
             className
@@ -89,19 +128,27 @@ const Switch = React.forwardRef<
         >
           <SwitchPrimitives.Thumb
             className={cn(
-              "pointer-events-none flex items-center justify-center rounded-full bg-white dark:bg-zinc-900 shadow-xs ring-0 transition-transform duration-200 text-[10px] text-zinc-700 dark:text-zinc-300",
+              "pointer-events-none relative z-10 flex items-center justify-center rounded-full bg-white dark:bg-zinc-900 shadow-md ring-0 transition-transform duration-300 ease-spring text-zinc-700 dark:text-zinc-200",
               sizeMap[size].thumb
             )}
           >
-            {thumbIcon || (
-              <>
-                {startIcon && <span className="data-[state=unchecked]:hidden">{startIcon}</span>}
-                {endIcon && <span className="data-[state=checked]:hidden">{endIcon}</span>}
-              </>
-            )}
+            <span className="transition-all duration-200 transform active:scale-95 flex items-center justify-center">
+              {renderThumbContent()}
+            </span>
           </SwitchPrimitives.Thumb>
         </SwitchPrimitives.Root>
-        {endLabel && <span className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 select-none">{endLabel}</span>}
+
+        {endLabel && (
+          <span
+            onClick={() => !isSwitchDisabled && handleCheckedChange(true)}
+            className={cn(
+              "text-xs font-semibold select-none cursor-pointer transition-colors",
+              isChecked ? "text-zinc-900 dark:text-zinc-100 font-bold" : "text-zinc-400 dark:text-zinc-500"
+            )}
+          >
+            {endLabel}
+          </span>
+        )}
       </div>
     );
 
@@ -131,7 +178,7 @@ const Switch = React.forwardRef<
         <label
           htmlFor={switchId}
           className={cn(
-            "relative flex items-center justify-between p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 transition-all duration-200 cursor-pointer hover:border-zinc-300 dark:hover:border-zinc-700 has-[:checked]:border-sky-500/50 has-[:checked]:bg-sky-500/5 shadow-xs w-full",
+            "relative flex items-center justify-between p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 transition-all duration-200 cursor-pointer hover:border-zinc-300 dark:hover:border-zinc-700 has-[:checked]:border-sky-500/50 has-[:checked]:bg-sky-500/5 shadow-xs w-full select-none",
             isSwitchDisabled && "opacity-35 grayscale cursor-not-allowed pointer-events-none"
           )}
         >
