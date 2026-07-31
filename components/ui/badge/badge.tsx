@@ -25,6 +25,10 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
   dot?: boolean;
+  isDot?: boolean;
+  isPulsing?: boolean;
+  isRemovable?: boolean;
+  onRemove?: () => void;
   isPressable?: boolean;
   isDisabled?: boolean;
   isInvisible?: boolean;
@@ -116,6 +120,10 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       startContent,
       endContent,
       dot = false,
+      isDot = false,
+      isPulsing = false,
+      isRemovable = false,
+      onRemove,
       isPressable = false,
       isDisabled = false,
       isInvisible = false,
@@ -128,7 +136,32 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   ) => {
     if (isInvisible) return null;
 
-    const isDotMode = dot || variant === "dot";
+    const isOnlyDotMode = isDot && !children;
+    const showDot = dot || isDot || variant === "dot";
+
+    if (isOnlyDotMode) {
+      return (
+        <span
+          ref={ref}
+          className={cn(
+            "relative inline-flex shrink-0 size-2.5 rounded-full select-none",
+            dotColorMap[color],
+            isPulsing && "animate-pulse",
+            className
+          )}
+          {...props}
+        >
+          {isPulsing && (
+            <span
+              className={cn(
+                "absolute inset-0 rounded-full animate-ping opacity-75",
+                dotColorMap[color]
+              )}
+            />
+          )}
+        </span>
+      );
+    }
 
     return (
       <span
@@ -136,7 +169,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
         aria-live={live ? "polite" : undefined}
         aria-atomic={live ? "true" : undefined}
         className={cn(
-          "inline-flex items-center font-semibold select-none transition-all duration-200 ease-in-out",
+          "inline-flex items-center font-semibold select-none transition-all duration-200 ease-in-out relative",
           badgeSizes[size],
           designRadius[radius],
           badgeColorMap[color][variant],
@@ -148,14 +181,24 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
         )}
         {...props}
       >
-        {isDotMode && (
-          <span
-            aria-hidden="true"
-            className={cn(
-              "size-1.5 rounded-full shrink-0",
-              dotColorMap[color]
+        {showDot && (
+          <span className="relative flex size-2 shrink-0">
+            {isPulsing && (
+              <span
+                className={cn(
+                  "absolute inset-0 rounded-full animate-ping opacity-75",
+                  dotColorMap[color]
+                )}
+              />
             )}
-          />
+            <span
+              aria-hidden="true"
+              className={cn(
+                "size-2 rounded-full shrink-0 relative",
+                dotColorMap[color]
+              )}
+            />
+          </span>
         )}
         {startContent && (
           <span aria-hidden="true" className="shrink-0">
@@ -167,6 +210,21 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
           <span aria-hidden="true" className="shrink-0">
             {endContent}
           </span>
+        )}
+        {isRemovable && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onRemove?.();
+            }}
+            className="ml-1 -mr-1 p-0.5 rounded-full hover:bg-black/10 dark:hover:bg-white/20 transition-colors cursor-pointer"
+            aria-label="Remove badge"
+          >
+            <svg className="size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         )}
       </span>
     );

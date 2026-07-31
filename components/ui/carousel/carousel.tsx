@@ -19,6 +19,9 @@ type CarouselProps = {
   setApi?: (api: CarouselApi) => void;
   autoplay?: boolean;
   autoplayDelay?: number;
+  pauseOnHover?: boolean;
+  dragFree?: boolean;
+  swipeThreshold?: number;
 };
 
 type CarouselContextProps = {
@@ -55,6 +58,9 @@ const Carousel = React.forwardRef<
       plugins = [],
       autoplay = false,
       autoplayDelay = 3000,
+      pauseOnHover = true,
+      dragFree = false,
+      swipeThreshold = 10,
       className,
       children,
       ...props
@@ -68,17 +74,19 @@ const Carousel = React.forwardRef<
           Autoplay({
             delay: autoplayDelay,
             stopOnInteraction: false,
-            stopOnMouseEnter: true,
+            stopOnMouseEnter: pauseOnHover,
           })
         );
       }
       return list;
-    }, [plugins, autoplay, autoplayDelay]);
+    }, [plugins, autoplay, autoplayDelay, pauseOnHover]);
 
     const [carouselRef, api] = useEmblaCarousel(
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
+        dragFree,
+        dragThreshold: swipeThreshold,
       },
       activePlugins
     );
@@ -139,6 +147,9 @@ const Carousel = React.forwardRef<
           scrollTo,
           autoplay,
           autoplayDelay,
+          pauseOnHover,
+          dragFree,
+          swipeThreshold,
         }}
       >
         <div
@@ -286,6 +297,42 @@ const CarouselDots = React.forwardRef<
 });
 CarouselDots.displayName = "CarouselDots";
 
+export interface CarouselThumbsProps extends React.HTMLAttributes<HTMLDivElement> {
+  images?: string[];
+}
+
+const CarouselThumbs = React.forwardRef<HTMLDivElement, CarouselThumbsProps>(
+  ({ className, images = [], ...props }, ref) => {
+    const { selectedIndex, scrollTo, scrollSnaps } = useCarousel();
+
+    if (!images.length && !scrollSnaps.length) return null;
+
+    return (
+      <div
+        ref={ref}
+        className={cn("flex items-center justify-center gap-2 overflow-x-auto py-2", className)}
+        {...props}
+      >
+        {images.map((src, index) => (
+          <button
+            key={index}
+            onClick={() => scrollTo(index)}
+            className={cn(
+              "relative size-14 shrink-0 overflow-hidden rounded-lg border-2 transition-all duration-200 focus:outline-none cursor-pointer",
+              index === selectedIndex
+                ? "border-sky-500 scale-105 shadow-sm"
+                : "border-transparent opacity-60 hover:opacity-100"
+            )}
+          >
+            <img src={src} alt={`Thumbnail ${index + 1}`} className="size-full object-cover" />
+          </button>
+        ))}
+      </div>
+    );
+  }
+);
+CarouselThumbs.displayName = "CarouselThumbs";
+
 export {
   type CarouselApi,
   Carousel,
@@ -294,4 +341,5 @@ export {
   CarouselPrevious,
   CarouselNext,
   CarouselDots,
+  CarouselThumbs,
 };

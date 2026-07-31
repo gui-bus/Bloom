@@ -315,6 +315,47 @@ export default function ButtonGroupPage() {
         props={["isIconOnly: boolean", "ariaLabel: string"]}
       />
 
+      {/* Vertical Orientation */}
+      <DocsComponent
+        title="Vertical Orientation (orientation)"
+        description="Stack buttons vertically using orientation='vertical'."
+        preview={
+          <div className="w-full">
+            <ButtonGroup orientation="vertical" color="primary">
+              <Button>Top Action</Button>
+              <Button>Middle Action</Button>
+              <Button>Bottom Action</Button>
+            </ButtonGroup>
+          </div>
+        }
+        code={`<ButtonGroup orientation="vertical" color="primary">
+  <Button>Top Action</Button>
+  <Button>Middle Action</Button>
+  <Button>Bottom Action</Button>
+</ButtonGroup>`}
+        props={["orientation: 'horizontal' | 'vertical'"]}
+      />
+
+      {/* Spaced Out Buttons */}
+      <DocsComponent
+        title="Spaced Out Buttons (isAttached={false})"
+        description="Set isAttached={false} to add clean spacing between buttons instead of merging borders."
+        preview={
+          <div className="w-full">
+            <ButtonGroup isAttached={false} color="primary" variant="bordered">
+              <Button>Detached 1</Button>
+              <Button>Detached 2</Button>
+              <Button>Detached 3</Button>
+            </ButtonGroup>
+          </div>
+        }
+        code={`<ButtonGroup isAttached={false} color="primary" variant="bordered">
+  <Button>Detached 1</Button>
+  <Button>Detached 2</Button>
+</ButtonGroup>`}
+        props={["isAttached: boolean"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props ButtonGroup Table */}

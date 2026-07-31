@@ -299,6 +299,72 @@ export default function CardComponentPage() {
         props={["isHoverable: boolean", "isPressable: boolean"]}
       />
 
+      {/* Loading State */}
+      <DocsComponent
+        title="Loading State (isLoading)"
+        description="Pass 'isLoading' to render a clean backdrop overlay and animated spinner during data fetching."
+        preview={
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Card isLoading className="w-full">
+              <CardHeader>
+                <CardTitle>Fetching Analytics</CardTitle>
+                <CardDescription>Loading real-time user metrics...</CardDescription>
+              </CardHeader>
+              <CardBody>
+                <p>Card content is temporarily blurred and non-interactive while loading.</p>
+              </CardBody>
+            </Card>
+
+            <Card color="primary" isLoading className="w-full">
+              <CardHeader>
+                <CardTitle>Processing Payment</CardTitle>
+                <CardDescription>Communicating with payment gateway...</CardDescription>
+              </CardHeader>
+              <CardBody>
+                <p>Please wait while we confirm your transaction.</p>
+              </CardBody>
+            </Card>
+          </div>
+        }
+        code={`<Card isLoading>
+  <CardHeader>
+    <CardTitle>Fetching Analytics</CardTitle>
+  </CardHeader>
+</Card>`}
+        props={["isLoading: boolean"]}
+      />
+
+      {/* Orientation */}
+      <DocsComponent
+        title="Horizontal Orientation"
+        description="Pass 'orientation=&quot;horizontal&quot;' to switch from vertical column stacking to responsive side-by-side flex layout."
+        preview={
+          <div className="w-full">
+            <Card orientation="horizontal" className="w-full">
+              <CardHeader className="sm:w-1/3">
+                <CardTitle>Horizontal Card</CardTitle>
+                <CardDescription>Header section aligned on the left side on desktop screens.</CardDescription>
+              </CardHeader>
+              <CardBody className="sm:w-2/3 pt-6 sm:pt-0">
+                <p>
+                  Horizontal card layout is ideal for media items, search results, compact dashboard summaries, and product listings.
+                </p>
+              </CardBody>
+            </Card>
+          </div>
+        }
+        code={`<Card orientation="horizontal" className="w-full">
+  <CardHeader className="sm:w-1/3">
+    <CardTitle>Horizontal Card</CardTitle>
+    <CardDescription>Header section aligned on left side.</CardDescription>
+  </CardHeader>
+  <CardBody className="sm:w-2/3 pt-6 sm:pt-0">
+    <p>Horizontal layout content section.</p>
+  </CardBody>
+</Card>`}
+        props={["orientation: 'vertical' | 'horizontal'"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Card Table */}
@@ -338,6 +404,16 @@ export default function CardComponentPage() {
                   </td>
                 </tr>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">orientation</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'vertical' | 'horizontal'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">'vertical'</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Layout direction helper for stacking or row layout.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">radius</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
@@ -361,6 +437,14 @@ export default function CardComponentPage() {
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Enables active press animations and interactive button role accessibility.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isLoading</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Displays an overlay spinner state during data loading.
                   </td>
                 </tr>
                 <tr>

@@ -37,6 +37,7 @@ type ButtonBaseProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
     loadingText?: string;
     loadingIcon?: React.ReactNode;
     isDisabled?: boolean;
+    isFullWidth?: boolean;
     startContent?: React.ReactNode;
     endContent?: React.ReactNode;
     badgeContent?: string;
@@ -62,8 +63,6 @@ type NormalButtonProps = {
 export type ButtonProps = ButtonBaseProps & (IconOnlyProps | NormalButtonProps);
 
 const buttonBaseVariants = cva(
-  // outline-none (not focus:outline-none) to only remove the default outline style,
-  // while focus-visible:ring-* provides keyboard-only visible focus indicators.
   "relative inline-flex items-center justify-center gap-1.5 font-medium transition-all duration-200 ease-in-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-xl",
   {
     variants: {
@@ -99,6 +98,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loadingText,
       loadingIcon,
       isDisabled = false,
+      isFullWidth = false,
       startContent,
       endContent,
       badgeContent,
@@ -123,11 +123,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     const { ripples, addRipple, removeRipple } = useRipples();
 
-    // Merge isDisabled with native disabled for full a11y coverage
     const isEffectivelyDisabled = isDisabled || disabled;
-
-    // When used as a non-button element (asChild), native `disabled` has no effect.
-    // We use aria-disabled + tabIndex=-1 + pointer-events-none instead.
     const nativeDisabled = !asChild ? isEffectivelyDisabled : undefined;
     const ariaDisabled = (isEffectivelyDisabled || isLoading) || undefined;
 
@@ -152,14 +148,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         ref={ref}
         type={type ?? "button"}
-        // Use merged disabled state; for asChild elements, native disabled has no effect
         disabled={nativeDisabled}
-        // aria-disabled covers loading too — signals the button is not interactable
         aria-disabled={ariaDisabled}
         aria-busy={isLoading || undefined}
-        // aria-label is required when isIconOnly since there's no visible text
         aria-label={ariaLabel || undefined}
-        // When asChild + disabled, remove from tab order since native disabled won't do it
         tabIndex={asChild && isEffectivelyDisabled ? -1 : undefined}
         onClick={handleClick}
         className={cn(
@@ -167,9 +159,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           designColors[color][activeVariant],
           className,
           "cursor-pointer relative overflow-hidden",
+          isFullWidth && "w-full flex flex-1 justify-center",
           isLoading && "cursor-wait opacity-50",
           isEffectivelyDisabled && "cursor-not-allowed opacity-50",
-          // When asChild + disabled, block pointer events since native disabled won't
           asChild && isEffectivelyDisabled && "pointer-events-none",
           isIconOnly && "aspect-square"
         )}
@@ -178,10 +170,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {isLoading ? (
           <div className="flex items-center gap-2">
             {loadingIcon ? (
-              // Wrap custom loading icon with aria-hidden — aria-busy already signals the state
               <span aria-hidden="true">{loadingIcon}</span>
             ) : (
-              // role="status" makes the spinner announce itself as a live region
               <span
                 role="status"
                 className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
@@ -189,8 +179,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               />
             )}
             <span>{loadingText || children}</span>
-            {/* Visually-hidden live region announces loading state to all screen readers,
-                even when the button is not currently focused */}
             <span className="sr-only" aria-live="polite" aria-atomic="true">
               {loadingText ?? "Loading, please wait"}
             </span>
@@ -203,15 +191,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                   "inline-flex items-center justify-center px-2 py-0.5 text-xs font-semibold rounded-full bg-primary text-white mr-2",
                   badgeCustomClassname
                 )}
-                // Badge is decorative inside the button label context
                 aria-hidden="true"
               >
                 {badgeContent}
               </span>
             )}
             {startContent && (
-              // Icons inside buttons should be hidden from screen readers
-              // since the button's text label is the accessible name
               <span className={cn(!isIconOnly && "mr-2")} aria-hidden="true">
                 {startContent}
               </span>

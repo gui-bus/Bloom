@@ -324,6 +324,57 @@ export default function BadgeComponentPage() {
         props={["startContent: ReactNode", "endContent: ReactNode"]}
       />
 
+      {/* Live Pulsing Status */}
+      <DocsComponent
+        title="Live Pulsing Status (isPulsing)"
+        description="Use 'isPulsing' to render a live animated pulse ring effect for real-time status indicators (e.g. 'LIVE', 'Recording')."
+        preview={
+          <div className="w-full flex flex-wrap items-center gap-4">
+            <Badge color="danger" isPulsing dot>
+              LIVE
+            </Badge>
+            <Badge color="success" isPulsing dot>
+              Recording System
+            </Badge>
+            <Badge color="warning" isPulsing dot>
+              Processing Stream
+            </Badge>
+            <div className="flex items-center gap-2">
+              <Badge color="success" isDot isPulsing />
+              <span className="text-xs text-muted-foreground font-medium">Server Online</span>
+            </div>
+          </div>
+        }
+        code={`<Badge color="danger" isPulsing dot>LIVE</Badge>
+<Badge color="success" isPulsing dot>Recording System</Badge>
+<Badge color="warning" isPulsing dot>Processing Stream</Badge>
+<Badge color="success" isDot isPulsing />`}
+        props={["isPulsing: boolean", "isDot: boolean"]}
+      />
+
+      {/* Removable Tags */}
+      <DocsComponent
+        title="Removable Tags (isRemovable & onRemove)"
+        description="Render a dismiss close button inside the badge using 'isRemovable' and 'onRemove'."
+        preview={
+          <div className="w-full flex flex-wrap items-center gap-2">
+            <Badge color="primary" variant="flat" isRemovable onRemove={() => alert("Tag removed")}>
+              React
+            </Badge>
+            <Badge color="secondary" variant="flat" isRemovable onRemove={() => alert("Tag removed")}>
+              Next.js
+            </Badge>
+            <Badge color="accent" variant="flat" isRemovable onRemove={() => alert("Tag removed")}>
+              Tailwind
+            </Badge>
+          </div>
+        }
+        code={`<Badge color="primary" isRemovable onRemove={() => handleRemove()}>
+  React
+</Badge>`}
+        props={["isRemovable: boolean", "onRemove: () => void"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Badge Table */}

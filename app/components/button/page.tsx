@@ -387,6 +387,23 @@ export default function ButtonComponentPage() {
         props={["isLoading: boolean", "loadingText: string"]}
       />
 
+      {/* Full Width */}
+      <DocsComponent
+        title="Full Width (isFullWidth)"
+        description="Expands the button to span 100% of its parent container width."
+        preview={
+          <div className="w-full max-w-sm border border-border p-4 rounded-xl">
+            <Button isFullWidth color="primary">
+              Full Width Action
+            </Button>
+          </div>
+        }
+        code={`<Button isFullWidth color="primary">
+  Full Width Action
+</Button>`}
+        props={["isFullWidth: boolean"]}
+      />
+
       {/* Disabled state */}
       <DocsComponent
         title="Disabled state"

@@ -19,9 +19,11 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: CardVariant;
   color?: CardColor;
   radius?: keyof typeof designRadius;
+  orientation?: "vertical" | "horizontal";
   isHoverable?: boolean;
   isPressable?: boolean;
   isDisabled?: boolean;
+  isLoading?: boolean;
   children?: React.ReactNode;
 }
 
@@ -98,9 +100,11 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       variant = "default",
       color = "default",
       radius = "xl",
+      orientation = "vertical",
       isHoverable = false,
       isPressable = false,
       isDisabled = false,
+      isLoading = false,
       children,
       ...props
     },
@@ -109,20 +113,28 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     return (
       <div
         ref={ref}
-        tabIndex={isPressable && !isDisabled ? 0 : undefined}
+        tabIndex={isPressable && !isDisabled && !isLoading ? 0 : undefined}
         role={isPressable ? "button" : undefined}
-        aria-disabled={isDisabled ? true : undefined}
+        aria-disabled={isDisabled || isLoading ? true : undefined}
+        aria-busy={isLoading || undefined}
         className={cn(
           "relative overflow-hidden transition-all duration-200",
+          orientation === "horizontal" ? "flex flex-col sm:flex-row sm:items-center" : "flex flex-col",
           designRadius[radius],
           cardColorMap[color][variant],
-          isHoverable && !isDisabled && "hover:-translate-y-0.5 hover:shadow-lg",
-          isPressable && !isDisabled && "cursor-pointer hover:scale-[1.01] active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          isHoverable && !isDisabled && !isLoading && "hover:-translate-y-0.5 hover:shadow-lg",
+          isPressable && !isDisabled && !isLoading && "cursor-pointer hover:scale-[1.01] active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           isDisabled && "opacity-50 pointer-events-none cursor-not-allowed",
+          isLoading && "opacity-75 cursor-wait pointer-events-none",
           className
         )}
         {...props}
       >
+        {isLoading && (
+          <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/50 dark:bg-zinc-900/50 backdrop-blur-[1px]">
+            <div className="size-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+          </div>
+        )}
         {children}
       </div>
     );

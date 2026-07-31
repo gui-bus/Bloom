@@ -10,6 +10,8 @@ export type ButtonGroupProps = {
   color?: ButtonProps["color"];
   size?: ButtonProps["size"];
   radius?: ButtonProps["radius"];
+  orientation?: "horizontal" | "vertical";
+  isAttached?: boolean;
   isLoading?: boolean;
   isDisabled?: boolean;
   ariaLabel?: string;
@@ -23,6 +25,8 @@ export const ButtonGroup = React.memo(
     color,
     size,
     radius,
+    orientation = "horizontal",
+    isAttached = true,
     isLoading,
     isDisabled,
     ariaLabel,
@@ -37,6 +41,21 @@ export const ButtonGroup = React.memo(
 
         const isFirst = index === 0;
         const isLast = index === count - 1;
+        const isVertical = orientation === "vertical";
+
+        let radiusClasses = "";
+
+        if (isAttached) {
+          if (isVertical) {
+            if (isFirst) radiusClasses = "rounded-b-none rounded-t-xl";
+            else if (isLast) radiusClasses = "rounded-t-none rounded-b-xl";
+            else radiusClasses = "rounded-none";
+          } else {
+            if (isFirst) radiusClasses = "rounded-r-none rounded-l-xl";
+            else if (isLast) radiusClasses = "rounded-l-none rounded-r-xl";
+            else radiusClasses = "rounded-none";
+          }
+        }
 
         return React.cloneElement(child, {
           variant: child.props.variant || variant,
@@ -47,21 +66,26 @@ export const ButtonGroup = React.memo(
           isDisabled: child.props.isDisabled !== undefined ? child.props.isDisabled : isDisabled,
           className: cn(
             child.props.className,
-            "rounded-none",
+            isAttached && radiusClasses,
             "focus-visible:z-10 focus-visible:relative",
-            isFirst && "rounded-l-xl",
-            isLast && "rounded-r-xl",
-            !isFirst && !isLast && "-ml-px"
+            isAttached && !isFirst && !isVertical && "-ml-px",
+            isAttached && !isFirst && isVertical && "-mt-px"
           ),
         });
       });
-    }, [childrenArray, variant, color, size, radius, isLoading, isDisabled, count]);
+    }, [childrenArray, variant, color, size, radius, orientation, isAttached, isLoading, isDisabled, count]);
 
     return (
       <div
         role="group"
         aria-label={ariaLabel}
-        className={cn("inline-flex items-center", className)}
+        aria-orientation={orientation}
+        className={cn(
+          "inline-flex items-center",
+          orientation === "vertical" ? "flex-col" : "flex-row",
+          !isAttached && (orientation === "vertical" ? "gap-2" : "gap-2"),
+          className
+        )}
       >
         {clonedChildren}
       </div>

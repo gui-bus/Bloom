@@ -18,6 +18,7 @@ import {
   CarouselPrevious,
   CarouselNext,
   CarouselDots,
+  CarouselThumbs,
 } from "@/components/ui/carousel/carousel";
 import { carouselCode } from "@/components/ui/carousel/carousel.code";
 import { Badge } from "@/components/ui/badge/badge";
@@ -375,6 +376,87 @@ export default function CarouselPage() {
         props={["orientation: 'horizontal' | 'vertical'"]}
       />
 
+      {/* Thumbnail Navigation */}
+      <DocsComponent
+        title="Thumbnail Navigation"
+        description="Render a dedicated image thumbnail navigation bar using CarouselThumbs underneath the main slider."
+        preview={
+          <div className="w-full">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {images.map((src, index) => (
+                  <CarouselItem key={index}>
+                    <div className="overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video bg-zinc-100 dark:bg-zinc-900">
+                      <img
+                        src={src}
+                        alt={`Slide ${index + 1}`}
+                        className="size-full object-cover"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+
+              <CarouselThumbs images={images} className="mt-3" />
+            </Carousel>
+          </div>
+        }
+        code={`<Carousel className="w-full">
+  <CarouselContent>
+    {images.map((src, index) => (
+      <CarouselItem key={index}>
+        <div className="overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video">
+          <img src={src} alt="Slide" className="size-full object-cover" />
+        </div>
+      </CarouselItem>
+    ))}
+  </CarouselContent>
+
+  <CarouselThumbs images={images} className="mt-3" />
+</Carousel>`}
+      />
+
+      {/* Touch Gestures & Physics */}
+      <DocsComponent
+        title="Free Drag & Swipe Sensitivity"
+        description="Use 'dragFree' for continuous physics momentum scrolling and 'swipeThreshold' to customize gesture sensitivity on touch devices."
+        preview={
+          <div className="w-full">
+            <Carousel dragFree swipeThreshold={5} className="w-full">
+              <CarouselContent className="-ml-3">
+                {features.map((item, index) => (
+                  <CarouselItem key={index} className="pl-3 basis-2/3 sm:basis-1/3">
+                    <div className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-sm flex flex-col justify-between h-36">
+                      <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 w-fit">
+                        <Icon icon={item.icon} className="size-5" />
+                      </div>
+                      <div>
+                        <h5 className="font-medium text-sm">{item.title}</h5>
+                        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">{item.description}</p>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselDots className="mt-4" />
+            </Carousel>
+          </div>
+        }
+        code={`<Carousel dragFree swipeThreshold={5} className="w-full">
+  <CarouselContent className="-ml-3">
+    {features.map((item, index) => (
+      <CarouselItem key={index} className="pl-3 basis-2/3 sm:basis-1/3">
+        <div className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+          <h5>{item.title}</h5>
+        </div>
+      </CarouselItem>
+    ))}
+  </CarouselContent>
+  <CarouselDots className="mt-4" />
+</Carousel>`}
+        props={["dragFree: boolean", "swipeThreshold: number"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Carousel Table */}
@@ -406,7 +488,7 @@ export default function CarouselPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Enables automatic slide transitions (pauses on hover).
+                    Enables automatic slide transitions.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -415,6 +497,30 @@ export default function CarouselPage() {
                   <td className="px-3 py-2 text-muted-foreground">3000</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Interval in milliseconds between automatic slide transitions.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">pauseOnHover</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Pauses autoplay progression when mouse hovers over the slider container.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">dragFree</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables free momentum drag physics without snap-to-grid constraints.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">swipeThreshold</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">10</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Pixel distance threshold to trigger swipe navigation on touch devices.
                   </td>
                 </tr>
                 <tr className="border-b border-border">

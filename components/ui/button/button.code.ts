@@ -37,6 +37,7 @@ type ButtonBaseProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
     loadingText?: string;
     loadingIcon?: React.ReactNode;
     isDisabled?: boolean;
+    isFullWidth?: boolean;
     startContent?: React.ReactNode;
     endContent?: React.ReactNode;
     badgeContent?: string;
@@ -62,7 +63,7 @@ type NormalButtonProps = {
 export type ButtonProps = ButtonBaseProps & (IconOnlyProps | NormalButtonProps);
 
 const buttonBaseVariants = cva(
-  "relative inline-flex items-center justify-center gap-1.5 font-medium transition-all duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded-xl",
+  "relative inline-flex items-center justify-center gap-1.5 font-medium transition-all duration-200 ease-in-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-xl",
   {
     variants: {
       size: designSizes,
@@ -97,6 +98,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loadingText,
       loadingIcon,
       isDisabled = false,
+      isFullWidth = false,
       startContent,
       endContent,
       badgeContent,
@@ -121,9 +123,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     const { ripples, addRipple, removeRipple } = useRipples();
 
+    const isEffectivelyDisabled = isDisabled || disabled;
+    const nativeDisabled = !asChild ? isEffectivelyDisabled : undefined;
+    const ariaDisabled = (isEffectivelyDisabled || isLoading) || undefined;
+
     const handleClick = React.useCallback(
       (e: React.MouseEvent<HTMLButtonElement>) => {
-        if (isDisabled || isLoading) return;
+        if (isEffectivelyDisabled || isLoading) return;
 
         if (!disableRipple) {
           const rect = e.currentTarget.getBoundingClientRect();
@@ -133,7 +139,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
         onClick?.(e);
       },
-      [isDisabled, isLoading, disableRipple, addRipple, onClick]
+      [isEffectivelyDisabled, isLoading, disableRipple, addRipple, onClick]
     );
 
     const activeVariant = variant || "default";
@@ -142,31 +148,40 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         ref={ref}
         type={type ?? "button"}
-        disabled={isDisabled}
-        aria-disabled={isDisabled}
-        aria-busy={isLoading}
-        aria-label={ariaLabel}
+        disabled={nativeDisabled}
+        aria-disabled={ariaDisabled}
+        aria-busy={isLoading || undefined}
+        aria-label={ariaLabel || undefined}
+        tabIndex={asChild && isEffectivelyDisabled ? -1 : undefined}
         onClick={handleClick}
         className={cn(
           buttonBaseVariants({ size, variant, radius, hover }),
           designColors[color][activeVariant],
           className,
           "cursor-pointer relative overflow-hidden",
+          isFullWidth && "w-full flex flex-1 justify-center",
           isLoading && "cursor-wait opacity-50",
-          isDisabled && "cursor-not-allowed opacity-50",
+          isEffectivelyDisabled && "cursor-not-allowed opacity-50",
+          asChild && isEffectivelyDisabled && "pointer-events-none",
           isIconOnly && "aspect-square"
         )}
         {...props}
       >
         {isLoading ? (
           <div className="flex items-center gap-2">
-            {loadingIcon || (
+            {loadingIcon ? (
+              <span aria-hidden="true">{loadingIcon}</span>
+            ) : (
               <span
+                role="status"
                 className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
-                aria-hidden
+                aria-label="Loading"
               />
             )}
             <span>{loadingText || children}</span>
+            <span className="sr-only" aria-live="polite" aria-atomic="true">
+              {loadingText ?? "Loading, please wait"}
+            </span>
           </div>
         ) : (
           <div className="flex items-center gap-1">
@@ -176,16 +191,21 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                   "inline-flex items-center justify-center px-2 py-0.5 text-xs font-semibold rounded-full bg-primary text-white mr-2",
                   badgeCustomClassname
                 )}
+                aria-hidden="true"
               >
                 {badgeContent}
               </span>
             )}
             {startContent && (
-              <span className={cn(!isIconOnly && "mr-2")}>{startContent}</span>
+              <span className={cn(!isIconOnly && "mr-2")} aria-hidden="true">
+                {startContent}
+              </span>
             )}
             {children && <span>{children}</span>}
             {endContent && (
-              <span className={cn(!isIconOnly && "ml-2")}>{endContent}</span>
+              <span className={cn(!isIconOnly && "ml-2")} aria-hidden="true">
+                {endContent}
+              </span>
             )}
             {badgeContent && badgePosition === "end" && (
               <span
@@ -193,6 +213,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                   "inline-flex items-center justify-center px-2 py-0.5 text-xs font-semibold rounded-full bg-primary text-white ml-2",
                   badgeCustomClassname
                 )}
+                aria-hidden="true"
               >
                 {badgeContent}
               </span>

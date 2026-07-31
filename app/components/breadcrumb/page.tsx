@@ -218,14 +218,82 @@ export default function BreadcrumbDocsPage() {
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
-      <BreadcrumbLink href="#">Components</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
       <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
     </BreadcrumbItem>
   </BreadcrumbList>
 </Breadcrumb>`}
+      />
+
+      {/* Automatic Middle Collapse */}
+      <DocsComponent
+        title="Automatic Middle Collapse (maxItems)"
+        description="Set 'maxItems' on BreadcrumbList to automatically collapse middle steps into a popover when paths exceed limit."
+        preview={
+          <div className="w-full">
+            <Breadcrumb>
+              <BreadcrumbList maxItems={3}>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">Documentation</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">UI Library</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">Components</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        }
+        code={`<Breadcrumb>
+  <BreadcrumbList maxItems={3}>
+    <BreadcrumbItem><BreadcrumbLink href="#">Home</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbLink href="#">Docs</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbPage>Breadcrumb</BreadcrumbPage></BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>`}
+        props={["maxItems: number"]}
+      />
+
+      {/* SEO JSON-LD Schema Support */}
+      <DocsComponent
+        title="Structured SEO JSON-LD Schema (enableJsonLdSchema)"
+        description="Automatically injects Google-compliant BreadcrumbList JSON-LD structured data script for search engine crawlers."
+        preview={
+          <div className="w-full">
+            <Breadcrumb enableJsonLdSchema>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="https://example.com">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>SEO Optimized Page</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        }
+        code={`<Breadcrumb enableJsonLdSchema>
+  <BreadcrumbList>
+    <BreadcrumbItem><BreadcrumbLink href="https://example.com">Home</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbPage>SEO Page</BreadcrumbPage></BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>`}
+        props={["enableJsonLdSchema: boolean"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />

@@ -160,6 +160,56 @@ export default function BannerPage() {
   Network connection lost. Some changes may not be saved.
 </Banner>`} 
           />
+
+          {/* Multi-Announcement Carousel */}
+          <DocsComponent 
+            title="Announcement Carousel (announcements)" 
+            description="Cycle through multiple announcements with next/previous controls." 
+            preview={
+              <Banner 
+                variant="primary"
+                announcements={[
+                  { id: 1, content: "🚀 Version 3.0 launched! Check out the changelog.", icon: <Icon icon="hugeicons:rocket" className="h-5 w-5" /> },
+                  { id: 2, content: "🎉 We reached 10,000 active developers on Bloom UI!", icon: <Icon icon="hugeicons:party-popper" className="h-5 w-5" /> },
+                  { id: 3, content: "📚 New video tutorials available in the documentation.", icon: <Icon icon="hugeicons:video-01" className="h-5 w-5" /> }
+                ]}
+              />
+            } 
+            code={`<Banner 
+  variant="primary"
+  announcements={[
+    { id: 1, content: "Version 3.0 launched!", icon: <Icon icon="hugeicons:rocket" /> },
+    { id: 2, content: "10,000 active developers!", icon: <Icon icon="hugeicons:party-popper" /> }
+  ]}
+/>`}
+            props={["announcements: AnnouncementItem[]"]}
+          />
+
+          {/* Sticky Positioning & Storage Persistence */}
+          <DocsComponent 
+            title="Sticky Positioning & LocalStorage Persistence" 
+            description="Fix banner at top or bottom with 'position' prop ('sticky-top', 'sticky-bottom') and persist dismiss state across reloads with 'storageKey'." 
+            preview={
+              <Banner 
+                variant="success" 
+                position="static"
+                storageKey="header-promo-v1"
+                isDismissible
+                icon={<Icon icon="hugeicons:gift" className="h-5 w-5" />}
+              >
+                Persistent Promo Banner: Dismiss state is saved to localStorage!
+              </Banner>
+            } 
+            code={`<Banner 
+  variant="success" 
+  position="sticky-top"
+  storageKey="header-promo-v1"
+  isDismissible
+>
+  Persistent Promo Banner
+</Banner>`}
+            props={["position: 'static' | 'sticky-top' | 'sticky-bottom'", "storageKey: string"]}
+          />
           
         </TabsContent>
       </Tabs>

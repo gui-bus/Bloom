@@ -135,6 +135,95 @@ export default function ChartComponentPage() {
         props={["color: string"]}
       />
 
+      {/* Formatted Tooltips */}
+      <DocsComponent
+        title="Custom Formatted Tooltips & Axes"
+        description="Pass a 'valueFormatter' function to format values as currency, percentages, or custom localized units in tooltips and Y-axis."
+        preview={
+          <div className="w-full">
+            <Chart
+              type="line"
+              title="Quarterly Revenue ($)"
+              data={sampleData}
+              xKey="month"
+              yKey="revenue"
+              color="#0284c7"
+              valueFormatter={(val) => `$${val.toLocaleString("en-US")}`}
+            />
+          </div>
+        }
+        code={`<Chart
+  type="line"
+  title="Quarterly Revenue ($)"
+  data={sampleData}
+  xKey="month"
+  yKey="revenue"
+  color="#0284c7"
+  valueFormatter={(val) => \`$\${val.toLocaleString("en-US")}\`}
+/>`}
+        props={["valueFormatter: (value: number) => string"]}
+      />
+
+      {/* Zoom & Pan */}
+      <DocsComponent
+        title="Zoom & Pan Control"
+        description="Set 'enableZoomPan' to true to display a slider brush control for zooming and panning across dense datasets."
+        preview={
+          <div className="w-full">
+            <Chart
+              type="bar"
+              title="High-Density User Traffic"
+              data={sampleData}
+              xKey="month"
+              yKey="users"
+              color="#8b5cf6"
+              enableZoomPan
+            />
+          </div>
+        }
+        code={`<Chart
+  type="bar"
+  title="High-Density User Traffic"
+  data={sampleData}
+  xKey="month"
+  yKey="users"
+  color="#8b5cf6"
+  enableZoomPan
+/>`}
+        props={["enableZoomPan: boolean"]}
+      />
+
+      {/* Export to SVG / PNG */}
+      <DocsComponent
+        title="Export Chart Utility"
+        description="Set 'enableExport' to true to show instant SVG and PNG download buttons for saving chart figures."
+        preview={
+          <div className="w-full">
+            <Chart
+              type="line"
+              title="Sales Performance Overview"
+              data={sampleData}
+              xKey="month"
+              yKey="revenue"
+              color="#10b981"
+              enableExport
+              valueFormatter={(val) => `$${val.toLocaleString()}`}
+            />
+          </div>
+        }
+        code={`<Chart
+  type="line"
+  title="Sales Performance Overview"
+  data={sampleData}
+  xKey="month"
+  yKey="revenue"
+  color="#10b981"
+  enableExport
+  valueFormatter={(val) => \`$\${val.toLocaleString()}\`}
+/>`}
+        props={["enableExport: boolean"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Chart Table */}
@@ -183,11 +272,47 @@ export default function ChartComponentPage() {
                   <td className="px-3 py-2 text-muted-foreground">300</td>
                   <td className="px-3 py-2 text-muted-foreground">Container height scale in pixels.</td>
                 </tr>
-                <tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
                   <td className="px-3 py-2 text-muted-foreground">'#0284c7'</td>
                   <td className="px-3 py-2 text-muted-foreground">HEX or CSS color string for line stroke or bar fill.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">title</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Optional header title text rendered above the chart.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">valueFormatter</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(value: number) => string"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Formatter function for currency/locale values in tooltips & axes.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">enableZoomPan</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables slider brush control for zooming and panning.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">enableExport</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Displays SVG and PNG export buttons in the header.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">onExportSVG</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"() => void"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Custom callback triggered when clicking the SVG export button.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">onExportPNG</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"() => void"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Custom callback triggered when clicking the PNG export button.</td>
                 </tr>
               </tbody>
             </table>

@@ -16,7 +16,52 @@ export interface CheckboxProps
   isCard?: boolean;
   isIndeterminate?: boolean;
   icon?: string;
+  checkIcon?: React.ReactNode;
   badge?: string | React.ReactNode;
+  startContent?: React.ReactNode;
+  endContent?: React.ReactNode;
+  checkboxPosition?: "start" | "end";
+}
+
+export interface UseCheckboxGroupOptions<T extends string> {
+  items: T[];
+  defaultSelected?: T[];
+}
+
+export function useCheckboxGroup<T extends string>({
+  items,
+  defaultSelected = [],
+}: UseCheckboxGroupOptions<T>) {
+  const [selected, setSelected] = React.useState<T[]>(defaultSelected);
+
+  const isAllSelected = items.length > 0 && items.every((item) => selected.includes(item));
+  const isSomeSelected = selected.length > 0 && !isAllSelected;
+
+  const toggleAll = React.useCallback(() => {
+    if (isAllSelected) {
+      setSelected([]);
+    } else {
+      setSelected([...items]);
+    }
+  }, [items, isAllSelected]);
+
+  const selectAll = React.useCallback(() => {
+    setSelected([...items]);
+  }, [items]);
+
+  const deselectAll = React.useCallback(() => {
+    setSelected([]);
+  }, []);
+
+  return {
+    selected,
+    setSelected,
+    isAllSelected,
+    isSomeSelected,
+    toggleAll,
+    selectAll,
+    deselectAll,
+  };
 }
 
 export interface CheckboxGroupProps {
@@ -149,7 +194,11 @@ const Checkbox = React.forwardRef<
       isCard = false,
       isIndeterminate = false,
       icon,
+      checkIcon,
       badge,
+      startContent,
+      endContent,
+      checkboxPosition = "start",
       id,
       disabled,
       value: itemValue,
@@ -180,31 +229,38 @@ const Checkbox = React.forwardRef<
       }
     };
 
+    const checkboxRoot = (
+      <CheckboxPrimitive.Root
+        ref={ref}
+        id={checkboxId}
+        disabled={effectiveDisabled}
+        checked={checkedState}
+        onCheckedChange={handleCheckedChange}
+        className={cn(
+          "peer size-4 shrink-0 border transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer mt-0.5 data-[state=unchecked]:bg-white dark:data-[state=unchecked]:bg-zinc-900 data-[state=unchecked]:border-zinc-300 dark:data-[state=unchecked]:border-zinc-700",
+          designRadius[radius],
+          colorMap[color],
+          effectiveInvalid && "border-rose-500 dark:border-rose-500",
+          className
+        )}
+        {...props}
+      >
+        <CheckboxPrimitive.Indicator className={cn("flex items-center justify-center text-current")}>
+          {isIndeterminate ? (
+            <Icon icon="hugeicons:minus-sign" className="size-3.5 stroke-[3]" />
+          ) : checkIcon ? (
+            checkIcon
+          ) : (
+            <Icon icon="hugeicons:tick-02" className="size-3.5 stroke-[3]" />
+          )}
+        </CheckboxPrimitive.Indicator>
+      </CheckboxPrimitive.Root>
+    );
+
     const content = (
       <div className="inline-flex items-start gap-2.5 flex-1 min-w-0">
-        <CheckboxPrimitive.Root
-          ref={ref}
-          id={checkboxId}
-          disabled={effectiveDisabled}
-          checked={checkedState}
-          onCheckedChange={handleCheckedChange}
-          className={cn(
-            "peer size-4 shrink-0 border transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer mt-0.5 data-[state=unchecked]:bg-white dark:data-[state=unchecked]:bg-zinc-900 data-[state=unchecked]:border-zinc-300 dark:data-[state=unchecked]:border-zinc-700",
-            designRadius[radius],
-            colorMap[color],
-            effectiveInvalid && "border-rose-500 dark:border-rose-500",
-            className
-          )}
-          {...props}
-        >
-          <CheckboxPrimitive.Indicator className={cn("flex items-center justify-center text-current")}>
-            {isIndeterminate ? (
-              <Icon icon="hugeicons:minus-sign" className="size-3.5 stroke-[3]" />
-            ) : (
-              <Icon icon="hugeicons:tick-02" className="size-3.5 stroke-[3]" />
-            )}
-          </CheckboxPrimitive.Indicator>
-        </CheckboxPrimitive.Root>
+        {checkboxPosition === "start" && checkboxRoot}
+        {startContent && <div className="shrink-0 flex items-center">{startContent}</div>}
         {(label || description || icon) && (
           <div className="flex flex-col gap-0.5 select-none flex-1 min-w-0">
             <div className="flex items-center gap-2">
@@ -231,6 +287,8 @@ const Checkbox = React.forwardRef<
             {badge}
           </span>
         )}
+        {endContent && <div className="shrink-0 flex items-center">{endContent}</div>}
+        {checkboxPosition === "end" && checkboxRoot}
       </div>
     );
 
@@ -258,4 +316,4 @@ const Checkbox = React.forwardRef<
 );
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 
-export { Checkbox, CheckboxGroup };
+export { Checkbox, CheckboxGroup, useCheckboxGroup };

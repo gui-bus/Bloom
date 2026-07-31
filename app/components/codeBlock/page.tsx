@@ -116,6 +116,112 @@ export default function CodeBlockComponentPage() {
 />`}
       />
 
+      {/* Multi-File Tabs */}
+      <DocsComponent
+        title="Multi-File Tabs Support (files)"
+        description="Pass an array of 'files' to render file tabs for switching between multiple source files in a single code block."
+        preview={
+          <div className="w-full">
+            <CodeBlock
+              files={[
+                {
+                  name: "index.ts",
+                  language: "typescript",
+                  description: "Entry file exporting main components",
+                  code: `export * from "./card";\nexport * from "./button";`,
+                },
+                {
+                  name: "card.tsx",
+                  language: "typescript",
+                  description: "Core Card component layout implementation",
+                  code: `import * as React from "react";\n\nexport function Card({ children }: { children: React.ReactNode }) {\n  return <div className="p-4 rounded-xl border">{children}</div>;\n}`,
+                },
+                {
+                  name: "styles.css",
+                  language: "css",
+                  description: "Component styles and theme tokens",
+                  code: `.card {\n  background: var(--background);\n  border-radius: 1rem;\n}`,
+                },
+              ]}
+            />
+          </div>
+        }
+        code={`<CodeBlock
+  files={[
+    {
+      name: "index.ts",
+      language: "typescript",
+      description: "Entry file exporting main components",
+      code: \`export * from "./card";\\nexport * from "./button";\`,
+    },
+    {
+      name: "card.tsx",
+      language: "typescript",
+      description: "Core Card component layout implementation",
+      code: \`import * as React from "react";\\nexport function Card() { ... }\`,
+    },
+  ]}
+/>`}
+        props={["files: CodeFile[]"]}
+      />
+
+      {/* Line Highlighting */}
+      <DocsComponent
+        title="Line Highlighting (highlightLines)"
+        description="Highlight specific lines or line ranges using the 'highlightLines' prop (e.g. [1, 5, '7-9'])."
+        preview={
+          <div className="w-full">
+            <CodeBlock
+              code={`import React from 'react';
+import { Button } from '@/components/ui/button';
+
+export function ExampleApp() {
+  const handleClick = () => console.log('Clicked!');
+
+  return (
+    <div className="flex gap-4 p-4">
+      <Button color="primary" onClick={handleClick}>
+        Click Me
+      </Button>
+    </div>
+  );
+}`}
+              componentName="example.tsx"
+              highlightLines={[2, "5-6", 10]}
+            />
+          </div>
+        }
+        code={`<CodeBlock
+  code={sampleSnippet}
+  componentName="example.tsx"
+  highlightLines={[2, "5-6", 10]}
+/>`}
+        props={["highlightLines: (number | string)[]"]}
+      />
+
+      {/* Word Wrap Toggle */}
+      <DocsComponent
+        title="Word Wrap Toggle Button & Prop (wordWrap)"
+        description="Enable automatic code line wrapping by default or use the 'Wrap' button in the header toolbar to toggle text wrapping dynamically."
+        preview={
+          <div className="w-full">
+            <CodeBlock
+              code={`const longCommandLine = "npx create-next-app@latest my-app --typescript --tailwind --eslint --app --src-dir --import-alias '@/*' --use-pnpm";`}
+              componentName="setup.sh"
+              language="bash"
+              wordWrap
+            />
+          </div>
+        }
+        code={`<CodeBlock
+  code={longCommandLine}
+  componentName="setup.sh"
+  language="bash"
+  wordWrap
+/>`}
+        props={["wordWrap: boolean"]}
+      />
+
       {/* Language Support */}
       <DocsComponent
         title="Language Support"
@@ -193,28 +299,6 @@ export default function CodeBlockComponentPage() {
         props={["maxHeight: number"]}
       />
 
-      {/* Without Copy Button */}
-      <DocsComponent
-        title="Without Copy Button"
-        description="Set 'showCopy' to false to hide the clipboard copy action button."
-        preview={
-          <div className="w-full">
-            <CodeBlock
-              code={`const greeting = "Hello, World!";
-console.log(greeting);`}
-              componentName="hello.ts"
-              showCopy={false}
-            />
-          </div>
-        }
-        code={`<CodeBlock
-  code={snippet}
-  componentName="hello.ts"
-  showCopy={false}
-/>`}
-        props={["showCopy: boolean"]}
-      />
-
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props CodeBlock Table */}
@@ -234,11 +318,29 @@ console.log(greeting);`}
               </thead>
               <tbody>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">files</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">CodeFile[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Array of multi-file objects to render interactive file tabs.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">highlightLines</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(number | string)[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Array of line numbers or ranges (e.g. [1, 5, "10-15"]) to highlight.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">wordWrap</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables line text wrapping. Can also be toggled dynamically via header button.</td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">code</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">required</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    The source code string to display and syntax-highlight.
+                    The single source code string to display when files array is not provided.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
