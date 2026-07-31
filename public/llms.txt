@@ -17,67 +17,77 @@ To add any component:
 npx @bloomui-react/cli add <component-name>
 ```
 
-## Component Catalog (63 UI Primitives)
+## Component Catalog (72 UI Primitives)
 - [Accordion](https://bloom.guibus.dev/components/accordion): UI component for accordion.
 - [Alert](https://bloom.guibus.dev/components/alert): UI component for alert.
 - [Alert Dialog](https://bloom.guibus.dev/components/alertDialog): UI component for alert dialog.
+- [Aspect Ratio](https://bloom.guibus.dev/components/aspectRatio): UI component for aspect ratio.
+- [Autocomplete](https://bloom.guibus.dev/components/autocomplete): UI component for autocomplete search input.
 - [Avatar](https://bloom.guibus.dev/components/avatar): UI component for avatar.
 - [Avatar Group](https://bloom.guibus.dev/components/avatarGroup): UI component for avatar group.
-- [Aspect Ratio](https://bloom.guibus.dev/components/aspectRatio): UI component for aspect ratio.
 - [Badge](https://bloom.guibus.dev/components/badge): UI component for badge.
+- [Banner](https://bloom.guibus.dev/components/banner): UI component for announcement banner.
 - [Breadcrumb](https://bloom.guibus.dev/components/breadcrumb): UI component for breadcrumb.
 - [Button](https://bloom.guibus.dev/components/button): UI component for button.
 - [Button Group](https://bloom.guibus.dev/components/buttonGroup): UI component for button group.
 - [Card](https://bloom.guibus.dev/components/card): UI component for card.
 - [Carousel](https://bloom.guibus.dev/components/carousel): UI component for carousel.
-- [Chart](https://bloom.guibus.dev/components/chart): UI component for chart.
+- [Chart](https://bloom.guibus.dev/components/chart): UI component for chart visualizations.
 - [Checkbox](https://bloom.guibus.dev/components/checkbox): UI component for checkbox.
 - [Code Block](https://bloom.guibus.dev/components/codeBlock): UI component for code block.
 - [Collapsible](https://bloom.guibus.dev/components/collapsible): UI component for collapsible.
 - [Color Picker](https://bloom.guibus.dev/components/colorPicker): UI component for color picker.
+- [Color Swatches](https://bloom.guibus.dev/components/colorSwatches): UI component for color swatches palette.
 - [Combobox](https://bloom.guibus.dev/components/combobox): UI component for combobox.
-- [Command](https://bloom.guibus.dev/components/command): UI component for command.
+- [Command](https://bloom.guibus.dev/components/command): UI component for command palette.
 - [Context Menu](https://bloom.guibus.dev/components/contextMenu): UI component for context menu.
 - [Data Table](https://bloom.guibus.dev/components/dataTable): UI component for data table.
 - [Date Picker](https://bloom.guibus.dev/components/datePicker): UI component for date picker.
 - [Dialog](https://bloom.guibus.dev/components/dialog): UI component for dialog.
 - [Drawer](https://bloom.guibus.dev/components/drawer): UI component for drawer.
 - [Dropdown Menu](https://bloom.guibus.dev/components/dropdownMenu): UI component for dropdown menu.
-- [File Upload](https://bloom.guibus.dev/components/fileUpload): UI component for file upload.
-- [Form](https://bloom.guibus.dev/components/form): UI component for form.
-- [Form Field](https://bloom.guibus.dev/components/formField): UI component for form field.
+- [File Upload](https://bloom.guibus.dev/components/fileUpload): UI component for file upload dropzone.
+- [Filter Builder](https://bloom.guibus.dev/components/filterBuilder): UI component for advanced query filter builder.
+- [Form](https://bloom.guibus.dev/components/form): UI component for form wrapper.
+- [Form Field](https://bloom.guibus.dev/components/formField): UI component for form field layout.
 - [Hover Card](https://bloom.guibus.dev/components/hoverCard): UI component for hover card.
-- [Image](https://bloom.guibus.dev/components/image): UI component for image.
-- [Input](https://bloom.guibus.dev/components/input): UI component for input.
-- [Input OTP](https://bloom.guibus.dev/components/inputOtp): UI component for input otp.
-- [Kbd](https://bloom.guibus.dev/components/kbd): UI component for kbd.
-- [Label](https://bloom.guibus.dev/components/label): UI component for label.
-- [Link](https://bloom.guibus.dev/components/link): UI component for link.
-- [List](https://bloom.guibus.dev/components/list): UI component for list.
-- [Menubar](https://bloom.guibus.dev/components/menubar): UI component for menubar.
-- [Navigation Menu](https://bloom.guibus.dev/components/navigationMenu): UI component for navigation menu.
-- [Number Input](https://bloom.guibus.dev/components/numberInput): UI component for number input.
-- [Progress](https://bloom.guibus.dev/components/progress): UI component for progress.
-- [Pagination](https://bloom.guibus.dev/components/pagination): UI component for pagination.
+- [Image](https://bloom.guibus.dev/components/image): UI component for image with lazy loading.
+- [Input](https://bloom.guibus.dev/components/input): UI component for text input.
+- [Input OTP](https://bloom.guibus.dev/components/inputOtp): UI component for one-time password pin input.
+- [Kbd](https://bloom.guibus.dev/components/kbd): UI component for keyboard shortcut badges.
+- [Label](https://bloom.guibus.dev/components/label): UI component for form label.
+- [Link](https://bloom.guibus.dev/components/link): UI component for accessible hyperlinks.
+- [List](https://bloom.guibus.dev/components/list): UI component for structured lists.
+- [Menubar](https://bloom.guibus.dev/components/menubar): UI component for desktop application menubar.
+- [Multi Select](https://bloom.guibus.dev/components/multiSelect): UI component for multiple tag selection.
+- [Navigation Menu](https://bloom.guibus.dev/components/navigationMenu): UI component for site header navigation menu.
+- [Number Input](https://bloom.guibus.dev/components/numberInput): UI component for numeric step input with currency & scroll formatting.
+- [Pagination](https://bloom.guibus.dev/components/pagination): UI component for pagination controls.
 - [Popover](https://bloom.guibus.dev/components/popover): UI component for popover.
+- [Progress](https://bloom.guibus.dev/components/progress): UI component for linear, barber-pole, circle ring, and milestone progress.
 - [Radio Group](https://bloom.guibus.dev/components/radioGroup): UI component for radio group.
-- [Rating](https://bloom.guibus.dev/components/rating): UI component for rating.
-- [Resizable](https://bloom.guibus.dev/components/resizable): UI component for resizable.
-- [Scroll Area](https://bloom.guibus.dev/components/scrollArea): UI component for scroll area.
-- [Select](https://bloom.guibus.dev/components/select): UI component for select.
-- [Separator](https://bloom.guibus.dev/components/separator): UI component for separator.
-- [Sheet](https://bloom.guibus.dev/components/sheet): UI component for sheet.
-- [Skeleton](https://bloom.guibus.dev/components/skeleton): UI component for skeleton.
-- [Slider](https://bloom.guibus.dev/components/slider): UI component for slider.
-- [Spinner](https://bloom.guibus.dev/components/spinner): UI component for spinner.
-- [Stat Card](https://bloom.guibus.dev/components/statCard): UI component for stat card.
-- [Stepper](https://bloom.guibus.dev/components/stepper): UI component for stepper.
-- [Switch](https://bloom.guibus.dev/components/switch): UI component for switch.
-- [Table](https://bloom.guibus.dev/components/table): UI component for table.
-- [Tabs](https://bloom.guibus.dev/components/tabs): UI component for tabs.
-- [Textarea](https://bloom.guibus.dev/components/textarea): UI component for textarea.
-- [Toast](https://bloom.guibus.dev/components/toast): UI component for toast.
-- [Toggle](https://bloom.guibus.dev/components/toggle): UI component for toggle.
-- [Toggle Group](https://bloom.guibus.dev/components/toggleGroup): UI component for toggle group.
-- [Tooltip](https://bloom.guibus.dev/components/tooltip): UI component for tooltip.
-- [Typography](https://bloom.guibus.dev/components/typography): UI component for typography.
+- [Rating](https://bloom.guibus.dev/components/rating): UI component for star rating score.
+- [Resizable](https://bloom.guibus.dev/components/resizable): UI component for resizable split view panels.
+- [Rich Text Editor](https://bloom.guibus.dev/components/richTextEditor): UI component for rich text formatting editor.
+- [Scroll Area](https://bloom.guibus.dev/components/scrollArea): UI component for scroll area with floating action button & progress bar.
+- [Select](https://bloom.guibus.dev/components/select): UI component for dropdown select with search & custom item slots.
+- [Separator](https://bloom.guibus.dev/components/separator): UI component for content divider.
+- [Sheet](https://bloom.guibus.dev/components/sheet): UI component for slide-over side drawer sheet.
+- [Skeleton](https://bloom.guibus.dev/components/skeleton): UI component for shimmer & pulse loading skeletons.
+- [Slider](https://bloom.guibus.dev/components/slider): UI component for range slider.
+- [Spinner](https://bloom.guibus.dev/components/spinner): UI component for loading spinner indicators.
+- [Stat Card](https://bloom.guibus.dev/components/statCard): UI component for metric analytics cards.
+- [Stepper](https://bloom.guibus.dev/components/stepper): UI component for step-by-step wizard workflow.
+- [Switch](https://bloom.guibus.dev/components/switch): UI component for toggle switch.
+- [Table](https://bloom.guibus.dev/components/table): UI component for table with zebra striping, compact density & sticky columns.
+- [Tabs](https://bloom.guibus.dev/components/tabs): UI component for tabbed interface navigation.
+- [Textarea](https://bloom.guibus.dev/components/textarea): UI component for multi-line text input.
+- [Time Picker](https://bloom.guibus.dev/components/timePicker): UI component for time selector with 12h/24h modes, minute steps & wheel columns.
+- [Timeline](https://bloom.guibus.dev/components/timeline): UI component for chronological activity timeline with alternate layout & expandable nodes.
+- [Toast](https://bloom.guibus.dev/components/toast): UI component for notification toasts with spinner variants.
+- [Toggle](https://bloom.guibus.dev/components/toggle): UI component for toggle button.
+- [Toggle Group](https://bloom.guibus.dev/components/toggleGroup): UI component for group of toggle buttons.
+- [Tooltip](https://bloom.guibus.dev/components/tooltip): UI component for tooltip with rich HTML popover & arrow pointer controls.
+- [Tree View](https://bloom.guibus.dev/components/treeView): UI component for tree view with drag & drop reordering, checkbox cascade & lazy loading.
+- [Typography](https://bloom.guibus.dev/components/typography): UI component for typographic headings & clamped text with Read More toggle.
+- [Virtualized List](https://bloom.guibus.dev/components/virtualizedList): UI component for virtualized list with dynamic row heights, scrollToIndex & infinite scroll.

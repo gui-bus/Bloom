@@ -9,6 +9,14 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 ## [Unreleased]
 
 ### Added
+* **Tooltip**: Adicionado suporte a popover com conteúdo HTML interativo (`interactive`), toggle de seta apontadora (`showArrow`) e offset ajustável (`sideOffset`).
+* **Tree View**: Adicionada reordenação interativa por Drag & Drop (`isReorderable`, `onReorder`), seleção de nós via checkbox com estado em cascata (`isCheckable`, `onCheckedChange`) e carregamento assíncrono (*lazy loading*) de nós filhos (`onLoadChildren`).
+* **Typography**: Adicionado suporte a truncamento de linhas com botão "Read More / Show Less" (`clampLines`, `showExpandToggle`).
+* **Virtualized List**: Adicionado suporte a cálculo dinâmico de altura de linhas (`getItemHeight`), carregamento por rolagem infinita (`onEndReached`) e navegação por índice (`scrollToIndex`).
+* **Table**: Adicionado suporte a cabeçalho fixo, primeira coluna fixa, alternância de zebra (`striped`) e densidade compacta (`compact`).
+* **Time Picker**: Adicionadas colunas roláveis tipo wheel (`useWheel`), modos de 12h/24h e suporte a intervalos de minutos (`step`).
+* **Timeline**: Adicionado layout alternado esquerda/direita (`mode="alternate"`), detalhes expansíveis interativos e novas cores semânticas de status.
+* **Toast**: Integrado componente customizado `<Spinner />` com suporte a variantes em toasts de carregamento e melhorada a confiabilidade do encerramento manual.
 * Criada toda a suíte de testes unitários com **Vitest** e **React Testing Library** sob JSDOM.
 * Criada a bateria de testes de ponta a ponta (E2E) com o **Playwright**.
 * Adicionado workflow automatizado de CI/CD via **GitHub Actions** (`ci.yml`) para validar builds, tipos e testes a cada push ou PR.
