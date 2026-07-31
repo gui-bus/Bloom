@@ -9,10 +9,12 @@ type AccordionVariant = "default" | "bordered" | "splitted" | "shadow" | "compac
 
 interface AccordionContextValue {
   variant: AccordionVariant;
+  isKeepMounted?: boolean;
 }
 
 const AccordionContext = React.createContext<AccordionContextValue>({
   variant: "default",
+  isKeepMounted: false,
 });
 
 const useAccordionContext = () => React.useContext(AccordionContext);
@@ -21,12 +23,13 @@ const useAccordionContext = () => React.useContext(AccordionContext);
 type AccordionProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> & {
   variant?: AccordionVariant;
   isDisabled?: boolean;
+  isKeepMounted?: boolean;
 };
 
 const Accordion = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Root>,
   AccordionProps
->(({ className, variant = "default", isDisabled, disabled, ...props }, ref) => {
+>(({ className, variant = "default", isDisabled, disabled, isKeepMounted = false, type = "single", collapsible = true, ...props }, ref) => {
   const isAccordionDisabled = isDisabled || disabled;
 
   const rootClasses = cn(
@@ -38,9 +41,11 @@ const Accordion = React.forwardRef<
   );
 
   return (
-    <AccordionContext.Provider value={{ variant }}>
+    <AccordionContext.Provider value={{ variant, isKeepMounted }}>
       <AccordionPrimitive.Root
         ref={ref}
+        type={type as any}
+        collapsible={collapsible as any}
         disabled={isAccordionDisabled}
         className={rootClasses}
         {...props}
@@ -150,17 +155,21 @@ const AccordionTrigger = React.forwardRef<
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
 /* ─── Content ─── */
-type AccordionContentProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>;
+type AccordionContentProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> & {
+  forceMount?: boolean;
+};
 
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   AccordionContentProps
->(({ className, children, ...props }, ref) => {
-  const { variant } = useAccordionContext();
+>(({ className, children, forceMount, ...props }, ref) => {
+  const { variant, isKeepMounted } = useAccordionContext();
+  const shouldForceMount = forceMount || isKeepMounted;
 
   return (
     <AccordionPrimitive.Content
       ref={ref}
+      forceMount={shouldForceMount ? true : undefined}
       className="overflow-hidden text-sm transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down"
       {...props}
     >

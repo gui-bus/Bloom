@@ -31,6 +31,7 @@ export interface AutocompleteProps {
   color?: "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
+  highlightMatch?: boolean;
   className?: string;
 }
 
@@ -60,6 +61,7 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
       variant = "default",
       startContent,
       endContent,
+      highlightMatch = true,
       className,
     },
     ref
@@ -130,6 +132,24 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
       }
     };
 
+    const renderHighlightedText = (text: string, query: string) => {
+      if (!query || !highlightMatch) return text;
+      const parts = text.split(new RegExp(\`(\${query.replace(/[.*+?^$\{}()|[\\]\\\\]/g, "\\\\$&")})\`, "gi"));
+      return (
+        <span>
+          {parts.map((part, i) =>
+            part.toLowerCase() === query.toLowerCase() ? (
+              <mark key={i} className="bg-amber-200/80 dark:bg-amber-500/40 text-amber-900 dark:text-amber-100 rounded-xs px-0.5 font-bold">
+                {part}
+              </mark>
+            ) : (
+              part
+            )
+          )}
+        </span>
+      );
+    };
+
     return (
       <div ref={containerRef} className="relative w-full flex flex-col gap-1.5">
         {label && <label className="text-xs font-semibold text-foreground/90">{label}</label>}
@@ -181,7 +201,7 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
                     opt.disabled && "opacity-50 cursor-not-allowed"
                   )}
                 >
-                  <span className="font-medium">{opt.label}</span>
+                  <span className="font-medium">{renderHighlightedText(opt.label, inputValue)}</span>
                   {opt.description && (
                     <span className="text-xs text-muted-foreground">{opt.description}</span>
                   )}

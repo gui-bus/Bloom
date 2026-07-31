@@ -1,13 +1,9 @@
 "use client";
 
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
-
 import { ImportSnippet } from "@/components/core/importSnippet";
-
 import { DocsPagination } from "@/components/core/docsPagination";
-
 import { InstallationBlock } from "@/components/core/installationBlock";
-
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -31,7 +27,7 @@ export default function AlertComponentPage() {
     <div className="space-y-8">
       <DocsTitle
         title="Alert"
-        description="Displays a clean contextual banner for user attention with theme-adaptive neutral backgrounds, colored titles & icons, and custom slot support."
+        description="Displays a clean contextual banner for user attention with theme-adaptive neutral backgrounds, colored titles & icons, dismiss timers, action buttons, and accent border variants."
       />
 
       <ImportSnippet importCode={`import { Alert } from "@/components/ui/alert/alert";`} />
@@ -78,6 +74,87 @@ export default function AlertComponentPage() {
         props={["color: 'info'", "title: string"]}
       />
 
+      {/* Action Button */}
+      <DocsComponent
+        title="Action Layout (action)"
+        description="Embed interactive action controls directly inside the alert content."
+        preview={
+          <div className="w-full">
+            <Alert
+              color="warning"
+              title="Database Backup Required"
+              action={
+                <div className="flex items-center gap-2">
+                  <Button size="xs" color="warning">Backup Now</Button>
+                  <Button size="xs" variant="bordered">Remind Later</Button>
+                </div>
+              }
+            >
+              Your database has not been backed up for over 14 days. We strongly recommend creating a snapshot.
+            </Alert>
+          </div>
+        }
+        code={`<Alert
+  color="warning"
+  title="Database Backup Required"
+  action={
+    <div className="flex gap-2">
+      <Button size="xs" color="warning">Backup Now</Button>
+      <Button size="xs" variant="bordered">Remind Later</Button>
+    </div>
+  }
+>
+  Your database has not been backed up.
+</Alert>`}
+        props={["action: ReactNode"]}
+      />
+
+      {/* Variants (accent-left & glow) */}
+      <DocsComponent
+        title="Variants (accent-left & glow)"
+        description="Visual card framing variations including thick left accent borders and vibrant glowing shadow borders."
+        preview={
+          <div className="w-full space-y-4">
+            <Alert variant="accent-left" color="danger" title="Accent Left Variant">
+              High priority alert banner featuring a 4px solid left accent border line.
+            </Alert>
+            <Alert variant="glow" color="primary" title="Glow Variant">
+              Vibrant ambient glow border for critical announcements and featured callouts.
+            </Alert>
+          </div>
+        }
+        code={`<Alert variant="accent-left" color="danger" title="Accent Left">4px solid left accent line.</Alert>
+<Alert variant="glow" color="primary" title="Glow">Vibrant ambient glow shadow border.</Alert>`}
+        props={["variant: 'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' | 'accent-left' | 'glow'"]}
+      />
+
+      {/* Auto-Dismiss Timer */}
+      <DocsComponent
+        title="Auto-Dismiss Timer (durationMs)"
+        description="Automatically dismiss the alert banner after a specified duration in milliseconds."
+        preview={
+          <div className="w-full">
+            <Alert
+              color="success"
+              title="Auto-Dismissing Banner (5s)"
+              isDismissible
+              durationMs={5000}
+            >
+              This alert notification will automatically hide in 5 seconds.
+            </Alert>
+          </div>
+        }
+        code={`<Alert
+  color="success"
+  title="Auto-Dismissing Banner"
+  isDismissible
+  durationMs={5000}
+>
+  This alert notification will automatically hide in 5 seconds.
+</Alert>`}
+        props={["isDismissible: boolean", "durationMs: number"]}
+      />
+
       {/* Colors */}
       <DocsComponent
         title="Colors"
@@ -108,48 +185,6 @@ export default function AlertComponentPage() {
   <Alert color="danger" title="Connection Error">Unable to connect to database.</Alert>
 </div>`}
         props={["color: 'default' | 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'danger'"]}
-      />
-
-      {/* Variants */}
-      <DocsComponent
-        title="Variants"
-        description="Control the card framing and depth using the 'variant' prop ('default', 'bordered', 'flat', 'ghost', 'shadow')."
-        preview={
-          <div className="w-full space-y-4">
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">variant="default"</span>
-              <Alert variant="default" color="success" title="Default Variant">
-                Standard clean card with subtle border and light shadow.
-              </Alert>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">variant="bordered"</span>
-              <Alert variant="bordered" color="info" title="Bordered Variant">
-                Transparent card background enclosed by a crisp border frame.
-              </Alert>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">variant="flat"</span>
-              <Alert variant="flat" color="primary" title="Flat Variant">
-                Subtle muted background without outer border lines.
-              </Alert>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">variant="shadow"</span>
-              <Alert variant="shadow" color="warning" title="Shadow Variant">
-                Elevated card with a prominent drop shadow.
-              </Alert>
-            </div>
-          </div>
-        }
-        code={`<Alert variant="default" color="success" title="Default Variant">Card with border.</Alert>
-<Alert variant="bordered" color="info" title="Bordered Variant">Transparent with border.</Alert>
-<Alert variant="flat" color="primary" title="Flat Variant">Subtle muted background.</Alert>
-<Alert variant="shadow" color="warning" title="Shadow Variant">Elevated with drop shadow.</Alert>`}
-        props={["variant: 'default' | 'bordered' | 'flat' | 'ghost' | 'shadow'"]}
       />
 
       {/* StartContent & EndContent */}
@@ -199,65 +234,8 @@ export default function AlertComponentPage() {
   endContent={<Badge variant="flat">New</Badge>}
 >
   Sarah Jenkins joined the team.
-</Alert>
-
-<Alert
-  color="success"
-  title="Deployment Completed"
-  endContent={<Button size="xs" variant="bordered" color="success">View Logs</Button>}
->
-  Production build deployed.
 </Alert>`}
         props={["startContent: ReactNode", "endContent: ReactNode"]}
-      />
-
-      {/* Closable Alerts */}
-      <DocsComponent
-        title="Dismissible Alert (isClosable)"
-        description="Enable dismissible behavior by setting 'isClosable' to true. Handles state internally and triggers 'onClose' callback when dismissed."
-        preview={
-          <div className="w-full">
-            <Alert
-              color="warning"
-              title="Maintenance Scheduled"
-              isClosable
-              onClose={() => console.log("Alert dismissed")}
-            >
-              Scheduled database maintenance will occur tonight at 02:00 UTC. Systems will remain read-only.
-            </Alert>
-          </div>
-        }
-        code={`<Alert
-  color="warning"
-  title="Maintenance Scheduled"
-  isClosable
-  onClose={() => console.log("Alert dismissed")}
->
-  Scheduled maintenance will occur tonight.
-</Alert>`}
-        props={["isClosable: boolean", "onClose: () => void"]}
-      />
-
-      {/* Compound Usage */}
-      <DocsComponent
-        title="Compound Components (AlertTitle & AlertDescription)"
-        description="Compose flexible alert layouts using 'AlertTitle' and 'AlertDescription' subcomponents."
-        preview={
-          <div className="w-full">
-            <Alert color="danger">
-              <AlertTitle>Security Vulnerability Detected</AlertTitle>
-              <AlertDescription>
-                An outdated dependency package was flagged by automated security audit. Please upgrade immediately.
-              </AlertDescription>
-            </Alert>
-          </div>
-        }
-        code={`<Alert color="danger">
-  <AlertTitle>Security Vulnerability Detected</AlertTitle>
-  <AlertDescription>
-    An outdated dependency package was flagged by automated security audit.
-  </AlertDescription>
-</Alert>`}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -291,7 +269,7 @@ export default function AlertComponentPage() {
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'bordered' | 'flat' | 'ghost' | 'shadow'
+                    'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' | 'accent-left' | 'glow'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
                   <td className="px-3 py-2 text-muted-foreground">
@@ -299,59 +277,27 @@ export default function AlertComponentPage() {
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">title</td>
+                  <td className="px-3 py-2 font-mono text-primary">action</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Title header text rendered with the status color.
+                    Action buttons or controls container rendered inside the alert.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">startContent</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Custom element (icon, avatar) rendered before the title and message.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">endContent</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Custom element (action button, badge) rendered on the right side.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">icon</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Custom icon replacing the default status type icon.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">hideIcon</td>
+                  <td className="px-3 py-2 font-mono text-primary">isDismissible</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Hides the leading icon completely.
+                    Enables dismissible behavior with close button and timer support.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isClosable</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Renders a close button on the right to dismiss the alert banner.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">onClose</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">() =&gt; void</td>
+                  <td className="px-3 py-2 font-mono text-primary">durationMs</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Callback function fired when the alert is dismissed.
+                    Duration in milliseconds before automatically dismissing the alert.
                   </td>
                 </tr>
               </tbody>
@@ -360,64 +306,6 @@ export default function AlertComponentPage() {
         }
       />
 
-      <DocsComponent
-        title="Props — AlertTitle"
-        description="Properties for configuring the AlertTitle component."
-        preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">className</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Custom CSS class names for styling the title element.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        }
-      />
-
-      <DocsComponent
-        title="Props — AlertDescription"
-        description="Properties for configuring the AlertDescription component."
-        preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">className</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Custom CSS class names for styling the description container.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        }
-      />
-    
       <AccessibilityCard />
 
       <DocsPagination />

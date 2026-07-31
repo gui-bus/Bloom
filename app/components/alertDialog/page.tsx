@@ -1,13 +1,9 @@
 "use client";
 
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
-
 import { ImportSnippet } from "@/components/core/importSnippet";
-
 import { DocsPagination } from "@/components/core/docsPagination";
-
 import { InstallationBlock } from "@/components/core/installationBlock";
-
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -25,6 +21,7 @@ import {
   AlertDialogCancel,
 } from "@/components/ui/alertDialog/alertDialog";
 import { Button } from "@/components/ui/button/button";
+import { Input } from "@/components/ui/input/input";
 import { alertDialogCode } from "@/components/ui/alertDialog/alertDialog.code";
 import { Separator } from "@/components/ui/separator/separator";
 import {
@@ -35,11 +32,22 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 export default function AlertDialogComponentPage() {
+  const [confirmInput, setConfirmInput] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const handleAsyncAction = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
+
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Alert Dialog"
-        description="A confirmation dialog modal that interrupts the user with critical content requiring an explicit response before proceeding."
+        description="A confirmation dialog modal that interrupts the user with critical content requiring an explicit response, text validation verification, or async operation loading states before proceeding."
       />
 
       <ImportSnippet importCode={`import { AlertDialog } from "@/components/ui/alertDialog/alertDialog";`} />
@@ -110,128 +118,111 @@ export default function AlertDialogComponentPage() {
 </AlertDialog>`}
       />
 
-      {/* Action Button Colors */}
+      {/* Text Validation Confirmation */}
       <DocsComponent
-        title="Action Colors (Primary, Success & Warning)"
-        description="Customize the confirm action button using the 'color' prop on AlertDialogAction ('danger', 'primary', 'warning', 'success', 'default')."
+        title="Text Validation Confirmation"
+        description="Require the user to type an exact confirmation string (e.g. 'DELETE') to unlock the action button."
         preview={
-          <div className="w-full flex flex-wrap gap-4">
-            {/* Primary Action */}
+          <div className="w-full">
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button color="primary">Publish Release</Button>
+                <Button color="danger">Delete Production Database</Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>Publish Version v2.4.0?</AlertDialogTitle>
+                  <AlertDialogTitle>Critical Destruction Warning</AlertDialogTitle>
                   <AlertDialogDescription>
-                    This release will immediately become live for all production users across 12 region deployment clusters.
+                    Please type <strong className="text-rose-500 font-mono">DELETE</strong> in the box below to confirm permanent destruction.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
+                <div className="my-2">
+                  <Input
+                    placeholder="Type DELETE to confirm"
+                    value={confirmInput}
+                    onChange={(e) => setConfirmInput(e.target.value)}
+                  />
+                </div>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction color="primary">Confirm & Publish</AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-
-            {/* Warning Action */}
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button color="warning">Deactivate API Key</Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Deactivate Production API Key?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    Any active applications using this API key will lose access immediately until a new key is issued.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction color="warning">Deactivate Key</AlertDialogAction>
+                  <AlertDialogCancel onClick={() => setConfirmInput("")}>Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    color="danger"
+                    disabled={confirmInput !== "DELETE"}
+                  >
+                    Permanently Destroy
+                  </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
           </div>
         }
-        code={`{/* Primary Action */}
+        code={`const [confirmInput, setConfirmInput] = useState("");
+
 <AlertDialog>
   <AlertDialogTrigger asChild>
-    <Button color="primary">Publish Release</Button>
+    <Button color="danger">Delete Production Database</Button>
   </AlertDialogTrigger>
   <AlertDialogContent>
     <AlertDialogHeader>
-      <AlertDialogTitle>Publish Version v2.4.0?</AlertDialogTitle>
+      <AlertDialogTitle>Critical Destruction Warning</AlertDialogTitle>
       <AlertDialogDescription>
-        This release will immediately become live for production users.
+        Type DELETE to confirm.
       </AlertDialogDescription>
     </AlertDialogHeader>
+    <Input
+      placeholder="Type DELETE to confirm"
+      value={confirmInput}
+      onChange={(e) => setConfirmInput(e.target.value)}
+    />
     <AlertDialogFooter>
       <AlertDialogCancel>Cancel</AlertDialogCancel>
-      <AlertDialogAction color="primary">Confirm & Publish</AlertDialogAction>
+      <AlertDialogAction color="danger" disabled={confirmInput !== "DELETE"}>
+        Permanently Destroy
+      </AlertDialogAction>
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}
       />
 
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
-
-      {/* Sub-components Reference */}
+      {/* Async Action Loading */}
       <DocsComponent
-        title="Subcomponents — AlertDialog"
-        description="Primitives available for building accessible confirmation dialogs."
+        title="Async Action Loading (isLoading)"
+        description="Render a loading spinner state on the action button during asynchronous operations."
         preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Component</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">AlertDialog</td>
-                  <td className="px-3 py-2 text-muted-foreground">Root container component managing open state.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">AlertDialogTrigger</td>
-                  <td className="px-3 py-2 text-muted-foreground">Button or element that opens the dialog modal.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">AlertDialogContent</td>
-                  <td className="px-3 py-2 text-muted-foreground">Modal overlay card container formatted with clean dark/light neutral colors.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">AlertDialogHeader</td>
-                  <td className="px-3 py-2 text-muted-foreground">Header container wrapping the dialog title and description.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">AlertDialogTitle</td>
-                  <td className="px-3 py-2 text-muted-foreground">Accessible heading title for the confirmation dialog.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">AlertDialogDescription</td>
-                  <td className="px-3 py-2 text-muted-foreground">Body text explaining the consequences of the confirmation action.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">AlertDialogFooter</td>
-                  <td className="px-3 py-2 text-muted-foreground">Footer layout container aligning action buttons.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">AlertDialogAction</td>
-                  <td className="px-3 py-2 text-muted-foreground">Primary action button executing the operation. Supports 'color' prop.</td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">AlertDialogCancel</td>
-                  <td className="px-3 py-2 text-muted-foreground">Cancel button closing the dialog with neutral hover background.</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="w-full">
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button color="primary">Sync Remote Cluster</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Sync Cluster Nodes?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will sync all state data across 24 edge servers worldwide.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    color="primary"
+                    isLoading={isLoading}
+                    onClick={handleAsyncAction}
+                  >
+                    Start Sync Process
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         }
+        code={`const [isLoading, setIsLoading] = useState(false);
+
+<AlertDialogAction color="primary" isLoading={isLoading} onClick={handleAsyncAction}>
+  Start Sync Process
+</AlertDialogAction>`}
+        props={["isLoading: boolean"]}
       />
+
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props AlertDialogAction Table */}
       <DocsComponent
@@ -249,7 +240,7 @@ export default function AlertDialogComponentPage() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'danger' | 'primary' | 'warning' | 'success' | 'default'
@@ -257,6 +248,14 @@ export default function AlertDialogComponentPage() {
                   <td className="px-3 py-2 text-muted-foreground">'danger'</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Semantic color theme for the confirmation action button.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">isLoading</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Displays a loading spinner indicator and disables interaction.
                   </td>
                 </tr>
               </tbody>

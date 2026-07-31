@@ -26,7 +26,7 @@ export default function AspectRatioPage() {
     <main className="p-5 space-y-8">
       <DocsTitle
         title="Aspect Ratio"
-        description="Displays content within a desired aspect ratio, preserving proportions responsively across viewport sizes."
+        description="Displays content within a desired aspect ratio, preserving proportions responsively across viewport sizes with ratio presets and skeleton loading placeholders."
       />
 
       <ImportSnippet importCode={`import { AspectRatio } from "@/components/ui/aspectRatio/aspectRatio";`} />
@@ -53,83 +53,67 @@ export default function AspectRatioPage() {
         </TabsContent>
       </Tabs>
 
-      {/* 16/9 Ratio */}
+      {/* Ratio Presets */}
       <DocsComponent
-        title="Default Ratio (16:9)"
-        description="Standard widescreen aspect ratio suitable for video embeds and media cards."
+        title="Preset Ratios (preset)"
+        description="Use predefined ratio aliases ('video', 'square', 'golden', 'cinema', 'portrait', 'ultrawide')."
+        preview={
+          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">preset="video" (16:9)</span>
+              <AspectRatio preset="video" className="bg-muted">
+                <img
+                  src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=800"
+                  alt="Video Widescreen"
+                  className="size-full object-cover"
+                />
+              </AspectRatio>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">preset="square" (1:1)</span>
+              <AspectRatio preset="square" className="bg-muted">
+                <img
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500"
+                  alt="Square Portrait"
+                  className="size-full object-cover"
+                />
+              </AspectRatio>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">preset="cinema" (21:9)</span>
+              <AspectRatio preset="cinema" className="bg-muted">
+                <img
+                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1000"
+                  alt="Cinema Banner"
+                  className="size-full object-cover"
+                />
+              </AspectRatio>
+            </div>
+          </div>
+        }
+        code={`<AspectRatio preset="video">...</AspectRatio>
+<AspectRatio preset="square">...</AspectRatio>
+<AspectRatio preset="cinema">...</AspectRatio>`}
+        props={["preset: 'video' | 'square' | 'golden' | 'cinema' | 'portrait' | 'ultrawide'"]}
+      />
+
+      {/* Loading Skeleton */}
+      <DocsComponent
+        title="Loading Skeleton Placeholder (isLoading)"
+        description="Display a pulsing skeleton container while high-resolution media is loading."
         preview={
           <div className="w-full max-w-md">
-            <AspectRatio ratio={16 / 9} className="bg-muted rounded-2xl overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=800"
-                alt="16:9 Widescreen Landscape"
-                className="size-full object-cover"
-              />
+            <AspectRatio preset="video" isLoading>
+              <div />
             </AspectRatio>
           </div>
         }
-        code={`<div className="w-full max-w-md">
-  <AspectRatio ratio={16 / 9} className="bg-muted rounded-2xl overflow-hidden">
-    <img
-      src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=800"
-      alt="16:9 Widescreen Landscape"
-      className="size-full object-cover"
-    />
-  </AspectRatio>
-</div>`}
-        props={["ratio: number (default: 16 / 9)"]}
-      />
-
-      {/* 1/1 Ratio */}
-      <DocsComponent
-        title="Square Ratio (1:1)"
-        description="Perfect 1:1 square ratio commonly used for avatars, product thumbnails, and grid galleries."
-        preview={
-          <div className="w-48">
-            <AspectRatio ratio={1 / 1} className="bg-muted rounded-2xl overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500"
-                alt="1:1 Square Portrait"
-                className="size-full object-cover"
-              />
-            </AspectRatio>
-          </div>
-        }
-        code={`<div className="w-48">
-  <AspectRatio ratio={1 / 1} className="bg-muted rounded-2xl overflow-hidden">
-    <img
-      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500"
-      alt="1:1 Square Portrait"
-      className="size-full object-cover"
-    />
-  </AspectRatio>
-</div>`}
-      />
-
-      {/* 21/9 Ultrawide Ratio */}
-      <DocsComponent
-        title="Ultrawide Ratio (21:9)"
-        description="Cinematic ultrawide ratio ideal for page headers, hero banners, and cover images."
-        preview={
-          <div className="w-full max-w-lg">
-            <AspectRatio ratio={21 / 9} className="bg-muted rounded-2xl overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1000"
-                alt="21:9 Ultrawide Banner"
-                className="size-full object-cover"
-              />
-            </AspectRatio>
-          </div>
-        }
-        code={`<div className="w-full max-w-lg">
-  <AspectRatio ratio={21 / 9} className="bg-muted rounded-2xl overflow-hidden">
-    <img
-      src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1000"
-      alt="21:9 Ultrawide Banner"
-      className="size-full object-cover"
-    />
-  </AspectRatio>
-</div>`}
+        code={`<AspectRatio preset="video" isLoading>
+  <img src="..." alt="Media" />
+</AspectRatio>`}
+        props={["isLoading: boolean"]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -150,28 +134,38 @@ export default function AspectRatioPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">preset</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'video' | 'square' | 'golden' | 'cinema' | 'portrait' | 'ultrawide'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Preset aspect ratio alias. Takes precedence over custom numeric ratio.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">ratio</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
                   <td className="px-3 py-2 text-muted-foreground">16 / 9</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Desired width-to-height ratio (e.g. 16/9, 4/3, 1/1, 21/9).
+                    Desired custom width-to-height numeric ratio (e.g. 16/9, 4/3, 1/1).
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">className</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 font-mono text-primary">isLoading</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Tailwind CSS classes for background styling, rounding, and overflow bounds.
+                    Shows an integrated skeleton loading spinner state inside the container frame.
                   </td>
                 </tr>
               </tbody>
             </table>
-          
-      <DocsPagination />
-    </div>
+          </div>
         }
       />
+
+      <DocsPagination />
     </main>
   );
 }

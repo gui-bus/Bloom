@@ -3,6 +3,7 @@ export const alertDialogCode = `"use client";
 import * as React from "react";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 import { cn } from "@/lib/utils";
+import { Icon } from "@iconify/react";
 
 const AlertDialog = AlertDialogPrimitive.Root;
 const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
@@ -75,7 +76,7 @@ const AlertDialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Title
     ref={ref}
-    className={cn("text-lg font-bold text-zinc-900 dark:text-zinc-100 tracking-tight", className)}
+    className={cn("text-lg font-bold text-zinc-900 dark:text-zinc-100 tracking-tight flex items-center gap-2", className)}
     {...props}
   />
 ));
@@ -106,31 +107,42 @@ export type AlertDialogActionColor =
 export interface AlertDialogActionProps
   extends React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action> {
   color?: AlertDialogActionColor;
+  isLoading?: boolean;
 }
 
 const actionColorMap: Record<AlertDialogActionColor, string> = {
-  danger: "bg-danger text-danger-foreground hover:opacity-90",
-  primary: "bg-primary text-primary-foreground hover:opacity-90",
-  secondary: "bg-secondary text-secondary-foreground hover:opacity-90",
-  accent: "bg-accent text-accent-foreground hover:opacity-90",
-  success: "bg-success text-success-foreground hover:opacity-90",
-  warning: "bg-warning text-warning-foreground hover:opacity-90",
-  default: "bg-default text-default-foreground hover:opacity-90",
+  danger: "bg-rose-500 hover:bg-rose-600 text-white shadow-rose-500/20",
+  primary: "bg-sky-500 hover:bg-sky-600 text-white shadow-sky-500/20",
+  secondary: "bg-purple-500 hover:bg-purple-600 text-white shadow-purple-500/20",
+  accent: "bg-pink-500 hover:bg-pink-600 text-white shadow-pink-500/20",
+  success: "bg-emerald-500 hover:bg-emerald-600 text-white shadow-emerald-500/20",
+  warning: "bg-amber-500 hover:bg-amber-600 text-white shadow-amber-500/20",
+  default: "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:opacity-90",
 };
 
 const AlertDialogAction = React.forwardRef<
   React.ComponentRef<typeof AlertDialogPrimitive.Action>,
   AlertDialogActionProps
->(({ className, color = "danger", ...props }, ref) => (
+>(({ className, color = "danger", isLoading = false, children, disabled, ...props }, ref) => (
   <AlertDialogPrimitive.Action
     ref={ref}
+    disabled={disabled || isLoading}
     className={cn(
-      "inline-flex h-9 items-center justify-center rounded-xl px-4 text-sm font-medium cursor-pointer transition-all duration-200 shadow-md",
+      "inline-flex h-9 items-center justify-center gap-2 rounded-xl px-4 text-sm font-semibold cursor-pointer transition-all duration-200 shadow-md disabled:opacity-50 disabled:cursor-not-allowed select-none",
       actionColorMap[color],
       className
     )}
     {...props}
-  />
+  >
+    {isLoading ? (
+      <>
+        <Icon icon="hugeicons:loading-01" className="size-4 animate-spin" />
+        <span>Loading...</span>
+      </>
+    ) : (
+      children
+    )}
+  </AlertDialogPrimitive.Action>
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
 
@@ -141,7 +153,7 @@ const AlertDialogCancel = React.forwardRef<
   <AlertDialogPrimitive.Cancel
     ref={ref}
     className={cn(
-      "inline-flex h-9 items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer transition-all duration-200 mt-2 sm:mt-0",
+      "inline-flex h-9 items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer transition-all duration-200 mt-2 sm:mt-0 select-none",
       className
     )}
     {...props}

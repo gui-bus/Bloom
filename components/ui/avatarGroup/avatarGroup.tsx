@@ -5,12 +5,14 @@ import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, type AvatarProps } from "@/components/ui/avatar/avatar";
 
 export type AvatarGroupOrientation = "horizontal" | "vertical";
+export type AvatarGroupOverlap = "sm" | "md" | "lg";
 
 export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   max?: number;
   total?: number;
   orientation?: AvatarGroupOrientation;
+  overlap?: AvatarGroupOverlap;
   size?: AvatarProps["size"];
   color?: AvatarProps["color"];
   radius?: AvatarProps["radius"];
@@ -20,6 +22,18 @@ export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   renderCount?: (count: number) => React.ReactNode;
 }
 
+const overlapHorizontal: Record<AvatarGroupOverlap, string> = {
+  sm: "-space-x-1.5 hover:-space-x-1",
+  md: "-space-x-3 hover:-space-x-1.5",
+  lg: "-space-x-4 hover:-space-x-2",
+};
+
+const overlapVertical: Record<AvatarGroupOverlap, string> = {
+  sm: "-space-y-1.5 hover:-space-y-1",
+  md: "-space-y-3 hover:-space-y-1.5",
+  lg: "-space-y-4 hover:-space-y-2",
+};
+
 const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
   (
     {
@@ -27,6 +41,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       max,
       total,
       orientation = "horizontal",
+      overlap = "md",
       size = "md",
       color = "default",
       radius = "full",
@@ -57,8 +72,8 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
           isGrid
             ? "flex-wrap gap-2"
             : isVertical
-            ? "flex-col -space-y-3 hover:-space-y-1.5 items-start"
-            : "items-center -space-x-3 hover:-space-x-1.5",
+            ? cn("flex-col items-start", overlapVertical[overlap])
+            : cn("items-center", overlapHorizontal[overlap]),
           isDisabled && "opacity-50 grayscale pointer-events-none",
           className
         )}

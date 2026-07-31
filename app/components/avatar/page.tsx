@@ -1,11 +1,8 @@
 "use client";
 
 import { ImportSnippet } from "@/components/core/importSnippet";
-
 import { DocsPagination } from "@/components/core/docsPagination";
-
 import { InstallationBlock } from "@/components/core/installationBlock";
-
 import * as React from "react";
 import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -26,7 +23,7 @@ export default function AvatarPage() {
     <div className="space-y-8">
       <DocsTitle
         title="Avatar"
-        description="Avatars represent a user or entity using an image, initials fallback, or status indicator. Built on top of Radix UI primitive with support for interactive press states and standardized neutral dark/light themes."
+        description="Avatars represent a user or entity using an image, initials fallback, editable photo uploads, or status indicator. Built on top of Radix UI primitive with support for interactive press states and standardized neutral dark/light themes."
       />
 
       <ImportSnippet importCode={`import { Avatar } from "@/components/ui/avatar/avatar";`} />
@@ -47,7 +44,7 @@ export default function AvatarPage() {
           <CodeBlock
             code={avatarCode}
             componentName="avatar.tsx"
-            description="Avatar component featuring image fallbacks, pressable interactions, status dots, and clean dark/light neutral colors."
+            description="Avatar component featuring image fallbacks, pressable interactions, editable overlays, status dots, and clean dark/light neutral colors."
             tags={["React", "Tailwind", "Radix UI", "UI Component", "Avatar"]}
           />
         </TabsContent>
@@ -87,6 +84,28 @@ export default function AvatarPage() {
     <AvatarFallback>AB</AvatarFallback>
   </Avatar>
 </div>`}
+      />
+
+      {/* Editable Upload Overlay */}
+      <DocsComponent
+        title="Editable Photo Upload Overlay (isEditable)"
+        description="Render a hover photo upload icon overlay using 'isEditable' and trigger 'onUpload' callback."
+        preview={
+          <div className="w-full flex flex-wrap items-center gap-5">
+            <Avatar size="xl" isEditable onUpload={() => alert("Upload photo clicked!")}>
+              <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
+              <AvatarFallback>SJ</AvatarFallback>
+            </Avatar>
+            <Avatar size="xl" isEditable isBordered color="primary" onUpload={() => alert("Upload photo clicked!")}>
+              <AvatarFallback>SJ</AvatarFallback>
+            </Avatar>
+          </div>
+        }
+        code={`<Avatar size="xl" isEditable onUpload={() => handleUpload()}>
+  <AvatarImage src="..." alt="Sarah Jenkins" />
+  <AvatarFallback>SJ</AvatarFallback>
+</Avatar>`}
+        props={["isEditable: boolean", "onUpload: () => void"]}
       />
 
       {/* Pressable */}
@@ -208,35 +227,6 @@ export default function AvatarPage() {
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
 
-      {/* Radius */}
-      <DocsComponent
-        title="Border Radius"
-        description="Controls corner rounding from sharp 'none' to fully circular 'full'."
-        preview={
-          <div className="w-full flex flex-wrap items-center gap-4">
-            <Avatar radius="none">
-              <AvatarFallback>SQ</AvatarFallback>
-            </Avatar>
-            <Avatar radius="md">
-              <AvatarFallback>MD</AvatarFallback>
-            </Avatar>
-            <Avatar radius="xl">
-              <AvatarFallback>XL</AvatarFallback>
-            </Avatar>
-            <Avatar radius="full">
-              <AvatarFallback>RD</AvatarFallback>
-            </Avatar>
-          </div>
-        }
-        code={`<div className="flex flex-wrap items-center gap-4">
-  <Avatar radius="none"><AvatarFallback>SQ</AvatarFallback></Avatar>
-  <Avatar radius="md"><AvatarFallback>MD</AvatarFallback></Avatar>
-  <Avatar radius="xl"><AvatarFallback>XL</AvatarFallback></Avatar>
-  <Avatar radius="full"><AvatarFallback>RD</AvatarFallback></Avatar>
-</div>`}
-        props={["radius: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'"]}
-      />
-
       {/* Status Indicators */}
       <DocsComponent
         title="Status Indicators"
@@ -266,31 +256,6 @@ export default function AvatarPage() {
         props={["status: AvatarColor", "statusPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'"]}
       />
 
-      {/* Disabled State */}
-      <DocsComponent
-        title="Disabled State"
-        description="Applies grayscale filter, reduced opacity, and disables pointer interactions when 'isDisabled' is true."
-        preview={
-          <div className="w-full flex flex-wrap items-center gap-4">
-            <Avatar isDisabled>
-              <AvatarFallback>DS</AvatarFallback>
-            </Avatar>
-            <Avatar isDisabled isBordered color="primary">
-              <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
-              <AvatarFallback>DS</AvatarFallback>
-            </Avatar>
-          </div>
-        }
-        code={`<div className="flex flex-wrap items-center gap-4">
-  <Avatar isDisabled><AvatarFallback>DS</AvatarFallback></Avatar>
-  <Avatar isDisabled isBordered color="primary">
-    <AvatarImage src="..." alt="Sarah Jenkins" />
-    <AvatarFallback>DS</AvatarFallback>
-  </Avatar>
-</div>`}
-        props={["isDisabled: boolean"]}
-      />
-
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       {/* Props Avatar Table */}
@@ -310,6 +275,18 @@ export default function AvatarPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isEditable</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders a photo camera icon overlay on hover for image updates.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">onUpload</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">() =&gt; void</td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback triggered when clicking the upload overlay icon.</td>
+                </tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">size</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
@@ -327,58 +304,6 @@ export default function AvatarPage() {
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Theme color for the outer ring when isBordered is true, and for the fallback background.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'full'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Corner rounding scale for the avatar element.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isBordered</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Enables an outer color ring around the avatar frame.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isPressable</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Enables interactive scale animation and keyboard focus for clickable avatars.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isDisabled</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Disables interaction and applies opacity + grayscale filter.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">status</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">AvatarColor</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Displays a status dot indicator over the avatar.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">statusPosition</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'bottom-right'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Corner alignment position for the status dot.
                   </td>
                 </tr>
               </tbody>
