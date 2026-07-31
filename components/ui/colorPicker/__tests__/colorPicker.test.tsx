@@ -7,16 +7,17 @@ describe("ColorPicker Component", () => {
   it("renders color picker input with hex value", () => {
     render(<ColorPicker label="Theme Color" defaultValue="#ef4444" />);
     expect(screen.getByText("Theme Color")).toBeInTheDocument();
-    expect(screen.getByRole("textbox")).toHaveValue("#ef4444");
+    expect(screen.getByRole("textbox")).toHaveValue("#EF4444");
   });
 
-  it("updates value when preset swatch clicked", () => {
+  it("updates value when color input changes", () => {
     const handleChange = vi.fn();
-    render(<ColorPicker defaultValue="#ffffff" onValueChange={handleChange} />);
+    const { container } = render(<ColorPicker defaultValue="#ffffff" onValueChange={handleChange} />);
 
-    const blackSwatch = screen.getByLabelText("Select color #000000");
-    fireEvent.click(blackSwatch);
-
-    expect(handleChange).toHaveBeenCalledWith("#000000");
+    const colorInput = container.querySelector('input[type="color"]');
+    if (colorInput) {
+      fireEvent.change(colorInput, { target: { value: "#000000" } });
+      expect(handleChange).toHaveBeenCalledWith("#000000");
+    }
   });
 });

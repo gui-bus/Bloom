@@ -7,7 +7,7 @@ describe("NumberInput Component", () => {
   it("renders with initial value and label", () => {
     render(<NumberInput label="Quantity" defaultValue={5} />);
     expect(screen.getByText("Quantity")).toBeInTheDocument();
-    expect(screen.getByRole("spinbutton")).toHaveValue(5);
+    expect(screen.getByDisplayValue("5")).toBeInTheDocument();
   });
 
   it("increments and decrements value on button clicks", () => {

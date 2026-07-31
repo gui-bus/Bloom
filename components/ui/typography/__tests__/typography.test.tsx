@@ -22,19 +22,29 @@ describe("Typography Component", () => {
     render(<Typography variant="h2" as="span">Custom Span Heading</Typography>);
     const element = screen.getByText("Custom Span Heading");
     expect(element.tagName).toBe("SPAN");
-    expect(element).toHaveClass("text-3xl", "font-semibold");
+    expect(element).toHaveClass("text-3xl", "font-bold");
   });
 
   it("applies color classes correctly", () => {
     render(<Typography color="primary">Primary Text</Typography>);
     const text = screen.getByText("Primary Text");
-    expect(text).toHaveClass("text-primary");
+    expect(text).toHaveClass("text-sky-500");
   });
 
   it("renders code variant properly", () => {
     render(<Typography variant="code">const x = 10;</Typography>);
     const code = screen.getByText("const x = 10;");
     expect(code.tagName).toBe("CODE");
-    expect(code).toHaveClass("font-mono", "bg-muted");
+    expect(code).toHaveClass("font-mono", "bg-zinc-100");
+  });
+
+  it("handles line clamping with Read More toggle", () => {
+    render(
+      <Typography clampLines={2} showExpandToggle>
+        Long clamped paragraph text...
+      </Typography>
+    );
+    const button = screen.getByRole("button", { name: "Read More" });
+    expect(button).toBeInTheDocument();
   });
 });

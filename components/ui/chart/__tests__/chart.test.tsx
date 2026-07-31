@@ -5,7 +5,6 @@ import { Chart } from "../chart";
 
 describe("Chart Component", () => {
   beforeEach(() => {
-    // Mock ResizeObserver for Recharts
     global.ResizeObserver = class {
       observe() {}
       unobserve() {}

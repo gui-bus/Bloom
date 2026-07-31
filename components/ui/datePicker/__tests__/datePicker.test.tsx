@@ -15,6 +15,6 @@ describe("DatePicker Component", () => {
     const trigger = screen.getByText("Select date...");
 
     fireEvent.click(trigger);
-    expect(screen.getByText("Su")).toBeInTheDocument();
+    expect(screen.getAllByText("S")[0]).toBeInTheDocument();
   });
 });

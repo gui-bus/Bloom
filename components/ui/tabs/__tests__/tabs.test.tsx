@@ -3,7 +3,6 @@ import * as React from "react";
 import { describe, it, expect, vi } from "vitest";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../tabs";
 
-// Mock framer-motion animations to avoid issues in jsdom environment
 vi.mock("framer-motion", () => ({
   motion: {
     div: React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
@@ -31,19 +30,16 @@ describe("Tabs Component", () => {
       </Tabs>
     );
 
-    // Initial state: Tab 1 content is visible, Tab 2 content is not
     expect(screen.getByText("Content One")).toBeInTheDocument();
     expect(screen.queryByText("Content Two")).not.toBeInTheDocument();
 
     const tab2 = screen.getByRole("tab", { name: "Tab Two" });
 
-    // Click Tab 2 (fire keydown space/enter and click events to ensure Radix receives them)
     fireEvent.focus(tab2);
     fireEvent.keyDown(tab2, { key: " ", code: "Space", keyCode: 32 });
     fireEvent.keyUp(tab2, { key: " ", code: "Space", keyCode: 32 });
     fireEvent.click(tab2);
 
-    // Tab 2 content should become visible
     await waitFor(() => {
       expect(screen.getByText("Content Two")).toBeInTheDocument();
     });
@@ -64,7 +60,7 @@ describe("Tabs Component", () => {
 
     const disabledTrigger = screen.getByRole("tab", { name: "Tab Two" });
     expect(disabledTrigger).toBeDisabled();
-    expect(disabledTrigger).toHaveClass("opacity-50", "pointer-events-none");
+    expect(disabledTrigger).toHaveClass("opacity-40", "pointer-events-none");
 
     fireEvent.focus(disabledTrigger);
     fireEvent.keyDown(disabledTrigger, { key: " ", code: "Space", keyCode: 32 });

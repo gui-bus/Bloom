@@ -36,7 +36,7 @@ describe("Card Component", () => {
       </Card>
     );
     const card = screen.getByTestId("card");
-    expect(card).toHaveClass("border", "border-sky-500");
+    expect(card).toHaveClass("border", "border-sky-500/50");
   });
 
   it("handles isHoverable and isPressable props", () => {

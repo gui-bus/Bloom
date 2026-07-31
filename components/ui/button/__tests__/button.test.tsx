@@ -41,7 +41,7 @@ describe("Button Component", () => {
   it("applies size and variant classes from CVA and design system maps", () => {
     render(<Button size="sm" variant="bordered" color="success">Success bordered</Button>);
     const button = screen.getByRole("button");
-    expect(button).toHaveClass("text-sm"); // sm size
-    expect(button).toHaveClass("border"); // bordered variant
+    expect(button).toHaveClass("text-sm");
+    expect(button).toHaveClass("border");
   });
 });

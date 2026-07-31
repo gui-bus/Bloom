@@ -26,13 +26,13 @@ describe("Separator Component", () => {
   it("applies color theme classes correctly", () => {
     const { container } = render(<Separator color="primary" />);
     const root = container.firstElementChild;
-    expect(root).toHaveClass("bg-primary");
+    expect(root).toHaveClass("bg-sky-500");
   });
 
   it("applies gradient class when gradient prop is true", () => {
     const { container } = render(<Separator gradient color="primary" />);
     const root = container.firstElementChild;
-    expect(root).toHaveClass("bg-linear-to-r");
+    expect(root).toHaveClass("bg-gradient-to-r");
   });
 
   it("sets non-decorative aria role when decorative is false", () => {

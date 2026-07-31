@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import { describe, it, expect, vi } from "vitest";
 
-// Mock embla-carousel-react to operate safely in jsdom environment
 vi.mock("embla-carousel-react", () => {
   return {
     default: () => [

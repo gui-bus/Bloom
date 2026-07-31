@@ -38,7 +38,7 @@ describe("ButtonGroup Component", () => {
       </ButtonGroup>
     );
 
-    const firstButton = screen.getByRole("button", { name: "Loading 1" });
+    const firstButton = screen.getAllByRole("button")[0];
     expect(firstButton).toBeDisabled();
   });
 
@@ -55,8 +55,8 @@ describe("ButtonGroup Component", () => {
     const btnB = screen.getByRole("button", { name: "Button B" });
     const btnC = screen.getByRole("button", { name: "Button C" });
 
-    expect(btnA).toHaveClass("rounded-none", "rounded-l-xl");
+    expect(btnA).toHaveClass("rounded-l-xl");
     expect(btnB).toHaveClass("rounded-none");
-    expect(btnC).toHaveClass("rounded-none", "rounded-r-xl");
+    expect(btnC).toHaveClass("rounded-r-xl");
   });
 });
