@@ -26,7 +26,9 @@ export default function FileUploadComponentPage() {
         description="Interactive drag & drop file upload zone with drop-zone highlight animations, immediate image/video thumbnail previews, image crop & rotation modal, clipboard image pasting, resolution/aspect ratio validation, and per-file progress tracking."
       />
 
-      <ImportSnippet importCode={`import { FileUpload } from "@/components/ui/fileUpload/fileUpload";`} />
+      <ImportSnippet
+        importCode={`import { FileUpload } from "@/components/ui/fileUpload/fileUpload";`}
+      />
 
       <InstallationBlock componentName="fileUpload" />
 
@@ -45,7 +47,13 @@ export default function FileUploadComponentPage() {
             code={fileUploadCode}
             componentName="fileUpload.tsx"
             description="Core implementation of the FileUpload component supporting image cropping/rotation, clipboard pasting, and file validation rules."
-            tags={["React", "File Upload", "Drag and Drop", "Image Crop", "Validation"]}
+            tags={[
+              "React",
+              "File Upload",
+              "Drag and Drop",
+              "Image Crop",
+              "Validation",
+            ]}
           />
         </TabsContent>
       </Tabs>
@@ -200,55 +208,103 @@ export default function FileUploadComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">enableCrop</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    enableCrop
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Opens interactive image crop and rotation modal before uploading.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Opens interactive image crop and rotation modal before
+                    uploading.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">allowPaste</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    allowPaste
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Allows pasting images directly from the clipboard via Ctrl+V shortcut.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Allows pasting images directly from the clipboard via Ctrl+V
+                    shortcut.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">validationRules</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">FileValidationRules</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    validationRules
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    FileValidationRules
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Validation object enforcing min/max pixel resolution or aspect ratio.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Validation object enforcing min/max pixel resolution or
+                    aspect ratio.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showPreviews</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showPreviews
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders thumbnail previews for images and videos.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders thumbnail previews for images and videos.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">simulateProgress</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    simulateProgress
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables individual file upload progress tracking with pause/resume controls.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables individual file upload progress tracking with
+                    pause/resume controls.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">maxSizeMB</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    maxSizeMB
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">10</td>
-                  <td className="px-3 py-2 text-muted-foreground">Maximum allowable file size limit in megabytes.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Maximum allowable file size limit in megabytes.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

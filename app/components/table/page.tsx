@@ -39,7 +39,9 @@ export default function TableComponentPage() {
         description="A responsive data table for presenting tabular information with custom row highlights, headers, status badges, and captions."
       />
 
-      <ImportSnippet importCode={`import { Table } from "@/components/ui/table/table";`} />
+      <ImportSnippet
+        importCode={`import { Table } from "@/components/ui/table/table";`}
+      />
 
       <InstallationBlock componentName="table" />
 
@@ -82,19 +84,25 @@ export default function TableComponentPage() {
               <TableBody>
                 <TableRow>
                   <TableCell className="font-bold">INV-001</TableCell>
-                  <TableCell><Badge color="success">Paid</Badge></TableCell>
+                  <TableCell>
+                    <Badge color="success">Paid</Badge>
+                  </TableCell>
                   <TableCell>Credit Card</TableCell>
                   <TableCell className="text-right">$250.00</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-bold">INV-002</TableCell>
-                  <TableCell><Badge color="warning">Pending</Badge></TableCell>
+                  <TableCell>
+                    <Badge color="warning">Pending</Badge>
+                  </TableCell>
                   <TableCell>PayPal</TableCell>
                   <TableCell className="text-right">$150.00</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-bold">INV-003</TableCell>
-                  <TableCell><Badge color="danger">Unpaid</Badge></TableCell>
+                  <TableCell>
+                    <Badge color="danger">Unpaid</Badge>
+                  </TableCell>
                   <TableCell>Bank Transfer</TableCell>
                   <TableCell className="text-right">$350.00</TableCell>
                 </TableRow>
@@ -102,7 +110,9 @@ export default function TableComponentPage() {
               <TableFooter>
                 <TableRow>
                   <TableCell colSpan={3}>Total</TableCell>
-                  <TableCell className="text-right font-bold">$750.00</TableCell>
+                  <TableCell className="text-right font-bold">
+                    $750.00
+                  </TableCell>
                 </TableRow>
               </TableFooter>
             </Table>
@@ -144,12 +154,16 @@ export default function TableComponentPage() {
                 <TableRow data-state="selected">
                   <TableCell className="font-bold">Guilherme Bus</TableCell>
                   <TableCell>gui@example.com</TableCell>
-                  <TableCell><Badge color="primary">Admin</Badge></TableCell>
+                  <TableCell>
+                    <Badge color="primary">Admin</Badge>
+                  </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-bold">Ana Silva</TableCell>
                   <TableCell>ana@example.com</TableCell>
-                  <TableCell><Badge color="secondary">Developer</Badge></TableCell>
+                  <TableCell>
+                    <Badge color="secondary">Developer</Badge>
+                  </TableCell>
                 </TableRow>
               </TableBody>
             </Table>
@@ -176,10 +190,30 @@ export default function TableComponentPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow><TableCell className="font-mono">#101</TableCell><TableCell>Pro Mac M3 Max</TableCell><TableCell>Hardware</TableCell><TableCell className="text-right">$3,499.00</TableCell></TableRow>
-                <TableRow><TableCell className="font-mono">#102</TableCell><TableCell>Ultrawide Monitor 49"</TableCell><TableCell>Displays</TableCell><TableCell className="text-right">$1,299.00</TableCell></TableRow>
-                <TableRow><TableCell className="font-mono">#103</TableCell><TableCell>Ergonomic Chair</TableCell><TableCell>Furniture</TableCell><TableCell className="text-right">$599.00</TableCell></TableRow>
-                <TableRow><TableCell className="font-mono">#104</TableCell><TableCell>Mechanical Keyboard</TableCell><TableCell>Accessories</TableCell><TableCell className="text-right">$199.00</TableCell></TableRow>
+                <TableRow>
+                  <TableCell className="font-mono">#101</TableCell>
+                  <TableCell>Pro Mac M3 Max</TableCell>
+                  <TableCell>Hardware</TableCell>
+                  <TableCell className="text-right">$3,499.00</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-mono">#102</TableCell>
+                  <TableCell>Ultrawide Monitor 49"</TableCell>
+                  <TableCell>Displays</TableCell>
+                  <TableCell className="text-right">$1,299.00</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-mono">#103</TableCell>
+                  <TableCell>Ergonomic Chair</TableCell>
+                  <TableCell>Furniture</TableCell>
+                  <TableCell className="text-right">$599.00</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-mono">#104</TableCell>
+                  <TableCell>Mechanical Keyboard</TableCell>
+                  <TableCell>Accessories</TableCell>
+                  <TableCell className="text-right">$199.00</TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           </div>
@@ -206,10 +240,34 @@ export default function TableComponentPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow><TableCell>CPU Utilization</TableCell><TableCell className="font-mono">42.8%</TableCell><TableCell><Badge color="success">Optimal</Badge></TableCell></TableRow>
-                <TableRow><TableCell>Memory Usage</TableCell><TableCell className="font-mono">11.4 GB / 32 GB</TableCell><TableCell><Badge color="success">Normal</Badge></TableCell></TableRow>
-                <TableRow><TableCell>Disk I/O Rate</TableCell><TableCell className="font-mono">485 MB/s</TableCell><TableCell><Badge color="warning">Elevated</Badge></TableCell></TableRow>
-                <TableRow><TableCell>Network Bandwidth</TableCell><TableCell className="font-mono">1.2 Gbps</TableCell><TableCell><Badge color="primary">Active</Badge></TableCell></TableRow>
+                <TableRow>
+                  <TableCell>CPU Utilization</TableCell>
+                  <TableCell className="font-mono">42.8%</TableCell>
+                  <TableCell>
+                    <Badge color="success">Optimal</Badge>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Memory Usage</TableCell>
+                  <TableCell className="font-mono">11.4 GB / 32 GB</TableCell>
+                  <TableCell>
+                    <Badge color="success">Normal</Badge>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Disk I/O Rate</TableCell>
+                  <TableCell className="font-mono">485 MB/s</TableCell>
+                  <TableCell>
+                    <Badge color="warning">Elevated</Badge>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Network Bandwidth</TableCell>
+                  <TableCell className="font-mono">1.2 Gbps</TableCell>
+                  <TableCell>
+                    <Badge color="primary">Active</Badge>
+                  </TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           </div>
@@ -242,13 +300,19 @@ export default function TableComponentPage() {
               <TableBody>
                 {Array.from({ length: 8 }).map((_, i) => (
                   <TableRow key={i}>
-                    <TableCell isStickyColumn className="font-bold">Engineer #{i + 1}</TableCell>
+                    <TableCell isStickyColumn className="font-bold">
+                      Engineer #{i + 1}
+                    </TableCell>
                     <TableCell className="font-mono">$45,200</TableCell>
                     <TableCell className="font-mono">$52,400</TableCell>
                     <TableCell className="font-mono">$61,000</TableCell>
                     <TableCell className="font-mono">$74,800</TableCell>
-                    <TableCell className="font-mono font-bold">$233,400</TableCell>
-                    <TableCell><Badge color="success">Exceeds</Badge></TableCell>
+                    <TableCell className="font-mono font-bold">
+                      $233,400
+                    </TableCell>
+                    <TableCell>
+                      <Badge color="success">Exceeds</Badge>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -269,7 +333,12 @@ export default function TableComponentPage() {
     </TableRow>
   </TableBody>
 </Table>`}
-        props={["stickyHeader: boolean", "stickyFirstColumn: boolean", "isSticky: boolean", "isStickyColumn: boolean"]}
+        props={[
+          "stickyHeader: boolean",
+          "stickyFirstColumn: boolean",
+          "isSticky: boolean",
+          "isStickyColumn: boolean",
+        ]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -283,33 +352,53 @@ export default function TableComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Element</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Element
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">&lt;Table /&gt;</td>
-                  <td className="px-3 py-2 text-muted-foreground">Outer table wrapper with scrollable card border container.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    &lt;Table /&gt;
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Outer table wrapper with scrollable card border container.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">&lt;TableHeader /&gt;</td>
-                  <td className="px-3 py-2 text-muted-foreground">Header row container &lt;thead&gt;.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    &lt;TableHeader /&gt;
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Header row container &lt;thead&gt;.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">&lt;TableRow /&gt;</td>
-                  <td className="px-3 py-2 text-muted-foreground">Table row &lt;tr&gt; with hover and selected highlights.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    &lt;TableRow /&gt;
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Table row &lt;tr&gt; with hover and selected highlights.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">&lt;TableCell /&gt;</td>
-                  <td className="px-3 py-2 text-muted-foreground">Standard data cell &lt;td&gt;.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    &lt;TableCell /&gt;
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Standard data cell &lt;td&gt;.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

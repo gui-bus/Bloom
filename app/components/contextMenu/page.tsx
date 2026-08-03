@@ -91,7 +91,9 @@ export default function ContextMenuComponentPage() {
         description="Displays an interactive context menu popup upon right-click or tap-and-hold interaction, supporting target element binding, nested submenus with smooth hover delays, keyboard shortcuts, and selectable toggles."
       />
 
-      <ImportSnippet importCode={`import { ContextMenu, ContextMenuTrigger, ContextMenuContent } from "@/components/ui/contextMenu/contextMenu";`} />
+      <ImportSnippet
+        importCode={`import { ContextMenu, ContextMenuTrigger, ContextMenuContent } from "@/components/ui/contextMenu/contextMenu";`}
+      />
 
       <InstallationBlock componentName="contextMenu" />
 
@@ -163,7 +165,9 @@ export default function ContextMenuComponentPage() {
                     <ContextMenuItem>Project Alpha</ContextMenuItem>
                     <ContextMenuItem>ZoeUI Core</ContextMenuItem>
                     <ContextMenuSub>
-                      <ContextMenuSubTrigger>More Projects</ContextMenuSubTrigger>
+                      <ContextMenuSubTrigger>
+                        More Projects
+                      </ContextMenuSubTrigger>
                       <ContextMenuSubContent>
                         <ContextMenuItem>Acme Dashboard</ContextMenuItem>
                         <ContextMenuItem>Bloom Design System</ContextMenuItem>
@@ -180,7 +184,9 @@ export default function ContextMenuComponentPage() {
                   <ContextMenuSubContent>
                     <ContextMenuItem>
                       <span>Inspect Element</span>
-                      <ContextMenuShortcut>Ctrl + Shift + I</ContextMenuShortcut>
+                      <ContextMenuShortcut>
+                        Ctrl + Shift + I
+                      </ContextMenuShortcut>
                     </ContextMenuItem>
                     <ContextMenuItem>View Source</ContextMenuItem>
                     <ContextMenuItem>Console Logs</ContextMenuItem>
@@ -272,8 +278,12 @@ export default function ContextMenuComponentPage() {
                 <ContextMenuSeparator />
                 <ContextMenuLabel>Assignee</ContextMenuLabel>
                 <ContextMenuRadioGroup value={person} onValueChange={setPerson}>
-                  <ContextMenuRadioItem value="pedro">Pedro Duarte</ContextMenuRadioItem>
-                  <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
+                  <ContextMenuRadioItem value="pedro">
+                    Pedro Duarte
+                  </ContextMenuRadioItem>
+                  <ContextMenuRadioItem value="colm">
+                    Colm Tuite
+                  </ContextMenuRadioItem>
                 </ContextMenuRadioGroup>
               </ContextMenuContent>
             </ContextMenu>
@@ -304,49 +314,87 @@ export default function ContextMenuComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Component</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Component
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">ContextMenu</td>
-                  <td className="px-3 py-2 text-muted-foreground">Main root wrapper component with modal=false scroll locking fix.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    ContextMenu
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Main root wrapper component with modal=false scroll locking
+                    fix.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">ContextMenuTrigger</td>
-                  <td className="px-3 py-2 text-muted-foreground">Target element area receiving right clicks.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    ContextMenuTrigger
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Target element area receiving right clicks.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">ContextMenuContent</td>
-                  <td className="px-3 py-2 text-muted-foreground">Floating popover content panel holding context menu items.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    ContextMenuContent
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Floating popover content panel holding context menu items.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">ContextMenuItem</td>
-                  <td className="px-3 py-2 text-muted-foreground">Selectable context action option item with optional color="danger".</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    ContextMenuItem
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Selectable context action option item with optional
+                    color="danger".
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">ContextMenuCheckboxItem</td>
-                  <td className="px-3 py-2 text-muted-foreground">Checkbox item supporting boolean toggle states.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    ContextMenuCheckboxItem
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Checkbox item supporting boolean toggle states.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">ContextMenuRadioGroup / RadioItem</td>
-                  <td className="px-3 py-2 text-muted-foreground">Single-selection radio group within context menu.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    ContextMenuRadioGroup / RadioItem
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Single-selection radio group within context menu.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">ContextMenuSub / SubTrigger / SubContent</td>
-                  <td className="px-3 py-2 text-muted-foreground">Nested sub-level popup menu primitives.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    ContextMenuSub / SubTrigger / SubContent
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Nested sub-level popup menu primitives.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">ContextMenuShortcut</td>
-                  <td className="px-3 py-2 text-muted-foreground">Keyboard shortcut hint badge rendered on the right.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    ContextMenuShortcut
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Keyboard shortcut hint badge rendered on the right.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

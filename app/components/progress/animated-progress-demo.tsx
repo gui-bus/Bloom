@@ -22,11 +22,7 @@ export function AnimatedProgressDemo() {
         showValueLabel
         color="primary"
       />
-      <Button
-        size="sm"
-        variant="bordered"
-        onClick={() => setProgress(0)}
-      >
+      <Button size="sm" variant="bordered" onClick={() => setProgress(0)}>
         Reset Progress
       </Button>
     </div>

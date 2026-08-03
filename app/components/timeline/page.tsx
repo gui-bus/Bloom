@@ -26,7 +26,9 @@ export default function TimelinePage() {
         description="A vertically stacked chronological sequence of events with status indicators, custom icons, timestamps, and connecting lines for activity feeds and order tracking."
       />
 
-      <ImportSnippet importCode={`import { Timeline, TimelineItem } from "@/components/ui/timeline/timeline";`} />
+      <ImportSnippet
+        importCode={`import { Timeline, TimelineItem } from "@/components/ui/timeline/timeline";`}
+      />
 
       <InstallationBlock componentName="timeline" />
 
@@ -155,7 +157,12 @@ export default function TimelinePage() {
             <Timeline>
               <TimelineItem
                 status="success"
-                icon={<Icon icon="hugeicons:checkmark-circle-02" className="size-4" />}
+                icon={
+                  <Icon
+                    icon="hugeicons:checkmark-circle-02"
+                    className="size-4"
+                  />
+                }
                 title="Account Created"
                 description="Welcome to the platform!"
                 time="Jan 15"
@@ -264,7 +271,8 @@ export default function TimelinePage() {
                 time="10:15 AM"
                 details={
                   <p className="font-mono text-[11px] text-rose-500">
-                    Error: ECONNREFUSED 127.0.0.1:6379 (Connection timed out after 5000ms)
+                    Error: ECONNREFUSED 127.0.0.1:6379 (Connection timed out
+                    after 5000ms)
                   </p>
                 }
               />
@@ -283,42 +291,149 @@ export default function TimelinePage() {
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <div className="space-y-6">
-        <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">Timeline</h3>
+        <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+          Timeline
+        </h3>
         <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Prop</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Type</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Default</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Description</th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Prop
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Type
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Default
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">children</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">ReactNode</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">TimelineItem elements to render.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">className</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">string</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Additional CSS classes.</td></tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  children
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  ReactNode
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  TimelineItem elements to render.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  className
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  string
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Additional CSS classes.
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
 
-        <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">TimelineItem</h3>
+        <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+          TimelineItem
+        </h3>
         <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Prop</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Type</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Default</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Description</th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Prop
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Type
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Default
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">title</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">ReactNode</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Event title text.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">description</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">ReactNode</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Optional description text.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">time</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">string</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Timestamp label displayed on the right.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">icon</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">ReactNode</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Custom icon replacing the status dot.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">status</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">{`"default" | "primary" | "success" | "warning" | "danger"`}</td><td className="px-4 py-3 text-zinc-400">"default"</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Semantic status color.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">isLast</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">boolean</td><td className="px-4 py-3 text-zinc-400">false</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Hides the vertical connector line for the last item. Auto-set by Timeline.</td></tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  title
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  ReactNode
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Event title text.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  description
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  ReactNode
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Optional description text.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  time
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  string
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Timestamp label displayed on the right.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  icon
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  ReactNode
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Custom icon replacing the status dot.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  status
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">{`"default" | "primary" | "success" | "warning" | "danger"`}</td>
+                <td className="px-4 py-3 text-zinc-400">"default"</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Semantic status color.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  isLast
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  boolean
+                </td>
+                <td className="px-4 py-3 text-zinc-400">false</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Hides the vertical connector line for the last item. Auto-set
+                  by Timeline.
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

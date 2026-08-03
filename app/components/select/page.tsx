@@ -29,11 +29,38 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 const sampleOptions: SelectOption[] = [
-  { value: "react", label: "React.js", description: "UI Library by Meta", icon: "devicon:react", badge: "Popular" },
-  { value: "next", label: "Next.js 16", description: "The React Framework", icon: "devicon:nextjs", badge: "Vercel" },
-  { value: "vue", label: "Vue 3", description: "Progressive Framework", icon: "devicon:vuejs" },
-  { value: "tailwind", label: "Tailwind CSS", description: "Utility-first CSS", icon: "devicon:tailwindcss" },
-  { value: "typescript", label: "TypeScript", description: "Typed JavaScript", icon: "devicon:typescript" },
+  {
+    value: "react",
+    label: "React.js",
+    description: "UI Library by Meta",
+    icon: "devicon:react",
+    badge: "Popular",
+  },
+  {
+    value: "next",
+    label: "Next.js 16",
+    description: "The React Framework",
+    icon: "devicon:nextjs",
+    badge: "Vercel",
+  },
+  {
+    value: "vue",
+    label: "Vue 3",
+    description: "Progressive Framework",
+    icon: "devicon:vuejs",
+  },
+  {
+    value: "tailwind",
+    label: "Tailwind CSS",
+    description: "Utility-first CSS",
+    icon: "devicon:tailwindcss",
+  },
+  {
+    value: "typescript",
+    label: "TypeScript",
+    description: "Typed JavaScript",
+    icon: "devicon:typescript",
+  },
 ];
 
 const userOptions: SelectOption[] = [
@@ -41,27 +68,34 @@ const userOptions: SelectOption[] = [
     value: "guilherme",
     label: "Guilherme S.",
     description: "Lead UI Engineer",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
     badge: "Admin",
   },
   {
     value: "sarah",
     label: "Sarah Connor",
     description: "Product Designer",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80",
     badge: "Design",
   },
   {
     value: "alex",
     label: "Alex Vance",
     description: "DevOps Architect",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
     badge: "Ops",
   },
 ];
 
 export default function SelectComponentPage() {
-  const [multiVal, setMultiVal] = React.useState<string[]>(["react", "next", "typescript"]);
+  const [multiVal, setMultiVal] = React.useState<string[]>([
+    "react",
+    "next",
+    "typescript",
+  ]);
 
   return (
     <div className="space-y-8">
@@ -70,7 +104,9 @@ export default function SelectComponentPage() {
         description="A powerful select dropdown supporting single & multi-selection, removable tags, max visible chips, rich item rendering (avatars, descriptions, badges), batch actions, search filter, and 5 visual variants."
       />
 
-      <ImportSnippet importCode={`import { Select } from "@/components/ui/select/select";`} />
+      <ImportSnippet
+        importCode={`import { Select } from "@/components/ui/select/select";`}
+      />
 
       <InstallationBlock componentName="select" />
 
@@ -100,7 +136,11 @@ export default function SelectComponentPage() {
         description="Standard dropdown select list."
         preview={
           <div className="max-w-xs w-full">
-            <Select options={sampleOptions} defaultValue="react" label="Select Tech Stack" />
+            <Select
+              options={sampleOptions}
+              defaultValue="react"
+              label="Select Tech Stack"
+            />
           </div>
         }
         code={`<Select options={sampleOptions} defaultValue="react" label="Select Tech Stack" />`}
@@ -132,7 +172,11 @@ export default function SelectComponentPage() {
   onMultiValueChange={setMultiVal}
   label="Frameworks (Max 2 tags visible)"
 />`}
-        props={["isMultiSelect: boolean", "maxTagsVisible: number", "isSearchable: boolean"]}
+        props={[
+          "isMultiSelect: boolean",
+          "maxTagsVisible: number",
+          "isSearchable: boolean",
+        ]}
       />
 
       {/* Rich Rendering & Avatars */}
@@ -149,7 +193,10 @@ export default function SelectComponentPage() {
           </div>
         }
         code={`<Select options={userOptions} defaultValue="guilherme" label="Assign Team Member" />`}
-        props={["renderOption: (option) => ReactNode", "renderValue: (option) => ReactNode"]}
+        props={[
+          "renderOption: (option) => ReactNode",
+          "renderValue: (option) => ReactNode",
+        ]}
       />
 
       {/* Batch Selection (Select / Deselect All) */}
@@ -175,7 +222,11 @@ export default function SelectComponentPage() {
   options={sampleOptions}
   label="Batch Option Picker"
 />`}
-        props={["showBatchActions: boolean", "selectAllLabel: string", "deselectAllLabel: string"]}
+        props={[
+          "showBatchActions: boolean",
+          "selectAllLabel: string",
+          "deselectAllLabel: string",
+        ]}
       />
 
       {/* Visual Variants */}
@@ -184,11 +235,36 @@ export default function SelectComponentPage() {
         description="5 available design variants: default, bordered, flat, underlined, and faded."
         preview={
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-            <Select variant="default" label="Default" options={sampleOptions} defaultValue="react" />
-            <Select variant="bordered" label="Bordered" options={sampleOptions} defaultValue="react" />
-            <Select variant="flat" label="Flat" options={sampleOptions} defaultValue="react" />
-            <Select variant="faded" label="Faded" options={sampleOptions} defaultValue="react" />
-            <Select variant="underlined" label="Underlined" options={sampleOptions} defaultValue="react" />
+            <Select
+              variant="default"
+              label="Default"
+              options={sampleOptions}
+              defaultValue="react"
+            />
+            <Select
+              variant="bordered"
+              label="Bordered"
+              options={sampleOptions}
+              defaultValue="react"
+            />
+            <Select
+              variant="flat"
+              label="Flat"
+              options={sampleOptions}
+              defaultValue="react"
+            />
+            <Select
+              variant="faded"
+              label="Faded"
+              options={sampleOptions}
+              defaultValue="react"
+            />
+            <Select
+              variant="underlined"
+              label="Underlined"
+              options={sampleOptions}
+              defaultValue="react"
+            />
           </div>
         }
         code={`<Select variant="default" label="Default" options={sampleOptions} />
@@ -196,7 +272,9 @@ export default function SelectComponentPage() {
 <Select variant="flat" label="Flat" options={sampleOptions} />
 <Select variant="faded" label="Faded" options={sampleOptions} />
 <Select variant="underlined" label="Underlined" options={sampleOptions} />`}
-        props={["variant: 'default' | 'bordered' | 'flat' | 'underlined' | 'faded'"]}
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'underlined' | 'faded'",
+        ]}
       />
 
       {/* Legacy Radix Syntax */}
@@ -252,12 +330,42 @@ export default function SelectComponentPage() {
           <div className="max-w-xs w-full">
             <Select
               options={[
-                { value: "react", label: "React.js", group: "Frontend Frameworks", icon: "devicon:react" },
-                { value: "vue", label: "Vue 3", group: "Frontend Frameworks", icon: "devicon:vuejs" },
-                { value: "next", label: "Next.js 16", group: "Fullstack Frameworks", icon: "devicon:nextjs" },
-                { value: "nuxt", label: "Nuxt 3", group: "Fullstack Frameworks", icon: "devicon:nuxtjs" },
-                { value: "node", label: "Node.js", group: "Backend Runtimes", icon: "devicon:nodejs" },
-                { value: "bun", label: "Bun", group: "Backend Runtimes", icon: "devicon:bun" },
+                {
+                  value: "react",
+                  label: "React.js",
+                  group: "Frontend Frameworks",
+                  icon: "devicon:react",
+                },
+                {
+                  value: "vue",
+                  label: "Vue 3",
+                  group: "Frontend Frameworks",
+                  icon: "devicon:vuejs",
+                },
+                {
+                  value: "next",
+                  label: "Next.js 16",
+                  group: "Fullstack Frameworks",
+                  icon: "devicon:nextjs",
+                },
+                {
+                  value: "nuxt",
+                  label: "Nuxt 3",
+                  group: "Fullstack Frameworks",
+                  icon: "devicon:nuxtjs",
+                },
+                {
+                  value: "node",
+                  label: "Node.js",
+                  group: "Backend Runtimes",
+                  icon: "devicon:nodejs",
+                },
+                {
+                  value: "bun",
+                  label: "Bun",
+                  group: "Backend Runtimes",
+                  icon: "devicon:bun",
+                },
               ]}
               label="Ecosystem Stack (Grouped)"
               defaultValue="react"
@@ -285,37 +393,63 @@ export default function SelectComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isSearchable</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isSearchable
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Adds search input filter inside the select popover.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Adds search input filter inside the select popover.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">renderOption</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(option: SelectOption) =&gt; ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    renderOption
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    (option: SelectOption) =&gt; ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Custom item template slot for option items inside popover.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Custom item template slot for option items inside popover.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">group (in option)</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    group (in option)
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Category name to group options with sticky headers.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Category name to group options with sticky headers.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

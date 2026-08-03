@@ -33,7 +33,9 @@ export default function ResizableComponentPage() {
         description="Accessible resizable panel layout groups with horizontal and vertical drag handles built on react-resizable-panels."
       />
 
-      <ImportSnippet importCode={`import { Resizable } from "@/components/ui/resizable/resizable";`} />
+      <ImportSnippet
+        importCode={`import { Resizable } from "@/components/ui/resizable/resizable";`}
+      />
 
       <InstallationBlock componentName="resizable" />
 
@@ -125,37 +127,69 @@ export default function ResizableComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Component</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Component
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">ResizablePanelGroup</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">direction</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'horizontal' | 'vertical'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Split direction layout for panels.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    ResizablePanelGroup
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    direction
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'horizontal' | 'vertical'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Split direction layout for panels.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">ResizablePanel</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">defaultSize</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
-                  <td className="px-3 py-2 text-muted-foreground">Initial percentage size of the panel.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    ResizablePanel
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    defaultSize
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Initial percentage size of the panel.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">ResizableHandle</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">withHandle</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders drag grip handle icon badge.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    ResizableHandle
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    withHandle
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders drag grip handle icon badge.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

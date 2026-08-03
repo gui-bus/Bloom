@@ -27,7 +27,9 @@ export default function TreeViewPage() {
         description="A hierarchical tree component for displaying nested data structures like file systems, categories, and document outlines with expand/collapse and selection support."
       />
 
-      <ImportSnippet importCode={`import { TreeView, TreeNode } from "@/components/ui/treeView/treeView";`} />
+      <ImportSnippet
+        importCode={`import { TreeView, TreeNode } from "@/components/ui/treeView/treeView";`}
+      />
 
       <InstallationBlock componentName="treeView" />
 
@@ -46,7 +48,13 @@ export default function TreeViewPage() {
             code={treeViewCode}
             componentName="treeView.tsx"
             description="Hierarchical tree component with expand/collapse, selection, and ARIA tree role support."
-            tags={["React", "Tailwind", "UI Component", "Navigation", "Tree View"]}
+            tags={[
+              "React",
+              "Tailwind",
+              "UI Component",
+              "Navigation",
+              "Tree View",
+            ]}
           />
         </TabsContent>
       </Tabs>
@@ -103,28 +111,53 @@ export default function TreeViewPage() {
               <TreeNode
                 id="docs"
                 label="Documentation"
-                icon={<Icon icon="hugeicons:folder-01" className="size-4 text-amber-500" />}
+                icon={
+                  <Icon
+                    icon="hugeicons:folder-01"
+                    className="size-4 text-amber-500"
+                  />
+                }
               >
                 <TreeNode
                   id="getting-started"
                   label="Getting Started"
-                  icon={<Icon icon="hugeicons:book-open-01" className="size-4 text-sky-500" />}
+                  icon={
+                    <Icon
+                      icon="hugeicons:book-open-01"
+                      className="size-4 text-sky-500"
+                    />
+                  }
                 />
                 <TreeNode
                   id="api-reference"
                   label="API Reference"
-                  icon={<Icon icon="hugeicons:code" className="size-4 text-emerald-500" />}
+                  icon={
+                    <Icon
+                      icon="hugeicons:code"
+                      className="size-4 text-emerald-500"
+                    />
+                  }
                 />
                 <TreeNode
                   id="changelog"
                   label="Changelog"
-                  icon={<Icon icon="hugeicons:clock-01" className="size-4 text-violet-500" />}
+                  icon={
+                    <Icon
+                      icon="hugeicons:clock-01"
+                      className="size-4 text-violet-500"
+                    />
+                  }
                 />
               </TreeNode>
               <TreeNode
                 id="settings"
                 label="Settings"
-                icon={<Icon icon="hugeicons:settings-01" className="size-4 text-zinc-500" />}
+                icon={
+                  <Icon
+                    icon="hugeicons:settings-01"
+                    className="size-4 text-zinc-500"
+                  />
+                }
               />
             </TreeView>
           </div>
@@ -159,7 +192,10 @@ export default function TreeViewPage() {
     <TreeNode id="components" label="components.tsx" />
   </TreeNode>
 </TreeView>`}
-        props={["isCheckable: boolean", "onCheckedChange?: (ids: string[]) => void"]}
+        props={[
+          "isCheckable: boolean",
+          "onCheckedChange?: (ids: string[]) => void",
+        ]}
       />
 
       {/* Drag & Drop Reordering */}
@@ -170,14 +206,29 @@ export default function TreeViewPage() {
           <React.Fragment>
             {(() => {
               const ReorderDemo = () => {
-                const [treeData, setTreeData] = React.useState<import("@/components/ui/treeView/treeView").TreeDataItem[]>([
-                  { id: "folder-1", label: "Folder 1", children: [{ id: "file-1", label: "File A.tsx" }, { id: "file-2", label: "File B.tsx" }] },
-                  { id: "folder-2", label: "Folder 2", children: [{ id: "file-3", label: "File C.tsx" }] },
+                const [treeData, setTreeData] = React.useState<
+                  import("@/components/ui/treeView/treeView").TreeDataItem[]
+                >([
+                  {
+                    id: "folder-1",
+                    label: "Folder 1",
+                    children: [
+                      { id: "file-1", label: "File A.tsx" },
+                      { id: "file-2", label: "File B.tsx" },
+                    ],
+                  },
+                  {
+                    id: "folder-2",
+                    label: "Folder 2",
+                    children: [{ id: "file-3", label: "File C.tsx" }],
+                  },
                 ]);
 
                 return (
                   <div className="w-full max-w-sm p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-                    <p className="text-xs text-zinc-400 mb-2 font-mono">Drag nodes to reorder</p>
+                    <p className="text-xs text-zinc-400 mb-2 font-mono">
+                      Drag nodes to reorder
+                    </p>
                     <TreeView
                       isReorderable
                       defaultExpanded={["folder-1", "folder-2"]}
@@ -232,50 +283,162 @@ export default function TreeViewPage() {
 
       <AccessibilityCard
         shortcuts={[
-          { key: "Enter / Space", description: "Select and toggle expand/collapse of focused node" },
-          { key: "Tab", description: "Move focus to the next focusable element" },
+          {
+            key: "Enter / Space",
+            description: "Select and toggle expand/collapse of focused node",
+          },
+          {
+            key: "Tab",
+            description: "Move focus to the next focusable element",
+          },
         ]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <div className="space-y-6">
-        <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">TreeView</h3>
+        <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+          TreeView
+        </h3>
         <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Prop</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Type</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Default</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Description</th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Prop
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Type
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Default
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">defaultExpanded</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">string[]</td><td className="px-4 py-3 text-zinc-400">[]</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">IDs of nodes expanded by default.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">selectedId</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">string</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Controlled selected node ID.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">onNodeSelect</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">(id: string) =&gt; void</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Callback on node selection.</td></tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  defaultExpanded
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  string[]
+                </td>
+                <td className="px-4 py-3 text-zinc-400">[]</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  IDs of nodes expanded by default.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  selectedId
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  string
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Controlled selected node ID.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  onNodeSelect
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  (id: string) =&gt; void
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Callback on node selection.
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
 
-        <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">TreeNode</h3>
+        <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+          TreeNode
+        </h3>
         <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Prop</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Type</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Default</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Description</th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Prop
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Type
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Default
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">id</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">string</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Unique node identifier.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">label</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">ReactNode</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Node label content.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">icon</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">ReactNode</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Optional icon next to label.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">children</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">ReactNode</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Nested TreeNode children.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">isDisabled</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">boolean</td><td className="px-4 py-3 text-zinc-400">false</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Disables the node interaction.</td></tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">id</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  string
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Unique node identifier.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  label
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  ReactNode
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Node label content.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  icon
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  ReactNode
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Optional icon next to label.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  children
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  ReactNode
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Nested TreeNode children.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  isDisabled
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  boolean
+                </td>
+                <td className="px-4 py-3 text-zinc-400">false</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Disables the node interaction.
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

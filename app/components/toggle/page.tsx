@@ -31,7 +31,9 @@ export default function ToggleComponentPage() {
         description="A two-state button component that can be toggled on or off for formatting controls, filters, and feature toggles."
       />
 
-      <ImportSnippet importCode={`import { Toggle } from "@/components/ui/toggle/toggle";`} />
+      <ImportSnippet
+        importCode={`import { Toggle } from "@/components/ui/toggle/toggle";`}
+      />
 
       <InstallationBlock componentName="toggle" />
 
@@ -61,7 +63,11 @@ export default function ToggleComponentPage() {
         description="Standard pressable toggle button."
         preview={
           <div className="flex items-center gap-4">
-            <Toggle aria-label="Toggle bold" pressed={isBold} onPressedChange={setIsBold}>
+            <Toggle
+              aria-label="Toggle bold"
+              pressed={isBold}
+              onPressedChange={setIsBold}
+            >
               <Icon icon="hugeicons:text-bold" className="size-4" />
               <span>Bold</span>
             </Toggle>
@@ -107,9 +113,15 @@ export default function ToggleComponentPage() {
         description="Scale toggle dimensions: 'sm', 'md', or 'lg'."
         preview={
           <div className="flex flex-wrap items-center gap-4">
-            <Toggle size="sm" variant="outline" defaultPressed>Small</Toggle>
-            <Toggle size="md" variant="outline" defaultPressed>Medium</Toggle>
-            <Toggle size="lg" variant="outline" defaultPressed>Large</Toggle>
+            <Toggle size="sm" variant="outline" defaultPressed>
+              Small
+            </Toggle>
+            <Toggle size="md" variant="outline" defaultPressed>
+              Medium
+            </Toggle>
+            <Toggle size="lg" variant="outline" defaultPressed>
+              Large
+            </Toggle>
           </div>
         }
         code={`<Toggle size="sm">Small</Toggle>
@@ -129,18 +141,32 @@ export default function ToggleComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">pressed / defaultPressed</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    pressed / defaultPressed
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Controlled / uncontrolled pressed toggle state.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Controlled / uncontrolled pressed toggle state.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
@@ -148,7 +174,9 @@ export default function ToggleComponentPage() {
                     'default' | 'outline' | 'flat'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Visual button border & background style.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Visual button border & background style.
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">size</td>
@@ -156,14 +184,16 @@ export default function ToggleComponentPage() {
                     'sm' | 'md' | 'lg'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Dimension scale of toggle button.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Dimension scale of toggle button.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

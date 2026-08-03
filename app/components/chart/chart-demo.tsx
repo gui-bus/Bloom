@@ -15,8 +15,20 @@ export function ChartDemo() {
 
   return (
     <div className="w-full space-y-6">
-      <Chart type="line" data={data} xKey="month" yKey="revenue" color="#0284c7" />
-      <Chart type="bar" data={data} xKey="month" yKey="revenue" color="#10b981" />
+      <Chart
+        type="line"
+        data={data}
+        xKey="month"
+        yKey="revenue"
+        color="#0284c7"
+      />
+      <Chart
+        type="bar"
+        data={data}
+        xKey="month"
+        yKey="revenue"
+        color="#10b981"
+      />
     </div>
   );
 }

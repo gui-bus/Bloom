@@ -9,7 +9,10 @@ import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-import { Combobox, type ComboboxOption } from "@/components/ui/combobox/combobox";
+import {
+  Combobox,
+  type ComboboxOption,
+} from "@/components/ui/combobox/combobox";
 import { comboboxCode } from "@/components/ui/combobox/combobox.code";
 import { Separator } from "@/components/ui/separator/separator";
 import {
@@ -20,13 +23,55 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 const groupedTechStack: ComboboxOption[] = [
-  { value: "react", label: "React", description: "UI Library for Web", icon: "logos:react", group: "Frontend" },
-  { value: "nextjs", label: "Next.js 16", description: "Full-stack React Framework", icon: "logos:nextjs-icon", group: "Frontend" },
-  { value: "vue", label: "Vue.js", description: "Progressive Framework", icon: "logos:vue", group: "Frontend" },
-  { value: "nodejs", label: "Node.js", description: "Async JavaScript Runtime", icon: "logos:nodejs-icon", group: "Backend" },
-  { value: "fastapi", label: "FastAPI", description: "High Performance Python Framework", icon: "logos:fastapi", group: "Backend" },
-  { value: "postgresql", label: "PostgreSQL", description: "Relational Database Engine", icon: "logos:postgresql", group: "Database" },
-  { value: "redis", label: "Redis", description: "In-memory Data Store", icon: "logos:redis", group: "Database" },
+  {
+    value: "react",
+    label: "React",
+    description: "UI Library for Web",
+    icon: "logos:react",
+    group: "Frontend",
+  },
+  {
+    value: "nextjs",
+    label: "Next.js 16",
+    description: "Full-stack React Framework",
+    icon: "logos:nextjs-icon",
+    group: "Frontend",
+  },
+  {
+    value: "vue",
+    label: "Vue.js",
+    description: "Progressive Framework",
+    icon: "logos:vue",
+    group: "Frontend",
+  },
+  {
+    value: "nodejs",
+    label: "Node.js",
+    description: "Async JavaScript Runtime",
+    icon: "logos:nodejs-icon",
+    group: "Backend",
+  },
+  {
+    value: "fastapi",
+    label: "FastAPI",
+    description: "High Performance Python Framework",
+    icon: "logos:fastapi",
+    group: "Backend",
+  },
+  {
+    value: "postgresql",
+    label: "PostgreSQL",
+    description: "Relational Database Engine",
+    icon: "logos:postgresql",
+    group: "Database",
+  },
+  {
+    value: "redis",
+    label: "Redis",
+    description: "In-memory Data Store",
+    icon: "logos:redis",
+    group: "Database",
+  },
 ];
 
 function MultiSelectDemo() {
@@ -110,7 +155,9 @@ export default function ComboboxComponentPage() {
         description="An autocomplete combo box featuring smart fuzzy text similarity search, multi-select mode with tag pills, on-the-fly option creation, virtualized rendering for 10,000+ items, and sticky section headers."
       />
 
-      <ImportSnippet importCode={`import { Combobox } from "@/components/ui/combobox/combobox";`} />
+      <ImportSnippet
+        importCode={`import { Combobox } from "@/components/ui/combobox/combobox";`}
+      />
 
       <InstallationBlock componentName="combobox" />
 
@@ -129,7 +176,14 @@ export default function ComboboxComponentPage() {
             code={comboboxCode}
             componentName="combobox.tsx"
             description="Core implementation of the Combobox component with multi-select tag pills, creation on the fly, and virtualized list rendering."
-            tags={["React", "Tailwind", "Autocomplete", "Fuzzy Search", "Virtualized", "Combobox"]}
+            tags={[
+              "React",
+              "Tailwind",
+              "Autocomplete",
+              "Fuzzy Search",
+              "Virtualized",
+              "Combobox",
+            ]}
           />
         </TabsContent>
       </Tabs>
@@ -149,7 +203,11 @@ export default function ComboboxComponentPage() {
   multiValue={selected}
   onMultiChange={setSelected}
 />`}
-        props={["isMulti: boolean", "multiValue: string[]", "onMultiChange: (values: string[]) => void"]}
+        props={[
+          "isMulti: boolean",
+          "multiValue: string[]",
+          "onMultiChange: (values: string[]) => void",
+        ]}
       />
 
       {/* Create Option on the Fly */}
@@ -167,7 +225,10 @@ export default function ComboboxComponentPage() {
     setOptions((prev) => [...prev, { value: newTag.toLowerCase(), label: newTag }]);
   }}
 />`}
-        props={["allowCreate: boolean", "onCreate: (searchQuery: string) => void"]}
+        props={[
+          "allowCreate: boolean",
+          "onCreate: (searchQuery: string) => void",
+        ]}
       />
 
       {/* Virtualized List for 1,000+ Items */}
@@ -252,67 +313,122 @@ export default function ComboboxComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">isMulti</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables multi-selection mode with tag pills inside trigger.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables multi-selection mode with tag pills inside trigger.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">multiValue</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string[]</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    multiValue
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">Selected values array in multi-select mode.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Selected values array in multi-select mode.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">onMultiChange</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(values: string[]) =&gt; void</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onMultiChange
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    (values: string[]) =&gt; void
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback fired when selected values array changes in multi-select mode.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback fired when selected values array changes in
+                    multi-select mode.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">allowCreate</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    allowCreate
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables creating new options on the fly when search term doesn't match existing options.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables creating new options on the fly when search term
+                    doesn't match existing options.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">onCreate</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(query: string) =&gt; void</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    (query: string) =&gt; void
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback fired when user clicks to create a new option.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback fired when user clicks to create a new option.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isVirtualized</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isVirtualized
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables virtualized list rendering for large datasets (1,000+ items).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables virtualized list rendering for large datasets
+                    (1,000+ items).
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isFuzzySearch</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isFuzzySearch
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables fuzzy matching text search and sorting algorithm.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables fuzzy matching text search and sorting algorithm.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isClearable</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isClearable
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Displays a clear button to reset selected value(s).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Displays a clear button to reset selected value(s).
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

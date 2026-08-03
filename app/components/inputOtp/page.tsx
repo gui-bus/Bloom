@@ -36,7 +36,9 @@ export default function InputOtpComponentPage() {
         description="One-time password input component built on input-otp with instant auto-paste clipboards, flexible group separators (3 - 3, 2 - 2 - 2), character type filters, and custom slot sizes."
       />
 
-      <ImportSnippet importCode={`import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@/components/ui/inputOtp/inputOtp";`} />
+      <ImportSnippet
+        importCode={`import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@/components/ui/inputOtp/inputOtp";`}
+      />
 
       <InstallationBlock componentName="inputOtp" />
 
@@ -80,7 +82,9 @@ export default function InputOtpComponentPage() {
               </InputOTPGroup>
             </InputOTP>
             <p className="text-xs text-muted-foreground font-mono">
-              Copy a 6-digit code (e.g., <span className="text-sky-500 font-bold">123456</span>) to test instant auto-paste.
+              Copy a 6-digit code (e.g.,{" "}
+              <span className="text-sky-500 font-bold">123456</span>) to test
+              instant auto-paste.
             </p>
           </div>
         }
@@ -148,7 +152,9 @@ export default function InputOtpComponentPage() {
         preview={
           <div className="flex flex-col gap-6">
             <div>
-              <span className="text-xs font-semibold text-foreground block mb-2">1. Numbers Only (allowedType="numeric")</span>
+              <span className="text-xs font-semibold text-foreground block mb-2">
+                1. Numbers Only (allowedType="numeric")
+              </span>
               <InputOTP maxLength={4} allowedType="numeric">
                 <InputOTPGroup>
                   <InputOTPSlot index={0} />
@@ -160,7 +166,9 @@ export default function InputOtpComponentPage() {
             </div>
 
             <div>
-              <span className="text-xs font-semibold text-foreground block mb-2">2. Letters Only (allowedType="alphabetic")</span>
+              <span className="text-xs font-semibold text-foreground block mb-2">
+                2. Letters Only (allowedType="alphabetic")
+              </span>
               <InputOTP maxLength={4} allowedType="alphabetic">
                 <InputOTPGroup>
                   <InputOTPSlot index={0} />
@@ -172,8 +180,15 @@ export default function InputOtpComponentPage() {
             </div>
 
             <div>
-              <span className="text-xs font-semibold text-foreground block mb-2">3. Alphanumeric Mixed (allowedType="alphanumeric")</span>
-              <InputOTP maxLength={6} allowedType="alphanumeric" value={val2} onChange={setVal2}>
+              <span className="text-xs font-semibold text-foreground block mb-2">
+                3. Alphanumeric Mixed (allowedType="alphanumeric")
+              </span>
+              <InputOTP
+                maxLength={6}
+                allowedType="alphanumeric"
+                value={val2}
+                onChange={setVal2}
+              >
                 <InputOTPGroup>
                   <InputOTPSlot index={0} />
                   <InputOTPSlot index={1} />
@@ -199,7 +214,9 @@ export default function InputOtpComponentPage() {
         preview={
           <div className="flex flex-col gap-6">
             <div>
-              <span className="text-xs text-muted-foreground block mb-1">Small (sm):</span>
+              <span className="text-xs text-muted-foreground block mb-1">
+                Small (sm):
+              </span>
               <InputOTP maxLength={4}>
                 <InputOTPGroup>
                   <InputOTPSlot index={0} size="sm" />
@@ -210,7 +227,9 @@ export default function InputOtpComponentPage() {
               </InputOTP>
             </div>
             <div>
-              <span className="text-xs text-muted-foreground block mb-1">Medium (md):</span>
+              <span className="text-xs text-muted-foreground block mb-1">
+                Medium (md):
+              </span>
               <InputOTP maxLength={4}>
                 <InputOTPGroup>
                   <InputOTPSlot index={0} size="md" />
@@ -221,7 +240,9 @@ export default function InputOtpComponentPage() {
               </InputOTP>
             </div>
             <div>
-              <span className="text-xs text-muted-foreground block mb-1">Large (lg):</span>
+              <span className="text-xs text-muted-foreground block mb-1">
+                Large (lg):
+              </span>
               <InputOTP maxLength={4}>
                 <InputOTPGroup>
                   <InputOTPSlot index={0} size="lg" />
@@ -281,39 +302,64 @@ export default function InputOtpComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">maskCode (on Slot)</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    maskCode (on Slot)
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Masks digits into password dots for PIN security.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Masks digits into password dots for PIN security.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">allowedType</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    allowedType
+                  </td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'numeric' | 'alphabetic' | 'alphanumeric'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'numeric'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Restricts allowed input characters (numbers, letters, or mixed).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Restricts allowed input characters (numbers, letters, or
+                    mixed).
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">maxLength</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    maxLength
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">6</td>
-                  <td className="px-3 py-2 text-muted-foreground">Total number of OTP input digit slots.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Total number of OTP input digit slots.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

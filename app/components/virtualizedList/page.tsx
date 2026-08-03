@@ -39,7 +39,9 @@ export default function VirtualizedListPage() {
         description="A high-performance scrollable list that renders only visible items, supporting tens of thousands of rows at 60 FPS with minimal memory footprint."
       />
 
-      <ImportSnippet importCode={`import { VirtualizedList } from "@/components/ui/virtualizedList/virtualizedList";`} />
+      <ImportSnippet
+        importCode={`import { VirtualizedList } from "@/components/ui/virtualizedList/virtualizedList";`}
+      />
 
       <InstallationBlock componentName="virtualizedList" />
 
@@ -58,7 +60,13 @@ export default function VirtualizedListPage() {
             code={virtualizedListCode}
             componentName="virtualizedList.tsx"
             description="Virtualized scroll container rendering only visible items for high-performance lists."
-            tags={["React", "Tailwind", "UI Component", "Performance", "Virtualization"]}
+            tags={[
+              "React",
+              "Tailwind",
+              "UI Component",
+              "Performance",
+              "Virtualization",
+            ]}
           />
         </TabsContent>
       </Tabs>
@@ -69,14 +77,18 @@ export default function VirtualizedListPage() {
         description="A list of 10,000 items rendered with smooth scrolling. Only visible rows are mounted in the DOM."
         preview={
           <div className="w-full max-w-lg">
-            <p className="text-xs text-zinc-400 mb-2 font-mono">10,000 items — scroll to test</p>
+            <p className="text-xs text-zinc-400 mb-2 font-mono">
+              10,000 items — scroll to test
+            </p>
             <VirtualizedList
               items={largeDataset}
               itemHeight={40}
               height={320}
               renderItem={(item: { id: number; label: string }) => (
                 <div className="flex items-center px-4 h-full text-sm text-zinc-700 dark:text-zinc-300 border-b border-zinc-100 dark:border-zinc-800/50">
-                  <span className="font-mono text-xs text-zinc-400 w-16">#{item.id + 1}</span>
+                  <span className="font-mono text-xs text-zinc-400 w-16">
+                    #{item.id + 1}
+                  </span>
                   <span>{item.label}</span>
                 </div>
               )}
@@ -112,7 +124,12 @@ export default function VirtualizedListPage() {
               items={userDataset}
               itemHeight={56}
               height={336}
-              renderItem={(item: { id: number; name: string; email: string; role: string }) => (
+              renderItem={(item: {
+                id: number;
+                name: string;
+                email: string;
+                role: string;
+              }) => (
                 <div className="flex items-center gap-3 px-4 h-full border-b border-zinc-100 dark:border-zinc-800/50">
                   <div className="flex items-center justify-center size-8 rounded-full bg-sky-500/10 text-sky-500 text-xs font-bold shrink-0">
                     {item.name.charAt(5)}
@@ -121,10 +138,18 @@ export default function VirtualizedListPage() {
                     <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100 truncate">
                       {item.name}
                     </p>
-                    <p className="text-xs text-zinc-400 truncate">{item.email}</p>
+                    <p className="text-xs text-zinc-400 truncate">
+                      {item.email}
+                    </p>
                   </div>
                   <Badge
-                    color={item.role === "Admin" ? "danger" : item.role === "Editor" ? "primary" : "default"}
+                    color={
+                      item.role === "Admin"
+                        ? "danger"
+                        : item.role === "Editor"
+                          ? "primary"
+                          : "default"
+                    }
                     variant="flat"
                     size="sm"
                   >
@@ -172,12 +197,18 @@ export default function VirtualizedListPage() {
               renderItem={(item: { id: number; label: string }, index) => (
                 <div
                   className={`flex items-center px-4 h-full border-b border-zinc-100 dark:border-zinc-800/50 ${
-                    index % 2 === 0 ? "bg-zinc-50/50 dark:bg-zinc-850/40" : "bg-white dark:bg-zinc-900"
+                    index % 2 === 0
+                      ? "bg-zinc-50/50 dark:bg-zinc-850/40"
+                      : "bg-white dark:bg-zinc-900"
                   }`}
                 >
-                  <span className="font-mono text-xs text-zinc-400 w-24">Row #{index + 1}</span>
+                  <span className="font-mono text-xs text-zinc-400 w-24">
+                    Row #{index + 1}
+                  </span>
                   <span className="text-xs text-zinc-700 dark:text-zinc-300">
-                    {index % 2 === 0 ? "Compact Row (44px)" : "Expanded Tall Row (64px)"}
+                    {index % 2 === 0
+                      ? "Compact Row (44px)"
+                      : "Expanded Tall Row (64px)"}
                   </span>
                 </div>
               )}
@@ -225,14 +256,17 @@ export default function VirtualizedListPage() {
 
             <VirtualizedList
               ref={(ref) => {
-                if (typeof window !== "undefined") (window as any).__listRef = ref;
+                if (typeof window !== "undefined")
+                  (window as any).__listRef = ref;
               }}
               items={largeDataset}
               itemHeight={40}
               height={280}
               renderItem={(item: { id: number; label: string }) => (
                 <div className="flex items-center px-4 h-full text-sm text-zinc-700 dark:text-zinc-300 border-b border-zinc-100 dark:border-zinc-800/50">
-                  <span className="font-mono text-xs text-sky-500 font-bold w-20">#{item.id + 1}</span>
+                  <span className="font-mono text-xs text-sky-500 font-bold w-20">
+                    #{item.id + 1}
+                  </span>
                   <span>{item.label}</span>
                 </div>
               )}
@@ -259,10 +293,14 @@ export default function VirtualizedListPage() {
               items={largeDataset.slice(0, 50)}
               itemHeight={40}
               height={260}
-              onEndReached={() => console.log("End reached! Fetching more items...")}
+              onEndReached={() =>
+                console.log("End reached! Fetching more items...")
+              }
               renderItem={(item: { id: number; label: string }) => (
                 <div className="flex items-center px-4 h-full text-sm text-zinc-700 dark:text-zinc-300 border-b border-zinc-100 dark:border-zinc-800/50">
-                  <span className="font-mono text-xs text-zinc-400 w-16">#{item.id + 1}</span>
+                  <span className="font-mono text-xs text-zinc-400 w-16">
+                    #{item.id + 1}
+                  </span>
                   <span>{item.label}</span>
                 </div>
               )}
@@ -284,19 +322,93 @@ export default function VirtualizedListPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
-              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Prop</th>
-              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Type</th>
-              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Default</th>
-              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Description</th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Prop
+              </th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Type
+              </th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Default
+              </th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Description
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">items</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">T[]</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Array of data items to render.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">itemHeight</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">number</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Fixed height in pixels for each row.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">height</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">number</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Container height in pixels.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">renderItem</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">(item: T, index: number) =&gt; ReactNode</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Render function for each row.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">overscan</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">number</td><td className="px-4 py-3 text-zinc-400">5</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Extra items rendered above/below viewport for smooth scrolling.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">className</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">string</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Additional CSS classes for the container.</td></tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                items
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                T[]
+              </td>
+              <td className="px-4 py-3 text-zinc-400">—</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Array of data items to render.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                itemHeight
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                number
+              </td>
+              <td className="px-4 py-3 text-zinc-400">—</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Fixed height in pixels for each row.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                height
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                number
+              </td>
+              <td className="px-4 py-3 text-zinc-400">—</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Container height in pixels.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                renderItem
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                (item: T, index: number) =&gt; ReactNode
+              </td>
+              <td className="px-4 py-3 text-zinc-400">—</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Render function for each row.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                overscan
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                number
+              </td>
+              <td className="px-4 py-3 text-zinc-400">5</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Extra items rendered above/below viewport for smooth scrolling.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                className
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                string
+              </td>
+              <td className="px-4 py-3 text-zinc-400">—</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Additional CSS classes for the container.
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

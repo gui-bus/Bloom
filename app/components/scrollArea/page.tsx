@@ -43,7 +43,9 @@ export default function ScrollAreaComponentPage() {
         description="Augments native scroll functionality with custom cross-browser styled scrollbars built on Radix UI primitives."
       />
 
-      <ImportSnippet importCode={`import { ScrollArea } from "@/components/ui/scrollArea/scrollArea";`} />
+      <ImportSnippet
+        importCode={`import { ScrollArea } from "@/components/ui/scrollArea/scrollArea";`}
+      />
 
       <InstallationBlock componentName="scrollArea" />
 
@@ -74,10 +76,16 @@ export default function ScrollAreaComponentPage() {
         preview={
           <ScrollArea className="h-60 w-72 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-xs">
             <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">Changelog Items</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                Changelog Items
+              </h4>
               {Array.from({ length: 14 }).map((_, i) => (
-                <div key={i} className="text-xs text-zinc-700 dark:text-zinc-300 pb-2 border-b border-zinc-100 dark:border-zinc-800/60 last:border-0">
-                  Release v1.2.{i + 1} — Updated UI design system component tokens.
+                <div
+                  key={i}
+                  className="text-xs text-zinc-700 dark:text-zinc-300 pb-2 border-b border-zinc-100 dark:border-zinc-800/60 last:border-0"
+                >
+                  Release v1.2.{i + 1} — Updated UI design system component
+                  tokens.
                 </div>
               ))}
             </div>
@@ -95,7 +103,10 @@ export default function ScrollAreaComponentPage() {
         title="Horizontal Scrolling"
         description="Horizontal scroll container using orientation='horizontal'."
         preview={
-          <ScrollArea orientation="horizontal" className="w-full max-w-lg rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-xs">
+          <ScrollArea
+            orientation="horizontal"
+            className="w-full max-w-lg rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-xs"
+          >
             <div className="flex gap-3 pb-3">
               {tags.map((tag) => (
                 <div
@@ -126,10 +137,13 @@ export default function ScrollAreaComponentPage() {
             className="h-60 w-80 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-xs"
           >
             <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-sky-500">Long Document</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-sky-500">
+                Long Document
+              </h4>
               {Array.from({ length: 20 }).map((_, i) => (
                 <p key={i} className="text-xs text-zinc-600 dark:text-zinc-400">
-                  Item {i + 1}: Hover over this container to see the floating scroll-to-top and scroll-to-bottom action buttons.
+                  Item {i + 1}: Hover over this container to see the floating
+                  scroll-to-top and scroll-to-bottom action buttons.
                 </p>
               ))}
             </div>
@@ -151,10 +165,13 @@ export default function ScrollAreaComponentPage() {
             className="h-60 w-80 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-xs"
           >
             <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-500">Reading Progress</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-500">
+                Reading Progress
+              </h4>
               {Array.from({ length: 20 }).map((_, i) => (
                 <p key={i} className="text-xs text-zinc-600 dark:text-zinc-400">
-                  Paragraph {i + 1}: Scroll down to watch the top progress bar dynamically fill.
+                  Paragraph {i + 1}: Scroll down to watch the top progress bar
+                  dynamically fill.
                 </p>
               ))}
             </div>
@@ -177,39 +194,66 @@ export default function ScrollAreaComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showScrollButtons</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showScrollButtons
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Displays floating scroll-to-top / scroll-to-bottom action buttons on hover.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Displays floating scroll-to-top / scroll-to-bottom action
+                    buttons on hover.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showProgressBar</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showProgressBar
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Displays top scroll progress indicator line.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Displays top scroll progress indicator line.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">orientation</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    orientation
+                  </td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'vertical' | 'horizontal' | 'both'
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">'vertical'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Scroll direction layout and scrollbar visibility.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    'vertical'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Scroll direction layout and scrollbar visibility.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

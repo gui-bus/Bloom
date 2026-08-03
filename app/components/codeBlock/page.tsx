@@ -70,7 +70,9 @@ export default function CodeBlockComponentPage() {
         description="A stylized syntax-highlighted code block component with integrated copy button, file name header, language badges, description text, tag pills, and optional expandable container."
       />
 
-      <ImportSnippet importCode={`import { CodeBlock } from "@/components/ui/codeBlock/codeBlock";`} />
+      <ImportSnippet
+        importCode={`import { CodeBlock } from "@/components/ui/codeBlock/codeBlock";`}
+      />
 
       <InstallationBlock componentName="codeBlock" />
 
@@ -271,7 +273,9 @@ export function ExampleApp() {
   componentName="package.json"
   language="json"
 />`}
-        props={["language: 'typescript' | 'javascript' | 'css' | 'html' | 'json' | 'bash'"]}
+        props={[
+          "language: 'typescript' | 'javascript' | 'css' | 'html' | 'json' | 'bash'",
+        ]}
       />
 
       {/* Expandable Container */}
@@ -310,42 +314,73 @@ export function ExampleApp() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">files</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">CodeFile[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Array of multi-file objects to render interactive file tabs.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">highlightLines</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(number | string)[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Array of line numbers or ranges (e.g. [1, 5, "10-15"]) to highlight.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">wordWrap</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables line text wrapping. Can also be toggled dynamically via header button.</td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">code</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    CodeFile[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    The single source code string to display when files array is not provided.
+                    Array of multi-file objects to render interactive file tabs.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">componentName</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    highlightLines
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    (number | string)[]
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Array of line numbers or ranges (e.g. [1, 5, "10-15"]) to
+                    highlight.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">wordWrap</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables line text wrapping. Can also be toggled dynamically
+                    via header button.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">code</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    The single source code string to display when files array is
+                    not provided.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">
+                    componentName
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     File name label displayed in the header (e.g. "button.tsx").
@@ -354,16 +389,23 @@ export function ExampleApp() {
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">language</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'typescript' | 'javascript' | 'css' | 'html' | 'json' | 'bash'
+                    'typescript' | 'javascript' | 'css' | 'html' | 'json' |
+                    'bash'
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">'typescript'</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    'typescript'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Syntax highlighting language identifier.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">description</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    description
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Subheader description text below the file name.
@@ -371,7 +413,9 @@ export function ExampleApp() {
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">tags</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Array of tag pill labels rendered below the description.
@@ -379,18 +423,25 @@ export function ExampleApp() {
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">showCopy</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Renders the copy-to-clipboard action button in the header.
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">maxHeight</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    maxHeight
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">280</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Max container height in pixels before showing the expand/collapse toggle.
+                    Max container height in pixels before showing the
+                    expand/collapse toggle.
                   </td>
                 </tr>
               </tbody>
@@ -398,7 +449,7 @@ export function ExampleApp() {
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

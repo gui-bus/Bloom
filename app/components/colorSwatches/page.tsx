@@ -31,7 +31,13 @@ const defaultNamedColors = [
 
 function DefaultDemo() {
   const [selected, setSelected] = React.useState("#3b82f6");
-  return <ColorSwatches colors={defaultNamedColors} value={selected} onChange={setSelected} />;
+  return (
+    <ColorSwatches
+      colors={defaultNamedColors}
+      value={selected}
+      onChange={setSelected}
+    />
+  );
 }
 
 function MultiSelectDemo() {
@@ -56,8 +62,12 @@ function MaxLimitDemo() {
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2">
-        <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Max limit: 3 colors</span>
-        <span className="text-xs text-zinc-400">({selected.length}/3 selected)</span>
+        <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+          Max limit: 3 colors
+        </span>
+        <span className="text-xs text-zinc-400">
+          ({selected.length}/3 selected)
+        </span>
       </div>
       <ColorSwatches
         colors={defaultNamedColors}
@@ -76,11 +86,21 @@ function ShapesDemo() {
     <div className="space-y-4">
       <div>
         <p className="text-xs font-bold text-zinc-500 mb-2">Circle (default)</p>
-        <ColorSwatches colors={defaultNamedColors} value={selected} onChange={setSelected} shape="circle" />
+        <ColorSwatches
+          colors={defaultNamedColors}
+          value={selected}
+          onChange={setSelected}
+          shape="circle"
+        />
       </div>
       <div>
         <p className="text-xs font-bold text-zinc-500 mb-2">Square</p>
-        <ColorSwatches colors={defaultNamedColors} value={selected} onChange={setSelected} shape="square" />
+        <ColorSwatches
+          colors={defaultNamedColors}
+          value={selected}
+          onChange={setSelected}
+          shape="square"
+        />
       </div>
     </div>
   );
@@ -92,15 +112,30 @@ function SizesDemo() {
     <div className="space-y-4">
       <div>
         <p className="text-xs font-bold text-zinc-500 mb-2">Small</p>
-        <ColorSwatches colors={defaultNamedColors} value={selected} onChange={setSelected} size="sm" />
+        <ColorSwatches
+          colors={defaultNamedColors}
+          value={selected}
+          onChange={setSelected}
+          size="sm"
+        />
       </div>
       <div>
         <p className="text-xs font-bold text-zinc-500 mb-2">Medium (default)</p>
-        <ColorSwatches colors={defaultNamedColors} value={selected} onChange={setSelected} size="md" />
+        <ColorSwatches
+          colors={defaultNamedColors}
+          value={selected}
+          onChange={setSelected}
+          size="md"
+        />
       </div>
       <div>
         <p className="text-xs font-bold text-zinc-500 mb-2">Large</p>
-        <ColorSwatches colors={defaultNamedColors} value={selected} onChange={setSelected} size="lg" />
+        <ColorSwatches
+          colors={defaultNamedColors}
+          value={selected}
+          onChange={setSelected}
+          size="lg"
+        />
       </div>
     </div>
   );
@@ -114,7 +149,9 @@ export default function ColorSwatchesPage() {
         description="A color palette grid for selection featuring single & multi-select modes, maximum selection limit, and hover tooltips with color names and WCAG contrast ratio scores."
       />
 
-      <ImportSnippet importCode={`import { ColorSwatches } from "@/components/ui/colorSwatches/colorSwatches";`} />
+      <ImportSnippet
+        importCode={`import { ColorSwatches } from "@/components/ui/colorSwatches/colorSwatches";`}
+      />
 
       <InstallationBlock componentName="colorSwatches" />
 
@@ -163,7 +200,11 @@ export default function ColorSwatchesPage() {
   multiValue={selectedColors}
   onMultiChange={setSelectedColors}
 />`}
-        props={["isMulti: boolean", "multiValue: string[]", "onMultiChange: (colors: string[]) => void"]}
+        props={[
+          "isMulti: boolean",
+          "multiValue: string[]",
+          "onMultiChange: (colors: string[]) => void",
+        ]}
       />
 
       {/* Max Selection Limit */}
@@ -206,23 +247,137 @@ export default function ColorSwatchesPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
-              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Prop</th>
-              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Type</th>
-              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Default</th>
-              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Description</th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Prop
+              </th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Type
+              </th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Default
+              </th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Description
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">colors</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">(string | ColorItem)[]</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Array of color hex strings or ColorItem objects ({`{ color, name }`}).</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">value</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">string</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Currently selected color in single-select mode.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">onChange</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">(color: string) =&gt; void</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Callback when a color is selected in single-select mode.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">isMulti</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">boolean</td><td className="px-4 py-3 text-zinc-400">false</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Enables multi-selection mode.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">multiValue</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">string[]</td><td className="px-4 py-3 text-zinc-400">[]</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Array of selected color strings in multi-select mode.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">onMultiChange</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">(colors: string[]) =&gt; void</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Callback when selected colors change in multi-select mode.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">maxLimit</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">number</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Maximum number of selectable colors in multi-select mode.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">showTooltip</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">boolean</td><td className="px-4 py-3 text-zinc-400">true</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Shows hover tooltip with color name, HEX code, and contrast ratio score.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">size</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">{`"sm" | "md" | "lg"`}</td><td className="px-4 py-3 text-zinc-400">"md"</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Swatch dimensions.</td></tr>
-            <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">shape</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">{`"circle" | "square"`}</td><td className="px-4 py-3 text-zinc-400">"circle"</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Swatch shape variant.</td></tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                colors
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                (string | ColorItem)[]
+              </td>
+              <td className="px-4 py-3 text-zinc-400">—</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Array of color hex strings or ColorItem objects (
+                {`{ color, name }`}).
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                value
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                string
+              </td>
+              <td className="px-4 py-3 text-zinc-400">—</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Currently selected color in single-select mode.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                onChange
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                (color: string) =&gt; void
+              </td>
+              <td className="px-4 py-3 text-zinc-400">—</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Callback when a color is selected in single-select mode.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                isMulti
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                boolean
+              </td>
+              <td className="px-4 py-3 text-zinc-400">false</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Enables multi-selection mode.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                multiValue
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                string[]
+              </td>
+              <td className="px-4 py-3 text-zinc-400">[]</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Array of selected color strings in multi-select mode.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                onMultiChange
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                (colors: string[]) =&gt; void
+              </td>
+              <td className="px-4 py-3 text-zinc-400">—</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Callback when selected colors change in multi-select mode.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                maxLimit
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                number
+              </td>
+              <td className="px-4 py-3 text-zinc-400">—</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Maximum number of selectable colors in multi-select mode.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                showTooltip
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                boolean
+              </td>
+              <td className="px-4 py-3 text-zinc-400">true</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Shows hover tooltip with color name, HEX code, and contrast
+                ratio score.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">size</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">{`"sm" | "md" | "lg"`}</td>
+              <td className="px-4 py-3 text-zinc-400">"md"</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Swatch dimensions.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                shape
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">{`"circle" | "square"`}</td>
+              <td className="px-4 py-3 text-zinc-400">"circle"</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                Swatch shape variant.
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

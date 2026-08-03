@@ -41,7 +41,9 @@ export default function PopoverComponentPage() {
         description="Displays rich content in a portal layer triggered by a button click, with custom backdrop overlays (blur, dark, light) similar to Dialog and Drawer."
       />
 
-      <ImportSnippet importCode={`import { Popover } from "@/components/ui/popover/popover";`} />
+      <ImportSnippet
+        importCode={`import { Popover } from "@/components/ui/popover/popover";`}
+      />
 
       <InstallationBlock componentName="popover" />
 
@@ -84,11 +86,19 @@ export default function PopoverComponentPage() {
               <div className="grid gap-3 pt-2">
                 <div className="grid grid-cols-3 items-center gap-2">
                   <Label htmlFor="width">Width</Label>
-                  <Input id="width" defaultValue="100%" className="col-span-2 h-8" />
+                  <Input
+                    id="width"
+                    defaultValue="100%"
+                    className="col-span-2 h-8"
+                  />
                 </div>
                 <div className="grid grid-cols-3 items-center gap-2">
                   <Label htmlFor="height">Height</Label>
-                  <Input id="height" defaultValue="25px" className="col-span-2 h-8" />
+                  <Input
+                    id="height"
+                    defaultValue="25px"
+                    className="col-span-2 h-8"
+                  />
                 </div>
               </div>
             </PopoverContent>
@@ -122,7 +132,8 @@ export default function PopoverComponentPage() {
                 <PopoverHeader>
                   <PopoverTitle>Blur Backdrop</PopoverTitle>
                   <PopoverDescription>
-                    Page content behind the popover is frosted with backdrop blur.
+                    Page content behind the popover is frosted with backdrop
+                    blur.
                   </PopoverDescription>
                 </PopoverHeader>
               </PopoverContent>
@@ -150,7 +161,8 @@ export default function PopoverComponentPage() {
                 <PopoverHeader>
                   <PopoverTitle>Light Backdrop</PopoverTitle>
                   <PopoverDescription>
-                    Page content behind the popover has a light subtle tint overlay.
+                    Page content behind the popover has a light subtle tint
+                    overlay.
                   </PopoverDescription>
                 </PopoverHeader>
               </PopoverContent>
@@ -174,10 +186,18 @@ export default function PopoverComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -187,7 +207,9 @@ export default function PopoverComponentPage() {
                     'none' | 'dark' | 'light' | 'blur'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'none'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Backdrop overlay style (same as Dialog and Drawer).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Backdrop overlay style (same as Dialog and Drawer).
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">align</td>
@@ -195,26 +217,40 @@ export default function PopoverComponentPage() {
                     'start' | 'center' | 'end'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'center'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Popover alignment relative to trigger button.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Popover alignment relative to trigger button.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">sideOffset</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    sideOffset
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">8</td>
-                  <td className="px-3 py-2 text-muted-foreground">Distance in pixels from trigger element.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Distance in pixels from trigger element.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">showCloseButton</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showCloseButton
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Displays top-right close icon button.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Displays top-right close icon button.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

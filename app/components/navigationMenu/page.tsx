@@ -40,13 +40,23 @@ function MegaMenuDemo() {
                 <span className="text-[10px] uppercase font-bold tracking-wider text-sky-500">
                   Products
                 </span>
-                <a href="#" className="block space-y-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 rounded-xl">
+                <a
+                  href="#"
+                  className="block space-y-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 rounded-xl"
+                >
                   <div className="text-xs font-bold">Analytics Engine</div>
-                  <div className="text-[11px] text-zinc-500">Real-time metrics telemetry</div>
+                  <div className="text-[11px] text-zinc-500">
+                    Real-time metrics telemetry
+                  </div>
                 </a>
-                <a href="#" className="block space-y-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 rounded-xl">
+                <a
+                  href="#"
+                  className="block space-y-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 rounded-xl"
+                >
                   <div className="text-xs font-bold">Design Systems</div>
-                  <div className="text-[11px] text-zinc-500">Reusable component tokens</div>
+                  <div className="text-[11px] text-zinc-500">
+                    Reusable component tokens
+                  </div>
                 </a>
               </div>
 
@@ -54,13 +64,23 @@ function MegaMenuDemo() {
                 <span className="text-[10px] uppercase font-bold tracking-wider text-indigo-500">
                   Developers
                 </span>
-                <a href="#" className="block space-y-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 rounded-xl">
+                <a
+                  href="#"
+                  className="block space-y-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 rounded-xl"
+                >
                   <div className="text-xs font-bold">REST API Docs</div>
-                  <div className="text-[11px] text-zinc-500">Endpoints & OAuth guide</div>
+                  <div className="text-[11px] text-zinc-500">
+                    Endpoints & OAuth guide
+                  </div>
                 </a>
-                <a href="#" className="block space-y-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 rounded-xl">
+                <a
+                  href="#"
+                  className="block space-y-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 rounded-xl"
+                >
                   <div className="text-xs font-bold">CLI Tools</div>
-                  <div className="text-[11px] text-zinc-500">Automated project generators</div>
+                  <div className="text-[11px] text-zinc-500">
+                    Automated project generators
+                  </div>
                 </a>
               </div>
 
@@ -68,13 +88,23 @@ function MegaMenuDemo() {
                 <span className="text-[10px] uppercase font-bold tracking-wider text-emerald-500">
                   Enterprise
                 </span>
-                <a href="#" className="block space-y-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 rounded-xl">
+                <a
+                  href="#"
+                  className="block space-y-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 rounded-xl"
+                >
                   <div className="text-xs font-bold">SSO & Security</div>
-                  <div className="text-[11px] text-zinc-500">SAML 2.0 & audit logs</div>
+                  <div className="text-[11px] text-zinc-500">
+                    SAML 2.0 & audit logs
+                  </div>
                 </a>
-                <a href="#" className="block space-y-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 rounded-xl">
+                <a
+                  href="#"
+                  className="block space-y-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 rounded-xl"
+                >
                   <div className="text-xs font-bold">Dedicated Support</div>
-                  <div className="text-[11px] text-zinc-500">24/7 SLA response times</div>
+                  <div className="text-[11px] text-zinc-500">
+                    24/7 SLA response times
+                  </div>
                 </a>
               </div>
             </div>
@@ -85,11 +115,19 @@ function MegaMenuDemo() {
           <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="p-4 w-[320px] space-y-2">
-              <a href="#" className="flex items-center gap-3 p-2 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800">
-                <Icon icon="hugeicons:book-open-01" className="size-5 text-sky-500" />
+              <a
+                href="#"
+                className="flex items-center gap-3 p-2 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              >
+                <Icon
+                  icon="hugeicons:book-open-01"
+                  className="size-5 text-sky-500"
+                />
                 <div>
                   <div className="text-xs font-bold">Component Guides</div>
-                  <div className="text-[11px] text-zinc-500">Best practice tutorials</div>
+                  <div className="text-[11px] text-zinc-500">
+                    Best practice tutorials
+                  </div>
                 </div>
               </a>
             </div>
@@ -110,7 +148,9 @@ export default function NavigationMenuComponentPage() {
         description="A collection of navigation links, rich mega-menu dropdown panels, and sliding active indicators built on Radix UI Navigation Menu."
       />
 
-      <ImportSnippet importCode={`import { NavigationMenu, NavigationMenuIndicator } from "@/components/ui/navigationMenu/navigationMenu";`} />
+      <ImportSnippet
+        importCode={`import { NavigationMenu, NavigationMenuIndicator } from "@/components/ui/navigationMenu/navigationMenu";`}
+      />
 
       <InstallationBlock componentName="navigationMenu" />
 
@@ -151,24 +191,44 @@ export default function NavigationMenuComponentPage() {
                           className="flex h-full w-full select-none flex-col justify-end rounded-xl bg-gradient-to-b from-sky-500/10 to-sky-500/20 p-6 no-underline outline-none border border-sky-500/20"
                           href="#"
                         >
-                          <Icon icon="hugeicons:layers-01" className="size-6 text-sky-500 mb-2" />
-                          <div className="mb-1 text-sm font-bold text-foreground">Zoe UI Library</div>
+                          <Icon
+                            icon="hugeicons:layers-01"
+                            className="size-6 text-sky-500 mb-2"
+                          />
+                          <div className="mb-1 text-sm font-bold text-foreground">
+                            Zoe UI Library
+                          </div>
                           <p className="text-xs text-muted-foreground">
-                            Beautifully designed neutral components built with Tailwind CSS & Radix UI.
+                            Beautifully designed neutral components built with
+                            Tailwind CSS & Radix UI.
                           </p>
                         </a>
                       </NavigationMenuLink>
                     </li>
                     <li>
-                      <a href="#" className="block space-y-1 rounded-xl p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                        <div className="text-xs font-semibold">Introduction</div>
-                        <p className="text-[11px] text-muted-foreground">Re-usable component architecture & rules.</p>
+                      <a
+                        href="#"
+                        className="block space-y-1 rounded-xl p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                      >
+                        <div className="text-xs font-semibold">
+                          Introduction
+                        </div>
+                        <p className="text-[11px] text-muted-foreground">
+                          Re-usable component architecture & rules.
+                        </p>
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="block space-y-1 rounded-xl p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                        <div className="text-xs font-semibold">Installation</div>
-                        <p className="text-[11px] text-muted-foreground">How to install dependencies and configure theme.</p>
+                      <a
+                        href="#"
+                        className="block space-y-1 rounded-xl p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                      >
+                        <div className="text-xs font-semibold">
+                          Installation
+                        </div>
+                        <p className="text-[11px] text-muted-foreground">
+                          How to install dependencies and configure theme.
+                        </p>
                       </a>
                     </li>
                   </ul>
@@ -180,15 +240,29 @@ export default function NavigationMenuComponentPage() {
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-2 p-4 md:w-[500px] md:grid-cols-2">
                     <li>
-                      <a href="#" className="block space-y-1 rounded-xl p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                        <div className="text-xs font-semibold">Buttons & Badges</div>
-                        <p className="text-[11px] text-muted-foreground">Interactive action triggers.</p>
+                      <a
+                        href="#"
+                        className="block space-y-1 rounded-xl p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                      >
+                        <div className="text-xs font-semibold">
+                          Buttons & Badges
+                        </div>
+                        <p className="text-[11px] text-muted-foreground">
+                          Interactive action triggers.
+                        </p>
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="block space-y-1 rounded-xl p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                        <div className="text-xs font-semibold">Dialogs & Drawers</div>
-                        <p className="text-[11px] text-muted-foreground">Modal overlay components.</p>
+                      <a
+                        href="#"
+                        className="block space-y-1 rounded-xl p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                      >
+                        <div className="text-xs font-semibold">
+                          Dialogs & Drawers
+                        </div>
+                        <p className="text-[11px] text-muted-foreground">
+                          Modal overlay components.
+                        </p>
                       </a>
                     </li>
                   </ul>
@@ -196,7 +270,10 @@ export default function NavigationMenuComponentPage() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  href="#"
+                  className={navigationMenuTriggerStyle()}
+                >
                   Documentation
                 </NavigationMenuLink>
               </NavigationMenuItem>
@@ -247,37 +324,69 @@ export default function NavigationMenuComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Component</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Component
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">NavigationMenuIndicator</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">—</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
-                  <td className="px-3 py-2 text-muted-foreground">Sliding active arrow indicator following cursor focus.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    NavigationMenuIndicator
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    —
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Sliding active arrow indicator following cursor focus.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">NavigationMenuTrigger</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">asChild</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">Merges trigger behavior onto child element.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    NavigationMenuTrigger
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    asChild
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Merges trigger behavior onto child element.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">NavigationMenuLink</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">active</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">Highlights link when active route matches.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    NavigationMenuLink
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    active
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Highlights link when active route matches.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

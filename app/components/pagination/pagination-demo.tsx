@@ -18,7 +18,9 @@ export function PaginationInteractiveDemo() {
   return (
     <div className="space-y-4 w-full max-w-lg">
       <div className="text-center text-sm font-medium text-muted-foreground">
-        Active Page: <span className="text-foreground font-bold">{currentPage}</span> of {totalPages}
+        Active Page:{" "}
+        <span className="text-foreground font-bold">{currentPage}</span> of{" "}
+        {totalPages}
       </div>
 
       <Pagination>
@@ -47,7 +49,9 @@ export function PaginationInteractiveDemo() {
           <PaginationItem>
             <PaginationNext
               disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+              }
             />
           </PaginationItem>
         </PaginationContent>

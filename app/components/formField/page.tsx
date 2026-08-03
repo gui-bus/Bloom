@@ -23,7 +23,9 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 function CharacterCounterDemo() {
-  const [bio, setBio] = React.useState("Building modern UI components with ZoeUI.");
+  const [bio, setBio] = React.useState(
+    "Building modern UI components with ZoeUI.",
+  );
   return (
     <div className="max-w-sm w-full space-y-4">
       <FormField
@@ -51,7 +53,9 @@ export default function FormFieldComponentPage() {
         description="A wrapper component providing layout structure, label association, helper descriptions, character counter tracking, required asterisk tooltip explanations, and error state validation messaging."
       />
 
-      <ImportSnippet importCode={`import { FormField } from "@/components/ui/formField/formField";`} />
+      <ImportSnippet
+        importCode={`import { FormField } from "@/components/ui/formField/formField";`}
+      />
 
       <InstallationBlock componentName="formField" />
 
@@ -81,7 +85,10 @@ export default function FormFieldComponentPage() {
         description="Standard FormField wrapping an Input control."
         preview={
           <div className="max-w-sm w-full">
-            <FormField label="Account Email" description="Enter your primary account login email address.">
+            <FormField
+              label="Account Email"
+              description="Enter your primary account login email address."
+            >
               <Input type="email" placeholder="alex@company.com" />
             </FormField>
           </div>
@@ -157,7 +164,11 @@ export default function FormFieldComponentPage() {
 >
   <Input value={bio} onChange={e => setBio(e.target.value)} />
 </FormField>`}
-        props={["maxLength: number", "currentLength: number", "helperAlign: 'left' | 'right' | 'between'"]}
+        props={[
+          "maxLength: number",
+          "currentLength: number",
+          "helperAlign: 'left' | 'right' | 'between'",
+        ]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -171,49 +182,90 @@ export default function FormFieldComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">maxLength</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    maxLength
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Maximum character limit displayed in footer counter bar.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Maximum character limit displayed in footer counter bar.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">currentLength</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    currentLength
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Current character length count for tracking.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Current character length count for tracking.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">requiredTooltip</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
-                  <td className="px-3 py-2 text-muted-foreground">'This field is required'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Tooltip explanation rendered when hovering the required asterisk.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    requiredTooltip
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    'This field is required'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Tooltip explanation rendered when hovering the required
+                    asterisk.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isRequired</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isRequired
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Adds required asterisk to the label.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Adds required asterisk to the label.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isInvalid</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isInvalid
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Highlights field in error state.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Highlights field in error state.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

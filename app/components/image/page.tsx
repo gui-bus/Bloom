@@ -22,7 +22,8 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 export default function ImageComponentPage() {
-  const sampleImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80";
+  const sampleImage =
+    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80";
 
   return (
     <div className="space-y-8">
@@ -31,7 +32,9 @@ export default function ImageComponentPage() {
         description="Enhanced image container with placeholder graphics, loading skeletons, error fallbacks, radius options, zoomable hover effects, and blurred glow backdrop shadow."
       />
 
-      <ImportSnippet importCode={`import { Image } from "@/components/ui/image/image";`} />
+      <ImportSnippet
+        importCode={`import { Image } from "@/components/ui/image/image";`}
+      />
 
       <InstallationBlock componentName="image" />
 
@@ -176,7 +179,11 @@ export default function ImageComponentPage() {
         }
         code={`<Image src="..." enableLightbox caption="Click for lightbox modal" />
 <Image src="broken.jpg" fallbackSrc="https://..." caption="URL Recovery fallback" />`}
-        props={["enableLightbox: boolean", "fallbackSrc: string", "blurUpPlaceholder: string"]}
+        props={[
+          "enableLightbox: boolean",
+          "fallbackSrc: string",
+          "blurUpPlaceholder: string",
+        ]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -190,43 +197,76 @@ export default function ImageComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">enableLightbox</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    enableLightbox
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Opens full-screen lightbox modal on click preview.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Opens full-screen lightbox modal on click preview.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">fallbackSrc</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    fallbackSrc
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Backup image source loaded automatically if main URL fails.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Backup image source loaded automatically if main URL fails.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">blurUpPlaceholder</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    blurUpPlaceholder
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Low-res placeholder image URL displayed with blur effect during load.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Low-res placeholder image URL displayed with blur effect
+                    during load.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">placeholder</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    placeholder
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders the default placeholder vector SVG graphic.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders the default placeholder vector SVG graphic.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

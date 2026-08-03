@@ -40,7 +40,9 @@ export default function PaginationComponentPage() {
         description="Comprehensive pagination suite supporting high-level toolbar integration (showRowsPerPage, showJumper, showTotal, first/last buttons), 6 visual variants (default, bordered, flat, light, pills, line), and 3 button shapes."
       />
 
-      <ImportSnippet importCode={`import { Pagination, PaginationToolbar } from "@/components/ui/pagination/pagination";`} />
+      <ImportSnippet
+        importCode={`import { Pagination, PaginationToolbar } from "@/components/ui/pagination/pagination";`}
+      />
 
       <InstallationBlock componentName="pagination" />
 
@@ -115,73 +117,133 @@ const [pageSize, setPageSize] = React.useState(10);
         preview={
           <div className="flex flex-col gap-4 w-full">
             <div>
-              <span className="text-xs text-muted-foreground block mb-1 font-semibold">1. Default</span>
+              <span className="text-xs text-muted-foreground block mb-1 font-semibold">
+                1. Default
+              </span>
               <Pagination variant="default">
                 <PaginationContent>
-                  <PaginationItem><PaginationPrevious /></PaginationItem>
-                  <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationNext /></PaginationItem>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
                 </PaginationContent>
               </Pagination>
             </div>
 
             <div>
-              <span className="text-xs text-muted-foreground block mb-1 font-semibold">2. Bordered</span>
+              <span className="text-xs text-muted-foreground block mb-1 font-semibold">
+                2. Bordered
+              </span>
               <Pagination variant="bordered">
                 <PaginationContent>
-                  <PaginationItem><PaginationPrevious /></PaginationItem>
-                  <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationNext /></PaginationItem>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
                 </PaginationContent>
               </Pagination>
             </div>
 
             <div>
-              <span className="text-xs text-muted-foreground block mb-1 font-semibold">3. Flat</span>
+              <span className="text-xs text-muted-foreground block mb-1 font-semibold">
+                3. Flat
+              </span>
               <Pagination variant="flat">
                 <PaginationContent>
-                  <PaginationItem><PaginationPrevious /></PaginationItem>
-                  <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationNext /></PaginationItem>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
                 </PaginationContent>
               </Pagination>
             </div>
 
             <div>
-              <span className="text-xs text-muted-foreground block mb-1 font-semibold">4. Light</span>
+              <span className="text-xs text-muted-foreground block mb-1 font-semibold">
+                4. Light
+              </span>
               <Pagination variant="light">
                 <PaginationContent>
-                  <PaginationItem><PaginationPrevious /></PaginationItem>
-                  <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationNext /></PaginationItem>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
                 </PaginationContent>
               </Pagination>
             </div>
 
             <div>
-              <span className="text-xs text-muted-foreground block mb-1 font-semibold">5. Pills</span>
+              <span className="text-xs text-muted-foreground block mb-1 font-semibold">
+                5. Pills
+              </span>
               <Pagination variant="pills">
                 <PaginationContent>
-                  <PaginationItem><PaginationPrevious /></PaginationItem>
-                  <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationNext /></PaginationItem>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
                 </PaginationContent>
               </Pagination>
             </div>
 
             <div>
-              <span className="text-xs text-muted-foreground block mb-1 font-semibold">6. Line</span>
+              <span className="text-xs text-muted-foreground block mb-1 font-semibold">
+                6. Line
+              </span>
               <Pagination variant="line">
                 <PaginationContent>
-                  <PaginationItem><PaginationPrevious /></PaginationItem>
-                  <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationNext /></PaginationItem>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
                 </PaginationContent>
               </Pagination>
             </div>
@@ -189,7 +251,9 @@ const [pageSize, setPageSize] = React.useState(10);
         }
         code={`<Pagination variant="default">...</Pagination>
 <Pagination variant="line">...</Pagination>`}
-        props={["variant: 'default' | 'bordered' | 'flat' | 'light' | 'pills' | 'line'"]}
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'light' | 'pills' | 'line'",
+        ]}
       />
 
       {/* Shapes */}
@@ -200,19 +264,35 @@ const [pageSize, setPageSize] = React.useState(10);
           <div className="flex flex-col gap-6 w-full">
             <Pagination shape="rounded">
               <PaginationContent>
-                <PaginationItem><PaginationPrevious /></PaginationItem>
-                <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
-                <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
-                <PaginationItem><PaginationNext /></PaginationItem>
+                <PaginationItem>
+                  <PaginationPrevious />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink isActive>1</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink>2</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationNext />
+                </PaginationItem>
               </PaginationContent>
             </Pagination>
 
             <Pagination shape="circle">
               <PaginationContent>
-                <PaginationItem><PaginationFirst /></PaginationItem>
-                <PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem>
-                <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
-                <PaginationItem><PaginationLast /></PaginationItem>
+                <PaginationItem>
+                  <PaginationFirst />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink isActive>1</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink>2</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLast />
+                </PaginationItem>
               </PaginationContent>
             </Pagination>
           </div>
@@ -233,43 +313,77 @@ const [pageSize, setPageSize] = React.useState(10);
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showRowsPerPage</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showRowsPerPage
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders page size selector dropdown (10, 25, 50, 100).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders page size selector dropdown (10, 25, 50, 100).
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showJumper</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showJumper
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders direct page jump input box.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders direct page jump input box.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showTotal</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showTotal
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Displays total record summary string (e.g., '1-10 of 150 items').</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Displays total record summary string (e.g., '1-10 of 150
+                    items').
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showFirstButton / showLastButton</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showFirstButton / showLastButton
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders double arrow buttons to jump directly to page 1 or totalPages.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders double arrow buttons to jump directly to page 1 or
+                    totalPages.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

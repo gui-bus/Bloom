@@ -40,7 +40,9 @@ export default function CommandComponentPage() {
         description="A fast, composable, spotlight-style command menu palette built on cmdk for keyboard-driven navigation and search actions."
       />
 
-      <ImportSnippet importCode={`import { Command } from "@/components/ui/command/command";`} />
+      <ImportSnippet
+        importCode={`import { Command } from "@/components/ui/command/command";`}
+      />
 
       <InstallationBlock componentName="command" />
 
@@ -76,17 +78,26 @@ export default function CommandComponentPage() {
                 <CommandEmpty>No results found.</CommandEmpty>
                 <CommandGroup heading="Suggestions">
                   <CommandItem>
-                    <Icon icon="hugeicons:calendar-01" className="size-4 text-sky-500" />
+                    <Icon
+                      icon="hugeicons:calendar-01"
+                      className="size-4 text-sky-500"
+                    />
                     <span>Calendar</span>
                     <CommandShortcut>⌘P</CommandShortcut>
                   </CommandItem>
                   <CommandItem>
-                    <Icon icon="hugeicons:search-01" className="size-4 text-sky-500" />
+                    <Icon
+                      icon="hugeicons:search-01"
+                      className="size-4 text-sky-500"
+                    />
                     <span>Search Emoji</span>
                     <CommandShortcut>⌘E</CommandShortcut>
                   </CommandItem>
                   <CommandItem>
-                    <Icon icon="hugeicons:settings-01" className="size-4 text-sky-500" />
+                    <Icon
+                      icon="hugeicons:settings-01"
+                      className="size-4 text-sky-500"
+                    />
                     <span>Settings</span>
                     <CommandShortcut>⌘S</CommandShortcut>
                   </CommandItem>
@@ -94,12 +105,18 @@ export default function CommandComponentPage() {
                 <CommandSeparator />
                 <CommandGroup heading="Actions">
                   <CommandItem>
-                    <Icon icon="hugeicons:user-add-01" className="size-4 text-emerald-500" />
+                    <Icon
+                      icon="hugeicons:user-add-01"
+                      className="size-4 text-emerald-500"
+                    />
                     <span>Add Member</span>
                     <CommandShortcut>⌘M</CommandShortcut>
                   </CommandItem>
                   <CommandItem>
-                    <Icon icon="hugeicons:mail-01" className="size-4 text-emerald-500" />
+                    <Icon
+                      icon="hugeicons:mail-01"
+                      className="size-4 text-emerald-500"
+                    />
                     <span>Send Email</span>
                     <CommandShortcut>⌘B</CommandShortcut>
                   </CommandItem>
@@ -139,45 +156,75 @@ export default function CommandComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Component</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Component
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">Command</td>
-                  <td className="px-3 py-2 text-muted-foreground">Main root wrapper component powering the menu palette.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Main root wrapper component powering the menu palette.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">CommandInput</td>
-                  <td className="px-3 py-2 text-muted-foreground">Search text input field for command filtering.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    CommandInput
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Search text input field for command filtering.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">CommandList</td>
-                  <td className="px-3 py-2 text-muted-foreground">Scrollable container holding filtered command items.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    CommandList
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Scrollable container holding filtered command items.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">CommandGroup</td>
-                  <td className="px-3 py-2 text-muted-foreground">Group container with an optional section heading.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    CommandGroup
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Group container with an optional section heading.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">CommandItem</td>
-                  <td className="px-3 py-2 text-muted-foreground">Selectable command option item.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    CommandItem
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Selectable command option item.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">CommandShortcut</td>
-                  <td className="px-3 py-2 text-muted-foreground">Keyboard shortcut hint badge rendered on the right.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    CommandShortcut
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Keyboard shortcut hint badge rendered on the right.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">CommandSeparator</td>
-                  <td className="px-3 py-2 text-muted-foreground">Visual divider line separating command groups.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    CommandSeparator
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Visual divider line separating command groups.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

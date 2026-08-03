@@ -32,7 +32,9 @@ export default function ButtonComponentPage() {
         description="A button is an interactive UI element used to trigger actions such as navigation, form submissions, or contextual commands."
       />
 
-      <ImportSnippet importCode={`import { Button } from "@/components/ui/button/button";`} />
+      <ImportSnippet
+        importCode={`import { Button } from "@/components/ui/button/button";`}
+      />
 
       <InstallationBlock componentName="button" />
 
@@ -74,7 +76,13 @@ export default function ButtonComponentPage() {
             code={buttonCode}
             componentName="button.tsx"
             description="Main implementation of the Button component, handling all visual variants, interactive states, and user interactions."
-            tags={["React", "Tailwind", "UI Component", "Accessibility", "Button"]}
+            tags={[
+              "React",
+              "Tailwind",
+              "UI Component",
+              "Accessibility",
+              "Button",
+            ]}
           />
         </TabsContent>
 
@@ -157,65 +165,121 @@ export default function ButtonComponentPage() {
         preview={
           <div className="w-full flex flex-col gap-4">
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="default"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="default"
+              </span>
               <div className="flex flex-wrap gap-3">
-                <Button color="default" variant="default">Solid</Button>
-                <Button color="default" variant="bordered">Bordered</Button>
-                <Button color="default" variant="flat">Flat</Button>
+                <Button color="default" variant="default">
+                  Solid
+                </Button>
+                <Button color="default" variant="bordered">
+                  Bordered
+                </Button>
+                <Button color="default" variant="flat">
+                  Flat
+                </Button>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="primary"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="primary"
+              </span>
               <div className="flex flex-wrap gap-3">
-                <Button color="primary" variant="default">Solid</Button>
-                <Button color="primary" variant="bordered">Bordered</Button>
-                <Button color="primary" variant="flat">Flat</Button>
+                <Button color="primary" variant="default">
+                  Solid
+                </Button>
+                <Button color="primary" variant="bordered">
+                  Bordered
+                </Button>
+                <Button color="primary" variant="flat">
+                  Flat
+                </Button>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="secondary"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="secondary"
+              </span>
               <div className="flex flex-wrap gap-3">
-                <Button color="secondary" variant="default">Solid</Button>
-                <Button color="secondary" variant="bordered">Bordered</Button>
-                <Button color="secondary" variant="flat">Flat</Button>
+                <Button color="secondary" variant="default">
+                  Solid
+                </Button>
+                <Button color="secondary" variant="bordered">
+                  Bordered
+                </Button>
+                <Button color="secondary" variant="flat">
+                  Flat
+                </Button>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="accent"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="accent"
+              </span>
               <div className="flex flex-wrap gap-3">
-                <Button color="accent" variant="default">Solid</Button>
-                <Button color="accent" variant="bordered">Bordered</Button>
-                <Button color="accent" variant="flat">Flat</Button>
+                <Button color="accent" variant="default">
+                  Solid
+                </Button>
+                <Button color="accent" variant="bordered">
+                  Bordered
+                </Button>
+                <Button color="accent" variant="flat">
+                  Flat
+                </Button>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="success"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="success"
+              </span>
               <div className="flex flex-wrap gap-3">
-                <Button color="success" variant="default">Solid</Button>
-                <Button color="success" variant="bordered">Bordered</Button>
-                <Button color="success" variant="flat">Flat</Button>
+                <Button color="success" variant="default">
+                  Solid
+                </Button>
+                <Button color="success" variant="bordered">
+                  Bordered
+                </Button>
+                <Button color="success" variant="flat">
+                  Flat
+                </Button>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="warning"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="warning"
+              </span>
               <div className="flex flex-wrap gap-3">
-                <Button color="warning" variant="default">Solid</Button>
-                <Button color="warning" variant="bordered">Bordered</Button>
-                <Button color="warning" variant="flat">Flat</Button>
+                <Button color="warning" variant="default">
+                  Solid
+                </Button>
+                <Button color="warning" variant="bordered">
+                  Bordered
+                </Button>
+                <Button color="warning" variant="flat">
+                  Flat
+                </Button>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="danger"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="danger"
+              </span>
               <div className="flex flex-wrap gap-3">
-                <Button color="danger" variant="default">Solid</Button>
-                <Button color="danger" variant="bordered">Bordered</Button>
-                <Button color="danger" variant="flat">Flat</Button>
+                <Button color="danger" variant="default">
+                  Solid
+                </Button>
+                <Button color="danger" variant="bordered">
+                  Bordered
+                </Button>
+                <Button color="danger" variant="flat">
+                  Flat
+                </Button>
               </div>
             </div>
           </div>
@@ -316,14 +380,18 @@ export default function ButtonComponentPage() {
           <div className="w-full flex flex-wrap gap-4">
             <Button
               color="primary"
-              startContent={<Icon icon="hugeicons:home-03" className="size-5" />}
+              startContent={
+                <Icon icon="hugeicons:home-03" className="size-5" />
+              }
             >
               Home
             </Button>
             <Button
               color="success"
               variant="bordered"
-              endContent={<Icon icon="hugeicons:arrow-right-01" className="size-5" />}
+              endContent={
+                <Icon icon="hugeicons:arrow-right-01" className="size-5" />
+              }
             >
               Continue
             </Button>
@@ -347,20 +415,26 @@ export default function ButtonComponentPage() {
             <Button
               isIconOnly
               ariaLabel="Home"
-              startContent={<Icon icon="hugeicons:home-03" className="size-5" />}
+              startContent={
+                <Icon icon="hugeicons:home-03" className="size-5" />
+              }
             />
             <Button
               isIconOnly
               color="primary"
               ariaLabel="Settings"
-              startContent={<Icon icon="hugeicons:settings-01" className="size-5" />}
+              startContent={
+                <Icon icon="hugeicons:settings-01" className="size-5" />
+              }
             />
             <Button
               isIconOnly
               color="danger"
               variant="bordered"
               ariaLabel="Delete"
-              startContent={<Icon icon="hugeicons:delete-02" className="size-5" />}
+              startContent={
+                <Icon icon="hugeicons:delete-02" className="size-5" />
+              }
             />
           </div>
         }
@@ -379,8 +453,12 @@ export default function ButtonComponentPage() {
         description="Displays an active loading spinner and disables user interaction during async processes."
         preview={
           <div className="w-full flex flex-wrap gap-4">
-            <Button isLoading color="primary">Loading...</Button>
-            <Button isLoading variant="bordered">Processing</Button>
+            <Button isLoading color="primary">
+              Loading...
+            </Button>
+            <Button isLoading variant="bordered">
+              Processing
+            </Button>
           </div>
         }
         code={`<Button isLoading color="primary">Loading...</Button>`}
@@ -411,7 +489,9 @@ export default function ButtonComponentPage() {
         preview={
           <div className="w-full flex flex-wrap gap-4">
             <Button isDisabled>Disabled Button</Button>
-            <Button isDisabled color="primary">Disabled Primary</Button>
+            <Button isDisabled color="primary">
+              Disabled Primary
+            </Button>
           </div>
         }
         code={`<Button isDisabled color="primary">Disabled Primary</Button>`}
@@ -429,28 +509,42 @@ export default function ButtonComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'bordered' | 'light' | 'flat' | 'ghost' | 'shadow' | 'link'
+                    'default' | 'bordered' | 'light' | 'flat' | 'ghost' |
+                    'shadow' | 'link'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Visual style variant of the button.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Visual style variant of the button.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
+                    'default' | 'primary' | 'secondary' | 'accent' | 'success' |
+                    'warning' | 'danger'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Color theme of the button.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Color theme of the button.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">size</td>
@@ -458,52 +552,85 @@ export default function ButtonComponentPage() {
                     'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Controls size scale and density.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Controls size scale and density.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">radius</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
+                    'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' |
+                    'full'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'xl'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Border radius scale.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Border radius scale.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">hover</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'scale' | 'lift'</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'scale' | 'lift'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'scale'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Micro-animation hover behavior.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Micro-animation hover behavior.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isIconOnly</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isIconOnly
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Compact icon-only button mode. Requires 'ariaLabel'.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Compact icon-only button mode. Requires 'ariaLabel'.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isLoading</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isLoading
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Shows loading spinner and disables interactions.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Shows loading spinner and disables interactions.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isDisabled</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isDisabled
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Disables user interaction.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Disables user interaction.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">disableRipple</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    disableRipple
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Disables click ripple effect.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Disables click ripple effect.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

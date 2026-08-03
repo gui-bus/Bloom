@@ -37,7 +37,9 @@ export default function TooltipComponentPage() {
         description="A popup hint label displaying contextual text when hovering or focusing an interactive element."
       />
 
-      <ImportSnippet importCode={`import { Tooltip } from "@/components/ui/tooltip/tooltip";`} />
+      <ImportSnippet
+        importCode={`import { Tooltip } from "@/components/ui/tooltip/tooltip";`}
+      />
 
       <InstallationBlock componentName="tooltip" />
 
@@ -137,15 +139,23 @@ export default function TooltipComponentPage() {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button color="primary" variant="flat">Interactive Card Tooltip</Button>
+                <Button color="primary" variant="flat">
+                  Interactive Card Tooltip
+                </Button>
               </TooltipTrigger>
               <TooltipContent interactive side="top" className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <Icon icon="hugeicons:information-circle" className="size-4 text-sky-400" />
-                  <span className="font-bold text-xs">Bloom UI Design System</span>
+                  <Icon
+                    icon="hugeicons:information-circle"
+                    className="size-4 text-sky-400"
+                  />
+                  <span className="font-bold text-xs">
+                    Bloom UI Design System
+                  </span>
                 </div>
                 <p className="text-[11px] text-zinc-300">
-                  Explore full component specifications and interactive playground in our official docs.
+                  Explore full component specifications and interactive
+                  playground in our official docs.
                 </p>
                 <a
                   href="https://github.com"
@@ -178,14 +188,18 @@ export default function TooltipComponentPage() {
                 <TooltipTrigger asChild>
                   <Button variant="bordered">No Arrow</Button>
                 </TooltipTrigger>
-                <TooltipContent showArrow={false}>Clean tooltip without pointing arrow</TooltipContent>
+                <TooltipContent showArrow={false}>
+                  Clean tooltip without pointing arrow
+                </TooltipContent>
               </Tooltip>
 
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="bordered">Custom Offset (20px)</Button>
                 </TooltipTrigger>
-                <TooltipContent sideOffset={20}>Positioned 20px away from trigger</TooltipContent>
+                <TooltipContent sideOffset={20}>
+                  Positioned 20px away from trigger
+                </TooltipContent>
               </Tooltip>
             </div>
           </TooltipProvider>
@@ -206,10 +220,18 @@ export default function TooltipComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -219,26 +241,40 @@ export default function TooltipComponentPage() {
                     'top' | 'right' | 'bottom' | 'left'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'top'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Preferred tooltip anchor placement relative to trigger.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Preferred tooltip anchor placement relative to trigger.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showArrow</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showArrow
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders pointing arrow indicator.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders pointing arrow indicator.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">sideOffset</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    sideOffset
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">6</td>
-                  <td className="px-3 py-2 text-muted-foreground">Pixel distance offset from trigger element.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Pixel distance offset from trigger element.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

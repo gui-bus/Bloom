@@ -45,7 +45,11 @@ function DefaultDemo() {
   });
   return (
     <div className="w-full max-w-2xl">
-      <FilterBuilder fields={defaultFields} value={filter} onChange={setFilter} />
+      <FilterBuilder
+        fields={defaultFields}
+        value={filter}
+        onChange={setFilter}
+      />
     </div>
   );
 }
@@ -61,7 +65,11 @@ function MultipleRulesDemo() {
   });
   return (
     <div className="w-full max-w-2xl">
-      <FilterBuilder fields={defaultFields} value={filter} onChange={setFilter} />
+      <FilterBuilder
+        fields={defaultFields}
+        value={filter}
+        onChange={setFilter}
+      />
     </div>
   );
 }
@@ -83,7 +91,13 @@ function NestedFilterDemo() {
 
   return (
     <div className="w-full max-w-2xl">
-      <FilterBuilder fields={defaultFields} value={filter} onChange={setFilter} storageKey="demo_nested" enableExport />
+      <FilterBuilder
+        fields={defaultFields}
+        value={filter}
+        onChange={setFilter}
+        storageKey="demo_nested"
+        enableExport
+      />
     </div>
   );
 }
@@ -96,7 +110,9 @@ export default function FilterBuilderPage() {
         description="A visual query builder for creating conditional filters with nested AND/OR logical clause groups, query preset persistence, and formatted SQL, MongoDB, & GraphQL export utilities."
       />
 
-      <ImportSnippet importCode={`import { FilterBuilder } from "@/components/ui/filterBuilder/filterBuilder";`} />
+      <ImportSnippet
+        importCode={`import { FilterBuilder } from "@/components/ui/filterBuilder/filterBuilder";`}
+      />
 
       <InstallationBlock componentName="filterBuilder" />
 
@@ -115,7 +131,15 @@ export default function FilterBuilderPage() {
             code={filterBuilderCode}
             componentName="filterBuilder.tsx"
             description="Visual query builder supporting nested AND/OR sub-clauses, query preset storage, and SQL/MongoDB/GraphQL exporter."
-            tags={["React", "Tailwind", "UI Component", "Filter", "Query Builder", "SQL", "MongoDB"]}
+            tags={[
+              "React",
+              "Tailwind",
+              "UI Component",
+              "Filter",
+              "Query Builder",
+              "SQL",
+              "MongoDB",
+            ]}
           />
         </TabsContent>
       </Tabs>
@@ -168,22 +192,77 @@ export default function FilterBuilderPage() {
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <div className="space-y-6">
-        <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">FilterBuilder</h3>
+        <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+          FilterBuilder
+        </h3>
         <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Prop</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Type</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Default</th>
-                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">Description</th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Prop
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Type
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Default
+                </th>
+                <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">storageKey</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">string</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">LocalStorage key for persisting user saved query presets.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">enableExport</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">boolean</td><td className="px-4 py-3 text-zinc-400">true</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Enables SQL / MongoDB / GraphQL formatted query exporter modal.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">fields</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">FilterField[]</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Available fields for filter rules.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-xs text-sky-500">value</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">FilterGroup</td><td className="px-4 py-3 text-zinc-400">—</td><td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">Current filter state with nested conjunctions and rules.</td></tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  storageKey
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  string
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  LocalStorage key for persisting user saved query presets.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  enableExport
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  boolean
+                </td>
+                <td className="px-4 py-3 text-zinc-400">true</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Enables SQL / MongoDB / GraphQL formatted query exporter
+                  modal.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  fields
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  FilterField[]
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Available fields for filter rules.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                  value
+                </td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  FilterGroup
+                </td>
+                <td className="px-4 py-3 text-zinc-400">—</td>
+                <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                  Current filter state with nested conjunctions and rules.
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

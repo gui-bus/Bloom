@@ -20,11 +20,31 @@ import {
 } from "@/components/ui/tabs/tabs";
 
 const sampleFrameworks = [
-  { label: "Next.js", value: "nextjs", description: "React framework for production" },
-  { label: "React", value: "react", description: "UI library for web interfaces" },
-  { label: "Vue.js", value: "vue", description: "Progressive JavaScript framework" },
-  { label: "Svelte", value: "svelte", description: "Cybernetically enhanced web apps" },
-  { label: "Angular", value: "angular", description: "Platform for mobile & desktop" },
+  {
+    label: "Next.js",
+    value: "nextjs",
+    description: "React framework for production",
+  },
+  {
+    label: "React",
+    value: "react",
+    description: "UI library for web interfaces",
+  },
+  {
+    label: "Vue.js",
+    value: "vue",
+    description: "Progressive JavaScript framework",
+  },
+  {
+    label: "Svelte",
+    value: "svelte",
+    description: "Cybernetically enhanced web apps",
+  },
+  {
+    label: "Angular",
+    value: "angular",
+    description: "Platform for mobile & desktop",
+  },
   { label: "Remix", value: "remix", description: "Full stack web framework" },
 ];
 
@@ -38,7 +58,9 @@ export default function AutocompletePage() {
         description="A search input component with live suggestion filtering, custom value entry, match text highlighting, and debounced query support."
       />
 
-      <ImportSnippet importCode={`import { Autocomplete } from "@/components/ui/autocomplete/autocomplete";`} />
+      <ImportSnippet
+        importCode={`import { Autocomplete } from "@/components/ui/autocomplete/autocomplete";`}
+      />
 
       <InstallationBlock componentName="autocomplete" />
 
@@ -76,7 +98,10 @@ export default function AutocompletePage() {
             />
             {selectedFramework && (
               <p className="text-xs font-mono text-muted-foreground mt-2">
-                Selected value: <span className="font-bold text-primary">{selectedFramework}</span>
+                Selected value:{" "}
+                <span className="font-bold text-primary">
+                  {selectedFramework}
+                </span>
               </p>
             )}
           </div>
@@ -122,36 +147,67 @@ export default function AutocompletePage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">options</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">AutocompleteOption[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    AutocompleteOption[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">Array of label/value suggestion items.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Array of label/value suggestion items.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">highlightMatch</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    highlightMatch
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Highlights matching search query text in options.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Highlights matching search query text in options.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isSearching</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isSearching
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Displays loading spinner inside input.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Displays loading spinner inside input.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">allowCustomValue</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    allowCustomValue
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Allows committing custom typed input text not present in options.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Allows committing custom typed input text not present in
+                    options.
+                  </td>
                 </tr>
               </tbody>
             </table>

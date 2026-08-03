@@ -32,7 +32,9 @@ export default function SliderComponentPage() {
         description="An interactive range slider component supporting multi-thumb controls, graduated marks, floating hover tooltips, and Airbnb-style frequency histogram charts."
       />
 
-      <ImportSnippet importCode={`import { Slider } from "@/components/ui/slider/slider";`} />
+      <ImportSnippet
+        importCode={`import { Slider } from "@/components/ui/slider/slider";`}
+      />
 
       <InstallationBlock componentName="slider" />
 
@@ -74,7 +76,10 @@ export default function SliderComponentPage() {
           </div>
         }
         code={`<Slider label="Volume Level" showValue showTooltip value={val} onValueChange={setVal} formatTooltip={(v) => \`\${v}%\`} />`}
-        props={["showTooltip: boolean", "formatTooltip: (val: number) => string"]}
+        props={[
+          "showTooltip: boolean",
+          "formatTooltip: (val: number) => string",
+        ]}
       />
 
       {/* Multi-Thumb Range */}
@@ -179,43 +184,75 @@ const sampleHistogram = [5, 12, 28, 45, 80, 95, 60, 40, 25, 15, 8, 3];
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">value / defaultValue</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number[]</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    value / defaultValue
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">[0]</td>
-                  <td className="px-3 py-2 text-muted-foreground">Array of values supporting single thumb, range dual thumbs, or multi-thumbs (3+).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Array of values supporting single thumb, range dual thumbs,
+                    or multi-thumbs (3+).
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showTooltip</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showTooltip
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Displays a floating tooltip above each thumb on hover.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Displays a floating tooltip above each thumb on hover.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">histogramData</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number[]</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    histogramData
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Frequency data array to render an Airbnb-style background histogram chart.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Frequency data array to render an Airbnb-style background
+                    histogram chart.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">marks</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">SliderMark[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    SliderMark[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Graduated step markers and labels along the track.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Graduated step markers and labels along the track.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

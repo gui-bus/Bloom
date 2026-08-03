@@ -12,10 +12,31 @@ export function DataTableDemo() {
   ];
 
   const data = [
-    { id: "1", name: "Guilherme Santos", email: "gui@example.com", role: "Frontend Lead" },
-    { id: "2", name: "Beatriz Lima", email: "bea@example.com", role: "UI Designer" },
-    { id: "3", name: "Carlos Eduardo", email: "carlos@example.com", role: "Backend Dev" },
+    {
+      id: "1",
+      name: "Guilherme Santos",
+      email: "gui@example.com",
+      role: "Frontend Lead",
+    },
+    {
+      id: "2",
+      name: "Beatriz Lima",
+      email: "bea@example.com",
+      role: "UI Designer",
+    },
+    {
+      id: "3",
+      name: "Carlos Eduardo",
+      email: "carlos@example.com",
+      role: "Backend Dev",
+    },
   ];
 
-  return <DataTable columns={columns} data={data} searchPlaceholder="Search users..." />;
+  return (
+    <DataTable
+      columns={columns}
+      data={data}
+      searchPlaceholder="Search users..."
+    />
+  );
 }

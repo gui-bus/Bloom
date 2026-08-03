@@ -8,7 +8,11 @@ import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar/avatar";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@/components/ui/avatar/avatar";
 import { avatarCode } from "@/components/ui/avatar/avatar.code";
 import { Separator } from "@/components/ui/separator/separator";
 import {
@@ -26,7 +30,9 @@ export default function AvatarPage() {
         description="Avatars represent a user or entity using an image, initials fallback, editable photo uploads, or status indicator. Built on top of Radix UI primitive with support for interactive press states and standardized neutral dark/light themes."
       />
 
-      <ImportSnippet importCode={`import { Avatar } from "@/components/ui/avatar/avatar";`} />
+      <ImportSnippet
+        importCode={`import { Avatar } from "@/components/ui/avatar/avatar";`}
+      />
 
       <InstallationBlock componentName="avatar" />
 
@@ -57,7 +63,10 @@ export default function AvatarPage() {
         preview={
           <div className="w-full flex flex-wrap items-center gap-4">
             <Avatar>
-              <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
+              <AvatarImage
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+                alt="Sarah Jenkins"
+              />
               <AvatarFallback>SJ</AvatarFallback>
             </Avatar>
             <Avatar>
@@ -92,11 +101,24 @@ export default function AvatarPage() {
         description="Render a hover photo upload icon overlay using 'isEditable' and trigger 'onUpload' callback."
         preview={
           <div className="w-full flex flex-wrap items-center gap-5">
-            <Avatar size="xl" isEditable onUpload={() => alert("Upload photo clicked!")}>
-              <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
+            <Avatar
+              size="xl"
+              isEditable
+              onUpload={() => alert("Upload photo clicked!")}
+            >
+              <AvatarImage
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+                alt="Sarah Jenkins"
+              />
               <AvatarFallback>SJ</AvatarFallback>
             </Avatar>
-            <Avatar size="xl" isEditable isBordered color="primary" onUpload={() => alert("Upload photo clicked!")}>
+            <Avatar
+              size="xl"
+              isEditable
+              isBordered
+              color="primary"
+              onUpload={() => alert("Upload photo clicked!")}
+            >
               <AvatarFallback>SJ</AvatarFallback>
             </Avatar>
           </div>
@@ -115,14 +137,29 @@ export default function AvatarPage() {
         preview={
           <div className="w-full flex flex-wrap items-center gap-5">
             <Avatar isPressable onClick={() => alert("Clicked avatar 1")}>
-              <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
+              <AvatarImage
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+                alt="Sarah Jenkins"
+              />
               <AvatarFallback>SJ</AvatarFallback>
             </Avatar>
-            <Avatar isPressable isBordered color="primary" onClick={() => alert("Clicked avatar 2")}>
-              <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Alex Rivera" />
+            <Avatar
+              isPressable
+              isBordered
+              color="primary"
+              onClick={() => alert("Clicked avatar 2")}
+            >
+              <AvatarImage
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
+                alt="Alex Rivera"
+              />
               <AvatarFallback>AR</AvatarFallback>
             </Avatar>
-            <Avatar isPressable color="success" onClick={() => alert("Clicked avatar 3")}>
+            <Avatar
+              isPressable
+              color="success"
+              onClick={() => alert("Clicked avatar 3")}
+            >
               <AvatarFallback>MK</AvatarFallback>
             </Avatar>
           </div>
@@ -183,7 +220,10 @@ export default function AvatarPage() {
   <Avatar isBordered color="warning"><AvatarFallback>WR</AvatarFallback></Avatar>
   <Avatar isBordered color="danger"><AvatarFallback>DG</AvatarFallback></Avatar>
 </div>`}
-        props={["isBordered: boolean", "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
+        props={[
+          "isBordered: boolean",
+          "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
+        ]}
       />
 
       {/* Sizes */}
@@ -253,7 +293,10 @@ export default function AvatarPage() {
   <Avatar status="danger" statusPosition="bottom-left"><AvatarFallback>OFF</AvatarFallback></Avatar>
   <Avatar status="secondary" statusPosition="top-left"><AvatarFallback>DND</AvatarFallback></Avatar>
 </div>`}
-        props={["status: AvatarColor", "statusPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'"]}
+        props={[
+          "status: AvatarColor",
+          "statusPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'",
+        ]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -267,24 +310,43 @@ export default function AvatarPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isEditable</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isEditable
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders a photo camera icon overlay on hover for image updates.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders a photo camera icon overlay on hover for image
+                    updates.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">onUpload</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">() =&gt; void</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    () =&gt; void
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback triggered when clicking the upload overlay icon.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback triggered when clicking the upload overlay icon.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">size</td>
@@ -299,11 +361,13 @@ export default function AvatarPage() {
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
+                    'default' | 'primary' | 'secondary' | 'accent' | 'success' |
+                    'warning' | 'danger'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Theme color for the outer ring when isBordered is true, and for the fallback background.
+                    Theme color for the outer ring when isBordered is true, and
+                    for the fallback background.
                   </td>
                 </tr>
               </tbody>
@@ -311,7 +375,7 @@ export default function AvatarPage() {
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

@@ -42,7 +42,9 @@ export default function DialogComponentPage() {
         description="A modal window component overlaid on the primary view with customizable backdrop blur/dark overlays, size options, keyboard accessibility, and zero layout shift."
       />
 
-      <ImportSnippet importCode={`import { Dialog } from "@/components/ui/dialog/dialog";`} />
+      <ImportSnippet
+        importCode={`import { Dialog } from "@/components/ui/dialog/dialog";`}
+      />
 
       <InstallationBlock componentName="dialog" />
 
@@ -80,7 +82,8 @@ export default function DialogComponentPage() {
                 <DialogHeader>
                   <DialogTitle>Edit profile</DialogTitle>
                   <DialogDescription>
-                    Make changes to your profile details here. Click save when you're done.
+                    Make changes to your profile details here. Click save when
+                    you're done.
                   </DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4 py-2">
@@ -135,10 +138,14 @@ export default function DialogComponentPage() {
               <DialogContent overlay="blur">
                 <DialogHeader>
                   <DialogTitle>Blur Backdrop</DialogTitle>
-                  <DialogDescription>Backdrop blur with subtle dark tinting.</DialogDescription>
+                  <DialogDescription>
+                    Backdrop blur with subtle dark tinting.
+                  </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                  <DialogClose asChild><Button variant="flat">Close</Button></DialogClose>
+                  <DialogClose asChild>
+                    <Button variant="flat">Close</Button>
+                  </DialogClose>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
@@ -150,10 +157,14 @@ export default function DialogComponentPage() {
               <DialogContent overlay="dark">
                 <DialogHeader>
                   <DialogTitle>Solid Dark Backdrop</DialogTitle>
-                  <DialogDescription>High contrast 80% opacity dark backdrop.</DialogDescription>
+                  <DialogDescription>
+                    High contrast 80% opacity dark backdrop.
+                  </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                  <DialogClose asChild><Button variant="flat">Close</Button></DialogClose>
+                  <DialogClose asChild>
+                    <Button variant="flat">Close</Button>
+                  </DialogClose>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
@@ -165,10 +176,14 @@ export default function DialogComponentPage() {
               <DialogContent overlay="light">
                 <DialogHeader>
                   <DialogTitle>Light Backdrop</DialogTitle>
-                  <DialogDescription>Soft 20% opacity light backdrop.</DialogDescription>
+                  <DialogDescription>
+                    Soft 20% opacity light backdrop.
+                  </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                  <DialogClose asChild><Button variant="flat">Close</Button></DialogClose>
+                  <DialogClose asChild>
+                    <Button variant="flat">Close</Button>
+                  </DialogClose>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
@@ -187,46 +202,87 @@ export default function DialogComponentPage() {
         preview={
           <div className="flex flex-wrap gap-3 w-full">
             <Dialog>
-              <DialogTrigger asChild><Button size="sm" variant="flat">Small (sm)</Button></DialogTrigger>
+              <DialogTrigger asChild>
+                <Button size="sm" variant="flat">
+                  Small (sm)
+                </Button>
+              </DialogTrigger>
               <DialogContent size="sm">
                 <DialogHeader>
                   <DialogTitle>Small Modal</DialogTitle>
-                  <DialogDescription>Compact modal for quick notifications.</DialogDescription>
+                  <DialogDescription>
+                    Compact modal for quick notifications.
+                  </DialogDescription>
                 </DialogHeader>
-                <DialogFooter><DialogClose asChild><Button size="sm">Done</Button></DialogClose></DialogFooter>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button size="sm">Done</Button>
+                  </DialogClose>
+                </DialogFooter>
               </DialogContent>
             </Dialog>
 
             <Dialog>
-              <DialogTrigger asChild><Button size="sm" variant="flat">Medium (md)</Button></DialogTrigger>
+              <DialogTrigger asChild>
+                <Button size="sm" variant="flat">
+                  Medium (md)
+                </Button>
+              </DialogTrigger>
               <DialogContent size="md">
                 <DialogHeader>
                   <DialogTitle>Medium Modal</DialogTitle>
-                  <DialogDescription>Standard modal width container.</DialogDescription>
+                  <DialogDescription>
+                    Standard modal width container.
+                  </DialogDescription>
                 </DialogHeader>
-                <DialogFooter><DialogClose asChild><Button size="sm">Done</Button></DialogClose></DialogFooter>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button size="sm">Done</Button>
+                  </DialogClose>
+                </DialogFooter>
               </DialogContent>
             </Dialog>
 
             <Dialog>
-              <DialogTrigger asChild><Button size="sm" variant="flat">Large (lg)</Button></DialogTrigger>
+              <DialogTrigger asChild>
+                <Button size="sm" variant="flat">
+                  Large (lg)
+                </Button>
+              </DialogTrigger>
               <DialogContent size="lg">
                 <DialogHeader>
                   <DialogTitle>Large Modal</DialogTitle>
-                  <DialogDescription>Expanded modal width for forms and tables.</DialogDescription>
+                  <DialogDescription>
+                    Expanded modal width for forms and tables.
+                  </DialogDescription>
                 </DialogHeader>
-                <DialogFooter><DialogClose asChild><Button size="sm">Done</Button></DialogClose></DialogFooter>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button size="sm">Done</Button>
+                  </DialogClose>
+                </DialogFooter>
               </DialogContent>
             </Dialog>
 
             <Dialog>
-              <DialogTrigger asChild><Button size="sm" variant="flat">Extra Large (xl)</Button></DialogTrigger>
+              <DialogTrigger asChild>
+                <Button size="sm" variant="flat">
+                  Extra Large (xl)
+                </Button>
+              </DialogTrigger>
               <DialogContent size="xl">
                 <DialogHeader>
                   <DialogTitle>Extra Large Modal</DialogTitle>
-                  <DialogDescription>Wide layout container for complex dashboards and rich content.</DialogDescription>
+                  <DialogDescription>
+                    Wide layout container for complex dashboards and rich
+                    content.
+                  </DialogDescription>
                 </DialogHeader>
-                <DialogFooter><DialogClose asChild><Button size="sm">Done</Button></DialogClose></DialogFooter>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button size="sm">Done</Button>
+                  </DialogClose>
+                </DialogFooter>
               </DialogContent>
             </Dialog>
           </div>
@@ -249,10 +305,18 @@ export default function DialogComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -262,7 +326,9 @@ export default function DialogComponentPage() {
                     'blur' | 'dark' | 'light' | 'transparent' | 'none'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'blur'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Backdrop overlay style variant.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Backdrop overlay style variant.
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">size</td>
@@ -270,14 +336,16 @@ export default function DialogComponentPage() {
                     'sm' | 'md' | 'lg' | 'xl' | 'full'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Dialog container width scale.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Dialog container width scale.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

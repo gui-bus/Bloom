@@ -20,7 +20,9 @@ export function PaginationFirstLastDemo() {
   return (
     <div className="space-y-4 w-full max-w-xl">
       <div className="text-center text-sm font-medium text-muted-foreground">
-        Active Page: <span className="text-primary font-bold">{currentPage}</span> of {totalPages}
+        Active Page:{" "}
+        <span className="text-primary font-bold">{currentPage}</span> of{" "}
+        {totalPages}
       </div>
 
       <Pagination>
@@ -41,7 +43,9 @@ export function PaginationFirstLastDemo() {
 
           {currentPage > 2 && (
             <PaginationItem>
-              <PaginationLink onClick={() => setCurrentPage(1)}>1</PaginationLink>
+              <PaginationLink onClick={() => setCurrentPage(1)}>
+                1
+              </PaginationLink>
             </PaginationItem>
           )}
 
@@ -79,14 +83,18 @@ export function PaginationFirstLastDemo() {
 
           {currentPage < totalPages - 1 && (
             <PaginationItem>
-              <PaginationLink onClick={() => setCurrentPage(totalPages)}>{totalPages}</PaginationLink>
+              <PaginationLink onClick={() => setCurrentPage(totalPages)}>
+                {totalPages}
+              </PaginationLink>
             </PaginationItem>
           )}
 
           <PaginationItem>
             <PaginationNext
               disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+              }
             />
           </PaginationItem>
 
@@ -110,7 +118,9 @@ export function PaginationCompactDemo() {
   return (
     <div className="space-y-4 w-full max-w-md">
       <div className="text-center text-sm font-medium text-muted-foreground">
-        Active Page: <span className="text-primary font-bold">{currentPage}</span> of {totalPages}
+        Active Page:{" "}
+        <span className="text-primary font-bold">{currentPage}</span> of{" "}
+        {totalPages}
       </div>
 
       <Pagination>
@@ -147,7 +157,9 @@ export function PaginationCompactDemo() {
           <PaginationItem>
             <PaginationNext
               disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+              }
               label=""
             />
           </PaginationItem>

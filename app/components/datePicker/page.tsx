@@ -29,7 +29,9 @@ export default function DatePickerComponentPage() {
         description="A visual date selection component supporting single, range, and multiple selection modes, integrated time picker selectors, fiscal quarter & year picker modes, quick presets, double month view, and full internationalization."
       />
 
-      <ImportSnippet importCode={`import { DatePicker } from "@/components/ui/datePicker/datePicker";`} />
+      <ImportSnippet
+        importCode={`import { DatePicker } from "@/components/ui/datePicker/datePicker";`}
+      />
 
       <InstallationBlock componentName="datePicker" />
 
@@ -48,7 +50,14 @@ export default function DatePickerComponentPage() {
             code={datePickerCode}
             componentName="datePicker.tsx"
             description="Core implementation of the DatePicker component with integrated time picker and fiscal quarter/year modes."
-            tags={["React", "Tailwind", "Calendar", "TimePicker", "FiscalYear", "DatePicker"]}
+            tags={[
+              "React",
+              "Tailwind",
+              "Calendar",
+              "TimePicker",
+              "FiscalYear",
+              "DatePicker",
+            ]}
           />
         </TabsContent>
       </Tabs>
@@ -105,7 +114,10 @@ export default function DatePickerComponentPage() {
   viewMode="fiscalYear"
   label="Fiscal Year"
 />`}
-        props={["viewMode: 'date' | 'fiscalQuarter' | 'fiscalYear'", "fiscalYearStartMonth: number (1-12)"]}
+        props={[
+          "viewMode: 'date' | 'fiscalQuarter' | 'fiscalYear'",
+          "fiscalYearStartMonth: number (1-12)",
+        ]}
       />
 
       {/* Single Selection Mode */}
@@ -114,7 +126,11 @@ export default function DatePickerComponentPage() {
         description="Standard single date picker input with interactive calendar grid popup."
         preview={
           <div className="w-full max-w-sm">
-            <DatePicker mode="single" label="Birth Date" placeholder="Select your birth date..." />
+            <DatePicker
+              mode="single"
+              label="Birth Date"
+              placeholder="Select your birth date..."
+            />
           </div>
         }
         code={`<DatePicker mode="single" label="Birth Date" placeholder="Select your birth date..." />`}
@@ -133,11 +149,7 @@ export default function DatePickerComponentPage() {
               label="Brasil (pt-BR)"
               value={today}
             />
-            <DatePicker
-              locale="es-ES"
-              label="Spain (es-ES)"
-              value={today}
-            />
+            <DatePicker locale="es-ES" label="Spain (es-ES)" value={today} />
           </div>
         }
         code={`<DatePicker
@@ -152,7 +164,10 @@ export default function DatePickerComponentPage() {
   label="Spain (es-ES)"
   value={new Date()}
 />`}
-        props={["locale: string (e.g. 'pt-BR')", "timeZone: string (e.g. 'America/Sao_Paulo')"]}
+        props={[
+          "locale: string (e.g. 'pt-BR')",
+          "timeZone: string (e.g. 'America/Sao_Paulo')",
+        ]}
       />
 
       {/* Range Mode & Double Month View */}
@@ -213,49 +228,86 @@ export default function DatePickerComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showTimePicker</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showTimePicker
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Integrates hours and minutes time dropdown selectors inside calendar popup.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Integrates hours and minutes time dropdown selectors inside
+                    calendar popup.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">viewMode</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'date' | 'fiscalQuarter' | 'fiscalYear'</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'date' | 'fiscalQuarter' | 'fiscalYear'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'date'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Display view mode for standard calendar dates, fiscal quarters (Q1-Q4), or fiscal years.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Display view mode for standard calendar dates, fiscal
+                    quarters (Q1-Q4), or fiscal years.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">fiscalYearStartMonth</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number (1-12)</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    fiscalYearStartMonth
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number (1-12)
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">1</td>
-                  <td className="px-3 py-2 text-muted-foreground">Starting month offset for fiscal quarter calculations (e.g. 1 = Jan, 4 = Apr, 10 = Oct).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Starting month offset for fiscal quarter calculations (e.g.
+                    1 = Jan, 4 = Apr, 10 = Oct).
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">mode</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'single' | 'range' | 'multiple'</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'single' | 'range' | 'multiple'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'single'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Selection mode for single date, date range interval, or multiple dates.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Selection mode for single date, date range interval, or
+                    multiple dates.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">locale</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'en-US'</td>
-                  <td className="px-3 py-2 text-muted-foreground">BCC 47 language tag (e.g. 'pt-BR', 'en-US', 'es-ES') for localizing month names, weekdays, and formats.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    BCC 47 language tag (e.g. 'pt-BR', 'en-US', 'es-ES') for
+                    localizing month names, weekdays, and formats.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

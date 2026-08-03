@@ -29,7 +29,9 @@ export default function ProgressComponentPage() {
         description="Displays an indicator showing the completion progress of a task, typically displayed as a progress bar."
       />
 
-      <ImportSnippet importCode={`import { Progress } from "@/components/ui/progress/progress";`} />
+      <ImportSnippet
+        importCode={`import { Progress } from "@/components/ui/progress/progress";`}
+      />
 
       <InstallationBlock componentName="progress" />
 
@@ -105,17 +107,39 @@ export default function ProgressComponentPage() {
         description="Indicator color variants: 'primary', 'secondary', 'accent', 'success', 'warning', or 'danger'."
         preview={
           <div className="flex flex-col gap-4 max-w-md w-full">
-            <Progress color="primary" value={45} label="Primary (Sky)" showValueLabel />
-            <Progress color="success" value={75} label="Success (Emerald)" showValueLabel />
-            <Progress color="warning" value={55} label="Warning (Amber)" showValueLabel />
-            <Progress color="danger" value={95} label="Danger (Rose)" showValueLabel />
+            <Progress
+              color="primary"
+              value={45}
+              label="Primary (Sky)"
+              showValueLabel
+            />
+            <Progress
+              color="success"
+              value={75}
+              label="Success (Emerald)"
+              showValueLabel
+            />
+            <Progress
+              color="warning"
+              value={55}
+              label="Warning (Amber)"
+              showValueLabel
+            />
+            <Progress
+              color="danger"
+              value={95}
+              label="Danger (Rose)"
+              showValueLabel
+            />
           </div>
         }
         code={`<Progress color="primary" value={45} />
 <Progress color="success" value={75} />
 <Progress color="warning" value={55} />
 <Progress color="danger" value={95} />`}
-        props={["color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
+        props={[
+          "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
+        ]}
       />
 
       {/* Indeterminate & Barber Pole */}
@@ -124,8 +148,17 @@ export default function ProgressComponentPage() {
         description="Indeterminate loading bar with smooth barber-pole animated stripes using 'isBarberPole'."
         preview={
           <div className="flex flex-col gap-4 max-w-md w-full">
-            <Progress label="Connecting to Server..." isIndeterminate color="primary" />
-            <Progress label="Uploading Assets (Barber Pole)..." isIndeterminate isBarberPole color="success" />
+            <Progress
+              label="Connecting to Server..."
+              isIndeterminate
+              color="primary"
+            />
+            <Progress
+              label="Uploading Assets (Barber Pole)..."
+              isIndeterminate
+              isBarberPole
+              color="success"
+            />
           </div>
         }
         code={`<Progress label="Connecting..." isIndeterminate />
@@ -139,9 +172,30 @@ export default function ProgressComponentPage() {
         description='Circular progress ring variant rendered as responsive SVG with type="circle".'
         preview={
           <div className="flex items-center gap-6">
-            <Progress type="circle" value={45} size="sm" showValueLabel color="primary" label="Storage" />
-            <Progress type="circle" value={75} size="md" showValueLabel color="success" label="Memory" />
-            <Progress type="circle" value={92} size="lg" showValueLabel color="danger" label="CPU Load" />
+            <Progress
+              type="circle"
+              value={45}
+              size="sm"
+              showValueLabel
+              color="primary"
+              label="Storage"
+            />
+            <Progress
+              type="circle"
+              value={75}
+              size="md"
+              showValueLabel
+              color="success"
+              label="Memory"
+            />
+            <Progress
+              type="circle"
+              value={92}
+              size="lg"
+              showValueLabel
+              color="danger"
+              label="CPU Load"
+            />
           </div>
         }
         code={`<Progress type="circle" value={45} size="sm" showValueLabel label="Storage" />
@@ -186,37 +240,59 @@ export default function ProgressComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">type</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'line' | 'circle'</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'line' | 'circle'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'line'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Progress visual format (horizontal bar or circular ring).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Progress visual format (horizontal bar or circular ring).
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isBarberPole</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isBarberPole
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Applies animated barber-pole diagonal stripes overlay.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Applies animated barber-pole diagonal stripes overlay.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">steps</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(number | ProgressStep)[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    (number | ProgressStep)[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Milestone step markers rendered along the track.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Milestone step markers rendered along the track.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

@@ -43,7 +43,9 @@ export default function MenubarComponentPage() {
         description="A desktop-style horizontal top navigation bar menu with keyboard shortcuts, checkboxes, and submenus."
       />
 
-      <ImportSnippet importCode={`import { Menubar } from "@/components/ui/menubar/menubar";`} />
+      <ImportSnippet
+        importCode={`import { Menubar } from "@/components/ui/menubar/menubar";`}
+      />
 
       <InstallationBlock componentName="menubar" />
 
@@ -83,9 +85,7 @@ export default function MenubarComponentPage() {
                   New Window <MenubarShortcut>⌘N</MenubarShortcut>
                 </MenubarItem>
                 <MenubarSeparator />
-                <MenubarItem>
-                  Share Project...
-                </MenubarItem>
+                <MenubarItem>Share Project...</MenubarItem>
                 <MenubarSeparator />
                 <MenubarItem>
                   Print <MenubarShortcut>⌘P</MenubarShortcut>
@@ -118,10 +118,16 @@ export default function MenubarComponentPage() {
             <MenubarMenu>
               <MenubarTrigger>View</MenubarTrigger>
               <MenubarContent>
-                <MenubarCheckboxItem checked={showGrid} onCheckedChange={setShowGrid}>
+                <MenubarCheckboxItem
+                  checked={showGrid}
+                  onCheckedChange={setShowGrid}
+                >
                   Show Layout Grid
                 </MenubarCheckboxItem>
-                <MenubarCheckboxItem checked={showRuler} onCheckedChange={setShowRuler}>
+                <MenubarCheckboxItem
+                  checked={showRuler}
+                  onCheckedChange={setShowRuler}
+                >
                   Show Ruler Bounds
                 </MenubarCheckboxItem>
                 <MenubarSeparator />
@@ -153,37 +159,69 @@ export default function MenubarComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Component</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Component
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">MenubarContent</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">align</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'start' | 'center' | 'end'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Alignment relative to trigger button.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    MenubarContent
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    align
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'start' | 'center' | 'end'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Alignment relative to trigger button.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">MenubarItem</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">inset</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">Adds left padding alignment offset.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    MenubarItem
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    inset
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Adds left padding alignment offset.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">MenubarCheckboxItem</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">checked</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
-                  <td className="px-3 py-2 text-muted-foreground">Checked state of toggle item with checkmark icon.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    MenubarCheckboxItem
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    checked
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Checked state of toggle item with checkmark icon.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

@@ -29,7 +29,9 @@ export default function SpinnerComponentPage() {
         description="Animated loading indicator featuring multiple visual styles (default, dots, bars, pulse, ring, gradient), color palettes, size scale, and text labels."
       />
 
-      <ImportSnippet importCode={`import { Spinner } from "@/components/ui/spinner/spinner";`} />
+      <ImportSnippet
+        importCode={`import { Spinner } from "@/components/ui/spinner/spinner";`}
+      />
 
       <InstallationBlock componentName="spinner" />
 
@@ -87,7 +89,9 @@ export default function SpinnerComponentPage() {
 <Spinner color="success" label="Success" />
 <Spinner color="warning" label="Warning" />
 <Spinner color="danger" label="Danger" />`}
-        props={["color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
+        props={[
+          "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
+        ]}
       />
 
       {/* Spinner Variants */}
@@ -110,7 +114,9 @@ export default function SpinnerComponentPage() {
 <Spinner variant="pulse" label="Pulse" />
 <Spinner variant="ring" label="Ring" />
 <Spinner variant="gradient" label="Gradient" />`}
-        props={["variant: 'default' | 'dots' | 'bars' | 'pulse' | 'ring' | 'gradient'"]}
+        props={[
+          "variant: 'default' | 'dots' | 'bars' | 'pulse' | 'ring' | 'gradient'",
+        ]}
       />
 
       {/* Sizes */}
@@ -143,20 +149,31 @@ export default function SpinnerComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
+                    'default' | 'primary' | 'secondary' | 'accent' | 'success' |
+                    'warning' | 'danger'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'primary'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Theme color palette of spinner graphic.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Theme color palette of spinner graphic.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
@@ -164,7 +181,9 @@ export default function SpinnerComponentPage() {
                     'default' | 'dots' | 'bars' | 'pulse' | 'ring' | 'gradient'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Spinner graphic animation style.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Spinner graphic animation style.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">size</td>
@@ -172,20 +191,26 @@ export default function SpinnerComponentPage() {
                     'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Dimensions scale of spinner graphic.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Dimensions scale of spinner graphic.
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">label</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Optional loading status label text.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Optional loading status label text.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

@@ -29,7 +29,9 @@ export default function StatCardComponentPage() {
         description="Displays key performance metrics, numeric values, trend indicators (+/-), icons, and contextual descriptions."
       />
 
-      <ImportSnippet importCode={`import { StatCard } from "@/components/ui/statCard/statCard";`} />
+      <ImportSnippet
+        importCode={`import { StatCard } from "@/components/ui/statCard/statCard";`}
+      />
 
       <InstallationBlock componentName="statCard" />
 
@@ -97,7 +99,12 @@ export default function StatCardComponentPage() {
               value="34.2%"
               change="-2.1%"
               trend="down"
-              icon={<Icon icon="hugeicons:chart-breakout-square" className="size-5" />}
+              icon={
+                <Icon
+                  icon="hugeicons:chart-breakout-square"
+                  className="size-5"
+                />
+              }
             />
             <StatCard
               title="Avg Session"
@@ -126,30 +133,50 @@ export default function StatCardComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">title</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Header title label of the metric card.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Header title label of the metric card.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">value</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Primary numeric value or formatted string.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Primary numeric value or formatted string.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">change</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string | number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string | number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Percentage or value change badge label.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Percentage or value change badge label.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">trend</td>
@@ -157,20 +184,26 @@ export default function StatCardComponentPage() {
                     'up' | 'down' | 'neutral'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'neutral'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Trend indicator color & arrow direction.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Trend indicator color & arrow direction.
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">icon</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Header icon graphic element.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Header icon graphic element.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

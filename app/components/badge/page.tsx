@@ -29,7 +29,9 @@ export default function BadgeComponentPage() {
         description="A compact label used to highlight status, categories, or contextual metadata. Supports multiple color palettes, visual variants, sizes, pressable interactions, and optional dot indicators or icon slots."
       />
 
-      <ImportSnippet importCode={`import { Badge } from "@/components/ui/badge/badge";`} />
+      <ImportSnippet
+        importCode={`import { Badge } from "@/components/ui/badge/badge";`}
+      />
 
       <InstallationBlock componentName="badge" />
 
@@ -48,7 +50,13 @@ export default function BadgeComponentPage() {
             code={badgeCode}
             componentName="badge.tsx"
             description="Core implementation of the Badge component with color, variant, size, radius, pressable interaction, and slot support."
-            tags={["React", "Tailwind", "UI Component", "Accessibility", "Badge"]}
+            tags={[
+              "React",
+              "Tailwind",
+              "UI Component",
+              "Accessibility",
+              "Badge",
+            ]}
           />
         </TabsContent>
       </Tabs>
@@ -71,12 +79,24 @@ export default function BadgeComponentPage() {
         description="Controls the visual appearance of the badge. 'flat' is the default and works well for most contexts."
         preview={
           <div className="w-full flex flex-wrap gap-3">
-            <Badge variant="default" color="primary">Default</Badge>
-            <Badge variant="bordered" color="primary">Bordered</Badge>
-            <Badge variant="flat" color="primary">Flat</Badge>
-            <Badge variant="ghost" color="primary">Ghost</Badge>
-            <Badge variant="shadow" color="primary">Shadow</Badge>
-            <Badge variant="dot" color="primary">Dot</Badge>
+            <Badge variant="default" color="primary">
+              Default
+            </Badge>
+            <Badge variant="bordered" color="primary">
+              Bordered
+            </Badge>
+            <Badge variant="flat" color="primary">
+              Flat
+            </Badge>
+            <Badge variant="ghost" color="primary">
+              Ghost
+            </Badge>
+            <Badge variant="shadow" color="primary">
+              Shadow
+            </Badge>
+            <Badge variant="dot" color="primary">
+              Dot
+            </Badge>
           </div>
         }
         code={`<div className="flex flex-wrap gap-3">
@@ -87,7 +107,9 @@ export default function BadgeComponentPage() {
   <Badge variant="shadow" color="primary">Shadow</Badge>
   <Badge variant="dot" color="primary">Dot</Badge>
 </div>`}
-        props={["variant: 'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' | 'dot'"]}
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' | 'dot'",
+        ]}
       />
 
       {/* Colors */}
@@ -97,72 +119,142 @@ export default function BadgeComponentPage() {
         preview={
           <div className="w-full flex flex-col gap-4">
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="default"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="default"
+              </span>
               <div className="flex flex-wrap gap-2">
-                <Badge color="default" variant="flat">Flat</Badge>
-                <Badge color="default" variant="bordered">Bordered</Badge>
-                <Badge color="default" variant="default">Solid</Badge>
-                <Badge color="default" variant="shadow">Shadow</Badge>
+                <Badge color="default" variant="flat">
+                  Flat
+                </Badge>
+                <Badge color="default" variant="bordered">
+                  Bordered
+                </Badge>
+                <Badge color="default" variant="default">
+                  Solid
+                </Badge>
+                <Badge color="default" variant="shadow">
+                  Shadow
+                </Badge>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="primary"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="primary"
+              </span>
               <div className="flex flex-wrap gap-2">
-                <Badge color="primary" variant="flat">Flat</Badge>
-                <Badge color="primary" variant="bordered">Bordered</Badge>
-                <Badge color="primary" variant="default">Solid</Badge>
-                <Badge color="primary" variant="shadow">Shadow</Badge>
+                <Badge color="primary" variant="flat">
+                  Flat
+                </Badge>
+                <Badge color="primary" variant="bordered">
+                  Bordered
+                </Badge>
+                <Badge color="primary" variant="default">
+                  Solid
+                </Badge>
+                <Badge color="primary" variant="shadow">
+                  Shadow
+                </Badge>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="secondary"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="secondary"
+              </span>
               <div className="flex flex-wrap gap-2">
-                <Badge color="secondary" variant="flat">Flat</Badge>
-                <Badge color="secondary" variant="bordered">Bordered</Badge>
-                <Badge color="secondary" variant="default">Solid</Badge>
-                <Badge color="secondary" variant="shadow">Shadow</Badge>
+                <Badge color="secondary" variant="flat">
+                  Flat
+                </Badge>
+                <Badge color="secondary" variant="bordered">
+                  Bordered
+                </Badge>
+                <Badge color="secondary" variant="default">
+                  Solid
+                </Badge>
+                <Badge color="secondary" variant="shadow">
+                  Shadow
+                </Badge>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="accent"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="accent"
+              </span>
               <div className="flex flex-wrap gap-2">
-                <Badge color="accent" variant="flat">Flat</Badge>
-                <Badge color="accent" variant="bordered">Bordered</Badge>
-                <Badge color="accent" variant="default">Solid</Badge>
-                <Badge color="accent" variant="shadow">Shadow</Badge>
+                <Badge color="accent" variant="flat">
+                  Flat
+                </Badge>
+                <Badge color="accent" variant="bordered">
+                  Bordered
+                </Badge>
+                <Badge color="accent" variant="default">
+                  Solid
+                </Badge>
+                <Badge color="accent" variant="shadow">
+                  Shadow
+                </Badge>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="success"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="success"
+              </span>
               <div className="flex flex-wrap gap-2">
-                <Badge color="success" variant="flat">Flat</Badge>
-                <Badge color="success" variant="bordered">Bordered</Badge>
-                <Badge color="success" variant="default">Solid</Badge>
-                <Badge color="success" variant="shadow">Shadow</Badge>
+                <Badge color="success" variant="flat">
+                  Flat
+                </Badge>
+                <Badge color="success" variant="bordered">
+                  Bordered
+                </Badge>
+                <Badge color="success" variant="default">
+                  Solid
+                </Badge>
+                <Badge color="success" variant="shadow">
+                  Shadow
+                </Badge>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="warning"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="warning"
+              </span>
               <div className="flex flex-wrap gap-2">
-                <Badge color="warning" variant="flat">Flat</Badge>
-                <Badge color="warning" variant="bordered">Bordered</Badge>
-                <Badge color="warning" variant="default">Solid</Badge>
-                <Badge color="warning" variant="shadow">Shadow</Badge>
+                <Badge color="warning" variant="flat">
+                  Flat
+                </Badge>
+                <Badge color="warning" variant="bordered">
+                  Bordered
+                </Badge>
+                <Badge color="warning" variant="default">
+                  Solid
+                </Badge>
+                <Badge color="warning" variant="shadow">
+                  Shadow
+                </Badge>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="danger"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="danger"
+              </span>
               <div className="flex flex-wrap gap-2">
-                <Badge color="danger" variant="flat">Flat</Badge>
-                <Badge color="danger" variant="bordered">Bordered</Badge>
-                <Badge color="danger" variant="default">Solid</Badge>
-                <Badge color="danger" variant="shadow">Shadow</Badge>
+                <Badge color="danger" variant="flat">
+                  Flat
+                </Badge>
+                <Badge color="danger" variant="bordered">
+                  Bordered
+                </Badge>
+                <Badge color="danger" variant="default">
+                  Solid
+                </Badge>
+                <Badge color="danger" variant="shadow">
+                  Shadow
+                </Badge>
               </div>
             </div>
           </div>
@@ -172,7 +264,9 @@ export default function BadgeComponentPage() {
   <Badge color="success" variant="bordered">Bordered</Badge>
   <Badge color="danger" variant="default">Solid</Badge>
 </div>`}
-        props={["color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
+        props={[
+          "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
+        ]}
       />
 
       {/* Pressable */}
@@ -181,13 +275,27 @@ export default function BadgeComponentPage() {
         description="Add 'isPressable' to make badges interactive with scale micro-animations and active press feedback."
         preview={
           <div className="w-full flex flex-wrap items-center gap-3">
-            <Badge isPressable color="primary" onClick={() => alert("Clicked Primary Badge")}>
+            <Badge
+              isPressable
+              color="primary"
+              onClick={() => alert("Clicked Primary Badge")}
+            >
               Clickable Primary
             </Badge>
-            <Badge isPressable color="success" variant="bordered" onClick={() => alert("Clicked Success Badge")}>
+            <Badge
+              isPressable
+              color="success"
+              variant="bordered"
+              onClick={() => alert("Clicked Success Badge")}
+            >
               Clickable Success
             </Badge>
-            <Badge isPressable color="danger" variant="flat" onClick={() => alert("Clicked Danger Badge")}>
+            <Badge
+              isPressable
+              color="danger"
+              variant="flat"
+              onClick={() => alert("Clicked Danger Badge")}
+            >
               Clickable Danger
             </Badge>
           </div>
@@ -204,9 +312,15 @@ export default function BadgeComponentPage() {
         description="Three size options to adapt to different UI contexts."
         preview={
           <div className="w-full flex flex-wrap items-center gap-3">
-            <Badge size="sm" color="primary">Small</Badge>
-            <Badge size="md" color="primary">Medium</Badge>
-            <Badge size="lg" color="primary">Large</Badge>
+            <Badge size="sm" color="primary">
+              Small
+            </Badge>
+            <Badge size="md" color="primary">
+              Medium
+            </Badge>
+            <Badge size="lg" color="primary">
+              Large
+            </Badge>
           </div>
         }
         code={`<div className="flex flex-wrap items-center gap-3">
@@ -223,12 +337,24 @@ export default function BadgeComponentPage() {
         description="Control the border radius. Defaults to 'full' for a pill shape."
         preview={
           <div className="w-full flex flex-wrap items-center gap-3">
-            <Badge radius="none" color="primary">None</Badge>
-            <Badge radius="sm" color="primary">Small</Badge>
-            <Badge radius="md" color="primary">Medium</Badge>
-            <Badge radius="lg" color="primary">Large</Badge>
-            <Badge radius="xl" color="primary">XL</Badge>
-            <Badge radius="full" color="primary">Full</Badge>
+            <Badge radius="none" color="primary">
+              None
+            </Badge>
+            <Badge radius="sm" color="primary">
+              Small
+            </Badge>
+            <Badge radius="md" color="primary">
+              Medium
+            </Badge>
+            <Badge radius="lg" color="primary">
+              Large
+            </Badge>
+            <Badge radius="xl" color="primary">
+              XL
+            </Badge>
+            <Badge radius="full" color="primary">
+              Full
+            </Badge>
           </div>
         }
         code={`<div className="flex flex-wrap items-center gap-3">
@@ -239,7 +365,9 @@ export default function BadgeComponentPage() {
   <Badge radius="xl" color="primary">XL</Badge>
   <Badge radius="full" color="primary">Full</Badge>
 </div>`}
-        props={["radius: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'"]}
+        props={[
+          "radius: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'",
+        ]}
       />
 
       {/* Dot */}
@@ -248,10 +376,18 @@ export default function BadgeComponentPage() {
         description="Adds a small colored dot before the label — useful for status or presence indicators."
         preview={
           <div className="w-full flex flex-wrap gap-3">
-            <Badge dot color="success">Online</Badge>
-            <Badge dot color="warning">Away</Badge>
-            <Badge dot color="danger">Offline</Badge>
-            <Badge dot color="default">Unknown</Badge>
+            <Badge dot color="success">
+              Online
+            </Badge>
+            <Badge dot color="warning">
+              Away
+            </Badge>
+            <Badge dot color="danger">
+              Offline
+            </Badge>
+            <Badge dot color="default">
+              Unknown
+            </Badge>
           </div>
         }
         code={`<div className="flex flex-wrap gap-3">
@@ -271,25 +407,36 @@ export default function BadgeComponentPage() {
           <div className="w-full flex flex-wrap gap-3">
             <Badge
               color="success"
-              startContent={<Icon icon="hugeicons:checkmark-circle-02" className="size-3.5" />}
+              startContent={
+                <Icon
+                  icon="hugeicons:checkmark-circle-02"
+                  className="size-3.5"
+                />
+              }
             >
               Verified
             </Badge>
             <Badge
               color="warning"
-              startContent={<Icon icon="hugeicons:alert-02" className="size-3.5" />}
+              startContent={
+                <Icon icon="hugeicons:alert-02" className="size-3.5" />
+              }
             >
               Warning
             </Badge>
             <Badge
               color="primary"
-              endContent={<Icon icon="hugeicons:arrow-right-01" className="size-3.5" />}
+              endContent={
+                <Icon icon="hugeicons:arrow-right-01" className="size-3.5" />
+              }
             >
               New
             </Badge>
             <Badge
               color="danger"
-              startContent={<Icon icon="hugeicons:cancel-circle" className="size-3.5" />}
+              startContent={
+                <Icon icon="hugeicons:cancel-circle" className="size-3.5" />
+              }
             >
               Error
             </Badge>
@@ -341,7 +488,9 @@ export default function BadgeComponentPage() {
             </Badge>
             <div className="flex items-center gap-2">
               <Badge color="success" isDot isPulsing />
-              <span className="text-xs text-muted-foreground font-medium">Server Online</span>
+              <span className="text-xs text-muted-foreground font-medium">
+                Server Online
+              </span>
             </div>
           </div>
         }
@@ -358,13 +507,28 @@ export default function BadgeComponentPage() {
         description="Render a dismiss close button inside the badge using 'isRemovable' and 'onRemove'."
         preview={
           <div className="w-full flex flex-wrap items-center gap-2">
-            <Badge color="primary" variant="flat" isRemovable onRemove={() => alert("Tag removed")}>
+            <Badge
+              color="primary"
+              variant="flat"
+              isRemovable
+              onRemove={() => alert("Tag removed")}
+            >
               React
             </Badge>
-            <Badge color="secondary" variant="flat" isRemovable onRemove={() => alert("Tag removed")}>
+            <Badge
+              color="secondary"
+              variant="flat"
+              isRemovable
+              onRemove={() => alert("Tag removed")}
+            >
               Next.js
             </Badge>
-            <Badge color="accent" variant="flat" isRemovable onRemove={() => alert("Tag removed")}>
+            <Badge
+              color="accent"
+              variant="flat"
+              isRemovable
+              onRemove={() => alert("Tag removed")}
+            >
               Tailwind
             </Badge>
           </div>
@@ -386,17 +550,26 @@ export default function BadgeComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
+                    'default' | 'primary' | 'secondary' | 'accent' | 'success' |
+                    'warning' | 'danger'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
                   <td className="px-3 py-2 text-muted-foreground">
@@ -426,7 +599,8 @@ export default function BadgeComponentPage() {
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">radius</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
+                    'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' |
+                    'full'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'full'</td>
                   <td className="px-3 py-2 text-muted-foreground">
@@ -434,24 +608,36 @@ export default function BadgeComponentPage() {
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isPressable</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isPressable
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Enables interactive hover scale and click feedback.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isDisabled</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isDisabled
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Disables interaction and applies opacity filter.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isInvisible</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isInvisible
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Hides the badge when true.
@@ -459,23 +645,33 @@ export default function BadgeComponentPage() {
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">dot</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Displays a small colored status dot before the content.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">startContent</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    startContent
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Element rendered before the badge label (e.g. an icon).
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">endContent</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    endContent
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Element rendered after the badge label.
@@ -483,10 +679,13 @@ export default function BadgeComponentPage() {
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">live</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Enables aria-live="polite" region for dynamic status/count updates.
+                    Enables aria-live="polite" region for dynamic status/count
+                    updates.
                   </td>
                 </tr>
               </tbody>
@@ -494,7 +693,7 @@ export default function BadgeComponentPage() {
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

@@ -8,9 +8,7 @@ export function ToastDemo() {
   return (
     <div className="flex flex-wrap gap-3">
       <Toast />
-      <Button
-        onClick={() => toast.success("Event has been created.")}
-      >
+      <Button onClick={() => toast.success("Event has been created.")}>
         Success Toast
       </Button>
       <Button

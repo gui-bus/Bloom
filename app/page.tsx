@@ -16,7 +16,9 @@ const FeatureCard = ({
       <Icon icon={icon} className="size-5" />
     </div>
     <div>
-      <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">{title}</h3>
+      <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">
+        {title}
+      </h3>
       <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
         {description}
       </p>
@@ -40,9 +42,19 @@ export default function Home() {
           </h1>
           <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
             A professional React component library built on top of{" "}
-            <strong className="text-zinc-900 dark:text-zinc-100">Radix UI</strong>,{" "}
-            <strong className="text-zinc-900 dark:text-zinc-100">Tailwind CSS v4</strong>, and{" "}
-            <strong className="text-zinc-900 dark:text-zinc-100">Framer Motion</strong>. Clean neutral theme tokens, full accessibility standards, and high-performance micro-animations.
+            <strong className="text-zinc-900 dark:text-zinc-100">
+              Radix UI
+            </strong>
+            ,{" "}
+            <strong className="text-zinc-900 dark:text-zinc-100">
+              Tailwind CSS v4
+            </strong>
+            , and{" "}
+            <strong className="text-zinc-900 dark:text-zinc-100">
+              Framer Motion
+            </strong>
+            . Clean neutral theme tokens, full accessibility standards, and
+            high-performance micro-animations.
           </p>
         </div>
 
@@ -58,7 +70,10 @@ export default function Home() {
             href="/installation"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 font-semibold text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all duration-200 shadow-xs"
           >
-            <Icon icon="hugeicons:download-01" className="size-4 text-sky-500" />
+            <Icon
+              icon="hugeicons:download-01"
+              className="size-4 text-sky-500"
+            />
             Installation Guide
           </Link>
           <a
@@ -78,7 +93,9 @@ export default function Home() {
       {/* Core Principles */}
       <section className="space-y-6">
         <div>
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Why Bloom?</h2>
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+            Why Bloom?
+          </h2>
           <p className="text-zinc-500 dark:text-zinc-400 mt-1 text-sm">
             Core principles behind every component in the library.
           </p>

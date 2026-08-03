@@ -30,7 +30,9 @@ export default function LabelComponentPage() {
         description="Renders an accessible label associated with form controls using Radix UI primitives."
       />
 
-      <ImportSnippet importCode={`import { Label } from "@/components/ui/label/label";`} />
+      <ImportSnippet
+        importCode={`import { Label } from "@/components/ui/label/label";`}
+      />
 
       <InstallationBlock componentName="label" />
 
@@ -114,18 +116,32 @@ export default function LabelComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isRequired</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isRequired
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders a red asterisk required indicator.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders a red asterisk required indicator.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">size</td>
@@ -133,20 +149,26 @@ export default function LabelComponentPage() {
                     'sm' | 'md' | 'lg'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'sm'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Font size variant for label text.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Font size variant for label text.
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">htmlFor</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">ID of the associated form control input.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    ID of the associated form control input.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

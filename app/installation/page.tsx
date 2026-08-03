@@ -22,9 +22,14 @@ const CopyableCommand = ({ command }: { command: string }) => {
   return (
     <div className="flex items-center justify-between gap-3 bg-zinc-100 dark:bg-zinc-800/80 rounded-xl px-4 py-3 font-mono text-sm border border-zinc-200 dark:border-zinc-700/80 shadow-xs">
       <div className="flex items-center gap-3 overflow-x-auto">
-        <Icon icon="hugeicons:terminal" className="size-4 text-sky-500 shrink-0" />
+        <Icon
+          icon="hugeicons:terminal"
+          className="size-4 text-sky-500 shrink-0"
+        />
         <span className="text-zinc-400 select-none">$</span>
-        <code className="text-zinc-900 dark:text-zinc-100 font-bold">{command}</code>
+        <code className="text-zinc-900 dark:text-zinc-100 font-bold">
+          {command}
+        </code>
       </div>
       <button
         onClick={handleCopy}
@@ -135,16 +140,28 @@ npx @bloomui-react/cli add button`}
             <div className="flex items-start gap-3 p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
               <Icon icon="devicon:react" className="size-5 shrink-0 mt-0.5" />
               <div>
-                <strong className="text-zinc-900 dark:text-zinc-100">React 18 / 19 or Next.js 14 / 15 / 16</strong>
-                <p className="text-zinc-500 dark:text-zinc-400 mt-0.5">Compatible with React Server Components (RSC) and Client Components.</p>
+                <strong className="text-zinc-900 dark:text-zinc-100">
+                  React 18 / 19 or Next.js 14 / 15 / 16
+                </strong>
+                <p className="text-zinc-500 dark:text-zinc-400 mt-0.5">
+                  Compatible with React Server Components (RSC) and Client
+                  Components.
+                </p>
               </div>
             </div>
 
             <div className="flex items-start gap-3 p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-              <Icon icon="devicon:tailwindcss" className="size-5 shrink-0 mt-0.5" />
+              <Icon
+                icon="devicon:tailwindcss"
+                className="size-5 shrink-0 mt-0.5"
+              />
               <div>
-                <strong className="text-zinc-900 dark:text-zinc-100">Tailwind CSS v4</strong>
-                <p className="text-zinc-500 dark:text-zinc-400 mt-0.5">Bloom UI uses Tailwind v4 theme variables and utilities.</p>
+                <strong className="text-zinc-900 dark:text-zinc-100">
+                  Tailwind CSS v4
+                </strong>
+                <p className="text-zinc-500 dark:text-zinc-400 mt-0.5">
+                  Bloom UI uses Tailwind v4 theme variables and utilities.
+                </p>
               </div>
             </div>
           </div>

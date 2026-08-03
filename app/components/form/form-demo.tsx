@@ -21,7 +21,11 @@ export function FormDemo() {
         <Input {...form.register("email")} placeholder="you@domain.com" />
       </FormField>
       <FormField label="Password">
-        <Input type="password" {...form.register("password")} placeholder="••••••••" />
+        <Input
+          type="password"
+          {...form.register("password")}
+          placeholder="••••••••"
+        />
       </FormField>
       <Button type="submit" className="w-full">
         Sign In

@@ -22,7 +22,11 @@ import {
 } from "@/components/ui/carousel/carousel";
 import { carouselCode } from "@/components/ui/carousel/carousel.code";
 import { Badge } from "@/components/ui/badge/badge";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar/avatar";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@/components/ui/avatar/avatar";
 import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
@@ -68,20 +72,26 @@ const testimonials = [
   {
     name: "Alex Rivera",
     role: "Lead Engineer",
-    comment: "Bloom UI saved our design system overhaul team weeks of development time.",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150",
+    comment:
+      "Bloom UI saved our design system overhaul team weeks of development time.",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150",
   },
   {
     name: "Sarah Chen",
     role: "Product Designer",
-    comment: "The micro-animations and accessibility features out of the box are top-notch.",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
+    comment:
+      "The micro-animations and accessibility features out of the box are top-notch.",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
   },
   {
     name: "Marcus Vance",
     role: "CTO at TechCorp",
-    comment: "Exceptionally clean TypeScript code structure and effortless customization.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    comment:
+      "Exceptionally clean TypeScript code structure and effortless customization.",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
   },
 ];
 
@@ -93,7 +103,9 @@ export default function CarouselPage() {
         description="A touch-enabled, responsive slider component for cycling through images, cards, or custom content with support for autoplay, vertical orientation, and pagination dots with navigation controls."
       />
 
-      <ImportSnippet importCode={`import { Carousel } from "@/components/ui/carousel/carousel";`} />
+      <ImportSnippet
+        importCode={`import { Carousel } from "@/components/ui/carousel/carousel";`}
+      />
 
       <InstallationBlock componentName="carousel" />
 
@@ -112,7 +124,13 @@ export default function CarouselPage() {
             code={carouselCode}
             componentName="carousel.tsx"
             description="Carousel slider component supporting touch gestures, autoplay, dots pagination, and clean navigation controls."
-            tags={["React", "Embla Carousel", "Tailwind", "UI Component", "Slider"]}
+            tags={[
+              "React",
+              "Embla Carousel",
+              "Tailwind",
+              "UI Component",
+              "Slider",
+            ]}
           />
         </TabsContent>
       </Tabs>
@@ -174,8 +192,12 @@ export default function CarouselPage() {
             <Carousel className="w-full">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 text-lg">Featured Collections</h4>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">Handpicked items for your workflow</p>
+                  <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 text-lg">
+                    Featured Collections
+                  </h4>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                    Handpicked items for your workflow
+                  </p>
                 </div>
                 <div className="flex items-center gap-2">
                   <CarouselPrevious />
@@ -185,7 +207,10 @@ export default function CarouselPage() {
 
               <CarouselContent className="-ml-3">
                 {features.map((item, index) => (
-                  <CarouselItem key={index} className="pl-3 basis-full sm:basis-1/2 md:basis-1/3">
+                  <CarouselItem
+                    key={index}
+                    className="pl-3 basis-full sm:basis-1/2 md:basis-1/3"
+                  >
                     <div className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-sm flex flex-col justify-between h-40">
                       <div className="flex items-start justify-between">
                         <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400">
@@ -195,7 +220,9 @@ export default function CarouselPage() {
                       </div>
                       <div>
                         <h5 className="font-medium text-sm">{item.title}</h5>
-                        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">{item.description}</p>
+                        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                          {item.description}
+                        </p>
                       </div>
                     </div>
                   </CarouselItem>
@@ -236,17 +263,26 @@ export default function CarouselPage() {
             <Carousel className="w-full">
               <CarouselContent className="-ml-3">
                 {testimonials.map((item, index) => (
-                  <CarouselItem key={index} className="pl-3 basis-full sm:basis-1/2">
+                  <CarouselItem
+                    key={index}
+                    className="pl-3 basis-full sm:basis-1/2"
+                  >
                     <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-sm flex flex-col justify-between space-y-4">
-                      <p className="text-sm italic text-zinc-600 dark:text-zinc-300">"{item.comment}"</p>
+                      <p className="text-sm italic text-zinc-600 dark:text-zinc-300">
+                        "{item.comment}"
+                      </p>
                       <div className="flex items-center gap-3 pt-2 border-t border-zinc-100 dark:border-zinc-800">
                         <Avatar size="sm">
                           <AvatarImage src={item.avatar} alt={item.name} />
                           <AvatarFallback>{item.name[0]}</AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">{item.name}</p>
-                          <p className="text-[11px] text-zinc-500 dark:text-zinc-400">{item.role}</p>
+                          <p className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+                            {item.name}
+                          </p>
+                          <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
+                            {item.role}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -341,8 +377,12 @@ export default function CarouselPage() {
                 {Array.from({ length: 5 }).map((_, index) => (
                   <CarouselItem key={index} className="pt-2 h-full">
                     <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-sm flex flex-col items-center justify-center h-48">
-                      <span className="text-xl font-bold text-sky-600 dark:text-sky-400">Vertical Slide {index + 1}</span>
-                      <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">Scroll up / down</span>
+                      <span className="text-xl font-bold text-sky-600 dark:text-sky-400">
+                        Vertical Slide {index + 1}
+                      </span>
+                      <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
+                        Scroll up / down
+                      </span>
                     </div>
                   </CarouselItem>
                 ))}
@@ -425,14 +465,19 @@ export default function CarouselPage() {
             <Carousel dragFree swipeThreshold={5} className="w-full">
               <CarouselContent className="-ml-3">
                 {features.map((item, index) => (
-                  <CarouselItem key={index} className="pl-3 basis-2/3 sm:basis-1/3">
+                  <CarouselItem
+                    key={index}
+                    className="pl-3 basis-2/3 sm:basis-1/3"
+                  >
                     <div className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-sm flex flex-col justify-between h-36">
                       <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 w-fit">
                         <Icon icon={item.icon} className="size-5" />
                       </div>
                       <div>
                         <h5 className="font-medium text-sm">{item.title}</h5>
-                        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">{item.description}</p>
+                        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                          {item.description}
+                        </p>
                       </div>
                     </div>
                   </CarouselItem>
@@ -468,75 +513,115 @@ export default function CarouselPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">orientation</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'horizontal' | 'vertical'</td>
-                  <td className="px-3 py-2 text-muted-foreground">'horizontal'</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    orientation
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'horizontal' | 'vertical'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    'horizontal'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Axis orientation for slide motion and navigation controls.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">autoplay</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Enables automatic slide transitions.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">autoplayDelay</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    autoplayDelay
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">3000</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Interval in milliseconds between automatic slide transitions.
+                    Interval in milliseconds between automatic slide
+                    transitions.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">pauseOnHover</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    pauseOnHover
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Pauses autoplay progression when mouse hovers over the slider container.
+                    Pauses autoplay progression when mouse hovers over the
+                    slider container.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">dragFree</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Enables free momentum drag physics without snap-to-grid constraints.
+                    Enables free momentum drag physics without snap-to-grid
+                    constraints.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">swipeThreshold</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    swipeThreshold
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">10</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Pixel distance threshold to trigger swipe navigation on touch devices.
+                    Pixel distance threshold to trigger swipe navigation on
+                    touch devices.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">opts</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">EmblaOptionsType</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    EmblaOptionsType
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Configuration options passed directly to Embla Carousel instance.
+                    Configuration options passed directly to Embla Carousel
+                    instance.
                   </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">setApi</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(api: CarouselApi) => void"}</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {"(api: CarouselApi) => void"}
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Callback function to receive the Embla Carousel API instance.
+                    Callback function to receive the Embla Carousel API
+                    instance.
                   </td>
                 </tr>
               </tbody>
@@ -544,7 +629,7 @@ export default function CarouselPage() {
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

@@ -28,7 +28,9 @@ export default function NumberInputComponentPage() {
         description="Numeric stepper input control supporting stepper positions (split, right, inline), native internationalized currency & percentage formatting, and mouse wheel scroll adjustments."
       />
 
-      <ImportSnippet importCode={`import { NumberInput } from "@/components/ui/numberInput/numberInput";`} />
+      <ImportSnippet
+        importCode={`import { NumberInput } from "@/components/ui/numberInput/numberInput";`}
+      />
 
       <InstallationBlock componentName="numberInput" />
 
@@ -58,9 +60,21 @@ export default function NumberInputComponentPage() {
         description="Choose stepper button layout: 'split' (left & right), 'right' (both buttons on right), or 'inline' (compact up/down arrows)."
         preview={
           <div className="flex flex-col gap-4 max-w-xs w-full">
-            <NumberInput label="Split Stepper (Default)" stepperPosition="split" defaultValue={5} />
-            <NumberInput label="Right Stepper" stepperPosition="right" defaultValue={10} />
-            <NumberInput label="Inline Vertical Arrows" stepperPosition="inline" defaultValue={15} />
+            <NumberInput
+              label="Split Stepper (Default)"
+              stepperPosition="split"
+              defaultValue={5}
+            />
+            <NumberInput
+              label="Right Stepper"
+              stepperPosition="right"
+              defaultValue={10}
+            />
+            <NumberInput
+              label="Inline Vertical Arrows"
+              stepperPosition="inline"
+              defaultValue={15}
+            />
           </div>
         }
         code={`<NumberInput label="Split Stepper" stepperPosition="split" />
@@ -80,7 +94,7 @@ export default function NumberInputComponentPage() {
               format="currency"
               currency="BRL"
               locale="pt-BR"
-              defaultValue={1499.90}
+              defaultValue={1499.9}
               step={100}
             />
             <NumberInput
@@ -170,7 +184,9 @@ export default function NumberInputComponentPage() {
               step={500}
               onValueChange={setVal}
             />
-            <span className="text-xs font-mono text-muted-foreground">Current Value: ${val}</span>
+            <span className="text-xs font-mono text-muted-foreground">
+              Current Value: ${val}
+            </span>
           </div>
         }
         code={`const [val, setVal] = React.useState(2500);
@@ -189,43 +205,77 @@ export default function NumberInputComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">stepperPosition</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'split' | 'right' | 'inline'</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    stepperPosition
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'split' | 'right' | 'inline'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'split'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Layout position for increment/decrement stepper controls.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Layout position for increment/decrement stepper controls.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">format</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'decimal' | 'currency' | 'percent'</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'decimal' | 'currency' | 'percent'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Formulas for native Intl currency and percentage formatting.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Formulas for native Intl currency and percentage formatting.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">locale / currency</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">'en-US' / 'USD'</td>
-                  <td className="px-3 py-2 text-muted-foreground">BCC 47 locale (e.g. 'pt-BR') and ISO 4217 currency code (e.g. 'BRL').</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    locale / currency
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    'en-US' / 'USD'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    BCC 47 locale (e.g. 'pt-BR') and ISO 4217 currency code
+                    (e.g. 'BRL').
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">allowMouseWheel</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    allowMouseWheel
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables mouse wheel scroll to increment/decrement numeric value.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables mouse wheel scroll to increment/decrement numeric
+                    value.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

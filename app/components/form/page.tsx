@@ -66,7 +66,8 @@ export default function FormComponentPage() {
     },
   });
 
-  const [submittedData, setSubmittedData] = React.useState<DemoFormValues | null>(null);
+  const [submittedData, setSubmittedData] =
+    React.useState<DemoFormValues | null>(null);
 
   const onSubmit = (data: DemoFormValues) => {
     setSubmittedData(data);
@@ -79,7 +80,9 @@ export default function FormComponentPage() {
         description="A wrapper component for building forms with React Hook Form integration, automatic scroll to first error, unsaved changes confirmation guard, and reset button support."
       />
 
-      <ImportSnippet importCode={`import { Form } from "@/components/ui/form/form";`} />
+      <ImportSnippet
+        importCode={`import { Form } from "@/components/ui/form/form";`}
+      />
 
       <InstallationBlock componentName="form" />
 
@@ -110,12 +113,24 @@ export default function FormComponentPage() {
         preview={
           <div className="max-w-md w-full">
             <Form form={form} onSubmit={onSubmit}>
-              <FormField label="Username" isRequired description="Enter your public display name.">
+              <FormField
+                label="Username"
+                isRequired
+                description="Enter your public display name."
+              >
                 <Input placeholder="johndoe" {...form.register("username")} />
               </FormField>
 
-              <FormField label="Email Address" isRequired description="We'll never share your email with anyone.">
-                <Input type="email" placeholder="john@example.com" {...form.register("email")} />
+              <FormField
+                label="Email Address"
+                isRequired
+                description="We'll never share your email with anyone."
+              >
+                <Input
+                  type="email"
+                  placeholder="john@example.com"
+                  {...form.register("email")}
+                />
               </FormField>
 
               <Button type="submit" color="primary" className="w-full mt-2">
@@ -126,7 +141,9 @@ export default function FormComponentPage() {
             {submittedData && (
               <div className="mt-4 p-3 bg-zinc-100 dark:bg-zinc-800 rounded-xl text-xs font-mono">
                 <div>Submitted JSON:</div>
-                <pre className="text-sky-500 font-semibold">{JSON.stringify(submittedData, null, 2)}</pre>
+                <pre className="text-sky-500 font-semibold">
+                  {JSON.stringify(submittedData, null, 2)}
+                </pre>
               </div>
             )}
           </div>
@@ -161,7 +178,11 @@ export default function FormComponentPage() {
     <Input {...form.register("bio")} />
   </FormField>
 </Form>`}
-        props={["scrollToFirstError: boolean", "confirmUnsavedChanges: boolean", "showResetButton: boolean"]}
+        props={[
+          "scrollToFirstError: boolean",
+          "confirmUnsavedChanges: boolean",
+          "showResetButton: boolean",
+        ]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -175,37 +196,66 @@ export default function FormComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">scrollToFirstError</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    scrollToFirstError
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Automatically scrolls viewport to first invalid field input on submit.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Automatically scrolls viewport to first invalid field input
+                    on submit.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">confirmUnsavedChanges</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    confirmUnsavedChanges
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Adds beforeunload navigation guard and unsaved changes banner when form is dirty.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Adds beforeunload navigation guard and unsaved changes
+                    banner when form is dirty.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showResetButton</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showResetButton
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders a button to restore initial default values when form is dirty.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders a button to restore initial default values when form
+                    is dirty.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

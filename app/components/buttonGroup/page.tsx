@@ -30,7 +30,9 @@ export default function ButtonGroupPage() {
         description="ButtonGroup allows grouping multiple buttons together, creating a visually connected set. Propagates variants, colors, sizes, loading, and disabled states to child buttons."
       />
 
-      <ImportSnippet importCode={`import { ButtonGroup } from "@/components/ui/buttonGroup/buttonGroup";`} />
+      <ImportSnippet
+        importCode={`import { ButtonGroup } from "@/components/ui/buttonGroup/buttonGroup";`}
+      />
 
       <InstallationBlock componentName="buttonGroup" />
 
@@ -49,7 +51,13 @@ export default function ButtonGroupPage() {
             code={buttonGroupCode}
             componentName="buttonGroup.tsx"
             description="Implementation of the ButtonGroup component, managing layout logic and propagating visual traits to children buttons."
-            tags={["React", "Tailwind", "UI Component", "Layout", "ButtonGroup"]}
+            tags={[
+              "React",
+              "Tailwind",
+              "UI Component",
+              "Layout",
+              "ButtonGroup",
+            ]}
           />
         </TabsContent>
       </Tabs>
@@ -81,7 +89,9 @@ export default function ButtonGroupPage() {
         preview={
           <div className="w-full flex flex-col gap-4">
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">variant="default"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                variant="default"
+              </span>
               <ButtonGroup variant="default">
                 <Button>Solid 1</Button>
                 <Button>Solid 2</Button>
@@ -90,7 +100,9 @@ export default function ButtonGroupPage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">variant="bordered"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                variant="bordered"
+              </span>
               <ButtonGroup variant="bordered">
                 <Button>Bordered 1</Button>
                 <Button>Bordered 2</Button>
@@ -99,7 +111,9 @@ export default function ButtonGroupPage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">variant="flat"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                variant="flat"
+              </span>
               <ButtonGroup variant="flat">
                 <Button>Flat 1</Button>
                 <Button>Flat 2</Button>
@@ -125,7 +139,9 @@ export default function ButtonGroupPage() {
         preview={
           <div className="w-full flex flex-col gap-4">
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="default"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="default"
+              </span>
               <ButtonGroup color="default">
                 <Button>Option A</Button>
                 <Button>Option B</Button>
@@ -134,7 +150,9 @@ export default function ButtonGroupPage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="primary"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="primary"
+              </span>
               <ButtonGroup color="primary">
                 <Button>Option A</Button>
                 <Button>Option B</Button>
@@ -143,7 +161,9 @@ export default function ButtonGroupPage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="secondary"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="secondary"
+              </span>
               <ButtonGroup color="secondary">
                 <Button>Option A</Button>
                 <Button>Option B</Button>
@@ -152,7 +172,9 @@ export default function ButtonGroupPage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="accent"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="accent"
+              </span>
               <ButtonGroup color="accent">
                 <Button>Option A</Button>
                 <Button>Option B</Button>
@@ -161,7 +183,9 @@ export default function ButtonGroupPage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="success"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="success"
+              </span>
               <ButtonGroup color="success">
                 <Button>Option A</Button>
                 <Button>Option B</Button>
@@ -170,7 +194,9 @@ export default function ButtonGroupPage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="warning"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="warning"
+              </span>
               <ButtonGroup color="warning">
                 <Button>Option A</Button>
                 <Button>Option B</Button>
@@ -179,7 +205,9 @@ export default function ButtonGroupPage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="danger"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="danger"
+              </span>
               <ButtonGroup color="danger">
                 <Button>Option A</Button>
                 <Button>Option B</Button>
@@ -205,7 +233,9 @@ export default function ButtonGroupPage() {
         preview={
           <div className="w-full flex flex-col gap-4">
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">size="sm"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                size="sm"
+              </span>
               <ButtonGroup size="sm" color="primary">
                 <Button>Small A</Button>
                 <Button>Small B</Button>
@@ -213,7 +243,9 @@ export default function ButtonGroupPage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">size="md"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                size="md"
+              </span>
               <ButtonGroup size="md" color="primary">
                 <Button>Medium A</Button>
                 <Button>Medium B</Button>
@@ -221,7 +253,9 @@ export default function ButtonGroupPage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">size="lg"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                size="lg"
+              </span>
               <ButtonGroup size="lg" color="primary">
                 <Button>Large A</Button>
                 <Button>Large B</Button>
@@ -285,17 +319,23 @@ export default function ButtonGroupPage() {
               <Button
                 isIconOnly
                 ariaLabel="Home"
-                startContent={<Icon icon="hugeicons:home-03" className="size-5" />}
+                startContent={
+                  <Icon icon="hugeicons:home-03" className="size-5" />
+                }
               />
               <Button
                 isIconOnly
                 ariaLabel="Profile"
-                startContent={<Icon icon="hugeicons:user-square" className="size-5" />}
+                startContent={
+                  <Icon icon="hugeicons:user-square" className="size-5" />
+                }
               />
               <Button
                 isIconOnly
                 ariaLabel="Settings"
-                startContent={<Icon icon="hugeicons:settings-01" className="size-5" />}
+                startContent={
+                  <Icon icon="hugeicons:settings-01" className="size-5" />
+                }
               />
             </ButtonGroup>
           </div>
@@ -367,17 +407,26 @@ export default function ButtonGroupPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'bordered' | 'light' | 'flat' | 'ghost' | 'shadow' | 'link'
+                    'default' | 'bordered' | 'light' | 'flat' | 'ghost' |
+                    'shadow' | 'link'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
@@ -387,7 +436,8 @@ export default function ButtonGroupPage() {
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
+                    'default' | 'primary' | 'secondary' | 'accent' | 'success' |
+                    'warning' | 'danger'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
@@ -405,27 +455,41 @@ export default function ButtonGroupPage() {
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isLoading</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isLoading
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Propagates loading spinners and disables interaction across all buttons.
+                    Propagates loading spinners and disables interaction across
+                    all buttons.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isDisabled</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isDisabled
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Disables interaction across all buttons in the group.
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">ariaLabel</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    ariaLabel
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Accessible label describing the purpose of the group for screen readers.
+                    Accessible label describing the purpose of the group for
+                    screen readers.
                   </td>
                 </tr>
               </tbody>
@@ -433,7 +497,7 @@ export default function ButtonGroupPage() {
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

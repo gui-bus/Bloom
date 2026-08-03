@@ -50,7 +50,9 @@ export default function AlertDialogComponentPage() {
         description="A confirmation dialog modal that interrupts the user with critical content requiring an explicit response, text validation verification, or async operation loading states before proceeding."
       />
 
-      <ImportSnippet importCode={`import { AlertDialog } from "@/components/ui/alertDialog/alertDialog";`} />
+      <ImportSnippet
+        importCode={`import { AlertDialog } from "@/components/ui/alertDialog/alertDialog";`}
+      />
 
       <InstallationBlock componentName="alertDialog" />
 
@@ -88,12 +90,16 @@ export default function AlertDialogComponentPage() {
                 <AlertDialogHeader>
                   <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                   <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete your account and erase all stored workspace data from our servers.
+                    This action cannot be undone. This will permanently delete
+                    your account and erase all stored workspace data from our
+                    servers.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction color="danger">Delete Account</AlertDialogAction>
+                  <AlertDialogAction color="danger">
+                    Delete Account
+                  </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
@@ -130,9 +136,13 @@ export default function AlertDialogComponentPage() {
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>Critical Destruction Warning</AlertDialogTitle>
+                  <AlertDialogTitle>
+                    Critical Destruction Warning
+                  </AlertDialogTitle>
                   <AlertDialogDescription>
-                    Please type <strong className="text-rose-500 font-mono">DELETE</strong> in the box below to confirm permanent destruction.
+                    Please type{" "}
+                    <strong className="text-rose-500 font-mono">DELETE</strong>{" "}
+                    in the box below to confirm permanent destruction.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <div className="my-2">
@@ -143,7 +153,9 @@ export default function AlertDialogComponentPage() {
                   />
                 </div>
                 <AlertDialogFooter>
-                  <AlertDialogCancel onClick={() => setConfirmInput("")}>Cancel</AlertDialogCancel>
+                  <AlertDialogCancel onClick={() => setConfirmInput("")}>
+                    Cancel
+                  </AlertDialogCancel>
                   <AlertDialogAction
                     color="danger"
                     disabled={confirmInput !== "DELETE"}
@@ -197,7 +209,8 @@ export default function AlertDialogComponentPage() {
                 <AlertDialogHeader>
                   <AlertDialogTitle>Sync Cluster Nodes?</AlertDialogTitle>
                   <AlertDialogDescription>
-                    This will sync all state data across 24 edge servers worldwide.
+                    This will sync all state data across 24 edge servers
+                    worldwide.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
@@ -233,10 +246,18 @@ export default function AlertDialogComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -251,11 +272,16 @@ export default function AlertDialogComponentPage() {
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">isLoading</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isLoading
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Displays a loading spinner indicator and disables interaction.
+                    Displays a loading spinner indicator and disables
+                    interaction.
                   </td>
                 </tr>
               </tbody>
@@ -263,7 +289,7 @@ export default function AlertDialogComponentPage() {
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

@@ -29,7 +29,9 @@ export default function AspectRatioPage() {
         description="Displays content within a desired aspect ratio, preserving proportions responsively across viewport sizes with ratio presets and skeleton loading placeholders."
       />
 
-      <ImportSnippet importCode={`import { AspectRatio } from "@/components/ui/aspectRatio/aspectRatio";`} />
+      <ImportSnippet
+        importCode={`import { AspectRatio } from "@/components/ui/aspectRatio/aspectRatio";`}
+      />
 
       <InstallationBlock componentName="aspectRatio" />
 
@@ -60,7 +62,9 @@ export default function AspectRatioPage() {
         preview={
           <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">preset="video" (16:9)</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                preset="video" (16:9)
+              </span>
               <AspectRatio preset="video" className="bg-muted">
                 <img
                   src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=800"
@@ -71,7 +75,9 @@ export default function AspectRatioPage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">preset="square" (1:1)</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                preset="square" (1:1)
+              </span>
               <AspectRatio preset="square" className="bg-muted">
                 <img
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500"
@@ -82,7 +88,9 @@ export default function AspectRatioPage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">preset="cinema" (21:9)</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                preset="cinema" (21:9)
+              </span>
               <AspectRatio preset="cinema" className="bg-muted">
                 <img
                   src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1000"
@@ -96,7 +104,9 @@ export default function AspectRatioPage() {
         code={`<AspectRatio preset="video">...</AspectRatio>
 <AspectRatio preset="square">...</AspectRatio>
 <AspectRatio preset="cinema">...</AspectRatio>`}
-        props={["preset: 'video' | 'square' | 'golden' | 'cinema' | 'portrait' | 'ultrawide'"]}
+        props={[
+          "preset: 'video' | 'square' | 'golden' | 'cinema' | 'portrait' | 'ultrawide'",
+        ]}
       />
 
       {/* Loading Skeleton */}
@@ -126,37 +136,55 @@ export default function AspectRatioPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">preset</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'video' | 'square' | 'golden' | 'cinema' | 'portrait' | 'ultrawide'
+                    'video' | 'square' | 'golden' | 'cinema' | 'portrait' |
+                    'ultrawide'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Preset aspect ratio alias. Takes precedence over custom numeric ratio.
+                    Preset aspect ratio alias. Takes precedence over custom
+                    numeric ratio.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">ratio</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">16 / 9</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Desired custom width-to-height numeric ratio (e.g. 16/9, 4/3, 1/1).
+                    Desired custom width-to-height numeric ratio (e.g. 16/9,
+                    4/3, 1/1).
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">isLoading</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isLoading
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Shows an integrated skeleton loading spinner state inside the container frame.
+                    Shows an integrated skeleton loading spinner state inside
+                    the container frame.
                   </td>
                 </tr>
               </tbody>

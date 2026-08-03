@@ -31,13 +31,19 @@ function DefaultDemo() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full space-y-3">
+    <Collapsible
+      open={isOpen}
+      onOpenChange={setIsOpen}
+      className="w-full space-y-3"
+    >
       <CollapsibleTrigger asChild>
         <button
           type="button"
           className="w-full flex items-center justify-between gap-4 px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 text-left cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
         >
-          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">@guilherme starred 3 repositories</h4>
+          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+            @guilherme starred 3 repositories
+          </h4>
           <span className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 transition-colors">
             <Icon
               icon="hugeicons:arrow-down-01"
@@ -66,13 +72,19 @@ function DefaultOpenDemo() {
   const [isOpen, setIsOpen] = React.useState(true);
 
   return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full space-y-3">
+    <Collapsible
+      open={isOpen}
+      onOpenChange={setIsOpen}
+      className="w-full space-y-3"
+    >
       <CollapsibleTrigger asChild>
         <button
           type="button"
           className="w-full flex items-center justify-between gap-4 px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 text-left cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
         >
-          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Project Settings</h4>
+          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+            Project Settings
+          </h4>
           <span className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 transition-colors">
             <Icon
               icon="hugeicons:arrow-down-01"
@@ -84,15 +96,21 @@ function DefaultOpenDemo() {
 
       <CollapsibleContent className="space-y-3">
         <div className="px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 flex items-center justify-between">
-          <span className="text-sm text-zinc-700 dark:text-zinc-300">Notifications</span>
+          <span className="text-sm text-zinc-700 dark:text-zinc-300">
+            Notifications
+          </span>
           <Badge color="success">Enabled</Badge>
         </div>
         <div className="px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 flex items-center justify-between">
-          <span className="text-sm text-zinc-700 dark:text-zinc-300">Two-Factor Authentication</span>
+          <span className="text-sm text-zinc-700 dark:text-zinc-300">
+            Two-Factor Authentication
+          </span>
           <Badge color="warning">Pending</Badge>
         </div>
         <div className="px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 flex items-center justify-between">
-          <span className="text-sm text-zinc-700 dark:text-zinc-300">API Access</span>
+          <span className="text-sm text-zinc-700 dark:text-zinc-300">
+            API Access
+          </span>
           <Badge color="danger">Restricted</Badge>
         </div>
       </CollapsibleContent>
@@ -109,7 +127,9 @@ function DisabledDemo() {
           disabled
           className="w-full flex items-center justify-between gap-4 px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 text-left opacity-60 cursor-not-allowed"
         >
-          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Archived Project (disabled)</h4>
+          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+            Archived Project (disabled)
+          </h4>
           <span className="p-1.5 rounded-lg text-zinc-500">
             <Icon icon="hugeicons:arrow-down-01" className="size-4" />
           </span>
@@ -141,8 +161,12 @@ function CardStyleDemo() {
                 <Icon icon="hugeicons:shield-01" className="size-5" />
               </div>
               <div className="text-left">
-                <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Security & Privacy</p>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">Manage your account security preferences</p>
+                <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                  Security & Privacy
+                </p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  Manage your account security preferences
+                </p>
               </div>
             </div>
             <Icon
@@ -155,16 +179,26 @@ function CardStyleDemo() {
         <CollapsibleContent>
           <div className="border-t border-zinc-200 dark:border-zinc-800 px-5 py-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-zinc-700 dark:text-zinc-300">Password</span>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400">Last changed 30 days ago</span>
+              <span className="text-sm text-zinc-700 dark:text-zinc-300">
+                Password
+              </span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                Last changed 30 days ago
+              </span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-zinc-700 dark:text-zinc-300">Login Alerts</span>
+              <span className="text-sm text-zinc-700 dark:text-zinc-300">
+                Login Alerts
+              </span>
               <Badge color="success">Active</Badge>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-zinc-700 dark:text-zinc-300">Session Timeout</span>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400">30 minutes</span>
+              <span className="text-sm text-zinc-700 dark:text-zinc-300">
+                Session Timeout
+              </span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                30 minutes
+              </span>
             </div>
           </div>
         </CollapsibleContent>
@@ -177,15 +211,23 @@ function LazyRenderingDemo() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full space-y-2">
+    <Collapsible
+      open={isOpen}
+      onOpenChange={setIsOpen}
+      className="w-full space-y-2"
+    >
       <CollapsibleTrigger asChild>
         <button
           type="button"
           className="w-full flex items-center justify-between gap-4 px-4 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 text-left cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
         >
           <div>
-            <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Heavy Analytics Module (Lazy)</h4>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">Content only renders in DOM when expanded for the first time</p>
+            <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+              Heavy Analytics Module (Lazy)
+            </h4>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              Content only renders in DOM when expanded for the first time
+            </p>
           </div>
           <span className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 transition-colors">
             <Icon
@@ -216,7 +258,9 @@ export default function CollapsiblePage() {
         description="An interactive component that expands and collapses content panels with smooth CSS Grid auto-height transitions and optional lazy content rendering."
       />
 
-      <ImportSnippet importCode={`import { Collapsible } from "@/components/ui/collapsible/collapsible";`} />
+      <ImportSnippet
+        importCode={`import { Collapsible } from "@/components/ui/collapsible/collapsible";`}
+      />
 
       <InstallationBlock componentName="collapsible" />
 
@@ -235,7 +279,13 @@ export default function CollapsiblePage() {
             code={collapsibleCode}
             componentName="collapsible.tsx"
             description="Collapsible panel built with Radix Primitives for expanding and contracting UI elements."
-            tags={["React", "Radix UI", "Tailwind", "UI Component", "Collapsible"]}
+            tags={[
+              "React",
+              "Radix UI",
+              "Tailwind",
+              "UI Component",
+              "Collapsible",
+            ]}
           />
         </TabsContent>
       </Tabs>
@@ -376,32 +426,50 @@ export default function CollapsiblePage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">open</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Controlled open state of the collapsible panel.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">defaultOpen</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    defaultOpen
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Initial open state when using uncontrolled mode.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">onOpenChange</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(open: boolean) => void"}</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onOpenChange
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {"(open: boolean) => void"}
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Callback function fired when the open state changes.
@@ -409,7 +477,9 @@ export default function CollapsiblePage() {
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">disabled</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Disables interaction with the collapsible trigger.
@@ -417,10 +487,13 @@ export default function CollapsiblePage() {
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">lazy</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Defers rendering child DOM elements until expanded for the first time.
+                    Defers rendering child DOM elements until expanded for the
+                    first time.
                   </td>
                 </tr>
               </tbody>
@@ -428,7 +501,7 @@ export default function CollapsiblePage() {
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

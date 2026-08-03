@@ -9,10 +9,18 @@ import { Icon } from "@iconify/react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import DocsTitle from "@/components/core/docsTitle";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert/alert";
+import {
+  Alert,
+  AlertTitle,
+  AlertDescription,
+} from "@/components/ui/alert/alert";
 import { alertCode } from "@/components/ui/alert/alert.code";
 import { Button } from "@/components/ui/button/button";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar/avatar";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@/components/ui/avatar/avatar";
 import { Badge } from "@/components/ui/badge/badge";
 import { Separator } from "@/components/ui/separator/separator";
 import {
@@ -30,7 +38,9 @@ export default function AlertComponentPage() {
         description="Displays a clean contextual banner for user attention with theme-adaptive neutral backgrounds, colored titles & icons, dismiss timers, action buttons, and accent border variants."
       />
 
-      <ImportSnippet importCode={`import { Alert } from "@/components/ui/alert/alert";`} />
+      <ImportSnippet
+        importCode={`import { Alert } from "@/components/ui/alert/alert";`}
+      />
 
       <InstallationBlock componentName="alert" />
 
@@ -60,11 +70,9 @@ export default function AlertComponentPage() {
         description="A clean, subtle alert banner with a neutral background, status-colored title, and status icon."
         preview={
           <div className="w-full">
-            <Alert
-              color="info"
-              title="System Information"
-            >
-              A new software update is available for installation. Please save your work before updating.
+            <Alert color="info" title="System Information">
+              A new software update is available for installation. Please save
+              your work before updating.
             </Alert>
           </div>
         }
@@ -85,12 +93,17 @@ export default function AlertComponentPage() {
               title="Database Backup Required"
               action={
                 <div className="flex items-center gap-2">
-                  <Button size="xs" color="warning">Backup Now</Button>
-                  <Button size="xs" variant="bordered">Remind Later</Button>
+                  <Button size="xs" color="warning">
+                    Backup Now
+                  </Button>
+                  <Button size="xs" variant="bordered">
+                    Remind Later
+                  </Button>
                 </div>
               }
             >
-              Your database has not been backed up for over 14 days. We strongly recommend creating a snapshot.
+              Your database has not been backed up for over 14 days. We strongly
+              recommend creating a snapshot.
             </Alert>
           </div>
         }
@@ -115,17 +128,25 @@ export default function AlertComponentPage() {
         description="Visual card framing variations including thick left accent borders and vibrant glowing shadow borders."
         preview={
           <div className="w-full space-y-4">
-            <Alert variant="accent-left" color="danger" title="Accent Left Variant">
-              High priority alert banner featuring a 4px solid left accent border line.
+            <Alert
+              variant="accent-left"
+              color="danger"
+              title="Accent Left Variant"
+            >
+              High priority alert banner featuring a 4px solid left accent
+              border line.
             </Alert>
             <Alert variant="glow" color="primary" title="Glow Variant">
-              Vibrant ambient glow border for critical announcements and featured callouts.
+              Vibrant ambient glow border for critical announcements and
+              featured callouts.
             </Alert>
           </div>
         }
         code={`<Alert variant="accent-left" color="danger" title="Accent Left">4px solid left accent line.</Alert>
 <Alert variant="glow" color="primary" title="Glow">Vibrant ambient glow shadow border.</Alert>`}
-        props={["variant: 'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' | 'accent-left' | 'glow'"]}
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' | 'accent-left' | 'glow'",
+        ]}
       />
 
       {/* Auto-Dismiss Timer */}
@@ -171,7 +192,8 @@ export default function AlertComponentPage() {
               You have used 85% of your available cloud storage.
             </Alert>
             <Alert color="danger" title="Connection Error">
-              Unable to connect to the database server. Please check network logs.
+              Unable to connect to the database server. Please check network
+              logs.
             </Alert>
             <Alert color="primary" title="Primary Highlight">
               Explore new features in the latest v2.0 release dashboard.
@@ -184,7 +206,9 @@ export default function AlertComponentPage() {
   <Alert color="warning" title="Storage Limit Warning">85% cloud storage used.</Alert>
   <Alert color="danger" title="Connection Error">Unable to connect to database.</Alert>
 </div>`}
-        props={["color: 'default' | 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'danger'"]}
+        props={[
+          "color: 'default' | 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'danger'",
+        ]}
       />
 
       {/* StartContent & EndContent */}
@@ -198,15 +222,21 @@ export default function AlertComponentPage() {
               title="New Team Member"
               startContent={
                 <Avatar size="sm">
-                  <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
+                  <AvatarImage
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+                    alt="Sarah Jenkins"
+                  />
                   <AvatarFallback>SJ</AvatarFallback>
                 </Avatar>
               }
               endContent={
-                <Badge variant="flat" color="primary">New</Badge>
+                <Badge variant="flat" color="primary">
+                  New
+                </Badge>
               }
             >
-              Sarah Jenkins has joined the Design System workspace as Lead UI Engineer.
+              Sarah Jenkins has joined the Design System workspace as Lead UI
+              Engineer.
             </Alert>
 
             <Alert
@@ -249,55 +279,80 @@ export default function AlertComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'danger'
+                    'default' | 'primary' | 'secondary' | 'accent' | 'info' |
+                    'success' | 'warning' | 'danger'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'info'</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Semantic color applied exclusively to the title header and status icon.
+                    Semantic color applied exclusively to the title header and
+                    status icon.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' | 'accent-left' | 'glow'
+                    'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' |
+                    'accent-left' | 'glow'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Visual card style determining background depth and border framing.
+                    Visual card style determining background depth and border
+                    framing.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">action</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Action buttons or controls container rendered inside the alert.
+                    Action buttons or controls container rendered inside the
+                    alert.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isDismissible</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isDismissible
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Enables dismissible behavior with close button and timer support.
+                    Enables dismissible behavior with close button and timer
+                    support.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">durationMs</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    durationMs
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Duration in milliseconds before automatically dismissing the alert.
+                    Duration in milliseconds before automatically dismissing the
+                    alert.
                   </td>
                 </tr>
               </tbody>

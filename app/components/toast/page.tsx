@@ -32,7 +32,9 @@ export default function ToastComponentPage() {
 
       <Toast position="bottom-right" />
 
-      <ImportSnippet importCode={`import { Toast } from "@/components/ui/toast/toast";`} />
+      <ImportSnippet
+        importCode={`import { Toast } from "@/components/ui/toast/toast";`}
+      />
 
       <InstallationBlock componentName="toast" />
 
@@ -64,7 +66,11 @@ export default function ToastComponentPage() {
           <div className="flex flex-wrap gap-4">
             <Button
               color="primary"
-              onClick={() => toast("New Workspace Created", { description: "Your workspace is ready for team members." })}
+              onClick={() =>
+                toast("New Workspace Created", {
+                  description: "Your workspace is ready for team members.",
+                })
+              }
             >
               Show Default Toast
             </Button>
@@ -83,26 +89,42 @@ toast("New Workspace Created", { description: "Your workspace is ready for team 
           <div className="flex flex-wrap gap-3">
             <Button
               color="success"
-              onClick={() => toast.success("Project Saved Successfully", { description: "All recent changes have been synchronized." })}
+              onClick={() =>
+                toast.success("Project Saved Successfully", {
+                  description: "All recent changes have been synchronized.",
+                })
+              }
             >
               Success Toast
             </Button>
             <Button
               color="danger"
-              onClick={() => toast.error("Connection Refused", { description: "Could not reach database server on port 5432." })}
+              onClick={() =>
+                toast.error("Connection Refused", {
+                  description: "Could not reach database server on port 5432.",
+                })
+              }
             >
               Error Toast
             </Button>
             <Button
               color="warning"
-              onClick={() => toast.warning("Subscription Expiring", { description: "Your trial plan expires in 3 days." })}
+              onClick={() =>
+                toast.warning("Subscription Expiring", {
+                  description: "Your trial plan expires in 3 days.",
+                })
+              }
             >
               Warning Toast
             </Button>
             <Button
               color="primary"
               variant="bordered"
-              onClick={() => toast.info("System Update Available", { description: "Version v2.4.0 is ready to install." })}
+              onClick={() =>
+                toast.info("System Update Available", {
+                  description: "Version v2.4.0 is ready to install.",
+                })
+              }
             >
               Info Toast
             </Button>
@@ -127,7 +149,10 @@ toast.info("System Update Available", { description: "Version v2.4.0 is ready." 
                   description: "Report_2026.pdf was moved to trash.",
                   action: {
                     label: "Undo Deletion",
-                    onClick: () => toast.info("Action Undone", { description: "File was restored to folder." }),
+                    onClick: () =>
+                      toast.info("Action Undone", {
+                        description: "File was restored to folder.",
+                      }),
                   },
                 })
               }
@@ -156,7 +181,10 @@ toast.info("System Update Available", { description: "Version v2.4.0 is ready." 
               variant="bordered"
               onClick={() => {
                 const id = "loading-toast-1";
-                toast.loading("Synchronizing Data...", { id, description: "Connecting to remote cloud storage." });
+                toast.loading("Synchronizing Data...", {
+                  id,
+                  description: "Connecting to remote cloud storage.",
+                });
               }}
             >
               Loading Only
@@ -166,9 +194,15 @@ toast.info("System Update Available", { description: "Version v2.4.0 is ready." 
               color="success"
               onClick={() => {
                 const id = "async-success-toast";
-                toast.loading("Uploading Assets...", { id, description: "Sending 5 files to bucket." });
+                toast.loading("Uploading Assets...", {
+                  id,
+                  description: "Sending 5 files to bucket.",
+                });
                 setTimeout(() => {
-                  toast.success("Upload Complete!", { id, description: "All assets are now live in CDN." });
+                  toast.success("Upload Complete!", {
+                    id,
+                    description: "All assets are now live in CDN.",
+                  });
                 }, 2500);
               }}
             >
@@ -179,9 +213,15 @@ toast.info("System Update Available", { description: "Version v2.4.0 is ready." 
               color="danger"
               onClick={() => {
                 const id = "async-error-toast";
-                toast.loading("Connecting to Database...", { id, description: "Establishing TLS connection." });
+                toast.loading("Connecting to Database...", {
+                  id,
+                  description: "Establishing TLS connection.",
+                });
                 setTimeout(() => {
-                  toast.error("Connection Failed!", { id, description: "Timeout reaching db-primary:5432." });
+                  toast.error("Connection Failed!", {
+                    id,
+                    description: "Timeout reaching db-primary:5432.",
+                  });
                 }, 2500);
               }}
             >
@@ -216,35 +256,47 @@ setTimeout(() => {
             <Button
               color="primary"
               variant="bordered"
-              onClick={() => toast.loading("Fetching Records...", { spinnerVariant: "dots" })}
+              onClick={() =>
+                toast.loading("Fetching Records...", { spinnerVariant: "dots" })
+              }
             >
               Spinner: Dots
             </Button>
             <Button
               color="primary"
               variant="bordered"
-              onClick={() => toast.loading("Processing Order...", { spinnerVariant: "bars" })}
+              onClick={() =>
+                toast.loading("Processing Order...", { spinnerVariant: "bars" })
+              }
             >
               Spinner: Bars
             </Button>
             <Button
               color="primary"
               variant="bordered"
-              onClick={() => toast.loading("Syncing Files...", { spinnerVariant: "pulse" })}
+              onClick={() =>
+                toast.loading("Syncing Files...", { spinnerVariant: "pulse" })
+              }
             >
               Spinner: Pulse
             </Button>
             <Button
               color="primary"
               variant="bordered"
-              onClick={() => toast.loading("Generating PDF...", { spinnerVariant: "ring" })}
+              onClick={() =>
+                toast.loading("Generating PDF...", { spinnerVariant: "ring" })
+              }
             >
               Spinner: Ring
             </Button>
             <Button
               color="primary"
               variant="bordered"
-              onClick={() => toast.loading("Compiling Code...", { spinnerVariant: "gradient" })}
+              onClick={() =>
+                toast.loading("Compiling Code...", {
+                  spinnerVariant: "gradient",
+                })
+              }
             >
               Spinner: Gradient
             </Button>
@@ -255,7 +307,9 @@ toast.loading("Processing Order...", { spinnerVariant: "bars" });
 toast.loading("Syncing Files...", { spinnerVariant: "pulse" });
 toast.loading("Generating PDF...", { spinnerVariant: "ring" });
 toast.loading("Compiling Code...", { spinnerVariant: "gradient" });`}
-        props={["spinnerVariant: 'default' | 'dots' | 'bars' | 'pulse' | 'ring' | 'gradient'"]}
+        props={[
+          "spinnerVariant: 'default' | 'dots' | 'bars' | 'pulse' | 'ring' | 'gradient'",
+        ]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -269,43 +323,76 @@ toast.loading("Compiling Code...", { spinnerVariant: "gradient" });`}
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Method / Option</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Method / Option
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">toast.success(title, options)</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">function</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    toast.success(title, options)
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    function
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Triggers an emerald success notification with checkmark icon badge.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Triggers an emerald success notification with checkmark icon
+                    badge.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">toast.error(title, options)</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">function</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    toast.error(title, options)
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    function
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Triggers a rose error alert toast.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Triggers a rose error alert toast.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">options.description</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    options.description
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Contextual body text below the title.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Contextual body text below the title.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">options.action</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">&#123; label, onClick &#125;</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    options.action
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    &#123; label, onClick &#125;
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Interactive action button config.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Interactive action button config.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

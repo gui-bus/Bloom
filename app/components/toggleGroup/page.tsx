@@ -35,7 +35,9 @@ export default function ToggleGroupComponentPage() {
         description="A group of two-state toggle buttons used for single-choice segmented selection or multi-choice formatting toolbars."
       />
 
-      <ImportSnippet importCode={`import { ToggleGroup } from "@/components/ui/toggleGroup/toggleGroup";`} />
+      <ImportSnippet
+        importCode={`import { ToggleGroup } from "@/components/ui/toggleGroup/toggleGroup";`}
+      />
 
       <InstallationBlock componentName="toggleGroup" />
 
@@ -65,7 +67,11 @@ export default function ToggleGroupComponentPage() {
         description="Single-selection segmented toggle group."
         preview={
           <div className="flex flex-col gap-3">
-            <ToggleGroup type="single" value={align} onValueChange={(val) => val && setAlign(val)}>
+            <ToggleGroup
+              type="single"
+              value={align}
+              onValueChange={(val) => val && setAlign(val)}
+            >
               <ToggleGroupItem value="left" aria-label="Align left">
                 <Icon icon="hugeicons:text-align-left" className="size-4" />
                 <span>Left</span>
@@ -97,7 +103,9 @@ export default function ToggleGroupComponentPage() {
         preview={
           <div className="flex flex-col gap-4">
             <div>
-              <p className="text-xs font-semibold text-zinc-500 mb-2">Default Variant</p>
+              <p className="text-xs font-semibold text-zinc-500 mb-2">
+                Default Variant
+              </p>
               <ToggleGroup type="single" variant="default" defaultValue="day">
                 <ToggleGroupItem value="day">Day</ToggleGroupItem>
                 <ToggleGroupItem value="week">Week</ToggleGroupItem>
@@ -106,7 +114,9 @@ export default function ToggleGroupComponentPage() {
             </div>
 
             <div>
-              <p className="text-xs font-semibold text-zinc-500 mb-2">Outline Variant</p>
+              <p className="text-xs font-semibold text-zinc-500 mb-2">
+                Outline Variant
+              </p>
               <ToggleGroup type="single" variant="outline" defaultValue="week">
                 <ToggleGroupItem value="day">Day</ToggleGroupItem>
                 <ToggleGroupItem value="week">Week</ToggleGroupItem>
@@ -115,7 +125,9 @@ export default function ToggleGroupComponentPage() {
             </div>
 
             <div>
-              <p className="text-xs font-semibold text-zinc-500 mb-2">Flat Variant</p>
+              <p className="text-xs font-semibold text-zinc-500 mb-2">
+                Flat Variant
+              </p>
               <ToggleGroup type="single" variant="flat" defaultValue="month">
                 <ToggleGroupItem value="day">Day</ToggleGroupItem>
                 <ToggleGroupItem value="week">Week</ToggleGroupItem>
@@ -137,7 +149,9 @@ export default function ToggleGroupComponentPage() {
         preview={
           <div className="flex flex-col gap-4 items-start">
             <div>
-              <p className="text-xs font-semibold text-zinc-500 mb-2">Small Size (sm)</p>
+              <p className="text-xs font-semibold text-zinc-500 mb-2">
+                Small Size (sm)
+              </p>
               <ToggleGroup type="single" size="sm" defaultValue="grid">
                 <ToggleGroupItem value="grid">Grid View</ToggleGroupItem>
                 <ToggleGroupItem value="list">List View</ToggleGroupItem>
@@ -145,7 +159,9 @@ export default function ToggleGroupComponentPage() {
             </div>
 
             <div>
-              <p className="text-xs font-semibold text-zinc-500 mb-2">Medium Size (md)</p>
+              <p className="text-xs font-semibold text-zinc-500 mb-2">
+                Medium Size (md)
+              </p>
               <ToggleGroup type="single" size="md" defaultValue="grid">
                 <ToggleGroupItem value="grid">Grid View</ToggleGroupItem>
                 <ToggleGroupItem value="list">List View</ToggleGroupItem>
@@ -153,7 +169,9 @@ export default function ToggleGroupComponentPage() {
             </div>
 
             <div>
-              <p className="text-xs font-semibold text-zinc-500 mb-2">Large Size (lg)</p>
+              <p className="text-xs font-semibold text-zinc-500 mb-2">
+                Large Size (lg)
+              </p>
               <ToggleGroup type="single" size="lg" defaultValue="grid">
                 <ToggleGroupItem value="grid">Grid View</ToggleGroupItem>
                 <ToggleGroupItem value="list">List View</ToggleGroupItem>
@@ -173,7 +191,11 @@ export default function ToggleGroupComponentPage() {
         description="Allow users to select multiple active toggle items simultaneously."
         preview={
           <div className="flex flex-col gap-3">
-            <ToggleGroup type="multiple" value={format} onValueChange={setFormat}>
+            <ToggleGroup
+              type="multiple"
+              value={format}
+              onValueChange={setFormat}
+            >
               <ToggleGroupItem value="bold" aria-label="Toggle bold">
                 <Icon icon="hugeicons:text-bold" className="size-4" />
                 <span>Bold</span>
@@ -210,10 +232,18 @@ export default function ToggleGroupComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -223,13 +253,21 @@ export default function ToggleGroupComponentPage() {
                     'single' | 'multiple'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'single'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Selection mode constraint (single vs multiple).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Selection mode constraint (single vs multiple).
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">value / defaultValue</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string | string[]</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    value / defaultValue
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string | string[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Controlled / uncontrolled active selected value(s).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Controlled / uncontrolled active selected value(s).
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
@@ -237,7 +275,9 @@ export default function ToggleGroupComponentPage() {
                     'default' | 'outline' | 'flat'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Visual style applied across all group items.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Visual style applied across all group items.
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">size</td>
@@ -245,14 +285,16 @@ export default function ToggleGroupComponentPage() {
                     'sm' | 'md' | 'lg'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Dimensions scale of group toggle items.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Dimensions scale of group toggle items.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

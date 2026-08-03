@@ -43,7 +43,9 @@ export default function SheetComponentPage() {
         description="Extends modal dialogs with side drawer panels (left, right, top, bottom) featuring customizable backdrop overlays matching Drawer."
       />
 
-      <ImportSnippet importCode={`import { Sheet } from "@/components/ui/sheet/sheet";`} />
+      <ImportSnippet
+        importCode={`import { Sheet } from "@/components/ui/sheet/sheet";`}
+      />
 
       <InstallationBlock componentName="sheet" />
 
@@ -80,7 +82,8 @@ export default function SheetComponentPage() {
               <SheetHeader>
                 <SheetTitle>Edit User Profile</SheetTitle>
                 <SheetDescription>
-                  Update workspace member credentials and notification preferences.
+                  Update workspace member credentials and notification
+                  preferences.
                 </SheetDescription>
               </SheetHeader>
               <div className="space-y-4 py-4 flex-1">
@@ -130,7 +133,9 @@ export default function SheetComponentPage() {
               <SheetContent side="left">
                 <SheetHeader>
                   <SheetTitle>Navigation Menu</SheetTitle>
-                  <SheetDescription>Left drawer panel for sidebar links.</SheetDescription>
+                  <SheetDescription>
+                    Left drawer panel for sidebar links.
+                  </SheetDescription>
                 </SheetHeader>
               </SheetContent>
             </Sheet>
@@ -142,7 +147,9 @@ export default function SheetComponentPage() {
               <SheetContent side="top">
                 <SheetHeader>
                   <SheetTitle>Announcement Banner</SheetTitle>
-                  <SheetDescription>Top drawer panel for urgent notifications.</SheetDescription>
+                  <SheetDescription>
+                    Top drawer panel for urgent notifications.
+                  </SheetDescription>
                 </SheetHeader>
               </SheetContent>
             </Sheet>
@@ -154,7 +161,9 @@ export default function SheetComponentPage() {
               <SheetContent side="bottom">
                 <SheetHeader>
                   <SheetTitle>Mobile Actions Sheet</SheetTitle>
-                  <SheetDescription>Bottom sheet layout for touch devices.</SheetDescription>
+                  <SheetDescription>
+                    Bottom sheet layout for touch devices.
+                  </SheetDescription>
                 </SheetHeader>
               </SheetContent>
             </Sheet>
@@ -179,7 +188,9 @@ export default function SheetComponentPage() {
               <SheetContent backdrop="blur">
                 <SheetHeader>
                   <SheetTitle>Blur Backdrop</SheetTitle>
-                  <SheetDescription>Frosted glass backdrop effect.</SheetDescription>
+                  <SheetDescription>
+                    Frosted glass backdrop effect.
+                  </SheetDescription>
                 </SheetHeader>
               </SheetContent>
             </Sheet>
@@ -191,7 +202,9 @@ export default function SheetComponentPage() {
               <SheetContent backdrop="dark">
                 <SheetHeader>
                   <SheetTitle>Dark Backdrop (80%)</SheetTitle>
-                  <SheetDescription>80% opacity dark backdrop.</SheetDescription>
+                  <SheetDescription>
+                    80% opacity dark backdrop.
+                  </SheetDescription>
                 </SheetHeader>
               </SheetContent>
             </Sheet>
@@ -203,7 +216,9 @@ export default function SheetComponentPage() {
               <SheetContent backdrop="light">
                 <SheetHeader>
                   <SheetTitle>Light Backdrop</SheetTitle>
-                  <SheetDescription>Subtle light backdrop effect.</SheetDescription>
+                  <SheetDescription>
+                    Subtle light backdrop effect.
+                  </SheetDescription>
                 </SheetHeader>
               </SheetContent>
             </Sheet>
@@ -226,10 +241,18 @@ export default function SheetComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -239,7 +262,9 @@ export default function SheetComponentPage() {
                     'top' | 'bottom' | 'left' | 'right'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'right'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Slide entry direction for the sheet panel.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Slide entry direction for the sheet panel.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">backdrop</td>
@@ -247,20 +272,28 @@ export default function SheetComponentPage() {
                     'blur' | 'dark' | 'light' | 'transparent' | 'none'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'blur'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Backdrop overlay style (same as Drawer).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Backdrop overlay style (same as Drawer).
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">showCloseButton</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showCloseButton
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders top-right close icon button.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders top-right close icon button.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

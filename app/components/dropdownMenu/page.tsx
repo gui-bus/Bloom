@@ -44,17 +44,34 @@ import {
 function SearchFilterMenuDemo() {
   const [search, setSearch] = React.useState("");
   const countries = [
-    "Argentina", "Australia", "Brazil", "Canada", "Denmark",
-    "Egypt", "France", "Germany", "India", "Japan",
-    "Mexico", "Netherlands", "Portugal", "Spain", "United States"
+    "Argentina",
+    "Australia",
+    "Brazil",
+    "Canada",
+    "Denmark",
+    "Egypt",
+    "France",
+    "Germany",
+    "India",
+    "Japan",
+    "Mexico",
+    "Netherlands",
+    "Portugal",
+    "Spain",
+    "United States",
   ];
 
-  const filtered = countries.filter((c) => c.toLowerCase().includes(search.toLowerCase()));
+  const filtered = countries.filter((c) =>
+    c.toLowerCase().includes(search.toLowerCase()),
+  );
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="bordered" startContent={<Icon icon="hugeicons:globe-02" className="size-4" />}>
+        <Button
+          variant="bordered"
+          startContent={<Icon icon="hugeicons:globe-02" className="size-4" />}
+        >
           Select Country (Filtered Menu)
         </Button>
       </DropdownMenuTrigger>
@@ -66,7 +83,9 @@ function SearchFilterMenuDemo() {
         />
         <div className="max-h-48 overflow-y-auto space-y-0.5">
           {filtered.length === 0 ? (
-            <p className="px-3 py-2 text-xs text-zinc-400 text-center">No countries match</p>
+            <p className="px-3 py-2 text-xs text-zinc-400 text-center">
+              No countries match
+            </p>
           ) : (
             filtered.map((country) => (
               <DropdownMenuItem key={country}>
@@ -92,7 +111,9 @@ export default function DropdownMenuDocsPage() {
         description="A contextual popover menu presenting a list of actions or shortcuts, featuring radio item groups, checkable item groups, search input filters, custom arrow pointers, and submenus."
       />
 
-      <ImportSnippet importCode={`import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdownMenu/dropdownMenu";`} />
+      <ImportSnippet
+        importCode={`import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdownMenu/dropdownMenu";`}
+      />
 
       <InstallationBlock componentName="dropdownMenu" />
 
@@ -124,7 +145,12 @@ export default function DropdownMenuDocsPage() {
           <div className="w-full">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="bordered" endContent={<Icon icon="hugeicons:arrow-down-01" className="size-4" />}>
+                <Button
+                  variant="bordered"
+                  endContent={
+                    <Icon icon="hugeicons:arrow-down-01" className="size-4" />
+                  }
+                >
                   My Account
                 </Button>
               </DropdownMenuTrigger>
@@ -133,17 +159,26 @@ export default function DropdownMenuDocsPage() {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
-                    <Icon icon="hugeicons:user-circle" className="mr-2 size-4" />
+                    <Icon
+                      icon="hugeicons:user-circle"
+                      className="mr-2 size-4"
+                    />
                     <span>Profile</span>
                     <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Icon icon="hugeicons:credit-card" className="mr-2 size-4" />
+                    <Icon
+                      icon="hugeicons:credit-card"
+                      className="mr-2 size-4"
+                    />
                     <span>Billing</span>
                     <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Icon icon="hugeicons:settings-01" className="mr-2 size-4" />
+                    <Icon
+                      icon="hugeicons:settings-01"
+                      className="mr-2 size-4"
+                    />
                     <span>Settings</span>
                     <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                   </DropdownMenuItem>
@@ -218,10 +253,17 @@ export default function DropdownMenuDocsPage() {
               <DropdownMenuContent className="w-56">
                 <DropdownMenuLabel>Panel Location</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+                <DropdownMenuRadioGroup
+                  value={position}
+                  onValueChange={setPosition}
+                >
                   <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="bottom">
+                    Bottom
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="right">
+                    Right
+                  </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -331,37 +373,63 @@ export default function DropdownMenuDocsPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Component</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Component
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuContent showArrow</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders a directional pointing arrow stem pointing back to trigger element.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    DropdownMenuContent showArrow
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders a directional pointing arrow stem pointing back to
+                    trigger element.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuSearchInput</td>
-                  <td className="px-3 py-2 text-muted-foreground">Header input field for filtering items inside long dropdown menus.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    DropdownMenuSearchInput
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Header input field for filtering items inside long dropdown
+                    menus.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuCheckboxItem</td>
-                  <td className="px-3 py-2 text-muted-foreground">Menu item supporting checkable boolean state.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    DropdownMenuCheckboxItem
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Menu item supporting checkable boolean state.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuRadioGroup / RadioItem</td>
-                  <td className="px-3 py-2 text-muted-foreground">Group and item primitives for single choice radio selection.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    DropdownMenuRadioGroup / RadioItem
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Group and item primitives for single choice radio selection.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">DropdownMenuSub / SubTrigger / SubContent</td>
-                  <td className="px-3 py-2 text-muted-foreground">Primitives for constructing recursive nested submenus.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    DropdownMenuSub / SubTrigger / SubContent
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Primitives for constructing recursive nested submenus.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

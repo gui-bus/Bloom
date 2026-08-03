@@ -15,15 +15,30 @@ export function StepperInteractiveDemo() {
   const [activeStep, setActiveStep] = React.useState(1);
 
   const steps = [
-    { title: "Account Info", description: "Personal details", icon: "hugeicons:user-circle" },
-    { title: "Payment Setup", description: "Credit card info", icon: "hugeicons:credit-card" },
-    { title: "Confirmation", description: "Review and submit", icon: "hugeicons:tick-circle" },
+    {
+      title: "Account Info",
+      description: "Personal details",
+      icon: "hugeicons:user-circle",
+    },
+    {
+      title: "Payment Setup",
+      description: "Credit card info",
+      icon: "hugeicons:credit-card",
+    },
+    {
+      title: "Confirmation",
+      description: "Review and submit",
+      icon: "hugeicons:tick-circle",
+    },
   ];
 
   return (
     <div className="space-y-6 w-full max-w-2xl">
       {/* Clickable Steps Header */}
-      <Stepper activeStep={activeStep} onStepClick={(step) => setActiveStep(step)}>
+      <Stepper
+        activeStep={activeStep}
+        onStepClick={(step) => setActiveStep(step)}
+      >
         {steps.map((step, index) => (
           <React.Fragment key={index}>
             <StepperItem step={index}>
@@ -50,7 +65,9 @@ export function StepperInteractiveDemo() {
 
         <Button
           size="sm"
-          onClick={() => setActiveStep((prev) => Math.min(steps.length - 1, prev + 1))}
+          onClick={() =>
+            setActiveStep((prev) => Math.min(steps.length - 1, prev + 1))
+          }
         >
           {activeStep === steps.length - 1 ? "Complete" : "Next Step"}
         </Button>

@@ -37,7 +37,9 @@ export default function StepperComponentPage() {
         description="Guides users through multi-step forms or workflows with progress indicators, status titles, icons, error handling, card layouts, and interactive step navigation."
       />
 
-      <ImportSnippet importCode={`import { Stepper, StepperItem, StepperIndicator, StepperTitle, StepperDescription, StepperSeparator } from "@/components/ui/stepper/stepper";`} />
+      <ImportSnippet
+        importCode={`import { Stepper, StepperItem, StepperIndicator, StepperTitle, StepperDescription, StepperSeparator } from "@/components/ui/stepper/stepper";`}
+      />
 
       <InstallationBlock componentName="stepper" />
 
@@ -72,7 +74,9 @@ export default function StepperComponentPage() {
                 <StepperIndicator step={0} />
                 <div>
                   <StepperTitle>Account Details</StepperTitle>
-                  <StepperDescription>Enter your email & password</StepperDescription>
+                  <StepperDescription>
+                    Enter your email & password
+                  </StepperDescription>
                 </div>
               </StepperItem>
               <StepperSeparator step={0} />
@@ -137,7 +141,9 @@ export default function StepperComponentPage() {
         preview={
           <div className="w-full max-w-2xl space-y-6">
             <div>
-              <span className="text-xs text-zinc-500 font-semibold block mb-2">Success Theme (color='success')</span>
+              <span className="text-xs text-zinc-500 font-semibold block mb-2">
+                Success Theme (color='success')
+              </span>
               <Stepper color="success" activeStep={1}>
                 <StepperItem step={0}>
                   <StepperIndicator step={0} />
@@ -157,7 +163,9 @@ export default function StepperComponentPage() {
             </div>
 
             <div>
-              <span className="text-xs text-zinc-500 font-semibold block mb-2">Secondary Theme (color='secondary')</span>
+              <span className="text-xs text-zinc-500 font-semibold block mb-2">
+                Secondary Theme (color='secondary')
+              </span>
               <Stepper color="secondary" activeStep={1}>
                 <StepperItem step={0}>
                   <StepperIndicator step={0} />
@@ -179,7 +187,9 @@ export default function StepperComponentPage() {
         }
         code={`<Stepper color="success" activeStep={1}>...</Stepper>
 <Stepper color="secondary" activeStep={1}>...</Stepper>`}
-        props={["color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'"]}
+        props={[
+          "color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'",
+        ]}
       />
 
       {/* Cards Variant */}
@@ -246,8 +256,12 @@ export default function StepperComponentPage() {
               <StepperItem step={1} isError>
                 <StepperIndicator step={1} isError />
                 <div>
-                  <StepperTitle className="text-rose-500">Payment Failed</StepperTitle>
-                  <StepperDescription className="text-rose-500/80">Card declined by bank</StepperDescription>
+                  <StepperTitle className="text-rose-500">
+                    Payment Failed
+                  </StepperTitle>
+                  <StepperDescription className="text-rose-500/80">
+                    Card declined by bank
+                  </StepperDescription>
                 </div>
               </StepperItem>
               <StepperSeparator step={1} />
@@ -285,7 +299,9 @@ export default function StepperComponentPage() {
                 <StepperIndicator step={0} />
                 <div>
                   <StepperTitle>Identity Verification</StepperTitle>
-                  <StepperDescription>Upload passport document</StepperDescription>
+                  <StepperDescription>
+                    Upload passport document
+                  </StepperDescription>
                 </div>
               </StepperItem>
               <StepperSeparator step={0} />
@@ -328,18 +344,32 @@ export default function StepperComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">activeStep</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    activeStep
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">0</td>
-                  <td className="px-3 py-2 text-muted-foreground">0-indexed active step index.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    0-indexed active step index.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
@@ -347,7 +377,9 @@ export default function StepperComponentPage() {
                     'default' | 'cards'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Visual layout structure variant.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Visual layout structure variant.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">size</td>
@@ -355,38 +387,53 @@ export default function StepperComponentPage() {
                     'sm' | 'md' | 'lg'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Indicator dimensions and font size.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Indicator dimensions and font size.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'
+                    'primary' | 'secondary' | 'success' | 'warning' | 'danger' |
+                    'default'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'primary'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Color theme accent for active step indicator.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Color theme accent for active step indicator.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">orientation</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    orientation
+                  </td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'horizontal' | 'vertical'
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">'horizontal'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Stepper orientation layout.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    'horizontal'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Stepper orientation layout.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">onStepClick</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onStepClick
+                  </td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     (step: number) =&gt; void
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback triggered on step indicator click.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback triggered on step indicator click.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

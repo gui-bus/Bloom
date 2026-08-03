@@ -38,7 +38,9 @@ export default function CardComponentPage() {
         description="A content container component supporting headers, bodies, footers, interactive states (hoverable, pressable), custom radii, variants, and clean neutral theme backgrounds."
       />
 
-      <ImportSnippet importCode={`import { Card } from "@/components/ui/card/card";`} />
+      <ImportSnippet
+        importCode={`import { Card } from "@/components/ui/card/card";`}
+      />
 
       <InstallationBlock componentName="card" />
 
@@ -75,11 +77,14 @@ export default function CardComponentPage() {
               </CardHeader>
               <CardBody>
                 <p>
-                  Your subscription is set to renew automatically on August 15, 2026.
+                  Your subscription is set to renew automatically on August 15,
+                  2026.
                 </p>
               </CardBody>
               <CardFooter className="flex justify-between gap-3">
-                <Button variant="flat" color="default">Dismiss</Button>
+                <Button variant="flat" color="default">
+                  Dismiss
+                </Button>
                 <Button color="primary">View all</Button>
               </CardFooter>
             </Card>
@@ -111,42 +116,54 @@ export default function CardComponentPage() {
             <Card variant="default">
               <CardHeader>
                 <CardTitle>Default</CardTitle>
-                <CardDescription>Standard background with border and subtle shadow.</CardDescription>
+                <CardDescription>
+                  Standard background with border and subtle shadow.
+                </CardDescription>
               </CardHeader>
             </Card>
 
             <Card variant="bordered">
               <CardHeader>
                 <CardTitle>Bordered</CardTitle>
-                <CardDescription>Transparent background with standard border.</CardDescription>
+                <CardDescription>
+                  Transparent background with standard border.
+                </CardDescription>
               </CardHeader>
             </Card>
 
             <Card variant="flat">
               <CardHeader>
                 <CardTitle>Flat</CardTitle>
-                <CardDescription>Muted background without border.</CardDescription>
+                <CardDescription>
+                  Muted background without border.
+                </CardDescription>
               </CardHeader>
             </Card>
 
             <Card variant="ghost">
               <CardHeader>
                 <CardTitle>Ghost</CardTitle>
-                <CardDescription>Completely transparent content container.</CardDescription>
+                <CardDescription>
+                  Completely transparent content container.
+                </CardDescription>
               </CardHeader>
             </Card>
 
             <Card variant="shadow">
               <CardHeader>
                 <CardTitle>Shadow</CardTitle>
-                <CardDescription>Elevated card with deep shadow projection.</CardDescription>
+                <CardDescription>
+                  Elevated card with deep shadow projection.
+                </CardDescription>
               </CardHeader>
             </Card>
 
             <Card variant="glassmorphism">
               <CardHeader>
                 <CardTitle>Glassmorphism</CardTitle>
-                <CardDescription>Frosted glass backdrop-blur effect.</CardDescription>
+                <CardDescription>
+                  Frosted glass backdrop-blur effect.
+                </CardDescription>
               </CardHeader>
             </Card>
           </div>
@@ -159,7 +176,9 @@ export default function CardComponentPage() {
   <Card variant="shadow">...</Card>
   <Card variant="glassmorphism">...</Card>
 </div>`}
-        props={["variant: 'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' | 'glassmorphism' | 'gradient'"]}
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' | 'glassmorphism' | 'gradient'",
+        ]}
       />
 
       {/* Color Themes */}
@@ -169,65 +188,94 @@ export default function CardComponentPage() {
         preview={
           <div className="w-full flex flex-col gap-4">
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="primary"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="primary"
+              </span>
               <Card color="primary" className="w-full">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Icon icon="hugeicons:information-circle" className="size-5 text-sky-500" />
+                      <Icon
+                        icon="hugeicons:information-circle"
+                        className="size-5 text-sky-500"
+                      />
                       <CardTitle>System Information</CardTitle>
                     </div>
                     <Badge color="primary">Primary</Badge>
                   </div>
-                  <CardDescription>Clean neutral card container with a subtle primary border indicator.</CardDescription>
+                  <CardDescription>
+                    Clean neutral card container with a subtle primary border
+                    indicator.
+                  </CardDescription>
                 </CardHeader>
               </Card>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="success"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="success"
+              </span>
               <Card color="success" className="w-full">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Icon icon="hugeicons:checkmark-circle-02" className="size-5 text-emerald-500" />
+                      <Icon
+                        icon="hugeicons:checkmark-circle-02"
+                        className="size-5 text-emerald-500"
+                      />
                       <CardTitle>Deployment Successful</CardTitle>
                     </div>
                     <Badge color="success">Success</Badge>
                   </div>
-                  <CardDescription>All 12 microservices deployed without errors.</CardDescription>
+                  <CardDescription>
+                    All 12 microservices deployed without errors.
+                  </CardDescription>
                 </CardHeader>
               </Card>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="warning"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="warning"
+              </span>
               <Card color="warning" className="w-full">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Icon icon="hugeicons:alert-02" className="size-5 text-amber-500" />
+                      <Icon
+                        icon="hugeicons:alert-02"
+                        className="size-5 text-amber-500"
+                      />
                       <CardTitle>Storage Warning</CardTitle>
                     </div>
                     <Badge color="warning">Warning</Badge>
                   </div>
-                  <CardDescription>Your database storage is at 84% capacity.</CardDescription>
+                  <CardDescription>
+                    Your database storage is at 84% capacity.
+                  </CardDescription>
                 </CardHeader>
               </Card>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">color="danger"</span>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                color="danger"
+              </span>
               <Card color="danger" className="w-full">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Icon icon="hugeicons:cancel-circle" className="size-5 text-rose-500" />
+                      <Icon
+                        icon="hugeicons:cancel-circle"
+                        className="size-5 text-rose-500"
+                      />
                       <CardTitle>Connection Error</CardTitle>
                     </div>
                     <Badge color="danger">Danger</Badge>
                   </div>
-                  <CardDescription>Failed to reach primary API cluster endpoint.</CardDescription>
+                  <CardDescription>
+                    Failed to reach primary API cluster endpoint.
+                  </CardDescription>
                 </CardHeader>
               </Card>
             </div>
@@ -253,7 +301,9 @@ export default function CardComponentPage() {
     </CardHeader>
   </Card>
 </div>`}
-        props={["color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'"]}
+        props={[
+          "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
+        ]}
       />
 
       {/* Interactive */}
@@ -268,7 +318,9 @@ export default function CardComponentPage() {
                   <CardTitle>Hoverable Card</CardTitle>
                   <Badge color="primary">Hover Me</Badge>
                 </div>
-                <CardDescription>Translates slightly upward on hover with shadow depth.</CardDescription>
+                <CardDescription>
+                  Translates slightly upward on hover with shadow depth.
+                </CardDescription>
               </CardHeader>
             </Card>
 
@@ -278,7 +330,9 @@ export default function CardComponentPage() {
                   <CardTitle>Pressable Card</CardTitle>
                   <Badge color="success">Click Me</Badge>
                 </div>
-                <CardDescription>Scales down on click/press feedback.</CardDescription>
+                <CardDescription>
+                  Scales down on click/press feedback.
+                </CardDescription>
               </CardHeader>
             </Card>
           </div>
@@ -308,17 +362,24 @@ export default function CardComponentPage() {
             <Card isLoading className="w-full">
               <CardHeader>
                 <CardTitle>Fetching Analytics</CardTitle>
-                <CardDescription>Loading real-time user metrics...</CardDescription>
+                <CardDescription>
+                  Loading real-time user metrics...
+                </CardDescription>
               </CardHeader>
               <CardBody>
-                <p>Card content is temporarily blurred and non-interactive while loading.</p>
+                <p>
+                  Card content is temporarily blurred and non-interactive while
+                  loading.
+                </p>
               </CardBody>
             </Card>
 
             <Card color="primary" isLoading className="w-full">
               <CardHeader>
                 <CardTitle>Processing Payment</CardTitle>
-                <CardDescription>Communicating with payment gateway...</CardDescription>
+                <CardDescription>
+                  Communicating with payment gateway...
+                </CardDescription>
               </CardHeader>
               <CardBody>
                 <p>Please wait while we confirm your transaction.</p>
@@ -343,11 +404,14 @@ export default function CardComponentPage() {
             <Card orientation="horizontal" className="w-full">
               <CardHeader className="sm:w-1/3">
                 <CardTitle>Horizontal Card</CardTitle>
-                <CardDescription>Header section aligned on the left side on desktop screens.</CardDescription>
+                <CardDescription>
+                  Header section aligned on the left side on desktop screens.
+                </CardDescription>
               </CardHeader>
               <CardBody className="sm:w-2/3 pt-6 sm:pt-0">
                 <p>
-                  Horizontal card layout is ideal for media items, search results, compact dashboard summaries, and product listings.
+                  Horizontal card layout is ideal for media items, search
+                  results, compact dashboard summaries, and product listings.
                 </p>
               </CardBody>
             </Card>
@@ -376,17 +440,26 @@ export default function CardComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' | 'glassmorphism' | 'gradient'
+                    'default' | 'bordered' | 'flat' | 'ghost' | 'shadow' |
+                    'glassmorphism' | 'gradient'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
                   <td className="px-3 py-2 text-muted-foreground">
@@ -396,7 +469,8 @@ export default function CardComponentPage() {
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
+                    'default' | 'primary' | 'secondary' | 'accent' | 'success' |
+                    'warning' | 'danger'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
                   <td className="px-3 py-2 text-muted-foreground">
@@ -404,11 +478,15 @@ export default function CardComponentPage() {
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">orientation</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    orientation
+                  </td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'vertical' | 'horizontal'
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">'vertical'</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    'vertical'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Layout direction helper for stacking or row layout.
                   </td>
@@ -416,7 +494,8 @@ export default function CardComponentPage() {
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">radius</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
+                    'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' |
+                    'full'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'xl'</td>
                   <td className="px-3 py-2 text-muted-foreground">
@@ -424,32 +503,49 @@ export default function CardComponentPage() {
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isHoverable</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isHoverable
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Enables subtle hover translation and shadow enhancement.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isPressable</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isPressable
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Enables active press animations and interactive button role accessibility.
+                    Enables active press animations and interactive button role
+                    accessibility.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isLoading</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isLoading
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Displays an overlay spinner state during data loading.
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">isDisabled</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isDisabled
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Disables interaction and applies muted opacity styling.
@@ -460,7 +556,7 @@ export default function CardComponentPage() {
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

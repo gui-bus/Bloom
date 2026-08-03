@@ -47,7 +47,9 @@ export default function DrawerComponentPage() {
         description="A sliding panel primitive supporting positions (bottom, top, left, right), size scales (sm, md, lg, xl, full), customizable backdrop overlays (blur, dark, light), keyboard accessibility, and zero page layout shift."
       />
 
-      <ImportSnippet importCode={`import { Drawer } from "@/components/ui/drawer/drawer";`} />
+      <ImportSnippet
+        importCode={`import { Drawer } from "@/components/ui/drawer/drawer";`}
+      />
 
       <InstallationBlock componentName="drawer" />
 
@@ -85,7 +87,9 @@ export default function DrawerComponentPage() {
                 <div className="mx-auto w-full max-w-sm">
                   <DrawerHeader>
                     <DrawerTitle>Move Goal</DrawerTitle>
-                    <DrawerDescription>Set your daily calorie activity goal.</DrawerDescription>
+                    <DrawerDescription>
+                      Set your daily calorie activity goal.
+                    </DrawerDescription>
                   </DrawerHeader>
                   <div className="p-4 pb-0">
                     <div className="flex items-center justify-center space-x-2">
@@ -158,53 +162,77 @@ export default function DrawerComponentPage() {
         preview={
           <div className="flex flex-wrap gap-3 w-full">
             <Drawer>
-              <DrawerTrigger asChild><Button variant="bordered">Right Sidebar</Button></DrawerTrigger>
+              <DrawerTrigger asChild>
+                <Button variant="bordered">Right Sidebar</Button>
+              </DrawerTrigger>
               <DrawerContent position="right" size="md">
                 <DrawerHeader>
                   <DrawerTitle>Right Sidebar Drawer</DrawerTitle>
-                  <DrawerDescription>Slides in smoothly from the right edge.</DrawerDescription>
+                  <DrawerDescription>
+                    Slides in smoothly from the right edge.
+                  </DrawerDescription>
                 </DrawerHeader>
                 <DrawerFooter>
-                  <DrawerClose asChild><Button size="sm">Close</Button></DrawerClose>
+                  <DrawerClose asChild>
+                    <Button size="sm">Close</Button>
+                  </DrawerClose>
                 </DrawerFooter>
               </DrawerContent>
             </Drawer>
 
             <Drawer>
-              <DrawerTrigger asChild><Button variant="bordered">Left Sidebar</Button></DrawerTrigger>
+              <DrawerTrigger asChild>
+                <Button variant="bordered">Left Sidebar</Button>
+              </DrawerTrigger>
               <DrawerContent position="left" size="md">
                 <DrawerHeader>
                   <DrawerTitle>Left Sidebar Drawer</DrawerTitle>
-                  <DrawerDescription>Slides in smoothly from the left edge.</DrawerDescription>
+                  <DrawerDescription>
+                    Slides in smoothly from the left edge.
+                  </DrawerDescription>
                 </DrawerHeader>
                 <DrawerFooter>
-                  <DrawerClose asChild><Button size="sm">Close</Button></DrawerClose>
+                  <DrawerClose asChild>
+                    <Button size="sm">Close</Button>
+                  </DrawerClose>
                 </DrawerFooter>
               </DrawerContent>
             </Drawer>
 
             <Drawer>
-              <DrawerTrigger asChild><Button variant="bordered">Top Sheet</Button></DrawerTrigger>
+              <DrawerTrigger asChild>
+                <Button variant="bordered">Top Sheet</Button>
+              </DrawerTrigger>
               <DrawerContent position="top" size="md">
                 <DrawerHeader>
                   <DrawerTitle>Top Drawer Sheet</DrawerTitle>
-                  <DrawerDescription>Slides down smoothly from the top edge.</DrawerDescription>
+                  <DrawerDescription>
+                    Slides down smoothly from the top edge.
+                  </DrawerDescription>
                 </DrawerHeader>
                 <DrawerFooter>
-                  <DrawerClose asChild><Button size="sm">Close</Button></DrawerClose>
+                  <DrawerClose asChild>
+                    <Button size="sm">Close</Button>
+                  </DrawerClose>
                 </DrawerFooter>
               </DrawerContent>
             </Drawer>
 
             <Drawer>
-              <DrawerTrigger asChild><Button variant="bordered">Bottom Sheet</Button></DrawerTrigger>
+              <DrawerTrigger asChild>
+                <Button variant="bordered">Bottom Sheet</Button>
+              </DrawerTrigger>
               <DrawerContent position="bottom" size="md">
                 <DrawerHeader>
                   <DrawerTitle>Bottom Drawer Sheet</DrawerTitle>
-                  <DrawerDescription>Slides up smoothly from the bottom edge.</DrawerDescription>
+                  <DrawerDescription>
+                    Slides up smoothly from the bottom edge.
+                  </DrawerDescription>
                 </DrawerHeader>
                 <DrawerFooter>
-                  <DrawerClose asChild><Button size="sm">Close</Button></DrawerClose>
+                  <DrawerClose asChild>
+                    <Button size="sm">Close</Button>
+                  </DrawerClose>
                 </DrawerFooter>
               </DrawerContent>
             </Drawer>
@@ -224,35 +252,65 @@ export default function DrawerComponentPage() {
         preview={
           <div className="flex flex-wrap gap-3 w-full">
             <Drawer>
-              <DrawerTrigger asChild><Button variant="flat" size="sm">Blur Backdrop</Button></DrawerTrigger>
+              <DrawerTrigger asChild>
+                <Button variant="flat" size="sm">
+                  Blur Backdrop
+                </Button>
+              </DrawerTrigger>
               <DrawerContent position="right" overlay="blur">
                 <DrawerHeader>
                   <DrawerTitle>Blur Backdrop Style</DrawerTitle>
-                  <DrawerDescription>Standard backdrop-blur-md with dark tinting.</DrawerDescription>
+                  <DrawerDescription>
+                    Standard backdrop-blur-md with dark tinting.
+                  </DrawerDescription>
                 </DrawerHeader>
-                <DrawerFooter><DrawerClose asChild><Button size="sm">Close</Button></DrawerClose></DrawerFooter>
+                <DrawerFooter>
+                  <DrawerClose asChild>
+                    <Button size="sm">Close</Button>
+                  </DrawerClose>
+                </DrawerFooter>
               </DrawerContent>
             </Drawer>
 
             <Drawer>
-              <DrawerTrigger asChild><Button variant="flat" size="sm">Dark Backdrop (80%)</Button></DrawerTrigger>
+              <DrawerTrigger asChild>
+                <Button variant="flat" size="sm">
+                  Dark Backdrop (80%)
+                </Button>
+              </DrawerTrigger>
               <DrawerContent position="right" overlay="dark">
                 <DrawerHeader>
                   <DrawerTitle>Dark Overlay Style</DrawerTitle>
-                  <DrawerDescription>High contrast 80% opacity dark backdrop.</DrawerDescription>
+                  <DrawerDescription>
+                    High contrast 80% opacity dark backdrop.
+                  </DrawerDescription>
                 </DrawerHeader>
-                <DrawerFooter><DrawerClose asChild><Button size="sm">Close</Button></DrawerClose></DrawerFooter>
+                <DrawerFooter>
+                  <DrawerClose asChild>
+                    <Button size="sm">Close</Button>
+                  </DrawerClose>
+                </DrawerFooter>
               </DrawerContent>
             </Drawer>
 
             <Drawer>
-              <DrawerTrigger asChild><Button variant="flat" size="sm">Light Backdrop</Button></DrawerTrigger>
+              <DrawerTrigger asChild>
+                <Button variant="flat" size="sm">
+                  Light Backdrop
+                </Button>
+              </DrawerTrigger>
               <DrawerContent position="right" overlay="light">
                 <DrawerHeader>
                   <DrawerTitle>Light Overlay Style</DrawerTitle>
-                  <DrawerDescription>Soft light backdrop tint.</DrawerDescription>
+                  <DrawerDescription>
+                    Soft light backdrop tint.
+                  </DrawerDescription>
                 </DrawerHeader>
-                <DrawerFooter><DrawerClose asChild><Button size="sm">Close</Button></DrawerClose></DrawerFooter>
+                <DrawerFooter>
+                  <DrawerClose asChild>
+                    <Button size="sm">Close</Button>
+                  </DrawerClose>
+                </DrawerFooter>
               </DrawerContent>
             </Drawer>
           </div>
@@ -270,46 +328,86 @@ export default function DrawerComponentPage() {
         preview={
           <div className="flex flex-wrap gap-3 w-full">
             <Drawer>
-              <DrawerTrigger asChild><Button size="sm" variant="bordered">Small (sm)</Button></DrawerTrigger>
+              <DrawerTrigger asChild>
+                <Button size="sm" variant="bordered">
+                  Small (sm)
+                </Button>
+              </DrawerTrigger>
               <DrawerContent position="right" size="sm">
                 <DrawerHeader>
                   <DrawerTitle>Small Drawer</DrawerTitle>
-                  <DrawerDescription>Compact 320px sidebar drawer.</DrawerDescription>
+                  <DrawerDescription>
+                    Compact 320px sidebar drawer.
+                  </DrawerDescription>
                 </DrawerHeader>
-                <DrawerFooter><DrawerClose asChild><Button size="sm">Close</Button></DrawerClose></DrawerFooter>
+                <DrawerFooter>
+                  <DrawerClose asChild>
+                    <Button size="sm">Close</Button>
+                  </DrawerClose>
+                </DrawerFooter>
               </DrawerContent>
             </Drawer>
 
             <Drawer>
-              <DrawerTrigger asChild><Button size="sm" variant="bordered">Medium (md)</Button></DrawerTrigger>
+              <DrawerTrigger asChild>
+                <Button size="sm" variant="bordered">
+                  Medium (md)
+                </Button>
+              </DrawerTrigger>
               <DrawerContent position="right" size="md">
                 <DrawerHeader>
                   <DrawerTitle>Medium Drawer</DrawerTitle>
-                  <DrawerDescription>Standard 384px sidebar drawer.</DrawerDescription>
+                  <DrawerDescription>
+                    Standard 384px sidebar drawer.
+                  </DrawerDescription>
                 </DrawerHeader>
-                <DrawerFooter><DrawerClose asChild><Button size="sm">Close</Button></DrawerClose></DrawerFooter>
+                <DrawerFooter>
+                  <DrawerClose asChild>
+                    <Button size="sm">Close</Button>
+                  </DrawerClose>
+                </DrawerFooter>
               </DrawerContent>
             </Drawer>
 
             <Drawer>
-              <DrawerTrigger asChild><Button size="sm" variant="bordered">Large (lg)</Button></DrawerTrigger>
+              <DrawerTrigger asChild>
+                <Button size="sm" variant="bordered">
+                  Large (lg)
+                </Button>
+              </DrawerTrigger>
               <DrawerContent position="right" size="lg">
                 <DrawerHeader>
                   <DrawerTitle>Large Drawer</DrawerTitle>
-                  <DrawerDescription>Expanded 500px sidebar drawer.</DrawerDescription>
+                  <DrawerDescription>
+                    Expanded 500px sidebar drawer.
+                  </DrawerDescription>
                 </DrawerHeader>
-                <DrawerFooter><DrawerClose asChild><Button size="sm">Close</Button></DrawerClose></DrawerFooter>
+                <DrawerFooter>
+                  <DrawerClose asChild>
+                    <Button size="sm">Close</Button>
+                  </DrawerClose>
+                </DrawerFooter>
               </DrawerContent>
             </Drawer>
 
             <Drawer>
-              <DrawerTrigger asChild><Button size="sm" variant="bordered">Extra Large (xl)</Button></DrawerTrigger>
+              <DrawerTrigger asChild>
+                <Button size="sm" variant="bordered">
+                  Extra Large (xl)
+                </Button>
+              </DrawerTrigger>
               <DrawerContent position="right" size="xl">
                 <DrawerHeader>
                   <DrawerTitle>Extra Large Drawer</DrawerTitle>
-                  <DrawerDescription>Wide 640px sidebar drawer.</DrawerDescription>
+                  <DrawerDescription>
+                    Wide 640px sidebar drawer.
+                  </DrawerDescription>
                 </DrawerHeader>
-                <DrawerFooter><DrawerClose asChild><Button size="sm">Close</Button></DrawerClose></DrawerFooter>
+                <DrawerFooter>
+                  <DrawerClose asChild>
+                    <Button size="sm">Close</Button>
+                  </DrawerClose>
+                </DrawerFooter>
               </DrawerContent>
             </Drawer>
           </div>
@@ -329,7 +427,15 @@ export default function DrawerComponentPage() {
           <div className="w-full">
             <Drawer>
               <DrawerTrigger asChild>
-                <Button variant="bordered" startContent={<Icon icon="hugeicons:drag-drop-vertical" className="size-4" />}>
+                <Button
+                  variant="bordered"
+                  startContent={
+                    <Icon
+                      icon="hugeicons:drag-drop-vertical"
+                      className="size-4"
+                    />
+                  }
+                >
                   Open Swipeable Bottom Sheet
                 </Button>
               </DrawerTrigger>
@@ -338,7 +444,8 @@ export default function DrawerComponentPage() {
                   <DrawerHeader>
                     <DrawerTitle>Swipe Down to Close</DrawerTitle>
                     <DrawerDescription>
-                      Drag down the top handle or touch area on mobile devices to dismiss this bottom sheet.
+                      Drag down the top handle or touch area on mobile devices
+                      to dismiss this bottom sheet.
                     </DrawerDescription>
                   </DrawerHeader>
                   <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800 text-xs font-mono text-zinc-600 dark:text-zinc-300">
@@ -379,18 +486,33 @@ export default function DrawerComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">swipeToClose</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    swipeToClose
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables touch drag gestures (Vaul-style) to swipe down/away to close.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables touch drag gestures (Vaul-style) to swipe down/away
+                    to close.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">position</td>
@@ -398,7 +520,9 @@ export default function DrawerComponentPage() {
                     'bottom' | 'top' | 'left' | 'right'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'right'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Screen edge position where drawer slides from.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Screen edge position where drawer slides from.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">size</td>
@@ -406,7 +530,9 @@ export default function DrawerComponentPage() {
                     'sm' | 'md' | 'lg' | 'xl' | 'full'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Drawer height or width dimensional scale.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Drawer height or width dimensional scale.
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">overlay</td>
@@ -414,14 +540,16 @@ export default function DrawerComponentPage() {
                     'blur' | 'dark' | 'light' | 'transparent' | 'none'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'blur'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Backdrop overlay style variant.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Backdrop overlay style variant.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />

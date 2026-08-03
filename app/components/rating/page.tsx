@@ -29,7 +29,9 @@ export default function RatingComponentPage() {
         description="Interactive rating component supporting half-star precision (allowHalf), custom icons (e.g. hearts), dynamic emojis, and score tooltips."
       />
 
-      <ImportSnippet importCode={`import { Rating } from "@/components/ui/rating/rating";`} />
+      <ImportSnippet
+        importCode={`import { Rating } from "@/components/ui/rating/rating";`}
+      />
 
       <InstallationBlock componentName="rating" />
 
@@ -78,7 +80,9 @@ export default function RatingComponentPage() {
               onValueChange={setVal1}
               label="Customer Rating (Half Stars Enabled)"
             />
-            <span className="text-xs font-mono text-muted-foreground">Current Score: {val1} / 5.0</span>
+            <span className="text-xs font-mono text-muted-foreground">
+              Current Score: {val1} / 5.0
+            </span>
           </div>
         }
         code={`const [val, setVal] = React.useState(3.5);
@@ -109,7 +113,10 @@ export default function RatingComponentPage() {
   defaultValue={4}
   label="Favorite Level"
 />`}
-        props={["icon: string (e.g. 'hugeicons:favourite')", "color: 'danger' | 'warning' | ..."]}
+        props={[
+          "icon: string (e.g. 'hugeicons:favourite')",
+          "color: 'danger' | 'warning' | ...",
+        ]}
       />
 
       {/* Dynamic Emojis */}
@@ -125,7 +132,9 @@ export default function RatingComponentPage() {
               emojiMap={{ 1: "😠", 2: "🙁", 3: "😐", 4: "😃", 5: "😍" }}
               label="User Feedback Satisfaction"
             />
-            <span className="text-xs font-mono text-muted-foreground">Selected Mood: Rating {emojiVal}</span>
+            <span className="text-xs font-mono text-muted-foreground">
+              Selected Mood: Rating {emojiVal}
+            </span>
           </div>
         }
         code={`const [val, setVal] = React.useState(4);
@@ -151,37 +160,62 @@ export default function RatingComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">allowHalf</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    allowHalf
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables 0.5 half-star selection and hovering.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables 0.5 half-star selection and hovering.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">icon</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">'hugeicons:star'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Iconify icon identifier (e.g. 'hugeicons:favourite' for hearts).</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    'hugeicons:star'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Iconify icon identifier (e.g. 'hugeicons:favourite' for
+                    hearts).
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">emojiMap</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">Record&lt;number, string&gt;</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    Record&lt;number, string&gt;
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Map of rating scores to dynamic emoji representations.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Map of rating scores to dynamic emoji representations.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

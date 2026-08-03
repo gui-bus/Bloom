@@ -28,7 +28,9 @@ export default function SeparatorComponentPage() {
         description="Visually or semantically separates content with horizontal/vertical lines, gradients, and section labels."
       />
 
-      <ImportSnippet importCode={`import { Separator } from "@/components/ui/separator/separator";`} />
+      <ImportSnippet
+        importCode={`import { Separator } from "@/components/ui/separator/separator";`}
+      />
 
       <InstallationBlock componentName="separator" />
 
@@ -58,9 +60,13 @@ export default function SeparatorComponentPage() {
         description="Standard horizontal divider line."
         preview={
           <div className="max-w-md w-full space-y-3">
-            <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider">Top Section</p>
+            <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider">
+              Top Section
+            </p>
             <Separator />
-            <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider">Bottom Section</p>
+            <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider">
+              Bottom Section
+            </p>
           </div>
         }
         code={`<p>Top Section</p>
@@ -80,7 +86,11 @@ export default function SeparatorComponentPage() {
         }
         code={`<Separator label="OR CONTINUE WITH" />
 <Separator label="API REFERENCE" gradient color="primary" />`}
-        props={["label: ReactNode", "gradient: boolean", "color: 'default' | 'primary' | 'secondary' | ..."]}
+        props={[
+          "label: ReactNode",
+          "gradient: boolean",
+          "color: 'default' | 'primary' | 'secondary' | ...",
+        ]}
       />
 
       {/* Vertical Orientation */}
@@ -115,39 +125,61 @@ export default function SeparatorComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">label</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Centered title text inserted between divider lines.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Centered title text inserted between divider lines.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">gradient</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Fades edges with a smooth gradient line.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Fades edges with a smooth gradient line.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">orientation</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    orientation
+                  </td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'horizontal' | 'vertical'
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">'horizontal'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Divider line orientation.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    'horizontal'
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Divider line orientation.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

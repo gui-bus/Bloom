@@ -30,7 +30,9 @@ export default function ListComponentPage() {
         description="Clean list component for displaying structured items with icons, badges, borders, hover states, and active selection."
       />
 
-      <ImportSnippet importCode={`import { List } from "@/components/ui/list/list";`} />
+      <ImportSnippet
+        importCode={`import { List } from "@/components/ui/list/list";`}
+      />
 
       <InstallationBlock componentName="list" />
 
@@ -61,13 +63,25 @@ export default function ListComponentPage() {
         preview={
           <div className="max-w-md w-full">
             <List>
-              <ListItem startContent={<Icon icon="hugeicons:user-02" className="size-4" />}>
+              <ListItem
+                startContent={
+                  <Icon icon="hugeicons:user-02" className="size-4" />
+                }
+              >
                 User Account Settings
               </ListItem>
-              <ListItem startContent={<Icon icon="hugeicons:notification-01" className="size-4" />}>
+              <ListItem
+                startContent={
+                  <Icon icon="hugeicons:notification-01" className="size-4" />
+                }
+              >
                 Push Notifications & Alerts
               </ListItem>
-              <ListItem startContent={<Icon icon="hugeicons:security-01" className="size-4" />}>
+              <ListItem
+                startContent={
+                  <Icon icon="hugeicons:security-01" className="size-4" />
+                }
+              >
                 Security & Two-Factor Authentication
               </ListItem>
             </List>
@@ -91,7 +105,9 @@ export default function ListComponentPage() {
           <div className="max-w-md w-full">
             <List variant="bordered">
               <ListItem
-                startContent={<Icon icon="hugeicons:mail-01" className="size-4" />}
+                startContent={
+                  <Icon icon="hugeicons:mail-01" className="size-4" />
+                }
                 endContent={<Badge size="sm">12 Unread</Badge>}
                 isHoverable
               >
@@ -99,14 +115,18 @@ export default function ListComponentPage() {
               </ListItem>
               <ListItem
                 startContent={<Icon icon="hugeicons:star" className="size-4" />}
-                endContent={<span className="text-xs text-muted-foreground">3</span>}
+                endContent={
+                  <span className="text-xs text-muted-foreground">3</span>
+                }
                 isHoverable
               >
                 Starred Conversations
               </ListItem>
 
               <ListItem
-                startContent={<Icon icon="hugeicons:delete-02" className="size-4" />}
+                startContent={
+                  <Icon icon="hugeicons:delete-02" className="size-4" />
+                }
                 isHoverable
               >
                 Trash & Archived Files
@@ -131,7 +151,12 @@ export default function ListComponentPage() {
             <List variant="separated">
               <ListItem
                 className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-xl"
-                startContent={<Icon icon="hugeicons:checkmark-circle-02" className="size-4 text-emerald-500" />}
+                startContent={
+                  <Icon
+                    icon="hugeicons:checkmark-circle-02"
+                    className="size-4 text-emerald-500"
+                  />
+                }
                 isActive
                 isHoverable
               >
@@ -139,7 +164,12 @@ export default function ListComponentPage() {
               </ListItem>
               <ListItem
                 className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-xl"
-                startContent={<Icon icon="hugeicons:alert-circle" className="size-4 text-amber-500" />}
+                startContent={
+                  <Icon
+                    icon="hugeicons:alert-circle"
+                    className="size-4 text-amber-500"
+                  />
+                }
                 isHoverable
               >
                 Payment Method Expiring Soon
@@ -163,51 +193,85 @@ export default function ListComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">variant (List)</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    variant (List)
+                  </td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'default' | 'bordered' | 'separated'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Container layout style variant.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Container layout style variant.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">startContent / endContent</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    startContent / endContent
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">Leading or trailing icons or badges inside ListItem.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Leading or trailing icons or badges inside ListItem.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">isActive</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Highlights item as selected/active.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Highlights item as selected/active.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isHoverable</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isHoverable
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables hover background highlight.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables hover background highlight.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">isDisabled</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isDisabled
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Disables item interactions.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Disables item interactions.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <DocsPagination />
     </div>
   );

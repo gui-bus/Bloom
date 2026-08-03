@@ -18,7 +18,11 @@ import {
   HoverCardTrigger,
   HoverCardContent,
 } from "@/components/ui/hoverCard/hoverCard";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar/avatar";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@/components/ui/avatar/avatar";
 import { Button } from "@/components/ui/button/button";
 import { hoverCardCode } from "@/components/ui/hoverCard/hoverCard.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -37,7 +41,9 @@ export default function HoverCardComponentPage() {
         description="For sighted users to preview content available behind a link or trigger when hovered over."
       />
 
-      <ImportSnippet importCode={`import { HoverCard } from "@/components/ui/hoverCard/hoverCard";`} />
+      <ImportSnippet
+        importCode={`import { HoverCard } from "@/components/ui/hoverCard/hoverCard";`}
+      />
 
       <InstallationBlock componentName="hoverCard" />
 
@@ -73,16 +79,23 @@ export default function HoverCardComponentPage() {
             <HoverCardContent>
               <div className="flex justify-between space-x-4">
                 <Avatar size="md">
-                  <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" alt="@nextjs" />
+                  <AvatarImage
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+                    alt="@nextjs"
+                  />
                   <AvatarFallback>NX</AvatarFallback>
                 </Avatar>
                 <div className="space-y-1">
                   <h4 className="text-sm font-semibold">Next.js Framework</h4>
                   <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                    The React Framework for the Web — created and maintained by Vercel.
+                    The React Framework for the Web — created and maintained by
+                    Vercel.
                   </p>
                   <div className="flex items-center pt-2 text-xs text-zinc-400">
-                    <Icon icon="hugeicons:calendar-03" className="mr-1 size-3.5" />
+                    <Icon
+                      icon="hugeicons:calendar-03"
+                      className="mr-1 size-3.5"
+                    />
                     <span>Joined December 2021</span>
                   </div>
                 </div>
@@ -117,28 +130,40 @@ export default function HoverCardComponentPage() {
           <div className="flex flex-wrap gap-4">
             <HoverCard>
               <HoverCardTrigger asChild>
-                <Button variant="bordered" size="sm">Align Start</Button>
+                <Button variant="bordered" size="sm">
+                  Align Start
+                </Button>
               </HoverCardTrigger>
               <HoverCardContent align="start">
-                <p className="text-xs">Aligned to the start edge of the trigger element.</p>
+                <p className="text-xs">
+                  Aligned to the start edge of the trigger element.
+                </p>
               </HoverCardContent>
             </HoverCard>
 
             <HoverCard>
               <HoverCardTrigger asChild>
-                <Button variant="bordered" size="sm">Align Center</Button>
+                <Button variant="bordered" size="sm">
+                  Align Center
+                </Button>
               </HoverCardTrigger>
               <HoverCardContent align="center">
-                <p className="text-xs">Aligned to the center of the trigger element.</p>
+                <p className="text-xs">
+                  Aligned to the center of the trigger element.
+                </p>
               </HoverCardContent>
             </HoverCard>
 
             <HoverCard>
               <HoverCardTrigger asChild>
-                <Button variant="bordered" size="sm">Align End</Button>
+                <Button variant="bordered" size="sm">
+                  Align End
+                </Button>
               </HoverCardTrigger>
               <HoverCardContent align="end">
-                <p className="text-xs">Aligned to the end edge of the trigger element.</p>
+                <p className="text-xs">
+                  Aligned to the end edge of the trigger element.
+                </p>
               </HoverCardContent>
             </HoverCard>
           </div>
@@ -157,7 +182,9 @@ export default function HoverCardComponentPage() {
           <div className="flex flex-wrap gap-4">
             <HoverCard openDelay={0} closeDelay={100}>
               <HoverCardTrigger asChild>
-                <Button variant="bordered" size="sm">Instant Hover (0ms)</Button>
+                <Button variant="bordered" size="sm">
+                  Instant Hover (0ms)
+                </Button>
               </HoverCardTrigger>
               <HoverCardContent>
                 <p className="text-xs">Opens instantly with 0ms delay!</p>
@@ -166,7 +193,9 @@ export default function HoverCardComponentPage() {
 
             <HoverCard openDelay={800} closeDelay={300}>
               <HoverCardTrigger asChild>
-                <Button variant="bordered" size="sm">Delayed Hover (800ms)</Button>
+                <Button variant="bordered" size="sm">
+                  Delayed Hover (800ms)
+                </Button>
               </HoverCardTrigger>
               <HoverCardContent>
                 <p className="text-xs">Opened after 800ms hover delay.</p>
@@ -180,7 +209,11 @@ export default function HoverCardComponentPage() {
   </HoverCardTrigger>
   <HoverCardContent avoidCollisions>...</HoverCardContent>
 </HoverCard>`}
-        props={["openDelay: number", "closeDelay: number", "avoidCollisions: boolean"]}
+        props={[
+          "openDelay: number",
+          "closeDelay: number",
+          "avoidCollisions: boolean",
+        ]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -194,37 +227,63 @@ export default function HoverCardComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">openDelay</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    openDelay
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">200</td>
-                  <td className="px-3 py-2 text-muted-foreground">Duration in ms to wait before opening on hover.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Duration in ms to wait before opening on hover.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">closeDelay</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    closeDelay
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">150</td>
-                  <td className="px-3 py-2 text-muted-foreground">Duration in ms to wait before closing on mouse leave.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Duration in ms to wait before closing on mouse leave.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">avoidCollisions</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    avoidCollisions
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Prevents card overflow by flipping placement dynamically.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Prevents card overflow by flipping placement dynamically.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         }
       />
-    
+
       <AccessibilityCard />
 
       <DocsPagination />
