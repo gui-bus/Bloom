@@ -1,10 +1,10 @@
 "use client";
 
 import { Icon } from "@iconify/react";
+import { AnimatePresence, motion } from "framer-motion";
 import hljs from "highlight.js";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button/button";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface CodeBlockProps {
   code: string;

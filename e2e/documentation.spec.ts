@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test.describe("Documentation Site E2E Tests", () => {
   test("should navigate through components using the sidebar", async ({

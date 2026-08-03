@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { usePathname } from "next/navigation";
+import * as React from "react";
 import { useQueryState } from "@/lib/useQueryState";
 import { cn } from "@/lib/utils";
 
@@ -11,7 +11,7 @@ interface TOCItem {
 }
 
 export function TableOfContents() {
-  const pathname = usePathname();
+  const _pathname = usePathname();
   const [items, setItems] = React.useState<TOCItem[]>([]);
   const [sectionParam, setSectionParam] = useQueryState("section", {
     history: "replace",
@@ -49,7 +49,7 @@ export function TableOfContents() {
     }, 150);
 
     return () => clearTimeout(timer);
-  }, [pathname]);
+  }, [sectionParam]);
 
   React.useEffect(() => {
     if (items.length === 0) return;

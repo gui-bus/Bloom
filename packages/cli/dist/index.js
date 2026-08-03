@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-"use strict";
+
 var B = Object.create;
 var I = Object.defineProperty;
 var C = Object.getOwnPropertyDescriptor;
@@ -7,8 +7,8 @@ var T = Object.getOwnPropertyNames;
 var P = Object.getPrototypeOf,
   A = Object.prototype.hasOwnProperty;
 var U = (a, f, s, l) => {
-  if ((f && typeof f == "object") || typeof f == "function")
-    for (let u of T(f))
+  if ((f && typeof f === "object") || typeof f === "function")
+    for (const u of T(f))
       !A.call(a, u) &&
         u !== s &&
         I(a, u, {
@@ -27,9 +27,9 @@ var D = (a, f, s) => (
   )
 );
 var R = require("commander"),
-  o = D(require("fs")),
-  i = D(require("path")),
-  $ = require("child_process"),
+  o = D(require("node:fs")),
+  i = D(require("node:path")),
+  $ = require("node:child_process"),
   t = require("@clack/prompts"),
   d = D(require("picocolors")),
   E = i.join(__dirname, "../package.json"),
@@ -62,7 +62,7 @@ k.command("init")
   .description("Initialize Bloom UI configuration in your project")
   .option("-y, --yes", "Skip prompts and use default configurations", !1)
   .action(async (a) => {
-    let f = process.stdout.isTTY,
+    const f = process.stdout.isTTY,
       s = a.yes || !f;
     s ||
       (0, t.intro)(
@@ -70,12 +70,12 @@ k.command("init")
           d.default.black(" Bloom UI \u2014 Initialization "),
         ),
       );
-    let l = i.join(process.cwd(), "bloom.json");
+    const l = i.join(process.cwd(), "bloom.json");
     if (o.existsSync(l) && !s) {
-      let e = await (0, t.confirm)({
+      const e = await (0, t.confirm)({
         message: "bloom.json already exists. Do you want to overwrite it?",
       });
-      if (!e || typeof e == "symbol") {
+      if (!e || typeof e === "symbol") {
         (0, t.outro)(d.default.yellow("Initialization cancelled."));
         return;
       }
@@ -84,29 +84,29 @@ k.command("init")
       h = "lib",
       b = !0;
     if (!s) {
-      let e = await (0, t.text)({
+      const e = await (0, t.text)({
         message: "Where would you like to install the components?",
         placeholder: "components/ui",
         defaultValue: "components/ui",
       });
-      if (typeof e == "symbol") return;
+      if (typeof e === "symbol") return;
       u = e;
-      let r = await (0, t.text)({
+      const r = await (0, t.text)({
         message:
           "Where would you like to install the utility files (utils/design-system)?",
         placeholder: "lib",
         defaultValue: "lib",
       });
-      if (typeof r == "symbol") return;
+      if (typeof r === "symbol") return;
       h = r;
-      let n = await (0, t.confirm)({
+      const n = await (0, t.confirm)({
         message:
           "Do you want us to install tailwind-merge and clsx if they are missing?",
       });
-      if (typeof n == "symbol") return;
+      if (typeof n === "symbol") return;
       b = n;
     }
-    let j = (0, t.spinner)();
+    const j = (0, t.spinner)();
     s
       ? console.log("Initializing Bloom UI using default settings...")
       : j.start("Setting up config and utilities"),
@@ -115,30 +115,30 @@ k.command("init")
         JSON.stringify({ componentDir: u, utilsDir: h }, null, 2),
         "utf8",
       );
-    let y = i.join(process.cwd(), h);
+    const y = i.join(process.cwd(), h);
     o.existsSync(y) || o.mkdirSync(y, { recursive: !0 });
-    let m = await F();
+    const m = await F();
     try {
-      let e = await fetch(`${m}/utils.json`);
+      const e = await fetch(`${m}/utils.json`);
       if (e.ok) {
-        let w = await e.json();
+        const w = await e.json();
         o.writeFileSync(i.join(y, "utils.ts"), w.content, "utf8");
       }
-      let r = await fetch(`${m}/design-system.json`);
+      const r = await fetch(`${m}/design-system.json`);
       if (r.ok) {
-        let w = await r.json();
+        const w = await r.json();
         o.writeFileSync(i.join(y, "design-system.ts"), w.content, "utf8");
       }
-      let n = i.join(y, "ripple");
+      const n = i.join(y, "ripple");
       o.existsSync(n) || o.mkdirSync(n, { recursive: !0 });
-      let p = await fetch(`${m}/ripple.json`);
+      const p = await fetch(`${m}/ripple.json`);
       if (p.ok) {
-        let w = await p.json();
+        const w = await p.json();
         o.writeFileSync(i.join(n, "ripple.tsx"), w.content, "utf8");
       }
-      let g = await fetch(`${m}/useRipple.json`);
+      const g = await fetch(`${m}/useRipple.json`);
       if (g.ok) {
-        let w = await g.json();
+        const w = await g.json();
         o.writeFileSync(i.join(n, "useRipple.ts"), w.content, "utf8");
       }
     } catch {
@@ -162,7 +162,7 @@ k.command("init")
         : j.stop("Configuration and base utility files created successfully"),
       b)
     ) {
-      let e = v(),
+      const e = v(),
         r = (0, t.spinner)();
       s
         ? console.log(`Installing dependencies using ${e}...`)
@@ -203,7 +203,7 @@ k.command("add")
   .description("Add a component to your project")
   .option("-y, --yes", "Bypass prompts and confirm action", !1)
   .action(async (a, f) => {
-    let s = process.stdout.isTTY,
+    const s = process.stdout.isTTY,
       l = f.yes || !s,
       u = i.join(process.cwd(), "bloom.json");
     if (!o.existsSync(u)) {
@@ -212,7 +212,7 @@ k.command("add")
       );
       return;
     }
-    let h = JSON.parse(o.readFileSync(u, "utf8")),
+    const h = JSON.parse(o.readFileSync(u, "utf8")),
       b = h.componentDir || "components/ui";
     l ||
       (0, t.intro)(
@@ -229,11 +229,11 @@ k.command("add")
         );
         return;
       }
-      let m = (0, t.spinner)();
+      const m = (0, t.spinner)();
       m.start("Fetching available components");
       let e = [];
       try {
-        let n = await fetch(`${j}/index.json`);
+        const n = await fetch(`${j}/index.json`);
         n.ok && (e = await n.json());
       } catch {}
       if ((m.stop("Done fetching"), e.length === 0)) {
@@ -244,19 +244,19 @@ k.command("add")
         );
         return;
       }
-      let r = await (0, t.select)({
+      const r = await (0, t.select)({
         message: "Select a component to add:",
         options: e.map((n) => ({ value: n.name, label: n.name })),
       });
-      if (typeof r == "symbol") return;
+      if (typeof r === "symbol") return;
       c = r;
     }
-    let y = (0, t.spinner)();
+    const y = (0, t.spinner)();
     l
       ? console.log(`Adding component: ${c}...`)
       : y.start(`Adding ${c} component`);
     try {
-      let m = await fetch(`${j}/components/${c}.json`);
+      const m = await fetch(`${j}/components/${c}.json`);
       if (!m.ok) {
         l
           ? console.error(
@@ -266,15 +266,15 @@ k.command("add")
             (0, t.outro)(d.default.red("Download failed.")));
         return;
       }
-      let e = await m.json(),
+      const e = await m.json(),
         r = i.join(process.cwd(), b, c);
       o.existsSync(r) || o.mkdirSync(r, { recursive: !0 });
-      for (let n of e.files) {
+      for (const n of e.files) {
         let p = n.content,
           g = i.join(b, c),
           w = h.utilsDir || "lib",
           S = i.relative(g, w).replace(/\\/g, "/");
-        S.startsWith(".") || (S = "./" + S),
+        S.startsWith(".") || (S = `./${S}`),
           (p = p.replace(/@\/lib\/utils/g, `${S}/utils`)),
           (p = p.replace(/@\/lib\/design-system/g, `${S}/design-system`)),
           (p = p.replace(/@\/hooks\/ripple/g, "../../hooks/ripple")),
@@ -286,7 +286,7 @@ k.command("add")
           : y.stop(`Added ${c} component files`),
         e.dependencies && e.dependencies.length > 0)
       ) {
-        let n = v(),
+        const n = v(),
           p = (0, t.spinner)();
         l
           ? console.log(

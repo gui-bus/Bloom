@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input/input";
 import { ScrollArea } from "@/components/ui/scrollArea/scrollArea";
 import { cn } from "@/lib/utils";
 import { SidebarHeader } from "./sidebar-header";
-import { ThemeCustomizer } from "./themeCustomizer";
 
 interface SidebarLink {
   href: string;
@@ -230,8 +229,7 @@ export function Sidebar() {
   );
 
   const renderFooterTheme = () => (
-    <div className="border-t border-zinc-200/50 dark:border-zinc-800/50 pt-4 space-y-2">
-      <ThemeCustomizer />
+    <div className="border-t border-zinc-200/50 dark:border-zinc-800/50 pt-4">
       {!mounted ? (
         <div className="h-9 w-full bg-zinc-200/40 dark:bg-zinc-900/40 rounded-xl animate-pulse" />
       ) : (

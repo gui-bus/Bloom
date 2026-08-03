@@ -1,9 +1,8 @@
 "use client";
 
-import * as React from "react";
+import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Icon } from "@iconify/react";
 
 export const docNavigationList = [
   { href: "/", label: "Introduction" },

@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { Icon } from "@iconify/react";
 import { Kbd } from "@/components/ui/kbd/kbd";
 

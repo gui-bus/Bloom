@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Icon } from "@iconify/react";
+import Link from "next/link";
 import { DocsPagination } from "@/components/core/docsPagination";
 
 const FeatureCard = ({

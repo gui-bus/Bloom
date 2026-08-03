@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * useMediaQuery — Reactive media query detection hook.

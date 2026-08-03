@@ -1,16 +1,8 @@
+import { execSync } from "node:child_process";
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { confirm, intro, outro, select, spinner, text } from "@clack/prompts";
 import { Command } from "commander";
-import * as fs from "fs";
-import * as path from "path";
-import { execSync } from "child_process";
-import {
-  intro,
-  outro,
-  text,
-  confirm,
-  select,
-  spinner,
-  log,
-} from "@clack/prompts";
 import pc from "picocolors";
 
 const packageJsonPath = path.join(__dirname, "../package.json");
@@ -32,7 +24,7 @@ async function getRegistryBase(): Promise<string> {
       signal: AbortSignal.timeout(1000),
     });
     if (res.ok) return LOCAL_REGISTRY_BASE;
-  } catch (e) {
+  } catch (_e) {
     // Ignore and fallback
   }
   return GITHUB_REGISTRY_BASE;
@@ -171,7 +163,7 @@ program
           "utf8",
         );
       }
-    } catch (e) {
+    } catch (_e) {
       if (!skipPrompts) {
         s.stop("Failed to retrieve setup utility files from registry.");
         outro(
@@ -217,7 +209,7 @@ program
         } else {
           console.log("Required dependencies installed successfully.");
         }
-      } catch (err) {
+      } catch (_err) {
         if (!skipPrompts) {
           sDeps.stop(
             "Failed to install dependencies automatically. Please run install manually.",
@@ -286,7 +278,7 @@ program
         if (res.ok) {
           list = (await res.json()) as { name: string }[];
         }
-      } catch (e) {
+      } catch (_e) {
         // ignore
       }
       sList.stop("Done fetching");
@@ -359,7 +351,7 @@ program
           .relative(fromPath, toPath)
           .replace(/\\/g, "/");
         if (!relativeImportPath.startsWith(".")) {
-          relativeImportPath = "./" + relativeImportPath;
+          relativeImportPath = `./${relativeImportPath}`;
         }
 
         updatedContent = updatedContent.replace(
@@ -418,7 +410,7 @@ program
           } else {
             console.log("Dependencies installed successfully.");
           }
-        } catch (err) {
+        } catch (_err) {
           if (!skipPrompts) {
             sDeps.stop(
               "Failed to install dependencies automatically. Please install them manually.",
@@ -442,7 +434,7 @@ program
           `Successfully added ${selectedComponent} component to your project!`,
         );
       }
-    } catch (e) {
+    } catch (_e) {
       if (!skipPrompts) {
         sAdd.stop("Failed to download or write component files.");
         outro(pc.red("Error adding component."));

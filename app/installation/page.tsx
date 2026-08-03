@@ -1,13 +1,11 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
 import { Icon } from "@iconify/react";
-import DocsTitle from "@/components/core/docsTitle";
+import * as React from "react";
 import { DocsComponent } from "@/components/core/docsComponent";
-import { Separator } from "@/components/ui/separator/separator";
-import { toast } from "@/components/ui/toast/toast";
 import { DocsPagination } from "@/components/core/docsPagination";
+import DocsTitle from "@/components/core/docsTitle";
+import { toast } from "@/components/ui/toast/toast";
 
 const CopyableCommand = ({ command }: { command: string }) => {
   const [copied, setCopied] = React.useState(false);
@@ -32,6 +30,7 @@ const CopyableCommand = ({ command }: { command: string }) => {
         </code>
       </div>
       <button
+        type="button"
         onClick={handleCopy}
         className="p-1.5 rounded-lg text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors shrink-0 cursor-pointer"
         title="Copy Command"

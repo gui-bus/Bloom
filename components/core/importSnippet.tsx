@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
 import { toast } from "@/components/ui/toast/toast";
 
 interface ImportSnippetProps {
@@ -29,6 +29,7 @@ export function ImportSnippet({ importCode }: ImportSnippetProps) {
         </code>
       </div>
       <button
+        type="button"
         onClick={handleCopy}
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-xs font-semibold transition-all duration-200 shrink-0 cursor-pointer select-none"
       >

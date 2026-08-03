@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
 import { toast } from "@/components/ui/toast/toast";
 
 interface DocsTitleProps {
@@ -18,7 +18,7 @@ const DocsTitle = ({ title, description }: DocsTitleProps) => {
     const cliCode =
       document.querySelector("code")?.textContent ||
       `npx @bloomui-react/cli add ${title.toLowerCase().replace(/\s+/g, "")}`;
-    if (cliCode && cliCode.includes("npx @bloomui-react/cli")) {
+    if (cliCode?.includes("npx @bloomui-react/cli")) {
       markdown += `## CLI Installation\n\`\`\`bash\n${cliCode.trim()}\n\`\`\`\n\n`;
     }
 
@@ -56,6 +56,7 @@ const DocsTitle = ({ title, description }: DocsTitleProps) => {
 
       <div className="shrink-0">
         <button
+          type="button"
           onClick={handleCopyMarkdown}
           className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:border-sky-500/50 hover:bg-sky-500/5 text-xs font-bold transition-all duration-200 shadow-xs cursor-pointer active:scale-95 select-none"
         >

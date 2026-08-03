@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 
 /**
  * useClipboard — Hook for copying text to clipboard with timed confirmation state.

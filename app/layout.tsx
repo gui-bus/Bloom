@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Fira_Code, Montserrat } from "next/font/google";
 import "./globals.css";
 import "highlight.js/styles/atom-one-dark.css";
-import { ThemeProvider } from "@/components/core/theme-provider";
 import { Sidebar } from "@/components/core/sidebar";
+import { ThemeProvider } from "@/components/core/theme-provider";
 import { TableOfContents } from "@/components/core/toc";
 
 const montserrat = Montserrat({
