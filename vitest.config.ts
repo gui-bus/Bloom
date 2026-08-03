@@ -20,13 +20,9 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
-    pool: "threads",
     fileParallelism: false,
+    maxWorkers: 1,
+    minWorkers: 1,
     isolate: false,
-    poolOptions: {
-      threads: {
-        singleThread: true,
-      },
-    },
   },
 });
