@@ -1,15 +1,16 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
+import { Menu, Moon, Search, Sun, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { cn } from "@/lib/utils";
-import { ScrollArea } from "@/components/ui/scrollArea/scrollArea";
+import * as React from "react";
 import { Input } from "@/components/ui/input/input";
+import { ScrollArea } from "@/components/ui/scrollArea/scrollArea";
+import { cn } from "@/lib/utils";
 import { SidebarHeader } from "./sidebar-header";
-import { Sun, Moon, Search, Menu, X } from "lucide-react";
+import { ThemeCustomizer } from "./themeCustomizer";
 
 interface SidebarLink {
   href: string;
@@ -35,7 +36,7 @@ export function Sidebar() {
 
   React.useEffect(() => {
     setMobileOpen(false);
-  }, [pathname]);
+  }, []);
 
   React.useEffect(() => {
     if (mobileOpen) {
@@ -166,7 +167,7 @@ export function Sidebar() {
         block: "nearest",
       });
     }
-  }, [pathname]);
+  }, []);
 
   const renderNavContent = () => (
     <div className="flex flex-col gap-5 overflow-hidden flex-1">
@@ -229,12 +230,14 @@ export function Sidebar() {
   );
 
   const renderFooterTheme = () => (
-    <div className="border-t border-zinc-200/50 dark:border-zinc-800/50 pt-4">
+    <div className="border-t border-zinc-200/50 dark:border-zinc-800/50 pt-4 space-y-2">
+      <ThemeCustomizer />
       {!mounted ? (
         <div className="h-9 w-full bg-zinc-200/40 dark:bg-zinc-900/40 rounded-xl animate-pulse" />
       ) : (
         <div className="flex items-center justify-between w-full p-1 bg-zinc-200/45 dark:bg-zinc-900/45 border border-zinc-200/50 dark:border-zinc-800/50 rounded-xl">
           <button
+            type="button"
             onClick={() => setTheme("light")}
             className={cn(
               "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer",
@@ -247,6 +250,7 @@ export function Sidebar() {
             <span>Light</span>
           </button>
           <button
+            type="button"
             onClick={() => setTheme("dark")}
             className={cn(
               "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer",
