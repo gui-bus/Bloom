@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/build-registry.js && next build",
-    "build:registry": "node scripts/build-registry.js",
+    "sync:code": "node scripts/sync-code-strings.js",
+    "build": "node scripts/sync-code-strings.js && node scripts/build-registry.js && next build",
+    "build:registry": "node scripts/sync-code-strings.js && node scripts/build-registry.js",
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",

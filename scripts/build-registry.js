@@ -6,272 +6,108 @@ const uiComponentsDir = path.join(projectRoot, "components/ui");
 const libDir = path.join(projectRoot, "lib");
 const outputDir = path.join(projectRoot, "public/registry");
 
-// Registry metadata configuration
-const componentsConfig = {
-  accordion: {
-    dependencies: ["@radix-ui/react-accordion"],
-    files: ["accordion.tsx"],
-  },
-  aspectRatio: {
-    dependencies: ["@radix-ui/react-aspect-ratio"],
-    files: ["aspectRatio.tsx"],
-  },
-  avatar: {
-    dependencies: ["@radix-ui/react-avatar"],
-    files: ["avatar.tsx"],
-  },
-  avatarGroup: {
-    dependencies: [],
-    files: ["avatarGroup.tsx"],
-  },
-  badge: {
-    dependencies: ["class-variance-authority"],
-    files: ["badge.tsx"],
-  },
-  button: {
-    dependencies: ["@radix-ui/react-slot", "class-variance-authority"],
-    files: ["button.tsx"],
-  },
-  buttonGroup: {
-    dependencies: [],
-    files: ["buttonGroup.tsx"],
-  },
-  carousel: {
-    dependencies: ["embla-carousel-react"],
-    files: ["carousel.tsx"],
-  },
-  collapsible: {
-    dependencies: ["@radix-ui/react-collapsible"],
-    files: ["collapsible.tsx"],
-  },
-  dropdownMenu: {
-    dependencies: ["@radix-ui/react-dropdown-menu"],
-    files: ["dropdownMenu.tsx"],
-  },
-  breadcrumb: {
-    dependencies: [],
-    files: ["breadcrumb.tsx"],
-  },
-  kbd: {
-    dependencies: [],
-    files: ["kbd.tsx"],
-  },
-  pagination: {
-    dependencies: [],
-    files: ["pagination.tsx"],
-  },
-  progress: {
-    dependencies: ["@radix-ui/react-progress"],
-    files: ["progress.tsx"],
-  },
-  resizable: {
-    dependencies: ["react-resizable-panels"],
-    files: ["resizable.tsx"],
-  },
-  scrollArea: {
-    dependencies: ["@radix-ui/react-scroll-area"],
-    files: ["scrollArea.tsx"],
-  },
-  separator: {
-    dependencies: ["@radix-ui/react-separator"],
-    files: ["separator.tsx"],
-  },
-  skeleton: {
-    dependencies: [],
-    files: ["skeleton.tsx"],
-  },
-  spinner: {
-    dependencies: [],
-    files: ["spinner.tsx"],
-  },
-  stepper: {
-    dependencies: [],
-    files: ["stepper.tsx"],
-  },
-  tabs: {
-    dependencies: ["@radix-ui/react-tabs", "framer-motion", "class-variance-authority"],
-    files: ["tabs.tsx"],
-  },
-  card: {
-    dependencies: ["class-variance-authority"],
-    files: ["card.tsx"],
-  },
-  codeBlock: {
-    dependencies: ["highlight.js", "framer-motion", "@iconify/react"],
-    files: ["codeBlock.tsx"],
-  },
-  image: {
-    dependencies: [],
-    files: ["image.tsx"],
-  },
-  typography: {
-    dependencies: ["class-variance-authority"],
-    files: ["typography.tsx"],
-  },
-  checkbox: {
-    dependencies: ["@radix-ui/react-checkbox", "class-variance-authority"],
-    files: ["checkbox.tsx"],
-  },
-  colorPicker: {
-    dependencies: [],
-    files: ["colorPicker.tsx"],
-  },
-  combobox: {
-    dependencies: ["lucide-react"],
-    files: ["combobox.tsx"],
-  },
-  autocomplete: {
-    dependencies: ["@iconify/react"],
-    files: ["autocomplete.tsx"],
-  },
-  datePicker: {
-    dependencies: ["lucide-react"],
-    files: ["datePicker.tsx"],
-  },
-  fileUpload: {
-    dependencies: ["lucide-react"],
-    files: ["fileUpload.tsx"],
-  },
-  input: {
-    dependencies: ["class-variance-authority"],
-    files: ["input.tsx"],
-  },
-  inputOtp: {
-    dependencies: ["input-otp"],
-    files: ["inputOtp.tsx"],
-  },
-  numberInput: {
-    dependencies: ["lucide-react"],
-    files: ["numberInput.tsx"],
-  },
-  radioGroup: {
-    dependencies: ["@radix-ui/react-radio-group"],
-    files: ["radioGroup.tsx"],
-  },
-  rating: {
-    dependencies: ["lucide-react"],
-    files: ["rating.tsx"],
-  },
-  select: {
-    dependencies: ["@radix-ui/react-select"],
-    files: ["select.tsx"],
-  },
-  slider: {
-    dependencies: ["@radix-ui/react-slider"],
-    files: ["slider.tsx"],
-  },
-  switch: {
-    dependencies: ["@radix-ui/react-switch"],
-    files: ["switch.tsx"],
-  },
-  textarea: {
-    dependencies: ["class-variance-authority"],
-    files: ["textarea.tsx"],
-  },
-  toggle: {
-    dependencies: ["@radix-ui/react-toggle", "class-variance-authority"],
-    files: ["toggle.tsx"],
-  },
-  toggleGroup: {
-    dependencies: ["@radix-ui/react-toggle-group"],
-    files: ["toggleGroup.tsx"],
-  },
-  link: {
-    dependencies: ["lucide-react", "class-variance-authority"],
-    files: ["link.tsx"],
-  },
-  navigationMenu: {
-    dependencies: ["@radix-ui/react-navigation-menu", "lucide-react", "class-variance-authority"],
-    files: ["navigationMenu.tsx"],
-  },
-  menubar: {
-    dependencies: ["@radix-ui/react-menubar", "lucide-react"],
-    files: ["menubar.tsx"],
-  },
-  sidebar: {
-    dependencies: ["lucide-react"],
-    files: ["sidebar.tsx"],
-  },
-  label: {
-    dependencies: ["@radix-ui/react-label", "class-variance-authority"],
-    files: ["label.tsx"],
-  },
-  formField: {
-    dependencies: [],
-    files: ["formField.tsx"],
-  },
-  form: {
-    dependencies: ["react-hook-form"],
-    files: ["form.tsx"],
-  },
-  dialog: {
-    dependencies: ["@radix-ui/react-dialog", "lucide-react"],
-    files: ["dialog.tsx"],
-  },
-  alertDialog: {
-    dependencies: ["@radix-ui/react-alert-dialog"],
-    files: ["alertDialog.tsx"],
-  },
-  sheet: {
-    dependencies: ["@radix-ui/react-dialog", "lucide-react", "class-variance-authority"],
-    files: ["sheet.tsx"],
-  },
-  drawer: {
-    dependencies: ["vaul"],
-    files: ["drawer.tsx"],
-  },
-  popover: {
-    dependencies: ["@radix-ui/react-popover"],
-    files: ["popover.tsx"],
-  },
-  tooltip: {
-    dependencies: ["@radix-ui/react-tooltip"],
-    files: ["tooltip.tsx"],
-  },
-  hoverCard: {
-    dependencies: ["@radix-ui/react-hover-card"],
-    files: ["hoverCard.tsx"],
-  },
-  toast: {
-    dependencies: ["sonner"],
-    files: ["toast.tsx"],
-  },
-  alert: {
-    dependencies: ["lucide-react", "class-variance-authority"],
-    files: ["alert.tsx"],
-  },
-  contextMenu: {
-    dependencies: ["@radix-ui/react-context-menu", "lucide-react"],
-    files: ["contextMenu.tsx"],
-  },
-  command: {
-    dependencies: ["cmdk", "lucide-react"],
-    files: ["command.tsx"],
-  },
-  table: {
-    dependencies: [],
-    files: ["table.tsx"],
-  },
-  dataTable: {
-    dependencies: ["@tanstack/react-table"],
-    files: ["dataTable.tsx"],
-  },
-  chart: {
-    dependencies: ["recharts"],
-    files: ["chart.tsx"],
-  },
-  statCard: {
-    dependencies: ["lucide-react"],
-    files: ["statCard.tsx"],
-  },
-  list: {
-    dependencies: [],
-    files: ["list.tsx"],
-  },
+// Known external dependencies mapping based on imports if needed
+const knownDependencies = {
+  accordion: ["@radix-ui/react-accordion"],
+  alert: ["lucide-react", "class-variance-authority"],
+  alertDialog: ["@radix-ui/react-alert-dialog"],
+  aspectRatio: ["@radix-ui/react-aspect-ratio"],
+  autocomplete: ["@iconify/react"],
+  avatar: ["@radix-ui/react-avatar"],
+  badge: ["class-variance-authority"],
+  banner: ["lucide-react", "class-variance-authority"],
+  button: ["@radix-ui/react-slot", "class-variance-authority"],
+  card: ["class-variance-authority"],
+  carousel: ["embla-carousel-react"],
+  chart: ["recharts"],
+  checkbox: ["@radix-ui/react-checkbox", "class-variance-authority"],
+  codeBlock: ["highlight.js", "framer-motion", "@iconify/react"],
+  collapsible: ["@radix-ui/react-collapsible"],
+  combobox: ["lucide-react"],
+  command: ["cmdk", "lucide-react"],
+  contextMenu: ["@radix-ui/react-context-menu", "lucide-react"],
+  dataTable: ["@tanstack/react-table"],
+  datePicker: ["lucide-react"],
+  dialog: ["@radix-ui/react-dialog", "lucide-react"],
+  drawer: ["vaul"],
+  dropdownMenu: ["@radix-ui/react-dropdown-menu"],
+  fileUpload: ["lucide-react"],
+  filterBuilder: ["lucide-react"],
+  form: ["react-hook-form"],
+  hoverCard: ["@radix-ui/react-hover-card"],
+  input: ["class-variance-authority"],
+  inputOtp: ["input-otp"],
+  label: ["@radix-ui/react-label", "class-variance-authority"],
+  link: ["lucide-react", "class-variance-authority"],
+  menubar: ["@radix-ui/react-menubar", "lucide-react"],
+  multiSelect: ["lucide-react"],
+  navigationMenu: [
+    "@radix-ui/react-navigation-menu",
+    "lucide-react",
+    "class-variance-authority",
+  ],
+  numberInput: ["lucide-react"],
+  popover: ["@radix-ui/react-popover"],
+  progress: ["@radix-ui/react-progress"],
+  radioGroup: ["@radix-ui/react-radio-group"],
+  rating: ["lucide-react"],
+  resizable: ["react-resizable-panels"],
+  richTextEditor: [
+    "@tiptap/react",
+    "@tiptap/starter-kit",
+    "@tiptap/extension-placeholder",
+  ],
+  scrollArea: ["@radix-ui/react-scroll-area"],
+  select: ["@radix-ui/react-select"],
+  separator: ["@radix-ui/react-separator"],
+  sheet: ["@radix-ui/react-dialog", "lucide-react", "class-variance-authority"],
+  slider: ["@radix-ui/react-slider"],
+  statCard: ["lucide-react"],
+  switch: ["@radix-ui/react-switch"],
+  tabs: ["@radix-ui/react-tabs", "framer-motion", "class-variance-authority"],
+  textarea: ["class-variance-authority"],
+  timePicker: ["lucide-react"],
+  timeline: ["lucide-react"],
+  toast: ["sonner"],
+  toggle: ["@radix-ui/react-toggle", "class-variance-authority"],
+  toggleGroup: ["@radix-ui/react-toggle-group"],
+  tooltip: ["@radix-ui/react-tooltip"],
+  treeView: ["lucide-react"],
+  typography: ["class-variance-authority"],
+  virtualizedList: [],
 };
 
+// Helper function to extract imports from content if not explicitly mapped
+function detectDependencies(content) {
+  const deps = new Set();
+  const importRegex = /import\s+.*?from\s+["']([^"']+)["']/g;
+  let match;
+  while ((match = importRegex.exec(content)) !== null) {
+    const importPath = match[1];
+    if (
+      importPath.startsWith("@radix-ui/") ||
+      importPath.startsWith("@tanstack/") ||
+      importPath.startsWith("@tiptap/") ||
+      importPath === "lucide-react" ||
+      importPath === "framer-motion" ||
+      importPath === "cmdk" ||
+      importPath === "recharts" ||
+      importPath === "vaul" ||
+      importPath === "sonner" ||
+      importPath === "input-otp" ||
+      importPath === "embla-carousel-react" ||
+      importPath === "highlight.js" ||
+      importPath === "@iconify/react" ||
+      importPath === "class-variance-authority"
+    ) {
+      deps.add(importPath);
+    }
+  }
+  return Array.from(deps);
+}
+
 function main() {
-  console.log("Building component registry...");
+  console.log("Building component registry (dynamic scan)...");
 
   // Ensure output directories exist
   if (!fs.existsSync(outputDir)) {
@@ -284,33 +120,43 @@ function main() {
 
   const indexRegistry = [];
 
-  // Write UI components
-  for (const [name, config] of Object.entries(componentsConfig)) {
+  const compDirs = fs.readdirSync(uiComponentsDir, { withFileTypes: true });
+
+  for (const entry of compDirs) {
+    if (!entry.isDirectory()) continue;
+    const name = entry.name;
     const compDir = path.join(uiComponentsDir, name);
-    if (!fs.existsSync(compDir)) {
-      console.warn(`Component directory for ${name} does not exist at ${compDir}`);
-      continue;
-    }
+
+    // Find all tsx files in component folder
+    const files = fs
+      .readdirSync(compDir)
+      .filter((f) => f.endsWith(".tsx") && !f.includes(".test."));
+
+    if (files.length === 0) continue;
 
     const filesData = [];
+    const allDeps = new Set(knownDependencies[name] || []);
 
-    for (const fileName of config.files) {
+    for (const fileName of files) {
       const filePath = path.join(compDir, fileName);
-      if (!fs.existsSync(filePath)) {
-        console.error(`File ${fileName} not found for component ${name}`);
-        continue;
-      }
-
       const content = fs.readFileSync(filePath, "utf8");
       filesData.push({
         name: fileName,
         content: content,
       });
+
+      // Auto-detect dependencies if not explicitly mapped
+      if (!knownDependencies[name]) {
+        const detected = detectDependencies(content);
+        detected.forEach((d) => allDeps.add(d));
+      }
     }
+
+    const dependenciesList = Array.from(allDeps);
 
     const componentRegistryData = {
       name,
-      dependencies: config.dependencies,
+      dependencies: dependenciesList,
       files: filesData,
     };
 
@@ -318,12 +164,12 @@ function main() {
     fs.writeFileSync(
       path.join(compOutputDir, `${name}.json`),
       JSON.stringify(componentRegistryData, null, 2),
-      "utf8"
+      "utf8",
     );
 
     indexRegistry.push({
       name,
-      dependencies: config.dependencies,
+      dependencies: dependenciesList,
     });
 
     console.log(`Registered component: ${name}`);
@@ -336,7 +182,7 @@ function main() {
     fs.writeFileSync(
       path.join(outputDir, "utils.json"),
       JSON.stringify({ content: utilsContent }, null, 2),
-      "utf8"
+      "utf8",
     );
     console.log("Registered util: utils.ts");
   }
@@ -347,7 +193,7 @@ function main() {
     fs.writeFileSync(
       path.join(outputDir, "design-system.json"),
       JSON.stringify({ content: dsContent }, null, 2),
-      "utf8"
+      "utf8",
     );
     console.log("Registered util: design-system.ts");
   }
@@ -358,7 +204,7 @@ function main() {
     fs.writeFileSync(
       path.join(outputDir, "ripple.json"),
       JSON.stringify({ content: rippleContent }, null, 2),
-      "utf8"
+      "utf8",
     );
     console.log("Registered util: ripple.tsx");
   }
@@ -369,7 +215,7 @@ function main() {
     fs.writeFileSync(
       path.join(outputDir, "useRipple.json"),
       JSON.stringify({ content: useRippleContent }, null, 2),
-      "utf8"
+      "utf8",
     );
     console.log("Registered util: useRipple.ts");
   }
@@ -378,10 +224,12 @@ function main() {
   fs.writeFileSync(
     path.join(outputDir, "index.json"),
     JSON.stringify(indexRegistry, null, 2),
-    "utf8"
+    "utf8",
   );
 
-  console.log("Component registry built successfully!");
+  console.log(
+    `Component registry built successfully! Total components registered: ${indexRegistry.length}`,
+  );
 }
 
 main();
