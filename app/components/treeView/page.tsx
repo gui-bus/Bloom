@@ -1,16 +1,14 @@
 "use client";
 
-import { ImportSnippet } from "@/components/core/importSnippet";
-import { DocsPagination } from "@/components/core/docsPagination";
-import { InstallationBlock } from "@/components/core/installationBlock";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
-import { TreeView, TreeNode } from "@/components/ui/treeView/treeView";
-import { treeViewCode } from "@/components/ui/treeView/treeView.code";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
@@ -18,6 +16,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
+import { TreeNode, TreeView } from "@/components/ui/treeView/treeView";
+import { treeViewCode } from "@/components/ui/treeView/treeView.code";
 
 export default function TreeViewPage() {
   return (
@@ -202,46 +202,42 @@ export default function TreeViewPage() {
       <DocsComponent
         title="Drag & Drop Node Reordering"
         description="Enable interactive drag-and-drop node reordering and nesting with isReorderable={true} and save state with onReorder."
-        preview={
-          <React.Fragment>
-            {(() => {
-              const ReorderDemo = () => {
-                const [treeData, setTreeData] = React.useState<
-                  import("@/components/ui/treeView/treeView").TreeDataItem[]
-                >([
-                  {
-                    id: "folder-1",
-                    label: "Folder 1",
-                    children: [
-                      { id: "file-1", label: "File A.tsx" },
-                      { id: "file-2", label: "File B.tsx" },
-                    ],
-                  },
-                  {
-                    id: "folder-2",
-                    label: "Folder 2",
-                    children: [{ id: "file-3", label: "File C.tsx" }],
-                  },
-                ]);
+        preview={(() => {
+          const ReorderDemo = () => {
+            const [treeData, setTreeData] = React.useState<
+              import("@/components/ui/treeView/treeView").TreeDataItem[]
+            >([
+              {
+                id: "folder-1",
+                label: "Folder 1",
+                children: [
+                  { id: "file-1", label: "File A.tsx" },
+                  { id: "file-2", label: "File B.tsx" },
+                ],
+              },
+              {
+                id: "folder-2",
+                label: "Folder 2",
+                children: [{ id: "file-3", label: "File C.tsx" }],
+              },
+            ]);
 
-                return (
-                  <div className="w-full max-w-sm p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-                    <p className="text-xs text-zinc-400 mb-2 font-mono">
-                      Drag nodes to reorder
-                    </p>
-                    <TreeView
-                      isReorderable
-                      defaultExpanded={["folder-1", "folder-2"]}
-                      data={treeData}
-                      onReorder={(newData) => setTreeData(newData)}
-                    />
-                  </div>
-                );
-              };
-              return <ReorderDemo />;
-            })()}
-          </React.Fragment>
-        }
+            return (
+              <div className="w-full max-w-sm p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+                <p className="text-xs text-zinc-400 mb-2 font-mono">
+                  Drag nodes to reorder
+                </p>
+                <TreeView
+                  isReorderable
+                  defaultExpanded={["folder-1", "folder-2"]}
+                  data={treeData}
+                  onReorder={(newData) => setTreeData(newData)}
+                />
+              </div>
+            );
+          };
+          return <ReorderDemo />;
+        })()}
         code={`const [treeData, setTreeData] = useState(initialTree);
 
 <TreeView
@@ -263,7 +259,7 @@ export default function TreeViewPage() {
                 { id: "remote-1", label: "Remote Server Logs (Click to load)" },
                 { id: "remote-2", label: "Cloud Backups (Click to load)" },
               ]}
-              onLoadChildren={async (id) => {
+              onLoadChildren={async (_id) => {
                 await new Promise((resolve) => setTimeout(resolve, 1500));
               }}
             />

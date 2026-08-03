@@ -4,11 +4,11 @@ import * as React from "react";
 import { Button } from "@/components/ui/button/button";
 import {
   Stepper,
-  StepperItem,
-  StepperIndicator,
-  StepperTitle,
   StepperDescription,
+  StepperIndicator,
+  StepperItem,
   StepperSeparator,
+  StepperTitle,
 } from "@/components/ui/stepper/stepper";
 
 export function StepperInteractiveDemo() {

@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { Progress } from "@/components/ui/progress/progress";
 import { Button } from "@/components/ui/button/button";
+import { Progress } from "@/components/ui/progress/progress";
 
 export function AnimatedProgressDemo() {
   const [progress, setProgress] = React.useState(0);

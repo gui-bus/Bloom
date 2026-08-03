@@ -1,24 +1,25 @@
 "use client";
 
-import { ImportSnippet } from "@/components/core/importSnippet";
-import { DocsPagination } from "@/components/core/docsPagination";
-import { InstallationBlock } from "@/components/core/installationBlock";
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
+import { Button } from "@/components/ui/button/button";
+import { Separator } from "@/components/ui/separator/separator";
 import {
   Stepper,
-  StepperItem,
-  StepperIndicator,
-  StepperTitle,
   StepperDescription,
+  StepperIndicator,
+  StepperItem,
   StepperSeparator,
+  StepperTitle,
 } from "@/components/ui/stepper/stepper";
-import { Button } from "@/components/ui/button/button";
 import { stepperCode } from "@/components/ui/stepper/stepper.code";
-import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
   TabsContent,
@@ -28,7 +29,7 @@ import {
 
 export default function StepperComponentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
-  const [errorStep, setErrorStep] = React.useState(1);
+  const [errorStep, _setErrorStep] = React.useState(1);
 
   return (
     <div className="space-y-8">
@@ -332,6 +333,9 @@ export default function StepperComponentPage() {
 </Stepper>`}
         props={["orientation: 'horizontal' | 'vertical'"]}
       />
+
+      {/* Accessibility & ARIA Section */}
+      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

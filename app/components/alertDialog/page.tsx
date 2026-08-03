@@ -1,28 +1,28 @@
 "use client";
 
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
-import { ImportSnippet } from "@/components/core/importSnippet";
-import { DocsPagination } from "@/components/core/docsPagination";
-import { InstallationBlock } from "@/components/core/installationBlock";
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
 import {
   AlertDialog,
-  AlertDialogTrigger,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogFooter,
   AlertDialogAction,
   AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
 } from "@/components/ui/alertDialog/alertDialog";
+import { alertDialogCode } from "@/components/ui/alertDialog/alertDialog.code";
 import { Button } from "@/components/ui/button/button";
 import { Input } from "@/components/ui/input/input";
-import { alertDialogCode } from "@/components/ui/alertDialog/alertDialog.code";
 import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,

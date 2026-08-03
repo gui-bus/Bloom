@@ -1,13 +1,13 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import * as React from "react";
 import { Button } from "@/components/ui/button/button";
 import {
   Collapsible,
-  CollapsibleTrigger,
   CollapsibleContent,
+  CollapsibleTrigger,
 } from "@/components/ui/collapsible/collapsible";
-import { Icon } from "@iconify/react";
 
 export function CollapsibleDemo() {
   const [isOpen, setIsOpen] = React.useState(false);

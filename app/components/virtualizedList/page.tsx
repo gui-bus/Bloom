@@ -1,23 +1,23 @@
 "use client";
 
-import { ImportSnippet } from "@/components/core/importSnippet";
-import { DocsPagination } from "@/components/core/docsPagination";
-import { InstallationBlock } from "@/components/core/installationBlock";
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
-import { VirtualizedList } from "@/components/ui/virtualizedList/virtualizedList";
-import { virtualizedListCode } from "@/components/ui/virtualizedList/virtualizedList.code";
-import { Separator } from "@/components/ui/separator/separator";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
 import { Badge } from "@/components/ui/badge/badge";
+import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
+import { VirtualizedList } from "@/components/ui/virtualizedList/virtualizedList";
+import { virtualizedListCode } from "@/components/ui/virtualizedList/virtualizedList.code";
 
 const largeDataset = Array.from({ length: 10000 }, (_, i) => ({
   id: i,
@@ -194,7 +194,7 @@ export default function VirtualizedListPage() {
               items={largeDataset.slice(0, 100)}
               getItemHeight={(_, index) => (index % 2 === 0 ? 44 : 64)}
               height={300}
-              renderItem={(item: { id: number; label: string }, index) => (
+              renderItem={(_item: { id: number; label: string }, index) => (
                 <div
                   className={`flex items-center px-4 h-full border-b border-zinc-100 dark:border-zinc-800/50 ${
                     index % 2 === 0
@@ -315,6 +315,9 @@ export default function VirtualizedListPage() {
 />`}
         props={["onEndReached: () => void", "endReachedThreshold?: number"]}
       />
+
+      {/* Accessibility & ARIA Section */}
+      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

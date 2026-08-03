@@ -1,16 +1,17 @@
 "use client";
 
-import { ImportSnippet } from "@/components/core/importSnippet";
-import { DocsPagination } from "@/components/core/docsPagination";
-import { InstallationBlock } from "@/components/core/installationBlock";
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
+import { Separator } from "@/components/ui/separator/separator";
 import { Slider } from "@/components/ui/slider/slider";
 import { sliderCode } from "@/components/ui/slider/slider.code";
-import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
   TabsContent,
@@ -172,6 +173,9 @@ const sampleHistogram = [5, 12, 28, 45, 80, 95, 60, 40, 25, 15, 8, 3];
 />`}
         props={["marks: Array<{ value: number, label?: string }>"]}
       />
+
+      {/* Accessibility & ARIA Section */}
+      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

@@ -1,8 +1,7 @@
 "use client";
 
-import * as React from "react";
-import { Toast, toast } from "@/components/ui/toast/toast";
 import { Button } from "@/components/ui/button/button";
+import { Toast, toast } from "@/components/ui/toast/toast";
 
 export function ToastDemo() {
   return (

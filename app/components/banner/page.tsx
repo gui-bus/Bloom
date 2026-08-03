@@ -1,14 +1,14 @@
 "use client";
 
-import { ImportSnippet } from "@/components/core/importSnippet";
-import { DocsPagination } from "@/components/core/docsPagination";
-import { InstallationBlock } from "@/components/core/installationBlock";
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
 import { Banner } from "@/components/ui/banner/banner";
-import { bannerCode } from "@/components/ui/banner/banner.code";
 import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
@@ -284,6 +284,9 @@ export default function BannerPage() {
           />
         </TabsContent>
       </Tabs>
+
+      {/* Accessibility & ARIA Section */}
+      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

@@ -1,24 +1,21 @@
 "use client";
 
-import { ImportSnippet } from "@/components/core/importSnippet";
-
-import { DocsPagination } from "@/components/core/docsPagination";
-
-import { InstallationBlock } from "@/components/core/installationBlock";
-
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
+import { Badge } from "@/components/ui/badge/badge";
 import {
   Collapsible,
-  CollapsibleTrigger,
   CollapsibleContent,
+  CollapsibleTrigger,
 } from "@/components/ui/collapsible/collapsible";
 import { collapsibleCode } from "@/components/ui/collapsible/collapsible.code";
-import { Button } from "@/components/ui/button/button";
-import { Badge } from "@/components/ui/badge/badge";
 import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
@@ -414,6 +411,9 @@ export default function CollapsiblePage() {
 </Collapsible>`}
         props={["disabled: boolean"]}
       />
+
+      {/* Accessibility & ARIA Section */}
+      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

@@ -1,27 +1,22 @@
 "use client";
 
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
-
-import { ImportSnippet } from "@/components/core/importSnippet";
-
-import { DocsPagination } from "@/components/core/docsPagination";
-
-import { InstallationBlock } from "@/components/core/installationBlock";
-
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
 import {
   Command,
-  CommandInput,
-  CommandList,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
-  CommandShortcut,
+  CommandList,
   CommandSeparator,
+  CommandShortcut,
 } from "@/components/ui/command/command";
 import { commandCode } from "@/components/ui/command/command.code";
 import { Separator } from "@/components/ui/separator/separator";

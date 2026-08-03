@@ -1,18 +1,13 @@
 "use client";
 
-import { ImportSnippet } from "@/components/core/importSnippet";
-
-import { DocsPagination } from "@/components/core/docsPagination";
-
-import { InstallationBlock } from "@/components/core/installationBlock";
-
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
-import { Textarea } from "@/components/ui/textarea/textarea";
-import { textareaCode } from "@/components/ui/textarea/textarea.code";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
@@ -20,6 +15,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
+import { Textarea } from "@/components/ui/textarea/textarea";
+import { textareaCode } from "@/components/ui/textarea/textarea.code";
 
 export default function TextareaComponentPage() {
   return (
@@ -117,6 +114,9 @@ export default function TextareaComponentPage() {
 />`}
         props={["isInvalid: boolean", "errorMessage: ReactNode"]}
       />
+
+      {/* Accessibility & ARIA Section */}
+      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

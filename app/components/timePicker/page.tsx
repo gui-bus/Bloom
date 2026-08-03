@@ -1,21 +1,15 @@
 "use client";
 
-import { ImportSnippet } from "@/components/core/importSnippet";
-import { DocsPagination } from "@/components/core/docsPagination";
-import { InstallationBlock } from "@/components/core/installationBlock";
 import * as React from "react";
-import { CodeBlock } from "@/components/core/codeBlock";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
-import { TimePicker } from "@/components/ui/timePicker/timePicker";
-import { timePickerCode } from "@/components/ui/timePicker/timePicker.code";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
+import { Tabs } from "@/components/ui/tabs/tabs";
+import { TimePicker } from "@/components/ui/timePicker/timePicker";
 
 export default function TimePickerPage() {
   const [time, setTime] = React.useState("02:30 PM");
@@ -145,6 +139,9 @@ export default function TimePickerPage() {
           code={`<TimePicker useWheel step={15} value="10:30 AM" label="Wheel Column Picker" />`}
           props={["useWheel: boolean", "step: number"]}
         />
+
+        {/* Accessibility & ARIA Section */}
+        <AccessibilityCard />
 
         <Separator
           label={<span className="px-2">API Reference</span>}

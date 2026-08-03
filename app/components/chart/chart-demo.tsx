@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { Chart } from "@/components/ui/chart/chart";
 
 export function ChartDemo() {

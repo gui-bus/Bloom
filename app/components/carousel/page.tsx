@@ -1,32 +1,29 @@
 "use client";
 
-import { ImportSnippet } from "@/components/core/importSnippet";
-
-import { DocsPagination } from "@/components/core/docsPagination";
-
-import { InstallationBlock } from "@/components/core/installationBlock";
-
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar/avatar";
+import { Badge } from "@/components/ui/badge/badge";
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
   CarouselDots,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
   CarouselThumbs,
 } from "@/components/ui/carousel/carousel";
 import { carouselCode } from "@/components/ui/carousel/carousel.code";
-import { Badge } from "@/components/ui/badge/badge";
-import {
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-} from "@/components/ui/avatar/avatar";
 import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
@@ -501,6 +498,9 @@ export default function CarouselPage() {
 </Carousel>`}
         props={["dragFree: boolean", "swipeThreshold: number"]}
       />
+
+      {/* Accessibility & ARIA Section */}
+      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

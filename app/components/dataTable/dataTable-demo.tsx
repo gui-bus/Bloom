@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { DataTable } from "@/components/ui/dataTable/dataTable";
 
 export function DataTableDemo() {

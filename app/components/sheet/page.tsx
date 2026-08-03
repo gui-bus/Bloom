@@ -1,33 +1,28 @@
 "use client";
 
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
-
-import { ImportSnippet } from "@/components/core/importSnippet";
-
-import { DocsPagination } from "@/components/core/docsPagination";
-
-import { InstallationBlock } from "@/components/core/installationBlock";
-
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-  SheetFooter,
-  SheetClose,
-} from "@/components/ui/sheet/sheet";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
 import { Button } from "@/components/ui/button/button";
 import { Input } from "@/components/ui/input/input";
 import { Label } from "@/components/ui/label/label";
-import { sheetCode } from "@/components/ui/sheet/sheet.code";
 import { Separator } from "@/components/ui/separator/separator";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet/sheet";
+import { sheetCode } from "@/components/ui/sheet/sheet.code";
 import {
   Tabs,
   TabsContent,

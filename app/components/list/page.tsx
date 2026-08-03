@@ -1,20 +1,17 @@
 "use client";
 
-import { ImportSnippet } from "@/components/core/importSnippet";
-
-import { DocsPagination } from "@/components/core/docsPagination";
-
-import { InstallationBlock } from "@/components/core/installationBlock";
-
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
+import { Badge } from "@/components/ui/badge/badge";
 import { List, ListItem } from "@/components/ui/list/list";
 import { listCode } from "@/components/ui/list/list.code";
 import { Separator } from "@/components/ui/separator/separator";
-import { Badge } from "@/components/ui/badge/badge";
 import {
   Tabs,
   TabsContent,
@@ -181,6 +178,9 @@ export default function ListComponentPage() {
   <ListItem isActive isHoverable>Active Billing Plan</ListItem>
 </List>`}
       />
+
+      {/* Accessibility & ARIA Section */}
+      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

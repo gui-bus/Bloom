@@ -1,16 +1,18 @@
-import { ImportSnippet } from "@/components/core/importSnippet";
-import { DocsPagination } from "@/components/core/docsPagination";
-import { InstallationBlock } from "@/components/core/installationBlock";
-import type { Metadata } from "next";
 import { Icon } from "@iconify/react";
+import type { Metadata } from "next";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
 
 export const metadata: Metadata = {
   title: "Aspect Ratio",
   description: "Displays content within a desired aspect ratio constraint.",
 };
+
 import { AspectRatio } from "@/components/ui/aspectRatio/aspectRatio";
 import { aspectRatioCode } from "@/components/ui/aspectRatio/aspectRatio.code";
 import { Separator } from "@/components/ui/separator/separator";
@@ -125,6 +127,9 @@ export default function AspectRatioPage() {
 </AspectRatio>`}
         props={["isLoading: boolean"]}
       />
+
+      {/* Accessibility & ARIA Section */}
+      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

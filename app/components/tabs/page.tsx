@@ -1,22 +1,22 @@
 "use client";
 
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
-import { ImportSnippet } from "@/components/core/importSnippet";
-import { DocsPagination } from "@/components/core/docsPagination";
-import { InstallationBlock } from "@/components/core/installationBlock";
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
+import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
+  TabsContent,
   TabsList,
   TabsTrigger,
-  TabsContent,
 } from "@/components/ui/tabs/tabs";
 import { tabsCode } from "@/components/ui/tabs/tabs.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function TabsComponentPage() {
   // Closable Tabs State
@@ -246,7 +246,6 @@ export default function TabsComponentPage() {
                         onKeyDown={(e) => {
                           if (e.key === "Enter") handleSaveRename(t.id);
                         }}
-                        autoFocus
                         onClick={(e) => e.stopPropagation()}
                         className="bg-transparent border-b border-sky-500 outline-none text-xs font-bold w-20 px-0.5"
                       />

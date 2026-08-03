@@ -4,13 +4,13 @@ import * as React from "react";
 import {
   Pagination,
   PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationPrevious,
-  PaginationNext,
-  PaginationFirst,
-  PaginationLast,
   PaginationEllipsis,
+  PaginationFirst,
+  PaginationItem,
+  PaginationLast,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 } from "@/components/ui/pagination/pagination";
 
 export function PaginationFirstLastDemo() {

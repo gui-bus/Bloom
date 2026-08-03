@@ -6,9 +6,8 @@ import {
   PaginationContent,
   PaginationItem,
   PaginationLink,
-  PaginationPrevious,
   PaginationNext,
-  PaginationEllipsis,
+  PaginationPrevious,
 } from "@/components/ui/pagination/pagination";
 
 export function PaginationInteractiveDemo() {
