@@ -5,7 +5,12 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
-export type DialogOverlayVariant = "blur" | "dark" | "light" | "transparent" | "none";
+export type DialogOverlayVariant =
+  | "blur"
+  | "dark"
+  | "light"
+  | "transparent"
+  | "none";
 export type DialogSize = "sm" | "md" | "lg" | "xl" | "full";
 
 const Dialog = ({
@@ -24,34 +29,33 @@ export interface DialogOverlayProps
   variant?: DialogOverlayVariant;
 }
 
-const DialogOverlay = React.forwardRef<
-  HTMLDivElement,
-  DialogOverlayProps
->(({ className, variant = "blur", ...props }, ref) => {
-  if (variant === "none") return null;
+const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
+  ({ className, variant = "blur", ...props }, ref) => {
+    if (variant === "none") return null;
 
-  const overlayStyles: Record<DialogOverlayVariant, string> = {
-    blur: "bg-black/50 backdrop-blur-md",
-    dark: "bg-black/80 backdrop-blur-xs",
-    light: "bg-zinc-950/20 backdrop-blur-xs",
-    transparent: "bg-transparent",
-    none: "",
-  };
+    const overlayStyles: Record<DialogOverlayVariant, string> = {
+      blur: "bg-black/50 backdrop-blur-md",
+      dark: "bg-black/80 backdrop-blur-xs",
+      light: "bg-zinc-950/20 backdrop-blur-xs",
+      transparent: "bg-transparent",
+      none: "",
+    };
 
-  return (
-    <DialogPrimitive.Close asChild>
-      <div
-        ref={ref}
-        className={cn(
-          "fixed inset-0 z-50 cursor-pointer pointer-events-auto transition-all duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-          overlayStyles[variant],
-          className
-        )}
-        {...props}
-      />
-    </DialogPrimitive.Close>
-  );
-});
+    return (
+      <DialogPrimitive.Close asChild>
+        <div
+          ref={ref}
+          className={cn(
+            "fixed inset-0 z-50 cursor-pointer pointer-events-auto transition-all duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+            overlayStyles[variant],
+            className,
+          )}
+          {...props}
+        />
+      </DialogPrimitive.Close>
+    );
+  },
+);
 DialogOverlay.displayName = "DialogOverlay";
 
 export interface DialogContentProps
@@ -81,13 +85,16 @@ const DialogContent = React.forwardRef<
           className={cn(
             "pointer-events-auto relative z-50 grid w-full gap-4 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-2xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
             sizeStyles[size],
-            className
+            className,
           )}
           {...props}
         >
           {children}
           <DialogPrimitive.Close className="absolute right-4 top-4 rounded-full p-2 opacity-70 transition-all hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-sky-500/40 disabled:pointer-events-none hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer">
-            <Icon icon="hugeicons:cancel-01" className="size-4 text-zinc-500 dark:text-zinc-400" />
+            <Icon
+              icon="hugeicons:cancel-01"
+              className="size-4 text-zinc-500 dark:text-zinc-400"
+            />
             <span className="sr-only">Close</span>
           </DialogPrimitive.Close>
         </DialogPrimitive.Content>
@@ -104,7 +111,7 @@ const DialogHeader = ({
   <div
     className={cn(
       "flex flex-col space-y-1.5 text-center sm:text-left",
-      className
+      className,
     )}
     {...props}
   />
@@ -118,7 +125,7 @@ const DialogFooter = ({
   <div
     className={cn(
       "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 gap-2 mt-4",
-      className
+      className,
     )}
     {...props}
   />
@@ -133,7 +140,7 @@ const DialogTitle = React.forwardRef<
     ref={ref}
     className={cn(
       "text-lg font-bold leading-none tracking-tight text-zinc-900 dark:text-zinc-100",
-      className
+      className,
     )}
     {...props}
   />
@@ -146,7 +153,10 @@ const DialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed", className)}
+    className={cn(
+      "text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed",
+      className,
+    )}
     {...props}
   />
 ));

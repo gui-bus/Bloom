@@ -36,11 +36,14 @@ export function Banner({
   ...props
 }: BannerProps) {
   const [isDismissed, setIsDismissed] = React.useState(false);
-  const [currentAnnouncementIndex, setCurrentAnnouncementIndex] = React.useState(0);
+  const [currentAnnouncementIndex, setCurrentAnnouncementIndex] =
+    React.useState(0);
 
   React.useEffect(() => {
     if (storageKey && typeof window !== "undefined") {
-      const dismissed = localStorage.getItem(`bloom-banner-dismissed-${storageKey}`);
+      const dismissed = localStorage.getItem(
+        `bloom-banner-dismissed-${storageKey}`,
+      );
       if (dismissed === "true") {
         setIsDismissed(true);
       }
@@ -80,7 +83,9 @@ export function Banner({
   };
 
   const hasCarousel = announcements && announcements.length > 0;
-  const currentAnnouncement = hasCarousel ? announcements[currentAnnouncementIndex] : null;
+  const currentAnnouncement = hasCarousel
+    ? announcements[currentAnnouncementIndex]
+    : null;
 
   const nextAnnouncement = () => {
     if (hasCarousel) {
@@ -90,27 +95,35 @@ export function Banner({
 
   const prevAnnouncement = () => {
     if (hasCarousel) {
-      setCurrentAnnouncementIndex((prev) => (prev === 0 ? announcements.length - 1 : prev - 1));
+      setCurrentAnnouncementIndex((prev) =>
+        prev === 0 ? announcements.length - 1 : prev - 1,
+      );
     }
   };
 
-  const activeContent = currentAnnouncement ? currentAnnouncement.content : children;
-  const activeIcon = currentAnnouncement ? currentAnnouncement.icon ?? icon : icon;
-  const activeAction = currentAnnouncement ? currentAnnouncement.action ?? action : action;
+  const activeContent = currentAnnouncement
+    ? currentAnnouncement.content
+    : children;
+  const activeIcon = currentAnnouncement
+    ? (currentAnnouncement.icon ?? icon)
+    : icon;
+  const activeAction = currentAnnouncement
+    ? (currentAnnouncement.action ?? action)
+    : action;
 
   return (
     <div
       className={cn(
         "flex items-center gap-3 overflow-hidden rounded-2xl border border-zinc-200 bg-white p-4 py-3 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 transition-all duration-200",
         positionStyles[position],
-        className
+        className,
       )}
       {...props}
     >
       <div
         className={cn(
           "absolute bottom-0 left-0 top-0 w-[3px]",
-          variantAccentStyles[variant]
+          variantAccentStyles[variant],
         )}
       />
 
@@ -134,7 +147,9 @@ export function Banner({
           >
             <Icon icon="hugeicons:arrow-left-01" className="size-3.5" />
           </button>
-          <span>{currentAnnouncementIndex + 1}/{announcements.length}</span>
+          <span>
+            {currentAnnouncementIndex + 1}/{announcements.length}
+          </span>
           <button
             type="button"
             onClick={nextAnnouncement}

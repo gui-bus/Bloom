@@ -62,15 +62,21 @@ export function TreeView({
   className,
 }: TreeViewProps) {
   const [expandedIds, setExpandedIds] = React.useState<Set<string>>(
-    new Set(defaultExpanded)
+    new Set(defaultExpanded),
   );
-  const [internalSelectedId, setInternalSelectedId] = React.useState<string | null>(null);
-  const [internalCheckedIds, setInternalCheckedIds] = React.useState<Set<string>>(new Set());
+  const [internalSelectedId, setInternalSelectedId] = React.useState<
+    string | null
+  >(null);
+  const [internalCheckedIds, setInternalCheckedIds] = React.useState<
+    Set<string>
+  >(new Set());
   const [loadingIds, setLoadingIds] = React.useState<Set<string>>(new Set());
   const [draggedId, setDraggedId] = React.useState<string | null>(null);
 
   const selectedId = controlledSelectedId ?? internalSelectedId;
-  const checkedIds = controlledCheckedIds ? new Set(controlledCheckedIds) : internalCheckedIds;
+  const checkedIds = controlledCheckedIds
+    ? new Set(controlledCheckedIds)
+    : internalCheckedIds;
 
   const toggleExpanded = React.useCallback(
     async (id: string) => {
@@ -97,7 +103,7 @@ export function TreeView({
         }
       }
     },
-    [onLoadChildren, expandedIds]
+    [onLoadChildren, expandedIds],
   );
 
   const selectNode = React.useCallback(
@@ -105,7 +111,7 @@ export function TreeView({
       setInternalSelectedId(id);
       onNodeSelect?.(id);
     },
-    [onNodeSelect]
+    [onNodeSelect],
   );
 
   const toggleChecked = React.useCallback(
@@ -119,7 +125,7 @@ export function TreeView({
       setInternalCheckedIds(nextChecked);
       onCheckedChange?.(Array.from(nextChecked));
     },
-    [checkedIds, onCheckedChange]
+    [checkedIds, onCheckedChange],
   );
 
   const handleDragStart = (e: React.DragEvent, id: string) => {
@@ -133,7 +139,9 @@ export function TreeView({
     e.preventDefault();
     e.stopPropagation();
 
-    const findAndRemove = (items: TreeDataItem[]): { items: TreeDataItem[]; removedItem: TreeDataItem | null } => {
+    const findAndRemove = (
+      items: TreeDataItem[],
+    ): { items: TreeDataItem[]; removedItem: TreeDataItem | null } => {
       let removedItem: TreeDataItem | null = null;
       const cleanItems = (list: TreeDataItem[]): TreeDataItem[] => {
         return list.filter((item) => {
@@ -151,7 +159,11 @@ export function TreeView({
       return { items: result, removedItem };
     };
 
-    const insertNextToTarget = (list: TreeDataItem[], targetId: string, itemToInsert: TreeDataItem): TreeDataItem[] => {
+    const insertNextToTarget = (
+      list: TreeDataItem[],
+      targetId: string,
+      itemToInsert: TreeDataItem,
+    ): TreeDataItem[] => {
       const result: TreeDataItem[] = [];
       for (const item of list) {
         if (item.id === targetId) {
@@ -160,7 +172,11 @@ export function TreeView({
         } else {
           const updatedItem = { ...item };
           if (updatedItem.children && updatedItem.children.length > 0) {
-            updatedItem.children = insertNextToTarget(updatedItem.children, targetId, itemToInsert);
+            updatedItem.children = insertNextToTarget(
+              updatedItem.children,
+              targetId,
+              itemToInsert,
+            );
           }
           result.push(updatedItem);
         }
@@ -171,7 +187,11 @@ export function TreeView({
     const { items: cleanedData, removedItem } = findAndRemove(data);
     if (!removedItem) return;
 
-    const reorderedData = insertNextToTarget(cleanedData, targetId, removedItem);
+    const reorderedData = insertNextToTarget(
+      cleanedData,
+      targetId,
+      removedItem,
+    );
     onReorder?.(reorderedData);
     setDraggedId(null);
   };
@@ -194,7 +214,9 @@ export function TreeView({
           isLoading={loadingIds.has(item.id)}
           hasChildrenProp={Boolean(item.children && item.children.length > 0)}
         >
-          {item.children && item.children.length > 0 ? renderDataTree(item.children) : null}
+          {item.children && item.children.length > 0
+            ? renderDataTree(item.children)
+            : null}
         </TreeNode>
       </div>
     ));
@@ -258,14 +280,18 @@ export function TreeNode({
   const isChecked = checkedIds.has(id);
 
   return (
-    <div className={cn("select-none", className)} role="treeitem" aria-expanded={hasChildren ? isExpanded : undefined}>
+    <div
+      className={cn("select-none", className)}
+      role="treeitem"
+      aria-expanded={hasChildren ? isExpanded : undefined}
+    >
       <div
         className={cn(
           "flex items-center gap-2 w-full px-2 py-1.5 rounded-lg text-sm transition-colors cursor-pointer",
           isSelected
             ? "bg-sky-500/10 text-sky-500 font-semibold"
             : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800",
-          isDisabled && "opacity-40 cursor-not-allowed"
+          isDisabled && "opacity-40 cursor-not-allowed",
         )}
         onClick={() => {
           if (isDisabled) return;
@@ -275,13 +301,16 @@ export function TreeNode({
       >
         {/* Chevron / Loading */}
         {isLoading ? (
-          <Icon icon="hugeicons:loading-02" className="size-4 shrink-0 animate-spin text-sky-500" />
+          <Icon
+            icon="hugeicons:loading-02"
+            className="size-4 shrink-0 animate-spin text-sky-500"
+          />
         ) : hasChildren ? (
           <Icon
             icon="hugeicons:arrow-right-01"
             className={cn(
               "size-4 shrink-0 transition-transform duration-200",
-              isExpanded && "rotate-90"
+              isExpanded && "rotate-90",
             )}
           />
         ) : (

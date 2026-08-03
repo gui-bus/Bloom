@@ -1,12 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import * as React from "react";
 import { describe, it, expect } from "vitest";
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetTitle,
-} from "../sheet";
+import { Sheet, SheetTrigger, SheetContent, SheetTitle } from "../sheet";
 
 describe("Sheet Component", () => {
   it("renders trigger and opens side sheet overlay on click", () => {
@@ -16,7 +11,7 @@ describe("Sheet Component", () => {
         <SheetContent side="right">
           <SheetTitle>Side Drawer Title</SheetTitle>
         </SheetContent>
-      </Sheet>
+      </Sheet>,
     );
 
     expect(screen.getByText("Open Drawer")).toBeInTheDocument();

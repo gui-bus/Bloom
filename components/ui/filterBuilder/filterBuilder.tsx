@@ -49,11 +49,16 @@ const operatorOptions = [
   { value: "less_than", label: "Less than" },
 ];
 
-export function isGroupNode(item: FilterRule | FilterGroupNode): item is FilterGroupNode {
+export function isGroupNode(
+  item: FilterRule | FilterGroupNode,
+): item is FilterGroupNode {
   return "conjunction" in item && Array.isArray(item.rules);
 }
 
-export function exportQuery(group: FilterGroup, format: "sql" | "mongodb" | "graphql"): string {
+export function exportQuery(
+  group: FilterGroup,
+  format: "sql" | "mongodb" | "graphql",
+): string {
   if (format === "sql") {
     const clause = group.rules
       .map((r) => {
@@ -73,7 +78,8 @@ export function exportQuery(group: FilterGroup, format: "sql" | "mongodb" | "gra
     const rulesObj = group.rules.map((r) => {
       if (isGroupNode(r)) return JSON.parse(exportQuery(r, "mongodb"));
       if (r.operator === "equals") return { [r.field]: r.value };
-      if (r.operator === "contains") return { [r.field]: { $regex: r.value, $options: "i" } };
+      if (r.operator === "contains")
+        return { [r.field]: { $regex: r.value, $options: "i" } };
       if (r.operator === "greater_than") return { [r.field]: { $gt: r.value } };
       if (r.operator === "less_than") return { [r.field]: { $lt: r.value } };
       return {};
@@ -87,7 +93,11 @@ export function exportQuery(group: FilterGroup, format: "sql" | "mongodb" | "gra
       if (isGroupNode(r)) return JSON.parse(exportQuery(r, "graphql"));
       return { field: r.field, operator: r.operator, value: r.value };
     });
-    return JSON.stringify({ logical: group.conjunction, conditions: rulesObj }, null, 2);
+    return JSON.stringify(
+      { logical: group.conjunction, conditions: rulesObj },
+      null,
+      2,
+    );
   }
 
   return "";
@@ -103,8 +113,12 @@ export function FilterBuilder({
   className,
 }: FilterBuilderProps) {
   const [presetName, setPresetName] = React.useState("");
-  const [savedPresets, setSavedPresets] = React.useState<FilterBuilderPreset[]>([]);
-  const [activeFormat, setActiveFormat] = React.useState<"sql" | "mongodb" | "graphql">("sql");
+  const [savedPresets, setSavedPresets] = React.useState<FilterBuilderPreset[]>(
+    [],
+  );
+  const [activeFormat, setActiveFormat] = React.useState<
+    "sql" | "mongodb" | "graphql"
+  >("sql");
   const [showExportModal, setShowExportModal] = React.useState(false);
 
   React.useEffect(() => {
@@ -130,7 +144,10 @@ export function FilterBuilder({
     setSavedPresets(updated);
     if (storageKey) {
       try {
-        localStorage.setItem(`zoe_filter_${storageKey}`, JSON.stringify(updated));
+        localStorage.setItem(
+          `zoe_filter_${storageKey}`,
+          JSON.stringify(updated),
+        );
       } catch (e) {
         // ignore
       }
@@ -149,8 +166,15 @@ export function FilterBuilder({
   const inputClasses =
     "h-9 px-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition-colors";
 
-  const renderGroup = (currentGroup: FilterGroupNode, onGroupChange: (updated: FilterGroupNode) => void, depth = 0) => {
-    const updateRuleOrGroup = (index: number, updatedItem: FilterRule | FilterGroupNode) => {
+  const renderGroup = (
+    currentGroup: FilterGroupNode,
+    onGroupChange: (updated: FilterGroupNode) => void,
+    depth = 0,
+  ) => {
+    const updateRuleOrGroup = (
+      index: number,
+      updatedItem: FilterRule | FilterGroupNode,
+    ) => {
       const newRules = [...currentGroup.rules];
       newRules[index] = updatedItem;
       onGroupChange({ ...currentGroup, rules: newRules });
@@ -167,7 +191,10 @@ export function FilterBuilder({
       const firstField = fields[0]?.id ?? "";
       onGroupChange({
         ...currentGroup,
-        rules: [...currentGroup.rules, { field: firstField, operator: "equals", value: "" }],
+        rules: [
+          ...currentGroup.rules,
+          { field: firstField, operator: "equals", value: "" },
+        ],
       });
     };
 
@@ -196,7 +223,7 @@ export function FilterBuilder({
           "space-y-3 p-3 rounded-2xl border transition-colors",
           depth === 0
             ? "border-transparent"
-            : "border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-800/30 ml-2 sm:ml-4"
+            : "border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-800/30 ml-2 sm:ml-4",
         )}
       >
         {currentGroup.rules.map((item, index) => (
@@ -227,13 +254,19 @@ export function FilterBuilder({
                     Remove Sub-clause
                   </button>
                 </div>
-                {renderGroup(item, (subUpdated) => updateRuleOrGroup(index, subUpdated), depth + 1)}
+                {renderGroup(
+                  item,
+                  (subUpdated) => updateRuleOrGroup(index, subUpdated),
+                  depth + 1,
+                )}
               </div>
             ) : (
               <div className="flex items-center gap-2 flex-wrap">
                 <select
                   value={item.field}
-                  onChange={(e) => updateRuleOrGroup(index, { ...item, field: e.target.value })}
+                  onChange={(e) =>
+                    updateRuleOrGroup(index, { ...item, field: e.target.value })
+                  }
                   className={cn(selectClasses, "min-w-[120px]")}
                 >
                   {fields.map((f) => (
@@ -263,7 +296,12 @@ export function FilterBuilder({
                 {fields.find((f) => f.id === item.field)?.type === "select" ? (
                   <select
                     value={String(item.value)}
-                    onChange={(e) => updateRuleOrGroup(index, { ...item, value: e.target.value })}
+                    onChange={(e) =>
+                      updateRuleOrGroup(index, {
+                        ...item,
+                        value: e.target.value,
+                      })
+                    }
                     className={cn(selectClasses, "flex-1 min-w-[120px]")}
                   >
                     <option value="">Select...</option>
@@ -277,13 +315,18 @@ export function FilterBuilder({
                   </select>
                 ) : (
                   <input
-                    type={fields.find((f) => f.id === item.field)?.type === "number" ? "number" : "text"}
+                    type={
+                      fields.find((f) => f.id === item.field)?.type === "number"
+                        ? "number"
+                        : "text"
+                    }
                     value={String(item.value)}
                     onChange={(e) =>
                       updateRuleOrGroup(index, {
                         ...item,
                         value:
-                          fields.find((f) => f.id === item.field)?.type === "number"
+                          fields.find((f) => f.id === item.field)?.type ===
+                          "number"
                             ? Number(e.target.value)
                             : e.target.value,
                       })
@@ -331,7 +374,7 @@ export function FilterBuilder({
     <div
       className={cn(
         "rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 space-y-4",
-        className
+        className,
       )}
     >
       {renderGroup(value, onChange)}
@@ -370,7 +413,9 @@ export function FilterBuilder({
 
       {savedPresets.length > 0 && (
         <div className="flex items-center gap-2 flex-wrap pt-1">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Presets:</span>
+          <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+            Presets:
+          </span>
           {savedPresets.map((preset) => (
             <button
               key={preset.id}
@@ -389,7 +434,9 @@ export function FilterBuilder({
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
           <div className="w-full max-w-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100">Export Formatted Query</h3>
+              <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
+                Export Formatted Query
+              </h3>
               <button
                 type="button"
                 onClick={() => setShowExportModal(false)}
@@ -409,7 +456,7 @@ export function FilterBuilder({
                     "px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-colors",
                     activeFormat === fmt
                       ? "bg-sky-600 text-white"
-                      : "text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                      : "text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800",
                   )}
                 >
                   {fmt}

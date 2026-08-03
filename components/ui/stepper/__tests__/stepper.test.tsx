@@ -26,7 +26,7 @@ describe("Stepper Component", () => {
             <StepperTitle>Payment Method</StepperTitle>
           </div>
         </StepperItem>
-      </Stepper>
+      </Stepper>,
     );
 
     expect(screen.getByText("Account Details")).toBeInTheDocument();

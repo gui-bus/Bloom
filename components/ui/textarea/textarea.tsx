@@ -5,9 +5,24 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { designRadius } from "@/lib/design-system";
 
-export interface TextareaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size"> {
-  variant?: "default" | "bordered" | "flat" | "underlined" | "filled" | "glassmorphism" | "glow";
-  color?: "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
+export interface TextareaProps
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size"> {
+  variant?:
+    | "default"
+    | "bordered"
+    | "flat"
+    | "underlined"
+    | "filled"
+    | "glassmorphism"
+    | "glow";
+  color?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "accent"
+    | "success"
+    | "warning"
+    | "danger";
   size?: "sm" | "md" | "lg";
   radius?: keyof typeof designRadius;
   label?: React.ReactNode;
@@ -26,12 +41,17 @@ const textareaVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/20",
-        bordered: "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 focus-within:border-sky-500",
+        default:
+          "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/20",
+        bordered:
+          "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 focus-within:border-sky-500",
         flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/60 dark:hover:bg-zinc-800 focus-within:bg-white dark:focus-within:bg-zinc-900 focus-within:border-sky-500 border",
-        underlined: "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 focus-within:border-sky-500",
-        filled: "bg-zinc-100 dark:bg-zinc-800 border border-transparent focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/20",
-        glassmorphism: "backdrop-blur-md bg-white/40 dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-700/50 focus-within:border-sky-500 shadow-md",
+        underlined:
+          "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 focus-within:border-sky-500",
+        filled:
+          "bg-zinc-100 dark:bg-zinc-800 border border-transparent focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/20",
+        glassmorphism:
+          "backdrop-blur-md bg-white/40 dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-700/50 focus-within:border-sky-500 shadow-md",
         glow: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:shadow-[0_0_12px_rgba(56,189,248,0.3)]",
       },
       size: {
@@ -44,7 +64,7 @@ const textareaVariants = cva(
       variant: "default",
       size: "md",
     },
-  }
+  },
 );
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -72,12 +92,15 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       rows,
       ...props
     },
-    ref
+    ref,
   ) => {
     const generatedId = React.useId();
     const textareaId = id || generatedId;
     const innerRef = React.useRef<HTMLTextAreaElement>(null);
-    React.useImperativeHandle(ref, () => innerRef.current as HTMLTextAreaElement);
+    React.useImperativeHandle(
+      ref,
+      () => innerRef.current as HTMLTextAreaElement,
+    );
 
     const [currentLength, setCurrentLength] = React.useState<number>(() => {
       const initialVal = value || defaultValue || "";
@@ -91,7 +114,10 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       const lineHeight = 20;
       const minHeight = minRows * lineHeight;
       const maxHeight = maxRows * lineHeight;
-      const newHeight = Math.min(Math.max(textarea.scrollHeight, minHeight), maxHeight);
+      const newHeight = Math.min(
+        Math.max(textarea.scrollHeight, minHeight),
+        maxHeight,
+      );
       textarea.style.height = `${newHeight}px`;
     }, [autoResize, minRows, maxRows]);
 
@@ -110,7 +136,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         htmlFor={textareaId}
         className={cn(
           "text-xs font-bold text-zinc-900 dark:text-zinc-100 select-none",
-          labelPlacement === "inside" && "absolute top-2 left-3.5 text-[10px] text-zinc-400 dark:text-zinc-500 z-10 pointer-events-none"
+          labelPlacement === "inside" &&
+            "absolute top-2 left-3.5 text-[10px] text-zinc-400 dark:text-zinc-500 z-10 pointer-events-none",
         )}
       >
         {label}
@@ -122,9 +149,10 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         className={cn(
           textareaVariants({ variant, size }),
           variant !== "underlined" && designRadius[radius],
-          isInvalid && "border-rose-500 focus-within:border-rose-500 focus-within:ring-rose-500/20 text-rose-600 dark:text-rose-400",
+          isInvalid &&
+            "border-rose-500 focus-within:border-rose-500 focus-within:ring-rose-500/20 text-rose-600 dark:text-rose-400",
           labelPlacement === "inside" && "relative pt-6",
-          className
+          className,
         )}
       >
         <textarea
@@ -139,7 +167,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           rows={rows || (autoResize ? minRows : undefined)}
           className={cn(
             "w-full h-full bg-transparent outline-none placeholder:text-zinc-400 dark:placeholder:text-zinc-500 text-zinc-900 dark:text-zinc-100",
-            autoResize ? "resize-none" : "resize-y"
+            autoResize ? "resize-none" : "resize-y",
           )}
           {...props}
         />
@@ -151,8 +179,12 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         {isInvalid && errorMessage ? (
           <p className="text-rose-500 font-semibold text-xs">{errorMessage}</p>
         ) : description ? (
-          <p className="text-zinc-500 dark:text-zinc-400 text-xs">{description}</p>
-        ) : <span />}
+          <p className="text-zinc-500 dark:text-zinc-400 text-xs">
+            {description}
+          </p>
+        ) : (
+          <span />
+        )}
         {maxCount && (
           <span className="text-zinc-400 dark:text-zinc-500 font-mono text-[11px] ml-auto">
             {currentLength}/{maxCount}
@@ -181,7 +213,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         {bottomContent}
       </div>
     );
-  }
+  },
 );
 Textarea.displayName = "Textarea";
 

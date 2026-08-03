@@ -24,7 +24,7 @@ describe("Table Component", () => {
             <TableCell>Cell Content</TableCell>
           </TableRow>
         </TableBody>
-      </Table>
+      </Table>,
     );
 
     expect(screen.getByText("Header")).toBeInTheDocument();

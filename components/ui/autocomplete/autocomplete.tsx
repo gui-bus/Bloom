@@ -28,7 +28,14 @@ export interface AutocompleteProps {
   size?: "sm" | "md" | "lg";
   radius?: keyof typeof designRadius;
   variant?: "default" | "bordered" | "flat" | "underlined";
-  color?: "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
+  color?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "accent"
+    | "success"
+    | "warning"
+    | "danger";
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
   highlightMatch?: boolean;
@@ -41,7 +48,10 @@ const sizeMap = {
   lg: "h-12 px-4 text-base",
 };
 
-export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps>(
+export const Autocomplete = React.forwardRef<
+  HTMLInputElement,
+  AutocompleteProps
+>(
   (
     {
       options = [],
@@ -64,7 +74,7 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
       highlightMatch = true,
       className,
     },
-    ref
+    ref,
   ) => {
     const [inputValue, setInputValue] = React.useState(defaultValue);
     const [isOpen, setIsOpen] = React.useState(false);
@@ -74,18 +84,22 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
     const filteredOptions = React.useMemo(() => {
       if (!inputValue) return options;
       return options.filter((opt) =>
-        opt.label.toLowerCase().includes(inputValue.toLowerCase())
+        opt.label.toLowerCase().includes(inputValue.toLowerCase()),
       );
     }, [options, inputValue]);
 
     React.useEffect(() => {
       const handleClickOutside = (e: MouseEvent) => {
-        if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        if (
+          containerRef.current &&
+          !containerRef.current.contains(e.target as Node)
+        ) {
           setIsOpen(false);
         }
       };
       document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     const handleSelect = (option: AutocompleteOption) => {
@@ -116,11 +130,13 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
 
       if (e.key === "ArrowDown") {
         e.preventDefault();
-        setHighlightedIndex((prev) => (prev + 1) % Math.max(1, filteredOptions.length));
+        setHighlightedIndex(
+          (prev) => (prev + 1) % Math.max(1, filteredOptions.length),
+        );
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
         setHighlightedIndex((prev) =>
-          prev === 0 ? Math.max(0, filteredOptions.length - 1) : prev - 1
+          prev === 0 ? Math.max(0, filteredOptions.length - 1) : prev - 1,
         );
       } else if (e.key === "Enter") {
         e.preventDefault();
@@ -134,17 +150,22 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
 
     const renderHighlightedText = (text: string, query: string) => {
       if (!query || !highlightMatch) return text;
-      const parts = text.split(new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi"));
+      const parts = text.split(
+        new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi"),
+      );
       return (
         <span>
           {parts.map((part, i) =>
             part.toLowerCase() === query.toLowerCase() ? (
-              <mark key={i} className="bg-amber-200/80 dark:bg-amber-500/40 text-amber-900 dark:text-amber-100 rounded-xs px-0.5 font-bold">
+              <mark
+                key={i}
+                className="bg-amber-200/80 dark:bg-amber-500/40 text-amber-900 dark:text-amber-100 rounded-xs px-0.5 font-bold"
+              >
                 {part}
               </mark>
             ) : (
               part
-            )
+            ),
           )}
         </span>
       );
@@ -152,7 +173,11 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
 
     return (
       <div ref={containerRef} className="relative w-full flex flex-col gap-1.5">
-        {label && <label className="text-xs font-semibold text-foreground/90">{label}</label>}
+        {label && (
+          <label className="text-xs font-semibold text-foreground/90">
+            {label}
+          </label>
+        )}
         <div
           className={cn(
             "relative flex items-center w-full border border-input bg-background transition-all focus-within:ring-1 focus-within:ring-ring",
@@ -160,10 +185,12 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
             designRadius[radius],
             isInvalid && "border-danger text-danger",
             isDisabled && "opacity-50 pointer-events-none",
-            className
+            className,
           )}
         >
-          {startContent && <span className="mr-2 text-muted-foreground">{startContent}</span>}
+          {startContent && (
+            <span className="mr-2 text-muted-foreground">{startContent}</span>
+          )}
           <input
             ref={ref}
             type="text"
@@ -176,9 +203,15 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
             className="w-full h-full bg-transparent outline-none placeholder:text-muted-foreground"
           />
           {isSearching ? (
-            <Icon icon="hugeicons:loading-01" className="size-4 animate-spin text-muted-foreground ml-2" />
+            <Icon
+              icon="hugeicons:loading-01"
+              className="size-4 animate-spin text-muted-foreground ml-2"
+            />
           ) : (
-            <Icon icon="hugeicons:arrow-down-01" className="size-4 text-muted-foreground ml-2 cursor-pointer" />
+            <Icon
+              icon="hugeicons:arrow-down-01"
+              className="size-4 text-muted-foreground ml-2 cursor-pointer"
+            />
           )}
           {endContent}
         </div>
@@ -197,22 +230,29 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
                   onMouseEnter={() => setHighlightedIndex(idx)}
                   className={cn(
                     "flex flex-col px-3 py-2 text-sm rounded-lg cursor-pointer transition-colors",
-                    highlightedIndex === idx && "bg-accent text-accent-foreground",
-                    opt.disabled && "opacity-50 cursor-not-allowed"
+                    highlightedIndex === idx &&
+                      "bg-accent text-accent-foreground",
+                    opt.disabled && "opacity-50 cursor-not-allowed",
                   )}
                 >
-                  <span className="font-medium">{renderHighlightedText(opt.label, inputValue)}</span>
+                  <span className="font-medium">
+                    {renderHighlightedText(opt.label, inputValue)}
+                  </span>
                   {opt.description && (
-                    <span className="text-xs text-muted-foreground">{opt.description}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {opt.description}
+                    </span>
                   )}
                 </div>
               ))
             )}
           </div>
         )}
-        {isInvalid && errorMessage && <p className="text-xs text-danger font-medium">{errorMessage}</p>}
+        {isInvalid && errorMessage && (
+          <p className="text-xs text-danger font-medium">{errorMessage}</p>
+        )}
       </div>
     );
-  }
+  },
 );
 Autocomplete.displayName = "Autocomplete";

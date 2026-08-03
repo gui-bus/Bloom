@@ -1,7 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import { describe, it, expect, vi } from "vitest";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../accordion";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "../accordion";
 
 describe("Accordion Component", () => {
   it("renders trigger items and content structure", () => {
@@ -9,13 +14,17 @@ describe("Accordion Component", () => {
       <Accordion type="single" collapsible defaultValue="item-1">
         <AccordionItem value="item-1">
           <AccordionTrigger>Is it accessible?</AccordionTrigger>
-          <AccordionContent>Yes. It adheres to WAI-ARIA standards.</AccordionContent>
+          <AccordionContent>
+            Yes. It adheres to WAI-ARIA standards.
+          </AccordionContent>
         </AccordionItem>
-      </Accordion>
+      </Accordion>,
     );
 
     expect(screen.getByText("Is it accessible?")).toBeInTheDocument();
-    expect(screen.getByText("Yes. It adheres to WAI-ARIA standards.")).toBeInTheDocument();
+    expect(
+      screen.getByText("Yes. It adheres to WAI-ARIA standards."),
+    ).toBeInTheDocument();
   });
 
   it("renders startContent and custom endContent icons", () => {
@@ -30,7 +39,7 @@ describe("Accordion Component", () => {
           </AccordionTrigger>
           <AccordionContent>Content with icons</AccordionContent>
         </AccordionItem>
-      </Accordion>
+      </Accordion>,
     );
 
     expect(screen.getByTestId("start-icon")).toBeInTheDocument();
@@ -41,10 +50,12 @@ describe("Accordion Component", () => {
     render(
       <Accordion type="single" collapsible defaultValue="item-1">
         <AccordionItem value="item-1" isDisabled data-testid="disabled-item">
-          <AccordionTrigger data-testid="disabled-trigger">Disabled Section</AccordionTrigger>
+          <AccordionTrigger data-testid="disabled-trigger">
+            Disabled Section
+          </AccordionTrigger>
           <AccordionContent>Disabled Content</AccordionContent>
         </AccordionItem>
-      </Accordion>
+      </Accordion>,
     );
 
     const trigger = screen.getByTestId("disabled-trigger");
@@ -53,12 +64,19 @@ describe("Accordion Component", () => {
 
   it("disables entire accordion when isDisabled is set on root", () => {
     render(
-      <Accordion type="single" collapsible isDisabled data-testid="disabled-root">
+      <Accordion
+        type="single"
+        collapsible
+        isDisabled
+        data-testid="disabled-root"
+      >
         <AccordionItem value="item-1">
-          <AccordionTrigger data-testid="root-disabled-trigger">Root Disabled</AccordionTrigger>
+          <AccordionTrigger data-testid="root-disabled-trigger">
+            Root Disabled
+          </AccordionTrigger>
           <AccordionContent>Content</AccordionContent>
         </AccordionItem>
-      </Accordion>
+      </Accordion>,
     );
 
     const trigger = screen.getByTestId("root-disabled-trigger");
@@ -73,14 +91,20 @@ describe("Accordion Component", () => {
           <AccordionTrigger>Item 1</AccordionTrigger>
           <AccordionContent>Content 1</AccordionContent>
         </AccordionItem>
-      </Accordion>
+      </Accordion>,
     );
 
     expect(screen.getByText("Item 1")).toBeInTheDocument();
   });
 
   it("renders visual variants without crashing", () => {
-    const variants = ["default", "bordered", "splitted", "shadow", "compact"] as const;
+    const variants = [
+      "default",
+      "bordered",
+      "splitted",
+      "shadow",
+      "compact",
+    ] as const;
 
     for (const variant of variants) {
       const { container } = render(
@@ -89,7 +113,7 @@ describe("Accordion Component", () => {
             <AccordionTrigger>{variant} variant</AccordionTrigger>
             <AccordionContent>Content</AccordionContent>
           </AccordionItem>
-        </Accordion>
+        </Accordion>,
       );
       expect(container.firstChild).toBeInTheDocument();
     }

@@ -1,12 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import * as React from "react";
 import { describe, it, expect } from "vitest";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogTitle,
-} from "../dialog";
+import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "../dialog";
 
 describe("Dialog Component", () => {
   it("renders trigger and opens dialog overlay content on click", () => {
@@ -16,7 +11,7 @@ describe("Dialog Component", () => {
         <DialogContent>
           <DialogTitle>Modal Header</DialogTitle>
         </DialogContent>
-      </Dialog>
+      </Dialog>,
     );
 
     expect(screen.getByText("Open Modal")).toBeInTheDocument();

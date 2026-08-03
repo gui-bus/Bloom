@@ -89,7 +89,7 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const Component = as || defaultElementMap[variant] || "p";
     const [isExpanded, setIsExpanded] = React.useState(false);
@@ -100,11 +100,20 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
       <div className="inline-block w-full">
         <Component
           ref={ref as any}
-          style={shouldClamp ? { display: "-webkit-box", WebkitLineClamp: clampLines, WebkitBoxOrient: "vertical", overflow: "hidden" } : undefined}
+          style={
+            shouldClamp
+              ? {
+                  display: "-webkit-box",
+                  WebkitLineClamp: clampLines,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }
+              : undefined
+          }
           className={cn(
             variantStyles[variant],
             color !== "default" && colorStyles[color],
-            className
+            className,
           )}
           {...props}
         >
@@ -122,7 +131,7 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
         )}
       </div>
     );
-  }
+  },
 );
 Typography.displayName = "Typography";
 

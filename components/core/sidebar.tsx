@@ -150,7 +150,7 @@ export function Sidebar() {
     .map((section) => ({
       ...section,
       links: section.links.filter((link) =>
-        link.label.toLowerCase().includes(searchQuery.toLowerCase())
+        link.label.toLowerCase().includes(searchQuery.toLowerCase()),
       ),
     }))
     .filter((section) => section.links.length > 0);
@@ -210,7 +210,7 @@ export function Sidebar() {
                         "group flex items-center rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200 cursor-pointer relative",
                         isActive
                           ? "bg-sky-500/10 text-sky-600 dark:bg-sky-500/15 dark:text-sky-400"
-                          : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/40 dark:text-zinc-450 dark:hover:text-zinc-100 dark:hover:bg-zinc-900/40"
+                          : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/40 dark:text-zinc-450 dark:hover:text-zinc-100 dark:hover:bg-zinc-900/40",
                       )}
                     >
                       {isActive && (
@@ -240,7 +240,7 @@ export function Sidebar() {
               "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer",
               !isDark
                 ? "bg-white text-zinc-900 shadow-xs dark:bg-zinc-800 dark:text-white"
-                : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
+                : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300",
             )}
           >
             <Sun className="h-3.5 w-3.5" />
@@ -252,7 +252,7 @@ export function Sidebar() {
               "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer",
               isDark
                 ? "bg-white text-zinc-900 shadow-xs dark:bg-zinc-800 dark:text-white"
-                : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
+                : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300",
             )}
           >
             <Moon className="h-3.5 w-3.5" />
@@ -297,11 +297,13 @@ export function Sidebar() {
       <aside
         className={cn(
           "md:hidden fixed inset-y-0 left-0 w-72 max-w-[85vw] bg-white dark:bg-zinc-950 border-r border-zinc-200/50 dark:border-zinc-800/50 p-4 flex flex-col justify-between z-50 transition-transform duration-300 ease-in-out shadow-2xl",
-          mobileOpen ? "translate-x-0" : "-translate-x-full"
+          mobileOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <div className="flex items-center justify-between pb-2 mb-2 border-b border-zinc-200/50 dark:border-zinc-800/50">
-          <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">Navigation</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+            Navigation
+          </span>
           <button
             onClick={() => setMobileOpen(false)}
             className="p-1.5 rounded-lg text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"

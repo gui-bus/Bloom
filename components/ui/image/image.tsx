@@ -64,7 +64,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       onLoad,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [currentSrc, setCurrentSrc] = React.useState<string | undefined>(src);
     const [hasError, setHasError] = React.useState(false);
@@ -72,7 +72,10 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     const [isLightboxOpen, setIsLightboxOpen] = React.useState(false);
     const internalRef = React.useRef<HTMLImageElement>(null);
 
-    React.useImperativeHandle(ref, () => internalRef.current as HTMLImageElement);
+    React.useImperativeHandle(
+      ref,
+      () => internalRef.current as HTMLImageElement,
+    );
 
     const usePlaceholder = placeholder || isPlaceholder;
     const activeSrc = usePlaceholder ? PLACEHOLDER_SVG_SRC : currentSrc;
@@ -88,7 +91,9 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       }
     }, [activeSrc]);
 
-    const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const handleImageError = (
+      e: React.SyntheticEvent<HTMLImageElement, Event>,
+    ) => {
       if (fallbackSrc && currentSrc !== fallbackSrc) {
         setCurrentSrc(fallbackSrc);
         setHasError(false);
@@ -99,7 +104,9 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       onError?.(e);
     };
 
-    const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const handleImageLoad = (
+      e: React.SyntheticEvent<HTMLImageElement, Event>,
+    ) => {
       setIsLoading(false);
       onLoad?.(e);
     };
@@ -122,7 +129,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               aria-hidden="true"
               className={cn(
                 "absolute inset-0 size-full object-cover blur-lg opacity-60 scale-105 pointer-events-none transition-opacity duration-300",
-                radiusStyles[radius]
+                radiusStyles[radius],
               )}
             />
           )}
@@ -132,14 +139,19 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               "relative overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center border border-zinc-200/60 dark:border-zinc-800/60 transition-all duration-300",
               radiusStyles[radius],
               aspectRatioStyles[aspectRatio],
-              className
+              className,
             )}
           >
             {hasError ? (
               fallback || (
                 <div className="flex flex-col items-center justify-center p-6 text-center text-zinc-400 dark:text-zinc-500 w-full h-full min-h-[140px]">
-                  <Icon icon="hugeicons:image-not-found-01" className="size-8 mb-2 opacity-60" />
-                  <span className="text-xs font-medium">Failed to load image</span>
+                  <Icon
+                    icon="hugeicons:image-not-found-01"
+                    className="size-8 mb-2 opacity-60"
+                  />
+                  <span className="text-xs font-medium">
+                    Failed to load image
+                  </span>
                 </div>
               )
             ) : (
@@ -156,7 +168,10 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
 
                 {isLoading && !blurUpPlaceholder && (
                   <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-800 animate-pulse flex items-center justify-center">
-                    <Icon icon="hugeicons:image-01" className="size-8 text-zinc-400 dark:text-zinc-600 animate-bounce" />
+                    <Icon
+                      icon="hugeicons:image-01"
+                      className="size-8 text-zinc-400 dark:text-zinc-600 animate-bounce"
+                    />
                   </div>
                 )}
                 <img
@@ -168,8 +183,11 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
                   onClick={handleImageClick}
                   className={cn(
                     "w-full h-full object-cover transition-all duration-500 ease-out",
-                    isLoading ? "opacity-0 scale-105 blur-sm" : "opacity-100 scale-100 blur-0",
-                    (isZoomable || enableLightbox) && "hover:scale-105 cursor-pointer"
+                    isLoading
+                      ? "opacity-0 scale-105 blur-sm"
+                      : "opacity-100 scale-100 blur-0",
+                    (isZoomable || enableLightbox) &&
+                      "hover:scale-105 cursor-pointer",
                   )}
                   {...props}
                 />
@@ -205,7 +223,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         )}
       </>
     );
-  }
+  },
 );
 Image.displayName = "Image";
 

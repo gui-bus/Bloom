@@ -11,12 +11,16 @@ const sampleOptions = [
 
 describe("Combobox Component", () => {
   it("renders trigger button with placeholder", () => {
-    render(<Combobox options={sampleOptions} placeholder="Select framework..." />);
+    render(
+      <Combobox options={sampleOptions} placeholder="Select framework..." />,
+    );
     expect(screen.getByText("Select framework...")).toBeInTheDocument();
   });
 
   it("opens options list when clicked and filters items", () => {
-    render(<Combobox options={sampleOptions} placeholder="Select framework..." />);
+    render(
+      <Combobox options={sampleOptions} placeholder="Select framework..." />,
+    );
     const trigger = screen.getByText("Select framework...");
 
     fireEvent.click(trigger);

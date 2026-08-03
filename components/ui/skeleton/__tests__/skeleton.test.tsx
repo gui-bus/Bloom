@@ -12,7 +12,9 @@ describe("Skeleton Component", () => {
   });
 
   it("applies variant classes correctly", () => {
-    const { container: circleContainer } = render(<Skeleton variant="circle" className="size-10" />);
+    const { container: circleContainer } = render(
+      <Skeleton variant="circle" className="size-10" />,
+    );
     expect(circleContainer.querySelector(".rounded-full")).toBeInTheDocument();
 
     const { container: textContainer } = render(<Skeleton variant="text" />);
@@ -23,7 +25,7 @@ describe("Skeleton Component", () => {
     render(
       <Skeleton isLoaded>
         <div data-testid="loaded-content">Loaded Content</div>
-      </Skeleton>
+      </Skeleton>,
     );
     expect(screen.getByTestId("loaded-content")).toBeInTheDocument();
     expect(screen.queryByRole("status")).not.toBeInTheDocument();

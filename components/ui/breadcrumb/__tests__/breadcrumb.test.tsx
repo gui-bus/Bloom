@@ -23,12 +23,17 @@ describe("Breadcrumb Component", () => {
             <BreadcrumbPage>Components</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
-      </Breadcrumb>
+      </Breadcrumb>,
     );
 
-    expect(screen.getByRole("navigation", { name: "breadcrumb" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("navigation", { name: "breadcrumb" }),
+    ).toBeInTheDocument();
     expect(screen.getByText("Home")).toBeInTheDocument();
     expect(screen.getByText("Components")).toBeInTheDocument();
-    expect(screen.getByText("Components")).toHaveAttribute("aria-current", "page");
+    expect(screen.getByText("Components")).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
   });
 });

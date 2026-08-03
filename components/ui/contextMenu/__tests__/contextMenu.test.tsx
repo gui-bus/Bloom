@@ -8,7 +8,7 @@ describe("ContextMenu Component", () => {
     render(
       <ContextMenu>
         <ContextMenuTrigger>Right click here</ContextMenuTrigger>
-      </ContextMenu>
+      </ContextMenu>,
     );
 
     expect(screen.getByText("Right click here")).toBeInTheDocument();

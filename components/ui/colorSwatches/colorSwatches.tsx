@@ -66,7 +66,10 @@ function getLuminance(r: number, g: number, b: number): number {
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 }
 
-function getContrastRatio(hex: string): { ratio: string; score: "AAA" | "AA" | "Fail" } {
+function getContrastRatio(hex: string): {
+  ratio: string;
+  score: "AAA" | "AA" | "Fail";
+} {
   const rgb = hexToRgb(hex);
   if (!rgb) return { ratio: "1.0:1", score: "Fail" };
 
@@ -74,8 +77,10 @@ function getContrastRatio(hex: string): { ratio: string; score: "AAA" | "AA" | "
   const lumWhite = getLuminance(255, 255, 255);
   const lumDark = getLuminance(24, 24, 27); // zinc-900
 
-  const ratioWhite = (Math.max(lumBg, lumWhite) + 0.05) / (Math.min(lumBg, lumWhite) + 0.05);
-  const ratioDark = (Math.max(lumBg, lumDark) + 0.05) / (Math.min(lumBg, lumDark) + 0.05);
+  const ratioWhite =
+    (Math.max(lumBg, lumWhite) + 0.05) / (Math.min(lumBg, lumWhite) + 0.05);
+  const ratioDark =
+    (Math.max(lumBg, lumDark) + 0.05) / (Math.min(lumBg, lumDark) + 0.05);
   const bestRatio = Math.max(ratioWhite, ratioDark);
 
   let score: "AAA" | "AA" | "Fail" = "Fail";
@@ -118,9 +123,10 @@ export function ColorSwatches({
     <div className={cn("flex flex-wrap gap-2.5", className)}>
       {colors.map((item) => {
         const hex = typeof item === "string" ? item : item.color;
-        const name = typeof item === "string" ? hex : item.name ?? hex;
+        const name = typeof item === "string" ? hex : (item.name ?? hex);
         const isSelected = isMulti ? multiValue.includes(hex) : value === hex;
-        const isMaxReached = isMulti && maxLimit && multiValue.length >= maxLimit && !isSelected;
+        const isMaxReached =
+          isMulti && maxLimit && multiValue.length >= maxLimit && !isSelected;
         const { ratio, score } = getContrastRatio(hex);
 
         return (
@@ -135,7 +141,7 @@ export function ColorSwatches({
                 shape === "circle" ? "rounded-full" : "rounded-xl",
                 isSelected &&
                   "ring-2 ring-sky-500 ring-offset-2 dark:ring-offset-zinc-900 shadow-md",
-                isMaxReached && "opacity-30 cursor-not-allowed hover:scale-100"
+                isMaxReached && "opacity-30 cursor-not-allowed hover:scale-100",
               )}
               style={{ backgroundColor: hex }}
               aria-label={`Select color ${name}`}
@@ -145,7 +151,7 @@ export function ColorSwatches({
                   icon="hugeicons:checkmark-circle-02"
                   className={cn(
                     checkSize[size],
-                    "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
+                    "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]",
                   )}
                 />
               )}
@@ -162,9 +168,12 @@ export function ColorSwatches({
                     <span
                       className={cn(
                         "px-1 py-0.2 rounded text-[9px] font-bold uppercase",
-                        score === "AAA" && "bg-emerald-500/20 text-emerald-400 dark:text-emerald-600",
-                        score === "AA" && "bg-sky-500/20 text-sky-400 dark:text-sky-600",
-                        score === "Fail" && "bg-rose-500/20 text-rose-400 dark:text-rose-600"
+                        score === "AAA" &&
+                          "bg-emerald-500/20 text-emerald-400 dark:text-emerald-600",
+                        score === "AA" &&
+                          "bg-sky-500/20 text-sky-400 dark:text-sky-600",
+                        score === "Fail" &&
+                          "bg-rose-500/20 text-rose-400 dark:text-rose-600",
                       )}
                     >
                       {score}

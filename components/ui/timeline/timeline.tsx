@@ -56,13 +56,22 @@ const statusDotBg: Record<TimelineStatus, string> = {
   pending: "bg-zinc-300 dark:bg-zinc-700",
 };
 
-export function Timeline({ children, mode = "left", className }: TimelineProps) {
+export function Timeline({
+  children,
+  mode = "left",
+  className,
+}: TimelineProps) {
   const items = React.Children.toArray(children);
   return (
     <div className={cn("relative space-y-0 w-full", className)}>
       {items.map((child, index) => {
         if (React.isValidElement<TimelineItemProps>(child)) {
-          const position = mode === "alternate" ? (index % 2 === 0 ? "left" : "right") : "left";
+          const position =
+            mode === "alternate"
+              ? index % 2 === 0
+                ? "left"
+                : "right"
+              : "left";
           return React.cloneElement(child, {
             isLast: index === items.length - 1,
             position: child.props.position || position,
@@ -89,7 +98,13 @@ export function TimelineItem({
 
   if (position === "right") {
     return (
-      <div className={cn("relative flex gap-4 pb-8 flex-row-reverse text-right", isLast && "pb-0", className)}>
+      <div
+        className={cn(
+          "relative flex gap-4 pb-8 flex-row-reverse text-right",
+          isLast && "pb-0",
+          className,
+        )}
+      >
         {/* Vertical Line */}
         {!isLast && (
           <div className="absolute right-[15px] top-[32px] bottom-0 w-0.5 bg-zinc-200 dark:bg-zinc-800" />
@@ -99,13 +114,15 @@ export function TimelineItem({
         <div
           className={cn(
             "relative z-10 flex items-center justify-center size-8 rounded-full border-2 bg-white dark:bg-zinc-900 shrink-0 shadow-xs",
-            statusColors[status]
+            statusColors[status],
           )}
         >
           {icon ? (
             <span className="text-sm">{icon}</span>
           ) : (
-            <span className={cn("size-2.5 rounded-full", statusDotBg[status])} />
+            <span
+              className={cn("size-2.5 rounded-full", statusDotBg[status])}
+            />
           )}
         </div>
 
@@ -149,7 +166,9 @@ export function TimelineItem({
   }
 
   return (
-    <div className={cn("relative flex gap-4 pb-8", isLast && "pb-0", className)}>
+    <div
+      className={cn("relative flex gap-4 pb-8", isLast && "pb-0", className)}
+    >
       {/* Vertical Line */}
       {!isLast && (
         <div className="absolute left-[15px] top-[32px] bottom-0 w-0.5 bg-zinc-200 dark:bg-zinc-800" />
@@ -159,7 +178,7 @@ export function TimelineItem({
       <div
         className={cn(
           "relative z-10 flex items-center justify-center size-8 rounded-full border-2 bg-white dark:bg-zinc-900 shrink-0 shadow-xs",
-          statusColors[status]
+          statusColors[status],
         )}
       >
         {icon ? (

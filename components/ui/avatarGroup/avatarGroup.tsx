@@ -2,7 +2,11 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Avatar, AvatarFallback, type AvatarProps } from "@/components/ui/avatar/avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  type AvatarProps,
+} from "@/components/ui/avatar/avatar";
 
 export type AvatarGroupOrientation = "horizontal" | "vertical";
 export type AvatarGroupOverlap = "sm" | "md" | "lg";
@@ -52,13 +56,18 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const childrenArray = React.Children.toArray(children);
     const countTotal = total ?? childrenArray.length;
-    const hasMax = typeof max === "number" && max > 0 && max < childrenArray.length;
+    const hasMax =
+      typeof max === "number" && max > 0 && max < childrenArray.length;
     const visibleAvatars = hasMax ? childrenArray.slice(0, max) : childrenArray;
-    const excessCount = hasMax ? countTotal - max : countTotal > childrenArray.length ? countTotal - childrenArray.length : 0;
+    const excessCount = hasMax
+      ? countTotal - max
+      : countTotal > childrenArray.length
+        ? countTotal - childrenArray.length
+        : 0;
 
     const isVertical = orientation === "vertical";
 
@@ -72,10 +81,10 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
           isGrid
             ? "flex-wrap gap-2"
             : isVertical
-            ? cn("flex-col items-start", overlapVertical[overlap])
-            : cn("items-center", overlapHorizontal[overlap]),
+              ? cn("flex-col items-start", overlapVertical[overlap])
+              : cn("items-center", overlapHorizontal[overlap]),
           isDisabled && "opacity-50 grayscale pointer-events-none",
-          className
+          className,
         )}
         {...props}
       >
@@ -86,11 +95,17 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
             size: child.props.size || size,
             color: child.props.color || color,
             radius: child.props.radius || radius,
-            isBordered: child.props.isBordered !== undefined ? child.props.isBordered : isBordered,
-            isDisabled: child.props.isDisabled !== undefined ? child.props.isDisabled : isDisabled,
+            isBordered:
+              child.props.isBordered !== undefined
+                ? child.props.isBordered
+                : isBordered,
+            isDisabled:
+              child.props.isDisabled !== undefined
+                ? child.props.isDisabled
+                : isDisabled,
             className: cn(
               "ring-2 ring-white dark:ring-zinc-900 transition-all duration-300 ease-out",
-              child.props.className
+              child.props.className,
             ),
           });
 
@@ -99,7 +114,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
               key={index}
               className={cn(
                 "relative transition-all duration-300 ease-out hover:z-30 hover:scale-105",
-                isVertical ? "hover:translate-x-1" : "hover:-translate-y-1"
+                isVertical ? "hover:translate-x-1" : "hover:-translate-y-1",
               )}
               style={{ zIndex: visibleAvatars.length - index }}
             >
@@ -112,7 +127,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
           <div
             className={cn(
               "relative transition-all duration-300 ease-out hover:z-30 hover:scale-105",
-              isVertical ? "hover:translate-x-1" : "hover:-translate-y-1"
+              isVertical ? "hover:translate-x-1" : "hover:-translate-y-1",
             )}
             style={{ zIndex: 0 }}
           >
@@ -135,7 +150,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 AvatarGroup.displayName = "AvatarGroup";

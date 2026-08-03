@@ -24,7 +24,9 @@ export function ImportSnippet({ importCode }: ImportSnippetProps) {
         <span className="text-xs font-bold uppercase tracking-wider text-sky-500 bg-sky-500/10 px-2 py-0.5 rounded-md select-none shrink-0">
           Import
         </span>
-        <code className="text-zinc-900 dark:text-zinc-100 font-semibold">{importCode}</code>
+        <code className="text-zinc-900 dark:text-zinc-100 font-semibold">
+          {importCode}
+        </code>
       </div>
       <button
         onClick={handleCopy}

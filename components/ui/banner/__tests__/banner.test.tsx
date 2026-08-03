@@ -6,7 +6,9 @@ import { Banner } from "../banner";
 describe("Banner Component", () => {
   it("renders banner content", () => {
     render(<Banner>Special Discount Announcement</Banner>);
-    expect(screen.getByText("Special Discount Announcement")).toBeInTheDocument();
+    expect(
+      screen.getByText("Special Discount Announcement"),
+    ).toBeInTheDocument();
   });
 
   it("handles dismissal when isDismissible is true", () => {
@@ -14,7 +16,7 @@ describe("Banner Component", () => {
     render(
       <Banner isDismissible onDismiss={handleDismiss}>
         Dismissible Banner
-      </Banner>
+      </Banner>,
     );
 
     const btn = screen.getByRole("button", { name: "Dismiss banner" });

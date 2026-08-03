@@ -86,7 +86,7 @@ const buttonBaseVariants = cva(
       size: "md",
       variant: "default",
     },
-  }
+  },
 );
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -118,14 +118,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ariaLabel,
       ...props
     },
-    ref
+    ref,
   ) => {
     const Comp = asChild ? Slot : "button";
     const { ripples, addRipple, removeRipple } = useRipples();
 
     const isEffectivelyDisabled = isDisabled || disabled;
     const nativeDisabled = !asChild ? isEffectivelyDisabled : undefined;
-    const ariaDisabled = (isEffectivelyDisabled || isLoading) || undefined;
+    const ariaDisabled = isEffectivelyDisabled || isLoading || undefined;
 
     const handleClick = React.useCallback(
       (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -139,7 +139,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
         onClick?.(e);
       },
-      [isEffectivelyDisabled, isLoading, disableRipple, addRipple, onClick]
+      [isEffectivelyDisabled, isLoading, disableRipple, addRipple, onClick],
     );
 
     const activeVariant = variant || "default";
@@ -163,7 +163,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           isLoading && "cursor-wait opacity-50",
           isEffectivelyDisabled && "cursor-not-allowed opacity-50",
           asChild && isEffectivelyDisabled && "pointer-events-none",
-          isIconOnly && "aspect-square"
+          isIconOnly && "aspect-square",
         )}
         {...props}
       >
@@ -189,7 +189,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               <span
                 className={cn(
                   "inline-flex items-center justify-center px-2 py-0.5 text-xs font-semibold rounded-full bg-primary text-white mr-2",
-                  badgeCustomClassname
+                  badgeCustomClassname,
                 )}
                 aria-hidden="true"
               >
@@ -211,7 +211,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               <span
                 className={cn(
                   "inline-flex items-center justify-center px-2 py-0.5 text-xs font-semibold rounded-full bg-primary text-white ml-2",
-                  badgeCustomClassname
+                  badgeCustomClassname,
                 )}
                 aria-hidden="true"
               >
@@ -232,7 +232,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ))}
       </Comp>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

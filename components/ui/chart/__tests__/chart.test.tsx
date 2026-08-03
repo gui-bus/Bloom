@@ -17,7 +17,9 @@ describe("Chart Component", () => {
       { month: "Jan", sales: 100 },
       { month: "Feb", sales: 200 },
     ];
-    const { container } = render(<Chart data={data} xKey="month" yKey="sales" />);
+    const { container } = render(
+      <Chart data={data} xKey="month" yKey="sales" />,
+    );
     expect(container).toBeInTheDocument();
   });
 });

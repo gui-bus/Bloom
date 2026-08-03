@@ -13,7 +13,7 @@ describe("Menubar Component", () => {
         <MenubarMenu>
           <MenubarTrigger>Edit</MenubarTrigger>
         </MenubarMenu>
-      </Menubar>
+      </Menubar>,
     );
 
     expect(screen.getByText("File")).toBeInTheDocument();

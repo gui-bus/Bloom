@@ -1,7 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { OTPInput, OTPInputContext, REGEXP_ONLY_DIGITS, REGEXP_ONLY_CHARS, REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
+import {
+  OTPInput,
+  OTPInputContext,
+  REGEXP_ONLY_DIGITS,
+  REGEXP_ONLY_CHARS,
+  REGEXP_ONLY_DIGITS_AND_CHARS,
+} from "input-otp";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
@@ -30,30 +36,40 @@ const inputModeMap: Record<OTPType, "numeric" | "text"> = {
 const InputOTP = React.forwardRef<
   React.ComponentRef<typeof OTPInput>,
   InputOTPProps
->(({ className, containerClassName, allowedType = "numeric", ...props }, ref) => (
-  <OTPInput
-    ref={ref}
-    pattern={patternMap[allowedType]}
-    inputMode={inputModeMap[allowedType]}
-    containerClassName={cn(
-      "flex items-center gap-2 disabled:cursor-not-allowed",
-      containerClassName
-    )}
-    className={cn("disabled:cursor-not-allowed", className)}
-    {...props}
-  />
-));
+>(
+  (
+    { className, containerClassName, allowedType = "numeric", ...props },
+    ref,
+  ) => (
+    <OTPInput
+      ref={ref}
+      pattern={patternMap[allowedType]}
+      inputMode={inputModeMap[allowedType]}
+      containerClassName={cn(
+        "flex items-center gap-2 disabled:cursor-not-allowed",
+        containerClassName,
+      )}
+      className={cn("disabled:cursor-not-allowed", className)}
+      {...props}
+    />
+  ),
+);
 InputOTP.displayName = "InputOTP";
 
 const InputOTPGroup = React.forwardRef<
   React.ElementRef<"div">,
   React.ComponentPropsWithoutRef<"div">
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("flex items-center gap-2", className)} {...props} />
+  <div
+    ref={ref}
+    className={cn("flex items-center gap-2", className)}
+    {...props}
+  />
 ));
 InputOTPGroup.displayName = "InputOTPGroup";
 
-export interface InputOTPSlotProps extends React.ComponentPropsWithoutRef<"div"> {
+export interface InputOTPSlotProps
+  extends React.ComponentPropsWithoutRef<"div"> {
   index: number;
   size?: OTPSize;
   maskCode?: boolean;
@@ -79,8 +95,9 @@ const InputOTPSlot = React.forwardRef<
       className={cn(
         "relative flex items-center justify-center border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 font-bold shadow-xs transition-all duration-200 select-none",
         slotSizeStyles[size],
-        isActive && "z-10 border-sky-500 ring-2 ring-sky-500/20 dark:border-sky-400 dark:ring-sky-400/20 scale-105",
-        className
+        isActive &&
+          "z-10 border-sky-500 ring-2 ring-sky-500/20 dark:border-sky-400 dark:ring-sky-400/20 scale-105",
+        className,
       )}
       {...props}
     >
@@ -101,7 +118,8 @@ const InputOTPSlot = React.forwardRef<
 });
 InputOTPSlot.displayName = "InputOTPSlot";
 
-export interface InputOTPSeparatorProps extends React.ComponentPropsWithoutRef<"div"> {
+export interface InputOTPSeparatorProps
+  extends React.ComponentPropsWithoutRef<"div"> {
   icon?: string;
 }
 
@@ -109,7 +127,15 @@ const InputOTPSeparator = React.forwardRef<
   React.ElementRef<"div">,
   InputOTPSeparatorProps
 >(({ icon = "hugeicons:minus-01", className, ...props }, ref) => (
-  <div ref={ref} role="separator" className={cn("px-1.5 text-zinc-400 dark:text-zinc-600 flex items-center justify-center", className)} {...props}>
+  <div
+    ref={ref}
+    role="separator"
+    className={cn(
+      "px-1.5 text-zinc-400 dark:text-zinc-600 flex items-center justify-center",
+      className,
+    )}
+    {...props}
+  >
     <Icon icon={icon} className="size-4" />
   </div>
 ));

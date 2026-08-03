@@ -1,12 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import { describe, it, expect, beforeEach } from "vitest";
-import {
-  Command,
-  CommandInput,
-  CommandList,
-  CommandItem,
-} from "../command";
+import { Command, CommandInput, CommandList, CommandItem } from "../command";
 
 describe("Command Component", () => {
   beforeEach(() => {
@@ -20,10 +15,12 @@ describe("Command Component", () => {
         <CommandList>
           <CommandItem>Calendar</CommandItem>
         </CommandList>
-      </Command>
+      </Command>,
     );
 
-    expect(screen.getByPlaceholderText("Type a command...")).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText("Type a command..."),
+    ).toBeInTheDocument();
     expect(screen.getByText("Calendar")).toBeInTheDocument();
   });
 });

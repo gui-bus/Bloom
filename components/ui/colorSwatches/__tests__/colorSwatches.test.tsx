@@ -14,7 +14,9 @@ describe("ColorSwatches Component", () => {
 
   it("handles single color selection", () => {
     const handleChange = vi.fn();
-    render(<ColorSwatches colors={colors} value="#ff0000" onChange={handleChange} />);
+    render(
+      <ColorSwatches colors={colors} value="#ff0000" onChange={handleChange} />,
+    );
 
     const blueSwatch = screen.getByLabelText("Select color #0000ff");
     fireEvent.click(blueSwatch);
@@ -30,7 +32,7 @@ describe("ColorSwatches Component", () => {
         isMulti
         multiValue={["#ff0000"]}
         onMultiChange={handleMultiChange}
-      />
+      />,
     );
 
     const greenSwatch = screen.getByLabelText("Select color #00ff00");

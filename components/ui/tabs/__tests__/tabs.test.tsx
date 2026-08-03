@@ -10,10 +10,12 @@ vi.mock("framer-motion", () => ({
         <div ref={ref} {...props}>
           {children}
         </div>
-      )
+      ),
     ),
   },
-  AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  AnimatePresence: ({ children }: { children: React.ReactNode }) => (
+    <>{children}</>
+  ),
   useReducedMotion: () => false,
 }));
 
@@ -27,7 +29,7 @@ describe("Tabs Component", () => {
         </TabsList>
         <TabsContent value="tab1">Content One</TabsContent>
         <TabsContent value="tab2">Content Two</TabsContent>
-      </Tabs>
+      </Tabs>,
     );
 
     expect(screen.getByText("Content One")).toBeInTheDocument();
@@ -51,11 +53,13 @@ describe("Tabs Component", () => {
       <Tabs defaultValue="tab1">
         <TabsList>
           <TabsTrigger value="tab1">Tab One</TabsTrigger>
-          <TabsTrigger value="tab2" isDisabled>Tab Two</TabsTrigger>
+          <TabsTrigger value="tab2" isDisabled>
+            Tab Two
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="tab1">Content One</TabsContent>
         <TabsContent value="tab2">Content Two</TabsContent>
-      </Tabs>
+      </Tabs>,
     );
 
     const disabledTrigger = screen.getByRole("tab", { name: "Tab Two" });
@@ -63,7 +67,11 @@ describe("Tabs Component", () => {
     expect(disabledTrigger).toHaveClass("opacity-40", "pointer-events-none");
 
     fireEvent.focus(disabledTrigger);
-    fireEvent.keyDown(disabledTrigger, { key: " ", code: "Space", keyCode: 32 });
+    fireEvent.keyDown(disabledTrigger, {
+      key: " ",
+      code: "Space",
+      keyCode: 32,
+    });
     fireEvent.click(disabledTrigger);
     expect(screen.getByText("Content One")).toBeInTheDocument();
   });
@@ -80,7 +88,7 @@ describe("Tabs Component", () => {
             Tab Label
           </TabsTrigger>
         </TabsList>
-      </Tabs>
+      </Tabs>,
     );
 
     expect(screen.getByTestId("start-icon")).toBeInTheDocument();

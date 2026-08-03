@@ -3,7 +3,12 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label/label";
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip/tooltip";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "@/components/ui/tooltip/tooltip";
 
 export interface FormFieldProps extends React.HTMLAttributes<HTMLDivElement> {
   label?: React.ReactNode;
@@ -54,7 +59,9 @@ export function FormField({
         <TooltipProvider delayDuration={200}>
           <Tooltip>
             <TooltipTrigger asChild>
-              <span className="text-rose-500 font-bold text-xs cursor-help select-none">*</span>
+              <span className="text-rose-500 font-bold text-xs cursor-help select-none">
+                *
+              </span>
             </TooltipTrigger>
             <TooltipContent>{requiredTooltip}</TooltipContent>
           </Tooltip>
@@ -68,10 +75,16 @@ export function FormField({
       {renderLabelContent()}
       <div className="w-full">
         {React.isValidElement(children)
-          ? React.cloneElement(children as React.ReactElement<{ id?: string; isInvalid?: boolean }>, {
-              id: fieldId,
-              isInvalid: isInvalid || Boolean(errorMessage),
-            })
+          ? React.cloneElement(
+              children as React.ReactElement<{
+                id?: string;
+                isInvalid?: boolean;
+              }>,
+              {
+                id: fieldId,
+                isInvalid: isInvalid || Boolean(errorMessage),
+              },
+            )
           : children}
       </div>
 
@@ -81,7 +94,7 @@ export function FormField({
           "flex items-center text-xs gap-2 min-h-4",
           helperAlign === "right" && "justify-end",
           helperAlign === "left" && "justify-start",
-          helperAlign === "between" && "justify-between"
+          helperAlign === "between" && "justify-between",
         )}
       >
         {isInvalid && errorMessage ? (
@@ -99,8 +112,8 @@ export function FormField({
               currentLength > maxLength
                 ? "text-rose-500 font-bold"
                 : currentLength >= maxLength * 0.9
-                ? "text-amber-500 font-semibold"
-                : "text-zinc-400"
+                  ? "text-amber-500 font-semibold"
+                  : "text-zinc-400",
             )}
           >
             {currentLength}/{maxLength}

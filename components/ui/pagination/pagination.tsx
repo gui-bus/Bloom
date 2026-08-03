@@ -4,9 +4,22 @@ import * as React from "react";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
-type PaginationVariant = "default" | "bordered" | "flat" | "light" | "pills" | "line";
+type PaginationVariant =
+  | "default"
+  | "bordered"
+  | "flat"
+  | "light"
+  | "pills"
+  | "line";
 type PaginationShape = "square" | "rounded" | "circle";
-type PaginationColor = "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
+type PaginationColor =
+  | "default"
+  | "primary"
+  | "secondary"
+  | "accent"
+  | "success"
+  | "warning"
+  | "danger";
 
 const PaginationContext = React.createContext<{
   variant: PaginationVariant;
@@ -72,7 +85,8 @@ export interface PaginationLinkProps extends React.ComponentProps<"button"> {
 }
 
 const colorActiveMap: Record<PaginationColor, string> = {
-  default: "bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 border-zinc-900 dark:border-zinc-100",
+  default:
+    "bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 border-zinc-900 dark:border-zinc-100",
   primary: "bg-sky-500 text-white border-sky-500",
   secondary: "bg-purple-500 text-white border-purple-500",
   accent: "bg-pink-500 text-white border-pink-500",
@@ -139,7 +153,7 @@ const PaginationLink = ({
         sizeMap[size],
         variant !== "pills" && variant !== "line" && shapeMap[shape],
         variantClasses[variant],
-        className
+        className,
       )}
       {...props}
     >
@@ -219,7 +233,10 @@ const PaginationEllipsis = ({
 }: React.ComponentProps<"span">) => (
   <span
     aria-hidden
-    className={cn("flex size-9 items-center justify-center text-zinc-400 dark:text-zinc-500", className)}
+    className={cn(
+      "flex size-9 items-center justify-center text-zinc-400 dark:text-zinc-500",
+      className,
+    )}
     {...props}
   >
     <Icon icon="hugeicons:more-horizontal" className="size-4" />
@@ -286,11 +303,23 @@ export function PaginationToolbar({
   };
 
   return (
-    <div className={cn("flex flex-wrap items-center justify-between gap-4 w-full select-none text-xs text-zinc-600 dark:text-zinc-400", className)}>
+    <div
+      className={cn(
+        "flex flex-wrap items-center justify-between gap-4 w-full select-none text-xs text-zinc-600 dark:text-zinc-400",
+        className,
+      )}
+    >
       {showTotal && (
         <div className="flex items-center gap-1 font-medium">
-          Showing <span className="font-bold text-zinc-900 dark:text-zinc-100">{startItem}-{endItem}</span> of{" "}
-          <span className="font-bold text-zinc-900 dark:text-zinc-100">{total}</span> items
+          Showing{" "}
+          <span className="font-bold text-zinc-900 dark:text-zinc-100">
+            {startItem}-{endItem}
+          </span>{" "}
+          of{" "}
+          <span className="font-bold text-zinc-900 dark:text-zinc-100">
+            {total}
+          </span>{" "}
+          items
         </div>
       )}
 
@@ -312,16 +341,28 @@ export function PaginationToolbar({
           </div>
         )}
 
-        <Pagination variant={variant} shape={shape} color={color} size={size} className="w-auto mx-0">
+        <Pagination
+          variant={variant}
+          shape={shape}
+          color={color}
+          size={size}
+          className="w-auto mx-0"
+        >
           <PaginationContent>
             {showFirstButton && (
               <PaginationItem>
-                <PaginationFirst disabled={page <= 1} onClick={() => onPageChange(1)} />
+                <PaginationFirst
+                  disabled={page <= 1}
+                  onClick={() => onPageChange(1)}
+                />
               </PaginationItem>
             )}
 
             <PaginationItem>
-              <PaginationPrevious disabled={page <= 1} onClick={() => onPageChange(page - 1)} />
+              <PaginationPrevious
+                disabled={page <= 1}
+                onClick={() => onPageChange(page - 1)}
+              />
             </PaginationItem>
 
             {Array.from({ length: totalPages }).map((_, idx) => {
@@ -333,7 +374,10 @@ export function PaginationToolbar({
               ) {
                 return (
                   <PaginationItem key={p}>
-                    <PaginationLink isActive={p === page} onClick={() => onPageChange(p)}>
+                    <PaginationLink
+                      isActive={p === page}
+                      onClick={() => onPageChange(p)}
+                    >
                       {p}
                     </PaginationLink>
                   </PaginationItem>
@@ -350,19 +394,28 @@ export function PaginationToolbar({
             })}
 
             <PaginationItem>
-              <PaginationNext disabled={page >= totalPages} onClick={() => onPageChange(page + 1)} />
+              <PaginationNext
+                disabled={page >= totalPages}
+                onClick={() => onPageChange(page + 1)}
+              />
             </PaginationItem>
 
             {showLastButton && (
               <PaginationItem>
-                <PaginationLast disabled={page >= totalPages} onClick={() => onPageChange(totalPages)} />
+                <PaginationLast
+                  disabled={page >= totalPages}
+                  onClick={() => onPageChange(totalPages)}
+                />
               </PaginationItem>
             )}
           </PaginationContent>
         </Pagination>
 
         {showJumper && (
-          <form onSubmit={handleJumperSubmit} className="flex items-center gap-1.5">
+          <form
+            onSubmit={handleJumperSubmit}
+            className="flex items-center gap-1.5"
+          >
             <span>Go to:</span>
             <input
               type="text"

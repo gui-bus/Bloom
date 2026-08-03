@@ -9,10 +9,19 @@ import { Spinner, type SpinnerVariant } from "@/components/ui/spinner/spinner";
 
 export interface ToastProps {
   theme?: "light" | "dark" | "system";
-  position?: "top-left" | "top-right" | "bottom-left" | "bottom-right" | "top-center" | "bottom-center";
+  position?:
+    | "top-left"
+    | "top-right"
+    | "bottom-left"
+    | "bottom-right"
+    | "top-center"
+    | "bottom-center";
 }
 
-export function Toast({ theme = "system", position = "bottom-right" }: ToastProps) {
+export function Toast({
+  theme = "system",
+  position = "bottom-right",
+}: ToastProps) {
   return (
     <SonnerToaster
       theme={theme}
@@ -42,7 +51,7 @@ export interface ToastOptions {
 const createCustomToast = (
   type: "success" | "error" | "warning" | "info" | "default" | "loading",
   title: React.ReactNode,
-  options?: ToastOptions & { id?: string | number }
+  options?: ToastOptions & { id?: string | number },
 ) => {
   const iconMap = {
     success: {
@@ -83,14 +92,23 @@ const createCustomToast = (
     (t) => (
       <div
         className={cn(
-          "relative flex items-start gap-3.5 w-80 max-w-sm p-4 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl text-zinc-900 dark:text-zinc-100 shadow-2xl transition-all duration-300 overflow-hidden"
+          "relative flex items-start gap-3.5 w-80 max-w-sm p-4 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl text-zinc-900 dark:text-zinc-100 shadow-2xl transition-all duration-300 overflow-hidden",
         )}
       >
         <div className={cn("absolute left-0 top-0 bottom-0 w-1", style.bar)} />
 
-        <div className={cn("size-9 rounded-xl flex items-center justify-center border shrink-0 mt-0.5", style.bg)}>
+        <div
+          className={cn(
+            "size-9 rounded-xl flex items-center justify-center border shrink-0 mt-0.5",
+            style.bg,
+          )}
+        >
           {type === "loading" ? (
-            <Spinner variant={options?.spinnerVariant || "default"} color="primary" size="sm" />
+            <Spinner
+              variant={options?.spinnerVariant || "default"}
+              color="primary"
+              size="sm"
+            />
           ) : (
             <Icon icon={style.icon!} className="size-5" />
           )}
@@ -128,18 +146,37 @@ const createCustomToast = (
         </button>
       </div>
     ),
-    { id: options?.id, duration: type === "loading" ? 100000 : options?.duration || 4000 }
+    {
+      id: options?.id,
+      duration: type === "loading" ? 100000 : options?.duration || 4000,
+    },
   );
 };
 
 export const toast = Object.assign(
-  (title: React.ReactNode, options?: ToastOptions) => createCustomToast("default", title, options),
+  (title: React.ReactNode, options?: ToastOptions) =>
+    createCustomToast("default", title, options),
   {
-    success: (title: React.ReactNode, options?: ToastOptions & { id?: string | number }) => createCustomToast("success", title, options),
-    error: (title: React.ReactNode, options?: ToastOptions & { id?: string | number }) => createCustomToast("error", title, options),
-    warning: (title: React.ReactNode, options?: ToastOptions & { id?: string | number }) => createCustomToast("warning", title, options),
-    info: (title: React.ReactNode, options?: ToastOptions & { id?: string | number }) => createCustomToast("info", title, options),
-    loading: (title: React.ReactNode, options?: ToastOptions & { id?: string | number }) => createCustomToast("loading", title, options),
+    success: (
+      title: React.ReactNode,
+      options?: ToastOptions & { id?: string | number },
+    ) => createCustomToast("success", title, options),
+    error: (
+      title: React.ReactNode,
+      options?: ToastOptions & { id?: string | number },
+    ) => createCustomToast("error", title, options),
+    warning: (
+      title: React.ReactNode,
+      options?: ToastOptions & { id?: string | number },
+    ) => createCustomToast("warning", title, options),
+    info: (
+      title: React.ReactNode,
+      options?: ToastOptions & { id?: string | number },
+    ) => createCustomToast("info", title, options),
+    loading: (
+      title: React.ReactNode,
+      options?: ToastOptions & { id?: string | number },
+    ) => createCustomToast("loading", title, options),
     dismiss: (toastId?: string | number) => sonnerToast.dismiss(toastId),
-  }
+  },
 );

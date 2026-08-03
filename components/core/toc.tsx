@@ -23,7 +23,7 @@ export function TableOfContents() {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       const sections = Array.from(
-        document.querySelectorAll<HTMLElement>("section[id]")
+        document.querySelectorAll<HTMLElement>("section[id]"),
       );
       const tocItems: TOCItem[] = [];
 
@@ -67,7 +67,7 @@ export function TableOfContents() {
       {
         rootMargin: "-80px 0px -60% 0px",
         threshold: 0.1,
-      }
+      },
     );
 
     items.forEach((item) => {
@@ -107,7 +107,7 @@ export function TableOfContents() {
                   "block w-full text-left py-1 transition-all duration-200 truncate cursor-pointer",
                   isActive
                     ? "text-sky-600 dark:text-sky-400 font-semibold -ml-3.5 pl-3 border-l-2 border-sky-500"
-                    : "text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200"
+                    : "text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200",
                 )}
               >
                 {item.title}

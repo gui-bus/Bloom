@@ -16,11 +16,11 @@ const List = React.forwardRef<HTMLUListElement, ListProps>(
         variant === "bordered" &&
           "border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden divide-y divide-zinc-200 dark:divide-zinc-800 shadow-xs",
         variant === "separated" && "gap-2",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  ),
 );
 List.displayName = "List";
 
@@ -44,7 +44,7 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
       isHoverable = false,
       ...props
     },
-    ref
+    ref,
   ) => (
     <li
       ref={ref}
@@ -53,17 +53,26 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
         isHoverable &&
           !isDisabled &&
           "cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800/60",
-        isActive && "bg-zinc-100 dark:bg-zinc-800 font-semibold text-sky-600 dark:text-sky-400",
+        isActive &&
+          "bg-zinc-100 dark:bg-zinc-800 font-semibold text-sky-600 dark:text-sky-400",
         isDisabled && "opacity-50 cursor-not-allowed pointer-events-none",
-        className
+        className,
       )}
       {...props}
     >
-      {startContent && <div className="shrink-0 text-zinc-400 dark:text-zinc-500">{startContent}</div>}
+      {startContent && (
+        <div className="shrink-0 text-zinc-400 dark:text-zinc-500">
+          {startContent}
+        </div>
+      )}
       <div className="flex-1 truncate">{children}</div>
-      {endContent && <div className="shrink-0 text-zinc-400 dark:text-zinc-500">{endContent}</div>}
+      {endContent && (
+        <div className="shrink-0 text-zinc-400 dark:text-zinc-500">
+          {endContent}
+        </div>
+      )}
     </li>
-  )
+  ),
 );
 ListItem.displayName = "ListItem";
 

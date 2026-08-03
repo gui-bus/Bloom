@@ -9,12 +9,17 @@ describe("CodeBlock Component", () => {
       <CodeBlock
         code="const greeting = 'Hello World';"
         componentName="example.ts"
-      />
+      />,
     );
     expect(screen.getByText("example.ts")).toBeInTheDocument();
-    expect(screen.getByText((content, element) => {
-      return element?.tagName.toLowerCase() === "code" && content.includes("greeting");
-    })).toBeInTheDocument();
+    expect(
+      screen.getByText((content, element) => {
+        return (
+          element?.tagName.toLowerCase() === "code" &&
+          content.includes("greeting")
+        );
+      }),
+    ).toBeInTheDocument();
   });
 
   it("renders copy button and handles clipboard action", async () => {
@@ -30,7 +35,7 @@ describe("CodeBlock Component", () => {
         code="console.log('test');"
         componentName="test.ts"
         showCopy
-      />
+      />,
     );
 
     const copyBtn = screen.getByRole("button", { name: /copy code/i });
@@ -41,12 +46,7 @@ describe("CodeBlock Component", () => {
   });
 
   it("renders tags when provided", () => {
-    render(
-      <CodeBlock
-        code="<div />"
-        tags={["React", "UI"]}
-      />
-    );
+    render(<CodeBlock code="<div />" tags={["React", "UI"]} />);
     expect(screen.getByText("React")).toBeInTheDocument();
     expect(screen.getByText("UI")).toBeInTheDocument();
   });

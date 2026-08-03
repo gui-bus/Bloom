@@ -9,7 +9,9 @@ const Collapsible = CollapsiblePrimitive.Root;
 const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger;
 
 export interface CollapsibleContentProps
-  extends React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleContent> {
+  extends React.ComponentPropsWithoutRef<
+    typeof CollapsiblePrimitive.CollapsibleContent
+  > {
   lazy?: boolean;
 }
 
@@ -38,7 +40,10 @@ const CollapsibleContent = React.forwardRef<
 
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.type === "attributes" && mutation.attributeName === "data-state") {
+        if (
+          mutation.type === "attributes" &&
+          mutation.attributeName === "data-state"
+        ) {
           checkState();
         }
       });
@@ -56,7 +61,7 @@ const CollapsibleContent = React.forwardRef<
       className={cn(
         "grid transition-all duration-300 ease-in-out",
         "data-[state=closed]:grid-rows-[0fr] data-[state=open]:grid-rows-[1fr]",
-        className
+        className,
       )}
       {...props}
     >
@@ -66,7 +71,7 @@ const CollapsibleContent = React.forwardRef<
     </CollapsiblePrimitive.CollapsibleContent>
   );
 });
-CollapsibleContent.displayName = CollapsiblePrimitive.CollapsibleContent.displayName;
+CollapsibleContent.displayName =
+  CollapsiblePrimitive.CollapsibleContent.displayName;
 
 export { Collapsible, CollapsibleTrigger, CollapsibleContent };
-

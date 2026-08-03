@@ -1,2 +1,335 @@
 #!/usr/bin/env node
-"use strict";var B=Object.create;var I=Object.defineProperty;var C=Object.getOwnPropertyDescriptor;var T=Object.getOwnPropertyNames;var P=Object.getPrototypeOf,A=Object.prototype.hasOwnProperty;var U=(a,f,s,l)=>{if(f&&typeof f=="object"||typeof f=="function")for(let u of T(f))!A.call(a,u)&&u!==s&&I(a,u,{get:()=>f[u],enumerable:!(l=C(f,u))||l.enumerable});return a};var D=(a,f,s)=>(s=a!=null?B(P(a)):{},U(f||!a||!a.__esModule?I(s,"default",{value:a,enumerable:!0}):s,a));var R=require("commander"),o=D(require("fs")),i=D(require("path")),$=require("child_process"),t=require("@clack/prompts"),d=D(require("picocolors")),E=i.join(__dirname,"../package.json"),Y=JSON.parse(o.readFileSync(E,"utf8")),k=new R.Command;k.name("bloom").description("CLI to manage Bloom UI components in your codebase").version(Y.version);var z="https://raw.githubusercontent.com/gui-bus/Bloom/main/public/registry",x="http://localhost:3000/registry";async function F(){try{if((await fetch(`${x}/index.json`,{signal:AbortSignal.timeout(1e3)})).ok)return x}catch{}return z}function v(){return o.existsSync(i.join(process.cwd(),"pnpm-lock.yaml"))?"pnpm":o.existsSync(i.join(process.cwd(),"yarn.lock"))?"yarn":o.existsSync(i.join(process.cwd(),"bun.lockb"))?"bun":"npm"}k.command("init").description("Initialize Bloom UI configuration in your project").option("-y, --yes","Skip prompts and use default configurations",!1).action(async a=>{let f=process.stdout.isTTY,s=a.yes||!f;s||(0,t.intro)(d.default.bgMagenta(d.default.black(" Bloom UI \u2014 Initialization ")));let l=i.join(process.cwd(),"bloom.json");if(o.existsSync(l)&&!s){let e=await(0,t.confirm)({message:"bloom.json already exists. Do you want to overwrite it?"});if(!e||typeof e=="symbol"){(0,t.outro)(d.default.yellow("Initialization cancelled."));return}}let u="components/ui",h="lib",b=!0;if(!s){let e=await(0,t.text)({message:"Where would you like to install the components?",placeholder:"components/ui",defaultValue:"components/ui"});if(typeof e=="symbol")return;u=e;let r=await(0,t.text)({message:"Where would you like to install the utility files (utils/design-system)?",placeholder:"lib",defaultValue:"lib"});if(typeof r=="symbol")return;h=r;let n=await(0,t.confirm)({message:"Do you want us to install tailwind-merge and clsx if they are missing?"});if(typeof n=="symbol")return;b=n}let j=(0,t.spinner)();s?console.log("Initializing Bloom UI using default settings..."):j.start("Setting up config and utilities"),o.writeFileSync(l,JSON.stringify({componentDir:u,utilsDir:h},null,2),"utf8");let y=i.join(process.cwd(),h);o.existsSync(y)||o.mkdirSync(y,{recursive:!0});let m=await F();try{let e=await fetch(`${m}/utils.json`);if(e.ok){let w=await e.json();o.writeFileSync(i.join(y,"utils.ts"),w.content,"utf8")}let r=await fetch(`${m}/design-system.json`);if(r.ok){let w=await r.json();o.writeFileSync(i.join(y,"design-system.ts"),w.content,"utf8")}let n=i.join(y,"ripple");o.existsSync(n)||o.mkdirSync(n,{recursive:!0});let p=await fetch(`${m}/ripple.json`);if(p.ok){let w=await p.json();o.writeFileSync(i.join(n,"ripple.tsx"),w.content,"utf8")}let g=await fetch(`${m}/useRipple.json`);if(g.ok){let w=await g.json();o.writeFileSync(i.join(n,"useRipple.ts"),w.content,"utf8")}}catch{s?console.error("Error downloading utils or design-system configuration from registry."):(j.stop("Failed to retrieve setup utility files from registry."),(0,t.outro)(d.default.red("Error downloading utils or design-system configuration.")));return}if(s?console.log("Configuration and base utility files created successfully."):j.stop("Configuration and base utility files created successfully"),b){let e=v(),r=(0,t.spinner)();s?console.log(`Installing dependencies using ${e}...`):r.start(`Installing clsx tailwind-merge and lucide-react via ${e}`);try{let n="";e==="pnpm"?n="pnpm add clsx tailwind-merge lucide-react":e==="yarn"?n="yarn add clsx tailwind-merge lucide-react":e==="bun"?n="bun add clsx tailwind-merge lucide-react":n="npm install clsx tailwind-merge lucide-react",(0,$.execSync)(n,{stdio:"ignore"}),s?console.log("Required dependencies installed successfully."):r.stop("Required dependencies installed")}catch{s?console.warn("Failed to install dependencies automatically. Please run install manually."):r.stop("Failed to install dependencies automatically. Please run install manually.")}}s?console.log("Bloom UI successfully initialized!"):(0,t.outro)(d.default.green("Bloom UI initialized! You can now add components using: npx bloom add <component>"))});k.command("add").argument("[component]","Name of the component to add").description("Add a component to your project").option("-y, --yes","Bypass prompts and confirm action",!1).action(async(a,f)=>{let s=process.stdout.isTTY,l=f.yes||!s,u=i.join(process.cwd(),"bloom.json");if(!o.existsSync(u)){console.error(d.default.red("bloom.json not found. Run 'npx bloom init' first."));return}let h=JSON.parse(o.readFileSync(u,"utf8")),b=h.componentDir||"components/ui";l||(0,t.intro)(d.default.bgMagenta(d.default.black(" Bloom UI \u2014 Add Component ")));let j=await F(),c=a;if(!c){if(l){console.error(d.default.red("Component name is required in non-interactive/non-TTY environments."));return}let m=(0,t.spinner)();m.start("Fetching available components");let e=[];try{let n=await fetch(`${j}/index.json`);n.ok&&(e=await n.json())}catch{}if(m.stop("Done fetching"),e.length===0){(0,t.outro)(d.default.red("No components found in registry. Make sure you are online or your server is running."));return}let r=await(0,t.select)({message:"Select a component to add:",options:e.map(n=>({value:n.name,label:n.name}))});if(typeof r=="symbol")return;c=r}let y=(0,t.spinner)();l?console.log(`Adding component: ${c}...`):y.start(`Adding ${c} component`);try{let m=await fetch(`${j}/components/${c}.json`);if(!m.ok){l?console.error(`Component ${c} not found in registry. Download failed.`):(y.stop(`Component ${c} not found in registry.`),(0,t.outro)(d.default.red("Download failed.")));return}let e=await m.json(),r=i.join(process.cwd(),b,c);o.existsSync(r)||o.mkdirSync(r,{recursive:!0});for(let n of e.files){let p=n.content,g=i.join(b,c),w=h.utilsDir||"lib",S=i.relative(g,w).replace(/\\/g,"/");S.startsWith(".")||(S="./"+S),p=p.replace(/@\/lib\/utils/g,`${S}/utils`),p=p.replace(/@\/lib\/design-system/g,`${S}/design-system`),p=p.replace(/@\/hooks\/ripple/g,"../../hooks/ripple"),o.writeFileSync(i.join(r,n.name),p,"utf8")}if(l?console.log(`Added ${c} component files.`):y.stop(`Added ${c} component files`),e.dependencies&&e.dependencies.length>0){let n=v(),p=(0,t.spinner)();l?console.log(`Installing dependencies: ${e.dependencies.join(", ")}...`):p.start(`Installing dependencies: ${e.dependencies.join(", ")}`);try{let g="";n==="pnpm"?g=`pnpm add ${e.dependencies.join(" ")}`:n==="yarn"?g=`yarn add ${e.dependencies.join(" ")}`:n==="bun"?g=`bun add ${e.dependencies.join(" ")}`:g=`npm install ${e.dependencies.join(" ")}`,(0,$.execSync)(g,{stdio:"ignore"}),l?console.log("Dependencies installed successfully."):p.stop("Dependencies installed successfully")}catch{l?console.warn("Failed to install dependencies automatically. Please install them manually."):p.stop("Failed to install dependencies automatically. Please install them manually.")}}l?console.log(`Successfully added ${c} component to your project!`):(0,t.outro)(d.default.green(`Successfully added ${c} component to your project!`))}catch{l?console.error("Failed to download or write component files. Error adding component."):(y.stop("Failed to download or write component files."),(0,t.outro)(d.default.red("Error adding component.")))}});k.parse(process.argv);
+"use strict";
+var B = Object.create;
+var I = Object.defineProperty;
+var C = Object.getOwnPropertyDescriptor;
+var T = Object.getOwnPropertyNames;
+var P = Object.getPrototypeOf,
+  A = Object.prototype.hasOwnProperty;
+var U = (a, f, s, l) => {
+  if ((f && typeof f == "object") || typeof f == "function")
+    for (let u of T(f))
+      !A.call(a, u) &&
+        u !== s &&
+        I(a, u, {
+          get: () => f[u],
+          enumerable: !(l = C(f, u)) || l.enumerable,
+        });
+  return a;
+};
+var D = (a, f, s) => (
+  (s = a != null ? B(P(a)) : {}),
+  U(
+    f || !a || !a.__esModule
+      ? I(s, "default", { value: a, enumerable: !0 })
+      : s,
+    a,
+  )
+);
+var R = require("commander"),
+  o = D(require("fs")),
+  i = D(require("path")),
+  $ = require("child_process"),
+  t = require("@clack/prompts"),
+  d = D(require("picocolors")),
+  E = i.join(__dirname, "../package.json"),
+  Y = JSON.parse(o.readFileSync(E, "utf8")),
+  k = new R.Command();
+k.name("bloom")
+  .description("CLI to manage Bloom UI components in your codebase")
+  .version(Y.version);
+var z = "https://raw.githubusercontent.com/gui-bus/Bloom/main/public/registry",
+  x = "http://localhost:3000/registry";
+async function F() {
+  try {
+    if (
+      (await fetch(`${x}/index.json`, { signal: AbortSignal.timeout(1e3) })).ok
+    )
+      return x;
+  } catch {}
+  return z;
+}
+function v() {
+  return o.existsSync(i.join(process.cwd(), "pnpm-lock.yaml"))
+    ? "pnpm"
+    : o.existsSync(i.join(process.cwd(), "yarn.lock"))
+      ? "yarn"
+      : o.existsSync(i.join(process.cwd(), "bun.lockb"))
+        ? "bun"
+        : "npm";
+}
+k.command("init")
+  .description("Initialize Bloom UI configuration in your project")
+  .option("-y, --yes", "Skip prompts and use default configurations", !1)
+  .action(async (a) => {
+    let f = process.stdout.isTTY,
+      s = a.yes || !f;
+    s ||
+      (0, t.intro)(
+        d.default.bgMagenta(
+          d.default.black(" Bloom UI \u2014 Initialization "),
+        ),
+      );
+    let l = i.join(process.cwd(), "bloom.json");
+    if (o.existsSync(l) && !s) {
+      let e = await (0, t.confirm)({
+        message: "bloom.json already exists. Do you want to overwrite it?",
+      });
+      if (!e || typeof e == "symbol") {
+        (0, t.outro)(d.default.yellow("Initialization cancelled."));
+        return;
+      }
+    }
+    let u = "components/ui",
+      h = "lib",
+      b = !0;
+    if (!s) {
+      let e = await (0, t.text)({
+        message: "Where would you like to install the components?",
+        placeholder: "components/ui",
+        defaultValue: "components/ui",
+      });
+      if (typeof e == "symbol") return;
+      u = e;
+      let r = await (0, t.text)({
+        message:
+          "Where would you like to install the utility files (utils/design-system)?",
+        placeholder: "lib",
+        defaultValue: "lib",
+      });
+      if (typeof r == "symbol") return;
+      h = r;
+      let n = await (0, t.confirm)({
+        message:
+          "Do you want us to install tailwind-merge and clsx if they are missing?",
+      });
+      if (typeof n == "symbol") return;
+      b = n;
+    }
+    let j = (0, t.spinner)();
+    s
+      ? console.log("Initializing Bloom UI using default settings...")
+      : j.start("Setting up config and utilities"),
+      o.writeFileSync(
+        l,
+        JSON.stringify({ componentDir: u, utilsDir: h }, null, 2),
+        "utf8",
+      );
+    let y = i.join(process.cwd(), h);
+    o.existsSync(y) || o.mkdirSync(y, { recursive: !0 });
+    let m = await F();
+    try {
+      let e = await fetch(`${m}/utils.json`);
+      if (e.ok) {
+        let w = await e.json();
+        o.writeFileSync(i.join(y, "utils.ts"), w.content, "utf8");
+      }
+      let r = await fetch(`${m}/design-system.json`);
+      if (r.ok) {
+        let w = await r.json();
+        o.writeFileSync(i.join(y, "design-system.ts"), w.content, "utf8");
+      }
+      let n = i.join(y, "ripple");
+      o.existsSync(n) || o.mkdirSync(n, { recursive: !0 });
+      let p = await fetch(`${m}/ripple.json`);
+      if (p.ok) {
+        let w = await p.json();
+        o.writeFileSync(i.join(n, "ripple.tsx"), w.content, "utf8");
+      }
+      let g = await fetch(`${m}/useRipple.json`);
+      if (g.ok) {
+        let w = await g.json();
+        o.writeFileSync(i.join(n, "useRipple.ts"), w.content, "utf8");
+      }
+    } catch {
+      s
+        ? console.error(
+            "Error downloading utils or design-system configuration from registry.",
+          )
+        : (j.stop("Failed to retrieve setup utility files from registry."),
+          (0, t.outro)(
+            d.default.red(
+              "Error downloading utils or design-system configuration.",
+            ),
+          ));
+      return;
+    }
+    if (
+      (s
+        ? console.log(
+            "Configuration and base utility files created successfully.",
+          )
+        : j.stop("Configuration and base utility files created successfully"),
+      b)
+    ) {
+      let e = v(),
+        r = (0, t.spinner)();
+      s
+        ? console.log(`Installing dependencies using ${e}...`)
+        : r.start(`Installing clsx tailwind-merge and lucide-react via ${e}`);
+      try {
+        let n = "";
+        e === "pnpm"
+          ? (n = "pnpm add clsx tailwind-merge lucide-react")
+          : e === "yarn"
+            ? (n = "yarn add clsx tailwind-merge lucide-react")
+            : e === "bun"
+              ? (n = "bun add clsx tailwind-merge lucide-react")
+              : (n = "npm install clsx tailwind-merge lucide-react"),
+          (0, $.execSync)(n, { stdio: "ignore" }),
+          s
+            ? console.log("Required dependencies installed successfully.")
+            : r.stop("Required dependencies installed");
+      } catch {
+        s
+          ? console.warn(
+              "Failed to install dependencies automatically. Please run install manually.",
+            )
+          : r.stop(
+              "Failed to install dependencies automatically. Please run install manually.",
+            );
+      }
+    }
+    s
+      ? console.log("Bloom UI successfully initialized!")
+      : (0, t.outro)(
+          d.default.green(
+            "Bloom UI initialized! You can now add components using: npx bloom add <component>",
+          ),
+        );
+  });
+k.command("add")
+  .argument("[component]", "Name of the component to add")
+  .description("Add a component to your project")
+  .option("-y, --yes", "Bypass prompts and confirm action", !1)
+  .action(async (a, f) => {
+    let s = process.stdout.isTTY,
+      l = f.yes || !s,
+      u = i.join(process.cwd(), "bloom.json");
+    if (!o.existsSync(u)) {
+      console.error(
+        d.default.red("bloom.json not found. Run 'npx bloom init' first."),
+      );
+      return;
+    }
+    let h = JSON.parse(o.readFileSync(u, "utf8")),
+      b = h.componentDir || "components/ui";
+    l ||
+      (0, t.intro)(
+        d.default.bgMagenta(d.default.black(" Bloom UI \u2014 Add Component ")),
+      );
+    let j = await F(),
+      c = a;
+    if (!c) {
+      if (l) {
+        console.error(
+          d.default.red(
+            "Component name is required in non-interactive/non-TTY environments.",
+          ),
+        );
+        return;
+      }
+      let m = (0, t.spinner)();
+      m.start("Fetching available components");
+      let e = [];
+      try {
+        let n = await fetch(`${j}/index.json`);
+        n.ok && (e = await n.json());
+      } catch {}
+      if ((m.stop("Done fetching"), e.length === 0)) {
+        (0, t.outro)(
+          d.default.red(
+            "No components found in registry. Make sure you are online or your server is running.",
+          ),
+        );
+        return;
+      }
+      let r = await (0, t.select)({
+        message: "Select a component to add:",
+        options: e.map((n) => ({ value: n.name, label: n.name })),
+      });
+      if (typeof r == "symbol") return;
+      c = r;
+    }
+    let y = (0, t.spinner)();
+    l
+      ? console.log(`Adding component: ${c}...`)
+      : y.start(`Adding ${c} component`);
+    try {
+      let m = await fetch(`${j}/components/${c}.json`);
+      if (!m.ok) {
+        l
+          ? console.error(
+              `Component ${c} not found in registry. Download failed.`,
+            )
+          : (y.stop(`Component ${c} not found in registry.`),
+            (0, t.outro)(d.default.red("Download failed.")));
+        return;
+      }
+      let e = await m.json(),
+        r = i.join(process.cwd(), b, c);
+      o.existsSync(r) || o.mkdirSync(r, { recursive: !0 });
+      for (let n of e.files) {
+        let p = n.content,
+          g = i.join(b, c),
+          w = h.utilsDir || "lib",
+          S = i.relative(g, w).replace(/\\/g, "/");
+        S.startsWith(".") || (S = "./" + S),
+          (p = p.replace(/@\/lib\/utils/g, `${S}/utils`)),
+          (p = p.replace(/@\/lib\/design-system/g, `${S}/design-system`)),
+          (p = p.replace(/@\/hooks\/ripple/g, "../../hooks/ripple")),
+          o.writeFileSync(i.join(r, n.name), p, "utf8");
+      }
+      if (
+        (l
+          ? console.log(`Added ${c} component files.`)
+          : y.stop(`Added ${c} component files`),
+        e.dependencies && e.dependencies.length > 0)
+      ) {
+        let n = v(),
+          p = (0, t.spinner)();
+        l
+          ? console.log(
+              `Installing dependencies: ${e.dependencies.join(", ")}...`,
+            )
+          : p.start(`Installing dependencies: ${e.dependencies.join(", ")}`);
+        try {
+          let g = "";
+          n === "pnpm"
+            ? (g = `pnpm add ${e.dependencies.join(" ")}`)
+            : n === "yarn"
+              ? (g = `yarn add ${e.dependencies.join(" ")}`)
+              : n === "bun"
+                ? (g = `bun add ${e.dependencies.join(" ")}`)
+                : (g = `npm install ${e.dependencies.join(" ")}`),
+            (0, $.execSync)(g, { stdio: "ignore" }),
+            l
+              ? console.log("Dependencies installed successfully.")
+              : p.stop("Dependencies installed successfully");
+        } catch {
+          l
+            ? console.warn(
+                "Failed to install dependencies automatically. Please install them manually.",
+              )
+            : p.stop(
+                "Failed to install dependencies automatically. Please install them manually.",
+              );
+        }
+      }
+      l
+        ? console.log(`Successfully added ${c} component to your project!`)
+        : (0, t.outro)(
+            d.default.green(
+              `Successfully added ${c} component to your project!`,
+            ),
+          );
+    } catch {
+      l
+        ? console.error(
+            "Failed to download or write component files. Error adding component.",
+          )
+        : (y.stop("Failed to download or write component files."),
+          (0, t.outro)(d.default.red("Error adding component.")));
+    }
+  });
+k.parse(process.argv);

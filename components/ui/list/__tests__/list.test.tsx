@@ -9,7 +9,7 @@ describe("List Component", () => {
       <List variant="bordered">
         <ListItem>First item</ListItem>
         <ListItem>Second item</ListItem>
-      </List>
+      </List>,
     );
 
     expect(screen.getByText("First item")).toBeInTheDocument();

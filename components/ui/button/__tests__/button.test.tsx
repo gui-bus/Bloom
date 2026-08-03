@@ -8,11 +8,20 @@ describe("Button Component", () => {
     render(<Button>Click me</Button>);
     const button = screen.getByRole("button", { name: /click me/i });
     expect(button).toBeInTheDocument();
-    expect(button).toHaveClass("relative", "inline-flex", "items-center", "justify-center");
+    expect(button).toHaveClass(
+      "relative",
+      "inline-flex",
+      "items-center",
+      "justify-center",
+    );
   });
 
   it("handles loading states correctly", () => {
-    render(<Button isLoading loadingText="Loading...">Action</Button>);
+    render(
+      <Button isLoading loadingText="Loading...">
+        Action
+      </Button>,
+    );
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-busy", "true");
     expect(button).toHaveClass("cursor-wait", "opacity-50");
@@ -21,7 +30,11 @@ describe("Button Component", () => {
 
   it("renders as disabled and prevents clicking", () => {
     const handleClick = vi.fn();
-    render(<Button isDisabled onClick={handleClick}>Disabled</Button>);
+    render(
+      <Button isDisabled onClick={handleClick}>
+        Disabled
+      </Button>,
+    );
     const button = screen.getByRole("button", { name: /disabled/i });
     expect(button).toBeDisabled();
     expect(button).toHaveAttribute("aria-disabled", "true");
@@ -39,7 +52,11 @@ describe("Button Component", () => {
   });
 
   it("applies size and variant classes from CVA and design system maps", () => {
-    render(<Button size="sm" variant="bordered" color="success">Success bordered</Button>);
+    render(
+      <Button size="sm" variant="bordered" color="success">
+        Success bordered
+      </Button>,
+    );
     const button = screen.getByRole("button");
     expect(button).toHaveClass("text-sm");
     expect(button).toHaveClass("border");

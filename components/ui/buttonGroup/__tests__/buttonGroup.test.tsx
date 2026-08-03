@@ -10,7 +10,7 @@ describe("ButtonGroup Component", () => {
       <ButtonGroup>
         <Button>First</Button>
         <Button>Second</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     );
     expect(screen.getByRole("button", { name: "First" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Second" })).toBeInTheDocument();
@@ -21,7 +21,7 @@ describe("ButtonGroup Component", () => {
       <ButtonGroup size="lg" color="primary" variant="ghost">
         <Button>Button 1</Button>
         <Button>Button 2</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     );
     const firstButton = screen.getByRole("button", { name: "Button 1" });
     const secondButton = screen.getByRole("button", { name: "Button 2" });
@@ -35,7 +35,7 @@ describe("ButtonGroup Component", () => {
       <ButtonGroup isLoading isDisabled>
         <Button>Loading 1</Button>
         <Button>Loading 2</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     );
 
     const firstButton = screen.getAllByRole("button")[0];
@@ -48,7 +48,7 @@ describe("ButtonGroup Component", () => {
         <Button>Button A</Button>
         <Button>Button B</Button>
         <Button>Button C</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     );
 
     const btnA = screen.getByRole("button", { name: "Button A" });

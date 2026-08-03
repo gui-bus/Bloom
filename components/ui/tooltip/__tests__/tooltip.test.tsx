@@ -10,7 +10,7 @@ describe("Tooltip Component", () => {
         <Tooltip>
           <TooltipTrigger>Hover Me</TooltipTrigger>
         </Tooltip>
-      </TooltipProvider>
+      </TooltipProvider>,
     );
 
     expect(screen.getByText("Hover Me")).toBeInTheDocument();

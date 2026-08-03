@@ -3,7 +3,11 @@ import * as React from "react";
 import { describe, it, expect, vi } from "vitest";
 import { Form, useForm } from "../form";
 
-function TestForm({ onSubmit }: { onSubmit: (data: { name: string }) => void }) {
+function TestForm({
+  onSubmit,
+}: {
+  onSubmit: (data: { name: string }) => void;
+}) {
   const form = useForm<{ name: string }>({ defaultValues: { name: "John" } });
   return (
     <Form form={form} onSubmit={onSubmit}>

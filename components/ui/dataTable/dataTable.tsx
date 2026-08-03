@@ -52,21 +52,29 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = React.useState("");
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [columnOrder, setColumnOrder] = React.useState<string[]>(() =>
-    columns.map((col) => col.id || (col as any).accessorKey || "")
+    columns.map((col) => col.id || (col as any).accessorKey || ""),
   );
 
   const [showVisibilityMenu, setShowVisibilityMenu] = React.useState(false);
   const [showFilterBuilder, setShowFilterBuilder] = React.useState(false);
-  const [draggedColumnId, setDraggedColumnId] = React.useState<string | null>(null);
+  const [draggedColumnId, setDraggedColumnId] = React.useState<string | null>(
+    null,
+  );
 
   const visibilityRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (visibilityRef.current && !visibilityRef.current.contains(e.target as Node)) {
+      if (
+        visibilityRef.current &&
+        !visibilityRef.current.contains(e.target as Node)
+      ) {
         setShowVisibilityMenu(false);
       }
     }
@@ -102,7 +110,12 @@ export function DataTable<TData, TValue>({
   };
 
   const handleDragOver = (e: React.DragEvent, targetColumnId: string) => {
-    if (!enableColumnReorder || !draggedColumnId || draggedColumnId === targetColumnId) return;
+    if (
+      !enableColumnReorder ||
+      !draggedColumnId ||
+      draggedColumnId === targetColumnId
+    )
+      return;
     e.preventDefault();
 
     const currentOrder = [...table.getState().columnOrder];
@@ -131,7 +144,12 @@ export function DataTable<TData, TValue>({
             onChange={(e) => setGlobalFilter(e.target.value)}
             className="w-full"
             size="sm"
-            startContent={<Icon icon="hugeicons:search-01" className="size-4 text-zinc-400" />}
+            startContent={
+              <Icon
+                icon="hugeicons:search-01"
+                className="size-4 text-zinc-400"
+              />
+            }
             isClearable
           />
           {enableColumnFilters && (
@@ -139,7 +157,9 @@ export function DataTable<TData, TValue>({
               variant={showFilterBuilder ? "flat" : "bordered"}
               size="sm"
               onClick={() => setShowFilterBuilder((prev) => !prev)}
-              startContent={<Icon icon="hugeicons:filter" className="size-3.5" />}
+              startContent={
+                <Icon icon="hugeicons:filter" className="size-3.5" />
+              }
               className="shrink-0"
             >
               Filters
@@ -155,7 +175,9 @@ export function DataTable<TData, TValue>({
                 variant="bordered"
                 size="sm"
                 onClick={() => setShowVisibilityMenu((prev) => !prev)}
-                startContent={<Icon icon="hugeicons:view" className="size-3.5" />}
+                startContent={
+                  <Icon icon="hugeicons:view" className="size-3.5" />
+                }
               >
                 Columns
               </Button>
@@ -193,7 +215,9 @@ export function DataTable<TData, TValue>({
                 variant="bordered"
                 size="sm"
                 onClick={() => onExportCSV?.(table)}
-                startContent={<Icon icon="hugeicons:download-02" className="size-3.5" />}
+                startContent={
+                  <Icon icon="hugeicons:download-02" className="size-3.5" />
+                }
               >
                 CSV
               </Button>
@@ -201,7 +225,9 @@ export function DataTable<TData, TValue>({
                 variant="bordered"
                 size="sm"
                 onClick={() => onExportExcel?.(table)}
-                startContent={<Icon icon="hugeicons:file-02" className="size-3.5" />}
+                startContent={
+                  <Icon icon="hugeicons:file-02" className="size-3.5" />
+                }
               >
                 Excel
               </Button>
@@ -262,7 +288,8 @@ export function DataTable<TData, TValue>({
                     onDragEnd={handleDragEnd}
                     className={cn(
                       "group relative select-none",
-                      enableColumnReorder && "cursor-grab active:cursor-grabbing"
+                      enableColumnReorder &&
+                        "cursor-grab active:cursor-grabbing",
                     )}
                   >
                     <div className="flex items-center gap-1.5">
@@ -273,23 +300,40 @@ export function DataTable<TData, TValue>({
                         />
                       )}
                       <div
-                        onClick={canSort ? header.column.getToggleSortingHandler() : undefined}
+                        onClick={
+                          canSort
+                            ? header.column.getToggleSortingHandler()
+                            : undefined
+                        }
                         className={cn(
                           "flex items-center gap-1.5 flex-1 min-w-0",
-                          canSort && "cursor-pointer hover:text-zinc-900 dark:hover:text-zinc-100"
+                          canSort &&
+                            "cursor-pointer hover:text-zinc-900 dark:hover:text-zinc-100",
                         )}
                       >
                         {header.isPlaceholder
                           ? null
-                          : flexRender(header.column.columnDef.header, header.getContext())}
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                         {canSort && (
                           <span className="text-zinc-400 dark:text-zinc-500">
                             {isSorted === "asc" ? (
-                              <Icon icon="hugeicons:arrow-up-01" className="size-3.5 text-sky-500" />
+                              <Icon
+                                icon="hugeicons:arrow-up-01"
+                                className="size-3.5 text-sky-500"
+                              />
                             ) : isSorted === "desc" ? (
-                              <Icon icon="hugeicons:arrow-down-01" className="size-3.5 text-sky-500" />
+                              <Icon
+                                icon="hugeicons:arrow-down-01"
+                                className="size-3.5 text-sky-500"
+                              />
                             ) : (
-                              <Icon icon="hugeicons:arrow-up-down" className="size-3.5 opacity-40" />
+                              <Icon
+                                icon="hugeicons:arrow-up-down"
+                                className="size-3.5 opacity-40"
+                              />
                             )}
                           </span>
                         )}
@@ -304,7 +348,10 @@ export function DataTable<TData, TValue>({
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && "selected"}
+              >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -314,7 +361,10 @@ export function DataTable<TData, TValue>({
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center text-zinc-400 dark:text-zinc-500">
+              <TableCell
+                colSpan={columns.length}
+                className="h-24 text-center text-zinc-400 dark:text-zinc-500"
+              >
                 No results found.
               </TableCell>
             </TableRow>

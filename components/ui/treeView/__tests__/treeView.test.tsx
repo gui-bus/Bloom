@@ -43,7 +43,13 @@ describe("TreeView Component", () => {
 
   it("supports checkbox multi-selection", () => {
     const handleCheckedChange = vi.fn();
-    render(<TreeView data={sampleData} isCheckable onCheckedChange={handleCheckedChange} />);
+    render(
+      <TreeView
+        data={sampleData}
+        isCheckable
+        onCheckedChange={handleCheckedChange}
+      />,
+    );
 
     const checkboxes = screen.getAllByRole("checkbox");
     fireEvent.click(checkboxes[0]);

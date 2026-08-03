@@ -11,10 +11,14 @@ const linkVariants = cva(
   {
     variants: {
       variant: {
-        default: "text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 hover:underline",
-        muted: "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline",
-        underline: "text-zinc-900 dark:text-zinc-100 underline underline-offset-4 hover:text-sky-500 dark:hover:text-sky-400",
-        ghost: "text-zinc-900 dark:text-zinc-100 hover:text-sky-500 dark:hover:text-sky-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 px-2 py-1 rounded-lg no-underline",
+        default:
+          "text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 hover:underline",
+        muted:
+          "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline",
+        underline:
+          "text-zinc-900 dark:text-zinc-100 underline underline-offset-4 hover:text-sky-500 dark:hover:text-sky-400",
+        ghost:
+          "text-zinc-900 dark:text-zinc-100 hover:text-sky-500 dark:hover:text-sky-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 px-2 py-1 rounded-lg no-underline",
       },
       size: {
         sm: "text-xs",
@@ -26,7 +30,7 @@ const linkVariants = cva(
       variant: "default",
       size: "md",
     },
-  }
+  },
 );
 
 export interface LinkProps
@@ -53,9 +57,10 @@ const UiLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
       rel,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const isAnchor = isExternal || href.startsWith("http://") || href.startsWith("https://");
+    const isAnchor =
+      isExternal || href.startsWith("http://") || href.startsWith("https://");
     const linkTarget = isExternal ? "_blank" : target;
     const linkRel = isExternal ? "noopener noreferrer" : rel;
 
@@ -65,7 +70,10 @@ const UiLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
         <span>{children}</span>
         {endContent}
         {isExternal && !endContent && (
-          <Icon icon="hugeicons:arrow-up-right-01" className="size-3.5 shrink-0 opacity-70" />
+          <Icon
+            icon="hugeicons:arrow-up-right-01"
+            className="size-3.5 shrink-0 opacity-70"
+          />
         )}
       </>
     );
@@ -95,7 +103,7 @@ const UiLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
         {content}
       </Link>
     );
-  }
+  },
 );
 UiLink.displayName = "Link";
 

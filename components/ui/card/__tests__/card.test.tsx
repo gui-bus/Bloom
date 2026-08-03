@@ -20,7 +20,7 @@ describe("Card Component", () => {
         </CardHeader>
         <CardBody>Card Body Content</CardBody>
         <CardFooter>Card Footer</CardFooter>
-      </Card>
+      </Card>,
     );
 
     expect(screen.getByText("Card Title")).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe("Card Component", () => {
     render(
       <Card variant="bordered" color="primary" data-testid="card">
         Bordered Primary Card
-      </Card>
+      </Card>,
     );
     const card = screen.getByTestId("card");
     expect(card).toHaveClass("border", "border-sky-500/50");
@@ -44,7 +44,7 @@ describe("Card Component", () => {
     render(
       <Card isHoverable isPressable onClick={handleClick} data-testid="card">
         Interactive Card
-      </Card>
+      </Card>,
     );
     const card = screen.getByTestId("card");
     expect(card).toHaveClass("hover:-translate-y-0.5", "cursor-pointer");
@@ -60,7 +60,7 @@ describe("Card Component", () => {
     render(
       <Card isPressable isDisabled onClick={handleClick} data-testid="card">
         Disabled Card
-      </Card>
+      </Card>,
     );
     const card = screen.getByTestId("card");
     expect(card).toHaveClass("opacity-50", "pointer-events-none");

@@ -4,7 +4,14 @@ import * as React from "react";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
-export type RatingColor = "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
+export type RatingColor =
+  | "default"
+  | "primary"
+  | "secondary"
+  | "accent"
+  | "success"
+  | "warning"
+  | "danger";
 
 export interface RatingProps {
   value?: number;
@@ -64,7 +71,7 @@ export function Rating({
   className,
 }: RatingProps) {
   const [internalVal, setInternalVal] = React.useState<number>(
-    value !== undefined ? value : defaultValue
+    value !== undefined ? value : defaultValue,
   );
   const [hoverVal, setHoverVal] = React.useState<number | null>(null);
 
@@ -76,7 +83,10 @@ export function Rating({
 
   const activeVal = hoverVal !== null ? hoverVal : internalVal;
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>, starIndex: number) => {
+  const handleMouseMove = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    starIndex: number,
+  ) => {
     if (disabled || readOnly) return;
     if (!allowHalf) {
       setHoverVal(starIndex);
@@ -87,7 +97,10 @@ export function Rating({
     setHoverVal(isLeftHalf ? starIndex - 0.5 : starIndex);
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>, starIndex: number) => {
+  const handleClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    starIndex: number,
+  ) => {
     if (disabled || readOnly) return;
     let selectedVal = starIndex;
     if (allowHalf) {
@@ -123,7 +136,7 @@ export function Rating({
         className={cn(
           "flex items-center gap-1.5",
           disabled && "opacity-50 cursor-not-allowed",
-          readOnly && "cursor-default"
+          readOnly && "cursor-default",
         )}
       >
         {emojiMap ? (
@@ -131,7 +144,8 @@ export function Rating({
             {Array.from({ length: max }).map((_, i) => {
               const itemVal = i + 1;
               const isSelected = activeVal >= itemVal;
-              const emojiChar = emojiMap[itemVal] || DEFAULT_EMOJIS[itemVal] || "⭐";
+              const emojiChar =
+                emojiMap[itemVal] || DEFAULT_EMOJIS[itemVal] || "⭐";
 
               return (
                 <button
@@ -143,12 +157,16 @@ export function Rating({
                     setInternalVal(itemVal);
                     onValueChange?.(itemVal);
                   }}
-                  onMouseEnter={() => !disabled && !readOnly && setHoverVal(itemVal)}
+                  onMouseEnter={() =>
+                    !disabled && !readOnly && setHoverVal(itemVal)
+                  }
                   onMouseLeave={() => setHoverVal(null)}
                   className={cn(
                     "transition-all duration-200 cursor-pointer outline-none focus-visible:scale-125 select-none",
-                    isSelected ? "scale-110 opacity-100 filter drop-shadow-md" : "scale-90 opacity-40 grayscale",
-                    readOnly && "cursor-default hover:scale-100"
+                    isSelected
+                      ? "scale-110 opacity-100 filter drop-shadow-md"
+                      : "scale-90 opacity-40 grayscale",
+                    readOnly && "cursor-default hover:scale-100",
                   )}
                 >
                   <span className={cn(sizeMap[size])}>{emojiChar}</span>
@@ -172,13 +190,16 @@ export function Rating({
                 onMouseLeave={() => setHoverVal(null)}
                 className={cn(
                   "relative inline-flex items-center justify-center p-0.5 outline-none transition-transform focus-visible:scale-125 hover:scale-115 cursor-pointer disabled:cursor-not-allowed",
-                  readOnly && "cursor-default hover:scale-100"
+                  readOnly && "cursor-default hover:scale-100",
                 )}
                 aria-label={`Rate ${starIndex} out of ${max}`}
               >
                 <Icon
                   icon={icon}
-                  className={cn(sizeMap[size], "text-zinc-300 dark:text-zinc-700 fill-transparent")}
+                  className={cn(
+                    sizeMap[size],
+                    "text-zinc-300 dark:text-zinc-700 fill-transparent",
+                  )}
                 />
 
                 {(isFull || isHalf) && (

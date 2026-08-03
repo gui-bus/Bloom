@@ -51,7 +51,7 @@ export function Chart({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [zoomStartIndex, setZoomStartIndex] = React.useState<number>(0);
   const [zoomEndIndex, setZoomEndIndex] = React.useState<number>(
-    data.length > 0 ? data.length - 1 : 0
+    data.length > 0 ? data.length - 1 : 0,
   );
 
   React.useEffect(() => {
@@ -88,13 +88,17 @@ export function Chart({
       ref={containerRef}
       className={cn(
         "w-full rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 bg-white dark:bg-zinc-900 shadow-xs text-zinc-900 dark:text-zinc-100 flex flex-col space-y-4",
-        className
+        className,
       )}
     >
       {(title || enableExport || enableZoomPan) && (
         <div className="flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800/80">
           <div>
-            {title && <h4 className="font-semibold text-sm text-zinc-900 dark:text-zinc-100">{title}</h4>}
+            {title && (
+              <h4 className="font-semibold text-sm text-zinc-900 dark:text-zinc-100">
+                {title}
+              </h4>
+            )}
           </div>
           <div className="flex items-center gap-2">
             {enableZoomPan && (
@@ -115,7 +119,9 @@ export function Chart({
                 <Button
                   variant="bordered"
                   size="xs"
-                  startContent={<Icon icon="hugeicons:download-02" className="size-3.5" />}
+                  startContent={
+                    <Icon icon="hugeicons:download-02" className="size-3.5" />
+                  }
                   onClick={handleExportSVG}
                 >
                   SVG
@@ -123,7 +129,9 @@ export function Chart({
                 <Button
                   variant="bordered"
                   size="xs"
-                  startContent={<Icon icon="hugeicons:image-01" className="size-3.5" />}
+                  startContent={
+                    <Icon icon="hugeicons:image-01" className="size-3.5" />
+                  }
                   onClick={handleExportPNG}
                 >
                   PNG
@@ -137,14 +145,26 @@ export function Chart({
       <ResponsiveContainer width="100%" height={height}>
         {type === "bar" ? (
           <ReBarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" opacity={0.15} stroke="#a1a1aa" />
-            <XAxis dataKey={xKey} stroke="#71717a" fontSize={12} tickLine={false} axisLine={false} />
+            <CartesianGrid
+              strokeDasharray="3 3"
+              opacity={0.15}
+              stroke="#a1a1aa"
+            />
+            <XAxis
+              dataKey={xKey}
+              stroke="#71717a"
+              fontSize={12}
+              tickLine={false}
+              axisLine={false}
+            />
             <YAxis
               stroke="#71717a"
               fontSize={12}
               tickLine={false}
               axisLine={false}
-              tickFormatter={(val) => (valueFormatter ? valueFormatter(val) : val)}
+              tickFormatter={(val) =>
+                valueFormatter ? valueFormatter(val) : val
+              }
             />
             <Tooltip
               formatter={formatTooltipValue}
@@ -168,22 +188,36 @@ export function Chart({
                 startIndex={zoomStartIndex}
                 endIndex={zoomEndIndex}
                 onChange={(range) => {
-                  if (range.startIndex !== undefined) setZoomStartIndex(range.startIndex);
-                  if (range.endIndex !== undefined) setZoomEndIndex(range.endIndex);
+                  if (range.startIndex !== undefined)
+                    setZoomStartIndex(range.startIndex);
+                  if (range.endIndex !== undefined)
+                    setZoomEndIndex(range.endIndex);
                 }}
               />
             )}
           </ReBarChart>
         ) : (
           <ReLineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" opacity={0.15} stroke="#a1a1aa" />
-            <XAxis dataKey={xKey} stroke="#71717a" fontSize={12} tickLine={false} axisLine={false} />
+            <CartesianGrid
+              strokeDasharray="3 3"
+              opacity={0.15}
+              stroke="#a1a1aa"
+            />
+            <XAxis
+              dataKey={xKey}
+              stroke="#71717a"
+              fontSize={12}
+              tickLine={false}
+              axisLine={false}
+            />
             <YAxis
               stroke="#71717a"
               fontSize={12}
               tickLine={false}
               axisLine={false}
-              tickFormatter={(val) => (valueFormatter ? valueFormatter(val) : val)}
+              tickFormatter={(val) =>
+                valueFormatter ? valueFormatter(val) : val
+              }
             />
             <Tooltip
               formatter={formatTooltipValue}
@@ -214,8 +248,10 @@ export function Chart({
                 startIndex={zoomStartIndex}
                 endIndex={zoomEndIndex}
                 onChange={(range) => {
-                  if (range.startIndex !== undefined) setZoomStartIndex(range.startIndex);
-                  if (range.endIndex !== undefined) setZoomEndIndex(range.endIndex);
+                  if (range.startIndex !== undefined)
+                    setZoomStartIndex(range.startIndex);
+                  if (range.endIndex !== undefined)
+                    setZoomEndIndex(range.endIndex);
                 }}
               />
             )}

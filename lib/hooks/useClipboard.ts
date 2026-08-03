@@ -22,7 +22,7 @@ export function useClipboard(timeout = 2000) {
         setCopied(false);
       }
     },
-    [timeout]
+    [timeout],
   );
 
   const reset = useCallback(() => {

@@ -30,10 +30,12 @@ describe("Pagination Component", () => {
             <PaginationNext href="#" />
           </PaginationItem>
         </PaginationContent>
-      </Pagination>
+      </Pagination>,
     );
 
-    expect(screen.getByRole("navigation", { name: "pagination" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("navigation", { name: "pagination" }),
+    ).toBeInTheDocument();
     expect(screen.getByText("1")).toHaveAttribute("aria-current", "page");
     expect(screen.getByText("2")).toBeInTheDocument();
   });

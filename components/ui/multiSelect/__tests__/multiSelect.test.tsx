@@ -18,15 +18,19 @@ describe("MultiSelect Component", () => {
         onChange={vi.fn()}
         label="Frameworks"
         placeholder="Select frameworks"
-      />
+      />,
     );
     expect(screen.getByText("Frameworks")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Select frameworks")).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText("Select frameworks"),
+    ).toBeInTheDocument();
   });
 
   it("opens dropdown and selects an option", () => {
     const handleChange = vi.fn();
-    render(<MultiSelect options={options} value={[]} onChange={handleChange} />);
+    render(
+      <MultiSelect options={options} value={[]} onChange={handleChange} />,
+    );
 
     const input = screen.getByPlaceholderText("Select options...");
     fireEvent.focus(input);
@@ -39,7 +43,13 @@ describe("MultiSelect Component", () => {
 
   it("renders selected tag and removes it on click", () => {
     const handleChange = vi.fn();
-    render(<MultiSelect options={options} value={["react"]} onChange={handleChange} />);
+    render(
+      <MultiSelect
+        options={options}
+        value={["react"]}
+        onChange={handleChange}
+      />,
+    );
 
     expect(screen.getByText("React")).toBeInTheDocument();
     const removeBtn = screen.getByRole("button", { name: "" });

@@ -1,7 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import { describe, it, expect } from "vitest";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "../select";
 
 describe("Select Component", () => {
   it("renders trigger with placeholder", () => {
@@ -13,7 +19,7 @@ describe("Select Component", () => {
         <SelectContent>
           <SelectItem value="apple">Apple</SelectItem>
         </SelectContent>
-      </Select>
+      </Select>,
     );
 
     expect(screen.getByText("Select a fruit")).toBeInTheDocument();

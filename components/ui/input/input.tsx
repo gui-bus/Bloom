@@ -8,11 +8,33 @@ import { Icon } from "@iconify/react";
 import { useClipboard } from "@/lib/hooks/useClipboard";
 import { toast } from "@/components/ui/toast/toast";
 
-export type InputMaskType = "CPF" | "CNPJ" | "Phone" | "ZIP" | "CreditCard" | "Custom";
+export type InputMaskType =
+  | "CPF"
+  | "CNPJ"
+  | "Phone"
+  | "ZIP"
+  | "CreditCard"
+  | "Custom";
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "prefix"> {
-  variant?: "default" | "bordered" | "flat" | "underlined" | "filled" | "glassmorphism" | "gradient-border" | "glow";
-  color?: "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
+export interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "prefix"> {
+  variant?:
+    | "default"
+    | "bordered"
+    | "flat"
+    | "underlined"
+    | "filled"
+    | "glassmorphism"
+    | "gradient-border"
+    | "glow";
+  color?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "accent"
+    | "success"
+    | "warning"
+    | "danger";
   size?: "sm" | "md" | "lg";
   radius?: keyof typeof designRadius;
   label?: React.ReactNode;
@@ -40,13 +62,19 @@ const inputVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
-        bordered: "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
+        default:
+          "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+        bordered:
+          "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
         flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/70 dark:hover:bg-zinc-800 focus-within:bg-white dark:focus-within:bg-zinc-900 focus-within:border-sky-500 border text-zinc-900 dark:text-zinc-100",
-        underlined: "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
-        filled: "bg-zinc-100 dark:bg-zinc-800/80 border border-transparent focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
-        glassmorphism: "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 focus-within:border-sky-500 shadow-lg text-zinc-900 dark:text-zinc-100",
-        "gradient-border": "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 relative [background-clip:padding-box] border border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 focus-within:ring-2 focus-within:ring-indigo-500/30",
+        underlined:
+          "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
+        filled:
+          "bg-zinc-100 dark:bg-zinc-800/80 border border-transparent focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+        glassmorphism:
+          "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 focus-within:border-sky-500 shadow-lg text-zinc-900 dark:text-zinc-100",
+        "gradient-border":
+          "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 relative [background-clip:padding-box] border border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 focus-within:ring-2 focus-within:ring-indigo-500/30",
         glow: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:shadow-[0_0_12px_rgba(14,165,233,0.35)] text-zinc-900 dark:text-zinc-100",
       },
       size: {
@@ -59,15 +87,19 @@ const inputVariants = cva(
       variant: "default",
       size: "md",
     },
-  }
+  },
 );
 
-function applyMask(value: string, mask: InputMaskType | ((val: string) => string) | undefined, customPattern?: string): string {
+function applyMask(
+  value: string,
+  mask: InputMaskType | ((val: string) => string) | undefined,
+  customPattern?: string,
+): string {
   if (!mask) return value;
   if (typeof mask === "function") return mask(value);
 
   const raw = value.replace(/\D/g, "");
-  
+
   if (mask === "CPF") {
     const v = raw.slice(0, 11);
     return v
@@ -92,9 +124,7 @@ function applyMask(value: string, mask: InputMaskType | ((val: string) => string
         .replace(/^(\d{2})(\d)/, "($1) $2")
         .replace(/(\d{4})(\d)/, "$1-$2");
     }
-    return v
-      .replace(/^(\d{2})(\d)/, "($1) $2")
-      .replace(/(\d{5})(\d)/, "$1-$2");
+    return v.replace(/^(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1-$2");
   }
 
   if (mask === "ZIP") {
@@ -161,13 +191,19 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       onKeyDown,
       ...props
     },
-    ref
+    ref,
   ) => {
     const generatedId = React.useId();
     const inputId = id || generatedId;
-    const initialRaw = (value !== undefined ? value : defaultValue !== undefined ? defaultValue : "")?.toString() || "";
+    const initialRaw =
+      (value !== undefined
+        ? value
+        : defaultValue !== undefined
+          ? defaultValue
+          : ""
+      )?.toString() || "";
     const [internalValue, setInternalValue] = React.useState(
-      mask ? applyMask(initialRaw, mask, customMaskPattern) : initialRaw
+      mask ? applyMask(initialRaw, mask, customMaskPattern) : initialRaw,
     );
     const [showPassword, setShowPassword] = React.useState(false);
     const { copy, copied } = useClipboard();
@@ -188,7 +224,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const handleChange = React.useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
         const rawValue = e.target.value;
-        const formattedValue = mask ? applyMask(rawValue, mask, customMaskPattern) : rawValue;
+        const formattedValue = mask
+          ? applyMask(rawValue, mask, customMaskPattern)
+          : rawValue;
 
         if (!isControlled) {
           setInternalValue(formattedValue);
@@ -205,7 +243,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onChange(updatedEvent as React.ChangeEvent<HTMLInputElement>);
         }
       },
-      [isControlled, mask, customMaskPattern, onChange]
+      [isControlled, mask, customMaskPattern, onChange],
     );
 
     const handleClear = React.useCallback(() => {
@@ -216,7 +254,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
       const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
         window.HTMLInputElement.prototype,
-        "value"
+        "value",
       )?.set;
       const inputEl = document.getElementById(inputId) as HTMLInputElement;
       if (inputEl && nativeInputValueSetter) {
@@ -233,7 +271,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         }
         onKeyDown?.(e);
       },
-      [isClearable, currentValue, handleClear, onKeyDown]
+      [isClearable, currentValue, handleClear, onKeyDown],
     );
 
     const handleCopy = React.useCallback(() => {
@@ -249,7 +287,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         : "password"
       : type;
 
-    const effectivePlacement = labelPlacement === "outside" ? "top" : labelPlacement;
+    const effectivePlacement =
+      labelPlacement === "outside" ? "top" : labelPlacement;
 
     const labelEl = label && (
       <label
@@ -257,7 +296,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         className={cn(
           "text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none",
           effectivePlacement === "inside" &&
-            "absolute top-1 left-3 text-[10px] text-zinc-400 dark:text-zinc-500 z-10 pointer-events-none font-normal"
+            "absolute top-1 left-3 text-[10px] text-zinc-400 dark:text-zinc-500 z-10 pointer-events-none font-normal",
         )}
       >
         {label}
@@ -272,7 +311,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           isInvalid &&
             "border-rose-500 dark:border-rose-500 focus-within:border-rose-500 focus-within:ring-rose-500/30 text-rose-600 dark:text-rose-400",
           effectivePlacement === "inside" && "relative pt-4",
-          className
+          className,
         )}
       >
         {effectivePlacement === "inside" && labelEl}
@@ -281,7 +320,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {prefix}
           </span>
         )}
-        {startContent && <span className="text-zinc-400 dark:text-zinc-500 shrink-0">{startContent}</span>}
+        {startContent && (
+          <span className="text-zinc-400 dark:text-zinc-500 shrink-0">
+            {startContent}
+          </span>
+        )}
         <input
           ref={ref}
           id={inputId}
@@ -335,11 +378,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           >
             <Icon
               icon={copied ? "hugeicons:tick-02" : "hugeicons:copy-01"}
-              className={cn("size-4 transition-all duration-200", copied && "text-emerald-500 scale-110")}
+              className={cn(
+                "size-4 transition-all duration-200",
+                copied && "text-emerald-500 scale-110",
+              )}
             />
           </button>
         )}
-        {endContent && <span className="text-zinc-400 dark:text-zinc-500 shrink-0">{endContent}</span>}
+        {endContent && (
+          <span className="text-zinc-400 dark:text-zinc-500 shrink-0">
+            {endContent}
+          </span>
+        )}
       </div>
     );
 
@@ -348,7 +398,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {isInvalid && errorMessage ? (
           <p className="text-xs text-rose-500 font-medium">{errorMessage}</p>
         ) : description ? (
-          <p className="text-xs text-zinc-400 dark:text-zinc-500">{description}</p>
+          <p className="text-xs text-zinc-400 dark:text-zinc-500">
+            {description}
+          </p>
         ) : null}
         {showCharacterCount && maxLength && (
           <p
@@ -357,8 +409,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               Number(currentValue.length) >= maxLength
                 ? "text-rose-500 font-semibold"
                 : Number(currentValue.length) >= maxLength * 0.8
-                ? "text-amber-500 font-medium"
-                : "text-zinc-400 dark:text-zinc-500"
+                  ? "text-amber-500 font-medium"
+                  : "text-zinc-400 dark:text-zinc-500",
             )}
           >
             {currentValue.length}/{maxLength}
@@ -386,7 +438,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {bottomContent}
       </div>
     );
-  }
+  },
 );
 Input.displayName = "Input";
 

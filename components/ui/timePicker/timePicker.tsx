@@ -4,7 +4,8 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
 
-export interface TimePickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface TimePickerProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
   value?: string;
   onChange?: (time: string) => void;
   format?: "12h" | "24h";
@@ -37,7 +38,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     // Basic state parsing
     const parseTime = (timeStr: string) => {
@@ -61,23 +62,24 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
     const updateTime = (updates: Partial<typeof timeState>) => {
       const newState = { ...timeState, ...updates };
       setTimeState(newState);
-      const newTimeStr = format === "12h" 
-        ? `${newState.hours}:${newState.minutes} ${newState.period}`
-        : `${newState.hours}:${newState.minutes}`;
+      const newTimeStr =
+        format === "12h"
+          ? `${newState.hours}:${newState.minutes} ${newState.period}`
+          : `${newState.hours}:${newState.minutes}`;
       onChange?.(newTimeStr);
     };
 
     const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       let val = e.target.value.replace(/\D/g, "");
       if (val.length > 2) val = val.slice(0, 2);
-      
+
       let numVal = parseInt(val);
       if (!isNaN(numVal)) {
         if (format === "12h") {
-           if (numVal > 12) val = "12";
-           if (numVal === 0 && val.length === 2) val = "12";
+          if (numVal > 12) val = "12";
+          if (numVal === 0 && val.length === 2) val = "12";
         } else {
-           if (numVal > 23) val = "23";
+          if (numVal > 23) val = "23";
         }
       }
       updateTime({ hours: val });
@@ -86,7 +88,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
     const handleMinuteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       let val = e.target.value.replace(/\D/g, "");
       if (val.length > 2) val = val.slice(0, 2);
-      
+
       let numVal = parseInt(val);
       if (!isNaN(numVal)) {
         if (numVal > 59) val = "59";
@@ -147,9 +149,13 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
     // Generate wheel options
     const hoursList = React.useMemo(() => {
       if (format === "12h") {
-        return Array.from({ length: 12 }, (_, i) => (i + 1).toString().padStart(2, "0"));
+        return Array.from({ length: 12 }, (_, i) =>
+          (i + 1).toString().padStart(2, "0"),
+        );
       }
-      return Array.from({ length: 24 }, (_, i) => i.toString().padStart(2, "0"));
+      return Array.from({ length: 24 }, (_, i) =>
+        i.toString().padStart(2, "0"),
+      );
     }, [format]);
 
     const minutesList = React.useMemo(() => {
@@ -162,7 +168,11 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
 
     if (useWheel) {
       return (
-        <div className={cn("flex flex-col gap-2", className)} ref={ref} {...props}>
+        <div
+          className={cn("flex flex-col gap-2", className)}
+          ref={ref}
+          {...props}
+        >
           {label && (
             <label className="text-sm font-medium text-zinc-900 dark:text-zinc-100 select-none">
               {label}
@@ -173,12 +183,14 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
             className={cn(
               "flex items-center justify-center gap-2 p-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl w-fit shadow-xs select-none",
               isInvalid && "border-rose-500",
-              isDisabled && "opacity-50 pointer-events-none"
+              isDisabled && "opacity-50 pointer-events-none",
             )}
           >
             {/* Hours Wheel Column */}
             <div className="flex flex-col items-center">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">Hours</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
+                Hours
+              </span>
               <div className="h-32 w-12 overflow-y-auto snap-y snap-mandatory rounded-xl bg-zinc-50 dark:bg-zinc-800/60 p-1 border border-zinc-200/60 dark:border-zinc-700/60 scrollbar-none">
                 {hoursList.map((h) => (
                   <button
@@ -189,7 +201,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
                       "w-full py-1.5 text-xs font-mono font-bold rounded-lg transition-colors snap-center cursor-pointer",
                       timeState.hours === h
                         ? "bg-sky-500 text-white shadow-xs"
-                        : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200/60 dark:hover:bg-zinc-700/60"
+                        : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200/60 dark:hover:bg-zinc-700/60",
                     )}
                   >
                     {h}
@@ -198,11 +210,15 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
               </div>
             </div>
 
-            <span className="text-zinc-400 font-bold self-center pt-5 text-sm">:</span>
+            <span className="text-zinc-400 font-bold self-center pt-5 text-sm">
+              :
+            </span>
 
             {/* Minutes Wheel Column */}
             <div className="flex flex-col items-center">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">Minutes</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
+                Minutes
+              </span>
               <div className="h-32 w-12 overflow-y-auto snap-y snap-mandatory rounded-xl bg-zinc-50 dark:bg-zinc-800/60 p-1 border border-zinc-200/60 dark:border-zinc-700/60 scrollbar-none">
                 {minutesList.map((m) => (
                   <button
@@ -213,7 +229,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
                       "w-full py-1.5 text-xs font-mono font-bold rounded-lg transition-colors snap-center cursor-pointer",
                       timeState.minutes === m
                         ? "bg-sky-500 text-white shadow-xs"
-                        : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200/60 dark:hover:bg-zinc-700/60"
+                        : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200/60 dark:hover:bg-zinc-700/60",
                     )}
                   >
                     {m}
@@ -225,7 +241,9 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
             {/* Period Column */}
             {format === "12h" && (
               <div className="flex flex-col items-center">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">Period</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
+                  Period
+                </span>
                 <div className="h-32 w-12 flex flex-col justify-center gap-2 rounded-xl bg-zinc-50 dark:bg-zinc-800/60 p-1 border border-zinc-200/60 dark:border-zinc-700/60">
                   {["AM", "PM"].map((p) => (
                     <button
@@ -236,7 +254,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
                         "w-full py-2 text-xs font-bold rounded-lg transition-colors cursor-pointer",
                         timeState.period === p
                           ? "bg-sky-500 text-white shadow-xs"
-                          : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200/60 dark:hover:bg-zinc-700/60"
+                          : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200/60 dark:hover:bg-zinc-700/60",
                       )}
                     >
                       {p}
@@ -248,14 +266,20 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
           </div>
 
           {description && (
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">{description}</p>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              {description}
+            </p>
           )}
         </div>
       );
     }
 
     return (
-      <div className={cn("flex flex-col gap-2", className)} ref={ref} {...props}>
+      <div
+        className={cn("flex flex-col gap-2", className)}
+        ref={ref}
+        {...props}
+      >
         {label && (
           <label className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
             {label}
@@ -265,13 +289,19 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
           className={cn(
             "flex items-center gap-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl w-fit focus-within:ring-2 focus-within:ring-sky-500/20 focus-within:border-sky-500 transition-colors",
             sizeClasses[size],
-            isInvalid && "border-rose-500 focus-within:ring-rose-500/20 focus-within:border-rose-500",
-            isDisabled && "opacity-50 pointer-events-none"
+            isInvalid &&
+              "border-rose-500 focus-within:ring-rose-500/20 focus-within:border-rose-500",
+            isDisabled && "opacity-50 pointer-events-none",
           )}
         >
           {/* Hour Segment */}
           <div className="flex flex-col items-center justify-center -space-y-1">
-            <button type="button" onClick={incrementHour} className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 outline-none" tabIndex={-1}>
+            <button
+              type="button"
+              onClick={incrementHour}
+              className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 outline-none"
+              tabIndex={-1}
+            >
               <Icon icon="hugeicons:arrow-up-01" className="w-3 h-3" />
             </button>
             <input
@@ -279,16 +309,22 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
               value={timeState.hours}
               onChange={handleHourChange}
               onBlur={() => {
-                let val = parseInt(timeState.hours) || (format === "12h" ? 12 : 0);
+                let val =
+                  parseInt(timeState.hours) || (format === "12h" ? 12 : 0);
                 updateTime({ hours: val.toString().padStart(2, "0") });
               }}
               className={cn(
                 "bg-transparent text-center font-medium text-zinc-900 dark:text-zinc-100 outline-none placeholder:text-zinc-400",
-                inputSizeClasses[size]
+                inputSizeClasses[size],
               )}
               placeholder="12"
             />
-            <button type="button" onClick={decrementHour} className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 outline-none" tabIndex={-1}>
+            <button
+              type="button"
+              onClick={decrementHour}
+              className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 outline-none"
+              tabIndex={-1}
+            >
               <Icon icon="hugeicons:arrow-down-01" className="w-3 h-3" />
             </button>
           </div>
@@ -297,7 +333,12 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
 
           {/* Minute Segment */}
           <div className="flex flex-col items-center justify-center -space-y-1">
-            <button type="button" onClick={incrementMinute} className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 outline-none" tabIndex={-1}>
+            <button
+              type="button"
+              onClick={incrementMinute}
+              className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 outline-none"
+              tabIndex={-1}
+            >
               <Icon icon="hugeicons:arrow-up-01" className="w-3 h-3" />
             </button>
             <input
@@ -310,11 +351,16 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
               }}
               className={cn(
                 "bg-transparent text-center font-medium text-zinc-900 dark:text-zinc-100 outline-none placeholder:text-zinc-400",
-                inputSizeClasses[size]
+                inputSizeClasses[size],
               )}
               placeholder="00"
             />
-            <button type="button" onClick={decrementMinute} className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 outline-none" tabIndex={-1}>
+            <button
+              type="button"
+              onClick={decrementMinute}
+              className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 outline-none"
+              tabIndex={-1}
+            >
               <Icon icon="hugeicons:arrow-down-01" className="w-3 h-3" />
             </button>
           </div>
@@ -328,7 +374,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
                 "ml-1 flex items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 font-medium transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700",
                 size === "sm" && "px-1.5 py-0.5 text-[10px]",
                 size === "md" && "px-2 py-1 text-xs",
-                size === "lg" && "px-2.5 py-1.5 text-sm"
+                size === "lg" && "px-2.5 py-1.5 text-sm",
               )}
             >
               {timeState.period}
@@ -342,6 +388,6 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
         )}
       </div>
     );
-  }
+  },
 );
 TimePicker.displayName = "TimePicker";

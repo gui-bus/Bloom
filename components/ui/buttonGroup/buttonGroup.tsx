@@ -62,18 +62,35 @@ export const ButtonGroup = React.memo(
           color: child.props.color || color,
           size: child.props.size || size,
           radius: child.props.radius || radius,
-          isLoading: child.props.isLoading !== undefined ? child.props.isLoading : isLoading,
-          isDisabled: child.props.isDisabled !== undefined ? child.props.isDisabled : isDisabled,
+          isLoading:
+            child.props.isLoading !== undefined
+              ? child.props.isLoading
+              : isLoading,
+          isDisabled:
+            child.props.isDisabled !== undefined
+              ? child.props.isDisabled
+              : isDisabled,
           className: cn(
             child.props.className,
             isAttached && radiusClasses,
             "focus-visible:z-10 focus-visible:relative",
             isAttached && !isFirst && !isVertical && "-ml-px",
-            isAttached && !isFirst && isVertical && "-mt-px"
+            isAttached && !isFirst && isVertical && "-mt-px",
           ),
         });
       });
-    }, [childrenArray, variant, color, size, radius, orientation, isAttached, isLoading, isDisabled, count]);
+    }, [
+      childrenArray,
+      variant,
+      color,
+      size,
+      radius,
+      orientation,
+      isAttached,
+      isLoading,
+      isDisabled,
+      count,
+    ]);
 
     return (
       <div
@@ -84,13 +101,13 @@ export const ButtonGroup = React.memo(
           "inline-flex items-center",
           orientation === "vertical" ? "flex-col" : "flex-row",
           !isAttached && (orientation === "vertical" ? "gap-2" : "gap-2"),
-          className
+          className,
         )}
       >
         {clonedChildren}
       </div>
     );
-  }
+  },
 );
 
 ButtonGroup.displayName = "ButtonGroup";

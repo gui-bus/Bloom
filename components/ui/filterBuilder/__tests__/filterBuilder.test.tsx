@@ -16,14 +16,26 @@ const initialValue: FilterGroup = {
 describe("FilterBuilder Component", () => {
   it("renders rules and field selector", () => {
     const handleChange = vi.fn();
-    render(<FilterBuilder fields={fields} value={initialValue} onChange={handleChange} />);
+    render(
+      <FilterBuilder
+        fields={fields}
+        value={initialValue}
+        onChange={handleChange}
+      />,
+    );
     expect(screen.getByDisplayValue("Name")).toBeInTheDocument();
     expect(screen.getByDisplayValue("Alice")).toBeInTheDocument();
   });
 
   it("adds a new rule on button click", () => {
     const handleChange = vi.fn();
-    render(<FilterBuilder fields={fields} value={initialValue} onChange={handleChange} />);
+    render(
+      <FilterBuilder
+        fields={fields}
+        value={initialValue}
+        onChange={handleChange}
+      />,
+    );
 
     const addRuleBtn = screen.getByRole("button", { name: /add rule/i });
     fireEvent.click(addRuleBtn);

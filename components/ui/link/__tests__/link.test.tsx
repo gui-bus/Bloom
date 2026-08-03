@@ -12,7 +12,11 @@ describe("Link Component", () => {
   });
 
   it("renders external link with target _blank and rel attributes", () => {
-    render(<Link href="https://google.com" isExternal>Google</Link>);
+    render(
+      <Link href="https://google.com" isExternal>
+        Google
+      </Link>,
+    );
     const link = screen.getByText("Google").closest("a");
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");

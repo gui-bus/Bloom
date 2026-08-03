@@ -30,7 +30,7 @@ export function useInfiniteScroll(options: {
         onLoadMore();
       }
     },
-    [hasMore, isLoading, triggered, onLoadMore]
+    [hasMore, isLoading, triggered, onLoadMore],
   );
 
   // Reset triggered state when loading completes

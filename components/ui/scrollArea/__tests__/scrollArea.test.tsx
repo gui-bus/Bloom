@@ -8,7 +8,7 @@ describe("ScrollArea Component", () => {
     render(
       <ScrollArea className="h-40 w-40">
         <div>Test Scroll Content</div>
-      </ScrollArea>
+      </ScrollArea>,
     );
     expect(screen.getByText("Test Scroll Content")).toBeInTheDocument();
   });

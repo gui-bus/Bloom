@@ -1,7 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { AlertCircle, CheckCircle2, Info, AlertTriangle, X } from "lucide-react";
+import {
+  AlertCircle,
+  CheckCircle2,
+  Info,
+  AlertTriangle,
+  X,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type AlertColor =
@@ -14,7 +20,14 @@ type AlertColor =
   | "warning"
   | "danger";
 
-type AlertVariant = "default" | "bordered" | "flat" | "ghost" | "shadow" | "accent-left" | "glow";
+type AlertVariant =
+  | "default"
+  | "bordered"
+  | "flat"
+  | "ghost"
+  | "shadow"
+  | "accent-left"
+  | "glow";
 
 interface AlertContextValue {
   color: AlertColor;
@@ -62,23 +75,35 @@ const accentLeftBorderMap: Record<AlertColor, string> = {
 };
 
 const glowMap: Record<AlertColor, string> = {
-  default: "shadow-[0_0_15px_rgba(113,113,122,0.25)] border-zinc-300 dark:border-zinc-700",
-  primary: "shadow-[0_0_15px_rgba(14,165,233,0.3)] border-sky-400/50 dark:border-sky-500/50",
-  secondary: "shadow-[0_0_15px_rgba(168,85,247,0.3)] border-purple-400/50 dark:border-purple-500/50",
-  accent: "shadow-[0_0_15px_rgba(236,72,153,0.3)] border-pink-400/50 dark:border-pink-500/50",
+  default:
+    "shadow-[0_0_15px_rgba(113,113,122,0.25)] border-zinc-300 dark:border-zinc-700",
+  primary:
+    "shadow-[0_0_15px_rgba(14,165,233,0.3)] border-sky-400/50 dark:border-sky-500/50",
+  secondary:
+    "shadow-[0_0_15px_rgba(168,85,247,0.3)] border-purple-400/50 dark:border-purple-500/50",
+  accent:
+    "shadow-[0_0_15px_rgba(236,72,153,0.3)] border-pink-400/50 dark:border-pink-500/50",
   info: "shadow-[0_0_15px_rgba(14,165,233,0.3)] border-sky-400/50 dark:border-sky-500/50",
-  success: "shadow-[0_0_15px_rgba(16,185,129,0.3)] border-emerald-400/50 dark:border-emerald-500/50",
-  warning: "shadow-[0_0_15px_rgba(245,158,11,0.3)] border-amber-400/50 dark:border-amber-500/50",
-  danger: "shadow-[0_0_15px_rgba(244,63,94,0.3)] border-rose-400/50 dark:border-rose-500/50",
+  success:
+    "shadow-[0_0_15px_rgba(16,185,129,0.3)] border-emerald-400/50 dark:border-emerald-500/50",
+  warning:
+    "shadow-[0_0_15px_rgba(245,158,11,0.3)] border-amber-400/50 dark:border-amber-500/50",
+  danger:
+    "shadow-[0_0_15px_rgba(244,63,94,0.3)] border-rose-400/50 dark:border-rose-500/50",
 };
 
 const variantCardMap: Record<AlertVariant, string> = {
-  default: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200/80 dark:border-zinc-800/80 shadow-xs",
-  bordered: "bg-transparent text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800",
+  default:
+    "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200/80 dark:border-zinc-800/80 shadow-xs",
+  bordered:
+    "bg-transparent text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800",
   flat: "bg-zinc-100/90 dark:bg-zinc-900/60 text-zinc-900 dark:text-zinc-100 border border-transparent",
-  ghost: "bg-transparent text-zinc-900 dark:text-zinc-100 border border-transparent",
-  shadow: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200/60 dark:border-zinc-800/60 shadow-md",
-  "accent-left": "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border-y border-r border-zinc-200/80 dark:border-zinc-800/80 shadow-xs",
+  ghost:
+    "bg-transparent text-zinc-900 dark:text-zinc-100 border border-transparent",
+  shadow:
+    "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200/60 dark:border-zinc-800/60 shadow-md",
+  "accent-left":
+    "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border-y border-r border-zinc-200/80 dark:border-zinc-800/80 shadow-xs",
   glow: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border",
 };
 
@@ -128,7 +153,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [isVisible, setIsVisible] = React.useState(true);
 
@@ -150,15 +175,14 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
 
     const IconComponent = iconMap[color];
 
-    const renderedStart = startContent ?? (
-      !hideIcon && (
-        icon ?? (
+    const renderedStart =
+      startContent ??
+      (!hideIcon &&
+        (icon ?? (
           <IconComponent
             className={cn("size-5 shrink-0 mt-0.5", iconColorMap[color])}
           />
-        )
-      )
-    );
+        )));
 
     const canClose = isClosable || isDismissible;
 
@@ -172,7 +196,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             variantCardMap[variant],
             variant === "accent-left" && accentLeftBorderMap[color],
             variant === "glow" && glowMap[color],
-            className
+            className,
           )}
           {...props}
         >
@@ -180,13 +204,12 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
 
           <div className="flex flex-col flex-1 min-w-0">
             {title && <AlertTitle>{title}</AlertTitle>}
-            {children && (
-              typeof children === "string" ? (
+            {children &&
+              (typeof children === "string" ? (
                 <AlertDescription>{children}</AlertDescription>
               ) : (
                 children
-              )
-            )}
+              ))}
             {action && <div className="mt-2.5">{action}</div>}
           </div>
 
@@ -208,7 +231,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         </div>
       </AlertContext.Provider>
     );
-  }
+  },
 );
 Alert.displayName = "Alert";
 
@@ -224,7 +247,7 @@ const AlertTitle = React.forwardRef<
       className={cn(
         "font-semibold text-sm leading-none tracking-tight",
         titleColorMap[color],
-        className
+        className,
       )}
       {...props}
     >
@@ -242,7 +265,7 @@ const AlertDescription = React.forwardRef<
     ref={ref}
     className={cn(
       "text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mt-1.5",
-      className
+      className,
     )}
     {...props}
   >

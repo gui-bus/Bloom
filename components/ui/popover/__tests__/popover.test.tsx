@@ -9,7 +9,7 @@ describe("Popover Component", () => {
       <Popover>
         <PopoverTrigger>Open Popover</PopoverTrigger>
         <PopoverContent>Popover Body Content</PopoverContent>
-      </Popover>
+      </Popover>,
     );
 
     expect(screen.getByText("Open Popover")).toBeInTheDocument();

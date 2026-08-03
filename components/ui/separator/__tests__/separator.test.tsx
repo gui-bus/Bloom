@@ -6,7 +6,9 @@ import { Separator } from "../separator";
 describe("Separator Component", () => {
   it("renders horizontal separator by default", () => {
     const { container } = render(<Separator />);
-    const root = container.querySelector('[role="none"]') || container.querySelector('[role="separator"]');
+    const root =
+      container.querySelector('[role="none"]') ||
+      container.querySelector('[role="separator"]');
     expect(root).toBeInTheDocument();
     expect(root).toHaveClass("h-px", "w-full");
   });

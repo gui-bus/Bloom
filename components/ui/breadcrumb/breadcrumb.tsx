@@ -13,63 +13,77 @@ const Breadcrumb = React.forwardRef<
     itemsAfterCollapse?: number;
     enableJsonLdSchema?: boolean;
   }
->(({ children, separator, maxItems, itemsBeforeCollapse = 1, itemsAfterCollapse = 1, enableJsonLdSchema = false, className, ...props }, ref) => {
-  const generateJsonLd = () => {
-    if (!enableJsonLdSchema) return null;
-    const itemListElement: any[] = [];
-    let position = 1;
+>(
+  (
+    {
+      children,
+      separator,
+      maxItems,
+      itemsBeforeCollapse = 1,
+      itemsAfterCollapse = 1,
+      enableJsonLdSchema = false,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
+    const generateJsonLd = () => {
+      if (!enableJsonLdSchema) return null;
+      const itemListElement: any[] = [];
+      let position = 1;
 
-    React.Children.forEach(children, (child) => {
-      if (React.isValidElement(child) && child.type === BreadcrumbList) {
-        const listProps = (child as React.ReactElement<any>).props;
-        React.Children.forEach(listProps.children, (item) => {
-          if (React.isValidElement(item) && item.type === BreadcrumbItem) {
-            const itemProps = (item as React.ReactElement<any>).props;
-            React.Children.forEach(itemProps.children, (link) => {
-              if (React.isValidElement(link)) {
-                const linkEl = link as React.ReactElement<any>;
-                if (linkEl.type === BreadcrumbLink && linkEl.props.href) {
-                  itemListElement.push({
-                    "@type": "ListItem",
-                    position: position++,
-                    name: linkEl.props.children,
-                    item: linkEl.props.href,
-                  });
-                } else if (linkEl.type === BreadcrumbPage) {
-                  itemListElement.push({
-                    "@type": "ListItem",
-                    position: position++,
-                    name: linkEl.props.children,
-                  });
+      React.Children.forEach(children, (child) => {
+        if (React.isValidElement(child) && child.type === BreadcrumbList) {
+          const listProps = (child as React.ReactElement<any>).props;
+          React.Children.forEach(listProps.children, (item) => {
+            if (React.isValidElement(item) && item.type === BreadcrumbItem) {
+              const itemProps = (item as React.ReactElement<any>).props;
+              React.Children.forEach(itemProps.children, (link) => {
+                if (React.isValidElement(link)) {
+                  const linkEl = link as React.ReactElement<any>;
+                  if (linkEl.type === BreadcrumbLink && linkEl.props.href) {
+                    itemListElement.push({
+                      "@type": "ListItem",
+                      position: position++,
+                      name: linkEl.props.children,
+                      item: linkEl.props.href,
+                    });
+                  } else if (linkEl.type === BreadcrumbPage) {
+                    itemListElement.push({
+                      "@type": "ListItem",
+                      position: position++,
+                      name: linkEl.props.children,
+                    });
+                  }
                 }
-              }
-            });
-          }
-        });
-      }
-    });
+              });
+            }
+          });
+        }
+      });
 
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement,
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement,
+      };
+
+      return (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      );
     };
 
     return (
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <nav ref={ref} aria-label="breadcrumb" className={className} {...props}>
+        {generateJsonLd()}
+        {children}
+      </nav>
     );
-  };
-
-  return (
-    <nav ref={ref} aria-label="breadcrumb" className={className} {...props}>
-      {generateJsonLd()}
-      {children}
-    </nav>
-  );
-});
+  },
+);
 Breadcrumb.displayName = "Breadcrumb";
 
 const BreadcrumbList = React.forwardRef<
@@ -79,41 +93,59 @@ const BreadcrumbList = React.forwardRef<
     itemsBeforeCollapse?: number;
     itemsAfterCollapse?: number;
   }
->(({ className, children, maxItems, itemsBeforeCollapse = 1, itemsAfterCollapse = 1, ...props }, ref) => {
-  const [isExpanded, setIsExpanded] = React.useState(false);
-  const items = React.Children.toArray(children);
-  const totalItems = items.length;
+>(
+  (
+    {
+      className,
+      children,
+      maxItems,
+      itemsBeforeCollapse = 1,
+      itemsAfterCollapse = 1,
+      ...props
+    },
+    ref,
+  ) => {
+    const [isExpanded, setIsExpanded] = React.useState(false);
+    const items = React.Children.toArray(children);
+    const totalItems = items.length;
 
-  let renderedItems = items;
+    let renderedItems = items;
 
-  if (maxItems && totalItems > maxItems && !isExpanded) {
-    const startItems = items.slice(0, itemsBeforeCollapse * 2);
-    const endItems = items.slice(totalItems - (itemsAfterCollapse * 2 - 1));
-    const hiddenItems = items.slice(itemsBeforeCollapse * 2, totalItems - (itemsAfterCollapse * 2 - 1));
+    if (maxItems && totalItems > maxItems && !isExpanded) {
+      const startItems = items.slice(0, itemsBeforeCollapse * 2);
+      const endItems = items.slice(totalItems - (itemsAfterCollapse * 2 - 1));
+      const hiddenItems = items.slice(
+        itemsBeforeCollapse * 2,
+        totalItems - (itemsAfterCollapse * 2 - 1),
+      );
 
-    renderedItems = [
-      ...startItems,
-      <BreadcrumbItem key="ellipsis-collapsed">
-        <BreadcrumbEllipsisDropdown items={hiddenItems} onExpand={() => setIsExpanded(true)} />
-      </BreadcrumbItem>,
-      <BreadcrumbSeparator key="ellipsis-separator" />,
-      ...endItems,
-    ];
-  }
+      renderedItems = [
+        ...startItems,
+        <BreadcrumbItem key="ellipsis-collapsed">
+          <BreadcrumbEllipsisDropdown
+            items={hiddenItems}
+            onExpand={() => setIsExpanded(true)}
+          />
+        </BreadcrumbItem>,
+        <BreadcrumbSeparator key="ellipsis-separator" />,
+        ...endItems,
+      ];
+    }
 
-  return (
-    <ol
-      ref={ref}
-      className={cn(
-        "flex flex-wrap items-center gap-1.5 break-words text-sm text-zinc-500 dark:text-zinc-400 sm:gap-2",
-        className
-      )}
-      {...props}
-    >
-      {renderedItems}
-    </ol>
-  );
-});
+    return (
+      <ol
+        ref={ref}
+        className={cn(
+          "flex flex-wrap items-center gap-1.5 break-words text-sm text-zinc-500 dark:text-zinc-400 sm:gap-2",
+          className,
+        )}
+        {...props}
+      >
+        {renderedItems}
+      </ol>
+    );
+  },
+);
 BreadcrumbList.displayName = "BreadcrumbList";
 
 const BreadcrumbEllipsisDropdown = ({
@@ -139,7 +171,10 @@ const BreadcrumbEllipsisDropdown = ({
         <div className="absolute left-0 top-full mt-1.5 z-50 min-w-36 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-1.5 shadow-lg animate-in fade-in-0 zoom-in-95">
           <div className="flex flex-col gap-1">
             {cleanItems.map((item, idx) => (
-              <div key={idx} className="px-2 py-1 text-xs hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg">
+              <div
+                key={idx}
+                className="px-2 py-1 text-xs hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg"
+              >
                 {React.isValidElement(item) && item.type === BreadcrumbItem
                   ? (item as React.ReactElement<any>).props.children
                   : item}
@@ -175,7 +210,7 @@ const BreadcrumbLink = React.forwardRef<
       ref={ref}
       className={cn(
         "inline-flex items-center gap-1.5 transition-colors text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 cursor-pointer font-medium",
-        className
+        className,
       )}
       {...props}
     >
@@ -197,10 +232,18 @@ const BreadcrumbPage = React.forwardRef<
     role="link"
     aria-disabled="true"
     aria-current="page"
-    className={cn("inline-flex items-center gap-1.5 font-semibold text-zinc-900 dark:text-zinc-100", className)}
+    className={cn(
+      "inline-flex items-center gap-1.5 font-semibold text-zinc-900 dark:text-zinc-100",
+      className,
+    )}
     {...props}
   >
-    {icon && <Icon icon={icon} className="size-4 shrink-0 text-sky-600 dark:text-sky-400" />}
+    {icon && (
+      <Icon
+        icon={icon}
+        className="size-4 shrink-0 text-sky-600 dark:text-sky-400"
+      />
+    )}
     {children}
   </span>
 ));
@@ -214,7 +257,10 @@ const BreadcrumbSeparator = ({
   <li
     role="presentation"
     aria-hidden="true"
-    className={cn("[&>svg]:size-3.5 text-zinc-400 dark:text-zinc-600 select-none", className)}
+    className={cn(
+      "[&>svg]:size-3.5 text-zinc-400 dark:text-zinc-600 select-none",
+      className,
+    )}
     {...props}
   >
     {children ?? <Icon icon="hugeicons:arrow-right-01" className="size-3.5" />}
@@ -232,7 +278,7 @@ const BreadcrumbEllipsis = ({
     aria-label="Toggle collapsed breadcrumbs"
     className={cn(
       "flex size-7 items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-      className
+      className,
     )}
     {...props}
   >

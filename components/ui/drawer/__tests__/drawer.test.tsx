@@ -1,12 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import * as React from "react";
 import { describe, it, expect, beforeEach } from "vitest";
-import {
-  Drawer,
-  DrawerTrigger,
-  DrawerContent,
-  DrawerTitle,
-} from "../drawer";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerTitle } from "../drawer";
 
 describe("Drawer Component", () => {
   beforeEach(() => {
@@ -32,7 +27,7 @@ describe("Drawer Component", () => {
         <DrawerContent>
           <DrawerTitle>Bottom Drawer Title</DrawerTitle>
         </DrawerContent>
-      </Drawer>
+      </Drawer>,
     );
 
     expect(screen.getByText("Open Bottom Drawer")).toBeInTheDocument();

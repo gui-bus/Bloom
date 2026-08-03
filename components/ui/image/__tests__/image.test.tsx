@@ -5,10 +5,18 @@ import { Image } from "../image";
 
 describe("Image Component", () => {
   it("renders image tag with src and alt", () => {
-    render(<Image src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809" alt="Gradient background" />);
+    render(
+      <Image
+        src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809"
+        alt="Gradient background"
+      />,
+    );
     const img = screen.getByAltText("Gradient background");
     expect(img).toBeInTheDocument();
-    expect(img).toHaveAttribute("src", "https://images.unsplash.com/photo-1579546929518-9e396f3cc809");
+    expect(img).toHaveAttribute(
+      "src",
+      "https://images.unsplash.com/photo-1579546929518-9e396f3cc809",
+    );
   });
 
   it("renders caption when provided", () => {
@@ -17,9 +25,11 @@ describe("Image Component", () => {
         src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809"
         alt="Gradient"
         caption="A colorful abstract gradient"
-      />
+      />,
     );
-    expect(screen.getByText("A colorful abstract gradient")).toBeInTheDocument();
+    expect(
+      screen.getByText("A colorful abstract gradient"),
+    ).toBeInTheDocument();
   });
 
   it("renders fallback UI on image error", () => {
@@ -28,7 +38,7 @@ describe("Image Component", () => {
         src="invalid-image-url.jpg"
         alt="Broken"
         fallback={<div data-testid="custom-fallback">Image Error</div>}
-      />
+      />,
     );
     const img = screen.getByAltText("Broken");
     fireEvent.error(img);
@@ -43,7 +53,7 @@ describe("Image Component", () => {
         src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809"
         alt="Zoomable"
         isZoomable
-      />
+      />,
     );
     const img = screen.getByAltText("Zoomable");
     expect(img).toHaveClass("hover:scale-105", "cursor-pointer");

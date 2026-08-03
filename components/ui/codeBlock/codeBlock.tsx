@@ -30,7 +30,9 @@ export interface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {
   wordWrap?: boolean;
 }
 
-function parseHighlightLines(highlightLines?: (number | string)[]): Set<number> {
+function parseHighlightLines(
+  highlightLines?: (number | string)[],
+): Set<number> {
   const set = new Set<number>();
   if (!highlightLines) return set;
   for (const item of highlightLines) {
@@ -79,7 +81,9 @@ export function CodeBlock({
   const currentFileName = activeFile ? activeFile.name : componentName;
   const currentDescription = activeFile?.description ?? description;
   const currentTags = activeFile?.tags ?? tags;
-  const currentLanguage = activeFile?.language ?? (currentFileName?.endsWith(".css") ? "css" : language);
+  const currentLanguage =
+    activeFile?.language ??
+    (currentFileName?.endsWith(".css") ? "css" : language);
   const currentHighlightLines = activeFile?.highlightLines ?? highlightLines;
 
   useEffect(() => {
@@ -124,7 +128,7 @@ export function CodeBlock({
         startContent={<Icon icon="hugeicons:text-wrap" className="size-3.5" />}
         className={cn(
           "bg-white/10 hover:bg-white/20 text-white rounded-lg px-2.5 py-1.5 border border-white/5 text-xs transition-colors cursor-pointer",
-          isWrapEnabled && "bg-sky-500/20 text-sky-300 border-sky-500/30"
+          isWrapEnabled && "bg-sky-500/20 text-sky-300 border-sky-500/30",
         )}
         title="Toggle Word Wrap"
       >
@@ -155,7 +159,10 @@ export function CodeBlock({
   return (
     <div
       ref={containerRef}
-      className={cn("relative bg-[#282C34] text-[#f8f8f2] rounded-3xl p-5 overflow-hidden", className)}
+      className={cn(
+        "relative bg-[#282C34] text-[#f8f8f2] rounded-3xl p-5 overflow-hidden",
+        className,
+      )}
       {...props}
     >
       <div className="flex flex-col gap-2">
@@ -163,7 +170,9 @@ export function CodeBlock({
           <div className="flex items-center justify-between gap-4 pb-2 border-b border-white/10 overflow-x-auto">
             <div className="flex items-center gap-1.5 overflow-x-auto">
               {files.map((file, idx) => {
-                const fileLang = file.language || (file.name.endsWith(".css") ? "css" : "typescript");
+                const fileLang =
+                  file.language ||
+                  (file.name.endsWith(".css") ? "css" : "typescript");
                 const isActive = idx === activeFileIndex;
                 return (
                   <button
@@ -174,10 +183,13 @@ export function CodeBlock({
                       "flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer",
                       isActive
                         ? "bg-white/15 text-white font-semibold shadow-xs"
-                        : "text-white/60 hover:text-white hover:bg-white/5"
+                        : "text-white/60 hover:text-white hover:bg-white/5",
                     )}
                   >
-                    <Icon icon={iconMap[fileLang] || "lucide:code"} className="size-3.5" />
+                    <Icon
+                      icon={iconMap[fileLang] || "lucide:code"}
+                      className="size-3.5"
+                    />
                     <span>{file.name}</span>
                   </button>
                 );
@@ -205,7 +217,9 @@ export function CodeBlock({
         )}
 
         {currentDescription && (
-          <p className="text-sm text-white/70 max-w-[90%] pt-1">{currentDescription}</p>
+          <p className="text-sm text-white/70 max-w-[90%] pt-1">
+            {currentDescription}
+          </p>
         )}
 
         {currentTags && currentTags.length > 0 && (
@@ -226,8 +240,10 @@ export function CodeBlock({
         <pre
           className={cn(
             "rounded-2xl text-sm transition-all duration-300 bg-[#282C34] p-3 text-[#f8f8f2]",
-            isWrapEnabled ? "whitespace-pre-wrap break-words overflow-y-auto" : "whitespace-pre overflow-x-auto",
-            !isExpanded && "overflow-hidden"
+            isWrapEnabled
+              ? "whitespace-pre-wrap break-words overflow-y-auto"
+              : "whitespace-pre overflow-x-auto",
+            !isExpanded && "overflow-hidden",
           )}
           style={{
             maxHeight: isExpanded ? "none" : `${maxHeight}px`,
@@ -243,10 +259,13 @@ export function CodeBlock({
                     key={lineIndex}
                     className={cn(
                       "px-3 py-0.5 flex items-start gap-4 transition-colors bg-[#282C34]",
-                      isHighlighted && "bg-sky-500/20 border-l-2 border-sky-400 font-semibold"
+                      isHighlighted &&
+                        "bg-sky-500/20 border-l-2 border-sky-400 font-semibold",
                     )}
                   >
-                    <code className={`language-${currentLanguage} flex-1 bg-[#282C34]`}>
+                    <code
+                      className={`language-${currentLanguage} flex-1 bg-[#282C34]`}
+                    >
                       {lineContent || " "}
                     </code>
                   </div>

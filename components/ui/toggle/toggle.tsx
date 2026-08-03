@@ -11,8 +11,10 @@ const toggleVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-transparent text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 data-[state=on]:bg-zinc-900 dark:data-[state=on]:bg-zinc-100 data-[state=on]:text-white dark:data-[state=on]:text-zinc-900 shadow-xs",
-        outline: "border border-zinc-200 dark:border-zinc-800 bg-transparent text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 data-[state=on]:border-sky-500 data-[state=on]:bg-sky-500/10 data-[state=on]:text-sky-600 dark:data-[state=on]:text-sky-400",
+        default:
+          "bg-transparent text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 data-[state=on]:bg-zinc-900 dark:data-[state=on]:bg-zinc-100 data-[state=on]:text-white dark:data-[state=on]:text-zinc-900 shadow-xs",
+        outline:
+          "border border-zinc-200 dark:border-zinc-800 bg-transparent text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 data-[state=on]:border-sky-500 data-[state=on]:bg-sky-500/10 data-[state=on]:text-sky-600 dark:data-[state=on]:text-sky-400",
         flat: "bg-zinc-100 dark:bg-zinc-800/60 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/60 dark:hover:bg-zinc-800 data-[state=on]:bg-sky-500 data-[state=on]:text-white shadow-xs",
       },
       size: {
@@ -25,7 +27,7 @@ const toggleVariants = cva(
       variant: "default",
       size: "md",
     },
-  }
+  },
 );
 
 export interface ToggleProps
@@ -43,7 +45,7 @@ const Toggle = React.forwardRef<
     className={cn(
       toggleVariants({ variant, size }),
       designRadius[radius],
-      className
+      className,
     )}
     {...props}
   />

@@ -1,7 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import { describe, it, expect } from "vitest";
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "../resizable";
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "../resizable";
 
 describe("Resizable Component", () => {
   it("renders panel group structure and children content", () => {
@@ -14,7 +18,7 @@ describe("Resizable Component", () => {
         <ResizablePanel defaultSize={50}>
           <div>Panel Two</div>
         </ResizablePanel>
-      </ResizablePanelGroup>
+      </ResizablePanelGroup>,
     );
 
     expect(screen.getByText("Panel One")).toBeInTheDocument();

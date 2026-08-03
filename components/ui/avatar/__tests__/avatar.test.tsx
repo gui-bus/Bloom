@@ -8,7 +8,7 @@ describe("Avatar Component", () => {
     render(
       <Avatar>
         <AvatarFallback>GB</AvatarFallback>
-      </Avatar>
+      </Avatar>,
     );
     expect(screen.getByText("GB")).toBeInTheDocument();
   });
@@ -17,7 +17,7 @@ describe("Avatar Component", () => {
     const { container } = render(
       <Avatar isBordered color="primary">
         <AvatarFallback>JD</AvatarFallback>
-      </Avatar>
+      </Avatar>,
     );
     const root = container.querySelector('[class*="ring-2"]');
     expect(root).toBeInTheDocument();
@@ -28,7 +28,7 @@ describe("Avatar Component", () => {
     const { container } = render(
       <Avatar status="success" statusPosition="top-right">
         <AvatarFallback>AB</AvatarFallback>
-      </Avatar>
+      </Avatar>,
     );
     const statusDot = container.querySelector(".bg-success");
     expect(statusDot).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe("Avatar Component", () => {
     const { container } = render(
       <Avatar isDisabled>
         <AvatarFallback>DS</AvatarFallback>
-      </Avatar>
+      </Avatar>,
     );
     const root = container.querySelector('[class*="opacity-50"]');
     expect(root).toBeInTheDocument();
@@ -51,7 +51,7 @@ describe("Avatar Component", () => {
     const { container } = render(
       <Avatar isPressable onClick={handleClick}>
         <AvatarFallback>PR</AvatarFallback>
-      </Avatar>
+      </Avatar>,
     );
 
     const root = container.querySelector('[class*="cursor-pointer"]');
@@ -68,7 +68,7 @@ describe("Avatar Component", () => {
     const { container } = render(
       <Avatar size="lg">
         <AvatarFallback>LG</AvatarFallback>
-      </Avatar>
+      </Avatar>,
     );
     const root = container.querySelector('[class*="size-12"]');
     expect(root).toBeInTheDocument();

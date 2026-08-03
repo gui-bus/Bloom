@@ -22,7 +22,7 @@ describe("AlertDialog Component", () => {
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction color="danger">Delete</AlertDialogAction>
         </AlertDialogContent>
-      </AlertDialog>
+      </AlertDialog>,
     );
 
     expect(screen.getByText("Delete Account")).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe("AlertDialog Component", () => {
         <AlertDialogContent>
           <AlertDialogCancel>Cancel Dialog</AlertDialogCancel>
         </AlertDialogContent>
-      </AlertDialog>
+      </AlertDialog>,
     );
 
     const cancelButton = screen.getByText("Cancel Dialog");
@@ -49,15 +49,23 @@ describe("AlertDialog Component", () => {
   });
 
   it("supports color props on AlertDialogAction", () => {
-    const colors = ["danger", "primary", "warning", "success", "default"] as const;
+    const colors = [
+      "danger",
+      "primary",
+      "warning",
+      "success",
+      "default",
+    ] as const;
 
     for (const color of colors) {
       const { unmount } = render(
         <AlertDialog defaultOpen>
           <AlertDialogContent>
-            <AlertDialogAction color={color}>{`${color} action`}</AlertDialogAction>
+            <AlertDialogAction
+              color={color}
+            >{`${color} action`}</AlertDialogAction>
           </AlertDialogContent>
-        </AlertDialog>
+        </AlertDialog>,
       );
       expect(screen.getByText(`${color} action`)).toBeInTheDocument();
       unmount();

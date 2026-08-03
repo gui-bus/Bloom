@@ -11,7 +11,7 @@ describe("StatCard Component", () => {
         value="$45,231.89"
         change="+20.1%"
         trend="up"
-      />
+      />,
     );
 
     expect(screen.getByText("Total Revenue")).toBeInTheDocument();

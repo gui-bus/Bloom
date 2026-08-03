@@ -12,7 +12,9 @@ describe("ColorPicker Component", () => {
 
   it("updates value when color input changes", () => {
     const handleChange = vi.fn();
-    const { container } = render(<ColorPicker defaultValue="#ffffff" onValueChange={handleChange} />);
+    const { container } = render(
+      <ColorPicker defaultValue="#ffffff" onValueChange={handleChange} />,
+    );
 
     const colorInput = container.querySelector('input[type="color"]');
     if (colorInput) {

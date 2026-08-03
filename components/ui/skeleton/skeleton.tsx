@@ -28,7 +28,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     if (isLoaded) {
       return <>{children}</>;
@@ -45,7 +45,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
           animation === "pulse" && "animate-pulse",
           variantStyles[variant],
           variant !== "circle" && designRadius[radius],
-          className
+          className,
         )}
         {...props}
       >
@@ -55,7 +55,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
         <span className="sr-only">Loading...</span>
       </div>
     );
-  }
+  },
 );
 
 Skeleton.displayName = "Skeleton";

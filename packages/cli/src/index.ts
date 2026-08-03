@@ -2,7 +2,15 @@ import { Command } from "commander";
 import * as fs from "fs";
 import * as path from "path";
 import { execSync } from "child_process";
-import { intro, outro, text, confirm, select, spinner, log } from "@clack/prompts";
+import {
+  intro,
+  outro,
+  text,
+  confirm,
+  select,
+  spinner,
+  log,
+} from "@clack/prompts";
 import pc from "picocolors";
 
 const packageJsonPath = path.join(__dirname, "../package.json");
@@ -14,12 +22,15 @@ program
   .description("CLI to manage Bloom UI components in your codebase")
   .version(packageJson.version);
 
-const GITHUB_REGISTRY_BASE = "https://raw.githubusercontent.com/gui-bus/Bloom/main/public/registry";
+const GITHUB_REGISTRY_BASE =
+  "https://raw.githubusercontent.com/gui-bus/Bloom/main/public/registry";
 const LOCAL_REGISTRY_BASE = "http://localhost:3000/registry";
 
 async function getRegistryBase(): Promise<string> {
   try {
-    const res = await fetch(`${LOCAL_REGISTRY_BASE}/index.json`, { signal: AbortSignal.timeout(1000) });
+    const res = await fetch(`${LOCAL_REGISTRY_BASE}/index.json`, {
+      signal: AbortSignal.timeout(1000),
+    });
     if (res.ok) return LOCAL_REGISTRY_BASE;
   } catch (e) {
     // Ignore and fallback
@@ -72,7 +83,8 @@ program
       componentDir = componentDirInput;
 
       const utilsDirInput = await text({
-        message: "Where would you like to install the utility files (utils/design-system)?",
+        message:
+          "Where would you like to install the utility files (utils/design-system)?",
         placeholder: "lib",
         defaultValue: "lib",
       });
@@ -81,7 +93,8 @@ program
       utilsDir = utilsDirInput;
 
       const installDepsInput = await confirm({
-        message: "Do you want us to install tailwind-merge and clsx if they are missing?",
+        message:
+          "Do you want us to install tailwind-merge and clsx if they are missing?",
       });
 
       if (typeof installDepsInput === "symbol") return;
@@ -114,14 +127,22 @@ program
     try {
       const utilsRes = await fetch(`${registryBase}/utils.json`);
       if (utilsRes.ok) {
-        const utilsData = await utilsRes.json() as { content: string };
-        fs.writeFileSync(path.join(targetUtilsDir, "utils.ts"), utilsData.content, "utf8");
+        const utilsData = (await utilsRes.json()) as { content: string };
+        fs.writeFileSync(
+          path.join(targetUtilsDir, "utils.ts"),
+          utilsData.content,
+          "utf8",
+        );
       }
 
       const dsRes = await fetch(`${registryBase}/design-system.json`);
       if (dsRes.ok) {
-        const dsData = await dsRes.json() as { content: string };
-        fs.writeFileSync(path.join(targetUtilsDir, "design-system.ts"), dsData.content, "utf8");
+        const dsData = (await dsRes.json()) as { content: string };
+        fs.writeFileSync(
+          path.join(targetUtilsDir, "design-system.ts"),
+          dsData.content,
+          "utf8",
+        );
       }
 
       const targetRippleDir = path.join(targetUtilsDir, "ripple");
@@ -131,21 +152,35 @@ program
 
       const rippleRes = await fetch(`${registryBase}/ripple.json`);
       if (rippleRes.ok) {
-        const rippleData = await rippleRes.json() as { content: string };
-        fs.writeFileSync(path.join(targetRippleDir, "ripple.tsx"), rippleData.content, "utf8");
+        const rippleData = (await rippleRes.json()) as { content: string };
+        fs.writeFileSync(
+          path.join(targetRippleDir, "ripple.tsx"),
+          rippleData.content,
+          "utf8",
+        );
       }
 
       const useRippleRes = await fetch(`${registryBase}/useRipple.json`);
       if (useRippleRes.ok) {
-        const useRippleData = await useRippleRes.json() as { content: string };
-        fs.writeFileSync(path.join(targetRippleDir, "useRipple.ts"), useRippleData.content, "utf8");
+        const useRippleData = (await useRippleRes.json()) as {
+          content: string;
+        };
+        fs.writeFileSync(
+          path.join(targetRippleDir, "useRipple.ts"),
+          useRippleData.content,
+          "utf8",
+        );
       }
     } catch (e) {
       if (!skipPrompts) {
         s.stop("Failed to retrieve setup utility files from registry.");
-        outro(pc.red("Error downloading utils or design-system configuration."));
+        outro(
+          pc.red("Error downloading utils or design-system configuration."),
+        );
       } else {
-        console.error("Error downloading utils or design-system configuration from registry.");
+        console.error(
+          "Error downloading utils or design-system configuration from registry.",
+        );
       }
       return;
     }
@@ -160,15 +195,20 @@ program
       const pkgManager = detectPackageManager();
       const sDeps = spinner();
       if (!skipPrompts) {
-        sDeps.start(`Installing clsx tailwind-merge and lucide-react via ${pkgManager}`);
+        sDeps.start(
+          `Installing clsx tailwind-merge and lucide-react via ${pkgManager}`,
+        );
       } else {
         console.log(`Installing dependencies using ${pkgManager}...`);
       }
       try {
         let installCmd = "";
-        if (pkgManager === "pnpm") installCmd = "pnpm add clsx tailwind-merge lucide-react";
-        else if (pkgManager === "yarn") installCmd = "yarn add clsx tailwind-merge lucide-react";
-        else if (pkgManager === "bun") installCmd = "bun add clsx tailwind-merge lucide-react";
+        if (pkgManager === "pnpm")
+          installCmd = "pnpm add clsx tailwind-merge lucide-react";
+        else if (pkgManager === "yarn")
+          installCmd = "yarn add clsx tailwind-merge lucide-react";
+        else if (pkgManager === "bun")
+          installCmd = "bun add clsx tailwind-merge lucide-react";
         else installCmd = "npm install clsx tailwind-merge lucide-react";
 
         execSync(installCmd, { stdio: "ignore" });
@@ -179,15 +219,23 @@ program
         }
       } catch (err) {
         if (!skipPrompts) {
-          sDeps.stop("Failed to install dependencies automatically. Please run install manually.");
+          sDeps.stop(
+            "Failed to install dependencies automatically. Please run install manually.",
+          );
         } else {
-          console.warn("Failed to install dependencies automatically. Please run install manually.");
+          console.warn(
+            "Failed to install dependencies automatically. Please run install manually.",
+          );
         }
       }
     }
 
     if (!skipPrompts) {
-      outro(pc.green("Bloom UI initialized! You can now add components using: npx bloom add <component>"));
+      outro(
+        pc.green(
+          "Bloom UI initialized! You can now add components using: npx bloom add <component>",
+        ),
+      );
     } else {
       console.log("Bloom UI successfully initialized!");
     }
@@ -204,7 +252,9 @@ program
 
     const configFile = path.join(process.cwd(), "bloom.json");
     if (!fs.existsSync(configFile)) {
-      console.error(pc.red("bloom.json not found. Run 'npx bloom init' first."));
+      console.error(
+        pc.red("bloom.json not found. Run 'npx bloom init' first."),
+      );
       return;
     }
 
@@ -220,7 +270,11 @@ program
 
     if (!selectedComponent) {
       if (skipPrompts) {
-        console.error(pc.red("Component name is required in non-interactive/non-TTY environments."));
+        console.error(
+          pc.red(
+            "Component name is required in non-interactive/non-TTY environments.",
+          ),
+        );
         return;
       }
 
@@ -230,7 +284,7 @@ program
       try {
         const res = await fetch(`${registryBase}/index.json`);
         if (res.ok) {
-          list = await res.json() as { name: string }[];
+          list = (await res.json()) as { name: string }[];
         }
       } catch (e) {
         // ignore
@@ -238,7 +292,11 @@ program
       sList.stop("Done fetching");
 
       if (list.length === 0) {
-        outro(pc.red("No components found in registry. Make sure you are online or your server is running."));
+        outro(
+          pc.red(
+            "No components found in registry. Make sure you are online or your server is running.",
+          ),
+        );
         return;
       }
 
@@ -259,13 +317,17 @@ program
     }
 
     try {
-      const res = await fetch(`${registryBase}/components/${selectedComponent}.json`);
+      const res = await fetch(
+        `${registryBase}/components/${selectedComponent}.json`,
+      );
       if (!res.ok) {
         if (!skipPrompts) {
           sAdd.stop(`Component ${selectedComponent} not found in registry.`);
           outro(pc.red("Download failed."));
         } else {
-          console.error(`Component ${selectedComponent} not found in registry. Download failed.`);
+          console.error(
+            `Component ${selectedComponent} not found in registry. Download failed.`,
+          );
         }
         return;
       }
@@ -276,9 +338,13 @@ program
         files: { name: string; content: string }[];
       }
 
-      const componentData = await res.json() as RegistryComponent;
+      const componentData = (await res.json()) as RegistryComponent;
 
-      const targetDir = path.join(process.cwd(), componentDir, selectedComponent);
+      const targetDir = path.join(
+        process.cwd(),
+        componentDir,
+        selectedComponent,
+      );
       if (!fs.existsSync(targetDir)) {
         fs.mkdirSync(targetDir, { recursive: true });
       }
@@ -286,19 +352,34 @@ program
       // Write files
       for (const file of componentData.files) {
         let updatedContent = file.content;
-        
+
         const fromPath = path.join(componentDir, selectedComponent);
         const toPath = config.utilsDir || "lib";
-        let relativeImportPath = path.relative(fromPath, toPath).replace(/\\/g, "/");
+        let relativeImportPath = path
+          .relative(fromPath, toPath)
+          .replace(/\\/g, "/");
         if (!relativeImportPath.startsWith(".")) {
           relativeImportPath = "./" + relativeImportPath;
         }
 
-        updatedContent = updatedContent.replace(/@\/lib\/utils/g, `${relativeImportPath}/utils`);
-        updatedContent = updatedContent.replace(/@\/lib\/design-system/g, `${relativeImportPath}/design-system`);
-        updatedContent = updatedContent.replace(/@\/hooks\/ripple/g, `../../hooks/ripple`);
+        updatedContent = updatedContent.replace(
+          /@\/lib\/utils/g,
+          `${relativeImportPath}/utils`,
+        );
+        updatedContent = updatedContent.replace(
+          /@\/lib\/design-system/g,
+          `${relativeImportPath}/design-system`,
+        );
+        updatedContent = updatedContent.replace(
+          /@\/hooks\/ripple/g,
+          `../../hooks/ripple`,
+        );
 
-        fs.writeFileSync(path.join(targetDir, file.name), updatedContent, "utf8");
+        fs.writeFileSync(
+          path.join(targetDir, file.name),
+          updatedContent,
+          "utf8",
+        );
       }
 
       if (!skipPrompts) {
@@ -312,9 +393,13 @@ program
         const pkgManager = detectPackageManager();
         const sDeps = spinner();
         if (!skipPrompts) {
-          sDeps.start(`Installing dependencies: ${componentData.dependencies.join(", ")}`);
+          sDeps.start(
+            `Installing dependencies: ${componentData.dependencies.join(", ")}`,
+          );
         } else {
-          console.log(`Installing dependencies: ${componentData.dependencies.join(", ")}...`);
+          console.log(
+            `Installing dependencies: ${componentData.dependencies.join(", ")}...`,
+          );
         }
         try {
           let installCmd = "";
@@ -335,24 +420,36 @@ program
           }
         } catch (err) {
           if (!skipPrompts) {
-            sDeps.stop("Failed to install dependencies automatically. Please install them manually.");
+            sDeps.stop(
+              "Failed to install dependencies automatically. Please install them manually.",
+            );
           } else {
-            console.warn("Failed to install dependencies automatically. Please install them manually.");
+            console.warn(
+              "Failed to install dependencies automatically. Please install them manually.",
+            );
           }
         }
       }
 
       if (!skipPrompts) {
-        outro(pc.green(`Successfully added ${selectedComponent} component to your project!`));
+        outro(
+          pc.green(
+            `Successfully added ${selectedComponent} component to your project!`,
+          ),
+        );
       } else {
-        console.log(`Successfully added ${selectedComponent} component to your project!`);
+        console.log(
+          `Successfully added ${selectedComponent} component to your project!`,
+        );
       }
     } catch (e) {
       if (!skipPrompts) {
         sAdd.stop("Failed to download or write component files.");
         outro(pc.red("Error adding component."));
       } else {
-        console.error("Failed to download or write component files. Error adding component.");
+        console.error(
+          "Failed to download or write component files. Error adding component.",
+        );
       }
     }
   });

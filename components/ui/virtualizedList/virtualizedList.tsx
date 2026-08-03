@@ -31,7 +31,7 @@ function VirtualizedListInner<T>(
     endReachedThreshold = 100,
     className,
   }: VirtualizedListProps<T>,
-  ref: React.Ref<VirtualizedListRef>
+  ref: React.Ref<VirtualizedListRef>,
 ) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [scrollTop, setScrollTop] = React.useState(0);
@@ -67,7 +67,10 @@ function VirtualizedListInner<T>(
       const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
       setScrollTop(scrollTop);
 
-      if (onEndReached && scrollHeight - (scrollTop + clientHeight) < endReachedThreshold) {
+      if (
+        onEndReached &&
+        scrollHeight - (scrollTop + clientHeight) < endReachedThreshold
+      ) {
         if (!isEndReachedFiredRef.current) {
           isEndReachedFiredRef.current = true;
           onEndReached();
@@ -85,7 +88,10 @@ function VirtualizedListInner<T>(
   startIndex = Math.max(0, startIndex - overscan);
 
   let endIndex = startIndex;
-  while (endIndex < items.length && itemOffsets[endIndex] < scrollTop + height) {
+  while (
+    endIndex < items.length &&
+    itemOffsets[endIndex] < scrollTop + height
+  ) {
     endIndex++;
   }
   endIndex = Math.min(items.length, endIndex + overscan);
@@ -106,7 +112,7 @@ function VirtualizedListInner<T>(
         }}
       >
         {renderItem(items[i], i)}
-      </div>
+      </div>,
     );
   }
 
@@ -116,7 +122,7 @@ function VirtualizedListInner<T>(
       onScroll={handleScroll}
       className={cn(
         "overflow-y-auto rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900",
-        className
+        className,
       )}
       style={{ height, position: "relative" }}
     >
@@ -128,5 +134,5 @@ function VirtualizedListInner<T>(
 }
 
 export const VirtualizedList = React.forwardRef(VirtualizedListInner) as <T>(
-  props: VirtualizedListProps<T> & { ref?: React.Ref<VirtualizedListRef> }
+  props: VirtualizedListProps<T> & { ref?: React.Ref<VirtualizedListRef> },
 ) => React.ReactElement;

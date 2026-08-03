@@ -1,7 +1,9 @@
 "use client";
 
 import * as React from "react";
-import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
+import useEmblaCarousel, {
+  type UseEmblaCarouselType,
+} from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
@@ -65,7 +67,7 @@ const Carousel = React.forwardRef<
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const activePlugins = React.useMemo(() => {
       const list = [...(Array.isArray(plugins) ? plugins : [plugins])];
@@ -75,7 +77,7 @@ const Carousel = React.forwardRef<
             delay: autoplayDelay,
             stopOnInteraction: false,
             stopOnMouseEnter: pauseOnHover,
-          })
+          }),
         );
       }
       return list;
@@ -88,7 +90,7 @@ const Carousel = React.forwardRef<
         dragFree,
         dragThreshold: swipeThreshold,
       },
-      activePlugins
+      activePlugins,
     );
 
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
@@ -107,7 +109,7 @@ const Carousel = React.forwardRef<
       (index: number) => {
         api?.scrollTo(index);
       },
-      [api]
+      [api],
     );
 
     const scrollPrev = React.useCallback(() => {
@@ -137,7 +139,8 @@ const Carousel = React.forwardRef<
           carouselRef,
           api,
           opts,
-          orientation: orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+          orientation:
+            orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
           scrollPrev,
           scrollNext,
           canScrollPrev,
@@ -163,7 +166,7 @@ const Carousel = React.forwardRef<
         </div>
       </CarouselContext.Provider>
     );
-  }
+  },
 );
 Carousel.displayName = "Carousel";
 
@@ -180,7 +183,7 @@ const CarouselContent = React.forwardRef<
         className={cn(
           "flex",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
-          className
+          className,
         )}
         {...props}
       />
@@ -203,7 +206,7 @@ const CarouselItem = React.forwardRef<
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
         orientation === "horizontal" ? "pl-4" : "pt-4",
-        className
+        className,
       )}
       {...props}
     />
@@ -228,7 +231,7 @@ const CarouselPrevious = React.forwardRef<
       ariaLabel="Previous slide"
       className={cn(
         "rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-xs hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:scale-105 active:scale-95 transition-all duration-200",
-        className
+        className,
       )}
       {...props}
     >
@@ -255,7 +258,7 @@ const CarouselNext = React.forwardRef<
       ariaLabel="Next slide"
       className={cn(
         "rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-xs hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:scale-105 active:scale-95 transition-all duration-200",
-        className
+        className,
       )}
       {...props}
     >
@@ -288,7 +291,7 @@ const CarouselDots = React.forwardRef<
             "h-2 rounded-full transition-all duration-300 cursor-pointer",
             index === selectedIndex
               ? "bg-sky-500 w-6"
-              : "bg-zinc-300 dark:bg-zinc-700 hover:bg-zinc-400 dark:hover:bg-zinc-600 w-2"
+              : "bg-zinc-300 dark:bg-zinc-700 hover:bg-zinc-400 dark:hover:bg-zinc-600 w-2",
           )}
         />
       ))}
@@ -297,7 +300,8 @@ const CarouselDots = React.forwardRef<
 });
 CarouselDots.displayName = "CarouselDots";
 
-export interface CarouselThumbsProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CarouselThumbsProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   images?: string[];
 }
 
@@ -310,7 +314,10 @@ const CarouselThumbs = React.forwardRef<HTMLDivElement, CarouselThumbsProps>(
     return (
       <div
         ref={ref}
-        className={cn("flex items-center justify-center gap-2 overflow-x-auto py-2", className)}
+        className={cn(
+          "flex items-center justify-center gap-2 overflow-x-auto py-2",
+          className,
+        )}
         {...props}
       >
         {images.map((src, index) => (
@@ -321,15 +328,19 @@ const CarouselThumbs = React.forwardRef<HTMLDivElement, CarouselThumbsProps>(
               "relative size-14 shrink-0 overflow-hidden rounded-lg border-2 transition-all duration-200 focus:outline-none cursor-pointer",
               index === selectedIndex
                 ? "border-sky-500 scale-105 shadow-sm"
-                : "border-transparent opacity-60 hover:opacity-100"
+                : "border-transparent opacity-60 hover:opacity-100",
             )}
           >
-            <img src={src} alt={`Thumbnail ${index + 1}`} className="size-full object-cover" />
+            <img
+              src={src}
+              alt={`Thumbnail ${index + 1}`}
+              className="size-full object-cover"
+            />
           </button>
         ))}
       </div>
     );
-  }
+  },
 );
 CarouselThumbs.displayName = "CarouselThumbs";
 

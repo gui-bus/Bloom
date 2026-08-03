@@ -21,11 +21,7 @@ describe("Input Component", () => {
 
   it("displays error message when isInvalid is true", () => {
     render(
-      <Input
-        label="Password"
-        isInvalid
-        errorMessage="Password is required"
-      />
+      <Input label="Password" isInvalid errorMessage="Password is required" />,
     );
     expect(screen.getByText("Password is required")).toBeInTheDocument();
   });
@@ -35,7 +31,7 @@ describe("Input Component", () => {
       <Input
         startContent={<span data-testid="start-icon">@</span>}
         endContent={<span data-testid="end-icon">✓</span>}
-      />
+      />,
     );
     expect(screen.getByTestId("start-icon")).toBeInTheDocument();
     expect(screen.getByTestId("end-icon")).toBeInTheDocument();

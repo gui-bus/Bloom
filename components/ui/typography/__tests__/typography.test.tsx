@@ -19,7 +19,11 @@ describe("Typography Component", () => {
   });
 
   it("supports custom polymorphic element via 'as' prop", () => {
-    render(<Typography variant="h2" as="span">Custom Span Heading</Typography>);
+    render(
+      <Typography variant="h2" as="span">
+        Custom Span Heading
+      </Typography>,
+    );
     const element = screen.getByText("Custom Span Heading");
     expect(element.tagName).toBe("SPAN");
     expect(element).toHaveClass("text-3xl", "font-bold");
@@ -42,7 +46,7 @@ describe("Typography Component", () => {
     render(
       <Typography clampLines={2} showExpandToggle>
         Long clamped paragraph text...
-      </Typography>
+      </Typography>,
     );
     const button = screen.getByRole("button", { name: "Read More" });
     expect(button).toBeInTheDocument();

@@ -8,12 +8,14 @@ describe("Alert Component", () => {
     render(
       <Alert color="success" title="Success Header">
         Operation completed cleanly.
-      </Alert>
+      </Alert>,
     );
 
     expect(screen.getByRole("alert")).toBeInTheDocument();
     expect(screen.getByText("Success Header")).toBeInTheDocument();
-    expect(screen.getByText("Operation completed cleanly.")).toBeInTheDocument();
+    expect(
+      screen.getByText("Operation completed cleanly."),
+    ).toBeInTheDocument();
   });
 
   it("renders startContent and endContent elements", () => {
@@ -25,7 +27,7 @@ describe("Alert Component", () => {
         endContent={<span data-testid="end-element">End</span>}
       >
         Alert message
-      </Alert>
+      </Alert>,
     );
 
     expect(screen.getByTestId("start-element")).toBeInTheDocument();
@@ -35,9 +37,14 @@ describe("Alert Component", () => {
   it("dismisses alert when isClosable is set and close button is clicked", () => {
     const handleClose = vi.fn();
     render(
-      <Alert color="warning" title="Closable Alert" isClosable onClose={handleClose}>
+      <Alert
+        color="warning"
+        title="Closable Alert"
+        isClosable
+        onClose={handleClose}
+      >
         Warning description
-      </Alert>
+      </Alert>,
     );
 
     const closeButton = screen.getByRole("button", { name: /close alert/i });
@@ -53,7 +60,7 @@ describe("Alert Component", () => {
       <Alert color="danger">
         <AlertTitle>Compound Title</AlertTitle>
         <AlertDescription>Compound Description Body</AlertDescription>
-      </Alert>
+      </Alert>,
     );
 
     expect(screen.getByText("Compound Title")).toBeInTheDocument();
@@ -61,13 +68,19 @@ describe("Alert Component", () => {
   });
 
   it("renders variants without crashing", () => {
-    const variants = ["default", "bordered", "flat", "ghost", "shadow"] as const;
+    const variants = [
+      "default",
+      "bordered",
+      "flat",
+      "ghost",
+      "shadow",
+    ] as const;
 
     for (const variant of variants) {
       const { container } = render(
         <Alert variant={variant} color="info" title={`${variant} title`}>
           Message
-        </Alert>
+        </Alert>,
       );
       expect(container.firstChild).toBeInTheDocument();
     }

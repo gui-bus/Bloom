@@ -11,7 +11,13 @@ const options = [
 
 describe("Autocomplete Component", () => {
   it("renders input with placeholder and label", () => {
-    render(<Autocomplete label="Fruit" placeholder="Choose a fruit" options={options} />);
+    render(
+      <Autocomplete
+        label="Fruit"
+        placeholder="Choose a fruit"
+        options={options}
+      />,
+    );
     expect(screen.getByText("Fruit")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Choose a fruit")).toBeInTheDocument();
   });
@@ -19,7 +25,7 @@ describe("Autocomplete Component", () => {
   it("opens dropdown and filters options on typing", () => {
     render(<Autocomplete options={options} />);
     const input = screen.getByPlaceholderText("Search...");
-    
+
     fireEvent.focus(input);
     fireEvent.change(input, { target: { value: "Ba" } });
 

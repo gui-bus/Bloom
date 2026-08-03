@@ -38,7 +38,9 @@ export function MultiSelect({
 }: MultiSelectProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
-  const [collapsedCategories, setCollapsedCategories] = React.useState<Record<string, boolean>>({});
+  const [collapsedCategories, setCollapsedCategories] = React.useState<
+    Record<string, boolean>
+  >({});
   const containerRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -96,9 +98,11 @@ export function MultiSelect({
     }
   };
 
-  const filteredOptions = options.filter((opt) =>
-    opt.label.toLowerCase().includes(search.toLowerCase()) ||
-    (opt.category && opt.category.toLowerCase().includes(search.toLowerCase()))
+  const filteredOptions = options.filter(
+    (opt) =>
+      opt.label.toLowerCase().includes(search.toLowerCase()) ||
+      (opt.category &&
+        opt.category.toLowerCase().includes(search.toLowerCase())),
   );
 
   const selectedOptions = options.filter((opt) => value.includes(opt.value));
@@ -120,7 +124,9 @@ export function MultiSelect({
     return { groups, ungrouped };
   }, [filteredOptions]);
 
-  const isAllSelected = filteredOptions.length > 0 && filteredOptions.every((opt) => value.includes(opt.value));
+  const isAllSelected =
+    filteredOptions.length > 0 &&
+    filteredOptions.every((opt) => value.includes(opt.value));
 
   return (
     <div className={cn("relative w-full", className)} ref={containerRef}>
@@ -135,7 +141,7 @@ export function MultiSelect({
           isInvalid
             ? "border-rose-500 focus-within:ring-2 focus-within:ring-rose-500/20"
             : "border-zinc-200 dark:border-zinc-800 focus-within:ring-2 focus-within:ring-sky-500/20 focus-within:border-sky-500",
-          isDisabled && "opacity-50 cursor-not-allowed"
+          isDisabled && "opacity-50 cursor-not-allowed",
         )}
         onClick={() => {
           if (!isDisabled) {
@@ -208,40 +214,49 @@ export function MultiSelect({
           )}
 
           {filteredOptions.length === 0 ? (
-            <div className="px-4 py-3 text-sm text-zinc-400">No options found.</div>
+            <div className="px-4 py-3 text-sm text-zinc-400">
+              No options found.
+            </div>
           ) : (
             <>
               {/* Render Grouped Category Sections */}
-              {Object.entries(groupedOptions.groups).map(([categoryName, groupOpts]) => {
-                const isCollapsed = collapsedCategories[categoryName];
-                const categorySelectedCount = groupOpts.filter((opt) => value.includes(opt.value)).length;
+              {Object.entries(groupedOptions.groups).map(
+                ([categoryName, groupOpts]) => {
+                  const isCollapsed = collapsedCategories[categoryName];
+                  const categorySelectedCount = groupOpts.filter((opt) =>
+                    value.includes(opt.value),
+                  ).length;
 
-                return (
-                  <div key={categoryName} className="space-y-0.5">
-                    <button
-                      type="button"
-                      onClick={() => toggleCategoryCollapse(categoryName)}
-                      className="w-full flex items-center justify-between px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 rounded-xl transition-colors select-none"
-                    >
-                      <span className="flex items-center gap-1.5">
-                        <Icon
-                          icon="hugeicons:arrow-down-01"
-                          className={cn("size-3 transition-transform duration-200", isCollapsed && "-rotate-90")}
-                        />
-                        {categoryName}
-                      </span>
-                      {categorySelectedCount > 0 && (
-                        <span className="px-1.5 py-0.5 rounded-full text-[10px] bg-sky-500/10 text-sky-500 font-semibold">
-                          {categorySelectedCount}/{groupOpts.length}
+                  return (
+                    <div key={categoryName} className="space-y-0.5">
+                      <button
+                        type="button"
+                        onClick={() => toggleCategoryCollapse(categoryName)}
+                        className="w-full flex items-center justify-between px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 rounded-xl transition-colors select-none"
+                      >
+                        <span className="flex items-center gap-1.5">
+                          <Icon
+                            icon="hugeicons:arrow-down-01"
+                            className={cn(
+                              "size-3 transition-transform duration-200",
+                              isCollapsed && "-rotate-90",
+                            )}
+                          />
+                          {categoryName}
                         </span>
-                      )}
-                    </button>
+                        {categorySelectedCount > 0 && (
+                          <span className="px-1.5 py-0.5 rounded-full text-[10px] bg-sky-500/10 text-sky-500 font-semibold">
+                            {categorySelectedCount}/{groupOpts.length}
+                          </span>
+                        )}
+                      </button>
 
-                    {!isCollapsed &&
-                      groupOpts.map((opt) => renderOptionItem(opt))}
-                  </div>
-                );
-              })}
+                      {!isCollapsed &&
+                        groupOpts.map((opt) => renderOptionItem(opt))}
+                    </div>
+                  );
+                },
+              )}
 
               {/* Render Ungrouped Options */}
               {groupedOptions.ungrouped.map((opt) => renderOptionItem(opt))}
@@ -254,7 +269,9 @@ export function MultiSelect({
 
   function renderOptionItem(opt: MultiSelectOption) {
     const isSelected = value.includes(opt.value);
-    const isLimitReached = maxCount ? value.length >= maxCount && !isSelected : false;
+    const isLimitReached = maxCount
+      ? value.length >= maxCount && !isSelected
+      : false;
 
     return (
       <button
@@ -267,7 +284,7 @@ export function MultiSelect({
           isSelected
             ? "text-sky-500 bg-sky-500/5 font-medium"
             : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/50",
-          isLimitReached && "opacity-40 cursor-not-allowed"
+          isLimitReached && "opacity-40 cursor-not-allowed",
         )}
       >
         <span
@@ -275,10 +292,12 @@ export function MultiSelect({
             "flex items-center justify-center size-4 rounded border transition-colors",
             isSelected
               ? "bg-sky-500 border-sky-500 text-white"
-              : "border-zinc-300 dark:border-zinc-600"
+              : "border-zinc-300 dark:border-zinc-600",
           )}
         >
-          {isSelected && <Icon icon="hugeicons:checkmark-circle-02" className="size-3" />}
+          {isSelected && (
+            <Icon icon="hugeicons:checkmark-circle-02" className="size-3" />
+          )}
         </span>
         {opt.icon && <span className="shrink-0">{opt.icon}</span>}
         <span className="flex-1">{opt.label}</span>

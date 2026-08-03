@@ -9,7 +9,7 @@ describe("FormField Component", () => {
     render(
       <FormField label="Email" errorMessage="Invalid email address" isInvalid>
         <Input placeholder="user@example.com" />
-      </FormField>
+      </FormField>,
     );
 
     expect(screen.getByText("Email")).toBeInTheDocument();

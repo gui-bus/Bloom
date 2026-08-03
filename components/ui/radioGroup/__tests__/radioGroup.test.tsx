@@ -9,7 +9,7 @@ describe("RadioGroup Component", () => {
       <RadioGroup defaultValue="opt1">
         <RadioGroupItem value="opt1" label="Option 1" />
         <RadioGroupItem value="opt2" label="Option 2" />
-      </RadioGroup>
+      </RadioGroup>,
     );
 
     expect(screen.getByText("Option 1")).toBeInTheDocument();
@@ -22,7 +22,7 @@ describe("RadioGroup Component", () => {
       <RadioGroup defaultValue="opt1" onValueChange={handleValueChange}>
         <RadioGroupItem value="opt1" label="Option 1" />
         <RadioGroupItem value="opt2" label="Option 2" />
-      </RadioGroup>
+      </RadioGroup>,
     );
 
     fireEvent.click(screen.getByText("Option 2"));

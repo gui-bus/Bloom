@@ -13,7 +13,7 @@ describe("InputOTP Component", () => {
           <InputOTPSlot index={2} />
           <InputOTPSlot index={3} />
         </InputOTPGroup>
-      </InputOTP>
+      </InputOTP>,
     );
 
     const input = screen.getByRole("textbox");

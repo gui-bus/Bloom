@@ -25,7 +25,6 @@ export function CodeBlock({
   showCopy = true,
   maxHeight = 280,
 }: CodeBlockProps) {
-  
   const codeRef = useRef<HTMLElement>(null);
 
   const [copied, setCopied] = useState(false);
@@ -67,7 +66,6 @@ export function CodeBlock({
 
   return (
     <div className="relative bg-[#282C34] rounded-3xl p-5">
-      
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between gap-5">
           <div className="flex items-center gap-2">
@@ -102,7 +100,10 @@ export function CodeBlock({
                     transition={{ duration: 0.15 }}
                     className="flex items-center gap-1.5"
                   >
-                    <Icon icon="lucide:check" className="w-3.5 h-3.5 text-green-400" />
+                    <Icon
+                      icon="lucide:check"
+                      className="w-3.5 h-3.5 text-green-400"
+                    />
                     <span className="text-xs font-semibold">Copied</span>
                   </motion.span>
                 ) : (

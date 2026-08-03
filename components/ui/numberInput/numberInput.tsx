@@ -64,7 +64,7 @@ export function NumberInput({
   className,
 }: NumberInputProps) {
   const [internalVal, setInternalVal] = React.useState<number>(
-    value !== undefined ? value : defaultValue
+    value !== undefined ? value : defaultValue,
   );
   const [isFocused, setIsFocused] = React.useState(false);
   const [rawInputValue, setRawInputValue] = React.useState<string>("");
@@ -88,7 +88,7 @@ export function NumberInput({
       setInternalVal(clamped);
       onValueChange?.(clamped);
     },
-    [min, max, precision, onValueChange]
+    [min, max, precision, onValueChange],
   );
 
   const handleIncrement = () => updateValue(internalVal + step);
@@ -146,10 +146,13 @@ export function NumberInput({
         onClick={handleDecrement}
         className={cn(
           "flex items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200/80 dark:border-zinc-700/80 hover:bg-zinc-200 dark:hover:bg-zinc-700 active:scale-95 transition-all shrink-0 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed",
-          buttonSizeMap[size]
+          buttonSizeMap[size],
         )}
       >
-        <Icon icon="hugeicons:minus-sign" className="size-3.5 shrink-0 stroke-[2.5]" />
+        <Icon
+          icon="hugeicons:minus-sign"
+          className="size-3.5 shrink-0 stroke-[2.5]"
+        />
       </button>
     );
 
@@ -161,10 +164,13 @@ export function NumberInput({
         onClick={handleIncrement}
         className={cn(
           "flex items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200/80 dark:border-zinc-700/80 hover:bg-zinc-200 dark:hover:bg-zinc-700 active:scale-95 transition-all shrink-0 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed",
-          buttonSizeMap[size]
+          buttonSizeMap[size],
         )}
       >
-        <Icon icon="hugeicons:plus-sign" className="size-3.5 shrink-0 stroke-[2.5]" />
+        <Icon
+          icon="hugeicons:plus-sign"
+          className="size-3.5 shrink-0 stroke-[2.5]"
+        />
       </button>
     );
 
@@ -230,7 +236,7 @@ export function NumberInput({
           sizeMap[size],
           designRadius[radius],
           isInvalid && "border-rose-500 dark:border-rose-500",
-          disabled && "opacity-50 pointer-events-none"
+          disabled && "opacity-50 pointer-events-none",
         )}
       >
         {left}
@@ -264,7 +270,9 @@ export function NumberInput({
       </div>
 
       {description && (
-        <p className="text-xs text-zinc-500 dark:text-zinc-400">{description}</p>
+        <p className="text-xs text-zinc-500 dark:text-zinc-400">
+          {description}
+        </p>
       )}
     </div>
   );

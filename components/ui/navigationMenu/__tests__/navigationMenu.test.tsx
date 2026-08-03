@@ -17,7 +17,7 @@ describe("NavigationMenu Component", () => {
             <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
           </NavigationMenuItem>
         </NavigationMenuList>
-      </NavigationMenu>
+      </NavigationMenu>,
     );
 
     expect(screen.getByText("Getting Started")).toBeInTheDocument();

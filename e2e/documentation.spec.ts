@@ -1,21 +1,30 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Documentation Site E2E Tests", () => {
-  test("should navigate through components using the sidebar", async ({ page }) => {
+  test("should navigate through components using the sidebar", async ({
+    page,
+  }) => {
     await page.goto("/");
 
     const sidebar = page.locator("aside");
     await expect(sidebar).toBeVisible();
 
-    const buttonLink = sidebar.getByRole("link", { name: "Button", exact: true });
+    const buttonLink = sidebar.getByRole("link", {
+      name: "Button",
+      exact: true,
+    });
     await buttonLink.click();
     await expect(page).toHaveURL("/components/button");
-    await expect(page.getByRole("heading", { name: "Button", level: 1 })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Button", level: 1 }),
+    ).toBeVisible();
 
     const tabsLink = sidebar.getByRole("link", { name: "Tabs", exact: true });
     await tabsLink.click();
     await expect(page).toHaveURL("/components/tabs");
-    await expect(page.getByRole("heading", { name: "Tabs", level: 1 })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Tabs", level: 1 }),
+    ).toBeVisible();
   });
 
   test("should switch theme between light and dark", async ({ page }) => {
@@ -31,9 +40,11 @@ test.describe("Documentation Site E2E Tests", () => {
     await expect(page.locator("html")).not.toHaveClass(/dark/);
   });
 
-  test("should copy code on clicking the copy button in CodeBlock", async ({ page }) => {
-    page.on("console", msg => console.log("BROWSER LOG:", msg.text()));
-    page.on("pageerror", err => console.log("BROWSER ERROR:", err.message));
+  test("should copy code on clicking the copy button in CodeBlock", async ({
+    page,
+  }) => {
+    page.on("console", (msg) => console.log("BROWSER LOG:", msg.text()));
+    page.on("pageerror", (err) => console.log("BROWSER ERROR:", err.message));
 
     // Mock clipboard writeText API to guarantee E2E stability in headless chromium
     await page.addInitScript(() => {

@@ -83,19 +83,39 @@ function isSameDay(d1?: Date, d2?: Date): boolean {
 function isDateInRange(date: Date, start?: Date, end?: Date): boolean {
   if (!start || !end) return false;
   const time = date.getTime();
-  const startTime = new Date(start.getFullYear(), start.getMonth(), start.getDate()).getTime();
-  const endTime = new Date(end.getFullYear(), end.getMonth(), end.getDate()).getTime();
+  const startTime = new Date(
+    start.getFullYear(),
+    start.getMonth(),
+    start.getDate(),
+  ).getTime();
+  const endTime = new Date(
+    end.getFullYear(),
+    end.getMonth(),
+    end.getDate(),
+  ).getTime();
   return time >= startTime && time <= endTime;
 }
 
 function isDateDisabled(date: Date, minDate?: Date, maxDate?: Date): boolean {
-  const time = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+  const time = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+  ).getTime();
   if (minDate) {
-    const minTime = new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate()).getTime();
+    const minTime = new Date(
+      minDate.getFullYear(),
+      minDate.getMonth(),
+      minDate.getDate(),
+    ).getTime();
     if (time < minTime) return true;
   }
   if (maxDate) {
-    const maxTime = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate()).getTime();
+    const maxTime = new Date(
+      maxDate.getFullYear(),
+      maxDate.getMonth(),
+      maxDate.getDate(),
+    ).getTime();
     if (time > maxTime) return true;
   }
   return false;
@@ -145,21 +165,27 @@ export function DatePicker({
   className,
 }: DatePickerProps) {
   const [singleDate, setSingleDate] = React.useState<Date | undefined>(value);
-  const [dateRange, setDateRange] = React.useState<[Date | undefined, Date | undefined]>(
-    rangeValue || [undefined, undefined]
+  const [dateRange, setDateRange] = React.useState<
+    [Date | undefined, Date | undefined]
+  >(rangeValue || [undefined, undefined]);
+  const [multipleDates, setMultipleDates] = React.useState<Date[]>(
+    multipleValue || [],
   );
-  const [multipleDates, setMultipleDates] = React.useState<Date[]>(multipleValue || []);
 
   // Time state
-  const [hours, setHours] = React.useState<number>(value ? value.getHours() : 12);
-  const [minutes, setMinutes] = React.useState<number>(value ? value.getMinutes() : 0);
+  const [hours, setHours] = React.useState<number>(
+    value ? value.getHours() : 12,
+  );
+  const [minutes, setMinutes] = React.useState<number>(
+    value ? value.getMinutes() : 0,
+  );
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [currentMonth, setCurrentMonth] = React.useState<Date>(
-    value || rangeValue?.[0] || multipleValue?.[0] || new Date()
+    value || rangeValue?.[0] || multipleValue?.[0] || new Date(),
   );
   const [fiscalYearView, setFiscalYearView] = React.useState<number>(
-    (value || new Date()).getFullYear()
+    (value || new Date()).getFullYear(),
   );
 
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -168,7 +194,10 @@ export function DatePicker({
     const list: string[] = [];
     for (let i = 0; i < 7; i++) {
       const d = new Date(2026, 0, 4 + i);
-      const name = new Intl.DateTimeFormat(locale, { weekday: "narrow", timeZone }).format(d);
+      const name = new Intl.DateTimeFormat(locale, {
+        weekday: "narrow",
+        timeZone,
+      }).format(d);
       list.push(name);
     }
     return list;
@@ -192,7 +221,10 @@ export function DatePicker({
 
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     }
@@ -200,14 +232,22 @@ export function DatePicker({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const nextMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
+  const nextMonth = new Date(
+    currentMonth.getFullYear(),
+    currentMonth.getMonth() + 1,
+    1,
+  );
 
   const handlePrevMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1));
+    setCurrentMonth(
+      new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1),
+    );
   };
 
   const handleNextMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1));
+    setCurrentMonth(
+      new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1),
+    );
   };
 
   const updateDateTime = (d: Date, h: number, m: number) => {
@@ -254,9 +294,12 @@ export function DatePicker({
 
   const handleSelectFiscalQuarter = (qNumber: number) => {
     // Determine start month of quarter
-    const startMonthIdx = ((fiscalYearStartMonth - 1) + (qNumber - 1) * 3) % 12;
+    const startMonthIdx = (fiscalYearStartMonth - 1 + (qNumber - 1) * 3) % 12;
     let targetYear = fiscalYearView;
-    if (fiscalYearStartMonth !== 1 && startMonthIdx < fiscalYearStartMonth - 1) {
+    if (
+      fiscalYearStartMonth !== 1 &&
+      startMonthIdx < fiscalYearStartMonth - 1
+    ) {
       targetYear = fiscalYearView;
     }
     const qStartDate = new Date(targetYear, startMonthIdx, 1);
@@ -340,7 +383,7 @@ export function DatePicker({
 
     if (showTimePicker) {
       const timeStr = `${String(date.getHours()).padStart(2, "0")}:${String(
-        date.getMinutes()
+        date.getMinutes(),
       ).padStart(2, "0")}`;
       return `${dateStr} ${timeStr}`;
     }
@@ -374,7 +417,13 @@ export function DatePicker({
   const presets = customPresets || DEFAULT_PRESETS;
 
   return (
-    <div ref={containerRef} className={cn("relative w-full flex flex-col gap-1.5 max-w-xs", className)}>
+    <div
+      ref={containerRef}
+      className={cn(
+        "relative w-full flex flex-col gap-1.5 max-w-xs",
+        className,
+      )}
+    >
       {label && (
         <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
           {label}
@@ -394,10 +443,15 @@ export function DatePicker({
         className={cn(
           "h-10 w-full flex items-center justify-between rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 shadow-xs outline-none focus:ring-2 focus:ring-sky-500/40 transition-all cursor-pointer select-none",
           isInvalid && "border-rose-500 dark:border-rose-500 text-rose-500",
-          disabled && "opacity-50 cursor-not-allowed pointer-events-none"
+          disabled && "opacity-50 cursor-not-allowed pointer-events-none",
         )}
       >
-        <span className={cn("truncate", !hasValue && "text-zinc-400 dark:text-zinc-500")}>
+        <span
+          className={cn(
+            "truncate",
+            !hasValue && "text-zinc-400 dark:text-zinc-500",
+          )}
+        >
           {renderTriggerText()}
         </span>
 
@@ -418,14 +472,17 @@ export function DatePicker({
               <Icon icon="hugeicons:cancel-01" className="size-3.5" />
             </span>
           )}
-          <Icon icon="hugeicons:calendar-01" className="size-4 text-zinc-400 dark:text-zinc-500" />
+          <Icon
+            icon="hugeicons:calendar-01"
+            className="size-4 text-zinc-400 dark:text-zinc-500"
+          />
         </div>
       </div>
 
       {isOpen && (
         <div
           className={cn(
-            "absolute top-full left-0 z-50 mt-1 flex flex-col md:flex-row rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl text-zinc-900 dark:text-zinc-100 shadow-2xl p-3 animate-in fade-in-80 gap-4"
+            "absolute top-full left-0 z-50 mt-1 flex flex-col md:flex-row rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl text-zinc-900 dark:text-zinc-100 shadow-2xl p-3 animate-in fade-in-80 gap-4",
           )}
         >
           {showPresets && viewMode === "date" && (
@@ -470,8 +527,12 @@ export function DatePicker({
 
               <div className="grid grid-cols-2 gap-2">
                 {[1, 2, 3, 4].map((q) => {
-                  const currentF = singleDate ? getFiscalQuarter(singleDate, fiscalYearStartMonth) : null;
-                  const isSelected = currentF?.quarter === q && currentF?.fiscalYear === fiscalYearView;
+                  const currentF = singleDate
+                    ? getFiscalQuarter(singleDate, fiscalYearStartMonth)
+                    : null;
+                  const isSelected =
+                    currentF?.quarter === q &&
+                    currentF?.fiscalYear === fiscalYearView;
                   return (
                     <button
                       key={q}
@@ -481,7 +542,7 @@ export function DatePicker({
                         "h-12 rounded-xl border border-zinc-200 dark:border-zinc-800 flex flex-col items-center justify-center text-xs font-semibold transition-colors cursor-pointer",
                         isSelected
                           ? "bg-sky-600 text-white border-sky-600"
-                          : "hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200"
+                          : "hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200",
                       )}
                     >
                       <span>Q{q}</span>
@@ -499,8 +560,13 @@ export function DatePicker({
                 Select Fiscal Year
               </span>
               <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
-                {Array.from({ length: 10 }, (_, i) => fiscalYearView - 4 + i).map((fy) => {
-                  const currentF = singleDate ? getFiscalQuarter(singleDate, fiscalYearStartMonth) : null;
+                {Array.from(
+                  { length: 10 },
+                  (_, i) => fiscalYearView - 4 + i,
+                ).map((fy) => {
+                  const currentF = singleDate
+                    ? getFiscalQuarter(singleDate, fiscalYearStartMonth)
+                    : null;
                   const isSelected = currentF?.fiscalYear === fy;
                   return (
                     <button
@@ -511,7 +577,7 @@ export function DatePicker({
                         "h-10 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-xs font-semibold transition-colors cursor-pointer",
                         isSelected
                           ? "bg-sky-600 text-white border-sky-600"
-                          : "hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200"
+                          : "hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200",
                       )}
                     >
                       FY{fy}
@@ -540,7 +606,7 @@ export function DatePicker({
                   maxDate,
                   handleSelectDay,
                   true,
-                  !showDoubleMonth
+                  !showDoubleMonth,
                 )}
 
                 {showDoubleMonth &&
@@ -559,7 +625,7 @@ export function DatePicker({
                     maxDate,
                     handleSelectDay,
                     false,
-                    true
+                    true,
                   )}
               </div>
 
@@ -567,13 +633,18 @@ export function DatePicker({
               {showTimePicker && mode === "single" && (
                 <div className="pt-2 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
                   <div className="flex items-center gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-300">
-                    <Icon icon="hugeicons:clock-01" className="size-4 text-sky-500" />
+                    <Icon
+                      icon="hugeicons:clock-01"
+                      className="size-4 text-sky-500"
+                    />
                     <span>Time</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <select
                       value={hours}
-                      onChange={(e) => handleTimeChange(Number(e.target.value), minutes)}
+                      onChange={(e) =>
+                        handleTimeChange(Number(e.target.value), minutes)
+                      }
                       className="px-2 py-1 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 focus:outline-none focus:ring-1 focus:ring-sky-500"
                     >
                       {Array.from({ length: 24 }, (_, i) => i).map((h) => (
@@ -585,7 +656,9 @@ export function DatePicker({
                     <span className="font-mono text-zinc-400 font-bold">:</span>
                     <select
                       value={minutes}
-                      onChange={(e) => handleTimeChange(hours, Number(e.target.value))}
+                      onChange={(e) =>
+                        handleTimeChange(hours, Number(e.target.value))
+                      }
                       className="px-2 py-1 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 focus:outline-none focus:ring-1 focus:ring-sky-500"
                     >
                       {Array.from({ length: 12 }, (_, i) => i * 5).map((m) => (
@@ -620,7 +693,7 @@ function renderMonthCalendar(
   maxDate?: Date,
   handleSelectDay?: (d: Date) => void,
   showPrevNav = true,
-  showNextNav = true
+  showNextNav = true,
 ) {
   const year = monthDate.getFullYear();
   const month = monthDate.getMonth();
@@ -707,11 +780,17 @@ function renderMonthCalendar(
               className={cn(
                 "size-7 rounded-lg text-xs flex items-center justify-center transition-colors cursor-pointer select-none",
                 "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800",
-                isInRange && "bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 rounded-none",
-                isRangeStart && "rounded-l-lg bg-sky-600 text-white font-semibold hover:bg-sky-500 dark:bg-sky-500",
-                isRangeEnd && "rounded-r-lg bg-sky-600 text-white font-semibold hover:bg-sky-500 dark:bg-sky-500",
-                isSelected && mode !== "range" && "bg-sky-600 text-white font-semibold hover:bg-sky-500 dark:bg-sky-500 dark:hover:bg-sky-400",
-                isDisabled && "opacity-25 cursor-not-allowed pointer-events-none hover:bg-transparent"
+                isInRange &&
+                  "bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 rounded-none",
+                isRangeStart &&
+                  "rounded-l-lg bg-sky-600 text-white font-semibold hover:bg-sky-500 dark:bg-sky-500",
+                isRangeEnd &&
+                  "rounded-r-lg bg-sky-600 text-white font-semibold hover:bg-sky-500 dark:bg-sky-500",
+                isSelected &&
+                  mode !== "range" &&
+                  "bg-sky-600 text-white font-semibold hover:bg-sky-500 dark:bg-sky-500 dark:hover:bg-sky-400",
+                isDisabled &&
+                  "opacity-25 cursor-not-allowed pointer-events-none hover:bg-transparent",
               )}
             >
               {day}

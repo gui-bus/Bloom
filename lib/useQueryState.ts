@@ -9,7 +9,7 @@ interface UseQueryStateOptions {
 
 export function useQueryState(
   key: string,
-  options: UseQueryStateOptions = { history: "replace", shallow: true }
+  options: UseQueryStateOptions = { history: "replace", shallow: true },
 ) {
   const [value, setValue] = React.useState<string>("");
 
@@ -43,7 +43,7 @@ export function useQueryState(
         }
       }
     },
-    [key, options.history]
+    [key, options.history],
   );
 
   return [value, setQueryValue] as const;

@@ -5,7 +5,11 @@ import { Label } from "../label";
 
 describe("Label Component", () => {
   it("renders label content and required asterisk indicator", () => {
-    render(<Label isRequired htmlFor="email">Email Address</Label>);
+    render(
+      <Label isRequired htmlFor="email">
+        Email Address
+      </Label>,
+    );
     expect(screen.getByText("Email Address")).toBeInTheDocument();
     expect(screen.getByText("*")).toBeInTheDocument();
   });

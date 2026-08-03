@@ -14,7 +14,7 @@ describe("VirtualizedList Component", () => {
         itemHeight={40}
         overscan={2}
         renderItem={(item) => <div data-testid="list-item">{item}</div>}
-      />
+      />,
     );
 
     const renderedItems = screen.getAllByTestId("list-item");

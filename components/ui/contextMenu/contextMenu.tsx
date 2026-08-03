@@ -12,7 +12,8 @@ const ContextMenu = ({
   <ContextMenuPrimitive.Root modal={modal} {...props} />
 );
 
-interface ContextMenuTriggerProps extends React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Trigger> {
+interface ContextMenuTriggerProps
+  extends React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Trigger> {
   target?: HTMLElement | React.RefObject<HTMLElement | null> | string;
 }
 
@@ -58,7 +59,11 @@ const ContextMenuTrigger = React.forwardRef<
   }, [target]);
 
   return (
-    <ContextMenuPrimitive.Trigger ref={ref} asChild={Boolean(target)} {...props}>
+    <ContextMenuPrimitive.Trigger
+      ref={ref}
+      asChild={Boolean(target)}
+      {...props}
+    >
       {target ? <span ref={triggerRef} className="hidden" /> : children}
     </ContextMenuPrimitive.Trigger>
   );
@@ -84,12 +89,15 @@ const ContextMenuSubTrigger = React.forwardRef<
     className={cn(
       "flex cursor-pointer select-none items-center rounded-lg px-2.5 py-1.5 text-xs font-medium outline-none text-zinc-900 dark:text-zinc-100 focus:bg-zinc-100 dark:focus:bg-zinc-800 data-[state=open]:bg-zinc-100 dark:data-[state=open]:bg-zinc-800 transition-colors duration-150",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   >
     {children}
-    <Icon icon="hugeicons:arrow-right-01" className="ml-auto size-4 text-zinc-400" />
+    <Icon
+      icon="hugeicons:arrow-right-01"
+      className="ml-auto size-4 text-zinc-400"
+    />
   </ContextMenuPrimitive.SubTrigger>
 ));
 ContextMenuSubTrigger.displayName = ContextMenuPrimitive.SubTrigger.displayName;
@@ -102,7 +110,7 @@ const ContextMenuSubContent = React.forwardRef<
     ref={ref}
     className={cn(
       "z-50 min-w-[8rem] overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-1.5 text-zinc-900 dark:text-zinc-100 shadow-xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-      className
+      className,
     )}
     {...props}
   />
@@ -118,7 +126,7 @@ const ContextMenuContent = React.forwardRef<
       ref={ref}
       className={cn(
         "z-50 min-w-[10rem] overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-1.5 text-zinc-900 dark:text-zinc-100 shadow-xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-        className
+        className,
       )}
       {...props}
     />
@@ -142,7 +150,7 @@ const ContextMenuItem = React.forwardRef<
         : "text-zinc-900 dark:text-zinc-100 focus:bg-zinc-100 dark:focus:bg-zinc-800",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   />
@@ -157,20 +165,24 @@ const ContextMenuCheckboxItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex cursor-pointer select-none items-center rounded-lg py-1.5 pl-8 pr-2.5 text-xs font-medium outline-none transition-colors text-zinc-900 dark:text-zinc-100 focus:bg-zinc-100 dark:focus:bg-zinc-800 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
+      className,
     )}
     checked={checked}
     {...props}
   >
     <span className="absolute left-2.5 flex size-3.5 items-center justify-center">
       <ContextMenuPrimitive.ItemIndicator>
-        <Icon icon="hugeicons:tick-02" className="size-3.5 text-sky-600 dark:text-sky-400" />
+        <Icon
+          icon="hugeicons:tick-02"
+          className="size-3.5 text-sky-600 dark:text-sky-400"
+        />
       </ContextMenuPrimitive.ItemIndicator>
     </span>
     {children}
   </ContextMenuPrimitive.CheckboxItem>
 ));
-ContextMenuCheckboxItem.displayName = ContextMenuPrimitive.CheckboxItem.displayName;
+ContextMenuCheckboxItem.displayName =
+  ContextMenuPrimitive.CheckboxItem.displayName;
 
 const ContextMenuRadioItem = React.forwardRef<
   React.ElementRef<typeof ContextMenuPrimitive.RadioItem>,
@@ -180,13 +192,16 @@ const ContextMenuRadioItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex cursor-pointer select-none items-center rounded-lg py-1.5 pl-8 pr-2.5 text-xs font-medium outline-none transition-colors text-zinc-900 dark:text-zinc-100 focus:bg-zinc-100 dark:focus:bg-zinc-800 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
+      className,
     )}
     {...props}
   >
     <span className="absolute left-2.5 flex size-3.5 items-center justify-center">
       <ContextMenuPrimitive.ItemIndicator>
-        <Icon icon="hugeicons:record" className="size-2 fill-current text-sky-600 dark:text-sky-400" />
+        <Icon
+          icon="hugeicons:record"
+          className="size-2 fill-current text-sky-600 dark:text-sky-400"
+        />
       </ContextMenuPrimitive.ItemIndicator>
     </span>
     {children}
@@ -205,7 +220,7 @@ const ContextMenuLabel = React.forwardRef<
     className={cn(
       "px-2.5 py-1.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   />
@@ -232,7 +247,7 @@ const ContextMenuShortcut = ({
     <span
       className={cn(
         "ml-auto text-xs tracking-widest text-zinc-400 dark:text-zinc-500 font-mono",
-        className
+        className,
       )}
       {...props}
     />

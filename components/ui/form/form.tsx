@@ -54,7 +54,9 @@ export function Form<TFieldValues extends FieldValues = FieldValues>({
     if (scrollToFirstError && Object.keys(form.formState.errors).length > 0) {
       setTimeout(() => {
         const firstErrorKey = Object.keys(form.formState.errors)[0];
-        const errorElement = document.querySelector(`[name="${firstErrorKey}"], #${firstErrorKey}`);
+        const errorElement = document.querySelector(
+          `[name="${firstErrorKey}"], #${firstErrorKey}`,
+        );
         if (errorElement) {
           errorElement.scrollIntoView({ behavior: "smooth", block: "center" });
           (errorElement as HTMLElement).focus?.();

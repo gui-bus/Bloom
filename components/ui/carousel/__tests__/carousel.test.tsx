@@ -39,7 +39,7 @@ describe("Carousel Component", () => {
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
-      </Carousel>
+      </Carousel>,
     );
 
     expect(screen.getByText("Slide 1")).toBeInTheDocument();

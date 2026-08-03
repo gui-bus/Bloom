@@ -15,10 +15,22 @@ interface AccessibilityCardProps {
 }
 
 const defaultShortcuts: ShortcutItem[] = [
-  { key: "Escape", description: "Closes the open panel, modal, or popover overlay." },
-  { key: "Tab / Shift+Tab", description: "Navigates focus trapped within active container." },
-  { key: "Space / Enter", description: "Triggers or toggles the focused interactive element." },
-  { key: "Arrow Keys", description: "Navigates between menu options or accordion items." },
+  {
+    key: "Escape",
+    description: "Closes the open panel, modal, or popover overlay.",
+  },
+  {
+    key: "Tab / Shift+Tab",
+    description: "Navigates focus trapped within active container.",
+  },
+  {
+    key: "Space / Enter",
+    description: "Triggers or toggles the focused interactive element.",
+  },
+  {
+    key: "Arrow Keys",
+    description: "Navigates between menu options or accordion items.",
+  },
 ];
 
 export function AccessibilityCard({
@@ -32,8 +44,12 @@ export function AccessibilityCard({
           <Icon icon="hugeicons:view" className="size-4.5" />
         </div>
         <div>
-          <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">Accessibility & Keyboard Shortcuts</h4>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">{ariaStandards}</p>
+          <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
+            Accessibility & Keyboard Shortcuts
+          </h4>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">
+            {ariaStandards}
+          </p>
         </div>
       </div>
 

@@ -11,7 +11,9 @@ describe("Checkbox Component", () => {
 
   it("toggles checked state when clicked", () => {
     const handleCheckedChange = vi.fn();
-    render(<Checkbox label="Subscribe" onCheckedChange={handleCheckedChange} />);
+    render(
+      <Checkbox label="Subscribe" onCheckedChange={handleCheckedChange} />,
+    );
     const checkbox = screen.getByRole("checkbox");
 
     fireEvent.click(checkbox);

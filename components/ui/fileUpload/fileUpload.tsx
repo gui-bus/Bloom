@@ -55,7 +55,9 @@ export function FileUpload({
 }: FileUploadProps) {
   const [dragActive, setDragActive] = React.useState(false);
   const [fileItems, setFileItems] = React.useState<FileItemState[]>([]);
-  const [cropFileItem, setCropFileItem] = React.useState<FileItemState | null>(null);
+  const [cropFileItem, setCropFileItem] = React.useState<FileItemState | null>(
+    null,
+  );
   const [cropRotation, setCropRotation] = React.useState<number>(0);
   const [cropZoom, setCropZoom] = React.useState<number>(1);
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -72,28 +74,45 @@ export function FileUpload({
       img.onload = () => {
         URL.revokeObjectURL(objectUrl);
         const { width, height } = img;
-        const { minWidth, minHeight, maxWidth, maxHeight, aspectRatio, aspectRatioTolerance = 0.05 } = validationRules;
+        const {
+          minWidth,
+          minHeight,
+          maxWidth,
+          maxHeight,
+          aspectRatio,
+          aspectRatioTolerance = 0.05,
+        } = validationRules;
 
         if (minWidth && width < minWidth) {
-          resolve(`Image width (${width}px) is less than min allowed ${minWidth}px.`);
+          resolve(
+            `Image width (${width}px) is less than min allowed ${minWidth}px.`,
+          );
           return;
         }
         if (minHeight && height < minHeight) {
-          resolve(`Image height (${height}px) is less than min allowed ${minHeight}px.`);
+          resolve(
+            `Image height (${height}px) is less than min allowed ${minHeight}px.`,
+          );
           return;
         }
         if (maxWidth && width > maxWidth) {
-          resolve(`Image width (${width}px) exceeds max allowed ${maxWidth}px.`);
+          resolve(
+            `Image width (${width}px) exceeds max allowed ${maxWidth}px.`,
+          );
           return;
         }
         if (maxHeight && height > maxHeight) {
-          resolve(`Image height (${height}px) exceeds max allowed ${maxHeight}px.`);
+          resolve(
+            `Image height (${height}px) exceeds max allowed ${maxHeight}px.`,
+          );
           return;
         }
         if (aspectRatio) {
           const currentRatio = width / height;
           if (Math.abs(currentRatio - aspectRatio) > aspectRatioTolerance) {
-            resolve(`Aspect ratio (${currentRatio.toFixed(2)}) does not match required ratio (${aspectRatio.toFixed(2)}).`);
+            resolve(
+              `Aspect ratio (${currentRatio.toFixed(2)}) does not match required ratio (${aspectRatio.toFixed(2)}).`,
+            );
             return;
           }
         }
@@ -130,7 +149,11 @@ export function FileUpload({
         file,
         previewUrl,
         progress: errorMessage ? 0 : simulateProgress ? 0 : 100,
-        status: errorMessage ? "error" : simulateProgress ? "uploading" : "completed",
+        status: errorMessage
+          ? "error"
+          : simulateProgress
+            ? "uploading"
+            : "completed",
         errorMessage,
       };
 
@@ -139,10 +162,17 @@ export function FileUpload({
 
     const updated = multiple ? [...fileItems, ...newItems] : newItems;
     setFileItems(updated);
-    onFilesSelected?.(updated.filter((i) => i.status !== "error").map((item) => item.file));
+    onFilesSelected?.(
+      updated.filter((i) => i.status !== "error").map((item) => item.file),
+    );
 
     // If enableCrop and first image has no error, open crop modal
-    if (enableCrop && newItems.length > 0 && newItems[0].file.type.startsWith("image/") && !newItems[0].errorMessage) {
+    if (
+      enableCrop &&
+      newItems.length > 0 &&
+      newItems[0].file.type.startsWith("image/") &&
+      !newItems[0].errorMessage
+    ) {
       setCropFileItem(newItems[0]);
       setCropRotation(0);
       setCropZoom(1);
@@ -167,7 +197,11 @@ export function FileUpload({
         if (items[i].type.startsWith("image/")) {
           const blob = items[i].getAsFile();
           if (blob) {
-            const pastedFile = new File([blob], `pasted-image-${Date.now()}.png`, { type: blob.type });
+            const pastedFile = new File(
+              [blob],
+              `pasted-image-${Date.now()}.png`,
+              { type: blob.type },
+            );
             pastedFiles.push(pastedFile);
           }
         }
@@ -189,7 +223,10 @@ export function FileUpload({
       setFileItems((prev) =>
         prev.map((item) => {
           if (item.status === "uploading" && item.progress < 100) {
-            const nextProgress = Math.min(100, item.progress + Math.floor(Math.random() * 25) + 10);
+            const nextProgress = Math.min(
+              100,
+              item.progress + Math.floor(Math.random() * 25) + 10,
+            );
             return {
               ...item,
               progress: nextProgress,
@@ -197,7 +234,7 @@ export function FileUpload({
             };
           }
           return item;
-        })
+        }),
       );
     }, 400);
 
@@ -226,7 +263,9 @@ export function FileUpload({
   const removeFile = (id: string) => {
     const updated = fileItems.filter((item) => item.id !== id);
     setFileItems(updated);
-    onFilesSelected?.(updated.filter((i) => i.status !== "error").map((item) => item.file));
+    onFilesSelected?.(
+      updated.filter((i) => i.status !== "error").map((item) => item.file),
+    );
   };
 
   const togglePause = (id: string) => {
@@ -237,7 +276,7 @@ export function FileUpload({
           return { ...item, status: nextStatus };
         }
         return item;
-      })
+      }),
     );
   };
 
@@ -274,7 +313,7 @@ export function FileUpload({
           dragActive
             ? "border-sky-500 bg-sky-500/10 dark:border-sky-400 dark:bg-sky-400/10 scale-[1.01]"
             : "border-zinc-200 dark:border-zinc-800",
-          disabled && "opacity-50 cursor-not-allowed pointer-events-none"
+          disabled && "opacity-50 cursor-not-allowed pointer-events-none",
         )}
       >
         <input
@@ -289,9 +328,12 @@ export function FileUpload({
         <div className="p-3.5 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl shadow-xs mb-3 text-sky-500 dark:text-sky-400 group-hover:scale-110 transition-transform duration-200">
           <Icon icon="hugeicons:cloud-upload" className="size-6" />
         </div>
-        <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 text-center">{description}</p>
+        <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 text-center">
+          {description}
+        </p>
         <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-          Max file size: {maxSizeMB}MB {allowPaste && "• Paste supported (Ctrl+V)"}
+          Max file size: {maxSizeMB}MB{" "}
+          {allowPaste && "• Paste supported (Ctrl+V)"}
         </p>
       </div>
 
@@ -304,7 +346,7 @@ export function FileUpload({
                 "flex flex-col gap-2 p-3 bg-white dark:bg-zinc-900 border rounded-2xl text-xs shadow-xs transition-all",
                 item.status === "error"
                   ? "border-rose-300 dark:border-rose-900/50 bg-rose-50/30 dark:bg-rose-950/10"
-                  : "border-zinc-200 dark:border-zinc-800"
+                  : "border-zinc-200 dark:border-zinc-800",
               )}
             >
               <div className="flex items-center justify-between gap-3">
@@ -312,9 +354,16 @@ export function FileUpload({
                   {showPreviews && item.previewUrl ? (
                     <div className="size-10 rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 shrink-0 border border-zinc-200 dark:border-zinc-700">
                       {item.file.type.startsWith("image/") ? (
-                        <img src={item.previewUrl} alt={item.file.name} className="size-full object-cover" />
+                        <img
+                          src={item.previewUrl}
+                          alt={item.file.name}
+                          className="size-full object-cover"
+                        />
                       ) : (
-                        <video src={item.previewUrl} className="size-full object-cover" />
+                        <video
+                          src={item.previewUrl}
+                          className="size-full object-cover"
+                        />
                       )}
                     </div>
                   ) : (
@@ -324,44 +373,51 @@ export function FileUpload({
                   )}
 
                   <div className="flex flex-col min-w-0">
-                    <span className="truncate font-semibold text-zinc-900 dark:text-zinc-100">{item.file.name}</span>
+                    <span className="truncate font-semibold text-zinc-900 dark:text-zinc-100">
+                      {item.file.name}
+                    </span>
                     <span className="text-[11px] text-zinc-400">
                       {(item.file.size / (1024 * 1024)).toFixed(2)} MB •{" "}
                       <span
                         className={cn(
-                          item.status === "completed" && "text-emerald-500 font-semibold",
+                          item.status === "completed" &&
+                            "text-emerald-500 font-semibold",
                           item.status === "uploading" && "text-sky-500",
-                          item.status === "paused" && "text-amber-500 font-semibold",
-                          item.status === "error" && "text-rose-600 dark:text-rose-400 font-semibold"
+                          item.status === "paused" &&
+                            "text-amber-500 font-semibold",
+                          item.status === "error" &&
+                            "text-rose-600 dark:text-rose-400 font-semibold",
                         )}
                       >
                         {item.status === "error"
-                          ? item.errorMessage ?? "Validation Error"
+                          ? (item.errorMessage ?? "Validation Error")
                           : item.status === "completed"
-                          ? "Completed"
-                          : item.status === "paused"
-                          ? "Paused"
-                          : `${item.progress}%`}
+                            ? "Completed"
+                            : item.status === "paused"
+                              ? "Paused"
+                              : `${item.progress}%`}
                       </span>
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-1 shrink-0">
-                  {enableCrop && item.file.type.startsWith("image/") && item.status !== "error" && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setCropFileItem(item);
-                        setCropRotation(0);
-                        setCropZoom(1);
-                      }}
-                      className="p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-sky-500 cursor-pointer transition-colors"
-                      title="Crop & Rotate Image"
-                    >
-                      <Icon icon="hugeicons:crop" className="size-4" />
-                    </button>
-                  )}
+                  {enableCrop &&
+                    item.file.type.startsWith("image/") &&
+                    item.status !== "error" && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setCropFileItem(item);
+                          setCropRotation(0);
+                          setCropZoom(1);
+                        }}
+                        className="p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-sky-500 cursor-pointer transition-colors"
+                        title="Crop & Rotate Image"
+                      >
+                        <Icon icon="hugeicons:crop" className="size-4" />
+                      </button>
+                    )}
                   {item.status !== "completed" && item.status !== "error" && (
                     <button
                       type="button"
@@ -369,7 +425,11 @@ export function FileUpload({
                       className="p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-pointer transition-colors"
                     >
                       <Icon
-                        icon={item.status === "paused" ? "hugeicons:play" : "hugeicons:pause"}
+                        icon={
+                          item.status === "paused"
+                            ? "hugeicons:play"
+                            : "hugeicons:pause"
+                        }
                         className="size-4"
                       />
                     </button>
@@ -389,7 +449,7 @@ export function FileUpload({
                   <div
                     className={cn(
                       "h-full transition-all duration-300 rounded-full",
-                      item.status === "paused" ? "bg-amber-500" : "bg-sky-500"
+                      item.status === "paused" ? "bg-amber-500" : "bg-sky-500",
                     )}
                     style={{ width: `${item.progress}%` }}
                   />

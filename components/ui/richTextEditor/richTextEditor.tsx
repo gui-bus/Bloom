@@ -42,7 +42,7 @@ function ToolbarButton({
         isActive
           ? "bg-sky-500/10 text-sky-500"
           : "text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-700 dark:hover:text-zinc-300",
-        isDisabled && "opacity-40 cursor-not-allowed"
+        isDisabled && "opacity-40 cursor-not-allowed",
       )}
     >
       <Icon icon={icon} className="size-4" />
@@ -63,10 +63,7 @@ export function RichTextEditor({
   className,
 }: RichTextEditorProps) {
   const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Placeholder.configure({ placeholder }),
-    ],
+    extensions: [StarterKit, Placeholder.configure({ placeholder })],
     content: value || "",
     editable: !isDisabled,
     onUpdate: ({ editor }) => {
@@ -80,7 +77,7 @@ export function RichTextEditor({
           "prose-p:text-zinc-700 dark:prose-p:text-zinc-300",
           "prose-p:my-1 prose-headings:my-2",
           "prose-blockquote:border-l-sky-500 prose-blockquote:text-zinc-500",
-          "prose-ul:my-1 prose-ol:my-1 prose-li:my-0"
+          "prose-ul:my-1 prose-ol:my-1 prose-li:my-0",
         ),
         style: `min-height: ${minHeight}`,
       },
@@ -92,7 +89,7 @@ export function RichTextEditor({
       <div
         className={cn(
           "rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 animate-pulse",
-          className
+          className,
         )}
         style={{ minHeight: `calc(${minHeight} + 48px)` }}
       />
@@ -103,9 +100,10 @@ export function RichTextEditor({
     <div
       className={cn(
         "rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden transition-colors",
-        !isDisabled && "focus-within:ring-2 focus-within:ring-sky-500/20 focus-within:border-sky-500",
+        !isDisabled &&
+          "focus-within:ring-2 focus-within:ring-sky-500/20 focus-within:border-sky-500",
         isDisabled && "opacity-60",
-        className
+        className,
       )}
     >
       {/* Toolbar */}
@@ -137,21 +135,27 @@ export function RichTextEditor({
         <ToolbarButton
           icon="hugeicons:heading-01"
           isActive={editor.isActive("heading", { level: 1 })}
-          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 1 }).run()
+          }
           title="Heading 1"
           isDisabled={isDisabled}
         />
         <ToolbarButton
           icon="hugeicons:heading-02"
           isActive={editor.isActive("heading", { level: 2 })}
-          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 2 }).run()
+          }
           title="Heading 2"
           isDisabled={isDisabled}
         />
         <ToolbarButton
           icon="hugeicons:heading-03"
           isActive={editor.isActive("heading", { level: 3 })}
-          onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 3 }).run()
+          }
           title="Heading 3"
           isDisabled={isDisabled}
         />

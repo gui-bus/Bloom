@@ -8,7 +8,14 @@ import { designRadius } from "@/lib/design-system";
 
 export interface CheckboxProps
   extends React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> {
-  color?: "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
+  color?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "accent"
+    | "success"
+    | "warning"
+    | "danger";
   radius?: keyof typeof designRadius;
   label?: React.ReactNode;
   description?: React.ReactNode;
@@ -34,7 +41,8 @@ export function useCheckboxGroup<T extends string>({
 }: UseCheckboxGroupOptions<T>) {
   const [selected, setSelected] = React.useState<T[]>(defaultSelected);
 
-  const isAllSelected = items.length > 0 && items.every((item) => selected.includes(item));
+  const isAllSelected =
+    items.length > 0 && items.every((item) => selected.includes(item));
   const isSomeSelected = selected.length > 0 && !isAllSelected;
 
   const toggleAll = React.useCallback(() => {
@@ -79,13 +87,20 @@ export interface CheckboxGroupProps {
 }
 
 const colorMap: Record<NonNullable<CheckboxProps["color"]>, string> = {
-  default: "data-[state=checked]:bg-zinc-900 dark:data-[state=checked]:bg-zinc-100 data-[state=checked]:text-white dark:data-[state=checked]:text-zinc-900 data-[state=checked]:border-zinc-900 dark:data-[state=checked]:border-zinc-100 data-[state=indeterminate]:bg-zinc-900 dark:data-[state=indeterminate]:bg-zinc-100 data-[state=indeterminate]:text-white dark:data-[state=indeterminate]:text-zinc-900",
-  primary: "data-[state=checked]:bg-sky-600 data-[state=checked]:text-white data-[state=checked]:border-sky-600 data-[state=indeterminate]:bg-sky-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-sky-600",
-  secondary: "data-[state=checked]:bg-purple-600 data-[state=checked]:text-white data-[state=checked]:border-purple-600 data-[state=indeterminate]:bg-purple-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-purple-600",
-  accent: "data-[state=checked]:bg-pink-600 data-[state=checked]:text-white data-[state=checked]:border-pink-600 data-[state=indeterminate]:bg-pink-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-pink-600",
-  success: "data-[state=checked]:bg-emerald-600 data-[state=checked]:text-white data-[state=checked]:border-emerald-600 data-[state=indeterminate]:bg-emerald-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-emerald-600",
-  warning: "data-[state=checked]:bg-amber-600 data-[state=checked]:text-white data-[state=checked]:border-amber-600 data-[state=indeterminate]:bg-amber-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-amber-600",
-  danger: "data-[state=checked]:bg-rose-600 data-[state=checked]:text-white data-[state=checked]:border-rose-600 data-[state=indeterminate]:bg-rose-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-rose-600",
+  default:
+    "data-[state=checked]:bg-zinc-900 dark:data-[state=checked]:bg-zinc-100 data-[state=checked]:text-white dark:data-[state=checked]:text-zinc-900 data-[state=checked]:border-zinc-900 dark:data-[state=checked]:border-zinc-100 data-[state=indeterminate]:bg-zinc-900 dark:data-[state=indeterminate]:bg-zinc-100 data-[state=indeterminate]:text-white dark:data-[state=indeterminate]:text-zinc-900",
+  primary:
+    "data-[state=checked]:bg-sky-600 data-[state=checked]:text-white data-[state=checked]:border-sky-600 data-[state=indeterminate]:bg-sky-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-sky-600",
+  secondary:
+    "data-[state=checked]:bg-purple-600 data-[state=checked]:text-white data-[state=checked]:border-purple-600 data-[state=indeterminate]:bg-purple-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-purple-600",
+  accent:
+    "data-[state=checked]:bg-pink-600 data-[state=checked]:text-white data-[state=checked]:border-pink-600 data-[state=indeterminate]:bg-pink-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-pink-600",
+  success:
+    "data-[state=checked]:bg-emerald-600 data-[state=checked]:text-white data-[state=checked]:border-emerald-600 data-[state=indeterminate]:bg-emerald-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-emerald-600",
+  warning:
+    "data-[state=checked]:bg-amber-600 data-[state=checked]:text-white data-[state=checked]:border-amber-600 data-[state=indeterminate]:bg-amber-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-amber-600",
+  danger:
+    "data-[state=checked]:bg-rose-600 data-[state=checked]:text-white data-[state=checked]:border-rose-600 data-[state=indeterminate]:bg-rose-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-rose-600",
 };
 
 const CheckboxGroupContext = React.createContext<{
@@ -110,9 +125,10 @@ const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps>(
       isDisabled = false,
       className,
     },
-    ref
+    ref,
   ) => {
-    const [selectedValues, setSelectedValues] = React.useState<string[]>(defaultValue);
+    const [selectedValues, setSelectedValues] =
+      React.useState<string[]>(defaultValue);
     const currentValues = value !== undefined ? value : selectedValues;
 
     const toggleValue = React.useCallback(
@@ -126,7 +142,7 @@ const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps>(
         if (value === undefined) setSelectedValues(next);
         onValueChange?.(next);
       },
-      [currentValues, value, onValueChange]
+      [currentValues, value, onValueChange],
     );
 
     const columnStyles: Record<number, string> = {
@@ -149,14 +165,16 @@ const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps>(
                 <label
                   className={cn(
                     "text-xs font-semibold text-zinc-900 dark:text-zinc-100",
-                    isInvalid && "text-rose-500 dark:text-rose-400"
+                    isInvalid && "text-rose-500 dark:text-rose-400",
                   )}
                 >
                   {label}
                 </label>
               )}
               {description && (
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">{description}</p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  {description}
+                </p>
               )}
             </div>
           )}
@@ -166,8 +184,8 @@ const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps>(
               columns
                 ? cn("grid gap-3", columnStyles[columns])
                 : orientation === "horizontal"
-                ? "flex flex-wrap items-center gap-4"
-                : "flex flex-col gap-2.5"
+                  ? "flex flex-wrap items-center gap-4"
+                  : "flex flex-col gap-2.5",
             )}
           >
             {children}
@@ -175,7 +193,7 @@ const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps>(
         </div>
       </CheckboxGroupContext.Provider>
     );
-  }
+  },
 );
 CheckboxGroup.displayName = "CheckboxGroup";
 
@@ -206,7 +224,7 @@ const Checkbox = React.forwardRef<
       onCheckedChange,
       ...props
     },
-    ref
+    ref,
   ) => {
     const groupContext = React.useContext(CheckboxGroupContext);
     const generatedId = React.useId();
@@ -221,7 +239,9 @@ const Checkbox = React.forwardRef<
 
     const checkedState = isIndeterminate ? "indeterminate" : isChecked;
 
-    const handleCheckedChange = (newChecked: CheckboxPrimitive.CheckedState) => {
+    const handleCheckedChange = (
+      newChecked: CheckboxPrimitive.CheckedState,
+    ) => {
       if (isGrouped) {
         groupContext.toggleValue(String(itemValue));
       } else {
@@ -241,11 +261,13 @@ const Checkbox = React.forwardRef<
           designRadius[radius],
           colorMap[color],
           effectiveInvalid && "border-rose-500 dark:border-rose-500",
-          className
+          className,
         )}
         {...props}
       >
-        <CheckboxPrimitive.Indicator className={cn("flex items-center justify-center text-current")}>
+        <CheckboxPrimitive.Indicator
+          className={cn("flex items-center justify-center text-current")}
+        >
           {isIndeterminate ? (
             <Icon icon="hugeicons:minus-sign" className="size-3.5 stroke-[3]" />
           ) : checkIcon ? (
@@ -260,17 +282,21 @@ const Checkbox = React.forwardRef<
     const content = (
       <div className="inline-flex items-start gap-2.5 flex-1 min-w-0">
         {checkboxPosition === "start" && checkboxRoot}
-        {startContent && <div className="shrink-0 flex items-center">{startContent}</div>}
+        {startContent && (
+          <div className="shrink-0 flex items-center">{startContent}</div>
+        )}
         {(label || description || icon) && (
           <div className="flex flex-col gap-0.5 select-none flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              {icon && <Icon icon={icon} className="size-4 text-zinc-500 shrink-0" />}
+              {icon && (
+                <Icon icon={icon} className="size-4 text-zinc-500 shrink-0" />
+              )}
               {label && (
                 <label
                   htmlFor={checkboxId}
                   className={cn(
                     "text-sm font-medium leading-none cursor-pointer text-zinc-900 dark:text-zinc-100 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 truncate",
-                    effectiveInvalid && "text-rose-500 dark:text-rose-400"
+                    effectiveInvalid && "text-rose-500 dark:text-rose-400",
                   )}
                 >
                   {label}
@@ -278,7 +304,9 @@ const Checkbox = React.forwardRef<
               )}
             </div>
             {description && (
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">{description}</p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                {description}
+              </p>
             )}
           </div>
         )}
@@ -287,7 +315,9 @@ const Checkbox = React.forwardRef<
             {badge}
           </span>
         )}
-        {endContent && <div className="shrink-0 flex items-center">{endContent}</div>}
+        {endContent && (
+          <div className="shrink-0 flex items-center">{endContent}</div>
+        )}
         {checkboxPosition === "end" && checkboxRoot}
       </div>
     );
@@ -302,8 +332,10 @@ const Checkbox = React.forwardRef<
           }}
           className={cn(
             "relative flex items-center gap-3 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 transition-all duration-200 cursor-pointer hover:border-sky-500/50 shadow-xs select-none",
-            isChecked && "border-sky-500 bg-sky-50/40 dark:bg-sky-950/30 ring-1 ring-sky-500/20",
-            effectiveDisabled && "opacity-50 cursor-not-allowed pointer-events-none"
+            isChecked &&
+              "border-sky-500 bg-sky-50/40 dark:bg-sky-950/30 ring-1 ring-sky-500/20",
+            effectiveDisabled &&
+              "opacity-50 cursor-not-allowed pointer-events-none",
           )}
         >
           {content}
@@ -312,7 +344,7 @@ const Checkbox = React.forwardRef<
     }
 
     return content;
-  }
+  },
 );
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 

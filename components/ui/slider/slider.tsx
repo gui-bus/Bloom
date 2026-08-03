@@ -11,7 +11,14 @@ export interface SliderMark {
 
 export interface SliderProps
   extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {
-  color?: "default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger";
+  color?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "accent"
+    | "success"
+    | "warning"
+    | "danger";
   size?: "sm" | "md" | "lg";
   label?: React.ReactNode;
   showValue?: boolean;
@@ -73,7 +80,7 @@ const Slider = React.forwardRef<
       onValueChange,
       ...props
     },
-    ref
+    ref,
   ) => {
     const initialVal = React.useMemo(() => {
       if (Array.isArray(value)) return value;
@@ -82,7 +89,9 @@ const Slider = React.forwardRef<
     }, [value, defaultValue, min]);
 
     const [currentVal, setCurrentVal] = React.useState<number[]>(initialVal);
-    const [hoveredThumbIndex, setHoveredThumbIndex] = React.useState<number | null>(null);
+    const [hoveredThumbIndex, setHoveredThumbIndex] = React.useState<
+      number | null
+    >(null);
 
     React.useEffect(() => {
       if (Array.isArray(value)) {
@@ -137,7 +146,10 @@ const Slider = React.forwardRef<
                 const stepSize = (max - min) / histogramData.length;
                 const barMin = min + idx * stepSize;
                 const barMax = barMin + stepSize;
-                const heightPercent = Math.max(8, (val / maxHistogramVal) * 100);
+                const heightPercent = Math.max(
+                  8,
+                  (val / maxHistogramVal) * 100,
+                );
 
                 const isActive =
                   barMax >= activeRange[0] && barMin <= activeRange[1];
@@ -150,7 +162,7 @@ const Slider = React.forwardRef<
                       "flex-1 rounded-t transition-colors duration-200",
                       isActive
                         ? "bg-sky-500/80 dark:bg-sky-400/80"
-                        : "bg-zinc-200/80 dark:bg-zinc-800/80"
+                        : "bg-zinc-200/80 dark:bg-zinc-800/80",
                     )}
                   />
                 );
@@ -168,14 +180,14 @@ const Slider = React.forwardRef<
               onValueChange={handleValueChange}
               className={cn(
                 "relative flex w-full touch-none select-none items-center cursor-pointer z-10",
-                className
+                className,
               )}
               {...props}
             >
               <SliderPrimitive.Track
                 className={cn(
                   "relative w-full grow overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800",
-                  sizeMap[size].track
+                  sizeMap[size].track,
                 )}
               >
                 <SliderPrimitive.Range
@@ -186,7 +198,7 @@ const Slider = React.forwardRef<
               {currentVal.map((val, i) => {
                 const percent = Math.min(
                   100,
-                  Math.max(0, ((val - min) / (max - min)) * 100)
+                  Math.max(0, ((val - min) / (max - min)) * 100),
                 );
                 const isHovered = hoveredThumbIndex === i;
 
@@ -198,7 +210,7 @@ const Slider = React.forwardRef<
                       className={cn(
                         "block rounded-full border-2 bg-white dark:bg-zinc-900 shadow-xs transition-transform focus-visible:outline-none focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50 hover:scale-110 cursor-pointer relative",
                         sizeMap[size].thumb,
-                        thumbBorderMap[color]
+                        thumbBorderMap[color],
                       )}
                     >
                       {showTooltip && (
@@ -207,7 +219,7 @@ const Slider = React.forwardRef<
                             "absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] font-bold font-mono shadow-md whitespace-nowrap pointer-events-none transition-all duration-150 origin-bottom",
                             isHovered
                               ? "opacity-100 scale-100 translate-y-0"
-                              : "opacity-0 scale-95 translate-y-1"
+                              : "opacity-0 scale-95 translate-y-1",
                           )}
                         >
                           {formatTooltip ? formatTooltip(val) : val}
@@ -225,7 +237,7 @@ const Slider = React.forwardRef<
                 {marks.map((mark, i) => {
                   const percent = Math.min(
                     100,
-                    Math.max(0, ((mark.value - min) / (max - min)) * 100)
+                    Math.max(0, ((mark.value - min) / (max - min)) * 100),
                   );
                   return (
                     <div
@@ -248,7 +260,7 @@ const Slider = React.forwardRef<
         </div>
       </div>
     );
-  }
+  },
 );
 Slider.displayName = SliderPrimitive.Root.displayName;
 

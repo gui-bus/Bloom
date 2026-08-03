@@ -10,7 +10,7 @@ describe("AspectRatio Component", () => {
         <AspectRatio ratio={16 / 9}>
           <img src="test.jpg" alt="Test Aspect Ratio" />
         </AspectRatio>
-      </div>
+      </div>,
     );
     expect(screen.getByAltText("Test Aspect Ratio")).toBeInTheDocument();
   });

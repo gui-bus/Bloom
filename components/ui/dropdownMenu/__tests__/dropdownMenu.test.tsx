@@ -16,7 +16,7 @@ describe("DropdownMenu Component", () => {
         <DropdownMenuContent>
           <DropdownMenuItem>Profile</DropdownMenuItem>
         </DropdownMenuContent>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     expect(screen.getByText("Open Menu")).toBeInTheDocument();

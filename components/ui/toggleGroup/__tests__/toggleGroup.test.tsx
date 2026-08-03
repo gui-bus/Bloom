@@ -9,7 +9,7 @@ describe("ToggleGroup Component", () => {
       <ToggleGroup type="single">
         <ToggleGroupItem value="left">Left</ToggleGroupItem>
         <ToggleGroupItem value="center">Center</ToggleGroupItem>
-      </ToggleGroup>
+      </ToggleGroup>,
     );
 
     expect(screen.getByText("Left")).toBeInTheDocument();

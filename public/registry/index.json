@@ -1,21 +1,27 @@
 [
   {
     "name": "accordion",
-    "dependencies": [
-      "@radix-ui/react-accordion"
-    ]
+    "dependencies": ["@radix-ui/react-accordion"]
+  },
+  {
+    "name": "alert",
+    "dependencies": ["lucide-react", "class-variance-authority"]
+  },
+  {
+    "name": "alertDialog",
+    "dependencies": ["@radix-ui/react-alert-dialog"]
   },
   {
     "name": "aspectRatio",
-    "dependencies": [
-      "@radix-ui/react-aspect-ratio"
-    ]
+    "dependencies": ["@radix-ui/react-aspect-ratio"]
+  },
+  {
+    "name": "autocomplete",
+    "dependencies": ["@iconify/react"]
   },
   {
     "name": "avatar",
-    "dependencies": [
-      "@radix-ui/react-avatar"
-    ]
+    "dependencies": ["@radix-ui/react-avatar"]
   },
   {
     "name": "avatarGroup",
@@ -23,73 +29,206 @@
   },
   {
     "name": "badge",
-    "dependencies": [
-      "class-variance-authority"
-    ]
+    "dependencies": ["class-variance-authority"]
+  },
+  {
+    "name": "banner",
+    "dependencies": ["lucide-react", "class-variance-authority"]
+  },
+  {
+    "name": "breadcrumb",
+    "dependencies": ["@iconify/react"]
   },
   {
     "name": "button",
-    "dependencies": [
-      "@radix-ui/react-slot",
-      "class-variance-authority"
-    ]
+    "dependencies": ["@radix-ui/react-slot", "class-variance-authority"]
   },
   {
     "name": "buttonGroup",
     "dependencies": []
   },
   {
+    "name": "card",
+    "dependencies": ["class-variance-authority"]
+  },
+  {
     "name": "carousel",
-    "dependencies": [
-      "embla-carousel-react"
-    ]
+    "dependencies": ["embla-carousel-react"]
+  },
+  {
+    "name": "chart",
+    "dependencies": ["recharts"]
+  },
+  {
+    "name": "checkbox",
+    "dependencies": ["@radix-ui/react-checkbox", "class-variance-authority"]
+  },
+  {
+    "name": "codeBlock",
+    "dependencies": ["highlight.js", "framer-motion", "@iconify/react"]
   },
   {
     "name": "collapsible",
-    "dependencies": [
-      "@radix-ui/react-collapsible"
-    ]
+    "dependencies": ["@radix-ui/react-collapsible"]
+  },
+  {
+    "name": "colorPicker",
+    "dependencies": ["@iconify/react"]
+  },
+  {
+    "name": "colorSwatches",
+    "dependencies": ["@iconify/react"]
+  },
+  {
+    "name": "combobox",
+    "dependencies": ["lucide-react"]
+  },
+  {
+    "name": "command",
+    "dependencies": ["cmdk", "lucide-react"]
+  },
+  {
+    "name": "contextMenu",
+    "dependencies": ["@radix-ui/react-context-menu", "lucide-react"]
+  },
+  {
+    "name": "dataTable",
+    "dependencies": ["@tanstack/react-table"]
+  },
+  {
+    "name": "datePicker",
+    "dependencies": ["lucide-react"]
+  },
+  {
+    "name": "dialog",
+    "dependencies": ["@radix-ui/react-dialog", "lucide-react"]
+  },
+  {
+    "name": "drawer",
+    "dependencies": ["vaul"]
   },
   {
     "name": "dropdownMenu",
-    "dependencies": [
-      "@radix-ui/react-dropdown-menu"
-    ]
+    "dependencies": ["@radix-ui/react-dropdown-menu"]
   },
   {
-    "name": "breadcrumb",
+    "name": "fileUpload",
+    "dependencies": ["lucide-react"]
+  },
+  {
+    "name": "filterBuilder",
+    "dependencies": ["lucide-react"]
+  },
+  {
+    "name": "form",
+    "dependencies": ["react-hook-form"]
+  },
+  {
+    "name": "formField",
     "dependencies": []
+  },
+  {
+    "name": "hoverCard",
+    "dependencies": ["@radix-ui/react-hover-card"]
+  },
+  {
+    "name": "image",
+    "dependencies": ["@iconify/react"]
+  },
+  {
+    "name": "input",
+    "dependencies": ["class-variance-authority"]
+  },
+  {
+    "name": "inputOtp",
+    "dependencies": ["input-otp"]
   },
   {
     "name": "kbd",
+    "dependencies": ["class-variance-authority"]
+  },
+  {
+    "name": "label",
+    "dependencies": ["@radix-ui/react-label", "class-variance-authority"]
+  },
+  {
+    "name": "link",
+    "dependencies": ["lucide-react", "class-variance-authority"]
+  },
+  {
+    "name": "list",
     "dependencies": []
   },
   {
-    "name": "pagination",
-    "dependencies": []
+    "name": "menubar",
+    "dependencies": ["@radix-ui/react-menubar", "lucide-react"]
   },
   {
-    "name": "progress",
+    "name": "multiSelect",
+    "dependencies": ["lucide-react"]
+  },
+  {
+    "name": "navigationMenu",
     "dependencies": [
-      "@radix-ui/react-progress"
+      "@radix-ui/react-navigation-menu",
+      "lucide-react",
+      "class-variance-authority"
     ]
   },
   {
+    "name": "numberInput",
+    "dependencies": ["lucide-react"]
+  },
+  {
+    "name": "pagination",
+    "dependencies": ["@iconify/react"]
+  },
+  {
+    "name": "popover",
+    "dependencies": ["@radix-ui/react-popover"]
+  },
+  {
+    "name": "progress",
+    "dependencies": ["@radix-ui/react-progress"]
+  },
+  {
+    "name": "radioGroup",
+    "dependencies": ["@radix-ui/react-radio-group"]
+  },
+  {
+    "name": "rating",
+    "dependencies": ["lucide-react"]
+  },
+  {
     "name": "resizable",
+    "dependencies": ["react-resizable-panels"]
+  },
+  {
+    "name": "richTextEditor",
     "dependencies": [
-      "react-resizable-panels"
+      "@tiptap/react",
+      "@tiptap/starter-kit",
+      "@tiptap/extension-placeholder"
     ]
   },
   {
     "name": "scrollArea",
-    "dependencies": [
-      "@radix-ui/react-scroll-area"
-    ]
+    "dependencies": ["@radix-ui/react-scroll-area"]
+  },
+  {
+    "name": "select",
+    "dependencies": ["@radix-ui/react-select"]
   },
   {
     "name": "separator",
+    "dependencies": ["@radix-ui/react-separator"]
+  },
+  {
+    "name": "sheet",
     "dependencies": [
-      "@radix-ui/react-separator"
+      "@radix-ui/react-dialog",
+      "lucide-react",
+      "class-variance-authority"
     ]
   },
   {
@@ -97,11 +236,27 @@
     "dependencies": []
   },
   {
+    "name": "slider",
+    "dependencies": ["@radix-ui/react-slider"]
+  },
+  {
     "name": "spinner",
     "dependencies": []
   },
   {
+    "name": "statCard",
+    "dependencies": ["lucide-react"]
+  },
+  {
     "name": "stepper",
+    "dependencies": ["@iconify/react"]
+  },
+  {
+    "name": "switch",
+    "dependencies": ["@radix-ui/react-switch"]
+  },
+  {
+    "name": "table",
     "dependencies": []
   },
   {
@@ -113,266 +268,43 @@
     ]
   },
   {
-    "name": "card",
-    "dependencies": [
-      "class-variance-authority"
-    ]
-  },
-  {
-    "name": "codeBlock",
-    "dependencies": [
-      "highlight.js",
-      "framer-motion",
-      "@iconify/react"
-    ]
-  },
-  {
-    "name": "image",
-    "dependencies": []
-  },
-  {
-    "name": "typography",
-    "dependencies": [
-      "class-variance-authority"
-    ]
-  },
-  {
-    "name": "checkbox",
-    "dependencies": [
-      "@radix-ui/react-checkbox",
-      "class-variance-authority"
-    ]
-  },
-  {
-    "name": "colorPicker",
-    "dependencies": []
-  },
-  {
-    "name": "combobox",
-    "dependencies": [
-      "lucide-react"
-    ]
-  },
-  {
-    "name": "autocomplete",
-    "dependencies": [
-      "@iconify/react"
-    ]
-  },
-  {
-    "name": "datePicker",
-    "dependencies": [
-      "lucide-react"
-    ]
-  },
-  {
-    "name": "fileUpload",
-    "dependencies": [
-      "lucide-react"
-    ]
-  },
-  {
-    "name": "input",
-    "dependencies": [
-      "class-variance-authority"
-    ]
-  },
-  {
-    "name": "inputOtp",
-    "dependencies": [
-      "input-otp"
-    ]
-  },
-  {
-    "name": "numberInput",
-    "dependencies": [
-      "lucide-react"
-    ]
-  },
-  {
-    "name": "radioGroup",
-    "dependencies": [
-      "@radix-ui/react-radio-group"
-    ]
-  },
-  {
-    "name": "rating",
-    "dependencies": [
-      "lucide-react"
-    ]
-  },
-  {
-    "name": "select",
-    "dependencies": [
-      "@radix-ui/react-select"
-    ]
-  },
-  {
-    "name": "slider",
-    "dependencies": [
-      "@radix-ui/react-slider"
-    ]
-  },
-  {
-    "name": "switch",
-    "dependencies": [
-      "@radix-ui/react-switch"
-    ]
-  },
-  {
     "name": "textarea",
-    "dependencies": [
-      "class-variance-authority"
-    ]
+    "dependencies": ["class-variance-authority"]
   },
   {
-    "name": "toggle",
-    "dependencies": [
-      "@radix-ui/react-toggle",
-      "class-variance-authority"
-    ]
+    "name": "timeline",
+    "dependencies": ["lucide-react"]
   },
   {
-    "name": "toggleGroup",
-    "dependencies": [
-      "@radix-ui/react-toggle-group"
-    ]
-  },
-  {
-    "name": "link",
-    "dependencies": [
-      "lucide-react",
-      "class-variance-authority"
-    ]
-  },
-  {
-    "name": "navigationMenu",
-    "dependencies": [
-      "@radix-ui/react-navigation-menu",
-      "lucide-react",
-      "class-variance-authority"
-    ]
-  },
-  {
-    "name": "menubar",
-    "dependencies": [
-      "@radix-ui/react-menubar",
-      "lucide-react"
-    ]
-  },
-  {
-    "name": "label",
-    "dependencies": [
-      "@radix-ui/react-label",
-      "class-variance-authority"
-    ]
-  },
-  {
-    "name": "formField",
-    "dependencies": []
-  },
-  {
-    "name": "form",
-    "dependencies": [
-      "react-hook-form"
-    ]
-  },
-  {
-    "name": "dialog",
-    "dependencies": [
-      "@radix-ui/react-dialog",
-      "lucide-react"
-    ]
-  },
-  {
-    "name": "alertDialog",
-    "dependencies": [
-      "@radix-ui/react-alert-dialog"
-    ]
-  },
-  {
-    "name": "sheet",
-    "dependencies": [
-      "@radix-ui/react-dialog",
-      "lucide-react",
-      "class-variance-authority"
-    ]
-  },
-  {
-    "name": "drawer",
-    "dependencies": [
-      "vaul"
-    ]
-  },
-  {
-    "name": "popover",
-    "dependencies": [
-      "@radix-ui/react-popover"
-    ]
-  },
-  {
-    "name": "tooltip",
-    "dependencies": [
-      "@radix-ui/react-tooltip"
-    ]
-  },
-  {
-    "name": "hoverCard",
-    "dependencies": [
-      "@radix-ui/react-hover-card"
-    ]
+    "name": "timePicker",
+    "dependencies": ["lucide-react"]
   },
   {
     "name": "toast",
-    "dependencies": [
-      "sonner"
-    ]
+    "dependencies": ["sonner"]
   },
   {
-    "name": "alert",
-    "dependencies": [
-      "lucide-react",
-      "class-variance-authority"
-    ]
+    "name": "toggle",
+    "dependencies": ["@radix-ui/react-toggle", "class-variance-authority"]
   },
   {
-    "name": "contextMenu",
-    "dependencies": [
-      "@radix-ui/react-context-menu",
-      "lucide-react"
-    ]
+    "name": "toggleGroup",
+    "dependencies": ["@radix-ui/react-toggle-group"]
   },
   {
-    "name": "command",
-    "dependencies": [
-      "cmdk",
-      "lucide-react"
-    ]
+    "name": "tooltip",
+    "dependencies": ["@radix-ui/react-tooltip"]
   },
   {
-    "name": "table",
-    "dependencies": []
+    "name": "treeView",
+    "dependencies": ["lucide-react"]
   },
   {
-    "name": "dataTable",
-    "dependencies": [
-      "@tanstack/react-table"
-    ]
+    "name": "typography",
+    "dependencies": ["class-variance-authority"]
   },
   {
-    "name": "chart",
-    "dependencies": [
-      "recharts"
-    ]
-  },
-  {
-    "name": "statCard",
-    "dependencies": [
-      "lucide-react"
-    ]
-  },
-  {
-    "name": "list",
+    "name": "virtualizedList",
     "dependencies": []
   }
 ]

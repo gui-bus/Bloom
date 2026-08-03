@@ -30,7 +30,10 @@ const colorSolidMap: Record<SeparatorColor, string> = {
   danger: "bg-rose-500",
 };
 
-const colorGradientMap: Record<SeparatorColor, { line: string; left: string; right: string }> = {
+const colorGradientMap: Record<
+  SeparatorColor,
+  { line: string; left: string; right: string }
+> = {
   default: {
     line: "bg-gradient-to-r from-transparent via-zinc-300 dark:via-zinc-700 to-transparent",
     left: "bg-gradient-to-r from-transparent to-zinc-300 dark:to-zinc-700",
@@ -82,7 +85,7 @@ const Separator = React.forwardRef<
       color = "default",
       ...props
     },
-    ref
+    ref,
   ) => {
     if (label && orientation === "horizontal") {
       const colors = colorGradientMap[color];
@@ -95,7 +98,7 @@ const Separator = React.forwardRef<
             className={cn(
               "h-px w-full rounded-full shrink",
               gradient ? colors.left : colorSolidMap[color],
-              className
+              className,
             )}
             {...props}
           />
@@ -108,7 +111,7 @@ const Separator = React.forwardRef<
             className={cn(
               "h-px w-full rounded-full shrink",
               gradient ? colors.right : colorSolidMap[color],
-              className
+              className,
             )}
           />
         </div>
@@ -122,16 +125,14 @@ const Separator = React.forwardRef<
         orientation={orientation}
         className={cn(
           "shrink-0 rounded-full",
-          orientation === "horizontal"
-            ? "h-px w-full"
-            : "h-full w-px",
+          orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
           gradient ? colorGradientMap[color].line : colorSolidMap[color],
-          className
+          className,
         )}
         {...props}
       />
     );
-  }
+  },
 );
 
 Separator.displayName = "Separator";

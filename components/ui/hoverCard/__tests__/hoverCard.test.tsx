@@ -8,7 +8,7 @@ describe("HoverCard Component", () => {
     render(
       <HoverCard>
         <HoverCardTrigger>@nextjs</HoverCardTrigger>
-      </HoverCard>
+      </HoverCard>,
     );
 
     expect(screen.getByText("@nextjs")).toBeInTheDocument();

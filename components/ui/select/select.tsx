@@ -6,7 +6,12 @@ import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 import { designRadius } from "@/lib/design-system";
 
-export type SelectVariant = "default" | "bordered" | "flat" | "underlined" | "faded";
+export type SelectVariant =
+  | "default"
+  | "bordered"
+  | "flat"
+  | "underlined"
+  | "faded";
 
 export interface SelectOption {
   value: string;
@@ -20,7 +25,11 @@ export interface SelectOption {
   [key: string]: any;
 }
 
-export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root>, "value" | "defaultValue" | "onValueChange"> {
+export interface SelectProps
+  extends Omit<
+    React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root>,
+    "value" | "defaultValue" | "onValueChange"
+  > {
   variant?: SelectVariant;
   size?: "sm" | "md" | "lg";
   radius?: keyof typeof designRadius;
@@ -49,16 +58,22 @@ export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<typeof 
   deselectAllLabel?: string;
   // Custom Renderers
   renderOption?: (option: SelectOption) => React.ReactNode;
-  renderValue?: (optionOrOptions: SelectOption | SelectOption[]) => React.ReactNode;
+  renderValue?: (
+    optionOrOptions: SelectOption | SelectOption[],
+  ) => React.ReactNode;
   children?: React.ReactNode;
 }
 
 const variantStyles: Record<SelectVariant, string> = {
-  default: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus:ring-2 focus:ring-sky-500/20 text-zinc-900 dark:text-zinc-100",
-  bordered: "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 focus:border-sky-500 text-zinc-900 dark:text-zinc-100",
+  default:
+    "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus:ring-2 focus:ring-sky-500/20 text-zinc-900 dark:text-zinc-100",
+  bordered:
+    "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 focus:border-sky-500 text-zinc-900 dark:text-zinc-100",
   flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/70 dark:hover:bg-zinc-800 focus:bg-white dark:focus:bg-zinc-900 border text-zinc-900 dark:text-zinc-100",
-  underlined: "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 focus:border-sky-500 text-zinc-900 dark:text-zinc-100",
-  faded: "bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200/80 dark:border-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 text-zinc-900 dark:text-zinc-100",
+  underlined:
+    "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 focus:border-sky-500 text-zinc-900 dark:text-zinc-100",
+  faded:
+    "bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200/80 dark:border-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 text-zinc-900 dark:text-zinc-100",
 };
 
 const sizeMap = {
@@ -99,12 +114,15 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       disabled,
       ...props
     },
-    ref
+    ref,
   ) => {
     // Single mode internal state
-    const [singleVal, setSingleVal] = React.useState<string>(defaultValue || "");
+    const [singleVal, setSingleVal] = React.useState<string>(
+      defaultValue || "",
+    );
     // Multi mode internal state
-    const [selectedMulti, setSelectedMulti] = React.useState<string[]>(defaultMultiValue);
+    const [selectedMulti, setSelectedMulti] =
+      React.useState<string[]>(defaultMultiValue);
     const [isOpen, setIsOpen] = React.useState(false);
     const [searchQuery, setSearchQuery] = React.useState("");
 
@@ -128,7 +146,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     };
 
     const handleSelectAll = () => {
-      const allValues = filteredOptions.filter((o) => !o.disabled).map((o) => o.value);
+      const allValues = filteredOptions
+        .filter((o) => !o.disabled)
+        .map((o) => o.value);
       const combined = Array.from(new Set([...currentMulti, ...allValues]));
       if (multiValue === undefined) setSelectedMulti(combined);
       onMultiValueChange?.(combined);
@@ -152,7 +172,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       return options.filter(
         (o) =>
           o.label.toLowerCase().includes(q) ||
-          (o.description && o.description.toLowerCase().includes(q))
+          (o.description && o.description.toLowerCase().includes(q)),
       );
     }, [options, searchQuery]);
 
@@ -176,10 +196,16 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     // Render Multi-select Trigger Content
     const renderMultiTriggerContent = () => {
       if (currentMulti.length === 0) {
-        return <span className="text-zinc-400 dark:text-zinc-500">{placeholder}</span>;
+        return (
+          <span className="text-zinc-400 dark:text-zinc-500">
+            {placeholder}
+          </span>
+        );
       }
 
-      const selectedOptions = options.filter((o) => currentMulti.includes(o.value));
+      const selectedOptions = options.filter((o) =>
+        currentMulti.includes(o.value),
+      );
       if (renderValue) {
         return renderValue(selectedOptions);
       }
@@ -195,7 +221,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
               className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-xs font-medium text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0"
             >
               {opt.avatar && (
-                <img src={opt.avatar} alt="" className="size-3.5 rounded-full object-cover shrink-0" />
+                <img
+                  src={opt.avatar}
+                  alt=""
+                  className="size-3.5 rounded-full object-cover shrink-0"
+                />
               )}
               <span className="truncate max-w-[100px]">{opt.label}</span>
               <span
@@ -227,7 +257,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     if (children && !isMultiSelect && options.length === 0) {
       return (
         <div ref={ref} className="w-full flex flex-col gap-1.5">
-          {label && <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">{label}</label>}
+          {label && (
+            <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+              {label}
+            </label>
+          )}
           <SelectPrimitive.Root
             value={currentSingle}
             defaultValue={defaultValue}
@@ -242,7 +276,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           {isInvalid && errorMessage ? (
             <p className="text-xs text-rose-500 font-medium">{errorMessage}</p>
           ) : description ? (
-            <p className="text-xs text-zinc-400 dark:text-zinc-500">{description}</p>
+            <p className="text-xs text-zinc-400 dark:text-zinc-500">
+              {description}
+            </p>
           ) : null}
         </div>
       );
@@ -252,7 +288,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     const selectedSingleOpt = options.find((o) => o.value === currentSingle);
     const renderSingleTriggerContent = () => {
       if (!selectedSingleOpt) {
-        return <span className="text-zinc-400 dark:text-zinc-500">{placeholder}</span>;
+        return (
+          <span className="text-zinc-400 dark:text-zinc-500">
+            {placeholder}
+          </span>
+        );
       }
       if (renderValue) {
         return renderValue(selectedSingleOpt);
@@ -260,10 +300,17 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       return (
         <div className="flex items-center gap-2 truncate">
           {selectedSingleOpt.avatar && (
-            <img src={selectedSingleOpt.avatar} alt="" className="size-5 rounded-full object-cover shrink-0" />
+            <img
+              src={selectedSingleOpt.avatar}
+              alt=""
+              className="size-5 rounded-full object-cover shrink-0"
+            />
           )}
           {selectedSingleOpt.icon && (
-            <Icon icon={selectedSingleOpt.icon} className="size-4 text-zinc-500 shrink-0" />
+            <Icon
+              icon={selectedSingleOpt.icon}
+              className="size-4 text-zinc-500 shrink-0"
+            />
           )}
           <span className="truncate">{selectedSingleOpt.label}</span>
           {selectedSingleOpt.badge && (
@@ -277,7 +324,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 
     return (
       <div ref={ref} className="w-full flex flex-col gap-1.5">
-        {label && <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">{label}</label>}
+        {label && (
+          <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+            {label}
+          </label>
+        )}
 
         {/* Custom Dropdown Container */}
         <div className="relative w-full">
@@ -296,19 +347,22 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
               variantStyles[variant],
               sizeMap[size],
               variant !== "underlined" && designRadius[radius],
-              isInvalid && "border-rose-500 focus:ring-rose-500/20 text-rose-500",
+              isInvalid &&
+                "border-rose-500 focus:ring-rose-500/20 text-rose-500",
               disabled && "cursor-not-allowed opacity-50 pointer-events-none",
-              className
+              className,
             )}
           >
             <div className="flex-1 min-w-0 text-left">
-              {isMultiSelect ? renderMultiTriggerContent() : renderSingleTriggerContent()}
+              {isMultiSelect
+                ? renderMultiTriggerContent()
+                : renderSingleTriggerContent()}
             </div>
             <Icon
               icon="hugeicons:arrow-down-01"
               className={cn(
                 "size-4 opacity-50 shrink-0 transition-transform duration-200 ml-2",
-                isOpen && "rotate-180"
+                isOpen && "rotate-180",
               )}
             />
           </div>
@@ -317,18 +371,24 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           {isOpen && (
             <>
               {/* Backdrop dismiss */}
-              <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
+              <div
+                className="fixed inset-0 z-40"
+                onClick={() => setIsOpen(false)}
+              />
 
               <div
                 className={cn(
-                  "absolute left-0 right-0 top-full mt-1.5 z-50 max-h-80 overflow-y-auto rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl shadow-2xl p-1.5 animate-in fade-in-0 zoom-in-95"
+                  "absolute left-0 right-0 top-full mt-1.5 z-50 max-h-80 overflow-y-auto rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl shadow-2xl p-1.5 animate-in fade-in-0 zoom-in-95",
                 )}
               >
                 {/* Search Bar */}
                 {(isSearchable || options.length > 6) && (
                   <div className="p-1 mb-1 border-b border-zinc-100 dark:border-zinc-800/80 sticky top-0 bg-white/95 dark:bg-zinc-900/95 z-10">
                     <div className="flex items-center gap-2 px-2 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800/70 border border-transparent focus-within:border-sky-500">
-                      <Icon icon="hugeicons:search-01" className="size-4 text-zinc-400 shrink-0" />
+                      <Icon
+                        icon="hugeicons:search-01"
+                        className="size-4 text-zinc-400 shrink-0"
+                      />
                       <input
                         type="text"
                         value={searchQuery}
@@ -343,7 +403,10 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                           onClick={() => setSearchQuery("")}
                           className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
                         >
-                          <Icon icon="hugeicons:cancel-01" className="size-3.5" />
+                          <Icon
+                            icon="hugeicons:cancel-01"
+                            className="size-3.5"
+                          />
                         </button>
                       )}
                     </div>
@@ -378,25 +441,27 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                 ) : (
                   <div className="space-y-1">
                     {/* Render Grouped */}
-                    {Object.entries(groupedOptions.groups).map(([groupName, groupOpts]) => (
-                      <div key={groupName} className="space-y-0.5">
-                        <div className="px-2.5 py-1 text-[10px] font-bold tracking-wider text-zinc-400 uppercase sticky top-0 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md z-10 border-b border-zinc-100 dark:border-zinc-800/50">
-                          {groupName}
+                    {Object.entries(groupedOptions.groups).map(
+                      ([groupName, groupOpts]) => (
+                        <div key={groupName} className="space-y-0.5">
+                          <div className="px-2.5 py-1 text-[10px] font-bold tracking-wider text-zinc-400 uppercase sticky top-0 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md z-10 border-b border-zinc-100 dark:border-zinc-800/50">
+                            {groupName}
+                          </div>
+                          {groupOpts.map((opt) =>
+                            renderOptionItem(
+                              opt,
+                              isMultiSelect,
+                              currentSingle,
+                              currentMulti,
+                              handleSingleSelect,
+                              handleMultiToggle,
+                              setIsOpen,
+                              renderOption,
+                            ),
+                          )}
                         </div>
-                        {groupOpts.map((opt) =>
-                          renderOptionItem(
-                            opt,
-                            isMultiSelect,
-                            currentSingle,
-                            currentMulti,
-                            handleSingleSelect,
-                            handleMultiToggle,
-                            setIsOpen,
-                            renderOption
-                          )
-                        )}
-                      </div>
-                    ))}
+                      ),
+                    )}
 
                     {/* Render Ungrouped */}
                     {groupedOptions.ungrouped.map((opt) =>
@@ -408,8 +473,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                         handleSingleSelect,
                         handleMultiToggle,
                         setIsOpen,
-                        renderOption
-                      )
+                        renderOption,
+                      ),
                     )}
                   </div>
                 )}
@@ -421,11 +486,13 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         {isInvalid && errorMessage ? (
           <p className="text-xs text-rose-500 font-medium">{errorMessage}</p>
         ) : description ? (
-          <p className="text-xs text-zinc-400 dark:text-zinc-500">{description}</p>
+          <p className="text-xs text-zinc-400 dark:text-zinc-500">
+            {description}
+          </p>
         ) : null}
       </div>
     );
-  }
+  },
 );
 Select.displayName = "Select";
 
@@ -437,7 +504,7 @@ function renderOptionItem(
   handleSingleSelect: (val: string) => void,
   handleMultiToggle: (val: string) => void,
   setIsOpen: (open: boolean) => void,
-  renderOption?: (opt: SelectOption) => React.ReactNode
+  renderOption?: (opt: SelectOption) => React.ReactNode,
 ) {
   const isSelected = isMultiSelect
     ? currentMulti.includes(opt.value)
@@ -460,7 +527,7 @@ function renderOptionItem(
         isSelected
           ? "bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 font-semibold"
           : "hover:bg-zinc-100 dark:hover:bg-zinc-800/80 text-zinc-900 dark:text-zinc-100",
-        opt.disabled && "opacity-40 cursor-not-allowed pointer-events-none"
+        opt.disabled && "opacity-40 cursor-not-allowed pointer-events-none",
       )}
     >
       {renderOption ? (
@@ -468,7 +535,11 @@ function renderOptionItem(
       ) : (
         <div className="flex items-center gap-2.5 min-w-0 flex-1 pr-2">
           {opt.avatar && (
-            <img src={opt.avatar} alt="" className="size-6 rounded-full object-cover shrink-0" />
+            <img
+              src={opt.avatar}
+              alt=""
+              className="size-6 rounded-full object-cover shrink-0"
+            />
           )}
           {opt.icon && (
             <Icon icon={opt.icon} className="size-4 text-zinc-400 shrink-0" />
@@ -509,24 +580,32 @@ const SelectTrigger = React.forwardRef<
     radius?: keyof typeof designRadius;
     isInvalid?: boolean;
   }
->(({ className, children, size = "md", radius = "lg", isInvalid, ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      "flex w-full items-center justify-between border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xs focus:outline-none focus:ring-2 focus:ring-sky-500/20 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer transition-colors",
-      sizeMap[size],
-      designRadius[radius],
-      isInvalid && "border-rose-500 focus:ring-rose-500/20 text-rose-500",
-      className
-    )}
-    {...props}
-  >
-    {children}
-    <SelectPrimitive.Icon asChild>
-      <Icon icon="hugeicons:arrow-down-01" className="size-4 opacity-50 shrink-0" />
-    </SelectPrimitive.Icon>
-  </SelectPrimitive.Trigger>
-));
+>(
+  (
+    { className, children, size = "md", radius = "lg", isInvalid, ...props },
+    ref,
+  ) => (
+    <SelectPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        "flex w-full items-center justify-between border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xs focus:outline-none focus:ring-2 focus:ring-sky-500/20 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer transition-colors",
+        sizeMap[size],
+        designRadius[radius],
+        isInvalid && "border-rose-500 focus:ring-rose-500/20 text-rose-500",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+      <SelectPrimitive.Icon asChild>
+        <Icon
+          icon="hugeicons:arrow-down-01"
+          className="size-4 opacity-50 shrink-0"
+        />
+      </SelectPrimitive.Icon>
+    </SelectPrimitive.Trigger>
+  ),
+);
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const SelectContent = React.forwardRef<
@@ -540,7 +619,7 @@ const SelectContent = React.forwardRef<
         "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
         position === "popper" &&
           "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
-        className
+        className,
       )}
       position={position}
       {...props}
@@ -549,7 +628,7 @@ const SelectContent = React.forwardRef<
         className={cn(
           "p-1.5",
           position === "popper" &&
-            "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
+            "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]",
         )}
       >
         {children}
@@ -565,7 +644,10 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
     ref={ref}
-    className={cn("py-1.5 pl-8 pr-2 text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider", className)}
+    className={cn(
+      "py-1.5 pl-8 pr-2 text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider",
+      className,
+    )}
     {...props}
   />
 ));
@@ -579,7 +661,7 @@ const SelectItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex w-full cursor-pointer select-none items-center rounded-xl py-2 pl-8 pr-3 text-sm outline-none focus:bg-zinc-100 dark:focus:bg-zinc-800 text-zinc-900 dark:text-zinc-100 transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-40",
-      className
+      className,
     )}
     {...props}
   >

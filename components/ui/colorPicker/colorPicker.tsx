@@ -19,7 +19,11 @@ function rgbToHex(r: number, g: number, b: number): string {
   return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
 }
 
-function rgbToHsl(r: number, g: number, b: number): { h: number; s: number; l: number } {
+function rgbToHsl(
+  r: number,
+  g: number,
+  b: number,
+): { h: number; s: number; l: number } {
   r /= 255;
   g /= 255;
   b /= 255;
@@ -52,7 +56,11 @@ function rgbToHsl(r: number, g: number, b: number): { h: number; s: number; l: n
   };
 }
 
-function hslToRgb(h: number, s: number, l: number): { r: number; g: number; b: number } {
+function hslToRgb(
+  h: number,
+  s: number,
+  l: number,
+): { r: number; g: number; b: number } {
   h /= 360;
   s /= 100;
   l /= 100;
@@ -161,7 +169,11 @@ function ColorWheel({
   }, [value, size]);
 
   const pickColor = React.useCallback(
-    (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    (
+      e:
+        | React.MouseEvent<HTMLCanvasElement>
+        | React.TouchEvent<HTMLCanvasElement>,
+    ) => {
       if (disabled) return;
       const canvas = canvasRef.current;
       if (!canvas) return;
@@ -189,7 +201,7 @@ function ColorWheel({
         onChange(rgbToHex(rgb.r, rgb.g, rgb.b));
       }
     },
-    [disabled, size, onChange]
+    [disabled, size, onChange],
   );
 
   return (
@@ -199,7 +211,7 @@ function ColorWheel({
       height={size}
       className={cn(
         "rounded-full cursor-crosshair select-none touch-none",
-        disabled && "opacity-50 pointer-events-none"
+        disabled && "opacity-50 pointer-events-none",
       )}
       onMouseDown={(e) => {
         setIsDragging(true);
@@ -230,7 +242,7 @@ export function ColorPicker({
   defaultFormat = "hex",
 }: ColorPickerProps) {
   const [color, setColor] = React.useState<string>(
-    value !== undefined ? value : defaultValue
+    value !== undefined ? value : defaultValue,
   );
   const [format, setFormat] = React.useState<ColorFormat>(defaultFormat);
   const [copied, setCopied] = React.useState(false);
@@ -323,7 +335,11 @@ export function ColorPicker({
 
       {showWheel && (
         <div className="flex justify-center">
-          <ColorWheel value={color} onChange={handleChange} disabled={disabled} />
+          <ColorWheel
+            value={color}
+            onChange={handleChange}
+            disabled={disabled}
+          />
         </div>
       )}
 
@@ -356,7 +372,7 @@ export function ColorPicker({
             onChange={(e) => handleTextChange(e.target.value)}
             className={cn(
               "h-10 w-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-2 text-xs font-mono text-zinc-900 dark:text-zinc-100 outline-none focus:ring-2 focus:ring-sky-500/40 transition-shadow disabled:opacity-50 disabled:cursor-not-allowed",
-              showFormatSwitcher ? "border-l-0" : "rounded-l-xl"
+              showFormatSwitcher ? "border-l-0" : "rounded-l-xl",
             )}
           />
           <button

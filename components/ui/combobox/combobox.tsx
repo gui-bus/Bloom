@@ -93,10 +93,10 @@ export function Combobox({
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
   const [selectedSingle, setSelectedSingle] = React.useState<string>(
-    value !== undefined ? value : defaultValue
+    value !== undefined ? value : defaultValue,
   );
   const [selectedMulti, setSelectedMulti] = React.useState<string[]>(
-    multiValue !== undefined ? multiValue : defaultMultiValue
+    multiValue !== undefined ? multiValue : defaultMultiValue,
   );
 
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -117,7 +117,10 @@ export function Combobox({
 
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         setOpen(false);
       }
     }
@@ -134,7 +137,8 @@ export function Combobox({
       return options.filter(
         (o) =>
           o.label.toLowerCase().includes(q.toLowerCase()) ||
-          (o.description && o.description.toLowerCase().includes(q.toLowerCase()))
+          (o.description &&
+            o.description.toLowerCase().includes(q.toLowerCase())),
       );
     }
 
@@ -154,7 +158,7 @@ export function Combobox({
   const exactMatchExists = React.useMemo(() => {
     if (!search.trim()) return true;
     return options.some(
-      (opt) => opt.label.toLowerCase() === search.trim().toLowerCase()
+      (opt) => opt.label.toLowerCase() === search.trim().toLowerCase(),
     );
   }, [options, search]);
 
@@ -247,7 +251,10 @@ export function Combobox({
   const visibleOptions = filteredOptions.slice(startIndex, endIndex);
 
   return (
-    <div ref={containerRef} className={cn("relative w-full flex flex-col gap-1.5", className)}>
+    <div
+      ref={containerRef}
+      className={cn("relative w-full flex flex-col gap-1.5", className)}
+    >
       {label && (
         <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
           {label}
@@ -268,20 +275,27 @@ export function Combobox({
         className={cn(
           "min-h-10 w-full flex items-center justify-between rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-1.5 text-sm text-zinc-900 dark:text-zinc-100 shadow-xs outline-none focus:ring-2 focus:ring-sky-500/40 transition-all cursor-pointer select-none",
           isInvalid && "border-rose-500 dark:border-rose-500 text-rose-500",
-          disabled && "opacity-50 cursor-not-allowed pointer-events-none"
+          disabled && "opacity-50 cursor-not-allowed pointer-events-none",
         )}
       >
         <div className="flex flex-wrap items-center gap-1.5 flex-1 min-w-0 pr-2">
           {isMulti ? (
             selectedMultiOptions.length === 0 ? (
-              <span className="text-zinc-400 dark:text-zinc-500 text-sm truncate">{placeholder}</span>
+              <span className="text-zinc-400 dark:text-zinc-500 text-sm truncate">
+                {placeholder}
+              </span>
             ) : (
               selectedMultiOptions.map((opt) => (
                 <span
                   key={opt.value}
                   className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-xs"
                 >
-                  {opt.icon && <Icon icon={opt.icon} className="size-3 text-sky-500 shrink-0" />}
+                  {opt.icon && (
+                    <Icon
+                      icon={opt.icon}
+                      className="size-3 text-sky-500 shrink-0"
+                    />
+                  )}
                   <span className="truncate max-w-28">{opt.label}</span>
                   <span
                     role="button"
@@ -302,8 +316,18 @@ export function Combobox({
             )
           ) : (
             <span className="flex items-center gap-2 truncate">
-              {selectedOption?.icon && <Icon icon={selectedOption.icon} className="size-4 shrink-0 text-sky-500" />}
-              <span className={cn("truncate", !selectedOption && "text-zinc-400 dark:text-zinc-500")}>
+              {selectedOption?.icon && (
+                <Icon
+                  icon={selectedOption.icon}
+                  className="size-4 shrink-0 text-sky-500"
+                />
+              )}
+              <span
+                className={cn(
+                  "truncate",
+                  !selectedOption && "text-zinc-400 dark:text-zinc-500",
+                )}
+              >
                 {selectedOption ? selectedOption.label : placeholder}
               </span>
             </span>
@@ -311,23 +335,27 @@ export function Combobox({
         </div>
 
         <div className="flex items-center gap-1 shrink-0">
-          {isClearable && (isMulti ? selectedMulti.length > 0 : Boolean(selectedSingle)) && (
-            <span
-              role="button"
-              tabIndex={0}
-              onClick={handleClear}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  handleClear(e as any);
-                }
-              }}
-              className="p-0.5 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors cursor-pointer"
-            >
-              <Icon icon="hugeicons:cancel-01" className="size-3.5" />
-            </span>
-          )}
-          <Icon icon="hugeicons:unfold-more" className="size-4 text-zinc-400 dark:text-zinc-500" />
+          {isClearable &&
+            (isMulti ? selectedMulti.length > 0 : Boolean(selectedSingle)) && (
+              <span
+                role="button"
+                tabIndex={0}
+                onClick={handleClear}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleClear(e as any);
+                  }
+                }}
+                className="p-0.5 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors cursor-pointer"
+              >
+                <Icon icon="hugeicons:cancel-01" className="size-3.5" />
+              </span>
+            )}
+          <Icon
+            icon="hugeicons:unfold-more"
+            className="size-4 text-zinc-400 dark:text-zinc-500"
+          />
         </div>
       </div>
 
@@ -340,7 +368,12 @@ export function Combobox({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             autoFocus
-            startContent={<Icon icon="hugeicons:search-01" className="size-3.5 text-zinc-400" />}
+            startContent={
+              <Icon
+                icon="hugeicons:search-01"
+                className="size-3.5 text-zinc-400"
+              />
+            }
           />
 
           {allowCreate && search.trim() && !exactMatchExists && (
@@ -357,14 +390,25 @@ export function Combobox({
           {isVirtualized ? (
             <div
               ref={listRef}
-              onScroll={(e) => setScrollTop((e.target as HTMLDivElement).scrollTop)}
-              style={{ height: Math.min(containerHeight, totalCount * itemHeight) }}
+              onScroll={(e) =>
+                setScrollTop((e.target as HTMLDivElement).scrollTop)
+              }
+              style={{
+                height: Math.min(containerHeight, totalCount * itemHeight),
+              }}
               className="overflow-y-auto relative w-full"
             >
               {totalCount === 0 ? (
-                <p className="py-4 px-3 text-xs text-zinc-400 dark:text-zinc-500 text-center">{emptyText}</p>
+                <p className="py-4 px-3 text-xs text-zinc-400 dark:text-zinc-500 text-center">
+                  {emptyText}
+                </p>
               ) : (
-                <div style={{ height: totalCount * itemHeight, position: "relative" }}>
+                <div
+                  style={{
+                    height: totalCount * itemHeight,
+                    position: "relative",
+                  }}
+                >
                   {visibleOptions.map((option, idx) => {
                     const realIndex = startIndex + idx;
                     const isSelected = isMulti
@@ -382,7 +426,12 @@ export function Combobox({
                         }}
                         className="px-1 py-0.5"
                       >
-                        {renderOptionItem(option, isSelected, isMulti, handleSelect)}
+                        {renderOptionItem(
+                          option,
+                          isSelected,
+                          isMulti,
+                          handleSelect,
+                        )}
                       </div>
                     );
                   })}
@@ -392,30 +441,44 @@ export function Combobox({
           ) : (
             <div className="max-h-56 overflow-y-auto space-y-1">
               {filteredOptions.length === 0 ? (
-                <p className="py-4 px-3 text-xs text-zinc-400 dark:text-zinc-500 text-center">{emptyText}</p>
+                <p className="py-4 px-3 text-xs text-zinc-400 dark:text-zinc-500 text-center">
+                  {emptyText}
+                </p>
               ) : (
                 <>
                   {/* Grouped Options with Sticky Headers */}
-                  {Object.entries(groupedOptions.groups).map(([groupName, groupOpts]) => (
-                    <div key={groupName} className="space-y-0.5">
-                      <div className="sticky top-0 z-10 bg-zinc-100/90 dark:bg-zinc-800/90 backdrop-blur-xs px-2.5 py-1 rounded-lg text-[10px] font-bold tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
-                        {groupName}
+                  {Object.entries(groupedOptions.groups).map(
+                    ([groupName, groupOpts]) => (
+                      <div key={groupName} className="space-y-0.5">
+                        <div className="sticky top-0 z-10 bg-zinc-100/90 dark:bg-zinc-800/90 backdrop-blur-xs px-2.5 py-1 rounded-lg text-[10px] font-bold tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
+                          {groupName}
+                        </div>
+                        {groupOpts.map((option) => {
+                          const isSelected = isMulti
+                            ? selectedMulti.includes(option.value)
+                            : selectedSingle === option.value;
+                          return renderOptionItem(
+                            option,
+                            isSelected,
+                            isMulti,
+                            handleSelect,
+                          );
+                        })}
                       </div>
-                      {groupOpts.map((option) => {
-                        const isSelected = isMulti
-                          ? selectedMulti.includes(option.value)
-                          : selectedSingle === option.value;
-                        return renderOptionItem(option, isSelected, isMulti, handleSelect);
-                      })}
-                    </div>
-                  ))}
+                    ),
+                  )}
 
                   {/* Ungrouped Options */}
                   {groupedOptions.ungrouped.map((option) => {
                     const isSelected = isMulti
                       ? selectedMulti.includes(option.value)
                       : selectedSingle === option.value;
-                    return renderOptionItem(option, isSelected, isMulti, handleSelect);
+                    return renderOptionItem(
+                      option,
+                      isSelected,
+                      isMulti,
+                      handleSelect,
+                    );
                   })}
                 </>
               )}
@@ -431,7 +494,7 @@ function renderOptionItem(
   option: ComboboxOption,
   isSelected: boolean,
   isMulti: boolean,
-  handleSelect: (opt: ComboboxOption) => void
+  handleSelect: (opt: ComboboxOption) => void,
 ) {
   return (
     <div
@@ -450,11 +513,13 @@ function renderOptionItem(
         isSelected
           ? "bg-sky-500/10 text-sky-600 dark:text-sky-400 font-semibold"
           : "hover:bg-zinc-100 dark:hover:bg-zinc-800/70 text-zinc-700 dark:text-zinc-300",
-        option.disabled && "opacity-40 cursor-not-allowed pointer-events-none"
+        option.disabled && "opacity-40 cursor-not-allowed pointer-events-none",
       )}
     >
       <div className="flex items-center gap-2.5 truncate flex-1 min-w-0 pr-2">
-        {option.icon && <Icon icon={option.icon} className="size-4 shrink-0 text-zinc-400" />}
+        {option.icon && (
+          <Icon icon={option.icon} className="size-4 shrink-0 text-zinc-400" />
+        )}
         <div className="flex flex-col truncate min-w-0">
           <div className="flex items-center gap-1.5 truncate">
             <span className="truncate">{option.label}</span>
@@ -465,7 +530,9 @@ function renderOptionItem(
             )}
           </div>
           {option.description && (
-            <span className="text-[10px] text-zinc-400 dark:text-zinc-500 truncate font-normal">{option.description}</span>
+            <span className="text-[10px] text-zinc-400 dark:text-zinc-500 truncate font-normal">
+              {option.description}
+            </span>
           )}
         </div>
       </div>
@@ -476,7 +543,12 @@ function renderOptionItem(
             {option.badge}
           </span>
         )}
-        {isSelected && <Icon icon="hugeicons:tick-02" className="size-4 text-sky-500 shrink-0 ml-1" />}
+        {isSelected && (
+          <Icon
+            icon="hugeicons:tick-02"
+            className="size-4 text-sky-500 shrink-0 ml-1"
+          />
+        )}
       </div>
     </div>
   );
