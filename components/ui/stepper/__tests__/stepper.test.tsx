@@ -1,12 +1,11 @@
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
   Stepper,
-  StepperItem,
-  StepperIndicator,
-  StepperTitle,
   StepperDescription,
+  StepperIndicator,
+  StepperItem,
+  StepperTitle,
 } from "../stepper";
 
 describe("Stepper Component", () => {

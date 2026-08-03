@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect } from "vitest";
-import { FormField } from "../formField";
+import { describe, expect, it } from "vitest";
 import { Input } from "@/components/ui/input/input";
+import { FormField } from "../formField";
 
 describe("FormField Component", () => {
   it("renders label, child input and error message", () => {

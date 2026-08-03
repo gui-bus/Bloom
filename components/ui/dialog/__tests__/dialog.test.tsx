@@ -1,7 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect } from "vitest";
-import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "../dialog";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "../dialog";
 
 describe("Dialog Component", () => {
   it("renders trigger and opens dialog overlay content on click", () => {

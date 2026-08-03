@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
 import { Icon } from "@iconify/react";
-import { cn } from "@/lib/utils";
+import * as React from "react";
 import { designRadius } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
 
 export type StepperPosition = "split" | "right" | "inline";
 export type NumberFormatMode = "decimal" | "currency" | "percent";
@@ -252,14 +252,14 @@ export function NumberInput({
           onBlur={() => {
             setIsFocused(false);
             const parsed = parseFloat(rawInputValue);
-            if (!isNaN(parsed)) {
+            if (!Number.isNaN(parsed)) {
               updateValue(parsed);
             }
           }}
           onChange={(e) => {
             setRawInputValue(e.target.value);
             const parsed = parseFloat(e.target.value);
-            if (!isNaN(parsed)) {
+            if (!Number.isNaN(parsed)) {
               updateValue(parsed);
             }
           }}

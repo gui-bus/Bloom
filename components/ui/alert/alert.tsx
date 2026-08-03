@@ -1,13 +1,13 @@
 "use client";
 
-import * as React from "react";
 import {
   AlertCircle,
+  AlertTriangle,
   CheckCircle2,
   Info,
-  AlertTriangle,
   X,
 } from "lucide-react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 type AlertColor =
@@ -274,5 +274,5 @@ const AlertDescription = React.forwardRef<
 ));
 AlertDescription.displayName = "AlertDescription";
 
-export { Alert, AlertTitle, AlertDescription };
 export type { AlertColor, AlertVariant };
+export { Alert, AlertDescription, AlertTitle };

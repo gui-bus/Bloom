@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
-import { Command as CommandPrimitive } from "cmdk";
 import { Icon } from "@iconify/react";
+import { Command as CommandPrimitive } from "cmdk";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const Command = React.forwardRef<
@@ -131,11 +131,11 @@ CommandShortcut.displayName = "CommandShortcut";
 
 export {
   Command,
-  CommandInput,
-  CommandList,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
-  CommandShortcut,
+  CommandList,
   CommandSeparator,
+  CommandShortcut,
 };

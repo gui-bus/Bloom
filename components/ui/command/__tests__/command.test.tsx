@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect, beforeEach } from "vitest";
-import { Command, CommandInput, CommandList, CommandItem } from "../command";
+import { beforeEach, describe, expect, it } from "vitest";
+import { Command, CommandInput, CommandItem, CommandList } from "../command";
 
 describe("Command Component", () => {
   beforeEach(() => {

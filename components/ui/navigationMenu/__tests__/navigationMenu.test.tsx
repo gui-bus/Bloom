@@ -1,10 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
   NavigationMenu,
-  NavigationMenuList,
   NavigationMenuItem,
+  NavigationMenuList,
   NavigationMenuTrigger,
 } from "../navigationMenu";
 

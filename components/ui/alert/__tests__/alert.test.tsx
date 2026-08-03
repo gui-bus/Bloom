@@ -1,7 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect, vi } from "vitest";
-import { Alert, AlertTitle, AlertDescription } from "../alert";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import { Alert, AlertDescription, AlertTitle } from "../alert";
 
 describe("Alert Component", () => {
   it("renders title, content and alert role", () => {

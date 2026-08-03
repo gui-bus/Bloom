@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export type ImageRadius = "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "full";
@@ -86,10 +86,10 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     }, [src]);
 
     React.useEffect(() => {
-      if (internalRef.current && internalRef.current.complete) {
+      if (internalRef.current?.complete) {
         setIsLoading(false);
       }
-    }, [activeSrc]);
+    }, []);
 
     const handleImageError = (
       e: React.SyntheticEvent<HTMLImageElement, Event>,

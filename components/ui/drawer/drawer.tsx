@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Icon } from "@iconify/react";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export type DrawerPosition = "bottom" | "top" | "left" | "right";
@@ -88,7 +88,7 @@ const DrawerContent = React.forwardRef<
     const [isDragging, setIsDragging] = React.useState(false);
 
     const startCoordRef = React.useRef<number>(0);
-    const contentRef = React.useRef<HTMLDivElement>(null);
+    const _contentRef = React.useRef<HTMLDivElement>(null);
     const closeButtonRef = React.useRef<HTMLButtonElement>(null);
 
     const handleTouchStart = (e: React.TouchEvent) => {
@@ -280,13 +280,13 @@ DrawerDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {
   Drawer,
-  DrawerPortal,
-  DrawerOverlay,
-  DrawerTrigger,
   DrawerClose,
   DrawerContent,
-  DrawerHeader,
-  DrawerFooter,
-  DrawerTitle,
   DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerPortal,
+  DrawerTitle,
+  DrawerTrigger,
 };

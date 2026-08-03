@@ -1,7 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect } from "vitest";
-import { Popover, PopoverTrigger, PopoverContent } from "../popover";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { Popover, PopoverContent, PopoverTrigger } from "../popover";
 
 describe("Popover Component", () => {
   it("renders trigger and opens popover content on click", () => {

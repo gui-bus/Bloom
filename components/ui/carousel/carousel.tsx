@@ -1,13 +1,13 @@
 "use client";
 
-import * as React from "react";
+import { Icon } from "@iconify/react";
+import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import { Icon } from "@iconify/react";
-import { cn } from "@/lib/utils";
+import * as React from "react";
 import { Button } from "@/components/ui/button/button";
+import { cn } from "@/lib/utils";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -345,12 +345,12 @@ const CarouselThumbs = React.forwardRef<HTMLDivElement, CarouselThumbsProps>(
 CarouselThumbs.displayName = "CarouselThumbs";
 
 export {
-  type CarouselApi,
   Carousel,
+  type CarouselApi,
   CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
   CarouselDots,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
   CarouselThumbs,
 };

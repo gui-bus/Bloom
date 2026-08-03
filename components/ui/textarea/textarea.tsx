@@ -1,9 +1,9 @@
 "use client";
 
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import * as React from "react";
-import { cn } from "@/lib/utils";
 import { designRadius } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
 
 export interface TextareaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size"> {
@@ -123,7 +123,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     React.useEffect(() => {
       adjustHeight();
-    }, [value, adjustHeight]);
+    }, [adjustHeight]);
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       setCurrentLength(e.target.value.length);

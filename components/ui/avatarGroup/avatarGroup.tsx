@@ -1,12 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
 import {
   Avatar,
   AvatarFallback,
   type AvatarProps,
 } from "@/components/ui/avatar/avatar";
+import { cn } from "@/lib/utils";
 
 export type AvatarGroupOrientation = "horizontal" | "vertical";
 export type AvatarGroupOverlap = "sm" | "md" | "lg";

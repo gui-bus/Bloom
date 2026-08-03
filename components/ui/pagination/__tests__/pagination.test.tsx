@@ -1,13 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
   Pagination,
   PaginationContent,
   PaginationItem,
   PaginationLink,
-  PaginationPrevious,
   PaginationNext,
+  PaginationPrevious,
 } from "../pagination";
 
 describe("Pagination Component", () => {

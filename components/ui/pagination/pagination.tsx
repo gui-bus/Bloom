@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 type PaginationVariant =
@@ -50,7 +50,6 @@ const Pagination = ({
 }: PaginationProps) => (
   <PaginationContext.Provider value={{ variant, shape, color, size }}>
     <nav
-      role="navigation"
       aria-label="pagination"
       className={cn("mx-auto flex w-full justify-center", className)}
       {...props}
@@ -295,7 +294,11 @@ export function PaginationToolbar({
   const handleJumperSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const targetPage = parseInt(jumperVal, 10);
-    if (!isNaN(targetPage) && targetPage >= 1 && targetPage <= totalPages) {
+    if (
+      !Number.isNaN(targetPage) &&
+      targetPage >= 1 &&
+      targetPage <= totalPages
+    ) {
       onPageChange(targetPage);
     } else {
       setJumperVal(page.toString());
@@ -434,10 +437,10 @@ export {
   Pagination,
   PaginationContent,
   PaginationEllipsis,
+  PaginationFirst,
   PaginationItem,
+  PaginationLast,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-  PaginationFirst,
-  PaginationLast,
 };

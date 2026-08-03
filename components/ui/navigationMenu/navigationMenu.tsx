@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
+import { Icon } from "@iconify/react";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { cva } from "class-variance-authority";
-import { Icon } from "@iconify/react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const NavigationMenu = React.forwardRef<
@@ -118,13 +118,13 @@ NavigationMenuViewport.displayName =
   NavigationMenuPrimitive.Viewport.displayName;
 
 export {
-  navigationMenuTriggerStyle,
   NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
   NavigationMenuContent,
-  NavigationMenuTrigger,
-  NavigationMenuLink,
   NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
   NavigationMenuViewport,
+  navigationMenuTriggerStyle,
 };

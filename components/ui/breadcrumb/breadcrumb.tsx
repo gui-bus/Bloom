@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const Breadcrumb = React.forwardRef<
@@ -153,7 +153,7 @@ const BreadcrumbEllipsisDropdown = ({
   onExpand,
 }: {
   items: React.ReactNode[];
-  onExpand: () => void;
+  onExpand?: () => void;
 }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -166,7 +166,12 @@ const BreadcrumbEllipsisDropdown = ({
 
   return (
     <div className="relative inline-flex items-center">
-      <BreadcrumbEllipsis onClick={() => setIsOpen(!isOpen)} />
+      <BreadcrumbEllipsis
+        onClick={() => {
+          setIsOpen(!isOpen);
+          onExpand?.();
+        }}
+      />
       {isOpen && (
         <div className="absolute left-0 top-full mt-1.5 z-50 min-w-36 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-1.5 shadow-lg animate-in fade-in-0 zoom-in-95">
           <div className="flex flex-col gap-1">
@@ -230,6 +235,7 @@ const BreadcrumbPage = React.forwardRef<
   <span
     ref={ref}
     role="link"
+    tabIndex={0}
     aria-disabled="true"
     aria-current="page"
     className={cn(
@@ -290,10 +296,10 @@ BreadcrumbEllipsis.displayName = "BreadcrumbEllipsis";
 
 export {
   Breadcrumb,
-  BreadcrumbList,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbEllipsis,
 };

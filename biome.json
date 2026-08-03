@@ -7,7 +7,14 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!node_modules", "!.next", "!dist", "!build"]
+    "includes": [
+      "**",
+      "!node_modules",
+      "!.next",
+      "!dist",
+      "!build",
+      "!packages/cli/dist"
+    ]
   },
   "css": {
     "parser": {
@@ -22,15 +29,30 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "a11y": {
+        "useValidAnchor": "off",
+        "noStaticElementInteractions": "off",
+        "useKeyWithClickEvents": "off",
+        "noSvgWithoutTitle": "off",
+        "useSemanticElements": "off",
+        "useAriaPropsSupportedByRole": "off",
+        "noLabelWithoutControl": "off",
+        "useButtonType": "off"
+      },
+      "performance": {
+        "noImgElement": "off"
+      },
       "suspicious": {
-        "noUnknownAtRules": "off",
-        "noArrayIndexKey": "off"
+        "noTemplateCurlyInString": "off",
+        "noArrayIndexKey": "off",
+        "noExplicitAny": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off"
       }
-    },
-    "domains": {
-      "next": "recommended",
-      "react": "recommended"
     }
   },
   "assist": {

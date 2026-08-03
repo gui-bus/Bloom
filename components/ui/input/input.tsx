@@ -1,12 +1,12 @@
 "use client";
 
-import { cva, type VariantProps } from "class-variance-authority";
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { designRadius } from "@/lib/design-system";
 import { Icon } from "@iconify/react";
-import { useClipboard } from "@/lib/hooks/useClipboard";
+import { cva } from "class-variance-authority";
+import * as React from "react";
 import { toast } from "@/components/ui/toast/toast";
+import { designRadius } from "@/lib/design-system";
+import { useClipboard } from "@/lib/hooks/useClipboard";
+import { cn } from "@/lib/utils";
 
 export type InputMaskType =
   | "CPF"

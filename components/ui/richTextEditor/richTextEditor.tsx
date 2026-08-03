@@ -1,11 +1,10 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import Placeholder from "@tiptap/extension-placeholder";
 import { Icon } from "@iconify/react";
+import Placeholder from "@tiptap/extension-placeholder";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import { cn } from "@/lib/utils";
 
 interface RichTextEditorProps {
   value?: string;

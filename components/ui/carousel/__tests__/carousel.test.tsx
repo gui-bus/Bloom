@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 vi.mock("embla-carousel-react", () => {
   return {
@@ -25,8 +24,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
   CarouselNext,
+  CarouselPrevious,
 } from "../carousel";
 
 describe("Carousel Component", () => {

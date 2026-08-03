@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
-import { cva, type VariantProps } from "class-variance-authority";
 import { Icon } from "@iconify/react";
+import { cva, type VariantProps } from "class-variance-authority";
+import Link from "next/link";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const linkVariants = cva(
@@ -107,4 +107,4 @@ const UiLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
 );
 UiLink.displayName = "Link";
 
-export { UiLink as Link, linkVariants };
+export { linkVariants, UiLink as Link };

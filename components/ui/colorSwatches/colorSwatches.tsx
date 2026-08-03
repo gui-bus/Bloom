@@ -1,8 +1,7 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
+import { cn } from "@/lib/utils";
 
 type SwatchShape = "circle" | "square";
 type SwatchSize = "sm" | "md" | "lg";
@@ -48,7 +47,7 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
   }
   if (cleaned.length === 6) {
     const bigint = parseInt(cleaned, 16);
-    if (isNaN(bigint)) return null;
+    if (Number.isNaN(bigint)) return null;
     return {
       r: (bigint >> 16) & 255,
       g: (bigint >> 8) & 255,
@@ -61,7 +60,7 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
 function getLuminance(r: number, g: number, b: number): number {
   const a = [r, g, b].map((v) => {
     v /= 255;
-    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
   });
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 }

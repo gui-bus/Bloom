@@ -1,11 +1,10 @@
 "use client";
 
-import * as React from "react";
-import { Toaster as SonnerToaster, toast as sonnerToast } from "sonner";
 import { Icon } from "@iconify/react";
-import { cn } from "@/lib/utils";
-
+import type * as React from "react";
+import { Toaster as SonnerToaster, toast as sonnerToast } from "sonner";
 import { Spinner, type SpinnerVariant } from "@/components/ui/spinner/spinner";
+import { cn } from "@/lib/utils";
 
 export interface ToastProps {
   theme?: "light" | "dark" | "system";
@@ -110,7 +109,7 @@ const createCustomToast = (
               size="sm"
             />
           ) : (
-            <Icon icon={style.icon!} className="size-5" />
+            <Icon icon={style.icon || ""} className="size-5" />
           )}
         </div>
 

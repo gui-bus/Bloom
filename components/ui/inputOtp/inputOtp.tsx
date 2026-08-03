@@ -1,14 +1,14 @@
 "use client";
 
-import * as React from "react";
+import { Icon } from "@iconify/react";
 import {
   OTPInput,
   OTPInputContext,
-  REGEXP_ONLY_DIGITS,
   REGEXP_ONLY_CHARS,
+  REGEXP_ONLY_DIGITS,
   REGEXP_ONLY_DIGITS_AND_CHARS,
 } from "input-otp";
-import { Icon } from "@iconify/react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export type OTPType = "numeric" | "alphabetic" | "alphanumeric";
@@ -129,7 +129,7 @@ const InputOTPSeparator = React.forwardRef<
 >(({ icon = "hugeicons:minus-01", className, ...props }, ref) => (
   <div
     ref={ref}
-    role="separator"
+    role="presentation"
     className={cn(
       "px-1.5 text-zinc-400 dark:text-zinc-600 flex items-center justify-center",
       className,
@@ -141,4 +141,4 @@ const InputOTPSeparator = React.forwardRef<
 ));
 InputOTPSeparator.displayName = "InputOTPSeparator";
 
-export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator };
+export { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot };

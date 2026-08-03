@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export type StepperVariant = "default" | "circle" | "line" | "cards";
@@ -387,9 +387,9 @@ StepperSeparator.displayName = "StepperSeparator";
 
 export {
   Stepper,
-  StepperItem,
-  StepperIndicator,
-  StepperTitle,
   StepperDescription,
+  StepperIndicator,
+  StepperItem,
   StepperSeparator,
+  StepperTitle,
 };

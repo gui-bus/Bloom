@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
 import { designRadius } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
 
 export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "circle" | "rectangle" | "text";

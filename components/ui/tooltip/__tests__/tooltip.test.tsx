@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect } from "vitest";
-import { TooltipProvider, Tooltip, TooltipTrigger } from "../tooltip";
+import { describe, expect, it } from "vitest";
+import { Tooltip, TooltipProvider, TooltipTrigger } from "../tooltip";
 
 describe("Tooltip Component", () => {
   it("renders tooltip trigger element", () => {

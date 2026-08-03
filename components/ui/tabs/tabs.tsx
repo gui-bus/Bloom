@@ -1,11 +1,11 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import * as React from "react";
-import { Icon } from "@iconify/react";
-import { cn } from "@/lib/utils";
 import { designSizes } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
 
 export type TabsVariant =
   | "default"
@@ -454,4 +454,4 @@ const TabsContent = React.memo(
 );
 TabsContent.displayName = "TabsContent";
 
-export { Tabs, TabsList, TabsTrigger, TabsContent };
+export { Tabs, TabsContent, TabsList, TabsTrigger };

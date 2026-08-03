@@ -1,10 +1,10 @@
 "use client";
 
-import * as React from "react";
-import * as SelectPrimitive from "@radix-ui/react-select";
 import { Icon } from "@iconify/react";
-import { cn } from "@/lib/utils";
+import * as SelectPrimitive from "@radix-ui/react-select";
+import * as React from "react";
 import { designRadius } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
 
 export type SelectVariant =
   | "default"
@@ -172,7 +172,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       return options.filter(
         (o) =>
           o.label.toLowerCase().includes(q) ||
-          (o.description && o.description.toLowerCase().includes(q)),
+          o.description?.toLowerCase().includes(q),
       );
     }, [options, searchQuery]);
 
@@ -689,11 +689,11 @@ SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 
 export {
   Select,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
   SelectContent,
-  SelectLabel,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectSeparator,
+  SelectTrigger,
+  SelectValue,
 };

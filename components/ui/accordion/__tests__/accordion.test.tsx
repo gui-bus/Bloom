@@ -1,11 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   Accordion,
+  AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  AccordionContent,
 } from "../accordion";
 
 describe("Accordion Component", () => {

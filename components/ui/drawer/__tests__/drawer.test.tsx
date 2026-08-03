@@ -1,7 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect, beforeEach } from "vitest";
-import { Drawer, DrawerTrigger, DrawerContent, DrawerTitle } from "../drawer";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, it } from "vitest";
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "../drawer";
 
 describe("Drawer Component", () => {
   beforeEach(() => {

@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { designRadius } from "@/lib/design-system";
 import { Icon } from "@iconify/react";
+import * as React from "react";
+import { designRadius } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
 
 export interface AutocompleteOption {
   label: string;
@@ -179,6 +179,7 @@ export const Autocomplete = React.forwardRef<
           </label>
         )}
         <div
+          data-variant={variant}
           className={cn(
             "relative flex items-center w-full border border-input bg-background transition-all focus-within:ring-1 focus-within:ring-ring",
             sizeMap[size],

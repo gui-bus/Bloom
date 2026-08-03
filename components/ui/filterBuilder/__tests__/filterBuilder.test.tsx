@@ -1,7 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect, vi } from "vitest";
-import { FilterBuilder, exportQuery, FilterGroup } from "../filterBuilder";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import { exportQuery, FilterBuilder, type FilterGroup } from "../filterBuilder";
 
 const fields = [
   { id: "name", label: "Name", type: "text" as const },

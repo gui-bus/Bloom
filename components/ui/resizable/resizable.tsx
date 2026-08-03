@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
-import { Group, Panel, Separator } from "react-resizable-panels";
 import { Icon } from "@iconify/react";
+import type * as React from "react";
+import { Group, Panel, Separator } from "react-resizable-panels";
 import { cn } from "@/lib/utils";
 
 export interface ResizablePanelGroupProps
@@ -52,4 +52,4 @@ const ResizableHandle = ({
   </Separator>
 );
 
-export { ResizablePanelGroup, ResizablePanel, ResizableHandle };
+export { ResizableHandle, ResizablePanel, ResizablePanelGroup };

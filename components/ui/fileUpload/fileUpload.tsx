@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export interface FileItemState {
@@ -126,58 +126,68 @@ export function FileUpload({
     });
   };
 
-  const processFiles = async (filesList: File[]) => {
-    const newItems: FileItemState[] = [];
+  const processFiles = React.useCallback(
+    async (filesList: File[]) => {
+      const newItems: FileItemState[] = [];
 
-    for (const file of filesList) {
-      let errorMessage: string | undefined = undefined;
+      for (const file of filesList) {
+        let errorMessage: string | undefined;
 
-      if (file.size > maxSizeMB * 1024 * 1024) {
-        errorMessage = `File size exceeds ${maxSizeMB}MB limit.`;
-      } else {
-        const valError = await validateImageDimensions(file);
-        if (valError) errorMessage = valError;
+        if (file.size > maxSizeMB * 1024 * 1024) {
+          errorMessage = `File size exceeds ${maxSizeMB}MB limit.`;
+        } else {
+          const valError = await validateImageDimensions(file);
+          if (valError) errorMessage = valError;
+        }
+
+        let previewUrl: string | undefined;
+        if (file.type.startsWith("image/") || file.type.startsWith("video/")) {
+          previewUrl = URL.createObjectURL(file);
+        }
+
+        const item: FileItemState = {
+          id: `${file.name}-${Date.now()}-${Math.random().toString(36).substring(2, 5)}`,
+          file,
+          previewUrl,
+          progress: errorMessage ? 0 : simulateProgress ? 0 : 100,
+          status: errorMessage
+            ? "error"
+            : simulateProgress
+              ? "uploading"
+              : "completed",
+          errorMessage,
+        };
+
+        newItems.push(item);
       }
 
-      let previewUrl: string | undefined = undefined;
-      if (file.type.startsWith("image/") || file.type.startsWith("video/")) {
-        previewUrl = URL.createObjectURL(file);
+      const updated = multiple ? [...fileItems, ...newItems] : newItems;
+      setFileItems(updated);
+      onFilesSelected?.(
+        updated.filter((i) => i.status !== "error").map((item) => item.file),
+      );
+
+      if (
+        enableCrop &&
+        newItems.length > 0 &&
+        newItems[0].file.type.startsWith("image/") &&
+        !newItems[0].errorMessage
+      ) {
+        setCropFileItem(newItems[0]);
+        setCropRotation(0);
+        setCropZoom(1);
       }
-
-      const item: FileItemState = {
-        id: `${file.name}-${Date.now()}-${Math.random().toString(36).substring(2, 5)}`,
-        file,
-        previewUrl,
-        progress: errorMessage ? 0 : simulateProgress ? 0 : 100,
-        status: errorMessage
-          ? "error"
-          : simulateProgress
-            ? "uploading"
-            : "completed",
-        errorMessage,
-      };
-
-      newItems.push(item);
-    }
-
-    const updated = multiple ? [...fileItems, ...newItems] : newItems;
-    setFileItems(updated);
-    onFilesSelected?.(
-      updated.filter((i) => i.status !== "error").map((item) => item.file),
-    );
-
-    // If enableCrop and first image has no error, open crop modal
-    if (
-      enableCrop &&
-      newItems.length > 0 &&
-      newItems[0].file.type.startsWith("image/") &&
-      !newItems[0].errorMessage
-    ) {
-      setCropFileItem(newItems[0]);
-      setCropRotation(0);
-      setCropZoom(1);
-    }
-  };
+    },
+    [
+      maxSizeMB,
+      simulateProgress,
+      multiple,
+      fileItems,
+      onFilesSelected,
+      enableCrop,
+      validateImageDimensions,
+    ],
+  );
 
   const handleFiles = (files: FileList | null) => {
     if (!files) return;
@@ -214,7 +224,7 @@ export function FileUpload({
 
     window.addEventListener("paste", handlePaste);
     return () => window.removeEventListener("paste", handlePaste);
-  }, [allowPaste, disabled, fileItems]);
+  }, [allowPaste, disabled, processFiles]);
 
   React.useEffect(() => {
     if (!simulateProgress) return;
@@ -255,7 +265,7 @@ export function FileUpload({
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+    if (e.dataTransfer.files?.[0]) {
       handleFiles(e.dataTransfer.files);
     }
   };
@@ -363,7 +373,10 @@ export function FileUpload({
                         <video
                           src={item.previewUrl}
                           className="size-full object-cover"
-                        />
+                          aria-label={item.file.name}
+                        >
+                          <track kind="captions" />
+                        </video>
                       )}
                     </div>
                   ) : (

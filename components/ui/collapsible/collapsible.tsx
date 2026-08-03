@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const Collapsible = CollapsiblePrimitive.Root;
@@ -22,7 +22,7 @@ const CollapsibleContent = React.forwardRef<
   const [hasBeenOpened, setHasBeenOpened] = React.useState(false);
   const contentRef = React.useRef<HTMLDivElement>(null);
 
-  React.useImperativeHandle(ref, () => contentRef.current!);
+  React.useImperativeHandle(ref, () => contentRef.current as HTMLDivElement);
 
   React.useEffect(() => {
     if (!lazy) return;
@@ -74,4 +74,4 @@ const CollapsibleContent = React.forwardRef<
 CollapsibleContent.displayName =
   CollapsiblePrimitive.CollapsibleContent.displayName;
 
-export { Collapsible, CollapsibleTrigger, CollapsibleContent };
+export { Collapsible, CollapsibleContent, CollapsibleTrigger };

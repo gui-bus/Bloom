@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
+import type { designColors, designSizes } from "@/lib/design-system";
 import { cn } from "@/lib/utils";
-import { designColors, designSizes } from "@/lib/design-system";
 
 export type SpinnerVariant =
   | "default"
@@ -164,7 +164,6 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
               <div className="size-full rounded-full bg-white dark:bg-zinc-900" />
             </div>
           );
-        case "default":
         default:
           return (
             <div

@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar/avatar";
 import { AvatarGroup } from "../avatarGroup";
 
@@ -113,7 +112,7 @@ describe("AvatarGroup Component", () => {
         </Avatar>
       </AvatarGroup>,
     );
-    const avatarRoot =
+    const _avatarRoot =
       container.querySelector("span") ||
       container.firstElementChild?.querySelector("div");
     expect(screen.getByText("A")).toBeInTheDocument();

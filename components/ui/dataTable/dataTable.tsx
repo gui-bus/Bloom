@@ -1,19 +1,21 @@
 "use client";
 
-import * as React from "react";
+import { Icon } from "@iconify/react";
 import {
-  ColumnDef,
+  type ColumnDef,
+  type ColumnFiltersState,
   flexRender,
   getCoreRowModel,
-  useReactTable,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  SortingState,
-  getFilteredRowModel,
-  ColumnFiltersState,
-  VisibilityState,
+  type SortingState,
+  useReactTable,
+  type VisibilityState,
 } from "@tanstack/react-table";
-
+import * as React from "react";
+import { Button } from "@/components/ui/button/button";
+import { Input } from "@/components/ui/input/input";
 import {
   Table,
   TableBody,
@@ -22,10 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table/table";
-import { Input } from "@/components/ui/input/input";
-import { Button } from "@/components/ui/button/button";
 import { cn } from "@/lib/utils";
-import { Icon } from "@iconify/react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

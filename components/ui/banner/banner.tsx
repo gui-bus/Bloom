@@ -1,8 +1,8 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Icon } from "@iconify/react";
 
 export interface AnnouncementItem {
   id: string | number;

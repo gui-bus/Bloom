@@ -1,10 +1,10 @@
 "use client";
 
-import * as React from "react";
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { Icon } from "@iconify/react";
-import { cn } from "@/lib/utils";
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
+import * as React from "react";
 import { designRadius } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
 
 export interface CheckboxProps
   extends React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> {

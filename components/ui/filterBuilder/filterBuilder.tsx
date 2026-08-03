@@ -1,8 +1,8 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Icon } from "@iconify/react";
 
 export interface FilterField {
   id: string;
@@ -128,7 +128,7 @@ export function FilterBuilder({
       if (stored) {
         setSavedPresets(JSON.parse(stored));
       }
-    } catch (e) {
+    } catch (_e) {
       // ignore
     }
   }, [storageKey]);
@@ -148,7 +148,7 @@ export function FilterBuilder({
           `zoe_filter_${storageKey}`,
           JSON.stringify(updated),
         );
-      } catch (e) {
+      } catch (_e) {
         // ignore
       }
     }

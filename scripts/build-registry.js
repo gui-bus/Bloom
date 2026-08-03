@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 
 const projectRoot = path.resolve(__dirname, "../");
 const uiComponentsDir = path.join(projectRoot, "components/ui");
@@ -81,8 +81,8 @@ const knownDependencies = {
 function detectDependencies(content) {
   const deps = new Set();
   const importRegex = /import\s+.*?from\s+["']([^"']+)["']/g;
-  let match;
-  while ((match = importRegex.exec(content)) !== null) {
+  let match = importRegex.exec(content);
+  while (match !== null) {
     const importPath = match[1];
     if (
       importPath.startsWith("@radix-ui/") ||
@@ -102,6 +102,7 @@ function detectDependencies(content) {
     ) {
       deps.add(importPath);
     }
+    match = importRegex.exec(content);
   }
   return Array.from(deps);
 }
@@ -148,7 +149,9 @@ function main() {
       // Auto-detect dependencies if not explicitly mapped
       if (!knownDependencies[name]) {
         const detected = detectDependencies(content);
-        detected.forEach((d) => allDeps.add(d));
+        detected.forEach((d) => {
+          allDeps.add(d);
+        });
       }
     }
 

@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
-import { cn } from "@/lib/utils";
+import * as React from "react";
 import { designRadius } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
 
 type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 type AvatarColor =
@@ -219,5 +219,5 @@ const AvatarFallback = React.forwardRef<
 });
 AvatarFallback.displayName = "AvatarFallback";
 
-export { Avatar, AvatarImage, AvatarFallback };
-export type { AvatarSize, AvatarColor, StatusPosition };
+export type { AvatarColor, AvatarSize, StatusPosition };
+export { Avatar, AvatarFallback, AvatarImage };

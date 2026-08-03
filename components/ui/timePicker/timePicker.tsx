@@ -1,8 +1,8 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Icon } from "@iconify/react";
 
 export interface TimePickerProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -73,8 +73,8 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       let val = e.target.value.replace(/\D/g, "");
       if (val.length > 2) val = val.slice(0, 2);
 
-      let numVal = parseInt(val);
-      if (!isNaN(numVal)) {
+      const numVal = parseInt(val, 10);
+      if (!Number.isNaN(numVal)) {
         if (format === "12h") {
           if (numVal > 12) val = "12";
           if (numVal === 0 && val.length === 2) val = "12";
@@ -89,15 +89,15 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       let val = e.target.value.replace(/\D/g, "");
       if (val.length > 2) val = val.slice(0, 2);
 
-      let numVal = parseInt(val);
-      if (!isNaN(numVal)) {
+      const numVal = parseInt(val, 10);
+      if (!Number.isNaN(numVal)) {
         if (numVal > 59) val = "59";
       }
       updateTime({ minutes: val });
     };
 
     const incrementHour = () => {
-      let h = parseInt(timeState.hours) || 0;
+      let h = parseInt(timeState.hours, 10) || 0;
       if (format === "12h") {
         h = h >= 12 ? 1 : h + 1;
       } else {
@@ -107,7 +107,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
     };
 
     const decrementHour = () => {
-      let h = parseInt(timeState.hours) || 0;
+      let h = parseInt(timeState.hours, 10) || 0;
       if (format === "12h") {
         h = h <= 1 ? 12 : h - 1;
       } else {
@@ -117,14 +117,14 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
     };
 
     const incrementMinute = () => {
-      let m = parseInt(timeState.minutes) || 0;
+      let m = parseInt(timeState.minutes, 10) || 0;
       m = m + step;
       if (m > 59) m = 0;
       updateTime({ minutes: m.toString().padStart(2, "0") });
     };
 
     const decrementMinute = () => {
-      let m = parseInt(timeState.minutes) || 0;
+      let m = parseInt(timeState.minutes, 10) || 0;
       m = m - step;
       if (m < 0) m = 60 - step;
       updateTime({ minutes: m.toString().padStart(2, "0") });
@@ -309,8 +309,8 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
               value={timeState.hours}
               onChange={handleHourChange}
               onBlur={() => {
-                let val =
-                  parseInt(timeState.hours) || (format === "12h" ? 12 : 0);
+                const val =
+                  parseInt(timeState.hours, 10) || (format === "12h" ? 12 : 0);
                 updateTime({ hours: val.toString().padStart(2, "0") });
               }}
               className={cn(
@@ -346,7 +346,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
               value={timeState.minutes}
               onChange={handleMinuteChange}
               onBlur={() => {
-                let val = parseInt(timeState.minutes) || 0;
+                const val = parseInt(timeState.minutes, 10) || 0;
                 updateTime({ minutes: val.toString().padStart(2, "0") });
               }}
               className={cn(

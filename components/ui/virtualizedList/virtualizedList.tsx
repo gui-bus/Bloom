@@ -19,7 +19,7 @@ export interface VirtualizedListProps<T = any> {
   className?: string;
 }
 
-function VirtualizedListInner<T>(
+const VirtualizedListRender = <T,>(
   {
     items,
     itemHeight = 40,
@@ -32,7 +32,7 @@ function VirtualizedListInner<T>(
     className,
   }: VirtualizedListProps<T>,
   ref: React.Ref<VirtualizedListRef>,
-) {
+) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [scrollTop, setScrollTop] = React.useState(0);
   const isEndReachedFiredRef = React.useRef(false);
@@ -50,7 +50,7 @@ function VirtualizedListInner<T>(
       offsets.push(offsets[i] + calculateHeight(i));
     }
     return offsets;
-  }, [items, itemHeight, getItemHeight]);
+  }, [items, getItemHeight, itemHeight]);
 
   const totalHeight = itemOffsets[items.length] || 0;
 
@@ -82,7 +82,10 @@ function VirtualizedListInner<T>(
   }, [onEndReached, endReachedThreshold]);
 
   let startIndex = 0;
-  while (startIndex < items.length && itemOffsets[startIndex + 1] < scrollTop) {
+  while (
+    startIndex < items.length &&
+    itemOffsets[startIndex + 1] <= scrollTop
+  ) {
     startIndex++;
   }
   startIndex = Math.max(0, startIndex - overscan);
@@ -94,26 +97,26 @@ function VirtualizedListInner<T>(
   ) {
     endIndex++;
   }
-  endIndex = Math.min(items.length, endIndex + overscan);
+  endIndex = Math.min(items.length - 1, endIndex + overscan);
 
   const visibleItems = [];
-  for (let i = startIndex; i < endIndex; i++) {
-    const top = itemOffsets[i];
-    const h = itemOffsets[i + 1] - top;
-    visibleItems.push(
-      <div
-        key={i}
-        style={{
-          position: "absolute",
-          top,
-          left: 0,
-          right: 0,
-          height: h,
-        }}
-      >
-        {renderItem(items[i], i)}
-      </div>,
-    );
+  for (let i = startIndex; i <= endIndex; i++) {
+    if (i >= 0 && i < items.length) {
+      visibleItems.push(
+        <div
+          key={i}
+          style={{
+            position: "absolute",
+            top: itemOffsets[i],
+            height: calculateHeight(i),
+            left: 0,
+            right: 0,
+          }}
+        >
+          {renderItem(items[i], i)}
+        </div>,
+      );
+    }
   }
 
   return (
@@ -131,8 +134,8 @@ function VirtualizedListInner<T>(
       </div>
     </div>
   );
-}
+};
 
-export const VirtualizedList = React.forwardRef(VirtualizedListInner) as <T>(
+export const VirtualizedList = React.forwardRef(VirtualizedListRender) as <T>(
   props: VirtualizedListProps<T> & { ref?: React.Ref<VirtualizedListRef> },
 ) => React.ReactElement;

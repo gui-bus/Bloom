@@ -1,8 +1,8 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Icon } from "@iconify/react";
 
 export interface TreeDataItem {
   id: string;
@@ -20,7 +20,7 @@ interface TreeViewContextValue {
   selectNode: (id: string) => void;
   toggleChecked?: (id: string, item?: TreeDataItem) => void;
   isCheckable?: boolean;
-  onLoadChildren?: (id: string) => Promise<TreeDataItem[] | void>;
+  onLoadChildren?: (id: string) => Promise<TreeDataItem[] | undefined>;
   loadingIds?: Set<string>;
 }
 
@@ -42,7 +42,7 @@ interface TreeViewProps {
   onCheckedChange?: (checkedIds: string[]) => void;
   isReorderable?: boolean;
   onReorder?: (newData: TreeDataItem[]) => void;
-  onLoadChildren?: (id: string) => Promise<TreeDataItem[] | void>;
+  onLoadChildren?: (id: string) => Promise<TreeDataItem[] | undefined>;
   children?: React.ReactNode;
   className?: string;
 }
@@ -283,6 +283,7 @@ export function TreeNode({
     <div
       className={cn("select-none", className)}
       role="treeitem"
+      tabIndex={0}
       aria-expanded={hasChildren ? isExpanded : undefined}
     >
       <div

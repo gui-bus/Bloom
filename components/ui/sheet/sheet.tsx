@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Icon } from "@iconify/react";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export type SheetBackdrop = "blur" | "dark" | "light" | "transparent" | "none";
@@ -170,13 +170,13 @@ SheetDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {
   Sheet,
-  SheetPortal,
-  SheetOverlay,
-  SheetTrigger,
   SheetClose,
   SheetContent,
-  SheetHeader,
-  SheetFooter,
-  SheetTitle,
   SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetOverlay,
+  SheetPortal,
+  SheetTitle,
+  SheetTrigger,
 };

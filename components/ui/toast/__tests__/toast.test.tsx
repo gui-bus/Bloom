@@ -1,6 +1,5 @@
 import { render } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { Toast } from "../toast";
 
 describe("Toast Component", () => {

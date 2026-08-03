@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
 import { Icon } from "@iconify/react";
-import { cn } from "@/lib/utils";
+import * as React from "react";
 import { Input } from "@/components/ui/input/input";
+import { cn } from "@/lib/utils";
 
 export interface ComboboxOption {
   value: string;
@@ -137,8 +137,7 @@ export function Combobox({
       return options.filter(
         (o) =>
           o.label.toLowerCase().includes(q.toLowerCase()) ||
-          (o.description &&
-            o.description.toLowerCase().includes(q.toLowerCase())),
+          o.description?.toLowerCase().includes(q.toLowerCase()),
       );
     }
 
@@ -493,7 +492,7 @@ export function Combobox({
 function renderOptionItem(
   option: ComboboxOption,
   isSelected: boolean,
-  isMulti: boolean,
+  _isMulti: boolean,
   handleSelect: (opt: ComboboxOption) => void,
 ) {
   return (

@@ -2,11 +2,11 @@
 
 import * as React from "react";
 import {
+  type FieldValues,
+  type SubmitHandler,
+  type UseFormProps,
+  type UseFormReturn,
   useForm,
-  UseFormReturn,
-  FieldValues,
-  SubmitHandler,
-  UseFormProps,
 } from "react-hook-form";
 import { cn } from "@/lib/utils";
 
@@ -48,7 +48,7 @@ export function Form<TFieldValues extends FieldValues = FieldValues>({
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const result = await form.handleSubmit(onSubmit)(e);
+    const _result = await form.handleSubmit(onSubmit)(e);
 
     // If validation fails and scrollToFirstError is enabled, find first invalid input
     if (scrollToFirstError && Object.keys(form.formState.errors).length > 0) {
@@ -100,5 +100,5 @@ export function Form<TFieldValues extends FieldValues = FieldValues>({
   );
 }
 
+export type { SubmitHandler, UseFormProps, UseFormReturn };
 export { useForm };
-export type { UseFormReturn, SubmitHandler, UseFormProps };

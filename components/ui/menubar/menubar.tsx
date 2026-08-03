@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
-import * as MenubarPrimitive from "@radix-ui/react-menubar";
 import { Icon } from "@iconify/react";
+import * as MenubarPrimitive from "@radix-ui/react-menubar";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const MenubarMenu = MenubarPrimitive.Menu;
@@ -158,16 +158,16 @@ MenubarSeparator.displayName = MenubarPrimitive.Separator.displayName;
 
 export {
   Menubar,
-  MenubarMenu,
-  MenubarTrigger,
-  MenubarContent,
-  MenubarItem,
   MenubarCheckboxItem,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarMenu,
+  MenubarPortal,
+  MenubarRadioGroup,
   MenubarRadioItem,
   MenubarSeparator,
   MenubarShortcut,
-  MenubarGroup,
-  MenubarPortal,
   MenubarSub,
-  MenubarRadioGroup,
+  MenubarTrigger,
 };

@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
 import { designRadius } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
 
 type BadgeColor =
   | "default"
@@ -283,5 +283,5 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
 
 Badge.displayName = "Badge";
 
+export type { BadgeColor, BadgeSize, BadgeVariant };
 export { Badge };
-export type { BadgeColor, BadgeVariant, BadgeSize };

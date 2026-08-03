@@ -1,8 +1,8 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Icon } from "@iconify/react";
 
 export interface MultiSelectOption {
   label: string;
@@ -101,8 +101,7 @@ export function MultiSelect({
   const filteredOptions = options.filter(
     (opt) =>
       opt.label.toLowerCase().includes(search.toLowerCase()) ||
-      (opt.category &&
-        opt.category.toLowerCase().includes(search.toLowerCase())),
+      opt.category?.toLowerCase().includes(search.toLowerCase()),
   );
 
   const selectedOptions = options.filter((opt) => value.includes(opt.value));

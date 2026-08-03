@@ -1,6 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect, vi } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { ColorSwatches } from "../colorSwatches";
 
 const colors = ["#ff0000", "#00ff00", "#0000ff"];

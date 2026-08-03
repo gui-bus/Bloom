@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
 import { designRadius } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
 
 type CardColor =
   | "default"
@@ -278,4 +278,4 @@ const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
 );
 CardFooter.displayName = "CardFooter";
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardBody };
+export { Card, CardBody, CardDescription, CardFooter, CardHeader, CardTitle };

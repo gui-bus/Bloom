@@ -1,7 +1,7 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import * as React from "react";
-import { describe, it, expect, vi } from "vitest";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "../tabs";
+import { describe, expect, it, vi } from "vitest";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
 
 vi.mock("framer-motion", () => ({
   motion: {

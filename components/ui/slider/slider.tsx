@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export interface SliderMark {
@@ -196,7 +196,7 @@ const Slider = React.forwardRef<
               </SliderPrimitive.Track>
 
               {currentVal.map((val, i) => {
-                const percent = Math.min(
+                const _percent = Math.min(
                   100,
                   Math.max(0, ((val - min) / (max - min)) * 100),
                 );

@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { VirtualizedList } from "../virtualizedList";
 
 const items = Array.from({ length: 100 }, (_, i) => `Item #${i + 1}`);

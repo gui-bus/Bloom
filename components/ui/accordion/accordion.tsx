@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
-import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { Icon } from "@iconify/react";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 type AccordionVariant =
@@ -214,11 +214,11 @@ const AccordionContent = React.forwardRef<
 });
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
 export type {
-  AccordionVariant,
-  AccordionProps,
-  AccordionItemProps,
-  AccordionTriggerProps,
   AccordionContentProps,
+  AccordionItemProps,
+  AccordionProps,
+  AccordionTriggerProps,
+  AccordionVariant,
 };
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };

@@ -4,7 +4,6 @@ import { Icon } from "@iconify/react";
 import hljs from "highlight.js";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button/button";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface CodeFile {
@@ -41,14 +40,14 @@ function parseHighlightLines(
     } else if (typeof item === "string") {
       if (item.includes("-")) {
         const [start, end] = item.split("-").map((n) => parseInt(n.trim(), 10));
-        if (!isNaN(start) && !isNaN(end)) {
+        if (!Number.isNaN(start) && !Number.isNaN(end)) {
           for (let i = start; i <= end; i++) {
             set.add(i);
           }
         }
       } else {
         const num = parseInt(item.trim(), 10);
-        if (!isNaN(num)) set.add(num);
+        if (!Number.isNaN(num)) set.add(num);
       }
     }
   }
@@ -98,7 +97,7 @@ export function CodeBlock({
         setHasOverflow(pre.scrollHeight > maxHeight);
       }
     }
-  }, [currentCode, maxHeight, activeFileIndex, isWrapEnabled]);
+  }, [maxHeight]);
 
   function handleCopy() {
     navigator.clipboard.writeText(currentCode);
