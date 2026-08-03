@@ -20,8 +20,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
-    pool: "forks",
-    maxWorkers: 1,
+    pool: "threads",
     isolate: false,
   },
 });
