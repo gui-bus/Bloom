@@ -128,9 +128,7 @@ export function FilterBuilder({
       if (stored) {
         setSavedPresets(JSON.parse(stored));
       }
-    } catch (_e) {
-      // ignore
-    }
+    } catch (_e) {}
   }, [storageKey]);
 
   const saveCurrentPreset = () => {
@@ -148,9 +146,7 @@ export function FilterBuilder({
           `zoe_filter_${storageKey}`,
           JSON.stringify(updated),
         );
-      } catch (_e) {
-        // ignore
-      }
+      } catch (_e) {}
     }
     onSavePreset?.(newPreset);
     setPresetName("");
@@ -379,7 +375,6 @@ export function FilterBuilder({
     >
       {renderGroup(value, onChange)}
 
-      {/* Footer Preset Save & Export Utilities */}
       <div className="pt-3 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2 flex-1 min-w-[200px]">
           <input
@@ -429,7 +424,6 @@ export function FilterBuilder({
         </div>
       )}
 
-      {/* Export Query Modal */}
       {showExportModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
           <div className="w-full max-w-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 shadow-2xl space-y-4">

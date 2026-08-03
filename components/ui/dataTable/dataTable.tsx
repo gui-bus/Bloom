@@ -102,7 +102,6 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  // Drag & drop column reordering
   const handleDragStart = (columnId: string) => {
     if (!enableColumnReorder) return;
     setDraggedColumnId(columnId);
@@ -134,7 +133,6 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4 w-full">
-      {/* Action Toolbar */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2 flex-1 min-w-[240px] max-w-sm">
           <Input
@@ -167,7 +165,6 @@ export function DataTable<TData, TValue>({
         </div>
 
         <div className="flex items-center gap-2 shrink-0">
-          {/* Column Visibility Picker Dropdown */}
           {enableColumnVisibility && (
             <div ref={visibilityRef} className="relative">
               <Button
@@ -207,7 +204,6 @@ export function DataTable<TData, TValue>({
             </div>
           )}
 
-          {/* Export Actions */}
           {enableExport && (
             <div className="flex items-center gap-1.5">
               <Button
@@ -235,7 +231,6 @@ export function DataTable<TData, TValue>({
         </div>
       </div>
 
-      {/* Per-Column Filter Builder Bar */}
       {enableColumnFilters && showFilterBuilder && (
         <div className="p-3 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/40 space-y-2 animate-in fade-in-80">
           <div className="flex items-center justify-between text-xs font-semibold text-zinc-700 dark:text-zinc-300">
@@ -269,7 +264,6 @@ export function DataTable<TData, TValue>({
         </div>
       )}
 
-      {/* Main Table */}
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -371,7 +365,6 @@ export function DataTable<TData, TValue>({
         </TableBody>
       </Table>
 
-      {/* Pagination Footer */}
       <div className="flex items-center justify-between py-2 text-xs text-zinc-500 dark:text-zinc-400">
         <span>
           Showing {table.getRowModel().rows.length} of {data.length} records

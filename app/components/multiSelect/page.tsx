@@ -209,7 +209,6 @@ export default function MultiSelectPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A multi-select input with pre-selected items and search filtering."
@@ -229,7 +228,6 @@ export default function MultiSelectPage() {
 />`}
       />
 
-      {/* With Icons */}
       <DocsComponent
         title="With Icons"
         description="Options can include icons for richer visual context."
@@ -248,7 +246,6 @@ export default function MultiSelectPage() {
 />`}
       />
 
-      {/* Max Count */}
       <DocsComponent
         title="Max Count"
         description="Limit the number of selectable items with the maxCount prop."
@@ -265,7 +262,6 @@ export default function MultiSelectPage() {
 />`}
       />
 
-      {/* Select All Bar & Collapsible Categories */}
       <DocsComponent
         title="Select All Batch Actions & Collapsible Category Headers"
         description="Batch select or clear all filtered options with 'showSelectAll', and group items into collapsible category sections via the 'category' option field."
@@ -282,7 +278,6 @@ export default function MultiSelectPage() {
         props={["showSelectAll: boolean", "category?: string (in option)"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />

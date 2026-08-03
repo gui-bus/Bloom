@@ -24,7 +24,6 @@ const AccordionContext = React.createContext<AccordionContextValue>({
 
 const useAccordionContext = () => React.useContext(AccordionContext);
 
-/* ─── Root ─── */
 type AccordionProps = React.ComponentPropsWithoutRef<
   typeof AccordionPrimitive.Root
 > & {
@@ -74,7 +73,6 @@ const Accordion = React.forwardRef<
 );
 Accordion.displayName = "Accordion";
 
-/* ─── Item ─── */
 type AccordionItemProps = React.ComponentPropsWithoutRef<
   typeof AccordionPrimitive.Item
 > & {
@@ -113,7 +111,6 @@ const AccordionItem = React.forwardRef<
 });
 AccordionItem.displayName = "AccordionItem";
 
-/* ─── Trigger ─── */
 type AccordionTriggerProps = React.ComponentPropsWithoutRef<
   typeof AccordionPrimitive.Trigger
 > & {
@@ -179,7 +176,6 @@ const AccordionTrigger = React.forwardRef<
 );
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
-/* ─── Content ─── */
 type AccordionContentProps = React.ComponentPropsWithoutRef<
   typeof AccordionPrimitive.Content
 > & {

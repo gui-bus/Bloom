@@ -128,7 +128,6 @@ export default function SelectComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard dropdown select list."
@@ -144,7 +143,6 @@ export default function SelectComponentPage() {
         code={`<Select options={sampleOptions} defaultValue="react" label="Select Tech Stack" />`}
       />
 
-      {/* Multi-Selection & Max Tags */}
       <DocsComponent
         title="Multi-Selection & maxTagsVisible"
         description="Multi-selection mode with removable chip tags, search filter inside the menu, and customizable max visible chips limit."
@@ -177,7 +175,6 @@ export default function SelectComponentPage() {
         ]}
       />
 
-      {/* Rich Rendering & Avatars */}
       <DocsComponent
         title="Rich Option & Value Rendering"
         description="Render avatars, sub-descriptions, icons, and badges using built-in option properties or renderOption custom slots."
@@ -197,7 +194,6 @@ export default function SelectComponentPage() {
         ]}
       />
 
-      {/* Batch Selection (Select / Deselect All) */}
       <DocsComponent
         title="Batch Selection (Select / Deselect All)"
         description="Enable quick 1-click 'Select All' and 'Deselect All' actions at the top of the multi-select dropdown."
@@ -227,7 +223,6 @@ export default function SelectComponentPage() {
         ]}
       />
 
-      {/* Visual Variants */}
       <DocsComponent
         title="Visual Variants"
         description="5 available design variants: default, bordered, flat, underlined, and faded."
@@ -275,7 +270,6 @@ export default function SelectComponentPage() {
         ]}
       />
 
-      {/* Legacy Radix Syntax */}
       <DocsComponent
         title="Legacy Compositional Syntax (Radix UI)"
         description="Full backward compatibility with Radix UI Select primitive trigger and item components."
@@ -302,7 +296,6 @@ export default function SelectComponentPage() {
 </Select>`}
       />
 
-      {/* Option Search Filter */}
       <DocsComponent
         title="Option Search Filter"
         description="Filter options dynamically using an inline search input inside the popover with 'isSearchable'."
@@ -320,7 +313,6 @@ export default function SelectComponentPage() {
         props={["isSearchable: boolean"]}
       />
 
-      {/* Sticky Category Headers */}
       <DocsComponent
         title="Sticky Category Headers"
         description="Group options under category headers that stick to the top of the popover menu during scroll."
@@ -382,7 +374,6 @@ export default function SelectComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Select"
         description="Supported properties for the Select component."

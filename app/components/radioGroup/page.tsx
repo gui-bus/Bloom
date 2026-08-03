@@ -58,7 +58,6 @@ export default function RadioGroupComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default Selection"
         description="Standard radio buttons with smooth CSS indicator scale animations."
@@ -80,7 +79,6 @@ export default function RadioGroupComponentPage() {
 </RadioGroup>`}
       />
 
-      {/* Card Selection Mode (isCard) */}
       <DocsComponent
         title="Selectable Card Mode (isCard) with Prices & Badges"
         description="Interactive plan selection cards featuring animated borders, icons, price tags, and badges using 'isCard'."
@@ -136,7 +134,6 @@ export default function RadioGroupComponentPage() {
         ]}
       />
 
-      {/* Grid Layout & Columns */}
       <DocsComponent
         title="Grid Layout & Horizontal Orientation"
         description="Arrange items in grid columns (columns={3}) or horizontal flex row (orientation='horizontal')."
@@ -179,12 +176,10 @@ export default function RadioGroupComponentPage() {
         ]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — RadioGroup & RadioGroupItem"
         description="Supported properties for RadioGroup components."

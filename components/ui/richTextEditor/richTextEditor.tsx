@@ -105,7 +105,6 @@ export function RichTextEditor({
         className,
       )}
     >
-      {/* Toolbar */}
       <div className="border-b border-zinc-200 dark:border-zinc-800 px-3 py-2 flex items-center gap-1 flex-wrap">
         <ToolbarButton
           icon="hugeicons:text-bold"
@@ -187,7 +186,6 @@ export function RichTextEditor({
         />
       </div>
 
-      {/* Editor Content */}
       <EditorContent editor={editor} />
     </div>
   );

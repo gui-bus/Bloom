@@ -124,7 +124,7 @@ const DrawerContent = React.forwardRef<
     const handleTouchEnd = () => {
       if (!isDragging || !swipeToClose) return;
       setIsDragging(false);
-      const threshold = 100; // Dragged 100px triggers close
+      const threshold = 100;
 
       if (Math.abs(dragOffset) > threshold) {
         closeButtonRef.current?.click();

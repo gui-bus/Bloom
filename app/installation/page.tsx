@@ -52,7 +52,6 @@ export default function InstallationPage() {
         description="Learn how to initialize Bloom UI in your React or Next.js project using our official CLI, and add components directly into your codebase."
       />
 
-      {/* Quick Start CLI */}
       <DocsComponent
         title="Quick Start via CLI"
         description="The recommended way to use Bloom UI is through our official CLI package (@bloomui-react/cli)."
@@ -90,7 +89,6 @@ npx @bloomui-react/cli init
 npx @bloomui-react/cli add button`}
       />
 
-      {/* What init sets up */}
       <DocsComponent
         title="What does `init` set up?"
         description="When you run `npx @bloomui-react/cli init`, the CLI creates essential support files and installs core utilities."
@@ -130,7 +128,6 @@ npx @bloomui-react/cli add button`}
         }
       />
 
-      {/* Prerequisites */}
       <DocsComponent
         title="Prerequisites & Requirements"
         description="Make sure your project satisfies the minimum requirements before initializing Bloom."

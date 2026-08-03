@@ -53,7 +53,6 @@ export default function LabelComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard form label component associated with an input."
@@ -69,7 +68,6 @@ export default function LabelComponentPage() {
 </div>`}
       />
 
-      {/* Required */}
       <DocsComponent
         title="Required Indicator"
         description="Add a red asterisk indicator to required field labels using the 'isRequired' prop."
@@ -85,7 +83,6 @@ export default function LabelComponentPage() {
         props={["isRequired: boolean"]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Sizes"
         description="Set label font size using the 'size' prop: 'sm', 'md', or 'lg'."
@@ -102,12 +99,10 @@ export default function LabelComponentPage() {
         props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Label"
         description="Supported properties for the Label component."

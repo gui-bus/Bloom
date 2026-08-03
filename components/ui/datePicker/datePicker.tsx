@@ -15,7 +15,7 @@ export interface DatePickerPreset {
 export interface DatePickerProps {
   mode?: DatePickerMode;
   viewMode?: DatePickerViewMode;
-  fiscalYearStartMonth?: number; // 1-12 (e.g. 1 = Jan, 4 = Apr, 10 = Oct)
+  fiscalYearStartMonth?: number;
   showTimePicker?: boolean;
   value?: Date;
   onChange?: (date: Date | undefined) => void;
@@ -121,13 +121,10 @@ function isDateDisabled(date: Date, minDate?: Date, maxDate?: Date): boolean {
   return false;
 }
 
-/**
- * Calculates Fiscal Quarter (Q1..Q4) and Fiscal Year given start month offset (1-12)
- */
 function getFiscalQuarter(date: Date, startMonth = 1) {
-  const month = date.getMonth() + 1; // 1-12
-  const offset = (month - startMonth + 12) % 12; // 0..11
-  const quarter = Math.floor(offset / 3) + 1; // 1..4
+  const month = date.getMonth() + 1;
+  const offset = (month - startMonth + 12) % 12;
+  const quarter = Math.floor(offset / 3) + 1;
 
   let fiscalYear = date.getFullYear();
   if (month < startMonth) {
@@ -172,7 +169,6 @@ export function DatePicker({
     multipleValue || [],
   );
 
-  // Time state
   const [hours, setHours] = React.useState<number>(
     value ? value.getHours() : 12,
   );
@@ -293,7 +289,6 @@ export function DatePicker({
   };
 
   const handleSelectFiscalQuarter = (qNumber: number) => {
-    // Determine start month of quarter
     const startMonthIdx = (fiscalYearStartMonth - 1 + (qNumber - 1) * 3) % 12;
     let targetYear = fiscalYearView;
     if (
@@ -629,7 +624,6 @@ export function DatePicker({
                   )}
               </div>
 
-              {/* Integrated Time Picker Controls */}
               {showTimePicker && mode === "single" && (
                 <div className="pt-2 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
                   <div className="flex items-center gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-300">

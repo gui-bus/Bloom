@@ -55,7 +55,6 @@ export default function NumberInputComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Stepper Position Options */}
       <DocsComponent
         title="Stepper Positions (stepperPosition)"
         description="Choose stepper button layout: 'split' (left & right), 'right' (both buttons on right), or 'inline' (compact up/down arrows)."
@@ -84,7 +83,6 @@ export default function NumberInputComponentPage() {
         props={["stepperPosition: 'split' | 'right' | 'inline'"]}
       />
 
-      {/* Currency Formatting */}
       <DocsComponent
         title="Currency Formatting"
         description="Format numeric values as currency using format='currency', currency='BRL' / 'USD', and locale='pt-BR' / 'en-US'."
@@ -125,7 +123,6 @@ export default function NumberInputComponentPage() {
         props={["format: 'currency'", "currency: string", "locale: string"]}
       />
 
-      {/* Percentage Formatting */}
       <DocsComponent
         title="Percentage Formatting"
         description="Format numeric values as percentages using format='percent' and precision={2}."
@@ -145,7 +142,6 @@ export default function NumberInputComponentPage() {
         props={["format: 'percent'", "precision?: number"]}
       />
 
-      {/* Mouse Wheel Scroll Control */}
       <DocsComponent
         title="Mouse Wheel Scroll Control (allowMouseWheel)"
         description="Enable value adjustments by hovering and scrolling the mouse wheel."
@@ -171,7 +167,6 @@ export default function NumberInputComponentPage() {
         props={["allowMouseWheel: boolean"]}
       />
 
-      {/* Controlled State */}
       <DocsComponent
         title="Controlled State & Limits"
         description="Controlled number value bound to state with min/max constraints."
@@ -195,12 +190,10 @@ export default function NumberInputComponentPage() {
 <NumberInput label="Budget Limit" value={val} min={0} max={10000} step={500} onValueChange={setVal} />`}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — NumberInput"
         description="Supported properties for the NumberInput component."

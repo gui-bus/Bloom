@@ -57,7 +57,6 @@ export default function InputComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard input field with label and placeholder."
@@ -69,7 +68,6 @@ export default function InputComponentPage() {
         code={`<Input label="Email Address" placeholder="you@example.com" />`}
       />
 
-      {/* Label Placement */}
       <DocsComponent
         title="Label Placement"
         description="Position the label on top, left, inside (floating style), or outside."
@@ -98,7 +96,6 @@ export default function InputComponentPage() {
         props={["labelPlacement: 'top' | 'left' | 'inside' | 'outside'"]}
       />
 
-      {/* Variants */}
       <DocsComponent
         title="Variants"
         description="Choose between default, bordered, flat, filled, glow, glassmorphism, gradient-border, and underlined styles."
@@ -147,7 +144,6 @@ export default function InputComponentPage() {
         ]}
       />
 
-      {/* Prefix & Suffix */}
       <DocsComponent
         title="Prefix & Suffix"
         description="Embedded inline prefixes and suffixes for URLs, currency, domains, etc."
@@ -173,7 +169,6 @@ export default function InputComponentPage() {
         props={["prefix: ReactNode", "suffix: ReactNode"]}
       />
 
-      {/* Native Formatting Masks */}
       <DocsComponent
         title="Native Formatting Masks"
         description="Built-in formatting masks for CPF, CNPJ, Phone, ZIP (CEP), Credit Card, or Custom patterns."
@@ -216,7 +211,6 @@ export default function InputComponentPage() {
         ]}
       />
 
-      {/* Interactive Features */}
       <DocsComponent
         title="Clearable, Password Toggle & Copyable"
         description="Built-in triggers for 1-click clear (ESC shortcut), animated password eye toggle, and copy-to-clipboard with toast notification."
@@ -249,7 +243,6 @@ export default function InputComponentPage() {
         ]}
       />
 
-      {/* Character Counter & Debounce */}
       <DocsComponent
         title="Character Counter & Debounced Search"
         description="Dynamic character counter with warning color near limit, and debounced callback support."
@@ -289,12 +282,10 @@ export default function InputComponentPage() {
         ]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Input Table */}
       <DocsComponent
         title="Props — Input"
         description="Properties to configure the Input component."

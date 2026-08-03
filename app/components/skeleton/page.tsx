@@ -52,7 +52,6 @@ export default function SkeletonComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard skeleton card loading placeholder."
@@ -74,7 +73,6 @@ export default function SkeletonComponentPage() {
 </div>`}
       />
 
-      {/* Media Card Placeholder */}
       <DocsComponent
         title="Media Card Placeholder"
         description="Complex UI card skeleton preview structure."
@@ -93,7 +91,6 @@ export default function SkeletonComponentPage() {
 </div>`}
       />
 
-      {/* Animation Switcher (Pulse vs Shimmer) */}
       <DocsComponent
         title="Animation Switcher (Pulse vs Shimmer)"
         description='Switch between classic pulse animation (animation="pulse") and glowing gradient shimmer wave (animation="shimmer").'
@@ -137,12 +134,10 @@ export default function SkeletonComponentPage() {
         props={["animation: 'pulse' | 'shimmer' | 'none'"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Skeleton"
         description="Supported properties for Skeleton."

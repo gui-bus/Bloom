@@ -91,7 +91,6 @@ const ScrollArea = React.forwardRef<
         className={cn("relative overflow-hidden group/scrollarea", className)}
         {...props}
       >
-        {/* Scroll Progress Bar */}
         {showProgressBar && (
           <div className="absolute top-0 left-0 right-0 h-1 bg-zinc-100 dark:bg-zinc-800 z-30">
             <div
@@ -108,7 +107,6 @@ const ScrollArea = React.forwardRef<
           {children}
         </ScrollAreaPrimitive.Viewport>
 
-        {/* Floating Action Scroll Buttons */}
         {showScrollButtons && (
           <div className="absolute bottom-3 right-4 z-30 flex flex-col gap-1.5 opacity-0 group-hover/scrollarea:opacity-100 transition-opacity duration-200">
             {canScrollUp && (

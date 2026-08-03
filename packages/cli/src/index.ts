@@ -24,9 +24,7 @@ async function getRegistryBase(): Promise<string> {
       signal: AbortSignal.timeout(1000),
     });
     if (res.ok) return LOCAL_REGISTRY_BASE;
-  } catch (_e) {
-    // Ignore and fallback
-  }
+  } catch (_e) {}
   return GITHUB_REGISTRY_BASE;
 }
 
@@ -100,14 +98,12 @@ program
       console.log("Initializing Bloom UI using default settings...");
     }
 
-    // Write bloom.json
     const configData = {
       componentDir,
       utilsDir,
     };
     fs.writeFileSync(configFile, JSON.stringify(configData, null, 2), "utf8");
 
-    // Create target directories
     const targetUtilsDir = path.join(process.cwd(), utilsDir);
     if (!fs.existsSync(targetUtilsDir)) {
       fs.mkdirSync(targetUtilsDir, { recursive: true });
@@ -115,7 +111,6 @@ program
 
     const registryBase = await getRegistryBase();
 
-    // Fetch design-system.ts, utils.ts, and ripple utilities
     try {
       const utilsRes = await fetch(`${registryBase}/utils.json`);
       if (utilsRes.ok) {
@@ -278,9 +273,7 @@ program
         if (res.ok) {
           list = (await res.json()) as { name: string }[];
         }
-      } catch (_e) {
-        // ignore
-      }
+      } catch (_e) {}
       sList.stop("Done fetching");
 
       if (list.length === 0) {
@@ -341,7 +334,6 @@ program
         fs.mkdirSync(targetDir, { recursive: true });
       }
 
-      // Write files
       for (const file of componentData.files) {
         let updatedContent = file.content;
 
@@ -380,7 +372,6 @@ program
         console.log(`Added ${selectedComponent} component files.`);
       }
 
-      // Install dependencies if any
       if (componentData.dependencies && componentData.dependencies.length > 0) {
         const pkgManager = detectPackageManager();
         const sDeps = spinner();

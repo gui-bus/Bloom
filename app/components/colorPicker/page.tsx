@@ -52,7 +52,6 @@ export default function ColorPickerComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard color picker with swatch preview, HEX/RGB/HSL format switcher, and a copy button to copy the color code in the selected format."
@@ -64,7 +63,6 @@ export default function ColorPickerComponentPage() {
         code={`<ColorPicker label="Accent Color" defaultValue="#8b5cf6" />`}
       />
 
-      {/* Color Wheel */}
       <DocsComponent
         title="Color Wheel"
         description="Enable the interactive canvas-based color wheel for precise hue and saturation selection by setting 'showWheel' to true."
@@ -81,7 +79,6 @@ export default function ColorPickerComponentPage() {
         props={["showWheel: boolean"]}
       />
 
-      {/* Format Switcher */}
       <DocsComponent
         title="Format Switcher (HEX / RGB / HSL)"
         description="Click the format label button to cycle through HEX, RGB, and HSL representations. The copy button copies the value in the active format. Set 'defaultFormat' to start in a specific mode."
@@ -116,7 +113,6 @@ export default function ColorPickerComponentPage() {
         ]}
       />
 
-      {/* Full Featured */}
       <DocsComponent
         title="Full Featured (Wheel + Format Switcher)"
         description="Complete color picker experience combining the interactive color wheel with format switching and copy functionality."
@@ -140,7 +136,6 @@ export default function ColorPickerComponentPage() {
 />`}
       />
 
-      {/* Disabled */}
       <DocsComponent
         title="Disabled State"
         description="Disables all interaction including the color input, format switcher, copy button, and wheel."
@@ -153,12 +148,10 @@ export default function ColorPickerComponentPage() {
         props={["disabled: boolean"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — ColorPicker"
         description="Properties to configure the ColorPicker component."

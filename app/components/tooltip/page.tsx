@@ -58,7 +58,6 @@ export default function TooltipComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard tooltip hint on hover."
@@ -82,7 +81,6 @@ export default function TooltipComponentPage() {
 </TooltipProvider>`}
       />
 
-      {/* Placements (Top, Right, Bottom, Left) */}
       <DocsComponent
         title="Placements (Top, Right, Bottom, Left)"
         description="Position tooltips using the 'side' prop."
@@ -126,7 +124,6 @@ export default function TooltipComponentPage() {
         props={["side: 'top' | 'right' | 'bottom' | 'left'"]}
       />
 
-      {/* Rich HTML Popover Content */}
       <DocsComponent
         title="Rich HTML Content & Interactive Links"
         description="Render rich formatted HTML inside tooltips with interactive links and buttons using interactive={true}."
@@ -172,7 +169,6 @@ export default function TooltipComponentPage() {
         props={["interactive: boolean"]}
       />
 
-      {/* Arrow Pointer Toggle & Custom Offsets */}
       <DocsComponent
         title="Arrow Pointer Toggle & Custom Offsets"
         description="Toggle pointing arrow visibility with showArrow={false} and adjust sideOffset distance."
@@ -206,7 +202,6 @@ export default function TooltipComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — TooltipContent"
         description="Supported properties for TooltipContent."

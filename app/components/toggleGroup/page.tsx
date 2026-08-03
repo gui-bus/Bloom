@@ -59,7 +59,6 @@ export default function ToggleGroupComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Single-selection segmented toggle group."
@@ -94,7 +93,6 @@ export default function ToggleGroupComponentPage() {
 </ToggleGroup>`}
       />
 
-      {/* Variants (Default, Outline, Flat) */}
       <DocsComponent
         title="Variants (Default, Outline, Flat)"
         description="Visual button style variants: 'default', 'outline', or 'flat'."
@@ -140,7 +138,6 @@ export default function ToggleGroupComponentPage() {
         props={["variant: 'default' | 'outline' | 'flat'"]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Sizes"
         description="Scale toggle group button dimensions: 'sm', 'md', or 'lg'."
@@ -183,7 +180,6 @@ export default function ToggleGroupComponentPage() {
         props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
-      {/* Multiple Selection Mode */}
       <DocsComponent
         title="Multiple Selection Mode"
         description="Allow users to select multiple active toggle items simultaneously."
@@ -219,12 +215,10 @@ export default function ToggleGroupComponentPage() {
         props={["type: 'single' | 'multiple'"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — ToggleGroup"
         description="Supported properties for ToggleGroup."

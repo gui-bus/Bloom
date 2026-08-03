@@ -136,7 +136,6 @@ export default function DataTableComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Full Feature Data Table */}
       <DocsComponent
         title="Full-Featured Data Table"
         description="Includes drag-and-drop column reordering, column visibility toggle menu, global search, per-column filter builder, and CSV/Excel spreadsheet export."
@@ -165,7 +164,6 @@ export default function DataTableComponentPage() {
 />`}
       />
 
-      {/* Per-Column Filter Builder Demo */}
       <DocsComponent
         title="Per-Column Filter Builder & Drag-and-Drop Reordering"
         description="Click 'Filters' to open individual column input filters. Drag column headers horizontally by hover handles to reorder columns on the fly."
@@ -190,7 +188,6 @@ export default function DataTableComponentPage() {
         props={["enableColumnFilters: boolean", "enableColumnReorder: boolean"]}
       />
 
-      {/* CSV and Excel Spreadsheet Export */}
       <DocsComponent
         title="CSV & Excel Export Callback Hooks"
         description="Attach custom 'onExportCSV' or 'onExportExcel' event handlers to process table data without initiating mandatory browser downloads."
@@ -233,12 +230,10 @@ export default function DataTableComponentPage() {
         ]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props DataTable Table */}
       <DocsComponent
         title="Props — DataTable"
         description="Properties to configure the DataTable component."

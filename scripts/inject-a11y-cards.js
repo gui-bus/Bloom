@@ -90,10 +90,8 @@ function main() {
 
     let content = fs.readFileSync(pagePath, "utf8");
 
-    // Check if AccessibilityCard is already rendered in page
     if (content.includes("<AccessibilityCard")) continue;
 
-    // Check if import is present
     if (!content.includes("import { AccessibilityCard }")) {
       content = content.replace(
         /^("use client"|'use client');?\r?\n/m,
@@ -104,17 +102,16 @@ function main() {
     const shortcuts = customShortcutsMap[compFolderName];
     const shortcutsJSX = shortcuts
       ? `
-      {/* Accessibility & ARIA Section */}
+
       <AccessibilityCard
         shortcuts={${JSON.stringify(shortcuts)}}
       />
 `
       : `
-      {/* Accessibility & ARIA Section */}
+
       <AccessibilityCard />
 `;
 
-    // Locate API Reference separator
     const apiRefSeparatorRegex =
       /<Separator\s+label=\{<span className="px-2">API Reference<\/span>\}\s+gradient\s*\/>/;
     const match = content.match(apiRefSeparatorRegex);

@@ -56,7 +56,6 @@ export default function RatingComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default Star Rating"
         description="Standard 5-star rating control with tooltip score."
@@ -68,7 +67,6 @@ export default function RatingComponentPage() {
         code={`<Rating showTooltip label="Product Review Score" defaultValue={4} />`}
       />
 
-      {/* Half Star Precision */}
       <DocsComponent
         title="Half Star Precision (allowHalf)"
         description="Enable 0.5 step star rating selection using the 'allowHalf' prop."
@@ -92,7 +90,6 @@ export default function RatingComponentPage() {
         props={["allowHalf: boolean"]}
       />
 
-      {/* Custom Icons (Hearts) */}
       <DocsComponent
         title="Custom Icons (Hearts)"
         description="Pass custom icons like hearts ('hugeicons:favourite') and color themes ('danger')."
@@ -120,7 +117,6 @@ export default function RatingComponentPage() {
         ]}
       />
 
-      {/* Dynamic Emojis */}
       <DocsComponent
         title="Dynamic Emojis Rating"
         description="Pass an emojiMap dictionary to convert numeric ratings into expressive emotional emojis."
@@ -150,12 +146,10 @@ export default function RatingComponentPage() {
         props={["emojiMap: Record<number, string>"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Rating"
         description="Supported properties for the Rating component."

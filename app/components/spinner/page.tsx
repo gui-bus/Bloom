@@ -52,7 +52,6 @@ export default function SpinnerComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard loading spinner with optional text label."
@@ -64,7 +63,6 @@ export default function SpinnerComponentPage() {
         code={`<Spinner color="primary" label="Loading data..." />`}
       />
 
-      {/* Colors */}
       <DocsComponent
         title="Colors"
         description="Choose from theme color variants: 'default', 'primary', 'secondary', 'accent', 'success', 'warning', or 'danger'."
@@ -91,7 +89,6 @@ export default function SpinnerComponentPage() {
         ]}
       />
 
-      {/* Spinner Variants */}
       <DocsComponent
         title="Spinner Variants"
         description="Choose from 6 animation styles: 'default', 'dots', 'bars', 'pulse', 'ring', or 'gradient'."
@@ -116,7 +113,6 @@ export default function SpinnerComponentPage() {
         ]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Sizes"
         description="Scale spinner dimensions from 'xs' to '3xl'."
@@ -135,12 +131,10 @@ export default function SpinnerComponentPage() {
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Spinner"
         description="Supported properties for Spinner."

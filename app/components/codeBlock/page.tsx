@@ -93,7 +93,6 @@ export default function CodeBlockComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard code block displaying TypeScript source code with header, description, and tag pills."
@@ -115,7 +114,6 @@ export default function CodeBlockComponentPage() {
 />`}
       />
 
-      {/* Multi-File Tabs */}
       <DocsComponent
         title="Multi-File Tabs Support (files)"
         description="Pass an array of 'files' to render file tabs for switching between multiple source files in a single code block."
@@ -164,7 +162,6 @@ export default function CodeBlockComponentPage() {
         props={["files: CodeFile[]"]}
       />
 
-      {/* Line Highlighting */}
       <DocsComponent
         title="Line Highlighting (highlightLines)"
         description="Highlight specific lines or line ranges using the 'highlightLines' prop (e.g. [1, 5, '7-9'])."
@@ -198,7 +195,6 @@ export function ExampleApp() {
         props={["highlightLines: (number | string)[]"]}
       />
 
-      {/* Word Wrap Toggle */}
       <DocsComponent
         title="Word Wrap Toggle Button & Prop (wordWrap)"
         description="Enable automatic code line wrapping by default or use the 'Wrap' button in the header toolbar to toggle text wrapping dynamically."
@@ -221,7 +217,6 @@ export function ExampleApp() {
         props={["wordWrap: boolean"]}
       />
 
-      {/* Language Support */}
       <DocsComponent
         title="Language Support"
         description="Supports TypeScript, JavaScript, CSS, HTML, JSON, and Bash with automatic language icon resolution."
@@ -275,7 +270,6 @@ export function ExampleApp() {
         ]}
       />
 
-      {/* Expandable Container */}
       <DocsComponent
         title="Expandable Container"
         description="When the code exceeds the 'maxHeight' threshold, a gradient fade and 'Show more' toggle button appear automatically."
@@ -300,12 +294,10 @@ export function ExampleApp() {
         props={["maxHeight: number"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props CodeBlock Table */}
       <DocsComponent
         title="Props — CodeBlock"
         description="Properties to configure the CodeBlock component."

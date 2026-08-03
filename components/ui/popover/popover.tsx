@@ -42,7 +42,6 @@ const PopoverContent = React.forwardRef<
     ref,
   ) => (
     <>
-      {/* Dedicated Portal for full-screen backdrop overlay */}
       {backdrop !== "none" && (
         <PopoverPrimitive.Portal>
           <div
@@ -55,7 +54,6 @@ const PopoverContent = React.forwardRef<
         </PopoverPrimitive.Portal>
       )}
 
-      {/* Dedicated Portal for floating Popover content card */}
       <PopoverPrimitive.Portal>
         <PopoverPrimitive.Content
           ref={ref}

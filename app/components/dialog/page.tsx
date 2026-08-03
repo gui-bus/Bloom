@@ -63,7 +63,6 @@ export default function DialogComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard modal dialog window with header, description, and footer action buttons."
@@ -120,7 +119,6 @@ export default function DialogComponentPage() {
 </Dialog>`}
       />
 
-      {/* Overlay Styles */}
       <DocsComponent
         title="Overlay Styles"
         description="Customize the backdrop overlay style using the 'overlay' prop: 'blur', 'dark', 'light', 'transparent', or 'none'."
@@ -190,7 +188,6 @@ export default function DialogComponentPage() {
         props={["overlay: 'blur' | 'dark' | 'light' | 'transparent' | 'none'"]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Dialog Sizes"
         description="Adjust the dialog window width scale using the 'size' prop: 'sm', 'md', 'lg', 'xl', or 'full'."
@@ -291,7 +288,6 @@ export default function DialogComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Sub-components Table */}
       <DocsComponent
         title="Props — DialogContent"
         description="Properties to configure the DialogContent window primitive."

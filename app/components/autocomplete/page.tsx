@@ -84,7 +84,6 @@ export default function AutocompletePage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard autocomplete search input filtering options live with match text highlighting."
@@ -114,7 +113,6 @@ export default function AutocompletePage() {
 />`}
       />
 
-      {/* Async Searching State */}
       <DocsComponent
         title="Async Loading State (isSearching)"
         description="Renders a loading spinner inside the input when fetching remote suggestions."

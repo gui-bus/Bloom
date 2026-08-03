@@ -113,7 +113,6 @@ export default function ContextMenuComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Target Element Wrapper */}
       <DocsComponent
         title="Custom Target Element Binding (ContextMenuTrigger target={...})"
         description="Bind the right-click context menu trigger to any standalone DOM element or ref using the 'target' prop on ContextMenuTrigger."
@@ -136,7 +135,6 @@ export default function ContextMenuComponentPage() {
         props={["target: HTMLElement | RefObject<HTMLElement> | string"]}
       />
 
-      {/* Submenu Nesting with Smooth Hover Delay */}
       <DocsComponent
         title="Submenu Nesting with Smooth Hover Delay"
         description="Hierarchical submenu nesting with smooth delay transitions. Hover over items with sub-options to expand them."
@@ -205,7 +203,6 @@ export default function ContextMenuComponentPage() {
 </ContextMenu>`}
       />
 
-      {/* Shortcut Key Column Display */}
       <DocsComponent
         title="Shortcut Key Hints Display Column"
         description="Render aligned keyboard shortcut hints on the right side of menu items using ContextMenuShortcut."
@@ -247,7 +244,6 @@ export default function ContextMenuComponentPage() {
 </ContextMenuItem>`}
       />
 
-      {/* With Checkboxes and Radio Groups */}
       <DocsComponent
         title="With Checkboxes and Radio Groups"
         description="Selectable toggle options and single-choice radio items within a context menu."
@@ -301,7 +297,6 @@ export default function ContextMenuComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Sub-components Table */}
       <DocsComponent
         title="Sub-components — ContextMenu"
         description="Available primitives for building right-click context menus."

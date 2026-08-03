@@ -40,23 +40,23 @@ export interface SelectProps
   isInvalid?: boolean;
   className?: string;
   options?: SelectOption[];
-  // Single selection
+
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
-  // Multi selection
+
   isMultiSelect?: boolean;
   multiValue?: string[];
   defaultMultiValue?: string[];
   onMultiValueChange?: (value: string[]) => void;
   maxTagsVisible?: number;
-  // Search & Batch Selection
+
   isSearchable?: boolean;
   searchPlaceholder?: string;
   showBatchActions?: boolean;
   selectAllLabel?: string;
   deselectAllLabel?: string;
-  // Custom Renderers
+
   renderOption?: (option: SelectOption) => React.ReactNode;
   renderValue?: (
     optionOrOptions: SelectOption | SelectOption[],
@@ -116,11 +116,10 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     },
     ref,
   ) => {
-    // Single mode internal state
     const [singleVal, setSingleVal] = React.useState<string>(
       defaultValue || "",
     );
-    // Multi mode internal state
+
     const [selectedMulti, setSelectedMulti] =
       React.useState<string[]>(defaultMultiValue);
     const [isOpen, setIsOpen] = React.useState(false);
@@ -176,7 +175,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       );
     }, [options, searchQuery]);
 
-    // Group options if group key exists
     const groupedOptions = React.useMemo(() => {
       const groups: Record<string, SelectOption[]> = {};
       const ungrouped: SelectOption[] = [];
@@ -193,7 +191,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       return { groups, ungrouped };
     }, [filteredOptions]);
 
-    // Render Multi-select Trigger Content
     const renderMultiTriggerContent = () => {
       if (currentMulti.length === 0) {
         return (
@@ -253,7 +250,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       );
     };
 
-    // If using custom children mode with Radix UI (Legacy Single Select fallback)
     if (children && !isMultiSelect && options.length === 0) {
       return (
         <div ref={ref} className="w-full flex flex-col gap-1.5">
@@ -284,7 +280,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       );
     }
 
-    // Single Select Trigger Content
     const selectedSingleOpt = options.find((o) => o.value === currentSingle);
     const renderSingleTriggerContent = () => {
       if (!selectedSingleOpt) {
@@ -330,7 +325,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           </label>
         )}
 
-        {/* Custom Dropdown Container */}
         <div className="relative w-full">
           <div
             role="button"
@@ -367,10 +361,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
             />
           </div>
 
-          {/* Dropdown Menu */}
           {isOpen && (
             <>
-              {/* Backdrop dismiss */}
               <div
                 className="fixed inset-0 z-40"
                 onClick={() => setIsOpen(false)}
@@ -381,7 +373,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                   "absolute left-0 right-0 top-full mt-1.5 z-50 max-h-80 overflow-y-auto rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl shadow-2xl p-1.5 animate-in fade-in-0 zoom-in-95",
                 )}
               >
-                {/* Search Bar */}
                 {(isSearchable || options.length > 6) && (
                   <div className="p-1 mb-1 border-b border-zinc-100 dark:border-zinc-800/80 sticky top-0 bg-white/95 dark:bg-zinc-900/95 z-10">
                     <div className="flex items-center gap-2 px-2 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800/70 border border-transparent focus-within:border-sky-500">
@@ -413,7 +404,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                   </div>
                 )}
 
-                {/* Batch Selection Header for Multi-select */}
                 {isMultiSelect && showBatchActions && (
                   <div className="flex items-center justify-between px-2 py-1.5 mb-1 border-b border-zinc-100 dark:border-zinc-800/80 text-xs font-semibold">
                     <button
@@ -433,14 +423,12 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                   </div>
                 )}
 
-                {/* Options List */}
                 {filteredOptions.length === 0 ? (
                   <div className="py-6 text-center text-xs text-zinc-400 dark:text-zinc-500">
                     No options found.
                   </div>
                 ) : (
                   <div className="space-y-1">
-                    {/* Render Grouped */}
                     {Object.entries(groupedOptions.groups).map(
                       ([groupName, groupOpts]) => (
                         <div key={groupName} className="space-y-0.5">
@@ -463,7 +451,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                       ),
                     )}
 
-                    {/* Render Ungrouped */}
                     {groupedOptions.ungrouped.map((opt) =>
                       renderOptionItem(
                         opt,
@@ -569,7 +556,6 @@ function renderOptionItem(
   );
 }
 
-// Legacy Radix compatibility exports
 const SelectGroup = SelectPrimitive.Group;
 const SelectValue = SelectPrimitive.Value;
 

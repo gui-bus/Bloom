@@ -106,7 +106,6 @@ export function MultiSelect({
 
   const selectedOptions = options.filter((opt) => value.includes(opt.value));
 
-  // Group options by category if category field exists
   const groupedOptions = React.useMemo(() => {
     const groups: Record<string, MultiSelectOption[]> = {};
     const ungrouped: MultiSelectOption[] = [];
@@ -182,10 +181,8 @@ export function MultiSelect({
         />
       </div>
 
-      {/* Dropdown Panel */}
       {isOpen && !isDisabled && (
         <div className="absolute z-50 mt-2 w-full max-h-72 overflow-y-auto rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xl p-1 space-y-1">
-          {/* Batch Select All / Deselect All Action Bar */}
           {showSelectAll && filteredOptions.length > 0 && (
             <div className="flex items-center justify-between px-3 py-2 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-800/30 rounded-xl mb-1">
               <span className="text-xs text-zinc-500 font-medium">
@@ -218,7 +215,6 @@ export function MultiSelect({
             </div>
           ) : (
             <>
-              {/* Render Grouped Category Sections */}
               {Object.entries(groupedOptions.groups).map(
                 ([categoryName, groupOpts]) => {
                   const isCollapsed = collapsedCategories[categoryName];
@@ -257,7 +253,6 @@ export function MultiSelect({
                 },
               )}
 
-              {/* Render Ungrouped Options */}
               {groupedOptions.ungrouped.map((opt) => renderOptionItem(opt))}
             </>
           )}

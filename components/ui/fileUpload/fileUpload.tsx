@@ -18,8 +18,8 @@ export interface FileValidationRules {
   minHeight?: number;
   maxWidth?: number;
   maxHeight?: number;
-  aspectRatio?: number; // e.g., 1 for 1:1, 1.7778 for 16:9
-  aspectRatioTolerance?: number; // e.g. 0.05
+  aspectRatio?: number;
+  aspectRatioTolerance?: number;
 }
 
 export interface FileUploadProps {
@@ -194,7 +194,6 @@ export function FileUpload({
     processFiles(Array.from(files));
   };
 
-  // Clipboard Paste Support (allowPaste)
   React.useEffect(() => {
     if (!allowPaste || disabled) return;
 
@@ -292,7 +291,7 @@ export function FileUpload({
 
   const handleApplyCrop = () => {
     if (!cropFileItem) return;
-    // Apply rotation transformation simulation
+
     setCropFileItem(null);
   };
 
@@ -473,7 +472,6 @@ export function FileUpload({
         </div>
       )}
 
-      {/* Image Crop & Rotation Modal */}
       {cropFileItem && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
           <div className="w-full max-w-md bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 shadow-2xl flex flex-col gap-4">

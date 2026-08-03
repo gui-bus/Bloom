@@ -64,7 +64,6 @@ export default function StepperComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default Interactive */}
       <DocsComponent
         title="Default Interactive"
         description="Standard horizontal multi-step progress bar with dynamic line highlights and navigation buttons."
@@ -135,7 +134,6 @@ export default function StepperComponentPage() {
 </Stepper>`}
       />
 
-      {/* Color Themes */}
       <DocsComponent
         title="Color Themes (color)"
         description="All steps and connection lines strictly adhere to the chosen theme color."
@@ -193,7 +191,6 @@ export default function StepperComponentPage() {
         ]}
       />
 
-      {/* Cards Variant */}
       <DocsComponent
         title="Cards Variant (variant='cards')"
         description="Encapsulates each step in an interactive card panel container with distinct border state styling."
@@ -238,7 +235,6 @@ export default function StepperComponentPage() {
         props={["variant: 'default' | 'cards'"]}
       />
 
-      {/* Error & Custom Icons */}
       <DocsComponent
         title="Error State & Custom Icons"
         description="Render error indicators with 'isError' and custom Iconify icons on individual steps."
@@ -289,7 +285,6 @@ export default function StepperComponentPage() {
         props={["isError: boolean", "icon: string"]}
       />
 
-      {/* Vertical Orientation */}
       <DocsComponent
         title="Vertical Orientation (orientation='vertical')"
         description="Vertical stepper layout suitable for side panels, timeline checklists, and long forms."
@@ -334,12 +329,10 @@ export default function StepperComponentPage() {
         props={["orientation: 'horizontal' | 'vertical'"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Stepper"
         description="Supported properties for Stepper."

@@ -38,7 +38,6 @@ export default function BannerPage() {
           <TabsTrigger value="banner">Banner</TabsTrigger>
         </TabsList>
         <TabsContent value="banner" className="space-y-8">
-          {/* Default */}
           <DocsComponent
             title="Default"
             description="A standard banner for general information."
@@ -60,7 +59,6 @@ export default function BannerPage() {
 </Banner>`}
           />
 
-          {/* Variants */}
           <DocsComponent
             title="Variants"
             description="Banners come in multiple variants to indicate the severity or type of the message."
@@ -136,7 +134,6 @@ export default function BannerPage() {
 </Banner>`}
           />
 
-          {/* Dismissible */}
           <DocsComponent
             title="Dismissible"
             description="A banner that can be dismissed by the user."
@@ -179,7 +176,6 @@ export default function BannerPage() {
 )}`}
           />
 
-          {/* With Action */}
           <DocsComponent
             title="With Action"
             description="Banners can include custom actions or inline buttons."
@@ -211,7 +207,6 @@ export default function BannerPage() {
 </Banner>`}
           />
 
-          {/* Multi-Announcement Carousel */}
           <DocsComponent
             title="Announcement Carousel (announcements)"
             description="Cycle through multiple announcements with next/previous controls."
@@ -254,7 +249,6 @@ export default function BannerPage() {
             props={["announcements: AnnouncementItem[]"]}
           />
 
-          {/* Sticky Positioning & Storage Persistence */}
           <DocsComponent
             title="Sticky Positioning & LocalStorage Persistence"
             description="Fix banner at top or bottom with 'position' prop ('sticky-top', 'sticky-bottom') and persist dismiss state across reloads with 'storageKey'."
@@ -285,7 +279,6 @@ export default function BannerPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />

@@ -52,7 +52,7 @@ export interface InputProps
   isCopyable?: boolean;
   onClear?: () => void;
   mask?: InputMaskType | ((val: string) => string);
-  customMaskPattern?: string; // Format pattern like "999.999.999-99" or "AAA-9999" where 9=digit, A=letter, *=any
+  customMaskPattern?: string;
   debouncedOnChange?: (value: string) => void;
   debounceTimeout?: number;
 }
@@ -211,7 +211,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value.toString() : internalValue;
 
-    // Handle debounced callback
     React.useEffect(() => {
       if (!debouncedOnChange) return;
       const handler = setTimeout(() => {

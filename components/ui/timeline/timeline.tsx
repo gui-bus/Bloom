@@ -105,12 +105,10 @@ export function TimelineItem({
           className,
         )}
       >
-        {/* Vertical Line */}
         {!isLast && (
           <div className="absolute right-[15px] top-[32px] bottom-0 w-0.5 bg-zinc-200 dark:bg-zinc-800" />
         )}
 
-        {/* Icon Circle */}
         <div
           className={cn(
             "relative z-10 flex items-center justify-center size-8 rounded-full border-2 bg-white dark:bg-zinc-900 shrink-0 shadow-xs",
@@ -126,7 +124,6 @@ export function TimelineItem({
           )}
         </div>
 
-        {/* Content */}
         <div className="flex-1 pt-0.5 min-w-0">
           <div className="flex items-center justify-end gap-3">
             {time && (
@@ -169,12 +166,10 @@ export function TimelineItem({
     <div
       className={cn("relative flex gap-4 pb-8", isLast && "pb-0", className)}
     >
-      {/* Vertical Line */}
       {!isLast && (
         <div className="absolute left-[15px] top-[32px] bottom-0 w-0.5 bg-zinc-200 dark:bg-zinc-800" />
       )}
 
-      {/* Icon Circle */}
       <div
         className={cn(
           "relative z-10 flex items-center justify-center size-8 rounded-full border-2 bg-white dark:bg-zinc-900 shrink-0 shadow-xs",
@@ -188,7 +183,6 @@ export function TimelineItem({
         )}
       </div>
 
-      {/* Content */}
       <div className="flex-1 pt-0.5 min-w-0">
         <div className="flex items-center justify-between gap-3">
           <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100">

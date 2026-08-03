@@ -66,7 +66,6 @@ export default function ScrollAreaComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Vertical scrollable list container."
@@ -95,7 +94,6 @@ export default function ScrollAreaComponentPage() {
 </ScrollArea>`}
       />
 
-      {/* Horizontal Scrolling */}
       <DocsComponent
         title="Horizontal Scrolling"
         description="Horizontal scroll container using orientation='horizontal'."
@@ -124,7 +122,6 @@ export default function ScrollAreaComponentPage() {
         props={["orientation: 'vertical' | 'horizontal' | 'both'"]}
       />
 
-      {/* Floating Action Scroll Buttons */}
       <DocsComponent
         title="Floating Action Scroll Buttons"
         description="Enable floating scroll-to-top and scroll-to-bottom action buttons on hover with 'showScrollButtons'."
@@ -152,7 +149,6 @@ export default function ScrollAreaComponentPage() {
         props={["showScrollButtons: boolean"]}
       />
 
-      {/* Scroll Progress Bar */}
       <DocsComponent
         title="Scroll Progress Bar"
         description="Display a top progress indicator bar showing current scroll percentage with 'showProgressBar'."
@@ -180,12 +176,10 @@ export default function ScrollAreaComponentPage() {
         props={["showProgressBar: boolean"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — ScrollArea"
         description="Supported properties for ScrollArea."

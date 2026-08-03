@@ -62,7 +62,6 @@ export default function HoverCardComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="User profile hover preview trigger."
@@ -117,7 +116,6 @@ export default function HoverCardComponentPage() {
 </HoverCard>`}
       />
 
-      {/* Alignments */}
       <DocsComponent
         title="Alignments"
         description="Control popover alignment using the 'align' prop: 'start', 'center', or 'end'."
@@ -169,7 +167,6 @@ export default function HoverCardComponentPage() {
         props={["align: 'start' | 'center' | 'end'"]}
       />
 
-      {/* Configurable Delays & Collision Detection */}
       <DocsComponent
         title="Configurable Delays & Automatic Collision Flip"
         description="Configure hover open and close timing with 'openDelay' and 'closeDelay', while automatic collision detection flips placement at viewport boundaries."
@@ -213,7 +210,6 @@ export default function HoverCardComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — HoverCardContent"
         description="Supported properties for HoverCardContent primitive."

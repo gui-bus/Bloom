@@ -132,7 +132,6 @@ export default function DropdownMenuDocsPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A standard dropdown menu triggered by a button with menu labels, items, keyboard shortcuts, and dividers."
@@ -213,7 +212,6 @@ export default function DropdownMenuDocsPage() {
 </DropdownMenu>`}
       />
 
-      {/* Checkboxes & Radio Items */}
       <DocsComponent
         title="Checkboxes & Radio Item Groups"
         description="Supports toggleable checkbox items and single-selection radio groups inside the popover."
@@ -264,7 +262,7 @@ export default function DropdownMenuDocsPage() {
             </DropdownMenu>
           </div>
         }
-        code={`{/* Checkboxes */}
+        code={`
 <DropdownMenu>
   <DropdownMenuTrigger asChild>
     <Button variant="bordered">View Options</Button>
@@ -277,7 +275,6 @@ export default function DropdownMenuDocsPage() {
 </DropdownMenu>`}
       />
 
-      {/* Nested Submenus */}
       <DocsComponent
         title="Nested Submenus"
         description="Nest submenus recursively using 'DropdownMenuSub', 'DropdownMenuSubTrigger', and 'DropdownMenuSubContent'."
@@ -326,7 +323,6 @@ export default function DropdownMenuDocsPage() {
 </DropdownMenu>`}
       />
 
-      {/* Search Input Filter & Arrow Pointer */}
       <DocsComponent
         title="Search Filter Input & Custom Arrow Pointer"
         description="Pass 'showArrow' on DropdownMenuContent to render a pointing arrow stem, and use 'DropdownMenuSearchInput' to filter long list items dynamically."
@@ -359,7 +355,6 @@ export default function DropdownMenuDocsPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props DropdownMenu Table */}
       <DocsComponent
         title="Props — DropdownMenu"
         description="Sub-components for composing accessible Dropdown Menu overlays."

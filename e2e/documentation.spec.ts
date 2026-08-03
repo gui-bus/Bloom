@@ -46,7 +46,6 @@ test.describe("Documentation Site E2E Tests", () => {
     page.on("console", (msg) => console.log("BROWSER LOG:", msg.text()));
     page.on("pageerror", (err) => console.log("BROWSER ERROR:", err.message));
 
-    // Mock clipboard writeText API to guarantee E2E stability in headless chromium
     await page.addInitScript(() => {
       Object.defineProperty(navigator, "clipboard", {
         value: {
@@ -63,10 +62,8 @@ test.describe("Documentation Site E2E Tests", () => {
 
     await copyButton.click();
 
-    // Verify text updates to "Copied"
     await expect(page.getByText("Copied")).toBeVisible();
 
-    // Wait and verify it changes back to "Copy"
     await expect(page.getByText("Copy")).toBeVisible();
   });
 });

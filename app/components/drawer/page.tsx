@@ -69,7 +69,6 @@ export default function DrawerComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard bottom drawer sheet with drag handle, backdrop blur overlay, and action controls."
@@ -151,7 +150,6 @@ export default function DrawerComponentPage() {
 </Drawer>`}
       />
 
-      {/* Positions */}
       <DocsComponent
         title="Drawer Positions"
         description="Slide in from any screen edge using the 'position' prop: 'right', 'left', 'top', or 'bottom'."
@@ -241,7 +239,6 @@ export default function DrawerComponentPage() {
         props={["position: 'bottom' | 'top' | 'left' | 'right'"]}
       />
 
-      {/* Overlay Styles */}
       <DocsComponent
         title="Overlay Styles"
         description="Choose backdrop overlay styles using the 'overlay' prop: 'blur', 'dark', 'light', 'transparent', or 'none'."
@@ -317,7 +314,6 @@ export default function DrawerComponentPage() {
         props={["overlay: 'blur' | 'dark' | 'light' | 'transparent' | 'none'"]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Drawer Sizes (Shadcn Scale)"
         description="Scale drawer width or height using the 'size' prop: 'sm', 'md', 'lg', 'xl', or 'full'."
@@ -415,7 +411,6 @@ export default function DrawerComponentPage() {
         props={["size: 'sm' | 'md' | 'lg' | 'xl' | 'full'"]}
       />
 
-      {/* Swipe-to-Close Touch Sheet (Vaul-style) */}
       <DocsComponent
         title="Swipe-to-Close Drag Handle (Vaul-style Bottom Sheet)"
         description="Features touch gesture listeners (onTouchStart, onTouchMove, onTouchEnd) allowing mobile users to drag down the handle or sheet content (>100px threshold) to dismiss the drawer smoothly."
@@ -473,7 +468,6 @@ export default function DrawerComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — DrawerContent"
         description="Properties to configure the DrawerContent sheet primitive."

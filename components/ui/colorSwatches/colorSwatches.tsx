@@ -74,7 +74,7 @@ function getContrastRatio(hex: string): {
 
   const lumBg = getLuminance(rgb.r, rgb.g, rgb.b);
   const lumWhite = getLuminance(255, 255, 255);
-  const lumDark = getLuminance(24, 24, 27); // zinc-900
+  const lumDark = getLuminance(24, 24, 27);
 
   const ratioWhite =
     (Math.max(lumBg, lumWhite) + 0.05) / (Math.min(lumBg, lumWhite) + 0.05);

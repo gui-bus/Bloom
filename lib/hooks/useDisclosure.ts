@@ -2,10 +2,6 @@
 
 import { useCallback, useState } from "react";
 
-/**
- * useDisclosure — Simplified open/close state control hook.
- * Ideal for Modals, Drawers, Sheets, Accordions, Popovers.
- */
 export function useDisclosure(defaultIsOpen = false) {
   const [isOpen, setIsOpen] = useState(defaultIsOpen);
 

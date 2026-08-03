@@ -59,7 +59,6 @@ export default function TreeViewPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A file system tree with expandable folders and selectable files."
@@ -101,7 +100,6 @@ export default function TreeViewPage() {
 </TreeView>`}
       />
 
-      {/* With Icons */}
       <DocsComponent
         title="With Icons"
         description="Tree nodes with custom icons for folders, files, and specialized content types."
@@ -172,7 +170,6 @@ export default function TreeViewPage() {
 </TreeView>`}
       />
 
-      {/* Checkbox Multi-Selection */}
       <DocsComponent
         title="Checkbox Multi-Selection"
         description="Enable checkbox selection on nodes with isCheckable={true} and monitor selected nodes with onCheckedChange."
@@ -198,7 +195,6 @@ export default function TreeViewPage() {
         ]}
       />
 
-      {/* Drag & Drop Reordering */}
       <DocsComponent
         title="Drag & Drop Node Reordering"
         description="Enable interactive drag-and-drop node reordering and nesting with isReorderable={true} and save state with onReorder."
@@ -248,7 +244,6 @@ export default function TreeViewPage() {
         props={["isReorderable: boolean", "onReorder: (newData) => void"]}
       />
 
-      {/* Async Lazy Loading */}
       <DocsComponent
         title="Async Lazy Loading"
         description="Fetch child nodes dynamically on demand when expanding folders using onLoadChildren."

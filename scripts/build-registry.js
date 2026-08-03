@@ -6,7 +6,6 @@ const uiComponentsDir = path.join(projectRoot, "components/ui");
 const libDir = path.join(projectRoot, "lib");
 const outputDir = path.join(projectRoot, "public/registry");
 
-// Known external dependencies mapping based on imports if needed
 const knownDependencies = {
   accordion: ["@radix-ui/react-accordion"],
   alert: ["lucide-react", "class-variance-authority"],
@@ -77,7 +76,6 @@ const knownDependencies = {
   virtualizedList: [],
 };
 
-// Helper function to extract imports from content if not explicitly mapped
 function detectDependencies(content) {
   const deps = new Set();
   const importRegex = /import\s+.*?from\s+["']([^"']+)["']/g;
@@ -110,7 +108,6 @@ function detectDependencies(content) {
 function main() {
   console.log("Building component registry (dynamic scan)...");
 
-  // Ensure output directories exist
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
@@ -128,7 +125,6 @@ function main() {
     const name = entry.name;
     const compDir = path.join(uiComponentsDir, name);
 
-    // Find all tsx files in component folder
     const files = fs
       .readdirSync(compDir)
       .filter((f) => f.endsWith(".tsx") && !f.includes(".test."));
@@ -146,7 +142,6 @@ function main() {
         content: content,
       });
 
-      // Auto-detect dependencies if not explicitly mapped
       if (!knownDependencies[name]) {
         const detected = detectDependencies(content);
         detected.forEach((d) => {
@@ -163,7 +158,6 @@ function main() {
       files: filesData,
     };
 
-    // Save individual component registry JSON
     fs.writeFileSync(
       path.join(compOutputDir, `${name}.json`),
       JSON.stringify(componentRegistryData, null, 2),
@@ -178,7 +172,6 @@ function main() {
     console.log(`Registered component: ${name}`);
   }
 
-  // Write base utility files to registry for init step
   const utilsPath = path.join(libDir, "utils.ts");
   if (fs.existsSync(utilsPath)) {
     const utilsContent = fs.readFileSync(utilsPath, "utf8");
@@ -223,7 +216,6 @@ function main() {
     console.log("Registered util: useRipple.ts");
   }
 
-  // Save index registry
   fs.writeFileSync(
     path.join(outputDir, "index.json"),
     JSON.stringify(indexRegistry, null, 2),

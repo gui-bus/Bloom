@@ -77,7 +77,6 @@ export default function FormFieldComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard FormField wrapping an Input control."
@@ -96,7 +95,6 @@ export default function FormFieldComponentPage() {
 </FormField>`}
       />
 
-      {/* Required Indicator & Tooltip Explanation */}
       <DocsComponent
         title="Required Field & Asterisk Tooltip Explanation"
         description="Renders a red asterisk indicator on the field label with an interactive Tooltip explanation via 'requiredTooltip'."
@@ -121,7 +119,6 @@ export default function FormFieldComponentPage() {
         props={["isRequired: boolean", "requiredTooltip: ReactNode"]}
       />
 
-      {/* Validation Error State */}
       <DocsComponent
         title="Validation Error State"
         description="Display validation failure messages in red using 'isInvalid' and 'errorMessage'."
@@ -148,7 +145,6 @@ export default function FormFieldComponentPage() {
         props={["isInvalid: boolean", "errorMessage: ReactNode"]}
       />
 
-      {/* Character Counter & Helper Text Alignment */}
       <DocsComponent
         title="Character Counter & Helper Text Alignment"
         description="Pass 'maxLength' and 'currentLength' to track input text length with auto-warning highlight colors, and align footer controls with 'helperAlign'."
@@ -169,12 +165,10 @@ export default function FormFieldComponentPage() {
         ]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — FormField"
         description="Supported properties for the FormField component."

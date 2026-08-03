@@ -104,7 +104,6 @@ export default function FormComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard Form with submit handler and field inputs."
@@ -156,7 +155,6 @@ export default function FormComponentPage() {
 </Form>`}
       />
 
-      {/* Advanced Features (Scroll to error, Dirty Guard, Reset Button) */}
       <DocsComponent
         title="Dirty State Guard, Auto Scroll & Reset Button"
         description="Features automatic scroll-to-invalid-input, confirm unsaved changes navigation guard when dirty, and a reset button."
@@ -183,12 +181,10 @@ export default function FormComponentPage() {
         ]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Form"
         description="Supported properties for the Form component."

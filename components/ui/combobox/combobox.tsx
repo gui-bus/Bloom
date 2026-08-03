@@ -40,9 +40,6 @@ export interface ComboboxProps {
   className?: string;
 }
 
-/**
- * Simple Fuzzy matching algorithm
- */
 function fuzzyScore(target: string, query: string): number {
   const t = target.toLowerCase();
   const q = query.toLowerCase();
@@ -128,7 +125,6 @@ export function Combobox({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Filter & score options
   const filteredOptions = React.useMemo(() => {
     if (!search.trim()) return options;
 
@@ -153,7 +149,6 @@ export function Combobox({
       .map((item) => item.option);
   }, [options, search, isFuzzySearch]);
 
-  // Check if search exact match exists
   const exactMatchExists = React.useMemo(() => {
     if (!search.trim()) return true;
     return options.some(
@@ -161,7 +156,6 @@ export function Combobox({
     );
   }, [options, search]);
 
-  // Group options with sticky headers
   const groupedOptions = React.useMemo(() => {
     const groups: Record<string, ComboboxOption[]> = {};
     const ungrouped: ComboboxOption[] = [];
@@ -178,10 +172,8 @@ export function Combobox({
     return { groups, ungrouped };
   }, [filteredOptions]);
 
-  // Single selected option reference
   const selectedOption = options.find((opt) => opt.value === selectedSingle);
 
-  // Multi selected option objects
   const selectedMultiOptions = React.useMemo(() => {
     return selectedMulti.map((val) => {
       const found = options.find((o) => o.value === val);
@@ -241,9 +233,8 @@ export function Combobox({
     setSearch("");
   };
 
-  // Virtualization windowing calculations
   const totalCount = filteredOptions.length;
-  const containerHeight = 224; // ~ max-h-56
+  const containerHeight = 224;
   const visibleCount = Math.ceil(containerHeight / itemHeight) + 3;
   const startIndex = Math.max(0, Math.floor(scrollTop / itemHeight) - 1);
   const endIndex = Math.min(totalCount, startIndex + visibleCount);
@@ -260,7 +251,6 @@ export function Combobox({
         </label>
       )}
 
-      {/* Main Trigger */}
       <div
         role="button"
         tabIndex={disabled ? -1 : 0}
@@ -358,7 +348,6 @@ export function Combobox({
         </div>
       </div>
 
-      {/* Dropdown Menu */}
       {open && (
         <div className="absolute top-full left-0 z-50 mt-1 w-full rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl text-zinc-900 dark:text-zinc-100 shadow-2xl outline-none animate-in fade-in-80 p-2 flex flex-col gap-1.5">
           <Input
@@ -445,7 +434,6 @@ export function Combobox({
                 </p>
               ) : (
                 <>
-                  {/* Grouped Options with Sticky Headers */}
                   {Object.entries(groupedOptions.groups).map(
                     ([groupName, groupOpts]) => (
                       <div key={groupName} className="space-y-0.5">
@@ -467,7 +455,6 @@ export function Combobox({
                     ),
                   )}
 
-                  {/* Ungrouped Options */}
                   {groupedOptions.ungrouped.map((option) => {
                     const isSelected = isMulti
                       ? selectedMulti.includes(option.value)

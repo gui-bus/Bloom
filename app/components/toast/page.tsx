@@ -55,7 +55,6 @@ export default function ToastComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard glassmorphic notification toast with title and description."
@@ -78,7 +77,6 @@ export default function ToastComponentPage() {
 toast("New Workspace Created", { description: "Your workspace is ready for team members." });`}
       />
 
-      {/* Status Variants (Success, Error, Warning, Info) */}
       <DocsComponent
         title="Status Variants (Success, Error, Warning, Info)"
         description="Trigger feedback notifications with contextual status icons, side accent bars, and color themes."
@@ -133,7 +131,6 @@ toast.warning("Subscription Expiring", { description: "Trial plan expires in 3 d
 toast.info("System Update Available", { description: "Version v2.4.0 is ready." });`}
       />
 
-      {/* Interactive Action Toast */}
       <DocsComponent
         title="Interactive Action Toast"
         description="Include clickable inline action callbacks inside notifications."
@@ -167,7 +164,6 @@ toast.info("System Update Available", { description: "Version v2.4.0 is ready." 
 });`}
       />
 
-      {/* Loading Toast Variations */}
       <DocsComponent
         title="Loading Toast Variations (Loading -> Success / Error)"
         description="Trigger animated loading spinner toasts, and dynamically update them to success or error results after asynchronous tasks."
@@ -244,7 +240,6 @@ setTimeout(() => {
         props={["toast.loading(title, options)", "id?: string | number"]}
       />
 
-      {/* Custom Spinner Variants */}
       <DocsComponent
         title="Custom Spinner Variants"
         description="Choose custom spinner animation styles for loading toasts using spinnerVariant ('dots', 'bars', 'pulse', 'ring', 'gradient')."
@@ -309,12 +304,10 @@ toast.loading("Compiling Code...", { spinnerVariant: "gradient" });`}
         ]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props & Methods — Toast"
         description="Supported helper functions and options for Toast."

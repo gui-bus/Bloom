@@ -52,7 +52,6 @@ export default function TimelinePage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A basic timeline displaying a sequence of chronological events with default status dots."
@@ -106,7 +105,6 @@ export default function TimelinePage() {
 </Timeline>`}
       />
 
-      {/* Status Variants */}
       <DocsComponent
         title="Status Variants"
         description="Timeline items support semantic status colors to indicate the nature of each event."
@@ -148,7 +146,6 @@ export default function TimelinePage() {
 </Timeline>`}
       />
 
-      {/* With Icons */}
       <DocsComponent
         title="With Icons"
         description="Replace status dots with custom icons for richer visual context."
@@ -209,7 +206,6 @@ export default function TimelinePage() {
 </Timeline>`}
       />
 
-      {/* Alternating Left/Right Layout */}
       <DocsComponent
         title="Alternating Left & Right Layout"
         description="Render alternating timeline events on left and right sides using mode='alternate'."
@@ -244,7 +240,6 @@ export default function TimelinePage() {
         props={["mode: 'left' | 'alternate'"]}
       />
 
-      {/* Interactive Expandable Node Details */}
       <DocsComponent
         title="Interactive Expandable Details"
         description="Add expandable detail panels to timeline nodes with details={ReactNode}."
@@ -288,7 +283,6 @@ export default function TimelinePage() {
         props={["details?: ReactNode"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />

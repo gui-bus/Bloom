@@ -59,7 +59,6 @@ export default function SliderComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Single Thumb & Floating Tooltip"
         description="Standard single value slider with floating hover tooltip ('showTooltip')."
@@ -83,7 +82,6 @@ export default function SliderComponentPage() {
         ]}
       />
 
-      {/* Multi-Thumb Range */}
       <DocsComponent
         title="Multi-Thumb Range (3+ Thumbs)"
         description="Pass an array of multiple values (e.g., [15, 50, 85]) to render multi-thumb controls."
@@ -105,7 +103,6 @@ export default function SliderComponentPage() {
         props={["value: number[] (e.g. [15, 50, 85])"]}
       />
 
-      {/* Histogram Mode */}
       <DocsComponent
         title="Histogram Chart Mode (Airbnb Style)"
         description="Render a background frequency distribution chart above the slider track with live range highlight."
@@ -138,7 +135,6 @@ const sampleHistogram = [5, 12, 28, 45, 80, 95, 60, 40, 25, 15, 8, 3];
         props={["histogramData: number[]", "histogramHeight?: number"]}
       />
 
-      {/* Slider Marks */}
       <DocsComponent
         title="Graduated Marks & Ticks"
         description="Add step markers along the track with label text."
@@ -174,12 +170,10 @@ const sampleHistogram = [5, 12, 28, 45, 80, 95, 60, 40, 25, 15, 8, 3];
         props={["marks: Array<{ value: number, label?: string }>"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Slider"
         description="Supported properties for Slider."

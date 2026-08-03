@@ -55,7 +55,6 @@ export default function ImageComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard image with rounded-2xl borders and caption."
@@ -75,7 +74,6 @@ export default function ImageComponentPage() {
 />`}
       />
 
-      {/* Placeholder Image */}
       <DocsComponent
         title="Placeholder Graphic"
         description="Use the 'placeholder' prop to render a default vector SVG placeholder."
@@ -93,7 +91,6 @@ export default function ImageComponentPage() {
         props={["placeholder: boolean"]}
       />
 
-      {/* Zoomable */}
       <DocsComponent
         title="Zoomable Hover Effect"
         description="Enable smooth zoom animation on hover using the 'isZoomable' prop."
@@ -111,7 +108,6 @@ export default function ImageComponentPage() {
         props={["isZoomable: boolean"]}
       />
 
-      {/* Blurred Glow Backdrop */}
       <DocsComponent
         title="Blurred Glow Backdrop"
         description="Create an ambient colored glow shadow under the image with the 'isBlurred' prop."
@@ -129,7 +125,6 @@ export default function ImageComponentPage() {
         props={["isBlurred: boolean"]}
       />
 
-      {/* Aspect Ratios */}
       <DocsComponent
         title="Aspect Ratios"
         description="Control container dimensions using the 'aspectRatio' prop: 'square', 'video', '4/3', or '21/9'."
@@ -154,7 +149,6 @@ export default function ImageComponentPage() {
         props={["aspectRatio: 'auto' | 'square' | 'video' | '4/3' | '21/9'"]}
       />
 
-      {/* Lightbox Zoom, Blur-up & Fallback */}
       <DocsComponent
         title="Lightbox Zoom Modal, Progressive Blur-up & Fallback URL"
         description="Click an image with 'enableLightbox' to open full-screen lightbox preview, show smooth low-res blur-up placeholders, and recover with 'fallbackSrc' when primary image URL fails."
@@ -183,12 +177,10 @@ export default function ImageComponentPage() {
         ]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Image"
         description="Supported properties for the Image component."

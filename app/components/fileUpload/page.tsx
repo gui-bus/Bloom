@@ -58,7 +58,6 @@ export default function FileUploadComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default (Drag and Drop with Progress) */}
       <DocsComponent
         title="Default (Drag & Drop with Animated Progress)"
         description="Interactive drop zone featuring live progress bars per file with pause, resume, and cancellation buttons."
@@ -84,7 +83,6 @@ export default function FileUploadComponentPage() {
         props={["simulateProgress: boolean", "showPreviews: boolean"]}
       />
 
-      {/* Image & Video Thumbnails Preview */}
       <DocsComponent
         title="Thumbnails & Immediate Previews"
         description="Renders instant preview thumbnails for uploaded images, videos, and document file types."
@@ -108,7 +106,6 @@ export default function FileUploadComponentPage() {
         props={["showPreviews: boolean", "accept: string"]}
       />
 
-      {/* Disabled State */}
       <DocsComponent
         title="Disabled State"
         description="Disable file upload zone interactions with the 'disabled' prop."
@@ -125,7 +122,6 @@ export default function FileUploadComponentPage() {
         props={["disabled: boolean"]}
       />
 
-      {/* Image Cropping & Rotation Modal */}
       <DocsComponent
         title="Image Cropping & Rotation Preview Modal"
         description="Pass 'enableCrop' to allow users to rotate (90° steps) and zoom/crop uploaded images inside a dedicated interactive modal."
@@ -147,7 +143,6 @@ export default function FileUploadComponentPage() {
         props={["enableCrop: boolean"]}
       />
 
-      {/* Paste from Clipboard */}
       <DocsComponent
         title="Paste from Clipboard (allowPaste)"
         description="Pass 'allowPaste' to intercept global Ctrl+V image clipboard events and automatically upload captured screenshots or copied images."
@@ -167,7 +162,6 @@ export default function FileUploadComponentPage() {
         props={["allowPaste: boolean"]}
       />
 
-      {/* File Validation Rules (Min/Max Resolution & Aspect Ratio) */}
       <DocsComponent
         title="Resolution & Aspect Ratio Validation Rules"
         description="Pass 'validationRules' to enforce minimum/maximum pixel dimensions or required aspect ratios (e.g. 1:1 square, 16:9 widescreen)."
@@ -179,7 +173,7 @@ export default function FileUploadComponentPage() {
               validationRules={{
                 minWidth: 400,
                 minHeight: 200,
-                aspectRatio: 1.7778, // 16:9
+                aspectRatio: 1.7778,
               }}
               description="Upload a 16:9 image (min 400x200px)"
             />
@@ -197,12 +191,10 @@ export default function FileUploadComponentPage() {
         props={["validationRules: FileValidationRules"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — FileUpload"
         description="Supported properties for the FileUpload component."

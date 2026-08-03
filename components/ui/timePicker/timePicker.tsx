@@ -40,7 +40,6 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
     },
     ref,
   ) => {
-    // Basic state parsing
     const parseTime = (timeStr: string) => {
       const [time, period] = timeStr.split(" ");
       const [hours, minutes] = (time || "12:00").split(":");
@@ -146,7 +145,6 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       lg: "w-8 text-lg",
     };
 
-    // Generate wheel options
     const hoursList = React.useMemo(() => {
       if (format === "12h") {
         return Array.from({ length: 12 }, (_, i) =>
@@ -186,7 +184,6 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
               isDisabled && "opacity-50 pointer-events-none",
             )}
           >
-            {/* Hours Wheel Column */}
             <div className="flex flex-col items-center">
               <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
                 Hours
@@ -214,7 +211,6 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
               :
             </span>
 
-            {/* Minutes Wheel Column */}
             <div className="flex flex-col items-center">
               <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
                 Minutes
@@ -238,7 +234,6 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
               </div>
             </div>
 
-            {/* Period Column */}
             {format === "12h" && (
               <div className="flex flex-col items-center">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
@@ -294,7 +289,6 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
             isDisabled && "opacity-50 pointer-events-none",
           )}
         >
-          {/* Hour Segment */}
           <div className="flex flex-col items-center justify-center -space-y-1">
             <button
               type="button"
@@ -331,7 +325,6 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
 
           <span className="text-zinc-400 font-medium pb-0.5">:</span>
 
-          {/* Minute Segment */}
           <div className="flex flex-col items-center justify-center -space-y-1">
             <button
               type="button"
@@ -365,7 +358,6 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
             </button>
           </div>
 
-          {/* AM/PM Toggle */}
           {format === "12h" && (
             <button
               type="button"

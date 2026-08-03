@@ -173,7 +173,6 @@ export default function NavigationMenuComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Site header navigation menu with dropdown panels."
@@ -293,7 +292,6 @@ export default function NavigationMenuComponentPage() {
 </NavigationMenu>`}
       />
 
-      {/* Rich Mega-Menu Panel & Active Sliding Indicator */}
       <DocsComponent
         title="Rich Mega-Menu Dropdown Panel & Active Indicator"
         description="Multi-column mega-menu content layouts with '<NavigationMenuIndicator />' that glides beneath active menu items."
@@ -314,7 +312,6 @@ export default function NavigationMenuComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — NavigationMenu Primitives"
         description="Supported properties for NavigationMenu components."

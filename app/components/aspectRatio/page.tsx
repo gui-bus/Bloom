@@ -57,7 +57,6 @@ export default function AspectRatioPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Ratio Presets */}
       <DocsComponent
         title="Preset Ratios (preset)"
         description="Use predefined ratio aliases ('video', 'square', 'golden', 'cinema', 'portrait', 'ultrawide')."
@@ -111,7 +110,6 @@ export default function AspectRatioPage() {
         ]}
       />
 
-      {/* Loading Skeleton */}
       <DocsComponent
         title="Loading Skeleton Placeholder (isLoading)"
         description="Display a pulsing skeleton container while high-resolution media is loading."
@@ -128,7 +126,6 @@ export default function AspectRatioPage() {
         props={["isLoading: boolean"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />

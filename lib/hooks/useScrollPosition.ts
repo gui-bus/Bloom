@@ -2,10 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-/**
- * useScrollPosition — Track scroll position with direction detection.
- * @param threshold - Minimum scroll distance in px to trigger "scrolled" (default 10)
- */
 export function useScrollPosition(threshold = 10) {
   const [scrollY, setScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);

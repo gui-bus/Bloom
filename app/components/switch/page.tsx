@@ -63,7 +63,6 @@ export default function SwitchComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default Switch"
         description="Standard toggle switch with label."
@@ -75,7 +74,6 @@ export default function SwitchComponentPage() {
         code={`<Switch label="Enable Notifications" defaultChecked />`}
       />
 
-      {/* Premium Thumb & Track Icons (Dark / Light Mode) */}
       <DocsComponent
         title="Premium Dark / Light Mode Switch"
         description="Features track icons and smooth spring animated sliding thumb."
@@ -120,7 +118,6 @@ export default function SwitchComponentPage() {
         ]}
       />
 
-      {/* Dual Labels */}
       <DocsComponent
         title="Dual Labels (Start & End Extremities)"
         description="Display text labels on both ends of the switch track simultaneously."
@@ -147,7 +144,6 @@ export default function SwitchComponentPage() {
         props={["startLabel: ReactNode", "endLabel: ReactNode"]}
       />
 
-      {/* Card Selection Options */}
       <DocsComponent
         title="Card Selection Options"
         description="Wrap toggle settings in full-width clickable card containers."
@@ -172,7 +168,6 @@ export default function SwitchComponentPage() {
         props={["isCard: boolean", "isDisabled: boolean"]}
       />
 
-      {/* Colors & Sizes */}
       <DocsComponent
         title="Colors & Sizes"
         description="Dimensions ('sm', 'md', 'lg') and color themes ('default', 'primary', 'secondary', 'accent', 'success', 'warning', 'danger')."
@@ -207,12 +202,10 @@ export default function SwitchComponentPage() {
         ]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Switch"
         description="Supported properties for Switch."

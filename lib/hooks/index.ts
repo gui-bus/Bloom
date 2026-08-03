@@ -1,6 +1,3 @@
-/**
- * Bloom UI Hooks — Centralized barrel export
- */
 export { useClipboard } from "./useClipboard";
 export { useDisclosure } from "./useDisclosure";
 export { useInfiniteScroll } from "./useInfiniteScroll";

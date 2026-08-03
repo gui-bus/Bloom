@@ -58,7 +58,6 @@ export default function BadgeComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A standard badge component displaying a neutral status label."
@@ -70,7 +69,6 @@ export default function BadgeComponentPage() {
         code={`<Badge>Default Badge</Badge>`}
       />
 
-      {/* Variants */}
       <DocsComponent
         title="Variants"
         description="Controls the visual appearance of the badge. 'flat' is the default and works well for most contexts."
@@ -109,7 +107,6 @@ export default function BadgeComponentPage() {
         ]}
       />
 
-      {/* Colors */}
       <DocsComponent
         title="Colors"
         description="Semantic color scale for the badge. Stacked vertically for clear visual comparison."
@@ -266,7 +263,6 @@ export default function BadgeComponentPage() {
         ]}
       />
 
-      {/* Pressable */}
       <DocsComponent
         title="Pressable (isPressable)"
         description="Add 'isPressable' to make badges interactive with scale micro-animations and active press feedback."
@@ -303,7 +299,6 @@ export default function BadgeComponentPage() {
         props={["isPressable: boolean"]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Sizes"
         description="Three size options to adapt to different UI contexts."
@@ -328,7 +323,6 @@ export default function BadgeComponentPage() {
         props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
-      {/* Radius */}
       <DocsComponent
         title="Radius"
         description="Control the border radius. Defaults to 'full' for a pill shape."
@@ -367,7 +361,6 @@ export default function BadgeComponentPage() {
         ]}
       />
 
-      {/* Dot */}
       <DocsComponent
         title="Dot indicator"
         description="Adds a small colored dot before the label — useful for status or presence indicators."
@@ -396,7 +389,6 @@ export default function BadgeComponentPage() {
         props={["dot: boolean"]}
       />
 
-      {/* Start/End Content */}
       <DocsComponent
         title="Icon slots"
         description="Use 'startContent' or 'endContent' to place icons or any ReactNode inside the badge."
@@ -468,7 +460,6 @@ export default function BadgeComponentPage() {
         props={["startContent: ReactNode", "endContent: ReactNode"]}
       />
 
-      {/* Live Pulsing Status */}
       <DocsComponent
         title="Live Pulsing Status (isPulsing)"
         description="Use 'isPulsing' to render a live animated pulse ring effect for real-time status indicators (e.g. 'LIVE', 'Recording')."
@@ -498,7 +489,6 @@ export default function BadgeComponentPage() {
         props={["isPulsing: boolean", "isDot: boolean"]}
       />
 
-      {/* Removable Tags */}
       <DocsComponent
         title="Removable Tags (isRemovable & onRemove)"
         description="Render a dismiss close button inside the badge using 'isRemovable' and 'onRemove'."
@@ -536,12 +526,10 @@ export default function BadgeComponentPage() {
         props={["isRemovable: boolean", "onRemove: () => void"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Badge Table */}
       <DocsComponent
         title="Props — Badge"
         description="Properties to configure the Badge component."

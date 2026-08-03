@@ -62,7 +62,6 @@ export default function PopoverComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard popover triggered by button click."
@@ -113,7 +112,6 @@ export default function PopoverComponentPage() {
 </Popover>`}
       />
 
-      {/* Backdrop Variants (blur, dark, light) */}
       <DocsComponent
         title="Backdrop Overlays (Blur, Dark, Light)"
         description="Dim or blur the page background behind the popover using the 'backdrop' prop, exactly like Dialog and Drawer."
@@ -172,7 +170,6 @@ export default function PopoverComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — PopoverContent"
         description="Supported properties for PopoverContent."

@@ -53,7 +53,6 @@ export default function ListComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard borderless list layout."
@@ -94,7 +93,6 @@ export default function ListComponentPage() {
 </List>`}
       />
 
-      {/* Bordered */}
       <DocsComponent
         title="Bordered Variant"
         description="Encapsulated card list container with item dividers using variant='bordered'."
@@ -139,7 +137,6 @@ export default function ListComponentPage() {
         props={["variant: 'default' | 'bordered' | 'separated'"]}
       />
 
-      {/* Separated */}
       <DocsComponent
         title="Separated Cards Variant"
         description="Renders list items as decoupled floating card rows with variant='separated'."
@@ -179,12 +176,10 @@ export default function ListComponentPage() {
 </List>`}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — List & ListItem"
         description="Supported properties for List and ListItem components."

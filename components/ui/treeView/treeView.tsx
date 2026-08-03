@@ -300,7 +300,6 @@ export function TreeNode({
           if (hasChildren) toggleExpanded(id);
         }}
       >
-        {/* Chevron / Loading */}
         {isLoading ? (
           <Icon
             icon="hugeicons:loading-02"
@@ -318,7 +317,6 @@ export function TreeNode({
           <span className="size-4 shrink-0" />
         )}
 
-        {/* Checkbox */}
         {isCheckable && (
           <input
             type="checkbox"
@@ -332,14 +330,11 @@ export function TreeNode({
           />
         )}
 
-        {/* Icon */}
         {icon && <span className="shrink-0 text-base">{icon}</span>}
 
-        {/* Label */}
         <span className="truncate flex-1">{label}</span>
       </div>
 
-      {/* Children */}
       {hasChildren && isExpanded && (
         <div className="pl-4 mt-0.5" role="group">
           {children}

@@ -83,7 +83,6 @@ export default function RichTextEditorPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A rich text editor with pre-filled content and full toolbar controls."
@@ -93,7 +92,6 @@ export default function RichTextEditorPage() {
 <RichTextEditor value={html} onChange={setHtml} />`}
       />
 
-      {/* With Placeholder */}
       <DocsComponent
         title="With Placeholder"
         description="An empty editor with a custom placeholder text."
@@ -101,7 +99,6 @@ export default function RichTextEditorPage() {
         code={`<RichTextEditor placeholder="Write your blog post here..." />`}
       />
 
-      {/* Disabled */}
       <DocsComponent
         title="Disabled"
         description="A read-only editor with disabled toolbar buttons and non-editable content."

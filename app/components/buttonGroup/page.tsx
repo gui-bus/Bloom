@@ -59,7 +59,6 @@ export default function ButtonGroupPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A standard connected button group propagating default styling to its child buttons."
@@ -79,7 +78,6 @@ export default function ButtonGroupPage() {
 </ButtonGroup>`}
       />
 
-      {/* Variants */}
       <DocsComponent
         title="Variants"
         description="Defines the visual style of each button inside the group via the 'variant' prop."
@@ -129,7 +127,6 @@ export default function ButtonGroupPage() {
         ]}
       />
 
-      {/* Colors */}
       <DocsComponent
         title="Colors"
         description="Defines the color theme of all buttons inside the group via the 'color' prop. Stacked vertically for clear visual comparison."
@@ -223,7 +220,6 @@ export default function ButtonGroupPage() {
         ]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Sizes"
         description="Adjusts the size scale of each button in the group using the 'size' prop."
@@ -267,7 +263,6 @@ export default function ButtonGroupPage() {
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
 
-      {/* Loading state */}
       <DocsComponent
         title="Loading state (isLoading)"
         description="Pass 'isLoading' to ButtonGroup to propagate active loading spinners across all buttons in the group."
@@ -286,7 +281,6 @@ export default function ButtonGroupPage() {
         props={["isLoading: boolean"]}
       />
 
-      {/* Disabled state */}
       <DocsComponent
         title="Disabled state (isDisabled)"
         description="Pass 'isDisabled' to ButtonGroup to disable interaction for all buttons in the group."
@@ -306,7 +300,6 @@ export default function ButtonGroupPage() {
         props={["isDisabled: boolean"]}
       />
 
-      {/* Icon Only */}
       <DocsComponent
         title="Icon Only"
         description="Supports icon-only buttons grouped together seamlessly."
@@ -352,7 +345,6 @@ export default function ButtonGroupPage() {
         props={["isIconOnly: boolean", "ariaLabel: string"]}
       />
 
-      {/* Vertical Orientation */}
       <DocsComponent
         title="Vertical Orientation (orientation)"
         description="Stack buttons vertically using orientation='vertical'."
@@ -373,7 +365,6 @@ export default function ButtonGroupPage() {
         props={["orientation: 'horizontal' | 'vertical'"]}
       />
 
-      {/* Spaced Out Buttons */}
       <DocsComponent
         title="Spaced Out Buttons (isAttached={false})"
         description="Set isAttached={false} to add clean spacing between buttons instead of merging borders."
@@ -393,12 +384,10 @@ export default function ButtonGroupPage() {
         props={["isAttached: boolean"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props ButtonGroup Table */}
       <DocsComponent
         title="Props — ButtonGroup"
         description="Properties to configure the ButtonGroup container."

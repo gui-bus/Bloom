@@ -68,7 +68,6 @@ export default function AccordionPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default Accordion */}
       <DocsComponent
         title="Default"
         description="A standard, uncontrolled accordion allowing vertical expansion and collapse of content sections."
@@ -120,7 +119,6 @@ export default function AccordionPage() {
         props={["type: 'single' | 'multiple'", "collapsible: boolean"]}
       />
 
-      {/* Controlled Accordion */}
       <DocsComponent
         title="Controlled"
         description="Control which panel is currently open programmatically using the 'value' and 'onValueChange' props."
@@ -223,7 +221,6 @@ return (
         ]}
       />
 
-      {/* StartContent & EndContent Icons */}
       <DocsComponent
         title="Start & End Icons (startContent & endContent)"
         description="Add custom icons before the title using 'startContent', or customize/replace the right-side arrow indicator using 'endContent'."
@@ -320,7 +317,6 @@ return (
         ]}
       />
 
-      {/* Disabled Accordion */}
       <DocsComponent
         title="Disabled State (isDisabled)"
         description="Disable specific accordion items or an entire accordion block using the 'isDisabled' (or 'disabled') prop."
@@ -383,7 +379,7 @@ return (
             </div>
           </div>
         }
-        code={`{/* Specific Disabled Item */}
+        code={`
 <Accordion type="single" collapsible defaultValue="item-1" variant="bordered">
   <AccordionItem value="item-1">
     <AccordionTrigger>Free Plan</AccordionTrigger>
@@ -395,7 +391,6 @@ return (
   </AccordionItem>
 </Accordion>
 
-{/* Entire Accordion Disabled */}
 <Accordion type="single" collapsible isDisabled variant="bordered">
   <AccordionItem value="item-1">
     <AccordionTrigger>Unavailable Section</AccordionTrigger>
@@ -405,7 +400,6 @@ return (
         props={["isDisabled: boolean"]}
       />
 
-      {/* Variants */}
       <DocsComponent
         title="Variants"
         description="Choose from multiple visual styles using the 'variant' prop ('default', 'bordered', 'splitted', 'shadow', 'compact')."
@@ -527,7 +521,6 @@ return (
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* API Reference Tables */}
       <DocsComponent
         title="Props — Accordion (Root)"
         description="Properties for configuring the Root Accordion container."

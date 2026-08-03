@@ -71,7 +71,6 @@ export default function VirtualizedListPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A list of 10,000 items rendered with smooth scrolling. Only visible rows are mounted in the DOM."
@@ -113,7 +112,6 @@ export default function VirtualizedListPage() {
 />`}
       />
 
-      {/* Custom Render */}
       <DocsComponent
         title="Custom Render"
         description="Use the renderItem prop to display complex row layouts with icons, badges, and metadata."
@@ -184,7 +182,6 @@ export default function VirtualizedListPage() {
 />`}
       />
 
-      {/* Dynamic Item Height */}
       <DocsComponent
         title="Dynamic Item Height Calculation"
         description="Calculate varying row heights dynamically using getItemHeight={(item, index) => number}."
@@ -224,7 +221,6 @@ export default function VirtualizedListPage() {
         props={["getItemHeight: (item, index) => number"]}
       />
 
-      {/* Scroll to Index Helper */}
       <DocsComponent
         title="Scroll to Index Method"
         description="Imperatively jump to any item index in the virtualized list using listRef.current.scrollToIndex(index)."
@@ -283,7 +279,6 @@ export default function VirtualizedListPage() {
         props={["scrollToIndex: (index: number) => void (via ref)"]}
       />
 
-      {/* Infinite Scroll Trigger */}
       <DocsComponent
         title="Infinite Scroll Loading (onEndReached)"
         description="Automatically trigger data fetching when scrolling near bottom threshold with onEndReached."
@@ -316,7 +311,6 @@ export default function VirtualizedListPage() {
         props={["onEndReached: () => void", "endReachedThreshold?: number"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />

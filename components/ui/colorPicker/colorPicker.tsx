@@ -4,7 +4,6 @@ import { Icon } from "@iconify/react";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-// ─── Color conversion utilities ───
 function hexToRgb(hex: string): { r: number; g: number; b: number } {
   const cleaned = hex.replace("#", "");
   const bigint = parseInt(cleaned, 16);
@@ -92,7 +91,6 @@ function hslToRgb(
   };
 }
 
-// ─── Types ───
 export type ColorFormat = "hex" | "rgb" | "hsl";
 
 export interface ColorPickerProps {
@@ -106,7 +104,6 @@ export interface ColorPickerProps {
   defaultFormat?: ColorFormat;
 }
 
-// ─── Color Wheel sub-component ───
 function ColorWheel({
   value,
   onChange,
@@ -230,7 +227,6 @@ function ColorWheel({
   );
 }
 
-// ─── Main ColorPicker ───
 export function ColorPicker({
   value,
   defaultValue = "#3b82f6",

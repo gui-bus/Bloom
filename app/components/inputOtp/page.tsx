@@ -63,7 +63,6 @@ export default function InputOtpComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Auto Paste & Group Separator (3 - 3) */}
       <DocsComponent
         title="Group Separators (3 - 3)"
         description="Split 6-digit OTP codes into two groups of 3 using <InputOTPSeparator />."
@@ -104,7 +103,6 @@ export default function InputOtpComponentPage() {
 </InputOTP>`}
       />
 
-      {/* Multiple Group Separators (2 - 2 - 2) */}
       <DocsComponent
         title="Custom Multi-Group Separators (2 - 2 - 2)"
         description="Divide codes into any custom layout such as three groups of two digits with multiple separators."
@@ -146,7 +144,6 @@ export default function InputOtpComponentPage() {
 </InputOTP>`}
       />
 
-      {/* Allowed Input Types */}
       <DocsComponent
         title="Allowed Types (Numeric, Letters, Alphanumeric)"
         description="Restrict user entry to specific character sets using the 'allowedType' prop: 'numeric', 'alphabetic', or 'alphanumeric'."
@@ -208,7 +205,6 @@ export default function InputOtpComponentPage() {
         props={["allowedType: 'numeric' | 'alphabetic' | 'alphanumeric'"]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Slot Sizes"
         description="Control slot square dimensions using the 'size' prop: 'sm', 'md', or 'lg'."
@@ -261,7 +257,6 @@ export default function InputOtpComponentPage() {
         props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
-      {/* Masked Password Dot Mode */}
       <DocsComponent
         title="Masked Password Dot Mode"
         description="Hide sensitive verification PIN codes with masked dot indicators using 'maskCode={true}' on slots."
@@ -292,12 +287,10 @@ export default function InputOtpComponentPage() {
         props={["maskCode: boolean"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — InputOTP"
         description="Supported properties for the InputOTP component."

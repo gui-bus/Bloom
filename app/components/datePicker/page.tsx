@@ -62,7 +62,6 @@ export default function DatePickerComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Integrated Time Picker */}
       <DocsComponent
         title="Integrated Time Picker Selection"
         description="Enable 'showTimePicker' to display interactive hours and minutes dropdown selectors at the bottom of the date calendar popup."
@@ -85,7 +84,6 @@ export default function DatePickerComponentPage() {
         props={["showTimePicker: boolean"]}
       />
 
-      {/* Fiscal Quarter & Fiscal Year Modes */}
       <DocsComponent
         title="Fiscal Quarter & Year Picker Modes"
         description="Set 'viewMode' to 'fiscalQuarter' or 'fiscalYear' to select financial reporting periods (Q1-Q4, FY2026). Customize start month with 'fiscalYearStartMonth' (e.g. 4 for April)."
@@ -120,7 +118,6 @@ export default function DatePickerComponentPage() {
         ]}
       />
 
-      {/* Single Selection Mode */}
       <DocsComponent
         title="Single Selection Mode"
         description="Standard single date picker input with interactive calendar grid popup."
@@ -137,7 +134,6 @@ export default function DatePickerComponentPage() {
         props={["mode: 'single' | 'range' | 'multiple'"]}
       />
 
-      {/* Internationalization: Locale & Timezone */}
       <DocsComponent
         title="Locale & Timezone Customization"
         description="Pass 'locale' (e.g., 'pt-BR', 'es-ES', 'de-DE', 'en-US') and optional 'timeZone' (e.g., 'America/Sao_Paulo', 'UTC') to automatically localize month names, weekday headers, and date formatting."
@@ -170,7 +166,6 @@ export default function DatePickerComponentPage() {
         ]}
       />
 
-      {/* Range Mode & Double Month View */}
       <DocsComponent
         title="Range Mode with Double Month View"
         description="Select a date interval with side-by-side 2-month calendar display."
@@ -195,7 +190,6 @@ export default function DatePickerComponentPage() {
         props={["mode: 'range'", "showDoubleMonth: boolean"]}
       />
 
-      {/* Quick Presets */}
       <DocsComponent
         title="Quick Presets Sidebar"
         description="Built-in shortcut presets ('Today', 'Yesterday', 'Last 7 Days', 'This Month')."
@@ -217,12 +211,10 @@ export default function DatePickerComponentPage() {
         props={["showPresets: boolean", "customPresets: DatePickerPreset[]"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props DatePicker Table */}
       <DocsComponent
         title="Props — DatePicker"
         description="Properties to configure the DatePicker component."

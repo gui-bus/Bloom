@@ -22,7 +22,6 @@ function main() {
     const compName = entry.name;
     const compDir = path.join(uiComponentsDir, compName);
 
-    // Primary tsx file
     const tsxFileName = `${compName}.tsx`;
     const tsxFilePath = path.join(compDir, tsxFileName);
 
@@ -32,7 +31,6 @@ function main() {
 
     const tsxContent = fs.readFileSync(tsxFilePath, "utf8");
 
-    // Construct export variable name: e.g. buttonCode, avatarGroupCode
     const varName = `${compName}Code`;
     const codeFileName = `${compName}.code.ts`;
     const codeFilePath = path.join(compDir, codeFileName);

@@ -64,7 +64,6 @@ export default function SheetComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard side drawer panel sliding from the right."
@@ -115,7 +114,6 @@ export default function SheetComponentPage() {
 </Sheet>`}
       />
 
-      {/* Side Positions (Left, Right, Top, Bottom) */}
       <DocsComponent
         title="Side Positions (Left, Right, Top, Bottom)"
         description="Change panel slide entry direction using the 'side' prop."
@@ -170,7 +168,6 @@ export default function SheetComponentPage() {
         props={["side: 'top' | 'bottom' | 'left' | 'right'"]}
       />
 
-      {/* Backdrop Overlays (Blur, Dark 80%, Light) */}
       <DocsComponent
         title="Backdrop Overlays (Blur, Dark, Light)"
         description="Custom backdrop overlay variants matching Drawer exactly: 'blur', 'dark' (80%), 'light', 'transparent', and 'none'."
@@ -227,7 +224,6 @@ export default function SheetComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — SheetContent"
         description="Supported properties for SheetContent."

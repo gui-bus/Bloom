@@ -27,7 +27,6 @@ export default function TimePickerPage() {
       <InstallationBlock componentName="timePicker" />
 
       <Tabs defaultValue="timePicker">
-        {/* Default - MUST BE FIRST SECTION */}
         <DocsComponent
           title="Default"
           description="A standard 12-hour time picker with AM/PM toggle."
@@ -52,7 +51,6 @@ export default function TimePickerPage() {
 />`}
         />
 
-        {/* 12h vs 24h Format */}
         <DocsComponent
           title="12h vs 24h Format"
           description="The time picker supports both 12-hour (with AM/PM toggle) and 24-hour formats."
@@ -70,7 +68,6 @@ export default function TimePickerPage() {
 <TimePicker format="24h" value="21:00" label="24-Hour Format" />`}
         />
 
-        {/* Sizes */}
         <DocsComponent
           title="Sizes"
           description="Available in three sizes: small, medium, and large."
@@ -90,7 +87,6 @@ export default function TimePickerPage() {
 <TimePicker size="lg" label="Large (lg)" />`}
         />
 
-        {/* States */}
         <DocsComponent
           title="States"
           description="Time pickers can show disabled or invalid states."
@@ -104,7 +100,6 @@ export default function TimePickerPage() {
 <TimePicker isInvalid value="13:99 PM" label="Invalid" />`}
         />
 
-        {/* Minute Step Intervals */}
         <DocsComponent
           title="Minute Step Intervals"
           description="Configure custom minute increment steps (e.g., step={15} for quarter-hour slots)."
@@ -122,7 +117,6 @@ export default function TimePickerPage() {
           props={["step: number"]}
         />
 
-        {/* Scrollable Wheel Time Selector Columns */}
         <DocsComponent
           title="Scrollable Wheel Time Selector"
           description="Render intuitive scrollable wheel column selectors for picking hours, minutes, and period with useWheel={true}."
@@ -140,7 +134,6 @@ export default function TimePickerPage() {
           props={["useWheel: boolean", "step: number"]}
         />
 
-        {/* Accessibility & ARIA Section */}
         <AccessibilityCard />
 
         <Separator
@@ -148,7 +141,6 @@ export default function TimePickerPage() {
           gradient
         />
 
-        {/* API Reference table */}
         <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800">
           <table className="w-full text-sm">
             <thead>

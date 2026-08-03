@@ -2,11 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-/**
- * useInfiniteScroll — Detect when user scrolls to the bottom of a container or page.
- * @param options.threshold - Distance in px from bottom to trigger (default 200)
- * @param options.onLoadMore - Callback when threshold is reached
- */
 export function useInfiniteScroll(options: {
   threshold?: number;
   onLoadMore: () => void;
@@ -33,7 +28,6 @@ export function useInfiniteScroll(options: {
     [hasMore, isLoading, triggered, onLoadMore],
   );
 
-  // Reset triggered state when loading completes
   useEffect(() => {
     if (!isLoading) setTriggered(false);
   }, [isLoading]);

@@ -51,7 +51,6 @@ export default function SeparatorComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard horizontal divider line."
@@ -71,7 +70,6 @@ export default function SeparatorComponentPage() {
 <p>Bottom Section</p>`}
       />
 
-      {/* Labels & Gradients */}
       <DocsComponent
         title="Labels & Gradients"
         description="Add centered text labels and smooth gradient fade lines using label and gradient props."
@@ -90,7 +88,6 @@ export default function SeparatorComponentPage() {
         ]}
       />
 
-      {/* Vertical Orientation */}
       <DocsComponent
         title="Vertical Orientation"
         description="Vertical divider line for inline button groups or navigation header links."
@@ -111,12 +108,10 @@ export default function SeparatorComponentPage() {
         props={["orientation: 'horizontal' | 'vertical'"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Separator"
         description="Supported properties for Separator."

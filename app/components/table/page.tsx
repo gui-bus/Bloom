@@ -62,7 +62,6 @@ export default function TableComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard data table layout."
@@ -133,7 +132,6 @@ export default function TableComponentPage() {
 </Table>`}
       />
 
-      {/* Selected Row Highlights */}
       <DocsComponent
         title="Selected Row Highlights"
         description="Mark rows with data-state='selected' for interactive data selection."
@@ -171,7 +169,6 @@ export default function TableComponentPage() {
 </TableRow>`}
       />
 
-      {/* Zebra Striped Rows */}
       <DocsComponent
         title="Zebra Striping"
         description="Alternate background shading for even table rows using striped={true}."
@@ -222,7 +219,6 @@ export default function TableComponentPage() {
         props={["striped: boolean"]}
       />
 
-      {/* Compact Density */}
       <DocsComponent
         title="Compact Density"
         description="Reduce padding inside table cells for dense data grids using density='compact'."
@@ -276,7 +272,6 @@ export default function TableComponentPage() {
         props={["density: 'default' | 'compact'"]}
       />
 
-      {/* Sticky Header & Sticky First Column */}
       <DocsComponent
         title="Sticky Header & Sticky First Column"
         description="Freeze table headers at top during vertical scrolling and freeze the first column during horizontal scrolling."
@@ -338,12 +333,10 @@ export default function TableComponentPage() {
         ]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Table"
         description="Supported properties for Table elements."

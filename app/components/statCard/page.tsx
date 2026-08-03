@@ -52,7 +52,6 @@ export default function StatCardComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard KPI metric summary card."
@@ -78,7 +77,6 @@ export default function StatCardComponentPage() {
 />`}
       />
 
-      {/* Metrics Dashboard Grid */}
       <DocsComponent
         title="Metrics Dashboard Grid"
         description="Multiple KPI cards arranged in a responsive grid layout."
@@ -119,12 +117,10 @@ export default function StatCardComponentPage() {
 </div>`}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — StatCard"
         description="Supported properties for StatCard."

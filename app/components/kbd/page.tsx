@@ -52,7 +52,6 @@ export default function KbdComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard key binding badge."
@@ -68,7 +67,6 @@ export default function KbdComponentPage() {
 </div>`}
       />
 
-      {/* Variants */}
       <DocsComponent
         title="Variants"
         description="Style variants using the 'variant' prop: 'flat', 'bordered', or 'solid'."
@@ -103,7 +101,6 @@ export default function KbdComponentPage() {
         props={["variant: 'flat' | 'bordered' | 'solid'"]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Sizes"
         description="Scale badge dimensions using the 'size' prop: 'sm', 'md', or 'lg'."
@@ -120,7 +117,6 @@ export default function KbdComponentPage() {
         props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
-      {/* Shortcuts Demo */}
       <DocsComponent
         title="Keyboard Shortcuts List"
         description="Combining Kbd badges into a clean user interface reference list."
@@ -165,7 +161,6 @@ export default function KbdComponentPage() {
 </div>`}
       />
 
-      {/* Key Combination Sequence Formatter */}
       <DocsComponent
         title="Key Combination Sequence Formatter"
         description="Pass an array of key names via 'keys' to automatically render symbols like ⌘, ⇧, ⌃, ⌥, ↵, and Esc."
@@ -191,12 +186,10 @@ export default function KbdComponentPage() {
         props={["keys: KbdKey[]"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Kbd"
         description="Supported properties for the Kbd component."

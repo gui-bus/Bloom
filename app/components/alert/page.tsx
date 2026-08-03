@@ -59,7 +59,6 @@ export default function AlertComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A clean, subtle alert banner with a neutral background, status-colored title, and status icon."
@@ -77,7 +76,6 @@ export default function AlertComponentPage() {
         props={["color: 'info'", "title: string"]}
       />
 
-      {/* Action Button */}
       <DocsComponent
         title="Action Layout (action)"
         description="Embed interactive action controls directly inside the alert content."
@@ -117,7 +115,6 @@ export default function AlertComponentPage() {
         props={["action: ReactNode"]}
       />
 
-      {/* Variants (accent-left & glow) */}
       <DocsComponent
         title="Variants (accent-left & glow)"
         description="Visual card framing variations including thick left accent borders and vibrant glowing shadow borders."
@@ -144,7 +141,6 @@ export default function AlertComponentPage() {
         ]}
       />
 
-      {/* Auto-Dismiss Timer */}
       <DocsComponent
         title="Auto-Dismiss Timer (durationMs)"
         description="Automatically dismiss the alert banner after a specified duration in milliseconds."
@@ -171,7 +167,6 @@ export default function AlertComponentPage() {
         props={["isDismissible: boolean", "durationMs: number"]}
       />
 
-      {/* Colors */}
       <DocsComponent
         title="Colors"
         description="Select semantic colors via the 'color' prop. The card background stays clean and neutral while only the title and status icon inherit the semantic accent color."
@@ -206,7 +201,6 @@ export default function AlertComponentPage() {
         ]}
       />
 
-      {/* StartContent & EndContent */}
       <DocsComponent
         title="Start & End Slots (startContent & endContent)"
         description="Inject custom elements before the title using 'startContent', or trailing action controls and badges using 'endContent'."
@@ -265,7 +259,6 @@ export default function AlertComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* API Reference Table */}
       <DocsComponent
         title="Props — Alert"
         description="Properties for configuring the Alert banner component."

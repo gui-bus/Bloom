@@ -52,7 +52,6 @@ export default function TypographyComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard paragraph text typography element."
@@ -69,7 +68,6 @@ export default function TypographyComponentPage() {
 </Typography>`}
       />
 
-      {/* Headings Scale (H1-H6) */}
       <DocsComponent
         title="Headings Scale (H1 - H6)"
         description="Typographic hierarchy sizes ranging from H1 to H6 headings."
@@ -90,7 +88,6 @@ export default function TypographyComponentPage() {
         props={["variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'"]}
       />
 
-      {/* Colors & Code Format */}
       <DocsComponent
         title="Colors & Code Format"
         description="Color variants and inline code formatting."
@@ -119,7 +116,6 @@ export default function TypographyComponentPage() {
         ]}
       />
 
-      {/* Line Clamping & Read More Toggle */}
       <DocsComponent
         title="Line Clamping & Read More Toggle"
         description="Clamp long paragraphs to a max line count (e.g. clampLines={2}) and toggle full text with showExpandToggle={true}."
@@ -140,12 +136,10 @@ export default function TypographyComponentPage() {
         props={["clampLines: number", "showExpandToggle: boolean"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Typography"
         description="Supported properties for Typography."

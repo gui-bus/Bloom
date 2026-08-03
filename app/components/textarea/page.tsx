@@ -52,7 +52,6 @@ export default function TextareaComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard multi-line text input field with top label."
@@ -67,7 +66,6 @@ export default function TextareaComponentPage() {
         code={`<Textarea label="Bio" placeholder="Tell us about yourself..." />`}
       />
 
-      {/* Character Counter & Auto Resize */}
       <DocsComponent
         title="Character Counter & Auto Resize"
         description="Tracks character limits and expands container height automatically as content grows."
@@ -93,7 +91,6 @@ export default function TextareaComponentPage() {
         props={["maxCount: number", "autoResize: boolean", "minRows: number"]}
       />
 
-      {/* Invalid State */}
       <DocsComponent
         title="Invalid State"
         description="Renders high-visibility error message and border highlights."
@@ -115,12 +112,10 @@ export default function TextareaComponentPage() {
         props={["isInvalid: boolean", "errorMessage: ReactNode"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Textarea"
         description="Supported properties for Textarea."

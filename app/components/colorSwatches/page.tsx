@@ -176,7 +176,6 @@ export default function ColorSwatchesPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default with Contrast Tooltip"
         description="Hover over any color swatch to view its name, HEX value, contrast ratio against background, and WCAG accessibility rating (AAA, AA, Fail)."
@@ -190,7 +189,6 @@ export default function ColorSwatchesPage() {
 <ColorSwatches colors={colors} value={selected} onChange={setSelected} />`}
       />
 
-      {/* Multi Select */}
       <DocsComponent
         title="Multi-Selection Mode"
         description="Enable 'isMulti' to allow selecting multiple colors simultaneously."
@@ -208,7 +206,6 @@ export default function ColorSwatchesPage() {
         ]}
       />
 
-      {/* Max Selection Limit */}
       <DocsComponent
         title="Maximum Selection Limit"
         description="Restrict the maximum number of selectable colors in multi-select mode using 'maxLimit'."
@@ -223,7 +220,6 @@ export default function ColorSwatchesPage() {
         props={["maxLimit: number"]}
       />
 
-      {/* Shapes */}
       <DocsComponent
         title="Shapes"
         description="Switch between circle and square shapes for the color swatches."
@@ -232,7 +228,6 @@ export default function ColorSwatchesPage() {
 <ColorSwatches colors={colors} value={selected} onChange={setSelected} shape="square" />`}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Sizes"
         description="Three size variants control the swatch dimensions."
@@ -242,7 +237,6 @@ export default function ColorSwatchesPage() {
 <ColorSwatches colors={colors} value={selected} onChange={setSelected} size="lg" />`}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />

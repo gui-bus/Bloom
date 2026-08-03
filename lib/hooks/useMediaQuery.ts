@@ -2,10 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * useMediaQuery — Reactive media query detection hook.
- * @param query - CSS media query string (e.g., "(min-width: 768px)")
- */
 export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(false);
 
@@ -21,7 +17,6 @@ export function useMediaQuery(query: string): boolean {
   return matches;
 }
 
-/** Tailwind-compatible breakpoint hooks */
 const breakpoints = {
   sm: "(min-width: 640px)",
   md: "(min-width: 768px)",
@@ -32,16 +27,10 @@ const breakpoints = {
 
 export type Breakpoint = keyof typeof breakpoints;
 
-/**
- * useBreakpoint — Check if a Tailwind breakpoint is active.
- */
 export function useBreakpoint(bp: Breakpoint): boolean {
   return useMediaQuery(breakpoints[bp]);
 }
 
-/**
- * useBreakpoints — Get all active Tailwind breakpoints at once.
- */
 export function useBreakpoints() {
   const sm = useMediaQuery(breakpoints.sm);
   const md = useMediaQuery(breakpoints.md);

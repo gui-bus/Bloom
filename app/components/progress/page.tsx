@@ -52,7 +52,6 @@ export default function ProgressComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard progress bar."
@@ -64,7 +63,6 @@ export default function ProgressComponentPage() {
         code={`<Progress value={65} />`}
       />
 
-      {/* With Label & Percentage */}
       <DocsComponent
         title="With Label & Percentage"
         description="Display text header and percentage badge using 'label' and 'showValueLabel'."
@@ -81,7 +79,6 @@ export default function ProgressComponentPage() {
         props={["label: string", "showValueLabel: boolean"]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Sizes"
         description="Bar height scale using the 'size' prop: 'sm', 'md', or 'lg'."
@@ -98,7 +95,6 @@ export default function ProgressComponentPage() {
         props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
-      {/* Colors */}
       <DocsComponent
         title="Colors"
         description="Indicator color variants: 'primary', 'secondary', 'accent', 'success', 'warning', or 'danger'."
@@ -139,7 +135,6 @@ export default function ProgressComponentPage() {
         ]}
       />
 
-      {/* Indeterminate & Barber Pole */}
       <DocsComponent
         title="Indeterminate & Barber-Pole Animated Stripes"
         description="Indeterminate loading bar with smooth barber-pole animated stripes using 'isBarberPole'."
@@ -163,7 +158,6 @@ export default function ProgressComponentPage() {
         props={["isIndeterminate: boolean", "isBarberPole: boolean"]}
       />
 
-      {/* Circular Progress Ring */}
       <DocsComponent
         title="Circular Progress Ring"
         description='Circular progress ring variant rendered as responsive SVG with type="circle".'
@@ -201,7 +195,6 @@ export default function ProgressComponentPage() {
         props={["type: 'line' | 'circle'"]}
       />
 
-      {/* Milestone Step Markers */}
       <DocsComponent
         title="Milestone Step Markers"
         description="Render step milestone dots along the progress track with the 'steps' prop."
@@ -226,12 +219,10 @@ export default function ProgressComponentPage() {
         props={["steps: (number | ProgressStep)[]"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Progress"
         description="Supported properties for the Progress component."

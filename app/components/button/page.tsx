@@ -114,7 +114,6 @@ export default function ButtonComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A standard button component displaying a neutral primary action state."
@@ -126,7 +125,6 @@ export default function ButtonComponentPage() {
         code={`<Button>Default Button</Button>`}
       />
 
-      {/* Variants */}
       <DocsComponent
         title="Variants"
         description="Defines the visual appearance of buttons through the 'variant' prop."
@@ -155,7 +153,6 @@ export default function ButtonComponentPage() {
         ]}
       />
 
-      {/* Colors */}
       <DocsComponent
         title="Colors"
         description="Defines the button color scheme through the 'color' prop. Stacked vertically for clear visual comparison."
@@ -295,7 +292,6 @@ export default function ButtonComponentPage() {
         ]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Sizes"
         description="Adjusts the visual scale of buttons through the 'size' prop."
@@ -322,7 +318,6 @@ export default function ButtonComponentPage() {
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
 
-      {/* Radius */}
       <DocsComponent
         title="Radius"
         description="Adjusts the border radius of buttons through the 'radius' prop."
@@ -352,7 +347,6 @@ export default function ButtonComponentPage() {
         ]}
       />
 
-      {/* Hovers */}
       <DocsComponent
         title="Hovers"
         description="Controls micro-interaction motion on user hover using the 'hover' prop ('scale' or 'lift')."
@@ -369,7 +363,6 @@ export default function ButtonComponentPage() {
         props={["hover: 'scale' | 'lift'"]}
       />
 
-      {/* Icons */}
       <DocsComponent
         title="Icons"
         description="Adds icons to the button at the start or end position to enhance visual recognition."
@@ -403,7 +396,6 @@ export default function ButtonComponentPage() {
         props={["startContent: ReactNode", "endContent: ReactNode"]}
       />
 
-      {/* Icon Only */}
       <DocsComponent
         title="Icon Only (isIconOnly)"
         description="Displays a compact button with only an icon. Mandatory 'ariaLabel' ensures full accessibility."
@@ -444,7 +436,6 @@ export default function ButtonComponentPage() {
         props={["isIconOnly: boolean", "ariaLabel: string"]}
       />
 
-      {/* Loading state */}
       <DocsComponent
         title="Loading state"
         description="Displays an active loading spinner and disables user interaction during async processes."
@@ -462,7 +453,6 @@ export default function ButtonComponentPage() {
         props={["isLoading: boolean", "loadingText: string"]}
       />
 
-      {/* Full Width */}
       <DocsComponent
         title="Full Width (isFullWidth)"
         description="Expands the button to span 100% of its parent container width."
@@ -479,7 +469,6 @@ export default function ButtonComponentPage() {
         props={["isFullWidth: boolean"]}
       />
 
-      {/* Disabled state */}
       <DocsComponent
         title="Disabled state"
         description="Disables the button, preventing interaction and applying muted opacity styling."
@@ -495,12 +484,10 @@ export default function ButtonComponentPage() {
         props={["isDisabled: boolean"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Button Table */}
       <DocsComponent
         title="Props — Button"
         description="Core properties for configuring the Button component."

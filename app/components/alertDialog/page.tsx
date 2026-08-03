@@ -76,7 +76,6 @@ export default function AlertDialogComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A standard confirmation dialog modal that interrupts the user with critical content requiring an explicit response before proceeding."
@@ -124,7 +123,6 @@ export default function AlertDialogComponentPage() {
 </AlertDialog>`}
       />
 
-      {/* Text Validation Confirmation */}
       <DocsComponent
         title="Text Validation Confirmation"
         description="Require the user to type an exact confirmation string (e.g. 'DELETE') to unlock the action button."
@@ -195,7 +193,6 @@ export default function AlertDialogComponentPage() {
 </AlertDialog>`}
       />
 
-      {/* Async Action Loading */}
       <DocsComponent
         title="Async Action Loading (isLoading)"
         description="Render a loading spinner state on the action button during asynchronous operations."
@@ -237,7 +234,6 @@ export default function AlertDialogComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props AlertDialogAction Table */}
       <DocsComponent
         title="Props — AlertDialogAction"
         description="Properties for customizing the confirmation action button."

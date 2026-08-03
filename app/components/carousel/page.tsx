@@ -132,7 +132,6 @@ export default function CarouselPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard image slider with navigation buttons placed alongside pagination dots underneath."
@@ -180,7 +179,6 @@ export default function CarouselPage() {
 </Carousel>`}
       />
 
-      {/* Header Controls */}
       <DocsComponent
         title="Header Controls"
         description="Place navigation buttons inside a section header alongside the title while keeping dots underneath."
@@ -251,7 +249,6 @@ export default function CarouselPage() {
 </Carousel>`}
       />
 
-      {/* Testimonial Quote Carousel */}
       <DocsComponent
         title="Testimonial Quote Carousel"
         description="Display customer testimonials and reviews with bottom navigation buttons and dots."
@@ -314,7 +311,6 @@ export default function CarouselPage() {
 </Carousel>`}
       />
 
-      {/* Autoplay Carousel */}
       <DocsComponent
         title="Autoplay Carousel"
         description="Set 'autoplay' to true to automatically transition slides at specified intervals."
@@ -363,7 +359,6 @@ export default function CarouselPage() {
         props={["autoplay: boolean", "autoplayDelay: number (ms)"]}
       />
 
-      {/* Vertical Carousel */}
       <DocsComponent
         title="Vertical Carousel"
         description="Set 'orientation' to 'vertical' to scroll slides along the vertical axis."
@@ -413,7 +408,6 @@ export default function CarouselPage() {
         props={["orientation: 'horizontal' | 'vertical'"]}
       />
 
-      {/* Thumbnail Navigation */}
       <DocsComponent
         title="Thumbnail Navigation"
         description="Render a dedicated image thumbnail navigation bar using CarouselThumbs underneath the main slider."
@@ -453,7 +447,6 @@ export default function CarouselPage() {
 </Carousel>`}
       />
 
-      {/* Touch Gestures & Physics */}
       <DocsComponent
         title="Free Drag & Swipe Sensitivity"
         description="Use 'dragFree' for continuous physics momentum scrolling and 'swipeThreshold' to customize gesture sensitivity on touch devices."
@@ -499,12 +492,10 @@ export default function CarouselPage() {
         props={["dragFree: boolean", "swipeThreshold: number"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Carousel Table */}
       <DocsComponent
         title="Props — Carousel"
         description="Properties for configuring the Carousel component."

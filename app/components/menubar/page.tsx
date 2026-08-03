@@ -65,7 +65,6 @@ export default function MenubarComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Desktop menu bar featuring File, Edit, View, and Help dropdowns."
@@ -146,7 +145,6 @@ export default function MenubarComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Menubar Primitives"
         description="Supported properties for Menubar subcomponents."

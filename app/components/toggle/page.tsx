@@ -55,7 +55,6 @@ export default function ToggleComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard pressable toggle button."
@@ -79,7 +78,6 @@ export default function ToggleComponentPage() {
 </Toggle>`}
       />
 
-      {/* Variants (Default, Outline, Flat) */}
       <DocsComponent
         title="Variants (Default, Outline, Flat)"
         description="Visual style options: 'default', 'outline', or 'flat'."
@@ -105,7 +103,6 @@ export default function ToggleComponentPage() {
         props={["variant: 'default' | 'outline' | 'flat'"]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Sizes"
         description="Scale toggle dimensions: 'sm', 'md', or 'lg'."
@@ -128,12 +125,10 @@ export default function ToggleComponentPage() {
         props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Toggle"
         description="Supported properties for Toggle."

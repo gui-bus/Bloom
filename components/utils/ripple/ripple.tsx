@@ -10,11 +10,6 @@ interface RippleProps {
   onComplete: () => void;
 }
 
-/**
- * Ripple Component
- *
- * A memoized visual feedback component that displays a ripple animation on a click/tap event.
- */
 export const Ripple = React.memo(({ x, y, size, onComplete }: RippleProps) => {
   React.useEffect(() => {
     const timer = setTimeout(onComplete, 600);

@@ -83,7 +83,6 @@ export default function CheckboxComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default Single */}
       <DocsComponent
         title="Single Checkbox"
         description="Standard individual checkbox."
@@ -95,7 +94,6 @@ export default function CheckboxComponentPage() {
         code={`<Checkbox label="Accept terms and conditions" defaultChecked />`}
       />
 
-      {/* useCheckboxGroup Hook */}
       <DocsComponent
         title="Group Select All / Deselect All Hook (useCheckboxGroup)"
         description="Easily manage batch select all and deselect all state using the 'useCheckboxGroup' hook."
@@ -155,7 +153,6 @@ export default function CheckboxComponentPage() {
         props={["useCheckboxGroup({ items, defaultSelected })"]}
       />
 
-      {/* Custom Checkmark Icon */}
       <DocsComponent
         title="Custom Checkmark Icon (checkIcon)"
         description="Pass custom icons into the 'checkIcon' slot to customize the checked indicator symbol."
@@ -205,7 +202,6 @@ export default function CheckboxComponentPage() {
         props={["checkIcon: ReactNode"]}
       />
 
-      {/* Card Variant with Slots */}
       <DocsComponent
         title="Selectable Card Mode with Start / End Content Slots"
         description="Custom positions for start/end content slots and checkbox control placement inside card containers."
@@ -268,7 +264,6 @@ export default function CheckboxComponentPage() {
         ]}
       />
 
-      {/* Indeterminate State */}
       <DocsComponent
         title="Indeterminate State (isIndeterminate)"
         description="Used for parent checkboxes representing partial selection in hierarchical trees."
@@ -296,7 +291,6 @@ export default function CheckboxComponentPage() {
         props={["isIndeterminate: boolean"]}
       />
 
-      {/* Checkbox Group & Grid Layout */}
       <DocsComponent
         title="Checkbox Group with Grid Columns (columns={3})"
         description="Manage group selection with controlled value array and grid layout columns."
@@ -355,7 +349,6 @@ export default function CheckboxComponentPage() {
         ]}
       />
 
-      {/* Colors */}
       <DocsComponent
         title="Colors"
         description="Defines the checked color theme using the 'color' prop."
@@ -377,12 +370,10 @@ export default function CheckboxComponentPage() {
         ]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Checkbox & CheckboxGroup"
         description="Supported properties for Checkbox & CheckboxGroup."

@@ -56,7 +56,6 @@ export default function ResizableComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Horizontal resizable panels with drag handle grip."
@@ -84,7 +83,6 @@ export default function ResizableComponentPage() {
 </ResizablePanelGroup>`}
       />
 
-      {/* Vertical Panels */}
       <DocsComponent
         title="Vertical Layout"
         description="Vertical layout direction using direction='vertical'."
@@ -113,12 +111,10 @@ export default function ResizableComponentPage() {
         props={["direction: 'horizontal' | 'vertical'"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Resizable Components"
         description="Supported properties for Resizable subcomponents."

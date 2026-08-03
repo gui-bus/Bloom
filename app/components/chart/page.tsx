@@ -67,7 +67,6 @@ export default function ChartComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard smooth line chart visualizing quantitative time-series data over time."
@@ -91,7 +90,6 @@ export default function ChartComponentPage() {
 />`}
       />
 
-      {/* Bar Chart */}
       <DocsComponent
         title="Bar Chart"
         description="Categorical bar representation for comparing discrete data values."
@@ -116,7 +114,6 @@ export default function ChartComponentPage() {
         props={["type: 'line' | 'bar'"]}
       />
 
-      {/* Color Themes */}
       <DocsComponent
         title="Color Themes"
         description="Customize the chart series color using the 'color' prop (HEX or CSS color string). Stacked vertically for clear visual comparison."
@@ -188,7 +185,6 @@ export default function ChartComponentPage() {
         props={["color: string"]}
       />
 
-      {/* Formatted Tooltips */}
       <DocsComponent
         title="Custom Formatted Tooltips & Axes"
         description="Pass a 'valueFormatter' function to format values as currency, percentages, or custom localized units in tooltips and Y-axis."
@@ -217,7 +213,6 @@ export default function ChartComponentPage() {
         props={["valueFormatter: (value: number) => string"]}
       />
 
-      {/* Zoom & Pan */}
       <DocsComponent
         title="Zoom & Pan Control"
         description="Set 'enableZoomPan' to true to display a slider brush control for zooming and panning across dense datasets."
@@ -246,7 +241,6 @@ export default function ChartComponentPage() {
         props={["enableZoomPan: boolean"]}
       />
 
-      {/* Export to SVG / PNG */}
       <DocsComponent
         title="Export Chart Utility"
         description="Set 'enableExport' to true to show instant SVG and PNG download buttons for saving chart figures."
@@ -277,12 +271,10 @@ export default function ChartComponentPage() {
         props={["enableExport: boolean"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Chart Table */}
       <DocsComponent
         title="Props — Chart"
         description="Properties for configuring the Chart component."

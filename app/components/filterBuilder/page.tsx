@@ -145,7 +145,6 @@ export default function FilterBuilderPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A single-rule filter builder with field, operator, and value selectors."
@@ -158,7 +157,6 @@ export default function FilterBuilderPage() {
 <FilterBuilder fields={defaultFields} value={filter} onChange={setFilter} />`}
       />
 
-      {/* Multiple Rules */}
       <DocsComponent
         title="Multiple Rules"
         description="Filter builder with multiple conditions and a toggleable AND/OR conjunction."
@@ -175,7 +173,6 @@ export default function FilterBuilderPage() {
 <FilterBuilder fields={fields} value={filter} onChange={setFilter} />`}
       />
 
-      {/* Nested Logical Condition Groups, Presets & Exporter */}
       <DocsComponent
         title="Nested Sub-clauses, Preset Storage & Query Exporter"
         description="Build nested logical condition groups (AND/OR sub-clauses), save query presets to localStorage, and export formatted SQL, MongoDB, or GraphQL query clauses."
@@ -190,7 +187,6 @@ export default function FilterBuilderPage() {
         props={["storageKey: string", "enableExport: boolean", "onSavePreset"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />

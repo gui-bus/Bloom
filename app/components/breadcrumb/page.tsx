@@ -72,7 +72,6 @@ export default function BreadcrumbDocsPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A standard breadcrumb navigation path leading to the current active page."
@@ -112,7 +111,6 @@ export default function BreadcrumbDocsPage() {
 </Breadcrumb>`}
       />
 
-      {/* With Icons */}
       <DocsComponent
         title="With Icons"
         description="Pass icon names to BreadcrumbLink and BreadcrumbPage for enhanced visual cues."
@@ -159,7 +157,6 @@ export default function BreadcrumbDocsPage() {
         props={["icon: string"]}
       />
 
-      {/* Collapsed Ellipsis with Dropdown Menu */}
       <DocsComponent
         title="Collapsed Items with Dropdown Menu"
         description="Clicking the BreadcrumbEllipsis trigger opens our DropdownMenu popover containing hidden route items without shifting page layout."
@@ -238,7 +235,6 @@ export default function BreadcrumbDocsPage() {
 </Breadcrumb>`}
       />
 
-      {/* Automatic Middle Collapse */}
       <DocsComponent
         title="Automatic Middle Collapse (maxItems)"
         description="Set 'maxItems' on BreadcrumbList to automatically collapse middle steps into a popover when paths exceed limit."
@@ -281,7 +277,6 @@ export default function BreadcrumbDocsPage() {
         props={["maxItems: number"]}
       />
 
-      {/* SEO JSON-LD Schema Support */}
       <DocsComponent
         title="Structured SEO JSON-LD Schema (enableJsonLdSchema)"
         description="Automatically injects Google-compliant BreadcrumbList JSON-LD structured data script for search engine crawlers."
@@ -312,12 +307,10 @@ export default function BreadcrumbDocsPage() {
         props={["enableJsonLdSchema: boolean"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Breadcrumb Table */}
       <DocsComponent
         title="Props — Breadcrumb"
         description="Sub-components for building accessible Breadcrumb trails."

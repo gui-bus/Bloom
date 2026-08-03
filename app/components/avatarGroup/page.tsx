@@ -63,7 +63,6 @@ export default function AvatarGroupPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A standard avatar group component stacking multiple user avatars with smooth hover expansion transitions."
@@ -112,7 +111,6 @@ export default function AvatarGroupPage() {
 </AvatarGroup>`}
       />
 
-      {/* Overlap Density */}
       <DocsComponent
         title="Overlap Density (overlap)"
         description="Adjust spacing overlap tightness using the 'overlap' prop ('sm', 'md', 'lg')."
@@ -174,7 +172,6 @@ export default function AvatarGroupPage() {
         props={["overlap: 'sm' | 'md' | 'lg'"]}
       />
 
-      {/* Max Limit & Overflow */}
       <DocsComponent
         title="Max Limit & Overflow Badge"
         description="Use the 'max' prop to cap visible avatars and automatically display a '+N' excess count badge formatted with clean dark/light neutral colors."
@@ -211,12 +208,10 @@ export default function AvatarGroupPage() {
         props={["max: number"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props AvatarGroup Table */}
       <DocsComponent
         title="Props — AvatarGroup"
         description="Properties for configuring the AvatarGroup component."

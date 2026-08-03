@@ -52,7 +52,6 @@ export default function LinkComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard primary navigation link."
@@ -64,7 +63,6 @@ export default function LinkComponentPage() {
         code={`<Link href="#">Explore Components</Link>`}
       />
 
-      {/* Variants */}
       <DocsComponent
         title="Variants"
         description="Visual style variants using the 'variant' prop: 'default', 'muted', 'underline', or 'ghost'."
@@ -91,7 +89,6 @@ export default function LinkComponentPage() {
         props={["variant: 'default' | 'muted' | 'underline' | 'ghost'"]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Sizes"
         description="Typography size scales using the 'size' prop: 'sm', 'md', or 'lg'."
@@ -114,7 +111,6 @@ export default function LinkComponentPage() {
         props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
-      {/* External Link */}
       <DocsComponent
         title="External Link Indicator"
         description="Automatically renders an external arrow icon and target='_blank' attributes with the 'isExternal' prop."
@@ -131,7 +127,6 @@ export default function LinkComponentPage() {
         props={["isExternal: boolean"]}
       />
 
-      {/* Custom Icons & Content */}
       <DocsComponent
         title="Custom Start & End Content"
         description="Pass custom icons into 'startContent' and 'endContent'."
@@ -154,12 +149,10 @@ export default function LinkComponentPage() {
         props={["startContent: ReactNode", "endContent: ReactNode"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Link"
         description="Supported properties for the Link component."

@@ -31,7 +31,6 @@ export function Form<TFieldValues extends FieldValues = FieldValues>({
   className,
   ...props
 }: FormProps<TFieldValues>) {
-  // Navigation guard for unsaved dirty changes
   React.useEffect(() => {
     if (!confirmUnsavedChanges) return;
 
@@ -50,7 +49,6 @@ export function Form<TFieldValues extends FieldValues = FieldValues>({
     e.preventDefault();
     const _result = await form.handleSubmit(onSubmit)(e);
 
-    // If validation fails and scrollToFirstError is enabled, find first invalid input
     if (scrollToFirstError && Object.keys(form.formState.errors).length > 0) {
       setTimeout(() => {
         const firstErrorKey = Object.keys(form.formState.errors)[0];

@@ -191,7 +191,6 @@ const Progress = React.forwardRef<
             />
           </ProgressPrimitive.Root>
 
-          {/* Step Milestone Markers */}
           {steps && steps.length > 0 && (
             <div className="absolute inset-0 pointer-events-none flex items-center px-1">
               {steps.map((stepItem, idx) => {

@@ -34,7 +34,6 @@ export function StepperInteractiveDemo() {
 
   return (
     <div className="space-y-6 w-full max-w-2xl">
-      {/* Clickable Steps Header */}
       <Stepper
         activeStep={activeStep}
         onStepClick={(step) => setActiveStep(step)}

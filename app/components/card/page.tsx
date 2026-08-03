@@ -61,7 +61,6 @@ export default function CardComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard card layout composed of CardHeader, CardTitle, CardDescription, CardBody, and CardFooter."
@@ -104,7 +103,6 @@ export default function CardComponentPage() {
 </Card>`}
       />
 
-      {/* Variants */}
       <DocsComponent
         title="Variants"
         description="Cards support default, bordered, flat, ghost, shadow, glassmorphism, and gradient visual variants."
@@ -178,7 +176,6 @@ export default function CardComponentPage() {
         ]}
       />
 
-      {/* Color Themes */}
       <DocsComponent
         title="Color Themes"
         description="Apply subtle status accent indicators to cards while preserving a clean, neutral white/zinc dark theme card background."
@@ -303,7 +300,6 @@ export default function CardComponentPage() {
         ]}
       />
 
-      {/* Interactive */}
       <DocsComponent
         title="Interactive Cards"
         description="Use 'isHoverable' and 'isPressable' to create interactive cards with hover translation and active press micro-animations."
@@ -350,7 +346,6 @@ export default function CardComponentPage() {
         props={["isHoverable: boolean", "isPressable: boolean"]}
       />
 
-      {/* Loading State */}
       <DocsComponent
         title="Loading State (isLoading)"
         description="Pass 'isLoading' to render a clean backdrop overlay and animated spinner during data fetching."
@@ -392,7 +387,6 @@ export default function CardComponentPage() {
         props={["isLoading: boolean"]}
       />
 
-      {/* Orientation */}
       <DocsComponent
         title="Horizontal Orientation"
         description="Pass 'orientation=&quot;horizontal&quot;' to switch from vertical column stacking to responsive side-by-side flex layout."
@@ -426,12 +420,10 @@ export default function CardComponentPage() {
         props={["orientation: 'vertical' | 'horizontal'"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Card Table */}
       <DocsComponent
         title="Props — Card"
         description="Properties to configure the Card component."

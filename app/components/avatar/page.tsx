@@ -56,7 +56,6 @@ export default function AvatarPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="A standard avatar component displaying a user image with an automated initials fallback when the image is absent or loading."
@@ -95,7 +94,6 @@ export default function AvatarPage() {
 </div>`}
       />
 
-      {/* Editable Upload Overlay */}
       <DocsComponent
         title="Editable Photo Upload Overlay (isEditable)"
         description="Render a hover photo upload icon overlay using 'isEditable' and trigger 'onUpload' callback."
@@ -130,7 +128,6 @@ export default function AvatarPage() {
         props={["isEditable: boolean", "onUpload: () => void"]}
       />
 
-      {/* Pressable */}
       <DocsComponent
         title="Pressable Avatars (isPressable)"
         description="Enable interactive press behavior using 'isPressable' for profile triggers, user menus, or clickable list avatars."
@@ -182,7 +179,6 @@ export default function AvatarPage() {
         props={["isPressable: boolean"]}
       />
 
-      {/* Colors & Bordered */}
       <DocsComponent
         title="Colors & Bordered Rings"
         description="Pair 'isBordered' with any design system color to highlight user status, active stories, or primary roles. Fallbacks automatically adapt soft accent colors."
@@ -226,7 +222,6 @@ export default function AvatarPage() {
         ]}
       />
 
-      {/* Sizes */}
       <DocsComponent
         title="Sizes"
         description="Scales seamlessly from 'xs' (24px) to '3xl' (80px) across predefined design scale tokens."
@@ -267,7 +262,6 @@ export default function AvatarPage() {
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
 
-      {/* Status Indicators */}
       <DocsComponent
         title="Status Indicators"
         description="Adds a status dot indicator (online, away, offline, dnd) positioned at any corner."
@@ -299,12 +293,10 @@ export default function AvatarPage() {
         ]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Avatar Table */}
       <DocsComponent
         title="Props — Avatar"
         description="Properties for configuring the Avatar root component."

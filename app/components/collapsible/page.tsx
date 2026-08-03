@@ -287,7 +287,6 @@ export default function CollapsiblePage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard collapsible panel with a trigger button that reveals hidden items using a smooth height animation."
@@ -311,7 +310,6 @@ export default function CollapsiblePage() {
 </Collapsible>`}
       />
 
-      {/* Lazy Content Rendering */}
       <DocsComponent
         title="Lazy Content Rendering"
         description="Defers rendering of child components until the panel is expanded for the first time, optimizing initial load performance."
@@ -335,7 +333,6 @@ export default function CollapsiblePage() {
         props={["lazy: boolean"]}
       />
 
-      {/* Default Open */}
       <DocsComponent
         title="Default Open"
         description="Pre-expanded collapsible panel using controlled state initialized as open."
@@ -359,7 +356,6 @@ export default function CollapsiblePage() {
         props={["open: boolean", "defaultOpen: boolean"]}
       />
 
-      {/* Card Style */}
       <DocsComponent
         title="Card Style"
         description="A collapsible section styled as a bordered card container with icon, heading, and description in the trigger."
@@ -390,7 +386,6 @@ export default function CollapsiblePage() {
 </Collapsible>`}
       />
 
-      {/* Disabled */}
       <DocsComponent
         title="Disabled State"
         description="Disables user interaction with the collapsible trigger, preventing expand or collapse."
@@ -412,12 +407,10 @@ export default function CollapsiblePage() {
         props={["disabled: boolean"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Collapsible Table */}
       <DocsComponent
         title="Props — Collapsible & CollapsibleContent"
         description="Properties for configuring the Collapsible and CollapsibleContent components."

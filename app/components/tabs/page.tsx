@@ -19,7 +19,6 @@ import {
 import { tabsCode } from "@/components/ui/tabs/tabs.code";
 
 export default function TabsComponentPage() {
-  // Closable Tabs State
   const [closableTabs, setClosableTabs] = React.useState([
     { id: "tab1", title: "Dashboard", content: "Main Dashboard view panel." },
     {
@@ -38,7 +37,6 @@ export default function TabsComponentPage() {
     setClosableTabs(closableTabs.filter((t) => t.id !== id));
   };
 
-  // Dynamic Addable Tabs State with Editable Title
   const [dynamicTabs, setDynamicTabs] = React.useState([
     { id: "dyn1", title: "Tab 1", content: "Content panel for Tab 1." },
     { id: "dyn2", title: "Tab 2", content: "Content panel for Tab 2." },
@@ -113,7 +111,6 @@ export default function TabsComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default Contained */}
       <DocsComponent
         title="Default Contained"
         description="Standard tab navigation with contained pill background."
@@ -183,7 +180,6 @@ export default function TabsComponentPage() {
 </Tabs>`}
       />
 
-      {/* Closable Tabs */}
       <DocsComponent
         title="Closable Tabs (isClosable)"
         description="Enable individual tab closing with 'isClosable' and 'onClose'."
@@ -227,7 +223,6 @@ export default function TabsComponentPage() {
         props={["isClosable: boolean", "onClose: (e) => void"]}
       />
 
-      {/* Addable & Editable Dynamic Tabs */}
       <DocsComponent
         title="Addable & Editable Dynamic Tabs (addable)"
         description="Append new tabs dynamically with 'addable' and double-click or click the edit icon to rename tab titles in real time."
@@ -298,7 +293,6 @@ export default function TabsComponentPage() {
         props={["addable: boolean", "onAdd: () => void"]}
       />
 
-      {/* Vertical Orientation */}
       <DocsComponent
         title="Vertical Orientation (orientation='vertical')"
         description="Stack tabs vertically on the left side with matching vertical panel alignment."
@@ -365,7 +359,6 @@ export default function TabsComponentPage() {
         props={["orientation: 'horizontal' | 'vertical'"]}
       />
 
-      {/* Scrollable Navigation */}
       <DocsComponent
         title="Scrollable Navigation Arrows (isScrollable)"
         description="Enable automatic scroll navigation arrows for overflow tabs on narrow viewports."
@@ -391,7 +384,6 @@ export default function TabsComponentPage() {
         props={["isScrollable: boolean"]}
       />
 
-      {/* Variants (default, contained, pills, underlined, bordered, vertical) */}
       <DocsComponent
         title="Variants (default, contained, pills, underlined, bordered, vertical)"
         description="Comprehensive demonstration of all supported tab variants."
@@ -490,7 +482,6 @@ export default function TabsComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — Tabs & TabsTrigger"
         description="Supported properties for Tabs."

@@ -61,7 +61,6 @@ export default function CommandComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Default */}
       <DocsComponent
         title="Default"
         description="Standard command menu palette with search input, items, shortcuts, and grouped sections."
@@ -142,7 +141,6 @@ export default function CommandComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Sub-components Table */}
       <DocsComponent
         title="Sub-components — Command"
         description="Available primitives for building command menus."

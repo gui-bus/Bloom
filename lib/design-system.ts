@@ -1,18 +1,6 @@
-/**
- * Centralized Design System Tokens for Bloom
- *
- * This file contains constant maps for sizes, colors, and layout properties.
- * Modifying these tokens will propagate changes across all components.
- */
-
 import type React from "react";
 
-/**
- * BloomGlobalProps — Unified prop interface for all Bloom UI components.
- * Components should pick the applicable props from this interface.
- */
 export interface BloomGlobalProps {
-  /** Visual style of the component */
   variant?:
     | "default"
     | "bordered"
@@ -26,9 +14,9 @@ export interface BloomGlobalProps {
     | "glow"
     | "splitted"
     | "compact";
-  /** Responsive size scale */
+
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
-  /** Semantic color palette from theme */
+
   color?:
     | "default"
     | "primary"
@@ -37,29 +25,29 @@ export interface BloomGlobalProps {
     | "success"
     | "warning"
     | "danger";
-  /** Border radius */
+
   radius?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full";
-  /** Slot for elements on the left (icons, badges, buttons) */
+
   startContent?: React.ReactNode;
-  /** Slot for elements on the right (icons, kbd shortcuts, buttons) */
+
   endContent?: React.ReactNode;
-  /** Disables the component and all interactions */
+
   isDisabled?: boolean;
-  /** Loading state with inline spinner or skeleton */
+
   isLoading?: boolean;
-  /** Custom text displayed during loading state */
+
   loadingText?: string;
-  /** Indicates validation error state */
+
   isInvalid?: boolean;
-  /** Explanatory error message */
+
   errorMessage?: React.ReactNode;
-  /** Helper text shown below the component */
+
   helperText?: React.ReactNode;
-  /** Disables the ripple click effect */
+
   disableRipple?: boolean;
-  /** Hover effect on mouse over */
+
   hover?: "none" | "scale" | "lift" | "glow" | "border";
-  /** Keyboard shortcut for direct activation (e.g., "ctrl+k", "enter", "esc") */
+
   kbdShortcut?: string;
 }
 

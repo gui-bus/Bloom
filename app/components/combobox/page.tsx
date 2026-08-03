@@ -188,7 +188,6 @@ export default function ComboboxComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Multi Select Mode */}
       <DocsComponent
         title="Multi-Select Mode with Tag Pills"
         description="Set 'isMulti' to enable selecting multiple items rendered as removable tag pills inside the input trigger."
@@ -210,7 +209,6 @@ export default function ComboboxComponentPage() {
         ]}
       />
 
-      {/* Create Option on the Fly */}
       <DocsComponent
         title="Create New Option on the Fly"
         description="Enable 'allowCreate' to allow users to add new custom options directly from the search input via the 'onCreate' callback."
@@ -231,7 +229,6 @@ export default function ComboboxComponentPage() {
         ]}
       />
 
-      {/* Virtualized List for 1,000+ Items */}
       <DocsComponent
         title="Virtualized List (10,000+ Items)"
         description="Enable 'isVirtualized' for high-performance rendering of datasets with thousands of items without DOM lag."
@@ -251,7 +248,6 @@ export default function ComboboxComponentPage() {
         props={["isVirtualized: boolean", "itemHeight: number"]}
       />
 
-      {/* Fuzzy Matching Search */}
       <DocsComponent
         title="Smart Fuzzy Search Filter"
         description="Fuzzy matching algorithm enabled by default. Try searching with minor typos or partial terms (e.g. 'rct', 'nxt', 'pstgrs') to see approximate results."
@@ -276,7 +272,6 @@ export default function ComboboxComponentPage() {
         props={["isFuzzySearch: boolean"]}
       />
 
-      {/* Section Grouping Sticky */}
       <DocsComponent
         title="Section Grouping with Sticky Headers"
         description="Group options by providing the 'group' property. Headers remain fixed (sticky position) while scrolling through options."
@@ -304,7 +299,6 @@ export default function ComboboxComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Combobox Table */}
       <DocsComponent
         title="Props — Combobox"
         description="Properties to configure the Combobox component."

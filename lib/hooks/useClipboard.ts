@@ -2,10 +2,6 @@
 
 import { useCallback, useState } from "react";
 
-/**
- * useClipboard — Hook for copying text to clipboard with timed confirmation state.
- * @param timeout - Duration in ms for the "copied" state (default 2000ms)
- */
 export function useClipboard(timeout = 2000) {
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState<Error | null>(null);

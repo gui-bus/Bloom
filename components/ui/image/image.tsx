@@ -121,7 +121,6 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     return (
       <>
         <figure className="relative inline-flex flex-col max-w-full">
-          {/* Glow backdrop blur shadow effect when isBlurred=true */}
           {isBlurred && !hasError && activeSrc && (
             <img
               src={activeSrc}
@@ -156,7 +155,6 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               )
             ) : (
               <>
-                {/* Progressive Blur-Up Placeholder Effect */}
                 {blurUpPlaceholder && isLoading && (
                   <img
                     src={blurUpPlaceholder}
@@ -201,7 +199,6 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
           )}
         </figure>
 
-        {/* Lightbox Zoom Modal */}
         {isLightboxOpen && activeSrc && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-in fade-in-0 cursor-zoom-out"

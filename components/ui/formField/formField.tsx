@@ -88,7 +88,6 @@ export function FormField({
           : children}
       </div>
 
-      {/* Footer Helper Text & Character Counter Bar */}
       <div
         className={cn(
           "flex items-center text-xs gap-2 min-h-4",

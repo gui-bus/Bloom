@@ -66,7 +66,6 @@ export default function PaginationComponentPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Full Pagination Toolbar */}
       <DocsComponent
         title="Full Pagination Toolbar Suite"
         description="High-level toolbar containing rows per page dropdown, total records summary, quick page jumper, and first/last buttons."
@@ -110,7 +109,6 @@ const [pageSize, setPageSize] = React.useState(10);
         ]}
       />
 
-      {/* Variants (6 styles) */}
       <DocsComponent
         title="Variants (default, bordered, flat, light, pills, line)"
         description="Choose from 6 visual surface variants for active page links."
@@ -256,7 +254,6 @@ const [pageSize, setPageSize] = React.useState(10);
         ]}
       />
 
-      {/* Shapes */}
       <DocsComponent
         title="Shapes (square, rounded, circle)"
         description="Button border radius shape using the 'shape' prop: 'square', 'rounded', or 'circle'."
@@ -302,12 +299,10 @@ const [pageSize, setPageSize] = React.useState(10);
         props={["shape: 'square' | 'rounded' | 'circle'"]}
       />
 
-      {/* Accessibility & ARIA Section */}
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      {/* Props Table */}
       <DocsComponent
         title="Props — PaginationToolbar"
         description="Supported properties for the PaginationToolbar component."

@@ -29,7 +29,6 @@ const FeatureCard = ({
 export default function Home() {
   return (
     <main className="p-5 space-y-12">
-      {/* Hero Section */}
       <section className="space-y-6">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-500 text-xs font-semibold">
           <span className="size-1.5 rounded-full bg-sky-500 animate-pulse" />
@@ -90,7 +89,6 @@ export default function Home() {
 
       <hr className="border-zinc-200 dark:border-zinc-800" />
 
-      {/* Core Principles */}
       <section className="space-y-6">
         <div>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
