@@ -21,6 +21,12 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./"),
     },
     pool: "threads",
+    fileParallelism: false,
     isolate: false,
+    poolOptions: {
+      threads: {
+        singleThread: true,
+      },
+    },
   },
 });
