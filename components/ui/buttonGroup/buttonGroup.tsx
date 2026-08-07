@@ -43,16 +43,21 @@ export const ButtonGroup = React.memo(
         const isLast = index === count - 1;
         const isVertical = orientation === "vertical";
 
+        const childRadius = child.props.radius || radius || "xl";
         let radiusClasses = "";
 
         if (isAttached) {
           if (isVertical) {
-            if (isFirst) radiusClasses = "rounded-b-none rounded-t-xl";
-            else if (isLast) radiusClasses = "rounded-t-none rounded-b-xl";
+            if (isFirst)
+              radiusClasses = `rounded-b-none rounded-t-${childRadius}`;
+            else if (isLast)
+              radiusClasses = `rounded-t-none rounded-b-${childRadius}`;
             else radiusClasses = "rounded-none";
           } else {
-            if (isFirst) radiusClasses = "rounded-r-none rounded-l-xl";
-            else if (isLast) radiusClasses = "rounded-l-none rounded-r-xl";
+            if (isFirst)
+              radiusClasses = `rounded-r-none rounded-l-${childRadius}`;
+            else if (isLast)
+              radiusClasses = `rounded-l-none rounded-r-${childRadius}`;
             else radiusClasses = "rounded-none";
           }
         }

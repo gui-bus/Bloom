@@ -264,6 +264,76 @@ export default function ButtonGroupPage() {
       />
 
       <DocsComponent
+        title="Radius"
+        description="Controls the corner rounding of the outer borders of the group using the 'radius' prop. Inner corners remain flat when buttons are attached."
+        preview={
+          <div className="w-full flex flex-col gap-4">
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                radius="none"
+              </span>
+              <ButtonGroup radius="none" color="secondary">
+                <Button>None A</Button>
+                <Button>None B</Button>
+                <Button>None C</Button>
+              </ButtonGroup>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                radius="sm" (with size="sm")
+              </span>
+              <ButtonGroup size="sm" radius="sm" color="secondary">
+                <Button>Small A</Button>
+                <Button>Small B</Button>
+                <Button>Small C</Button>
+              </ButtonGroup>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                radius="md"
+              </span>
+              <ButtonGroup radius="md" color="secondary">
+                <Button>Medium A</Button>
+                <Button>Medium B</Button>
+                <Button>Medium C</Button>
+              </ButtonGroup>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                radius="full"
+              </span>
+              <ButtonGroup radius="full" color="secondary">
+                <Button>Full A</Button>
+                <Button>Full B</Button>
+                <Button>Full C</Button>
+              </ButtonGroup>
+            </div>
+          </div>
+        }
+        code={`<ButtonGroup radius="none">
+  <Button>None A</Button>
+</ButtonGroup>
+
+<ButtonGroup size="sm" radius="sm">
+  <Button>Small A</Button>
+</ButtonGroup>
+
+<ButtonGroup radius="md">
+  <Button>Medium A</Button>
+</ButtonGroup>
+
+<ButtonGroup radius="full">
+  <Button>Full A</Button>
+</ButtonGroup>`}
+        props={[
+          "radius: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'",
+        ]}
+      />
+
+      <DocsComponent
         title="Loading state (isLoading)"
         description="Pass 'isLoading' to ButtonGroup to propagate active loading spinners across all buttons in the group."
         preview={
