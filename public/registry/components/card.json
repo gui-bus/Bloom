@@ -1,8 +1,6 @@
 {
   "name": "card",
-  "dependencies": [
-    "class-variance-authority"
-  ],
+  "dependencies": ["class-variance-authority"],
   "files": [
     {
       "name": "card.tsx",

@@ -1,9 +1,6 @@
 {
   "name": "command",
-  "dependencies": [
-    "cmdk",
-    "lucide-react"
-  ],
+  "dependencies": ["cmdk", "lucide-react"],
   "files": [
     {
       "name": "command.tsx",

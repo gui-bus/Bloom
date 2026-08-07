@@ -1,8 +1,6 @@
 {
   "name": "form",
-  "dependencies": [
-    "react-hook-form"
-  ],
+  "dependencies": ["react-hook-form"],
   "files": [
     {
       "name": "form.tsx",

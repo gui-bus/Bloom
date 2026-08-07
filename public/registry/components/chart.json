@@ -1,8 +1,6 @@
 {
   "name": "chart",
-  "dependencies": [
-    "recharts"
-  ],
+  "dependencies": ["recharts"],
   "files": [
     {
       "name": "chart.tsx",

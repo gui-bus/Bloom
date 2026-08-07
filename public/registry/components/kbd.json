@@ -1,8 +1,6 @@
 {
   "name": "kbd",
-  "dependencies": [
-    "class-variance-authority"
-  ],
+  "dependencies": ["class-variance-authority"],
   "files": [
     {
       "name": "kbd.tsx",

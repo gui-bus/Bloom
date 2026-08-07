@@ -1,8 +1,6 @@
 {
   "name": "pagination",
-  "dependencies": [
-    "@iconify/react"
-  ],
+  "dependencies": ["@iconify/react"],
   "files": [
     {
       "name": "pagination.tsx",

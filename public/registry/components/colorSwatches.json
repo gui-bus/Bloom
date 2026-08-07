@@ -1,8 +1,6 @@
 {
   "name": "colorSwatches",
-  "dependencies": [
-    "@iconify/react"
-  ],
+  "dependencies": ["@iconify/react"],
   "files": [
     {
       "name": "colorSwatches.tsx",

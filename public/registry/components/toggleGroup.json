@@ -1,8 +1,6 @@
 {
   "name": "toggleGroup",
-  "dependencies": [
-    "@radix-ui/react-toggle-group"
-  ],
+  "dependencies": ["@radix-ui/react-toggle-group"],
   "files": [
     {
       "name": "toggleGroup.tsx",
