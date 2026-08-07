@@ -1,6 +1,8 @@
 {
   "name": "timePicker",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "files": [
     {
       "name": "timePicker.tsx",

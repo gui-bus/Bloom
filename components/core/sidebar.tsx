@@ -115,6 +115,7 @@ export function Sidebar() {
         { href: "/components/numberInput", label: "Number Input" },
         { href: "/components/progress", label: "Progress" },
         { href: "/components/pagination", label: "Pagination" },
+        { href: "/components/passwordInput", label: "Password Input" },
         { href: "/components/popover", label: "Popover" },
         { href: "/components/radioGroup", label: "Radio Group" },
         { href: "/components/rating", label: "Rating" },

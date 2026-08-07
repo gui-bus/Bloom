@@ -1,6 +1,8 @@
 {
   "name": "resizable",
-  "dependencies": ["react-resizable-panels"],
+  "dependencies": [
+    "react-resizable-panels"
+  ],
   "files": [
     {
       "name": "resizable.tsx",

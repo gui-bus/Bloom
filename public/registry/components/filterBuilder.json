@@ -1,6 +1,8 @@
 {
   "name": "filterBuilder",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "files": [
     {
       "name": "filterBuilder.tsx",

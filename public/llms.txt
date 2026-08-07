@@ -63,6 +63,7 @@ npx @bloomui-react/cli add <component-name>
 - [Navigation Menu](https://bloom.guibus.dev/components/navigationMenu): UI component for site header navigation menu.
 - [Number Input](https://bloom.guibus.dev/components/numberInput): UI component for numeric step input with currency & scroll formatting.
 - [Pagination](https://bloom.guibus.dev/components/pagination): UI component for pagination controls.
+- [Password Input](https://bloom.guibus.dev/components/passwordInput): UI component for password input with requirements validations & strength meter.
 - [Popover](https://bloom.guibus.dev/components/popover): UI component for popover.
 - [Progress](https://bloom.guibus.dev/components/progress): UI component for linear, barber-pole, circle ring, and milestone progress.
 - [Radio Group](https://bloom.guibus.dev/components/radioGroup): UI component for radio group.

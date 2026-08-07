@@ -1,6 +1,8 @@
 {
   "name": "rating",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "files": [
     {
       "name": "rating.tsx",

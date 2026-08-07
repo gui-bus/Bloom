@@ -263,6 +263,12 @@ CLI Command: `npx @bloomui-react/cli add pagination`
 
 ---
 
+### Password Input
+URL: https://bloom.guibus.dev/components/passwordInput
+CLI Command: `npx @bloomui-react/cli add passwordInput`
+
+---
+
 ### Popover
 URL: https://bloom.guibus.dev/components/popover
 CLI Command: `npx @bloomui-react/cli add popover`

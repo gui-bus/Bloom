@@ -1,6 +1,8 @@
 {
   "name": "inputOtp",
-  "dependencies": ["input-otp"],
+  "dependencies": [
+    "input-otp"
+  ],
   "files": [
     {
       "name": "inputOtp.tsx",

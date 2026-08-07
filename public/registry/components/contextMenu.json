@@ -1,6 +1,9 @@
 {
   "name": "contextMenu",
-  "dependencies": ["@radix-ui/react-context-menu", "lucide-react"],
+  "dependencies": [
+    "@radix-ui/react-context-menu",
+    "lucide-react"
+  ],
   "files": [
     {
       "name": "contextMenu.tsx",
