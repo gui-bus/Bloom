@@ -1,0 +1,226 @@
+"use client";
+
+import { Icon } from "@iconify/react";
+import { CodeBlock } from "@/components/core/codeBlock";
+import { DocsComponent } from "@/components/core/docsComponent";
+import { DocsPagination } from "@/components/core/docsPagination";
+import DocsTitle from "@/components/core/docsTitle";
+import { ImportSnippet } from "@/components/core/importSnippet";
+import { InstallationBlock } from "@/components/core/installationBlock";
+import {
+  GanttChart,
+  type GanttTask,
+} from "@/components/ui/ganttChart/ganttChart";
+import { ganttChartCode } from "@/components/ui/ganttChart/ganttChart.code";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs/tabs";
+
+export default function GanttChartPage() {
+  const sampleTasks: GanttTask[] = [
+    {
+      id: "1",
+      name: "Project Initiation",
+      startDate: new Date("2026-01-01"),
+      endDate: new Date("2026-01-15"),
+      progress: 100,
+      color: "primary",
+    },
+    {
+      id: "2",
+      name: "Design Phase",
+      startDate: new Date("2026-01-15"),
+      endDate: new Date("2026-02-15"),
+      progress: 60,
+      color: "secondary",
+      dependencies: ["Project Initiation"],
+    },
+    {
+      id: "3",
+      name: "Development",
+      startDate: new Date("2026-02-10"),
+      endDate: new Date("2026-03-30"),
+      progress: 20,
+      color: "success",
+      dependencies: ["Design Phase"],
+    },
+    {
+      id: "4",
+      name: "Quality Assurance",
+      startDate: new Date("2026-03-25"),
+      endDate: new Date("2026-04-10"),
+      progress: 0,
+      color: "warning",
+      dependencies: ["Development"],
+    },
+    {
+      id: "5",
+      name: "Deployment",
+      startDate: new Date("2026-04-08"),
+      endDate: new Date("2026-04-15"),
+      progress: 0,
+      color: "danger",
+      dependencies: ["Quality Assurance"],
+    },
+  ];
+
+  const handleTaskClick = (task: GanttTask) => {
+    alert(
+      `Clicked task: ${task.name}\nDuration: ${task.startDate.toLocaleDateString()} - ${task.endDate.toLocaleDateString()}\nProgress: ${task.progress}%`,
+    );
+  };
+
+  return (
+    <div className="space-y-8">
+      <DocsTitle
+        title="Gantt Chart"
+        description="A visual timeline displaying tasks, milestones, progress states, categories, and project durations."
+      />
+
+      <ImportSnippet
+        importCode={`import { GanttChart } from "@/components/ui/ganttChart/ganttChart";`}
+      />
+
+      <InstallationBlock componentName="ganttChart" />
+
+      <Tabs defaultValue="ganttChart">
+        <TabsList background={false}>
+          <TabsTrigger
+            value="ganttChart"
+            startContent={<Icon icon="devicon:react" className="size-5" />}
+          >
+            ganttChart.tsx
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="ganttChart">
+          <CodeBlock
+            code={ganttChartCode}
+            componentName="ganttChart.tsx"
+            description="Timeline grid calculation and task duration layout."
+            tags={["React", "Timeline", "Gantt", "Scheduler"]}
+          />
+        </TabsContent>
+      </Tabs>
+
+      <DocsComponent
+        title="Default"
+        description="Standard Gantt view plotting task progress percentages across time."
+        preview={
+          <div className="w-full p-4 bg-zinc-50 dark:bg-zinc-950/40 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-x-auto">
+            <GanttChart
+              tasks={sampleTasks}
+              viewStartDate={new Date("2025-12-25")}
+              viewEndDate={new Date("2026-04-20")}
+              onTaskClick={handleTaskClick}
+            />
+          </div>
+        }
+        code={`const tasks = [
+  {
+    id: "1",
+    name: "Project Initiation",
+    startDate: new Date("2026-01-01"),
+    endDate: new Date("2026-01-15"),
+    progress: 100,
+    color: "primary"
+  },
+  {
+    id: "2",
+    name: "Design Phase",
+    startDate: new Date("2026-01-15"),
+    endDate: new Date("2026-02-15"),
+    progress: 60,
+    color: "secondary",
+    dependencies: ["Project Initiation"]
+  }
+];
+
+<GanttChart
+  tasks={tasks}
+  viewStartDate={new Date("2025-12-25")}
+  viewEndDate={new Date("2026-04-20")}
+  onTaskClick={(task) => console.log(task)}
+/>`}
+      />
+
+      <div className="pt-4">
+        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
+        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
+          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
+            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
+              <tr>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Prop
+                </th>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Type
+                </th>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Default
+                </th>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  tasks
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">
+                  GanttTask[]
+                </td>
+                <td className="px-4 py-3 font-mono">[]</td>
+                <td className="px-4 py-3">
+                  List of tasks to plot on the timeline.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  viewStartDate
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">Date</td>
+                <td className="px-4 py-3 font-mono">required</td>
+                <td className="px-4 py-3">
+                  Starting viewport boundary date for scale mapping.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  viewEndDate
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">Date</td>
+                <td className="px-4 py-3 font-mono">required</td>
+                <td className="px-4 py-3">
+                  Ending viewport boundary date for scale mapping.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  onTaskClick
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">
+                  {"(task: GanttTask) => void"}
+                </td>
+                <td className="px-4 py-3 font-mono">undefined</td>
+                <td className="px-4 py-3">
+                  Fires when clicking any task block on the scheduler timeline.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <DocsPagination
+        prev={{ title: "Form Field", href: "/components/formField" }}
+        next={{ title: "Heatmap Grid", href: "/components/heatmapGrid" }}
+      />
+    </div>
+  );
+}

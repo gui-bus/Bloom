@@ -68,6 +68,10 @@
     "dependencies": ["@radix-ui/react-checkbox", "class-variance-authority"]
   },
   {
+    "name": "circularProgress",
+    "dependencies": []
+  },
+  {
     "name": "codeBlock",
     "dependencies": ["highlight.js", "framer-motion", "@iconify/react"]
   },
@@ -124,6 +128,14 @@
     "dependencies": ["@radix-ui/react-dropdown-menu"]
   },
   {
+    "name": "eventCalendar",
+    "dependencies": ["@iconify/react"]
+  },
+  {
+    "name": "fileExplorer",
+    "dependencies": []
+  },
+  {
     "name": "fileUpload",
     "dependencies": ["lucide-react"]
   },
@@ -140,6 +152,14 @@
     "dependencies": []
   },
   {
+    "name": "ganttChart",
+    "dependencies": []
+  },
+  {
+    "name": "heatmapGrid",
+    "dependencies": []
+  },
+  {
     "name": "hoverCard",
     "dependencies": ["@radix-ui/react-hover-card"]
   },
@@ -148,12 +168,20 @@
     "dependencies": ["@iconify/react"]
   },
   {
+    "name": "imageCropper",
+    "dependencies": []
+  },
+  {
     "name": "input",
     "dependencies": ["class-variance-authority"]
   },
   {
     "name": "inputOtp",
     "dependencies": ["input-otp"]
+  },
+  {
+    "name": "jsonTreeViewer",
+    "dependencies": ["lucide-react"]
   },
   {
     "name": "kanbanBoard",
@@ -173,6 +201,10 @@
   },
   {
     "name": "list",
+    "dependencies": []
+  },
+  {
+    "name": "mentionTextarea",
     "dependencies": []
   },
   {
