@@ -40,6 +40,10 @@
     "dependencies": ["lucide-react", "class-variance-authority"]
   },
   {
+    "name": "bentoGrid",
+    "dependencies": []
+  },
+  {
     "name": "breadcrumb",
     "dependencies": ["@iconify/react"]
   },
@@ -200,6 +204,10 @@
     "dependencies": []
   },
   {
+    "name": "logoClouds",
+    "dependencies": ["framer-motion"]
+  },
+  {
     "name": "mentionTextarea",
     "dependencies": []
   },
@@ -322,6 +330,10 @@
   {
     "name": "tagInput",
     "dependencies": ["@iconify/react", "class-variance-authority"]
+  },
+  {
+    "name": "testimonials",
+    "dependencies": ["@iconify/react", "embla-carousel-react"]
   },
   {
     "name": "textarea",
