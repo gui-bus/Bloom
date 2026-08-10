@@ -209,10 +209,7 @@ const modified = "..."
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Kanban Board", href: "/components/kanbanBoard" }}
-        next={{ title: "Tour", href: "/components/tour" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

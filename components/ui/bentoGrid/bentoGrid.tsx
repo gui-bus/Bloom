@@ -29,15 +29,15 @@ export interface BentoGridProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export interface BentoGridItemProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   title?: React.ReactNode;
   description?: React.ReactNode;
   header?: React.ReactNode;
   icon?: React.ReactNode;
   colSpan?: 1 | 2 | 3 | 4 | 5 | 6 | "full" | string;
   rowSpan?: 1 | 2 | 3 | 4 | 5 | 6 | "full" | string;
-  hoverGradient?: boolean;
   radius?: keyof typeof designRadius;
+  imageSrc?: string;
 }
 
 const BentoGrid = React.forwardRef<HTMLDivElement, BentoGridProps>(
@@ -46,7 +46,7 @@ const BentoGrid = React.forwardRef<HTMLDivElement, BentoGridProps>(
       <div
         ref={ref}
         className={cn(
-          "grid grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto auto-rows-[20rem]",
+          "grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto auto-rows-[22rem]",
           className,
         )}
         {...props}
@@ -68,8 +68,8 @@ const BentoGridItem = React.forwardRef<HTMLDivElement, BentoGridItemProps>(
       icon,
       colSpan = 1,
       rowSpan = 1,
-      hoverGradient = true,
       radius = "2xl",
+      imageSrc,
       children,
       ...props
     },
@@ -89,9 +89,9 @@ const BentoGridItem = React.forwardRef<HTMLDivElement, BentoGridItemProps>(
       <div
         ref={ref}
         className={cn(
-          "group/bento relative overflow-hidden flex flex-col justify-between p-6",
+          "group/bento relative overflow-hidden flex flex-col justify-between p-8",
           "bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80",
-          "shadow-xs hover:shadow-md transition-all duration-300",
+          "shadow-2xs hover:shadow-md hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300",
           designRadius[radius],
           colSpanClass,
           rowSpanClass,
@@ -99,29 +99,53 @@ const BentoGridItem = React.forwardRef<HTMLDivElement, BentoGridItemProps>(
         )}
         {...props}
       >
-        {hoverGradient && (
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-sky-500/10 via-purple-500/5 to-transparent opacity-0 transition-opacity duration-500 group-hover/bento:opacity-100 dark:from-sky-500/15 dark:via-purple-500/10" />
+        {imageSrc && (
+          <div className="absolute inset-0 z-0 select-none pointer-events-none">
+            <img
+              src={imageSrc}
+              alt=""
+              className="size-full object-cover transition-transform duration-500 group-hover/bento:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+          </div>
         )}
 
-        {header && (
-          <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden mb-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800/20">
+        {header && !imageSrc && (
+          <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden mb-6 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800/20 z-10">
             {header}
           </div>
         )}
 
-        <div className="flex flex-col gap-1 transition duration-200 group-hover/bento:translate-x-1">
+        <div className="flex flex-col gap-1 transition duration-200 z-10 mt-auto">
           {icon && (
-            <div className="text-zinc-500 dark:text-zinc-400 mb-2 w-fit">
+            <div
+              className={cn(
+                "mb-3 w-fit",
+                imageSrc
+                  ? "text-white"
+                  : "text-zinc-500 dark:text-zinc-400 group-hover/bento:text-zinc-900 dark:group-hover/bento:text-zinc-100 transition-colors",
+              )}
+            >
               {icon}
             </div>
           )}
           {title && (
-            <div className="font-semibold text-zinc-900 dark:text-zinc-100 leading-snug">
+            <div
+              className={cn(
+                "font-semibold leading-snug text-lg",
+                imageSrc ? "text-white" : "text-zinc-900 dark:text-zinc-100",
+              )}
+            >
               {title}
             </div>
           )}
           {description && (
-            <div className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-normal">
+            <div
+              className={cn(
+                "text-sm leading-relaxed font-normal mt-1",
+                imageSrc ? "text-zinc-300" : "text-zinc-500 dark:text-zinc-400",
+              )}
+            >
               {description}
             </div>
           )}

@@ -221,10 +221,7 @@ const [value, setValue] = useState("");
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Menubar", href: "/components/menubar" }}
-        next={{ title: "Multi Select", href: "/components/multiSelect" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

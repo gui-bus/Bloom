@@ -192,7 +192,7 @@ export default function TagInputPage() {
               value={tags4b}
               onChange={setTags4b}
               tagColor="danger"
-              tagVariant="solid"
+              tagVariant="default"
               placeholder="Danger Solid tags..."
             />
             <TagInput
@@ -205,7 +205,7 @@ export default function TagInputPage() {
           </div>
         }
         code={`<TagInput value={tags} onChange={setTags} tagColor="success" tagVariant="flat" />
-<TagInput value={tags} onChange={setTags} tagColor="danger" tagVariant="solid" />
+<TagInput value={tags} onChange={setTags} tagColor="danger" tagVariant="default" />
 <TagInput value={tags} onChange={setTags} tagColor="secondary" tagVariant="bordered" />`}
       />
 
@@ -378,10 +378,7 @@ export default function TagInputPage() {
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Tabs", href: "/components/tabs" }}
-        next={{ title: "Signature Input", href: "/components/signatureInput" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

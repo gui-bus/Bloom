@@ -217,10 +217,7 @@ export default function GanttChartPage() {
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Form Field", href: "/components/formField" }}
-        next={{ title: "Heatmap Grid", href: "/components/heatmapGrid" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

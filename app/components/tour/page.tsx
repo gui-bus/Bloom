@@ -280,10 +280,7 @@ export default function TourPage() {
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Diff Viewer", href: "/components/diffViewer" }}
-        next={{ title: "Audio Recorder", href: "/components/audioRecorder" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

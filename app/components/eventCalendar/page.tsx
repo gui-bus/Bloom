@@ -352,13 +352,7 @@ const handleAddEvent = () => {
         </div>
       </div>
 
-      <DocsPagination
-        prev={{
-          title: "Virtualized List",
-          href: "/components/virtualizedList",
-        }}
-        next={{ title: "Heatmap Grid", href: "/components/heatmapGrid" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

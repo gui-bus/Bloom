@@ -1,7 +1,6 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -10,7 +9,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bentoGrid/bentoGrid";
 import { bentoGridCode } from "@/components/ui/bentoGrid/bentoGrid.code";
-import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
   TabsContent,
@@ -18,83 +16,39 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
 
-// Mock headers for beautiful visuals in presets
-const SkeletonOne = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-900 dark:to-zinc-800/80 flex-col justify-between p-4">
+const VisualHeaderOne = () => (
+  <div className="flex flex-1 w-full h-full min-h-[6rem] bg-zinc-50 dark:bg-zinc-800/40 p-6 flex-col justify-between">
     <div className="flex items-center gap-2">
-      <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-      <span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
-        Server Health: Optimal
+      <div className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
+      <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
+        System Monitor
       </span>
     </div>
     <div className="space-y-2">
-      <div className="h-3 w-3/4 rounded-sm bg-zinc-200 dark:bg-zinc-800" />
-      <div className="h-3 w-1/2 rounded-sm bg-zinc-200 dark:bg-zinc-800" />
+      <div className="h-2 w-3/4 rounded-sm bg-zinc-200 dark:bg-zinc-800" />
+      <div className="h-2 w-1/2 rounded-sm bg-zinc-200 dark:bg-zinc-800" />
     </div>
   </div>
 );
 
-const SkeletonTwo = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-900 dark:to-zinc-800/80 flex-col justify-center items-center gap-2">
+const VisualHeaderTwo = () => (
+  <div className="flex flex-1 w-full h-full min-h-[6rem] bg-zinc-50 dark:bg-zinc-800/40 p-6 flex-col justify-center items-center gap-2">
     <Icon
       icon="hugeicons:chart-histogram"
-      className="size-8 text-primary/70 animate-bounce"
+      className="size-8 text-zinc-600 dark:text-zinc-300"
     />
-    <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
-      +24% growth
+    <span className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+      +48.6% Monthly Growth
     </span>
   </div>
 );
 
-const SkeletonThree = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-900 dark:to-zinc-800/80 p-4 flex-col justify-between">
-    <div className="flex justify-between items-center text-xs">
-      <span className="text-zinc-500 dark:text-zinc-400 font-medium">
-        Memory Usage
-      </span>
-      <span className="font-bold text-zinc-700 dark:text-zinc-300">42%</span>
-    </div>
-    <div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-full h-2">
-      <div className="bg-primary h-2 rounded-full" style={{ width: "42%" }} />
-    </div>
-  </div>
-);
-
-const SkeletonFour = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-900 dark:to-zinc-800/80 p-4 flex-col justify-around">
-    <div className="flex items-center gap-3">
-      <div className="size-8 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center">
-        <Icon
-          icon="hugeicons:user-multiple"
-          className="size-4 text-zinc-600 dark:text-zinc-300"
-        />
-      </div>
-      <div>
-        <div className="h-2 w-16 bg-zinc-200 dark:bg-zinc-800 rounded-sm mb-1" />
-        <div className="h-1.5 w-10 bg-zinc-200 dark:bg-zinc-800/50 rounded-sm" />
-      </div>
-    </div>
-    <div className="flex items-center gap-3">
-      <div className="size-8 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center">
-        <Icon
-          icon="hugeicons:user-multiple"
-          className="size-4 text-zinc-600 dark:text-zinc-300"
-        />
-      </div>
-      <div>
-        <div className="h-2 w-20 bg-zinc-200 dark:bg-zinc-800 rounded-sm mb-1" />
-        <div className="h-1.5 w-8 bg-zinc-200 dark:bg-zinc-800/50 rounded-sm" />
-      </div>
-    </div>
-  </div>
-);
-
-export default function BentoGridComponentPage() {
+export default function BentoGridPage() {
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Bento Grid"
-        description="A grid layout system designed to showcase content, features, and dashboard widgets in a visually engaging Bento-box style. Supports column and row span configuration, hover gradient effects, icons, and structured headers."
+        description="A clean, responsive dashboard grid layout inspired by Japanese bento boxes. Great for dashboards, feature showcases, and portfolios."
       />
 
       <ImportSnippet
@@ -117,392 +71,155 @@ export default function BentoGridComponentPage() {
           <CodeBlock
             code={bentoGridCode}
             componentName="bentoGrid.tsx"
-            description="Core implementation of the BentoGrid and BentoGridItem components with grid column/row span mappings and interactive styles."
-            tags={["React", "Tailwind", "UI Component", "Bento Grid"]}
+            description="Clean BentoGrid container and grid items with standard props."
+            tags={["React", "Grid", "Layout", "Bento"]}
           />
         </TabsContent>
       </Tabs>
 
       <DocsComponent
-        title="Default Layout"
-        description="A standard 3-column bento grid displaying cards with various column and row span settings."
+        title="Default"
+        description="A beautiful layout with clean styling, image backgrounds, and custom headers. Uses default gap values and neutral border highlight effects."
         preview={
-          <div className="w-full">
-            <BentoGrid className="max-w-4xl mx-auto">
+          <div className="w-full max-w-5xl mx-auto p-4 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
+            <BentoGrid>
               <BentoGridItem
-                title="System Monitor"
-                description="Monitor server uptime, health, logs, and database connection status in real-time."
-                header={<SkeletonOne />}
-                icon={
-                  <Icon
-                    icon="hugeicons:dashboard-circle"
-                    className="size-5 text-zinc-500"
-                  />
-                }
-                colSpan={2}
+                title="Advanced Analytics"
+                description="Monitor key performance indicators and trace database query loads."
+                header={<VisualHeaderTwo />}
+                icon={<Icon icon="hugeicons:analytics-01" className="size-5" />}
+                colSpan={1}
+                rowSpan={1}
               />
               <BentoGridItem
-                title="Performance"
-                description="Fast and light response benchmarks."
-                header={<SkeletonTwo />}
+                title="Stunning Visual Assets"
+                description="Explore high-quality image overlays that adjust readability automatically."
+                imageSrc="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80"
+                icon={<Icon icon="hugeicons:image-01" className="size-5" />}
+                colSpan={2}
+                rowSpan={1}
+              />
+              <BentoGridItem
+                title="Production Staging"
+                description="Keep track of deployments and server logs in real-time."
+                imageSrc="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80"
+                icon={<Icon icon="hugeicons:cloud-server" className="size-5" />}
+                colSpan={2}
+                rowSpan={1}
+              />
+              <BentoGridItem
+                title="Health Dashboard"
+                description="Track latency rates and memory leakage limits."
+                header={<VisualHeaderOne />}
                 icon={
                   <Icon
-                    icon="hugeicons:activity"
-                    className="size-5 text-zinc-500"
+                    icon="hugeicons:dashboard-speed-01"
+                    className="size-5"
                   />
                 }
                 colSpan={1}
-              />
-              <BentoGridItem
-                title="Resource Allocation"
-                description="Track resource utilization metrics."
-                header={<SkeletonThree />}
-                icon={
-                  <Icon
-                    icon="hugeicons:chart-line-up"
-                    className="size-5 text-zinc-500"
-                  />
-                }
-                colSpan={1}
-              />
-              <BentoGridItem
-                title="User Growth"
-                description="List of recently active profiles."
-                header={<SkeletonFour />}
-                icon={
-                  <Icon
-                    icon="hugeicons:user-add"
-                    className="size-5 text-zinc-500"
-                  />
-                }
-                colSpan={2}
+                rowSpan={1}
               />
             </BentoGrid>
           </div>
         }
         code={`<BentoGrid>
   <BentoGridItem
-    title="System Monitor"
-    description="Monitor server uptime, health, logs, and database connection status in real-time."
-    header={<SkeletonOne />}
-    icon={<Icon icon="hugeicons:dashboard-circle" className="size-5" />}
-    colSpan={2}
-  />
-  <BentoGridItem
-    title="Performance"
-    description="Fast and light response benchmarks."
-    header={<SkeletonTwo />}
-    icon={<Icon icon="hugeicons:activity" className="size-5" />}
+    title="Advanced Analytics"
+    description="Monitor key performance indicators..."
+    header={<VisualHeaderTwo />}
+    icon={<Icon icon="hugeicons:analytics-01" />}
     colSpan={1}
   />
   <BentoGridItem
-    title="Resource Allocation"
-    description="Track resource utilization metrics."
-    header={<SkeletonThree />}
-    icon={<Icon icon="hugeicons:chart-line-up" className="size-5" />}
-    colSpan={1}
-  />
-  <BentoGridItem
-    title="User Growth"
-    description="List of recently active profiles."
-    header={<SkeletonFour />}
-    icon={<Icon icon="hugeicons:user-add" className="size-5" />}
+    title="Stunning Visual Assets"
+    description="Explore high-quality image overlays..."
+    imageSrc="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+    icon={<Icon icon="hugeicons:image-01" />}
     colSpan={2}
   />
 </BentoGrid>`}
-        props={[
-          "colSpan: 1 | 2 | 3 | 4 | 5 | 6 | 'full' | string",
-          "rowSpan: 1 | 2 | 3 | 4 | 5 | 6 | 'full' | string",
-        ]}
       />
 
-      <DocsComponent
-        title="Custom Spans & Row Spans"
-        description="A dashboard bento grid showing vertical card layout with rowSpan configuration."
-        preview={
-          <div className="w-full">
-            <BentoGrid className="max-w-4xl mx-auto auto-rows-[12rem]">
-              <BentoGridItem
-                title="Realtime Logs"
-                description="Live logging stream filterable by categories."
-                header={<SkeletonOne />}
-                icon={
-                  <Icon
-                    icon="hugeicons:menu-square-dot"
-                    className="size-5 text-zinc-500"
-                  />
-                }
-                colSpan={1}
-                rowSpan={2}
-              />
-              <BentoGridItem
-                title="Global Revenue"
-                description="Track transactions and invoices."
-                header={<SkeletonTwo />}
-                icon={
-                  <Icon
-                    icon="hugeicons:money-send-01"
-                    className="size-5 text-zinc-500"
-                  />
-                }
-                colSpan={2}
-                rowSpan={1}
-              />
-              <BentoGridItem
-                title="Active Sessions"
-                description="Real-time user count tracking."
-                header={<SkeletonThree />}
-                icon={
-                  <Icon
-                    icon="hugeicons:touch-interaction-02"
-                    className="size-5 text-zinc-500"
-                  />
-                }
-                colSpan={1}
-                rowSpan={1}
-              />
-              <BentoGridItem
-                title="Security Alert Center"
-                description="Threat levels, firewalls, and active warning systems."
-                header={<SkeletonFour />}
-                icon={
-                  <Icon
-                    icon="hugeicons:shield-warning"
-                    className="size-5 text-zinc-500"
-                  />
-                }
-                colSpan={1}
-                rowSpan={1}
-              />
-            </BentoGrid>
-          </div>
-        }
-        code={`<BentoGrid className="auto-rows-[12rem]">
-  <BentoGridItem
-    title="Realtime Logs"
-    description="Live logging stream filterable by categories."
-    header={<SkeletonOne />}
-    icon={<Icon icon="hugeicons:menu-square-dot" className="size-5" />}
-    colSpan={1}
-    rowSpan={2}
-  />
-  <BentoGridItem
-    title="Global Revenue"
-    description="Track transactions and invoices."
-    header={<SkeletonTwo />}
-    icon={<Icon icon="hugeicons:money-send-01" className="size-5" />}
-    colSpan={2}
-    rowSpan={1}
-  />
-  ...
-</BentoGrid>`}
-      />
-
-      <DocsComponent
-        title="Interactive Spotlight (hoverGradient)"
-        description="Toggle the background spotlight gradient on hover. Enabled by default."
-        preview={
-          <div className="w-full">
-            <BentoGrid className="max-w-4xl mx-auto auto-rows-[12rem] grid-cols-1 md:grid-cols-2">
-              <BentoGridItem
-                title="With Spotlight"
-                description="Features a soft gradient light source originating from corners on hover."
-                icon={
-                  <Icon
-                    icon="hugeicons:flash"
-                    className="size-5 text-sky-500"
-                  />
-                }
-                hoverGradient={true}
-                colSpan={1}
-              />
-              <BentoGridItem
-                title="Without Spotlight"
-                description="Standard flat style card with simple scale/shadow transitions."
-                icon={
-                  <Icon
-                    icon="hugeicons:eye-slash"
-                    className="size-5 text-zinc-500"
-                  />
-                }
-                hoverGradient={false}
-                colSpan={1}
-              />
-            </BentoGrid>
-          </div>
-        }
-        code={`<BentoGrid className="grid-cols-2">
-  <BentoGridItem
-    title="With Spotlight"
-    description="Features a soft gradient light source."
-    hoverGradient={true}
-  />
-  <BentoGridItem
-    title="Without Spotlight"
-    description="Standard flat style card."
-    hoverGradient={false}
-  />
-</BentoGrid>`}
-        props={["hoverGradient: boolean"]}
-      />
-
-      <AccessibilityCard />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
-
-      <DocsComponent
-        title="Props — BentoGrid"
-        description="Properties to configure the BentoGrid container."
-        preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Prop
-                  </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Type
-                  </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Default
-                  </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Description
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    className
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    string
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Custom classes for layout adjustments.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        }
-      />
-
-      <DocsComponent
-        title="Props — BentoGridItem"
-        description="Properties to configure each grid cell/item."
-        preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Prop
-                  </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Type
-                  </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Default
-                  </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Description
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">title</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    ReactNode
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Heading title of the bento cell.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    description
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    ReactNode
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Detailed subtitle or descriptive string.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">header</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    ReactNode
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Preview illustration, list item, or graph node.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">icon</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    ReactNode
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Iconify icon displayed above the header or title.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">colSpan</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    1 | 2 | 3 | 4 | 5 | 6 | 'full' | string
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">1</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Sets cell width column spans on md viewports.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">rowSpan</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    1 | 2 | 3 | 4 | 5 | 6 | 'full' | string
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">1</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Sets cell height row spans on md viewports.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    hoverGradient
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    boolean
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Toggles radial spotlight gradient on hover.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    keyof typeof designRadius
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'2xl'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Customizes border radius settings.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        }
-      />
+      <div className="pt-4">
+        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
+        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
+          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
+            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
+              <tr>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Prop
+                </th>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Type
+                </th>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Default
+                </th>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  title
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">ReactNode</td>
+                <td className="px-4 py-3 font-mono">undefined</td>
+                <td className="px-4 py-3">
+                  Card item title or heading string.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  description
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">ReactNode</td>
+                <td className="px-4 py-3 font-mono">undefined</td>
+                <td className="px-4 py-3">
+                  Supporting text or description details.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  imageSrc
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">string</td>
+                <td className="px-4 py-3 font-mono">undefined</td>
+                <td className="px-4 py-3">
+                  Optional Unsplash image source background overlay.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  colSpan
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">
+                  number | string
+                </td>
+                <td className="px-4 py-3 font-mono">1</td>
+                <td className="px-4 py-3">
+                  Responsive column grid span parameter.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  rowSpan
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">
+                  number | string
+                </td>
+                <td className="px-4 py-3 font-mono">1</td>
+                <td className="px-4 py-3">
+                  Responsive row grid span parameter.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <DocsPagination />
     </div>

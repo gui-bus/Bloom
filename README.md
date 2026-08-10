@@ -111,7 +111,7 @@ graph TB
 
 ---
 
-## 🚀 Componentes Implementados (82 Componentes)
+## 🚀 Componentes Implementados (92 Componentes)
 
 | Componente | Categoria | Descrição |
 | :--- | :--- | :--- |
@@ -127,9 +127,11 @@ graph TB
 | **File Upload** | Inputs & Controles | Zona de drag & drop para envio de arquivos com barras de progresso. |
 | **Filter Builder** | Inputs & Controles | Construtor de filtros booleanos estruturados para consultas avançadas. |
 | **Form / FormField** | Inputs & Controles | Estrutura de formulários com validação, campos envelopados e mensagens de erro. |
+| **Image Cropper** | Inputs & Controles | Cropper de imagens com zoom, rotação, máscara circular ou retangular e exportação base64. |
 | **Input** | Inputs & Controles | Entrada de texto com suporte a ícones, rótulos e validações. |
 | **Input OTP** | Inputs & Controles | Entradas numéricas separadas para códigos de verificação em duas etapas (2FA). |
 | **Label** | Inputs & Controles | Rótulo de formulário nativo e acessível integrado aos inputs. |
+| **Mention Textarea** | Inputs & Controles | Textarea com suporte a menções @/# com avatares, handles e painel de sugestões estilizado. |
 | **Multi Select** | Inputs & Controles | Menu de seleção de tags múltiplas com remoção direta e busca flexível. |
 | **Number Input** | Inputs & Controles | Controle de entrada numérica com botões de incremento/decremento e suporte a moedas. |
 | **Password Input** | Inputs & Controles | Campo de senha com medidor de força e verificação de regras de segurança dinâmica. |
@@ -158,8 +160,8 @@ graph TB
 | **Alert** | Overlays & Feedback | Banner de aviso e mensagens informativas com acentos por estado de gravidade. |
 | **Alert Dialog** | Overlays & Feedback | Modal de confirmação crítico com bloqueio de ações irreversíveis. |
 | **Banner** | Overlays & Feedback | Faixas de anúncios ou avisos globais fixados no topo/base do layout. |
-| **Context Menu** | Overlays & Feedback | Menu contextual sob clique direito acessível com suporte a submenus. |
 | **Confetti** | Overlays & Feedback | Componente de animação comemorativa de partículas físicas baseada em presets. |
+| **Context Menu** | Overlays & Feedback | Menu contextual sob clique direito acessível com suporte a submenus. |
 | **Dialog** | Overlays & Feedback | Janela modal sobreposta acessível via Radix Dialog. |
 | **Drawer** | Overlays & Feedback | Painel deslizante inferior/lateral mantendo a largura máxima do layout de 110rem. |
 | **Dropdown Menu** | Overlays & Feedback | Menu suspenso flutuante com itens, grupos, separadores e atalhos de teclado. |
@@ -173,6 +175,7 @@ graph TB
 | **Aspect Ratio** | Layout & Exibição | Contêiner de proporção fixa para mídia responsiva. |
 | **Avatar / Avatar Group** | Layout & Exibição | Foto de perfil com fallback de iniciais e pilha de avatares com contador. |
 | **Badge** | Layout & Exibição | Rótulo compacto com variantes, pontos de status e ícones. |
+| **Bento Grid** | Layout & Exibição | Grade estilo bento box para layouts de destaque com suporte a imagens, ícones e spans de colunas/linhas. |
 | **Card** | Layout & Exibição | Contêiner neutro estruturado com cabeçalho, corpo e rodapé. |
 | **Carousel** | Layout & Exibição | Carrossel de slides fluido com gestos de swipe e controles de navegação. |
 | **Chart** | Layout & Exibição | Gráficos visuais interativos construídos para dashboards. |
@@ -180,18 +183,24 @@ graph TB
 | **Collapsible** | Layout & Exibição | Elemento expansível/recolhível com animação suave de altura. |
 | **Data Table** | Layout & Exibição | Tabela de dados avançada com ordenação, filtros e paginação. |
 | **Diff Viewer** | Layout & Exibição | Visualizador comparativo de diferenças de código (Diff) em modos lado a lado ou linha por linha. |
+| **Event Calendar** | Layout & Exibição | Calendário de eventos interativo com modos mês/semana/dia e criação de eventos por clique. |
+| **File Explorer** | Layout & Exibição | Explorador de arquivos em árvore com expand/collapse, rename, delete, add e busca. |
+| **Gantt Chart** | Layout & Exibição | Gráfico de Gantt visual com tarefas, marcos, durações, dependências e agrupamentos. |
+| **Heatmap Grid** | Layout & Exibição | Grade de heatmap para visualização de atividades ao longo do tempo, similar ao GitHub Contributions. |
 | **Image** | Layout & Exibição | Imagem responsiva com fallbacks de carregamento e efeitos visuais. |
+| **JSON Tree Viewer** | Layout & Exibição | Visualizador de objetos JSON em árvore colapsável com destaque por tipo de valor e cópia de chaves. |
 | **Kanban Board** | Layout & Exibição | Quadro Kanban interativo com colunas arrastáveis, tarefas, e limites WIP. |
 | **List** | Layout & Exibição | Lista ordenada e não ordenada com suporte a ícones e divisores. |
+| **Logo Clouds** | Layout & Exibição | Showcase de logos de parceiros com variantes grid, marquee infinito e swap animation por lotes. |
 | **Progress** | Layout & Exibição | Barra de progresso linear animada para status de tarefas. |
 | **Resizable** | Layout & Exibição | Painéis redimensionáveis com divisores arrastáveis via `react-resizable-panels`. |
 | **Scroll Area** | Layout & Exibição | Área de rolagem estilizada via Radix integrada à barra lateral. |
 | **Separator** | Layout & Exibição | Divisor visual horizontal ou vertical com suporte a labels e gradientes. |
 | **Skeleton** | Layout & Exibição | Placeholder animado estilo pulse para conteúdos em carregamento. |
-| **Slider** | Layout & Exibição | Controle deslizante para seleção de intervalos ou valores numéricos. |
 | **Spinner** | Layout & Exibição | Indicador de carregamento rotativo com tamanhos e cores semânticas. |
 | **Stat Card** | Layout & Exibição | Cartão de métricas KPI com ícones, valores e indicadores de tendência. |
 | **Table** | Layout & Exibição | Tabela HTML estilizada com bordas arredondadas e seleção de linhas. |
+| **Testimonials** | Layout & Exibição | Depoimentos de clientes em variantes grid, masonry, carrossel, split e marquee infinito. |
 | **Timeline** | Layout & Exibição | Linha de eventos cronológicos ordenados com suporte a ícones e nós. |
 | **Tree View** | Layout & Exibição | Árvore de navegação e diretórios interativa com nós expansíveis. |
 | **Typography** | Layout & Exibição | Escala de hierarquia de texto de H1 a H6, parágrafos, lead e blocos de código. |

@@ -21,7 +21,7 @@ export default function LogoCloudsComponentPage() {
     <div className="space-y-8">
       <DocsTitle
         title="Logo Clouds"
-        description="A beautiful and highly customizable logo showcase component. Supports static/hoverable grids, infinite sliding marquees, and dynamic crossfade swap animations using Framer Motion."
+        description="A beautiful and highly customizable logo showcase component. Supports static/hoverable grids, infinite sliding marquees, and batch crossfade swap animations."
       />
 
       <ImportSnippet
@@ -58,10 +58,10 @@ export default function LogoCloudsComponentPage() {
       </Tabs>
 
       <DocsComponent
-        title="Grid Layout"
+        title="Default"
         description="A clean, responsive grid layout for displaying client or partner logos. Each card features subtle shadows, borders, and hover scale transitions."
         preview={
-          <div className="w-full rounded-3xl border border-zinc-100 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-6">
+          <div className="w-full rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50 dark:bg-zinc-950/20 p-6">
             <LogoClouds
               variant="grid"
               title="TRUSTED BY THE BEST"
@@ -79,41 +79,37 @@ export default function LogoCloudsComponentPage() {
       />
 
       <DocsComponent
-        title="Marquee Layout"
-        description="An infinite, smooth-scrolling horizontal marquee. Includes customizable speed, direction, hover behavior, and edge gradient masking for a premium, transparent fade effect."
+        title="Infinite Marquee Scroll"
+        description="An infinite sliding marquee rendering partner logos with adjustable speed, pause on hover, and smooth css border gradients."
         preview={
-          <div className="w-full rounded-3xl border border-zinc-100 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-6 overflow-hidden">
+          <div className="w-full rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50 dark:bg-zinc-950/20 p-6">
             <LogoClouds
               variant="marquee"
-              title="INTEGRATION PARTNERS"
-              subtitle="Seamlessly connect with your tool stack"
-              speed={45}
-              direction="left"
+              title="OUR PARTNERS"
+              subtitle="Integrates with your favorite tools"
+              speed={50}
               pauseOnHover={true}
-              gradient={true}
             />
           </div>
         }
         code={`<LogoClouds
   variant="marquee"
-  title="INTEGRATION PARTNERS"
-  subtitle="Seamlessly connect with your tool stack"
-  speed={45}
-  direction="left"
+  title="OUR PARTNERS"
+  subtitle="Integrates with your favorite tools"
+  speed={50}
   pauseOnHover={true}
-  gradient={true}
 />`}
       />
 
       <DocsComponent
-        title="Swap Layout"
-        description="A dynamic showcase where logos periodically swap with a smooth crossfade and slide transition using Framer Motion. Ideal for showing a large partner list in a compact space."
+        title="Batch Swap Animation"
+        description="Transitions all cards concurrently at set intervals using a crossfade and y-axis translation spring effect."
         preview={
-          <div className="w-full rounded-3xl border border-zinc-100 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-6">
+          <div className="w-full rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50 dark:bg-zinc-950/20 p-6">
             <LogoClouds
               variant="swap"
-              title="OUR DISTRIBUTED NETWORK"
-              subtitle="Growing together with innovative teams"
+              title="INNOVATING CONSTANTLY"
+              subtitle="Backed by industry leaders"
               swapCount={4}
               interval={2500}
             />
@@ -121,158 +117,95 @@ export default function LogoCloudsComponentPage() {
         }
         code={`<LogoClouds
   variant="swap"
-  title="OUR DISTRIBUTED NETWORK"
-  subtitle="Growing together with innovative teams"
+  title="INNOVATING CONSTANTLY"
+  subtitle="Backed by industry leaders"
   swapCount={4}
   interval={2500}
 />`}
       />
 
       <DocsComponent
-        title="Props"
-        description="Available parameters to configure the LogoClouds component."
-        preview={null}
-        code={
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse text-sm">
-              <thead>
-                <tr className="border-b border-border font-medium text-foreground">
-                  <th className="px-3 py-2">Prop</th>
-                  <th className="px-3 py-2">Type</th>
-                  <th className="px-3 py-2">Default</th>
-                  <th className="px-3 py-2">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    "grid" | "marquee" | "swap"
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">"grid"</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Determines the display layout style of the logo cloud.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">logos</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    Logo[]
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    DEFAULT_LOGOS
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    A list of logo objects containing ID, name, and SVG
-                    ReactNode.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">title</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    ReactNode | string
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Optional uppercase small tracking text displayed at the top.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">subtitle</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    ReactNode | string
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Optional larger subtitle displayed below the title.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">speed</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    number
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">40</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Speed of translation in pixels per second. (Marquee variant
-                    only).
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    direction
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    "left" | "right"
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">"left"</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Sliding direction of the marquee flow.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    pauseOnHover
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    boolean
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Pauses the marquee animation when the cursor hovers over it.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">gradient</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    boolean
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Enables a beautiful CSS mask-image linear gradient to fade
-                    out left/right edges of marquee.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">cols</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    2 | 3 | 4 | 5 | 6
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">4</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Number of grid columns on desktop sizes. (Grid variant
-                    only).
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    swapCount
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    number
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">4</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Number of visible slots that swap logos. (Swap variant
-                    only).
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">interval</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    number
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">3000</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Frequency (in ms) at which one of the logos swaps out. (Swap
-                    variant only).
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        title="Minimal Fast Marquee"
+        description="A lightweight, high-speed marquee with no title boundaries or styling constraints."
+        preview={
+          <div className="w-full rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50 dark:bg-zinc-950/20 p-6">
+            <LogoClouds variant="marquee" speed={80} gradient={true} />
           </div>
         }
+        code={`<LogoClouds
+  variant="marquee"
+  speed={80}
+  gradient={true}
+/>`}
       />
+
+      <div className="pt-4">
+        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
+        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
+          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
+            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
+              <tr>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Prop
+                </th>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Type
+                </th>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Default
+                </th>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  variant
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">
+                  "marquee" | "grid" | "swap"
+                </td>
+                <td className="px-4 py-3 font-mono">"grid"</td>
+                <td className="px-4 py-3">
+                  Exhibits marquee scroll, grid cards, or batch swap options.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  speed
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">number</td>
+                <td className="px-4 py-3 font-mono">40</td>
+                <td className="px-4 py-3">
+                  Speed multiplier for infinite marquee sliding motion.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  swapCount
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">number</td>
+                <td className="px-4 py-3 font-mono">4</td>
+                <td className="px-4 py-3">
+                  Number of visible partner items shown at once in swap batch.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  interval
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">number</td>
+                <td className="px-4 py-3 font-mono">3000</td>
+                <td className="px-4 py-3">
+                  Cooldown timer miliseconds to transition next batch.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <DocsPagination />
     </div>

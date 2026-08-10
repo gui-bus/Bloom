@@ -40,16 +40,12 @@ export function TableOfContents() {
       setItems(tocItems);
 
       if (sectionParam) {
-        const target = document.getElementById(sectionParam);
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth" });
-          setActiveId(sectionParam);
-        }
+        setActiveId(sectionParam);
       }
     }, 150);
 
     return () => clearTimeout(timer);
-  }, [sectionParam]);
+  }, []);
 
   React.useEffect(() => {
     if (items.length === 0) return;

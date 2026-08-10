@@ -43,6 +43,7 @@ export interface TagInputProps
     | "warning"
     | "danger";
   tagVariant?: "default" | "bordered" | "flat" | "ghost" | "shadow";
+  isDisabled?: boolean;
 }
 
 const tagInputVariants = cva(

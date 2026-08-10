@@ -308,10 +308,7 @@ export default function SignatureInputPage() {
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Tag Input", href: "/components/tagInput" }}
-        next={{ title: "Timeline", href: "/components/timeline" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

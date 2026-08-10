@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import * as React from "react";
+import Marquee from "react-fast-marquee";
 import {
   Avatar,
   AvatarFallback,
@@ -29,7 +30,7 @@ export interface TestimonialItem {
 export interface TestimonialsProps
   extends React.HTMLAttributes<HTMLDivElement> {
   items: TestimonialItem[];
-  layout?: "grid" | "masonry" | "carousel" | "split";
+  layout?: "grid" | "masonry" | "carousel" | "split" | "marquee";
   cols?: 1 | 2 | 3 | 4;
   autoplay?: boolean;
   autoplayDelay?: number;
@@ -40,6 +41,10 @@ export interface TestimonialsProps
   ratingColor?: string;
   showQuoteIcon?: boolean;
   splitVariant?: "featured-aside" | "quote-author";
+  speed?: number;
+  direction?: "left" | "right";
+  pauseOnHover?: boolean;
+  gradient?: boolean;
 }
 
 export function RatingStars({
@@ -84,7 +89,7 @@ export function TestimonialCard({
   return (
     <div
       className={cn(
-        "relative bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 p-6 md:p-8 flex flex-col justify-between gap-6 shadow-xs transition-all duration-200 hover:border-zinc-300 dark:hover:border-zinc-700/80",
+        "relative bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 p-6 md:p-8 flex flex-col justify-between gap-6 shadow-2xs transition-all duration-200 hover:border-zinc-300 dark:hover:border-zinc-700/80",
         designRadius[radius],
         item.featured && "ring-1 ring-zinc-900/5 dark:ring-white/5 shadow-md",
         className,
@@ -146,6 +151,10 @@ export function Testimonials({
   ratingColor,
   showQuoteIcon = true,
   splitVariant = "featured-aside",
+  speed = 40,
+  direction = "left",
+  pauseOnHover = true,
+  gradient = true,
   className,
   ...props
 }: TestimonialsProps) {
@@ -183,6 +192,39 @@ export function Testimonials({
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);
+
+  if (layout === "marquee") {
+    return (
+      <div
+        className={cn(
+          "w-full overflow-hidden",
+          gradient &&
+            "[mask-image:linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]",
+          className,
+        )}
+        {...props}
+      >
+        <Marquee
+          speed={speed}
+          direction={direction}
+          pauseOnHover={pauseOnHover}
+          className="flex items-stretch"
+        >
+          {items.map((item, idx) => (
+            <div key={item.id ?? idx} className="mx-4 w-80 shrink-0">
+              <TestimonialCard
+                item={item}
+                radius={radius}
+                className={cn("h-full", cardClassName)}
+                ratingColor={ratingColor}
+                showQuoteIcon={showQuoteIcon}
+              />
+            </div>
+          ))}
+        </Marquee>
+      </div>
+    );
+  }
 
   if (layout === "masonry") {
     const masonryColsClass = {

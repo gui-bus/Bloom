@@ -1,7 +1,6 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -80,34 +79,21 @@ const sampleTestimonials: TestimonialItem[] = [
       "Our conversion rate improved by 14% after we redesigned our landing pages with Bloom. It's clean, modern, and very fast.",
     rating: 5,
     author: {
-      name: "Jordan K.",
-      role: "Growth Lead",
-      company: "ApexFlow",
+      name: "Devon Webb",
+      role: "Growth Manager",
+      company: "Orbit",
       avatarUrl:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
     },
   },
-  {
-    id: 6,
-    quote:
-      "I highly recommend Bloom UI to anyone building modern web applications. The documentation is incredibly helpful.",
-    rating: 5,
-    author: {
-      name: "Li Wei",
-      role: "Fullstack Engineer",
-      company: "ByteDance",
-      avatarUrl:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150",
-    },
-  },
 ];
 
-export default function TestimonialsPage() {
+export default function TestimonialsComponentPage() {
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Testimonials"
-        description="A versatile component for showcasing customer reviews, ratings, and social proof with support for multiple layouts (grid, masonry, carousel, split) and design token integration."
+        description="Display user reviews, quotes, and customer feedback. Includes standard Grid, Masonry, Split, Carousel Slider, and infinite Marquee layouts."
       />
 
       <ImportSnippet
@@ -116,37 +102,38 @@ export default function TestimonialsPage() {
 
       <InstallationBlock componentName="testimonials" />
 
-      <Tabs defaultValue="code">
+      <Tabs defaultValue="testimonials">
         <TabsList background={false}>
           <TabsTrigger
-            value="code"
+            value="testimonials"
             startContent={<Icon icon="devicon:react" className="size-5" />}
           >
             testimonials.tsx
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="code">
+        <TabsContent value="testimonials">
           <CodeBlock
             code={testimonialsCode}
             componentName="testimonials.tsx"
-            description="Testimonials component supporting multiple layout orientations, embla-carousel sliding, masonry blocks, and ratings stars."
+            description="Multi-layout testimonials showcase component rendering rating stars, client avatars, and infinite scrolling marquees."
             tags={[
               "React",
-              "Embla Carousel",
               "Tailwind",
+              "UI Component",
               "Testimonials",
-              "Social Proof",
+              "Marquee",
+              "Slider",
             ]}
           />
         </TabsContent>
       </Tabs>
 
       <DocsComponent
-        title="Grid Layout"
-        description="A standard responsive grid layout ideal for standard pages with consistent testimonial card heights."
+        title="Default"
+        description="Clean, standard grid structure with predefined column widths. Adapts gracefully to all screen breakpoints."
         preview={
-          <div className="w-full">
+          <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
             <Testimonials
               items={sampleTestimonials.slice(0, 3)}
               layout="grid"
@@ -154,89 +141,120 @@ export default function TestimonialsPage() {
             />
           </div>
         }
-        code={`<Testimonials items={testimonials} layout="grid" cols={3} />`}
-      />
-
-      <DocsComponent
-        title="Masonry / Columns Layout"
-        description="A CSS columns-based masonry layout designed to handle varying lengths of quotes without leaving uneven whitespace."
-        preview={
-          <div className="w-full">
-            <Testimonials
-              items={sampleTestimonials}
-              layout="masonry"
-              cols={3}
-            />
-          </div>
-        }
-        code={`<Testimonials items={testimonials} layout="masonry" cols={3} />`}
-      />
-
-      <DocsComponent
-        title="Carousel Slider"
-        description="A swipe-enabled sliding carousel powered by Embla, perfect for compact spaces or showcasing many testimonials without page bloat."
-        preview={
-          <div className="w-full">
-            <Testimonials
-              items={sampleTestimonials}
-              layout="carousel"
-              cols={3}
-              autoplay
-              autoplayDelay={5000}
-            />
-          </div>
-        }
         code={`<Testimonials
-  items={testimonials}
-  layout="carousel"
+  items={sampleTestimonials}
+  layout="grid"
   cols={3}
-  autoplay
-  autoplayDelay={5000}
 />`}
       />
 
       <DocsComponent
-        title="Split: Featured Aside"
-        description="A layout focusing emphasis on a major client story with a larger card, alongside a secondary grid of supporting reviews."
+        title="Infinite Marquee Scroll"
+        description="An infinite scrolling marquee of customer reviews powered by react-fast-marquee. Perfect for landing pages."
         preview={
-          <div className="w-full">
+          <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
             <Testimonials
               items={sampleTestimonials}
-              layout="split"
-              splitVariant="featured-aside"
+              layout="marquee"
+              speed={40}
+              pauseOnHover={true}
             />
           </div>
         }
-        code={`<Testimonials items={testimonials} layout="split" splitVariant="featured-aside" />`}
+        code={`<Testimonials
+  items={sampleTestimonials}
+  layout="marquee"
+  speed={40}
+  pauseOnHover={true}
+/>`}
       />
 
       <DocsComponent
-        title="Split: Quote & Author"
-        description="An editorial-style layout showing a large, single high-impact quote on one side, and corresponding author details on the other."
+        title="Carousel Slider"
+        description="Depict reviews inside a draggable slideshow with arrow navigation and pagination dot overlays."
         preview={
-          <div className="w-full">
+          <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
             <Testimonials
               items={sampleTestimonials}
-              layout="split"
-              splitVariant="quote-author"
+              layout="carousel"
+              cols={3}
+              autoplay={true}
+              autoplayDelay={3000}
             />
           </div>
         }
-        code={`<Testimonials items={testimonials} layout="split" splitVariant="quote-author" />`}
+        code={`<Testimonials
+  items={sampleTestimonials}
+  layout="carousel"
+  cols={3}
+  autoplay={true}
+/>`}
       />
 
-      <AccessibilityCard
-        features={[
-          "Accessible star rating descriptions through semantic aria-labels.",
-          "Keyboard navigation support for sliding carousel buttons.",
-          "Aria-regions defined for carousel slides for screen reader readability.",
-        ]}
+      <DocsComponent
+        title="Split Featured Layout"
+        description="Highlight a main featured testimonial on the left side while displaying supporting secondary reviews on the right."
+        preview={
+          <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
+            <Testimonials items={sampleTestimonials} layout="split" />
+          </div>
+        }
+        code={`<Testimonials
+  items={sampleTestimonials}
+  layout="split"
+/>`}
       />
 
-      <DocsPagination
-        prevPage={{ name: "Tabs", href: "/components/tabs" }}
-        nextPage={{ name: "Textarea", href: "/components/textarea" }}
-      />
+      <div className="pt-4">
+        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
+        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
+          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
+            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
+              <tr>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Prop
+                </th>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Type
+                </th>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Default
+                </th>
+                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  layout
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">
+                  "grid" | "masonry" | "carousel" | "split" | "marquee"
+                </td>
+                <td className="px-4 py-3 font-mono">"grid"</td>
+                <td className="px-4 py-3">
+                  Organizes reviews in grid, masonry, split, slider, or marquee
+                  layouts.
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
+                  speed
+                </td>
+                <td className="px-4 py-3 font-mono text-primary">number</td>
+                <td className="px-4 py-3 font-mono">40</td>
+                <td className="px-4 py-3">
+                  Marquee layout infinite movement speed index.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <DocsPagination />
     </div>
   );
 }

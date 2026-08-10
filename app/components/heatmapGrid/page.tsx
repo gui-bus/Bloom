@@ -202,10 +202,7 @@ export default function HeatmapGridPage() {
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Event Calendar", href: "/components/eventCalendar" }}
-        next={{ title: "Image Cropper", href: "/components/imageCropper" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

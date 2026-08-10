@@ -405,10 +405,7 @@ export default function ConfettiPage() {
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Timeline", href: "/components/timeline" }}
-        next={{ title: "Tour Guide", href: "/components/tour" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

@@ -11,7 +11,6 @@ export interface Logo {
   logo: React.ReactNode;
 }
 
-// 8 custom SVG logoipsum partners that look clean and modern
 const DEFAULT_LOGOS: Logo[] = [
   {
     id: "designo",
@@ -216,19 +215,17 @@ const DEFAULT_LOGOS: Logo[] = [
   },
 ];
 
-export interface LogoCloudsProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LogoCloudsProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   variant?: "marquee" | "grid" | "swap";
   logos?: Logo[];
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
-  // Marquee-specific options
   speed?: number;
   direction?: "left" | "right";
   pauseOnHover?: boolean;
   gradient?: boolean;
-  // Grid-specific options
   cols?: 2 | 3 | 4 | 5 | 6;
-  // Swap-specific options
   swapCount?: number;
   interval?: number;
 }
@@ -248,50 +245,28 @@ export function LogoClouds({
   className,
   ...props
 }: LogoCloudsProps) {
-  // Setup state for swap animation
-  const [visibleLogos, setVisibleLogos] = React.useState<Logo[]>([]);
-  const [pool, setPool] = React.useState<Logo[]>([]);
+  const [batchIndex, setBatchIndex] = React.useState(0);
 
-  // Initialize swap state when logos change or mount
+  const activeCount = Math.min(swapCount, logos.length);
+  const totalBatches = Math.ceil(logos.length / activeCount);
+
   React.useEffect(() => {
-    if (variant === "swap") {
-      const activeCount = Math.min(swapCount, logos.length);
-      setVisibleLogos(logos.slice(0, activeCount));
-      setPool(logos.slice(activeCount));
-    }
-  }, [variant, logos, swapCount]);
-
-  // Periodic swap animation trigger
-  React.useEffect(() => {
-    if (variant !== "swap" || visibleLogos.length === 0 || pool.length === 0)
-      return;
-
+    if (variant !== "swap") return;
     const timer = setInterval(() => {
-      setVisibleLogos((currentVisible) => {
-        const currentPool = [...pool];
-        if (currentPool.length === 0) return currentVisible;
-
-        // Choose a random slot to replace
-        const indexToSwap = Math.floor(Math.random() * currentVisible.length);
-        // Choose a random logo from the pool
-        const poolIndex = Math.floor(Math.random() * currentPool.length);
-        const nextLogo = currentPool[poolIndex];
-
-        // Perform swap
-        const prevLogo = currentVisible[indexToSwap];
-        const nextVisible = [...currentVisible];
-        nextVisible[indexToSwap] = nextLogo;
-
-        // Update the pool
-        currentPool[poolIndex] = prevLogo;
-        setPool(currentPool);
-
-        return nextVisible;
-      });
+      setBatchIndex((prev) => (prev + 1) % totalBatches);
     }, interval);
-
     return () => clearInterval(timer);
-  }, [variant, pool, interval, visibleLogos.length]);
+  }, [variant, totalBatches, interval]);
+
+  const visibleLogos = React.useMemo(() => {
+    if (variant !== "swap") return [];
+    const startIdx = (batchIndex * activeCount) % logos.length;
+    const slice = logos.slice(startIdx, startIdx + activeCount);
+    if (slice.length < activeCount) {
+      return [...slice, ...logos.slice(0, activeCount - slice.length)];
+    }
+    return slice;
+  }, [variant, batchIndex, activeCount, logos]);
 
   const gridColsClass = {
     2: "grid-cols-2",
@@ -376,7 +351,7 @@ export function LogoClouds({
                 4: "grid-cols-2 md:grid-cols-4",
                 5: "grid-cols-2 md:grid-cols-5",
                 6: "grid-cols-3 md:grid-cols-6",
-              }[Math.min(swapCount, 6) as 2 | 3 | 4 | 5 | 6],
+              }[Math.min(activeCount, 6) as 2 | 3 | 4 | 5 | 6],
             )}
           >
             {visibleLogos.map((logo, index) => (
@@ -390,7 +365,7 @@ export function LogoClouds({
                     initial={{ opacity: 0, y: 12, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -12, scale: 0.95 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                     className="absolute inset-0 flex items-center justify-center p-6"
                   >
                     {logo.logo}

@@ -70,7 +70,6 @@ export default function AudioRecorderPage() {
           <div className="w-full max-w-sm">
             <AudioRecorder
               onStop={(blob, url) => setRecordedAudio({ blob, url })}
-              placeholder="Record a voice clip"
             />
             {recordedAudio && (
               <div className="mt-4 p-3 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/40 rounded-lg text-xs font-mono text-zinc-500 dark:text-zinc-400">
@@ -207,10 +206,7 @@ export default function AudioRecorderPage() {
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Tour Guide", href: "/components/tour" }}
-        next={{ title: "Transfer List", href: "/components/transferList" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

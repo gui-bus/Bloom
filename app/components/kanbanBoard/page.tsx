@@ -293,10 +293,7 @@ const handleCardMove = (cardId, targetColumnId) => {
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Signature Input", href: "/components/signatureInput" }}
-        next={{ title: "Diff Viewer", href: "/components/diffViewer" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

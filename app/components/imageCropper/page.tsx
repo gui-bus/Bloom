@@ -158,10 +158,7 @@ export default function ImageCropperPage() {
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Hover Card", href: "/components/hoverCard" }}
-        next={{ title: "Input", href: "/components/input" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

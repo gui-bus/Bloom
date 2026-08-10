@@ -244,9 +244,7 @@ const [right, setRight] = React.useState([
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Audio Recorder", href: "/components/audioRecorder" }}
-      />
+      <DocsPagination />
     </div>
   );
 }

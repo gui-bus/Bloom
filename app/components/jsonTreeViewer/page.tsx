@@ -131,10 +131,7 @@ export default function JsonTreeViewerPage() {
         </div>
       </div>
 
-      <DocsPagination
-        prev={{ title: "Interactive Map", href: "/components/interactiveMap" }}
-        next={{ title: "Kanban Board", href: "/components/kanbanBoard" }}
-      />
+      <DocsPagination />
     </div>
   );
 }
