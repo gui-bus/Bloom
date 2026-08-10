@@ -111,11 +111,12 @@ graph TB
 
 ---
 
-## 🚀 Componentes Implementados (74 Componentes)
+## 🚀 Componentes Implementados (82 Componentes)
 
 | Componente | Categoria | Descrição |
 | :--- | :--- | :--- |
 | **Autocomplete** | Inputs & Controles | Campo de busca com sugestões de autocompletar dinâmicas. |
+| **Audio Recorder** | Inputs & Controles | Gravador de áudio interativo com visualizador de ondas e download de arquivo. |
 | **Button** | Inputs & Controles | Ripple effect interno, estados loading/disabled, tamanhos, cores e polimorfismo. |
 | **Button Group** | Inputs & Controles | Junção fluida de múltiplos botões com propagação automática de propriedades. |
 | **Checkbox** | Inputs & Controles | Caixa de seleção acessível com suporte a estados indisponíveis e cartões selecionáveis. |
@@ -136,12 +137,15 @@ graph TB
 | **Rating** | Inputs & Controles | Avaliação por estrelas com suporte a seleção fracionada e valores customizados. |
 | **Rich Text Editor** | Inputs & Controles | Editor de texto rico (WYSIWYG) baseado em Tiptap. |
 | **Select** | Inputs & Controles | Menu de seleção suspenso com grupos, busca e opções estilizadas. |
+| **Signature Input** | Inputs & Controles | Campo de desenho de assinatura manuscrita com opções de cor, traço e exportação em PNG/SVG. |
 | **Slider** | Inputs & Controles | Controle deslizante para seleção de intervalos ou valores numéricos. |
 | **Switch** | Inputs & Controles | Interruptor de alternância ligar/desligar com suporte a cores, tamanhos e modo card. |
+| **Tag Input** | Inputs & Controles | Entrada de tags dinâmicas com autocompletar, limites, duplicações e validações customizadas. |
 | **Textarea** | Inputs & Controles | Campo de texto multilinha com auto-expansão de altura e contador de caracteres. |
 | **Time Picker** | Inputs & Controles | Seletor de horário com suporte a colunas deslizantes e modo 12h/24h. |
 | **Toggle** | Inputs & Controles | Botão de alternância de dois estados com estilos default, outline e flat. |
 | **Toggle Group** | Inputs & Controles | Grupo de alternância segmentado para seleção única ou múltipla. |
+| **Transfer List** | Inputs & Controles | Lista de transferência dupla para mover itens de forma interativa com filtros de busca. |
 | **Tabs** | Navegação | Abas animadas sincronizadas com `framer-motion` em múltiplos estilos. |
 | **Breadcrumb** | Navegação | Trilha hierárquica acessível com ícones e suporte a `DropdownMenu` na elipse. |
 | **Command** | Navegação | Paleta de busca e comandos global rápida acessível via teclado. |
@@ -155,6 +159,7 @@ graph TB
 | **Alert Dialog** | Overlays & Feedback | Modal de confirmação crítico com bloqueio de ações irreversíveis. |
 | **Banner** | Overlays & Feedback | Faixas de anúncios ou avisos globais fixados no topo/base do layout. |
 | **Context Menu** | Overlays & Feedback | Menu contextual sob clique direito acessível com suporte a submenus. |
+| **Confetti** | Overlays & Feedback | Componente de animação comemorativa de partículas físicas baseada em presets. |
 | **Dialog** | Overlays & Feedback | Janela modal sobreposta acessível via Radix Dialog. |
 | **Drawer** | Overlays & Feedback | Painel deslizante inferior/lateral mantendo a largura máxima do layout de 110rem. |
 | **Dropdown Menu** | Overlays & Feedback | Menu suspenso flutuante com itens, grupos, separadores e atalhos de teclado. |
@@ -163,6 +168,7 @@ graph TB
 | **Sheet** | Overlays & Feedback | Painel lateral absolute flutuante com opções de backdrop blur, dark e light. |
 | **Toast** | Overlays & Feedback | Popover glassmorphic de notificação com barras laterais de status e ações. |
 | **Tooltip** | Overlays & Feedback | Rótulo explicativo flutuante com indicador de seta para elements interativos. |
+| **Tour** | Overlays & Feedback | Assistente interativo de onboarding com spotlights responsivos e celebração. |
 | **Accordion** | Layout & Exibição | Lista de seções expansíveis/recolhíveis via Radix com rotação animada. |
 | **Aspect Ratio** | Layout & Exibição | Contêiner de proporção fixa para mídia responsiva. |
 | **Avatar / Avatar Group** | Layout & Exibição | Foto de perfil com fallback de iniciais e pilha de avatares com contador. |
@@ -173,7 +179,9 @@ graph TB
 | **Code Block** | Layout & Exibição | Bloco de código com destaque de sintaxe, cópia com um clique e tags. |
 | **Collapsible** | Layout & Exibição | Elemento expansível/recolhível com animação suave de altura. |
 | **Data Table** | Layout & Exibição | Tabela de dados avançada com ordenação, filtros e paginação. |
+| **Diff Viewer** | Layout & Exibição | Visualizador comparativo de diferenças de código (Diff) em modos lado a lado ou linha por linha. |
 | **Image** | Layout & Exibição | Imagem responsiva com fallbacks de carregamento e efeitos visuais. |
+| **Kanban Board** | Layout & Exibição | Quadro Kanban interativo com colunas arrastáveis, tarefas, e limites WIP. |
 | **List** | Layout & Exibição | Lista ordenada e não ordenada com suporte a ícones e divisores. |
 | **Progress** | Layout & Exibição | Barra de progresso linear animada para status de tarefas. |
 | **Resizable** | Layout & Exibição | Painéis redimensionáveis com divisores arrastáveis via `react-resizable-panels`. |

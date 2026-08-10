@@ -16,6 +16,10 @@
     "dependencies": ["@radix-ui/react-aspect-ratio"]
   },
   {
+    "name": "audioRecorder",
+    "dependencies": ["@iconify/react"]
+  },
+  {
     "name": "autocomplete",
     "dependencies": ["@iconify/react"]
   },
@@ -88,6 +92,10 @@
     "dependencies": ["cmdk", "lucide-react"]
   },
   {
+    "name": "confetti",
+    "dependencies": []
+  },
+  {
     "name": "contextMenu",
     "dependencies": ["@radix-ui/react-context-menu", "lucide-react"]
   },
@@ -102,6 +110,10 @@
   {
     "name": "dialog",
     "dependencies": ["@radix-ui/react-dialog", "lucide-react"]
+  },
+  {
+    "name": "diffViewer",
+    "dependencies": []
   },
   {
     "name": "drawer",
@@ -142,6 +154,10 @@
   {
     "name": "inputOtp",
     "dependencies": ["input-otp"]
+  },
+  {
+    "name": "kanbanBoard",
+    "dependencies": ["@iconify/react"]
   },
   {
     "name": "kbd",
@@ -236,6 +252,10 @@
     ]
   },
   {
+    "name": "signatureInput",
+    "dependencies": ["@iconify/react"]
+  },
+  {
     "name": "skeleton",
     "dependencies": []
   },
@@ -272,6 +292,10 @@
     ]
   },
   {
+    "name": "tagInput",
+    "dependencies": ["@iconify/react", "class-variance-authority"]
+  },
+  {
     "name": "textarea",
     "dependencies": ["class-variance-authority"]
   },
@@ -298,6 +322,14 @@
   {
     "name": "tooltip",
     "dependencies": ["@radix-ui/react-tooltip"]
+  },
+  {
+    "name": "tour",
+    "dependencies": []
+  },
+  {
+    "name": "transferList",
+    "dependencies": ["@iconify/react"]
   },
   {
     "name": "treeView",

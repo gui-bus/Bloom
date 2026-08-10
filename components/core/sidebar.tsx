@@ -76,6 +76,7 @@ export function Sidebar() {
         { href: "/components/avatar", label: "Avatar" },
         { href: "/components/avatarGroup", label: "Avatar Group" },
         { href: "/components/aspectRatio", label: "Aspect Ratio" },
+        { href: "/components/audioRecorder", label: "Audio Recorder" },
         { href: "/components/badge", label: "Badge" },
         { href: "/components/banner", label: "Banner" },
         { href: "/components/breadcrumb", label: "Breadcrumb" },
@@ -87,6 +88,7 @@ export function Sidebar() {
         { href: "/components/checkbox", label: "Checkbox" },
         { href: "/components/codeBlock", label: "Code Block" },
         { href: "/components/collapsible", label: "Collapsible" },
+        { href: "/components/confetti", label: "Confetti" },
         { href: "/components/colorPicker", label: "Color Picker" },
         { href: "/components/colorSwatches", label: "Color Swatches" },
         { href: "/components/combobox", label: "Combobox" },
@@ -95,6 +97,7 @@ export function Sidebar() {
         { href: "/components/dataTable", label: "Data Table" },
         { href: "/components/datePicker", label: "Date Picker" },
         { href: "/components/dialog", label: "Dialog" },
+        { href: "/components/diffViewer", label: "Diff Viewer" },
         { href: "/components/drawer", label: "Drawer" },
         { href: "/components/dropdownMenu", label: "Dropdown Menu" },
         { href: "/components/fileUpload", label: "File Upload" },
@@ -105,6 +108,7 @@ export function Sidebar() {
         { href: "/components/image", label: "Image" },
         { href: "/components/input", label: "Input" },
         { href: "/components/inputOtp", label: "Input OTP" },
+        { href: "/components/kanbanBoard", label: "Kanban Board" },
         { href: "/components/kbd", label: "Kbd" },
         { href: "/components/label", label: "Label" },
         { href: "/components/link", label: "Link" },
@@ -125,6 +129,7 @@ export function Sidebar() {
         { href: "/components/select", label: "Select" },
         { href: "/components/separator", label: "Separator" },
         { href: "/components/sheet", label: "Sheet" },
+        { href: "/components/signatureInput", label: "Signature Input" },
         { href: "/components/skeleton", label: "Skeleton" },
         { href: "/components/slider", label: "Slider" },
         { href: "/components/spinner", label: "Spinner" },
@@ -133,6 +138,7 @@ export function Sidebar() {
         { href: "/components/switch", label: "Switch" },
         { href: "/components/table", label: "Table" },
         { href: "/components/tabs", label: "Tabs" },
+        { href: "/components/tagInput", label: "Tag Input" },
         { href: "/components/textarea", label: "Textarea" },
         { href: "/components/timeline", label: "Timeline" },
         { href: "/components/timePicker", label: "Time Picker" },
@@ -140,6 +146,8 @@ export function Sidebar() {
         { href: "/components/toggle", label: "Toggle" },
         { href: "/components/toggleGroup", label: "Toggle Group" },
         { href: "/components/tooltip", label: "Tooltip" },
+        { href: "/components/tour", label: "Tour Guide" },
+        { href: "/components/transferList", label: "Transfer List" },
         { href: "/components/treeView", label: "Tree View" },
         { href: "/components/typography", label: "Typography" },
         { href: "/components/virtualizedList", label: "Virtualized List" },
@@ -183,6 +191,8 @@ export function Sidebar() {
           placeholder="Search documentation..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          isClearable={true}
+          onClear={() => setSearchQuery("")}
           startContent={<Search className="size-3.5 text-zinc-400" />}
         />
       </div>
