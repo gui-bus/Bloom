@@ -86,7 +86,6 @@ export function Sidebar() {
         { href: "/components/carousel", label: "Carousel" },
         { href: "/components/chart", label: "Chart" },
         { href: "/components/checkbox", label: "Checkbox" },
-        { href: "/components/circularProgress", label: "Circular Progress" },
         { href: "/components/codeBlock", label: "Code Block" },
         { href: "/components/collapsible", label: "Collapsible" },
         { href: "/components/confetti", label: "Confetti" },

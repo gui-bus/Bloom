@@ -68,10 +68,6 @@
     "dependencies": ["@radix-ui/react-checkbox", "class-variance-authority"]
   },
   {
-    "name": "circularProgress",
-    "dependencies": []
-  },
-  {
     "name": "codeBlock",
     "dependencies": ["highlight.js", "framer-motion", "@iconify/react"]
   },
