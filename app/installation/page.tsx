@@ -127,7 +127,7 @@ export default function InstallationPage() {
               <CodeBlock
                 variant="mac"
                 componentName="App.tsx"
-                language="tsx"
+                language="typescript"
                 code={`import { Button, TableOfContents, Snippet } from "@bloomui/react";
 
 export default function App() {
