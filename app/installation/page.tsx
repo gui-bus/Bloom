@@ -1,7 +1,7 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { CodeBlock } from "@/components/core/codeBlock";
+import { CodeBlock as PublicCodeBlock } from "@/components/ui/codeBlock/codeBlock";
 import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { Terminal, type TerminalLine } from "@/components/ui/terminal/terminal";
@@ -124,7 +124,7 @@ export default function InstallationPage() {
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 Import any component directly from <code className="text-sky-500 font-mono">@bloomui/react</code>:
               </p>
-              <CodeBlock
+              <PublicCodeBlock
                 variant="mac"
                 componentName="App.tsx"
                 language="typescript"
