@@ -1,7 +1,10 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import * as React from "react";
 import { designRadius } from "@/lib/design-system";
+import { Ripple } from "@/lib/ripple/ripple";
+import { useRipples } from "@/lib/ripple/useRipple";
 import { cn } from "@/lib/utils";
 
 type CardColor =
@@ -26,11 +29,12 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: CardVariant;
   color?: CardColor;
   radius?: keyof typeof designRadius;
-  orientation?: "vertical" | "horizontal";
   isHoverable?: boolean;
   isPressable?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
+  disableRipple?: boolean;
+  backgroundIcon?: string;
   children?: React.ReactNode;
 }
 
@@ -142,16 +146,35 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       variant = "default",
       color = "default",
       radius = "xl",
-      orientation = "vertical",
       isHoverable = false,
       isPressable = false,
       isDisabled = false,
       isLoading = false,
+      disableRipple = false,
+      backgroundIcon,
+      onClick,
       children,
       ...props
     },
     ref,
   ) => {
+    const { ripples, addRipple, removeRipple } = useRipples();
+
+    const handleClick = React.useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (isDisabled || isLoading) return;
+
+        if (isPressable && !disableRipple) {
+          const rect = e.currentTarget.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          addRipple(e.clientX - rect.left, e.clientY - rect.top, size);
+        }
+
+        onClick?.(e);
+      },
+      [isPressable, isDisabled, isLoading, disableRipple, addRipple, onClick],
+    );
+
     return (
       <div
         ref={ref}
@@ -159,17 +182,15 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         role={isPressable ? "button" : undefined}
         aria-disabled={isDisabled || isLoading ? true : undefined}
         aria-busy={isLoading || undefined}
+        onClick={handleClick}
         className={cn(
-          "relative overflow-hidden transition-all duration-200",
-          orientation === "horizontal"
-            ? "flex flex-col sm:flex-row sm:items-center"
-            : "flex flex-col",
+          "group relative overflow-hidden flex flex-col justify-between transition-all duration-200 select-none",
           designRadius[radius],
           cardColorMap[color][variant],
           isHoverable &&
             !isDisabled &&
             !isLoading &&
-            "hover:-translate-y-0.5 hover:shadow-lg",
+            "hover:-translate-y-0.5 hover:shadow-lg hover:border-zinc-300 dark:hover:border-zinc-700",
           isPressable &&
             !isDisabled &&
             !isLoading &&
@@ -180,12 +201,31 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         )}
         {...props}
       >
+        {backgroundIcon && (
+          <Icon
+            icon={backgroundIcon}
+            className="absolute -right-3 -bottom-3 size-28 text-zinc-900/[0.04] dark:text-zinc-100/[0.03] group-hover:scale-110 group-hover:text-zinc-900/[0.07] dark:group-hover:text-zinc-100/[0.06] transition-all duration-300 pointer-events-none select-none"
+          />
+        )}
         {isLoading && (
           <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/50 dark:bg-zinc-900/50 backdrop-blur-[1px]">
             <div className="size-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
           </div>
         )}
-        {children}
+        <div className="relative z-10 w-full flex flex-col flex-1 justify-between">
+          {children}
+        </div>
+        {isPressable &&
+          !disableRipple &&
+          ripples.map((r) => (
+            <Ripple
+              key={r.id}
+              x={r.x}
+              y={r.y}
+              size={r.size}
+              onComplete={() => removeRipple(r.id)}
+            />
+          ))}
       </div>
     );
   },

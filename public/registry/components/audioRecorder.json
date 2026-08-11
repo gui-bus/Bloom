@@ -1,6 +1,8 @@
 {
   "name": "audioRecorder",
-  "dependencies": ["@iconify/react"],
+  "dependencies": [
+    "@iconify/react"
+  ],
   "files": [
     {
       "name": "audioRecorder.tsx",

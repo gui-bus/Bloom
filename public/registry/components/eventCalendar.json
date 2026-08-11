@@ -1,6 +1,8 @@
 {
   "name": "eventCalendar",
-  "dependencies": ["@iconify/react"],
+  "dependencies": [
+    "@iconify/react"
+  ],
   "files": [
     {
       "name": "eventCalendar.tsx",

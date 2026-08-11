@@ -164,6 +164,7 @@ export function Sidebar() {
         { href: "/components/logoClouds", label: "Logo Clouds" },
         { href: "/components/mentionTextarea", label: "Mention Textarea" },
         { href: "/components/signatureInput", label: "Signature Input" },
+        { href: "/components/terminal", label: "Terminal" },
         { href: "/components/testimonials", label: "Testimonials" },
         { href: "/components/tour", label: "Tour Guide" },
       ],

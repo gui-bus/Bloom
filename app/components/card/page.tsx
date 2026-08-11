@@ -301,8 +301,8 @@ export default function CardComponentPage() {
       />
 
       <DocsComponent
-        title="Interactive Cards"
-        description="Use 'isHoverable' and 'isPressable' to create interactive cards with hover translation and active press micro-animations."
+        title="Interactive Cards & Ripple Effect"
+        description="Use 'isHoverable' for subtle hover translations and 'isPressable' to enable click press feedback with an animated water ripple effect. Ripple can be disabled using 'disableRipple'."
         preview={
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Card isHoverable className="w-full">
@@ -320,11 +320,11 @@ export default function CardComponentPage() {
             <Card isPressable isHoverable className="w-full">
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle>Pressable Card</CardTitle>
+                  <CardTitle>Pressable with Ripple</CardTitle>
                   <Badge color="success">Click Me</Badge>
                 </div>
                 <CardDescription>
-                  Scales down on click/press feedback.
+                  Click to trigger fluid water ripple feedback animation.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -337,17 +337,17 @@ export default function CardComponentPage() {
     </CardHeader>
   </Card>
 
-  <Card isPressable isHoverable>
+  <Card isPressable isHoverable disableRipple={false}>
     <CardHeader>
-      <CardTitle>Pressable Card</CardTitle>
+      <CardTitle>Pressable with Ripple</CardTitle>
     </CardHeader>
   </Card>
 </div>`}
-        props={["isHoverable: boolean", "isPressable: boolean"]}
+        props={["isHoverable: boolean", "isPressable: boolean", "disableRipple: boolean"]}
       />
 
       <DocsComponent
-        title="Loading State (isLoading)"
+        title="Loading State"
         description="Pass 'isLoading' to render a clean backdrop overlay and animated spinner during data fetching."
         preview={
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -388,36 +388,47 @@ export default function CardComponentPage() {
       />
 
       <DocsComponent
-        title="Horizontal Orientation"
-        description="Pass 'orientation=&quot;horizontal&quot;' to switch from vertical column stacking to responsive side-by-side flex layout."
+        title="Background Icon Watermark"
+        description="Pass 'backgroundIcon' to display a watermark icon aligned at the bottom-right corner of the card container."
         preview={
-          <div className="w-full">
-            <Card orientation="horizontal" className="w-full">
-              <CardHeader className="sm:w-1/3">
-                <CardTitle>Horizontal Card</CardTitle>
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Card backgroundIcon="hugeicons:source-code" isHoverable>
+              <CardHeader>
+                <CardTitle>Complete Ownership</CardTitle>
                 <CardDescription>
-                  Header section aligned on the left side on desktop screens.
+                  Copy full source code directly into your repository.
                 </CardDescription>
               </CardHeader>
-              <CardBody className="sm:w-2/3 pt-6 sm:pt-0">
-                <p>
-                  Horizontal card layout is ideal for media items, search
-                  results, compact dashboard summaries, and product listings.
-                </p>
-              </CardBody>
+            </Card>
+
+            <Card backgroundIcon="hugeicons:paint-board" isHoverable>
+              <CardHeader>
+                <CardTitle>Neutral Architecture</CardTitle>
+                <CardDescription>
+                  Standardized neutral palette with light and dark theme tokens.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card backgroundIcon="hugeicons:flash" isHoverable>
+              <CardHeader>
+                <CardTitle>Micro-Interactions</CardTitle>
+                <CardDescription>
+                  Subtle, fluid motion powered by Framer Motion.
+                </CardDescription>
+              </CardHeader>
             </Card>
           </div>
         }
-        code={`<Card orientation="horizontal" className="w-full">
-  <CardHeader className="sm:w-1/3">
-    <CardTitle>Horizontal Card</CardTitle>
-    <CardDescription>Header section aligned on left side.</CardDescription>
+        code={`<Card backgroundIcon="hugeicons:source-code" isHoverable>
+  <CardHeader>
+    <CardTitle>Complete Ownership</CardTitle>
+    <CardDescription>
+      Copy full source code directly into your repository.
+    </CardDescription>
   </CardHeader>
-  <CardBody className="sm:w-2/3 pt-6 sm:pt-0">
-    <p>Horizontal layout content section.</p>
-  </CardBody>
 </Card>`}
-        props={["orientation: 'vertical' | 'horizontal'"]}
+        props={["backgroundIcon: string"]}
       />
 
       <AccessibilityCard />
@@ -471,16 +482,14 @@ export default function CardComponentPage() {
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">
-                    orientation
+                    backgroundIcon
                   </td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'vertical' | 'horizontal'
+                    string
                   </td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    'vertical'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Layout direction helper for stacking or row layout.
+                    Iconify icon string to render as a background watermark overlay in the bottom-right corner.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -515,8 +524,19 @@ export default function CardComponentPage() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Enables active press animations and interactive button role
-                    accessibility.
+                    Enables active press animations, ripple feedback, and interactive button role accessibility.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">
+                    disableRipple
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Disables click water ripple effect on pressable cards.
                   </td>
                 </tr>
                 <tr className="border-b border-border">

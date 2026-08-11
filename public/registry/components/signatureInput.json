@@ -1,6 +1,8 @@
 {
   "name": "signatureInput",
-  "dependencies": ["@iconify/react"],
+  "dependencies": [
+    "@iconify/react"
+  ],
   "files": [
     {
       "name": "signatureInput.tsx",

@@ -1,6 +1,9 @@
 {
   "name": "checkbox",
-  "dependencies": ["@radix-ui/react-checkbox", "class-variance-authority"],
+  "dependencies": [
+    "@radix-ui/react-checkbox",
+    "class-variance-authority"
+  ],
   "files": [
     {
       "name": "checkbox.tsx",

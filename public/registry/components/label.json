@@ -1,6 +1,9 @@
 {
   "name": "label",
-  "dependencies": ["@radix-ui/react-label", "class-variance-authority"],
+  "dependencies": [
+    "@radix-ui/react-label",
+    "class-variance-authority"
+  ],
   "files": [
     {
       "name": "label.tsx",

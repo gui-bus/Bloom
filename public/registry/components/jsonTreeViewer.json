@@ -1,6 +1,8 @@
 {
   "name": "jsonTreeViewer",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "files": [
     {
       "name": "jsonTreeViewer.tsx",

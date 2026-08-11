@@ -74,8 +74,6 @@ export function TableOfContents() {
     return () => observer.disconnect();
   }, [items, setSectionParam]);
 
-  if (items.length === 0) return null;
-
   const handleClick = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -87,31 +85,34 @@ export function TableOfContents() {
 
   return (
     <aside className="hidden lg:block w-64 shrink-0 px-4 py-8 sticky top-8 h-[calc(100vh-4rem)] overflow-y-auto select-none">
-      <div className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
-          On this page
-        </p>
+      {items.length > 0 && (
+        <div className="space-y-3">
+          <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+            On this page
+          </p>
 
-        <nav className="space-y-1 text-xs border-l border-zinc-200 dark:border-zinc-800 pl-3">
-          {items.map((item) => {
-            const isActive = activeId === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleClick(item.id)}
-                className={cn(
-                  "block w-full text-left py-1 transition-all duration-200 truncate cursor-pointer",
-                  isActive
-                    ? "text-sky-600 dark:text-sky-400 font-semibold -ml-3.5 pl-3 border-l-2 border-sky-500"
-                    : "text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200",
-                )}
-              >
-                {item.title}
-              </button>
-            );
-          })}
-        </nav>
-      </div>
+          <nav className="space-y-1 text-xs border-l border-zinc-200 dark:border-zinc-800 pl-3">
+            {items.map((item) => {
+              const isActive = activeId === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleClick(item.id)}
+                  className={cn(
+                    "block w-full text-left py-1 transition-all duration-200 truncate cursor-pointer",
+                    isActive
+                      ? "text-sky-600 dark:text-sky-400 font-semibold -ml-3.5 pl-3 border-l-2 border-sky-500"
+                      : "text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200",
+                  )}
+                >
+                  {item.title}
+                </button>
+              );
+            })}
+          </nav>
+        </div>
+      )}
     </aside>
   );
 }
+

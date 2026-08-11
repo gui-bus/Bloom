@@ -3,21 +3,27 @@
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import * as React from "react";
 
-export const docNavigationList = [
+export interface DocNavItem {
+  href: string;
+  label: string;
+}
+
+export const overviewNavigationList: DocNavItem[] = [
   { href: "/", label: "Introduction" },
   { href: "/installation", label: "Installation" },
+];
+
+export const componentsNavigationList: DocNavItem[] = [
   { href: "/components/accordion", label: "Accordion" },
   { href: "/components/alert", label: "Alert" },
   { href: "/components/alertDialog", label: "Alert Dialog" },
+  { href: "/components/aspectRatio", label: "Aspect Ratio" },
   { href: "/components/avatar", label: "Avatar" },
   { href: "/components/avatarGroup", label: "Avatar Group" },
-  { href: "/components/aspectRatio", label: "Aspect Ratio" },
-  { href: "/components/audioRecorder", label: "Audio Recorder" },
-  { href: "/components/autocomplete", label: "Autocomplete" },
   { href: "/components/badge", label: "Badge" },
   { href: "/components/banner", label: "Banner" },
-  { href: "/components/bentoGrid", label: "Bento Grid" },
   { href: "/components/breadcrumb", label: "Breadcrumb" },
   { href: "/components/button", label: "Button" },
   { href: "/components/buttonGroup", label: "Button Group" },
@@ -27,7 +33,6 @@ export const docNavigationList = [
   { href: "/components/checkbox", label: "Checkbox" },
   { href: "/components/codeBlock", label: "Code Block" },
   { href: "/components/collapsible", label: "Collapsible" },
-  { href: "/components/confetti", label: "Confetti" },
   { href: "/components/colorPicker", label: "Color Picker" },
   { href: "/components/colorSwatches", label: "Color Swatches" },
   { href: "/components/combobox", label: "Combobox" },
@@ -36,30 +41,21 @@ export const docNavigationList = [
   { href: "/components/dataTable", label: "Data Table" },
   { href: "/components/datePicker", label: "Date Picker" },
   { href: "/components/dialog", label: "Dialog" },
-  { href: "/components/diffViewer", label: "Diff Viewer" },
   { href: "/components/drawer", label: "Drawer" },
   { href: "/components/dropdownMenu", label: "Dropdown Menu" },
-  { href: "/components/eventCalendar", label: "Event Calendar" },
   { href: "/components/fileExplorer", label: "File Explorer" },
   { href: "/components/fileUpload", label: "File Upload" },
   { href: "/components/filterBuilder", label: "Filter Builder" },
   { href: "/components/form", label: "Form" },
   { href: "/components/formField", label: "Form Field" },
-  { href: "/components/ganttChart", label: "Gantt Chart" },
-  { href: "/components/heatmapGrid", label: "Heatmap Grid" },
   { href: "/components/hoverCard", label: "Hover Card" },
   { href: "/components/image", label: "Image" },
-  { href: "/components/imageCropper", label: "Image Cropper" },
   { href: "/components/input", label: "Input" },
   { href: "/components/inputOtp", label: "Input OTP" },
-  { href: "/components/jsonTreeViewer", label: "JSON Tree Viewer" },
-  { href: "/components/kanbanBoard", label: "Kanban Board" },
   { href: "/components/kbd", label: "Kbd" },
   { href: "/components/label", label: "Label" },
   { href: "/components/link", label: "Link" },
   { href: "/components/list", label: "List" },
-  { href: "/components/logoClouds", label: "Logo Clouds" },
-  { href: "/components/mentionTextarea", label: "Mention Textarea" },
   { href: "/components/menubar", label: "Menubar" },
   { href: "/components/multiSelect", label: "Multi Select" },
   { href: "/components/navigationMenu", label: "Navigation Menu" },
@@ -76,7 +72,6 @@ export const docNavigationList = [
   { href: "/components/select", label: "Select" },
   { href: "/components/separator", label: "Separator" },
   { href: "/components/sheet", label: "Sheet" },
-  { href: "/components/signatureInput", label: "Signature Input" },
   { href: "/components/skeleton", label: "Skeleton" },
   { href: "/components/slider", label: "Slider" },
   { href: "/components/spinner", label: "Spinner" },
@@ -86,7 +81,6 @@ export const docNavigationList = [
   { href: "/components/table", label: "Table" },
   { href: "/components/tabs", label: "Tabs" },
   { href: "/components/tagInput", label: "Tag Input" },
-  { href: "/components/testimonials", label: "Testimonials" },
   { href: "/components/textarea", label: "Textarea" },
   { href: "/components/timeline", label: "Timeline" },
   { href: "/components/timePicker", label: "Time Picker" },
@@ -94,26 +88,65 @@ export const docNavigationList = [
   { href: "/components/toggle", label: "Toggle" },
   { href: "/components/toggleGroup", label: "Toggle Group" },
   { href: "/components/tooltip", label: "Tooltip" },
-  { href: "/components/tour", label: "Tour" },
   { href: "/components/transferList", label: "Transfer List" },
   { href: "/components/treeView", label: "Tree View" },
   { href: "/components/typography", label: "Typography" },
   { href: "/components/virtualizedList", label: "Virtualized List" },
 ];
 
-export function DocsPagination() {
+export const blocksNavigationList: DocNavItem[] = [
+  { href: "/components/audioRecorder", label: "Audio Recorder" },
+  { href: "/components/bentoGrid", label: "Bento Grid" },
+  { href: "/components/confetti", label: "Confetti" },
+  { href: "/components/diffViewer", label: "Diff Viewer" },
+  { href: "/components/eventCalendar", label: "Event Calendar" },
+  { href: "/components/ganttChart", label: "Gantt Chart" },
+  { href: "/components/heatmapGrid", label: "Heatmap Grid" },
+  { href: "/components/imageCropper", label: "Image Cropper" },
+  { href: "/components/jsonTreeViewer", label: "JSON Tree Viewer" },
+  { href: "/components/kanbanBoard", label: "Kanban Board" },
+  { href: "/components/logoClouds", label: "Logo Clouds" },
+  { href: "/components/mentionTextarea", label: "Mention Textarea" },
+  { href: "/components/signatureInput", label: "Signature Input" },
+  { href: "/components/terminal", label: "Terminal" },
+  { href: "/components/testimonials", label: "Testimonials" },
+  { href: "/components/tour", label: "Tour Guide" },
+];
+
+export const docNavigationList = [
+  ...overviewNavigationList,
+  ...componentsNavigationList,
+  ...blocksNavigationList,
+];
+
+export interface DocsPaginationProps {
+  category?: "components" | "blocks" | "overview";
+}
+
+export function DocsPagination({ category }: DocsPaginationProps) {
   const pathname = usePathname();
-  const currentIndex = docNavigationList.findIndex(
-    (item) => item.href === pathname,
-  );
+
+  const targetList = React.useMemo(() => {
+    if (category === "blocks") return blocksNavigationList;
+    if (category === "components") return componentsNavigationList;
+    if (category === "overview") return overviewNavigationList;
+
+    if (blocksNavigationList.some((item) => item.href === pathname)) {
+      return blocksNavigationList;
+    }
+    if (componentsNavigationList.some((item) => item.href === pathname)) {
+      return componentsNavigationList;
+    }
+    return docNavigationList;
+  }, [category, pathname]);
+
+  const currentIndex = targetList.findIndex((item) => item.href === pathname);
 
   if (currentIndex === -1) return null;
 
-  const prev = currentIndex > 0 ? docNavigationList[currentIndex - 1] : null;
+  const prev = currentIndex > 0 ? targetList[currentIndex - 1] : null;
   const next =
-    currentIndex < docNavigationList.length - 1
-      ? docNavigationList[currentIndex + 1]
-      : null;
+    currentIndex < targetList.length - 1 ? targetList[currentIndex + 1] : null;
 
   return (
     <div className="pt-8 mt-12 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between gap-4 w-full">

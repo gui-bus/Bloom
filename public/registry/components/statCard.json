@@ -1,6 +1,8 @@
 {
   "name": "statCard",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "files": [
     {
       "name": "statCard.tsx",

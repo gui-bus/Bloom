@@ -2,167 +2,125 @@
 
 import { Icon } from "@iconify/react";
 import * as React from "react";
-import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
-import { toast } from "@/components/ui/toast/toast";
+import { Terminal, TerminalLine } from "@/components/ui/terminal/terminal";
 
-const CopyableCommand = ({ command }: { command: string }) => {
-  const [copied, setCopied] = React.useState(false);
+const terminalInitLines: TerminalLine[] = [
+  { text: "npx bloom-ui init", type: "command" },
+  { text: "Created lib/utils.ts", type: "success" },
+  { text: "Created lib/design-system.ts", type: "success" },
+  { text: "Created bloom.json project manifest", type: "success" },
+  { text: "Bloom UI initialized successfully!", type: "info" },
+];
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(command);
-    setCopied(true);
-    toast.success("Command copied!", { description: command });
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <div className="flex items-center justify-between gap-3 bg-zinc-100 dark:bg-zinc-800/80 rounded-xl px-4 py-3 font-mono text-sm border border-zinc-200 dark:border-zinc-700/80 shadow-xs">
-      <div className="flex items-center gap-3 overflow-x-auto">
-        <Icon
-          icon="hugeicons:terminal"
-          className="size-4 text-sky-500 shrink-0"
-        />
-        <span className="text-zinc-400 select-none">$</span>
-        <code className="text-zinc-900 dark:text-zinc-100 font-bold">
-          {command}
-        </code>
-      </div>
-      <button
-        type="button"
-        onClick={handleCopy}
-        className="p-1.5 rounded-lg text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors shrink-0 cursor-pointer"
-        title="Copy Command"
-      >
-        <Icon
-          icon={copied ? "hugeicons:checkmark-circle-02" : "hugeicons:copy-01"}
-          className={`size-4 ${copied ? "text-emerald-500" : ""}`}
-        />
-      </button>
-    </div>
-  );
-};
+const terminalAddLines: TerminalLine[] = [
+  { text: "npx bloom-ui add button switch avatar card", type: "command" },
+  { text: "Fetching component definitions from registry...", type: "info" },
+  { text: "Created components/ui/button/button.tsx", type: "success" },
+  { text: "Created components/ui/switch/switch.tsx", type: "success" },
+  { text: "Created components/ui/avatar/avatar.tsx", type: "success" },
+  { text: "Created components/ui/card/card.tsx", type: "success" },
+  { text: "All components added directly into your codebase!", type: "success" },
+];
 
 export default function InstallationPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-12 w-full">
       <DocsTitle
         title="Installation"
-        description="Learn how to initialize Bloom UI in your React or Next.js project using our official CLI, and add components directly into your codebase."
+        description="Initialize Bloom UI in your React or Next.js project using our official CLI, and add components directly into your codebase."
       />
 
-      <DocsComponent
-        title="Quick Start via CLI"
-        description="The recommended way to use Bloom UI is through our official CLI package (@bloomui-react/cli)."
-        preview={
-          <div className="space-y-6 w-full max-w-2xl">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <span className="flex items-center justify-center size-6 rounded-full bg-sky-500 text-white text-xs font-bold shrink-0">
-                  1
-                </span>
-                <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                  Initialize Bloom in your project
-                </span>
-              </div>
-              <CopyableCommand command="npx @bloomui-react/cli init" />
-            </div>
+      {/* Step 1: Init */}
+      <section className="space-y-4">
+        <div className="flex items-center gap-2">
+          <span className="flex items-center justify-center size-6 rounded-full bg-sky-500 text-white text-xs font-bold shrink-0">
+            1
+          </span>
+          <h2 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+            Initialize Bloom UI
+          </h2>
+        </div>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
+          Run the initialization command in your project root to set up design system tokens, helper utilities, and configuration manifests.
+        </p>
+        <Terminal variant="mac" lines={terminalInitLines} />
+      </section>
 
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <span className="flex items-center justify-center size-6 rounded-full bg-sky-500 text-white text-xs font-bold shrink-0">
-                  2
-                </span>
-                <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                  Add the component you need
-                </span>
-              </div>
-              <CopyableCommand command="npx @bloomui-react/cli add button" />
-            </div>
-          </div>
-        }
-        code={`# 1. Initialize Bloom in your project
-npx @bloomui-react/cli init
+      {/* Step 2: Add Components */}
+      <section className="space-y-4">
+        <div className="flex items-center gap-2">
+          <span className="flex items-center justify-center size-6 rounded-full bg-sky-500 text-white text-xs font-bold shrink-0">
+            2
+          </span>
+          <h2 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+            Add Components
+          </h2>
+        </div>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
+          Add any component directly to your project. The CLI downloads raw React source code without hiding logic behind third-party packages.
+        </p>
+        <Terminal variant="mac" lines={terminalAddLines} />
+      </section>
 
-# 2. Add any component (e.g., button, switch, drawer, toast)
-npx @bloomui-react/cli add button`}
-      />
+      {/* What init sets up */}
+      <section className="space-y-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+        <div>
+          <h3 className="text-base font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+            What gets created in your project
+          </h3>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+            Standardized files and utilities configured during initialization.
+          </p>
+        </div>
 
-      <DocsComponent
-        title="What does `init` set up?"
-        description="When you run `npx @bloomui-react/cli init`, the CLI creates essential support files and installs core utilities."
-        preview={
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-            {[
-              {
-                file: "lib/utils.ts",
-                desc: "Contains the cn() utility function for merging Tailwind CSS classes cleanly.",
-              },
-              {
-                file: "lib/design-system.ts",
-                desc: "Contains design tokens for radius, size scales, and semantic color palettes.",
-              },
-              {
-                file: "bloom.json",
-                desc: "Stores your project configuration paths for automated component additions.",
-              },
-              {
-                file: "clsx & tailwind-merge",
-                desc: "Auto-installs essential helper packages for dynamic class merging.",
-              },
-            ].map(({ file, desc }) => (
-              <div
-                key={file}
-                className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs"
-              >
-                <code className="text-xs font-mono font-bold text-sky-500 bg-sky-500/10 px-2 py-0.5 rounded-md">
-                  {file}
-                </code>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-2 leading-relaxed">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+          {[
+            {
+              file: "lib/utils.ts",
+              title: "Classnames Utility",
+              desc: "Provides the cn() helper for merging Tailwind classes cleanly using clsx and tailwind-merge.",
+              icon: "hugeicons:code-folder",
+            },
+            {
+              file: "lib/design-system.ts",
+              title: "Design Tokens",
+              desc: "Defines design radius scales, sizing scales, and neutral theme color tokens.",
+              icon: "hugeicons:paint-board",
+            },
+            {
+              file: "bloom.json",
+              title: "Project Manifest",
+              desc: "Stores project paths so the CLI knows where to copy new components automatically.",
+              icon: "hugeicons:file-02",
+            },
+          ].map(({ file, title, desc, icon }) => (
+            <div
+              key={file}
+              className="group relative overflow-hidden flex flex-col justify-between p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-200 min-h-[120px]"
+            >
+              <Icon
+                icon={icon}
+                className="absolute -right-3 -bottom-3 size-24 text-zinc-900/[0.04] dark:text-zinc-100/[0.03] group-hover:scale-110 group-hover:text-zinc-900/[0.07] dark:group-hover:text-zinc-100/[0.06] transition-all duration-300 pointer-events-none select-none"
+              />
+              <div className="relative z-10 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                    {title}
+                  </span>
+                  <code className="text-[11px] font-mono font-medium text-sky-500 bg-sky-500/10 px-2 py-0.5 rounded-md">
+                    {file}
+                  </code>
+                </div>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-normal">
                   {desc}
                 </p>
               </div>
-            ))}
-          </div>
-        }
-      />
-
-      <DocsComponent
-        title="Prerequisites & Requirements"
-        description="Make sure your project satisfies the minimum requirements before initializing Bloom."
-        preview={
-          <div className="space-y-3 w-full max-w-xl text-xs text-zinc-600 dark:text-zinc-300">
-            <div className="flex items-start gap-3 p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-              <Icon icon="devicon:react" className="size-5 shrink-0 mt-0.5" />
-              <div>
-                <strong className="text-zinc-900 dark:text-zinc-100">
-                  React 18 / 19 or Next.js 14 / 15 / 16
-                </strong>
-                <p className="text-zinc-500 dark:text-zinc-400 mt-0.5">
-                  Compatible with React Server Components (RSC) and Client
-                  Components.
-                </p>
-              </div>
             </div>
-
-            <div className="flex items-start gap-3 p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-              <Icon
-                icon="devicon:tailwindcss"
-                className="size-5 shrink-0 mt-0.5"
-              />
-              <div>
-                <strong className="text-zinc-900 dark:text-zinc-100">
-                  Tailwind CSS v4
-                </strong>
-                <p className="text-zinc-500 dark:text-zinc-400 mt-0.5">
-                  Bloom UI uses Tailwind v4 theme variables and utilities.
-                </p>
-              </div>
-            </div>
-          </div>
-        }
-      />
+          ))}
+        </div>
+      </section>
 
       <DocsPagination />
     </div>
