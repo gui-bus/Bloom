@@ -21,18 +21,25 @@ O portal de documentação interativo e guia completo dos componentes está disp
 
 ---
 
-## 📦 CLI — Instale os Componentes no Seu Projeto
+## 📦 Instalação & Distribuição Híbrida
 
 <div align="center">
   <a href="https://www.npmjs.com/package/@bloomui-react/cli">
-    <img src="https://img.shields.io/npm/v/@bloomui-react/cli?style=for-the-badge&color=cb3837&logo=npm&logoColor=white" alt="npm version" />
+    <img src="https://img.shields.io/npm/v/@bloomui-react/cli?style=for-the-badge&color=cb3837&logo=npm&logoColor=white&label=CLI" alt="CLI Version" />
   </a>
-  <a href="https://www.npmjs.com/package/@bloomui-react/cli">
-    <img src="https://img.shields.io/npm/dm/@bloomui-react/cli?style=for-the-badge&color=cb3837&logo=npm&logoColor=white" alt="npm downloads" />
+  <a href="https://www.npmjs.com/package/@bloomui-react/components">
+    <img src="https://img.shields.io/npm/v/@bloomui-react/components?style=for-the-badge&color=007acc&logo=npm&logoColor=white&label=COMPONENTS" alt="Components Version" />
+  </a>
+  <a href="https://www.npmjs.com/package/@bloomui-react/components">
+    <img src="https://img.shields.io/npm/dm/@bloomui-react/components?style=for-the-badge&color=cb3837&logo=npm&logoColor=white" alt="npm downloads" />
   </a>
 </div>
 
-O Bloom disponibiliza uma **CLI oficial** que permite inicializar o design system e adicionar componentes diretamente no seu projeto, sem precisar clonar este repositório.
+<br />
+
+O Bloom oferece suporte a um **modelo híbrido de instalação**: você pode ter controle total do código copiando componentes via CLI ou instalar a biblioteca de componentes compilada via NPM.
+
+### Opção 1: CLI (Copy-Paste com Código-Fonte Próprio)
 
 ```bash
 # 1. Inicialize o Bloom no seu projeto
@@ -42,9 +49,21 @@ npx @bloomui-react/cli init
 npx @bloomui-react/cli add button
 ```
 
-A CLI detecta automaticamente o seu gerenciador de pacotes (`npm`, `pnpm`, `yarn` ou `bun`), instala todas as dependências necessárias e copia o código-fonte do componente com os caminhos de importação já configurados para a sua estrutura de projeto.
-
 👉 **[Veja o guia completo de uso da CLI](./docs/cli.md)**
+
+### Opção 2: Pacote NPM (`@bloomui-react/components`)
+
+```bash
+npm install @bloomui-react/components
+```
+
+```tsx
+import { Button, TableOfContents, Snippet } from "@bloomui-react/components";
+
+export default function App() {
+  return <Button color="primary">Hello Bloom</Button>;
+}
+```
 
 ---
 
