@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["../../*"]
+    },
+    "skipLibCheck": true,
+    "strict": false
+  },
+  "include": ["src/**/*"],
+  "exclude": ["**/__tests__/**", "**/*.test.tsx", "**/*.test.ts"]
+}
