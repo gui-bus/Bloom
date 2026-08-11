@@ -38,8 +38,8 @@ const terminalCliLines: TerminalLine[] = [
 ];
 
 const terminalNpmLines: TerminalLine[] = [
-  { text: "npm install @bloomui/react", type: "command" },
-  { text: "Installed @bloomui/react v0.1.0 (95 components included)", type: "success" },
+  { text: "npm install @bloomui-react/components", type: "command" },
+  { text: "Installed @bloomui-react/components v0.1.0 (95 components included)", type: "success" },
 ];
 
 export default function Home() {

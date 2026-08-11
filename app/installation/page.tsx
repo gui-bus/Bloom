@@ -29,8 +29,8 @@ const terminalAddLines: TerminalLine[] = [
 ];
 
 const terminalNpmLines: TerminalLine[] = [
-  { text: "npm install @bloomui/react", type: "command" },
-  { text: "Installed @bloomui/react v0.1.0 (ESM & CJS bundles)", type: "success" },
+  { text: "npm install @bloomui-react/components", type: "command" },
+  { text: "Installed @bloomui-react/components v0.1.0 (ESM & CJS bundles)", type: "success" },
 ];
 
 export default function InstallationPage() {
@@ -128,7 +128,7 @@ export default function InstallationPage() {
                 variant="mac"
                 filename="App.tsx"
                 language="typescript"
-                code={`import { Button, TableOfContents, Snippet } from "@bloomui/react";
+                code={`import { Button, TableOfContents, Snippet } from "@bloomui-react/components";
 
 export default function App() {
   return <Button color="primary">Hello Bloom</Button>;

@@ -1,5 +1,5 @@
 {
-  "name": "@bloomui/react",
+  "name": "@bloomui-react/components",
   "version": "0.1.0",
   "description": "Premium React 19 UI component library built with Tailwind CSS and Radix UI.",
   "author": "Guilherme Bus",
