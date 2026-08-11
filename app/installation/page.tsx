@@ -33,7 +33,7 @@ export default function InstallationPage() {
             <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
               Run the initialization command in your project root to set up design system tokens, helper utilities, and the configuration manifest.
             </p>
-            <Snippet variant="mac" symbol="$" text="npx @bloomui-react/cli init" />
+            <Snippet variant="mac" symbol="$" code="npx @bloomui-react/cli init" />
           </section>
 
           <section className="space-y-4">
@@ -48,7 +48,7 @@ export default function InstallationPage() {
             <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
               Add any component directly to your project. The CLI downloads raw React source code into <code className="text-sky-500 bg-sky-500/10 px-1.5 py-0.5 rounded font-mono text-xs">components/ui/</code> without hiding logic.
             </p>
-            <Snippet variant="mac" symbol="$" text="npx @bloomui-react/cli add button switch avatar card tableOfContents" />
+            <Snippet variant="mac" symbol="$" code="npx @bloomui-react/cli add button switch avatar card tableOfContents" />
           </section>
         </TabsContent>
 
@@ -65,7 +65,7 @@ export default function InstallationPage() {
             <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
               Install the pre-compiled library package for traditional dependency management in Vite, Next.js, or Remix.
             </p>
-            <Snippet variant="mac" symbol="$" text="npm install @bloomui/react" />
+            <Snippet variant="mac" symbol="$" code="npm install @bloomui/react" />
           </section>
 
           <section className="space-y-4">

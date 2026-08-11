@@ -102,8 +102,8 @@ export default function Home() {
               Initialize Bloom in your project and copy raw source code directly:
             </p>
             <div className="space-y-2">
-              <Snippet variant="mac" symbol="$" text="npx @bloomui-react/cli init" />
-              <Snippet variant="mac" symbol="$" text="npx @bloomui-react/cli add button tableOfContents snippet" />
+              <Snippet variant="mac" symbol="$" code="npx @bloomui-react/cli init" />
+              <Snippet variant="mac" symbol="$" code="npx @bloomui-react/cli add button tableOfContents snippet" />
             </div>
           </TabsContent>
           
@@ -111,7 +111,7 @@ export default function Home() {
             <p className="text-xs text-zinc-500 dark:text-zinc-400">
               Install the pre-compiled package for traditional dependency management:
             </p>
-            <Snippet variant="mac" symbol="$" prompt="npm install @bloomui/react" text="npm install @bloomui/react" />
+            <Snippet variant="mac" symbol="$" code="npm install @bloomui/react" />
           </TabsContent>
         </Tabs>
       </section>
