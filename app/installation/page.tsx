@@ -1,6 +1,7 @@
 "use client";
 
 import { Icon } from "@iconify/react";
+import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { Terminal, type TerminalLine } from "@/components/ui/terminal/terminal";
@@ -123,15 +124,16 @@ export default function InstallationPage() {
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 Import any component directly from <code className="text-sky-500 font-mono">@bloomui/react</code>:
               </p>
-              <div className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
-                <pre className="text-xs font-mono text-zinc-700 dark:text-zinc-300 overflow-x-auto">
-{`import { Button, TableOfContents, Snippet } from "@bloomui/react";
+              <CodeBlock
+                variant="mac"
+                componentName="App.tsx"
+                language="tsx"
+                code={`import { Button, TableOfContents, Snippet } from "@bloomui/react";
 
 export default function App() {
   return <Button color="primary">Hello Bloom</Button>;
 }`}
-                </pre>
-              </div>
+              />
             </div>
           </div>
         </div>
