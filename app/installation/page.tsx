@@ -3,102 +3,139 @@
 import { Icon } from "@iconify/react";
 import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
-import { Snippet } from "@/components/ui/snippet/snippet";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs/tabs";
+import { Terminal, type TerminalLine } from "@/components/ui/terminal/terminal";
+
+const terminalInitLines: TerminalLine[] = [
+  { text: "npx @bloomui-react/cli init", type: "command" },
+  { text: "Created lib/utils.ts", type: "success" },
+  { text: "Created lib/design-system.ts", type: "success" },
+  { text: "Created bloom.json project manifest", type: "success" },
+  { text: "Bloom UI initialized successfully!", type: "info" },
+];
+
+const terminalAddLines: TerminalLine[] = [
+  { text: "npx @bloomui-react/cli add button switch avatar card tableOfContents", type: "command" },
+  { text: "Fetching component definitions from registry...", type: "info" },
+  { text: "Created components/ui/button/button.tsx", type: "success" },
+  { text: "Created components/ui/switch/switch.tsx", type: "success" },
+  { text: "Created components/ui/avatar/avatar.tsx", type: "success" },
+  { text: "Created components/ui/card/card.tsx", type: "success" },
+  { text: "Created components/ui/tableOfContents/tableOfContents.tsx", type: "success" },
+  {
+    text: "All components added directly into your codebase!",
+    type: "success",
+  },
+];
+
+const terminalNpmLines: TerminalLine[] = [
+  { text: "npm install @bloomui/react", type: "command" },
+  { text: "Installed @bloomui/react v0.1.0 (ESM & CJS bundles)", type: "success" },
+];
 
 export default function InstallationPage() {
   return (
     <div className="space-y-12 w-full">
       <DocsTitle
         title="Installation"
-        description="Choose how to integrate Bloom UI into your React or Next.js application: copy raw components directly into your codebase using our official CLI, or install the compiled @bloomui/react package via NPM."
+        description="Choose how to use Bloom UI in your React or Next.js project: copy components directly using our official CLI, or install the compiled @bloomui/react package via NPM."
       />
 
-      <Tabs defaultValue="cli" className="w-full space-y-8">
-        <TabsList className="grid w-full grid-cols-2 max-w-md">
-          <TabsTrigger value="cli">Method 1: CLI (Copy-Paste)</TabsTrigger>
-          <TabsTrigger value="npm">Method 2: NPM Package</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="cli" className="space-y-8">
-          <section className="space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="flex items-center justify-center size-6 rounded-full bg-sky-500 text-white text-xs font-bold shrink-0">
-                1
+      {/* Method 1: CLI */}
+      <section className="space-y-6">
+        <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 space-y-6">
+          <div className="flex items-center justify-between border-b border-zinc-200/60 dark:border-zinc-800/80 pb-4">
+            <div className="flex items-center gap-3">
+              <span className="flex items-center justify-center size-8 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 text-sm font-bold font-mono">
+                01
               </span>
-              <h2 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
-                Initialize Bloom UI CLI
-              </h2>
+              <div>
+                <h2 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+                  CLI — Full Source Code Ownership
+                </h2>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  Download raw React component code directly into your repository.
+                </p>
+              </div>
             </div>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
-              Run the initialization command in your project root to set up design system tokens, helper utilities, and the configuration manifest.
-            </p>
-            <Snippet variant="mac" symbol="$" code="npx @bloomui-react/cli init" />
-          </section>
+            <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-md hidden sm:inline-block">
+              Recommended for Customization
+            </span>
+          </div>
 
-          <section className="space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="flex items-center justify-center size-6 rounded-full bg-sky-500 text-white text-xs font-bold shrink-0">
-                2
-              </span>
-              <h2 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
-                Add Components Directly
-              </h2>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                1. Initialize Bloom UI
+              </h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Run the initialization command in your project root to set up design system tokens and helper utilities.
+              </p>
+              <Terminal variant="mac" lines={terminalInitLines} />
             </div>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
-              Add any component directly to your project. The CLI downloads raw React source code into <code className="text-sky-500 bg-sky-500/10 px-1.5 py-0.5 rounded font-mono text-xs">components/ui/</code> without hiding logic.
-            </p>
-            <Snippet variant="mac" symbol="$" code="npx @bloomui-react/cli add button switch avatar card tableOfContents" />
-          </section>
-        </TabsContent>
 
-        <TabsContent value="npm" className="space-y-8">
-          <section className="space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="flex items-center justify-center size-6 rounded-full bg-sky-500 text-white text-xs font-bold shrink-0">
-                1
-              </span>
-              <h2 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
-                Install @bloomui/react Package
-              </h2>
+            <div className="space-y-2 pt-2">
+              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                2. Add Components
+              </h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Add any of our 95 components directly to your project codebase.
+              </p>
+              <Terminal variant="mac" lines={terminalAddLines} />
             </div>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
-              Install the pre-compiled library package for traditional dependency management in Vite, Next.js, or Remix.
-            </p>
-            <Snippet variant="mac" symbol="$" code="npm install @bloomui/react" />
-          </section>
+          </div>
+        </div>
+      </section>
 
-          <section className="space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="flex items-center justify-center size-6 rounded-full bg-sky-500 text-white text-xs font-bold shrink-0">
-                2
+      {/* Method 2: NPM Package */}
+      <section className="space-y-6">
+        <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 space-y-6">
+          <div className="flex items-center justify-between border-b border-zinc-200/60 dark:border-zinc-800/80 pb-4">
+            <div className="flex items-center gap-3">
+              <span className="flex items-center justify-center size-8 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 text-sm font-bold font-mono">
+                02
               </span>
-              <h2 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
-                Import Components in Your Code
-              </h2>
+              <div>
+                <h2 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+                  NPM Package — Standard Dependency
+                </h2>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  Install pre-compiled components via NPM package management.
+                </p>
+              </div>
             </div>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
-              Import any of the 95 components directly into your application views:
-            </p>
-            <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 space-y-2">
-              <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100 block">
-                Example Usage
-              </span>
-              <pre className="text-xs font-mono text-zinc-700 dark:text-zinc-300 overflow-x-auto p-3 bg-white dark:bg-zinc-950 rounded-xl border border-zinc-200 dark:border-zinc-800">
+            <span className="text-xs font-medium text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-3 py-1 rounded-md hidden sm:inline-block">
+              Pre-compiled ESM & CJS
+            </span>
+          </div>
+
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                1. Install Dependency
+              </h3>
+              <Terminal variant="mac" lines={terminalNpmLines} />
+            </div>
+
+            <div className="space-y-2 pt-2">
+              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                2. Import Components
+              </h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Import any component directly from <code className="text-sky-500 font-mono">@bloomui/react</code>:
+              </p>
+              <div className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
+                <pre className="text-xs font-mono text-zinc-700 dark:text-zinc-300 overflow-x-auto">
 {`import { Button, TableOfContents, Snippet } from "@bloomui/react";
 
-export default function Dashboard() {
-  return (
-    <div className="p-6">
-      <Button color="primary">Welcome to Bloom</Button>
-    </div>
-  );
+export default function App() {
+  return <Button color="primary">Hello Bloom</Button>;
 }`}
-              </pre>
+                </pre>
+              </div>
             </div>
-          </section>
-        </TabsContent>
-      </Tabs>
+          </div>
+        </div>
+      </section>
 
       <section className="space-y-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
         <div>
