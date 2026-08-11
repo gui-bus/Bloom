@@ -7,6 +7,8 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
   TabsContent,
@@ -132,6 +134,11 @@ export default function TestimonialsComponentPage() {
       <DocsComponent
         title="Default"
         description="Clean, standard grid structure with predefined column widths. Adapts gracefully to all screen breakpoints."
+        props={[
+          "items: TestimonialItem[]",
+          "layout: 'grid' | 'masonry' | 'carousel' | 'split' | 'marquee'",
+          "cols: number"
+        ]}
         preview={
           <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
             <Testimonials
@@ -151,6 +158,11 @@ export default function TestimonialsComponentPage() {
       <DocsComponent
         title="Infinite Marquee Scroll"
         description="An infinite scrolling marquee of customer reviews powered by react-fast-marquee. Perfect for landing pages."
+        props={[
+          "layout: 'grid' | 'masonry' | 'carousel' | 'split' | 'marquee'",
+          "speed: number",
+          "pauseOnHover: boolean"
+        ]}
         preview={
           <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
             <Testimonials
@@ -172,6 +184,11 @@ export default function TestimonialsComponentPage() {
       <DocsComponent
         title="Carousel Slider"
         description="Depict reviews inside a draggable slideshow with arrow navigation and pagination dot overlays."
+        props={[
+          "layout: 'grid' | 'masonry' | 'carousel' | 'split' | 'marquee'",
+          "autoplay: boolean",
+          "autoplayDelay: number"
+        ]}
         preview={
           <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
             <Testimonials
@@ -194,6 +211,7 @@ export default function TestimonialsComponentPage() {
       <DocsComponent
         title="Split Featured Layout"
         description="Highlight a main featured testimonial on the left side while displaying supporting secondary reviews on the right."
+        props={["layout: 'grid' | 'masonry' | 'carousel' | 'split' | 'marquee'"]}
         preview={
           <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
             <Testimonials items={sampleTestimonials} layout="split" />
@@ -205,55 +223,72 @@ export default function TestimonialsComponentPage() {
 />`}
       />
 
-      <div className="pt-4">
-        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
-        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
-              <tr>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Prop
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Type
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Default
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  layout
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  "grid" | "masonry" | "carousel" | "split" | "marquee"
-                </td>
-                <td className="px-4 py-3 font-mono">"grid"</td>
-                <td className="px-4 py-3">
-                  Organizes reviews in grid, masonry, split, slider, or marquee
-                  layouts.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  speed
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">40</td>
-                <td className="px-4 py-3">
-                  Marquee layout infinite movement speed index.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      <DocsComponent
+        title="Props — Testimonials"
+        description="Configuration options for the Testimonials component."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">items</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">TestimonialItem[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">Array of testimonial review objects</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">layout</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'grid' | 'masonry' | 'carousel' | 'split' | 'marquee'</td>
+                  <td className="px-3 py-2 text-muted-foreground">'grid'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Organizes reviews in grid, masonry, split, slider, or marquee layouts</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">cols</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">3</td>
+                  <td className="px-3 py-2 text-muted-foreground">Number of columns for grid and carousel layouts</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">speed</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">40</td>
+                  <td className="px-3 py-2 text-muted-foreground">Marquee layout infinite movement speed index</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">pauseOnHover</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Pauses marquee on hover</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">autoplay</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Enables automatic slide transitions in carousel</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">autoplayDelay</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">3000</td>
+                  <td className="px-3 py-2 text-muted-foreground">Delay in milliseconds between autoplay slide transitions</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      <AccessibilityCard />
       <DocsPagination />
     </div>
   );

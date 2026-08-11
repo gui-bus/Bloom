@@ -8,6 +8,8 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
   TabsContent,
@@ -77,6 +79,7 @@ export default function TagInputPage() {
       <DocsComponent
         title="Default"
         description="A standard tag input with interactive tag addition and deletion."
+        props={["value: string[]", "onChange: (value: string[]) => void"]}
         preview={
           <div className="w-full max-w-md">
             <TagInput
@@ -98,6 +101,7 @@ export default function TagInputPage() {
       <DocsComponent
         title="Variants"
         description="Supports different visual variations matching the Bloom design system."
+        props={["variant: 'default' | 'bordered' | 'flat' | 'underlined' | 'filled' | 'glow'"]}
         preview={
           <div className="w-full max-w-md space-y-4">
             <TagInput
@@ -149,6 +153,7 @@ export default function TagInputPage() {
       <DocsComponent
         title="Sizes"
         description="Available in sm, md, and lg sizes."
+        props={["size: 'sm' | 'md' | 'lg'"]}
         preview={
           <div className="w-full max-w-md space-y-4">
             <TagInput
@@ -179,6 +184,7 @@ export default function TagInputPage() {
       <DocsComponent
         title="Tag Customizations"
         description="You can customize the color and variant of the tags rendered inside the input."
+        props={["tagColor: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'", "tagVariant: 'default' | 'bordered' | 'flat' | 'ghost' | 'shadow'"]}
         preview={
           <div className="w-full max-w-md space-y-4">
             <TagInput
@@ -212,6 +218,7 @@ export default function TagInputPage() {
       <DocsComponent
         title="Validation & Constraints"
         description="Limit maximum tags, disable duplicates, or pass a validation function (e.g. Email validation)."
+        props={["maxTags: number", "allowDuplicates: boolean", "validate: (tag: string) => boolean | string"]}
         preview={
           <div className="w-full max-w-md space-y-4">
             <TagInput
@@ -251,133 +258,84 @@ export default function TagInputPage() {
 />`}
       />
 
-      <div className="pt-4">
-        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
-        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
-              <tr>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Prop
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Type
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Default
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  value
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">string[]</td>
-                <td className="px-4 py-3 font-mono">[]</td>
-                <td className="px-4 py-3">The array of tags to display.</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  onChange
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  (value: string[]) =&gt; void
-                </td>
-                <td className="px-4 py-3 font-mono">undefined</td>
-                <td className="px-4 py-3">
-                  Callback fired when tags are added or removed.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  variant
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  "default" | "bordered" | "flat" | "underlined" | "filled" |
-                  "glow"
-                </td>
-                <td className="px-4 py-3 font-mono">"default"</td>
-                <td className="px-4 py-3">
-                  The styling variant of the input wrapper.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  size
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  "sm" | "md" | "lg"
-                </td>
-                <td className="px-4 py-3 font-mono">"md"</td>
-                <td className="px-4 py-3">
-                  Height and padding size of the input wrapper.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  tagColor
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  "default" | "primary" | "secondary" | "accent" | "success" |
-                  "warning" | "danger"
-                </td>
-                <td className="px-4 py-3 font-mono">"primary"</td>
-                <td className="px-4 py-3">
-                  The semantic color of the rendered tag badges.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  tagVariant
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  "default" | "bordered" | "flat" | "ghost" | "shadow"
-                </td>
-                <td className="px-4 py-3 font-mono">"flat"</td>
-                <td className="px-4 py-3">
-                  The badge variant style of the rendered tags.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  maxTags
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">undefined</td>
-                <td className="px-4 py-3">Maximum number of tags allowed.</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  allowDuplicates
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">boolean</td>
-                <td className="px-4 py-3 font-mono">false</td>
-                <td className="px-4 py-3">
-                  Whether duplicate tags are allowed.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  validate
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  (tag: string) =&gt; boolean | string
-                </td>
-                <td className="px-4 py-3 font-mono">undefined</td>
-                <td className="px-4 py-3">
-                  Custom validation function. Return false or a string to block
-                  adding the tag.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      <DocsComponent
+        title="Props — TagInput"
+        description="Properties for configuring the TagInput component."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">value</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">The array of tags to display.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">onChange</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(value: string[]) =&gt; void</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback fired when tags are added or removed.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">variant</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">"default" | "bordered" | "flat" | "underlined" | "filled" | "glow"</td>
+                  <td className="px-3 py-2 text-muted-foreground">"default"</td>
+                  <td className="px-3 py-2 text-muted-foreground">The styling variant of the input wrapper.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">size</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">"sm" | "md" | "lg"</td>
+                  <td className="px-3 py-2 text-muted-foreground">"md"</td>
+                  <td className="px-3 py-2 text-muted-foreground">Height and padding size of the input wrapper.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">tagColor</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">"default" | "primary" | "secondary" | "accent" | "success" | "warning" | "danger"</td>
+                  <td className="px-3 py-2 text-muted-foreground">"primary"</td>
+                  <td className="px-3 py-2 text-muted-foreground">The semantic color of the rendered tag badges.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">tagVariant</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">"default" | "bordered" | "flat" | "ghost" | "shadow"</td>
+                  <td className="px-3 py-2 text-muted-foreground">"flat"</td>
+                  <td className="px-3 py-2 text-muted-foreground">The badge variant style of the rendered tags.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">maxTags</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Maximum number of tags allowed.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">allowDuplicates</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Whether duplicate tags are allowed.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">validate</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(tag: string) =&gt; boolean | string</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Custom validation function. Return false or a string to block adding the tag.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      <AccessibilityCard />
       <DocsPagination />
     </div>
   );

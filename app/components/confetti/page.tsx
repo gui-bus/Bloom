@@ -8,6 +8,8 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
+import { Separator } from "@/components/ui/separator/separator";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { Button } from "@/components/ui/button/button";
 import { Confetti } from "@/components/ui/confetti/confetti";
 import { confettiCode } from "@/components/ui/confetti/confetti.code";
@@ -69,6 +71,7 @@ export default function ConfettiPage() {
       <DocsComponent
         title="Default"
         description="Trigger a single burst from the center of the screen."
+        props={["fire: boolean | number", "variant: 'cannon' | 'fireworks' | 'shower' | 'school-pride'"]}
         preview={
           <div className="w-full flex justify-center py-6">
             <Button onClick={() => fireConfetti("cannon")}>
@@ -91,6 +94,7 @@ export default function ConfettiPage() {
       <DocsComponent
         title="Presets"
         description="Try out the different preset physics patterns: fireworks, falling shower, or themed school pride colors."
+        props={["variant: 'cannon' | 'fireworks' | 'shower' | 'school-pride'"]}
         preview={
           <div className="w-full flex flex-wrap justify-center gap-3 py-6">
             <Button variant="flat" onClick={() => fireConfetti("fireworks")}>
@@ -115,6 +119,7 @@ export default function ConfettiPage() {
       <DocsComponent
         title="Custom Colors"
         description="Pass a list of hex codes to the colors prop to change the palette of the particles."
+        props={["colors: string[]"]}
         preview={
           <div className="w-full flex justify-center py-6">
             <Button
@@ -140,6 +145,7 @@ export default function ConfettiPage() {
       <DocsComponent
         title="Density & Spread"
         description="Configure the particleCount and spread to control the size and direction of the explosion."
+        props={["particleCount: number", "spread: number"]}
         preview={
           <div className="w-full flex justify-center py-6">
             <Button
@@ -167,6 +173,7 @@ export default function ConfettiPage() {
       <DocsComponent
         title="Wind & Gravity"
         description="Fiddle with gravity (weight) and drift (wind speed) to float particles sideways."
+        props={["gravity: number", "drift: number", "startVelocity: number"]}
         preview={
           <div className="w-full flex justify-center py-6">
             <Button
@@ -196,6 +203,7 @@ export default function ConfettiPage() {
       <DocsComponent
         title="Particle Scale"
         description="Use the scalar prop to adjust the size of the individual confetti particles."
+        props={["scalar: number"]}
         preview={
           <div className="w-full flex justify-center py-6">
             <Button
@@ -216,195 +224,120 @@ export default function ConfettiPage() {
 />`}
       />
 
-      <div className="pt-4">
-        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
-        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
-              <tr>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Prop
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Type
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Default
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  fire
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  boolean | number
-                </td>
-                <td className="px-4 py-3 font-mono">true</td>
-                <td className="px-4 py-3">
-                  Triggers a new animation burst when the value changes or is
-                  set to true.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  variant
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  "cannon" | "fireworks" | "shower" | "school-pride"
-                </td>
-                <td className="px-4 py-3 font-mono">"cannon"</td>
-                <td className="px-4 py-3">
-                  The layout movement preset of the confetti particles.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  particleCount
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">100 / 50</td>
-                <td className="px-4 py-3">
-                  Total number of confetti particles per burst.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  spread
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">70</td>
-                <td className="px-4 py-3">
-                  Angle range spread of the burst particles in degrees.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  colors
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">string[]</td>
-                <td className="px-4 py-3 font-mono">undefined</td>
-                <td className="px-4 py-3">
-                  Custom color hex string array for particles.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  angle
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">90</td>
-                <td className="px-4 py-3">
-                  Angle direction from which particles rise (e.g. 90 is straight
-                  up).
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  startVelocity
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">45</td>
-                <td className="px-4 py-3">
-                  Initial speed of launched particles (higher values shoot
-                  faster/higher).
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  decay
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">0.9</td>
-                <td className="px-4 py-3">
-                  Friction factor determining how fast particles slow down.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  gravity
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">1</td>
-                <td className="px-4 py-3">
-                  Gravity factor pulling particles downwards. Decreasing floats
-                  particles longer.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  drift
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">0</td>
-                <td className="px-4 py-3">
-                  Sideways drift force simulating wind direction effects.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  ticks
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">200</td>
-                <td className="px-4 py-3">
-                  Lifetime limit of animation frames before particles disappear.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  scalar
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">1</td>
-                <td className="px-4 py-3">
-                  Scaling size multiplier of the confetti particles.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  zIndex
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">100</td>
-                <td className="px-4 py-3">
-                  CSS z-index of the confetti rendering canvas layer.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  options
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  confetti.Options
-                </td>
-                <td className="px-4 py-3 font-mono">undefined</td>
-                <td className="px-4 py-3">
-                  Standard options passed directly to the canvas-confetti
-                  library.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  onComplete
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  () =&gt; void
-                </td>
-                <td className="px-4 py-3 font-mono">undefined</td>
-                <td className="px-4 py-3">
-                  Callback fired when a particle burst completes.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      <DocsComponent
+        title="Props — Confetti"
+        description="Detailed specification of the Confetti component properties."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">fire</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean | number</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">Triggers a new animation burst when the value changes or is set to true.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">variant</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">"cannon" | "fireworks" | "shower" | "school-pride"</td>
+                  <td className="px-3 py-2 text-muted-foreground">"cannon"</td>
+                  <td className="px-3 py-2 text-muted-foreground">The layout movement preset of the confetti particles.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">particleCount</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">100 / 50</td>
+                  <td className="px-3 py-2 text-muted-foreground">Total number of confetti particles per burst.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">spread</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">70</td>
+                  <td className="px-3 py-2 text-muted-foreground">Angle range spread of the burst particles in degrees.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">colors</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Custom color hex string array for particles.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">angle</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">90</td>
+                  <td className="px-3 py-2 text-muted-foreground">Angle direction from which particles rise (e.g. 90 is straight up).</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">startVelocity</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">45</td>
+                  <td className="px-3 py-2 text-muted-foreground">Initial speed of launched particles (higher values shoot faster/higher).</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">decay</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">0.9</td>
+                  <td className="px-3 py-2 text-muted-foreground">Friction factor determining how fast particles slow down.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">gravity</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">1</td>
+                  <td className="px-3 py-2 text-muted-foreground">Gravity factor pulling particles downwards. Decreasing floats particles longer.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">drift</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">0</td>
+                  <td className="px-3 py-2 text-muted-foreground">Sideways drift force simulating wind direction effects.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">ticks</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">200</td>
+                  <td className="px-3 py-2 text-muted-foreground">Lifetime limit of animation frames before particles disappear.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">scalar</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">1</td>
+                  <td className="px-3 py-2 text-muted-foreground">Scaling size multiplier of the confetti particles.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">zIndex</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">100</td>
+                  <td className="px-3 py-2 text-muted-foreground">CSS z-index of the confetti rendering canvas layer.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">options</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">confetti.Options</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Standard options passed directly to the canvas-confetti library.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">onComplete</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">() =&gt; void</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback fired when a particle burst completes.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      <AccessibilityCard />
       <DocsPagination />
     </div>
   );

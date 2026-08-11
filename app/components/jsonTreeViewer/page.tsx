@@ -1,12 +1,14 @@
 "use client";
 
 import { Icon } from "@iconify/react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
+import { Separator } from "@/components/ui/separator/separator";
 import { JsonTreeViewer } from "@/components/ui/jsonTreeViewer/jsonTreeViewer";
 import { jsonTreeViewerCode } from "@/components/ui/jsonTreeViewer/jsonTreeViewer.code";
 import {
@@ -67,6 +69,7 @@ export default function JsonTreeViewerPage() {
       <DocsComponent
         title="Default"
         description="Standard JSON object viewer with color highlighting."
+        props={["data: any", "expandDepth: number"]}
         preview={
           <div className="w-full max-w-xl p-4 bg-zinc-50 dark:bg-zinc-950/40 rounded-xl border border-zinc-200 dark:border-zinc-800">
             <JsonTreeViewer data={sampleData} />
@@ -84,53 +87,61 @@ export default function JsonTreeViewerPage() {
 <JsonTreeViewer data={data} />`}
       />
 
-      <div className="pt-4">
-        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
-        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
-              <tr>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Prop
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Type
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Default
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  data
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">any</td>
-                <td className="px-4 py-3 font-mono">required</td>
-                <td className="px-4 py-3">
-                  The JavaScript object/array source data to parse and display.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  expandDepth
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">1</td>
-                <td className="px-4 py-3">
-                  Maximum hierarchy depth nodes are automatically expanded to by
-                  default.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      <DocsComponent
+        title="Props — JsonTreeViewer"
+        description="Available properties for the JsonTreeViewer component."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">data</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    any
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">required</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    The JavaScript object/array source data to parse and display
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    expandDepth
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">1</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Maximum hierarchy depth nodes are automatically expanded to by
+                    default
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      <AccessibilityCard />
       <DocsPagination />
     </div>
   );

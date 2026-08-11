@@ -2,6 +2,7 @@
 
 import { Icon } from "@iconify/react";
 import { useState } from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -13,6 +14,7 @@ import {
   type FileNode,
 } from "@/components/ui/fileExplorer/fileExplorer";
 import { fileExplorerCode } from "@/components/ui/fileExplorer/fileExplorer.code";
+import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
   TabsContent,
@@ -153,6 +155,7 @@ export default function FileExplorerPage() {
       <DocsComponent
         title="Default"
         description="Interactive file tree with expand/collapse folders, inline rename, delete, and add file or folder actions."
+        props={["data: FileNode[]", "onNodeClick: (node: FileNode) => void", "onAddNode: (parentId, type, name) => void", "onRenameNode: (nodeId, newName) => void", "onDeleteNode: (nodeId) => void"]}
         preview={
           <div className="w-full max-w-md">
             <FileExplorer
@@ -173,79 +176,60 @@ export default function FileExplorerPage() {
 />`}
       />
 
-      <div className="pt-4">
-        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
-        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
-              <tr>
-                <th className="px-4 py-3">Prop</th>
-                <th className="px-4 py-3">Type</th>
-                <th className="px-4 py-3">Default</th>
-                <th className="px-4 py-3">Description</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  data
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">FileNode[]</td>
-                <td className="px-4 py-3 font-mono">—</td>
-                <td className="px-4 py-3">
-                  Array of file and folder nodes to display.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  onNodeClick
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  (node: FileNode) =&gt; void
-                </td>
-                <td className="px-4 py-3 font-mono">—</td>
-                <td className="px-4 py-3">
-                  Callback fired when a node is clicked.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  onAddNode
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  (parentId, type, name) =&gt; void
-                </td>
-                <td className="px-4 py-3 font-mono">—</td>
-                <td className="px-4 py-3">
-                  Callback to add a new file or folder to a parent node.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  onRenameNode
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  (nodeId, newName) =&gt; void
-                </td>
-                <td className="px-4 py-3 font-mono">—</td>
-                <td className="px-4 py-3">
-                  Callback to rename an existing node.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  onDeleteNode
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  (nodeId) =&gt; void
-                </td>
-                <td className="px-4 py-3 font-mono">—</td>
-                <td className="px-4 py-3">Callback to delete a node by ID.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
+
+      <DocsComponent
+        title="Props — FileExplorer"
+        description="Properties for configuring the FileExplorer component."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">data</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">FileNode[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">required</td>
+                  <td className="px-3 py-2 text-muted-foreground">Array of file and folder nodes to display.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">onNodeClick</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(node: FileNode) => void"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback fired when a node is clicked.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">onAddNode</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(parentId: string | null, type: 'file' | 'folder', name: string) => void"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback to add a new file or folder to a parent node.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">onRenameNode</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(nodeId: string, newName: string) => void"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback to rename an existing node.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">onDeleteNode</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(nodeId: string) => void"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback to delete a node by ID.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      <AccessibilityCard />
 
       <DocsPagination />
     </div>

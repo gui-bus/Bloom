@@ -2,6 +2,7 @@
 
 import { Icon } from "@iconify/react";
 import * as React from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -17,6 +18,7 @@ import {
 } from "@/components/ui/tabs/tabs";
 import { Tour, type TourStep } from "@/components/ui/tour/tour";
 import { tourCode } from "@/components/ui/tour/tour.code";
+import { Separator } from "@/components/ui/separator/separator";
 
 export default function TourPage() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -99,6 +101,7 @@ export default function TourPage() {
       <DocsComponent
         title="Default"
         description="A standard multi-step guide highlighting targets without triggering additional effects upon completion."
+        props={["steps: TourStep[]", "run: boolean", "onClose: () => void", "showConfetti: boolean"]}
         preview={
           <div className="w-full space-y-8 p-4">
             <div className="flex justify-center">
@@ -156,6 +159,7 @@ export default function TourPage() {
       <DocsComponent
         title="With Confetti"
         description="Celebrate onboarding completion. Setting showConfetti={true} fires particle effects when clicking 'Finish'."
+        props={["showConfetti: boolean"]}
         preview={
           <div className="w-full space-y-8 p-4">
             <div className="flex justify-center">
@@ -198,87 +202,60 @@ export default function TourPage() {
 <Tour steps={stepsConfetti} run={isOpenConfetti} onClose={() => setIsOpenConfetti(false)} showConfetti={true} />`}
       />
 
-      <div className="pt-4">
-        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
-        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
-              <tr>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Prop
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Type
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Default
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  steps
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">TourStep[]</td>
-                <td className="px-4 py-3 font-mono">[]</td>
-                <td className="px-4 py-3">
-                  List of step objects specifying targets, text descriptions,
-                  and directions.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  run
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">boolean</td>
-                <td className="px-4 py-3 font-mono">false</td>
-                <td className="px-4 py-3">
-                  A active switch state that displays/mounts the tour layout.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  onClose
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  () =&gt; void
-                </td>
-                <td className="px-4 py-3 font-mono">undefined</td>
-                <td className="px-4 py-3">
-                  Fires when the guide is skipped or completed.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  radius
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  keyof typeof designRadius
-                </td>
-                <td className="px-4 py-3 font-mono">"md"</td>
-                <td className="px-4 py-3">
-                  Corner radius of spotlight box and info card.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  showConfetti
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">boolean</td>
-                <td className="px-4 py-3 font-mono">false</td>
-                <td className="px-4 py-3">
-                  Triggers celebratory confetti particles when user clicks
-                  "Finish" on the final step.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
+
+      <DocsComponent
+        title="Props — Tour"
+        description="Configuration options for the Tour component."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">steps</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">TourStep[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">List of step objects specifying targets, text descriptions, and directions</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">run</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">A active switch state that displays/mounts the tour layout</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">onClose</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">() =&gt; void</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Fires when the guide is skipped or completed</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">radius</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">keyof typeof designRadius</td>
+                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Corner radius of spotlight box and info card</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">showConfetti</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Triggers celebratory confetti particles when user clicks 'Finish' on the final step</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      <AccessibilityCard />
 
       <DocsPagination />
     </div>

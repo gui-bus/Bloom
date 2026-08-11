@@ -8,6 +8,8 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
+import { Separator } from "@/components/ui/separator/separator";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import {
   HeatmapGrid,
   type HeatmapValue,
@@ -77,6 +79,7 @@ export default function HeatmapGridPage() {
       <DocsComponent
         title="Default"
         description="Standard activity board showing random sample data mapped across the current calendar year."
+        props={["data: HeatmapValue[]", "colorTheme: 'emerald' | 'sky' | 'indigo' | 'rose' | 'amber'"]}
         preview={
           <div className="w-full p-2 bg-zinc-50 dark:bg-zinc-950/40 rounded-xl border border-zinc-200 dark:border-zinc-800 flex justify-center overflow-x-auto">
             <HeatmapGrid data={sampleData} colorTheme="emerald" />
@@ -94,6 +97,7 @@ export default function HeatmapGridPage() {
       <DocsComponent
         title="Color Themes"
         description="Select different color palettes such as sky, indigo, rose, or amber to fit your design system."
+        props={["colorTheme: 'emerald' | 'sky' | 'indigo' | 'rose' | 'amber'"]}
         preview={
           <div className="w-full space-y-6 p-4 bg-zinc-50 dark:bg-zinc-950/40 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-x-auto">
             <div className="space-y-1">
@@ -121,86 +125,60 @@ export default function HeatmapGridPage() {
 <HeatmapGrid data={data} colorTheme="rose" />`}
       />
 
-      <div className="pt-4">
-        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
-        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
-              <tr>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Prop
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Type
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Default
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  data
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  HeatmapValue[]
-                </td>
-                <td className="px-4 py-3 font-mono">[]</td>
-                <td className="px-4 py-3">
-                  List of data cells containing dates and numeric activity
-                  scores.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  startDate
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">Date</td>
-                <td className="px-4 py-3 font-mono">Jan 1st (Current Year)</td>
-                <td className="px-4 py-3">
-                  Starting date plotted on the board.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  endDate
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">Date</td>
-                <td className="px-4 py-3 font-mono">Dec 31st (Current Year)</td>
-                <td className="px-4 py-3">Ending date plotted on the board.</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  colorTheme
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  "emerald" | "sky" | "indigo" | "rose" | "amber"
-                </td>
-                <td className="px-4 py-3 font-mono">"emerald"</td>
-                <td className="px-4 py-3">
-                  Color preset style applied to intensity tiers.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  radius
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  keyof typeof designRadius
-                </td>
-                <td className="px-4 py-3 font-mono">"xs"</td>
-                <td className="px-4 py-3">
-                  Corner radius design token of the individual squares.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
+
+      <DocsComponent
+        title="Props — HeatmapGrid"
+        description="Props for the HeatmapGrid component."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">data</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">HeatmapValue[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">List of data cells containing dates and numeric activity scores.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">startDate</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">Date</td>
+                  <td className="px-3 py-2 text-muted-foreground">Jan 1st (Current Year)</td>
+                  <td className="px-3 py-2 text-muted-foreground">Starting date plotted on the board.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">endDate</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">Date</td>
+                  <td className="px-3 py-2 text-muted-foreground">Dec 31st (Current Year)</td>
+                  <td className="px-3 py-2 text-muted-foreground">Ending date plotted on the board.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">colorTheme</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'emerald' | 'sky' | 'indigo' | 'rose' | 'amber'</td>
+                  <td className="px-3 py-2 text-muted-foreground">'emerald'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Color preset style applied to intensity tiers.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">radius</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">keyof typeof designRadius</td>
+                  <td className="px-3 py-2 text-muted-foreground">'xs'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Corner radius design token of the individual squares.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      <AccessibilityCard />
 
       <DocsPagination />
     </div>

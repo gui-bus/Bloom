@@ -7,6 +7,8 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
+import { Separator } from "@/components/ui/separator/separator";
 import {
   GanttChart,
   type GanttTask,
@@ -109,6 +111,7 @@ export default function GanttChartPage() {
       <DocsComponent
         title="Default"
         description="Standard Gantt view plotting task progress percentages across time."
+        props={["tasks: GanttTask[]", "viewStartDate: Date", "viewEndDate: Date", "onTaskClick: (task: GanttTask) => void"]}
         preview={
           <div className="w-full p-4 bg-zinc-50 dark:bg-zinc-950/40 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-x-auto">
             <GanttChart
@@ -147,76 +150,54 @@ export default function GanttChartPage() {
 />`}
       />
 
-      <div className="pt-4">
-        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
-        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
-              <tr>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Prop
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Type
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Default
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  tasks
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  GanttTask[]
-                </td>
-                <td className="px-4 py-3 font-mono">[]</td>
-                <td className="px-4 py-3">
-                  List of tasks to plot on the timeline.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  viewStartDate
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">Date</td>
-                <td className="px-4 py-3 font-mono">required</td>
-                <td className="px-4 py-3">
-                  Starting viewport boundary date for scale mapping.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  viewEndDate
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">Date</td>
-                <td className="px-4 py-3 font-mono">required</td>
-                <td className="px-4 py-3">
-                  Ending viewport boundary date for scale mapping.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  onTaskClick
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  {"(task: GanttTask) => void"}
-                </td>
-                <td className="px-4 py-3 font-mono">undefined</td>
-                <td className="px-4 py-3">
-                  Fires when clicking any task block on the scheduler timeline.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      <DocsComponent
+        title="Props — GanttChart"
+        description="Props to configure the GanttChart component."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">tasks</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">GanttTask[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">List of tasks to plot on the timeline</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">viewStartDate</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">Date</td>
+                  <td className="px-3 py-2 text-muted-foreground">required</td>
+                  <td className="px-3 py-2 text-muted-foreground">Starting viewport boundary date for scale mapping</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">viewEndDate</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">Date</td>
+                  <td className="px-3 py-2 text-muted-foreground">required</td>
+                  <td className="px-3 py-2 text-muted-foreground">Ending viewport boundary date for scale mapping</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">onTaskClick</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(task: GanttTask) => void"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Fires when clicking any task block on the scheduler timeline</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      <AccessibilityCard />
       <DocsPagination />
     </div>
   );

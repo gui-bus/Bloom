@@ -16,6 +16,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
+import { Separator } from "@/components/ui/separator/separator";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 
 const TEAM_MEMBERS = [
   { id: "1", display: "Alice Johnson", subtitle: "@alice_j" },
@@ -75,6 +77,7 @@ export default function MentionTextareaPage() {
       <DocsComponent
         title="User Mentions (@)"
         description="Standard auto-completion trigger triggered by '@' to reference teammates, complete with avatar fallback icons and handles."
+        props={["items: MentionItem[]", "onMention: (item: MentionItem) => void", "placeholder: string"]}
         preview={
           <div className="w-full max-w-lg p-6 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-4">
             <div>
@@ -118,6 +121,7 @@ const [value, setValue] = useState("");
       <DocsComponent
         title="Hashtag Triggers (#)"
         description="Configure any trigger string like '#' to autocomplete tags or topics."
+        props={["trigger: string", "items: MentionItem[]"]}
         preview={
           <div className="w-full max-w-lg p-6 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-4">
             <div>
@@ -160,67 +164,48 @@ const [value, setValue] = useState("");
 />`}
       />
 
-      <div className="pt-4">
-        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
-        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
-              <tr>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Prop
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Type
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Default
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  trigger
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">string</td>
-                <td className="px-4 py-3 font-mono">"@"</td>
-                <td className="px-4 py-3">
-                  Character trigger that triggers suggestion list popup.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  items
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  MentionItem[]
-                </td>
-                <td className="px-4 py-3 font-mono">required</td>
-                <td className="px-4 py-3">
-                  Autocomplete suggestions metadata list (display, subtitle,
-                  avatar).
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  onMention
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  {"(item: MentionItem) => void"}
-                </td>
-                <td className="px-4 py-3 font-mono">undefined</td>
-                <td className="px-4 py-3">
-                  Callback fired when a user selects a suggestion block.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      <DocsComponent
+        title="Props — MentionTextarea"
+        description="Explore the available props for the MentionTextarea component."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">trigger</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 text-muted-foreground">'@'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Character trigger that triggers suggestion list popup</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">items</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">MentionItem[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">required</td>
+                  <td className="px-3 py-2 text-muted-foreground">Autocomplete suggestions metadata list</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">onMention</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(item: MentionItem) => void"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback fired when a user selects a suggestion block</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      <AccessibilityCard />
       <DocsPagination />
     </div>
   );

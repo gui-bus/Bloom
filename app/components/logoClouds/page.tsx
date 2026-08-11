@@ -15,6 +15,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
+import { Separator } from "@/components/ui/separator/separator";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 
 export default function LogoCloudsComponentPage() {
   return (
@@ -60,6 +62,12 @@ export default function LogoCloudsComponentPage() {
       <DocsComponent
         title="Default"
         description="A clean, responsive grid layout for displaying client or partner logos. Each card features subtle shadows, borders, and hover scale transitions."
+        props={[
+          "variant: 'marquee' | 'grid' | 'swap'",
+          "cols: number",
+          "title: string",
+          "subtitle: string"
+        ]}
         preview={
           <div className="w-full rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50 dark:bg-zinc-950/20 p-6">
             <LogoClouds
@@ -81,6 +89,11 @@ export default function LogoCloudsComponentPage() {
       <DocsComponent
         title="Infinite Marquee Scroll"
         description="An infinite sliding marquee rendering partner logos with adjustable speed, pause on hover, and smooth css border gradients."
+        props={[
+          "variant: 'marquee' | 'grid' | 'swap'",
+          "speed: number",
+          "pauseOnHover: boolean"
+        ]}
         preview={
           <div className="w-full rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50 dark:bg-zinc-950/20 p-6">
             <LogoClouds
@@ -104,6 +117,11 @@ export default function LogoCloudsComponentPage() {
       <DocsComponent
         title="Batch Swap Animation"
         description="Transitions all cards concurrently at set intervals using a crossfade and y-axis translation spring effect."
+        props={[
+          "variant: 'marquee' | 'grid' | 'swap'",
+          "swapCount: number",
+          "interval: number"
+        ]}
         preview={
           <div className="w-full rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50 dark:bg-zinc-950/20 p-6">
             <LogoClouds
@@ -127,6 +145,9 @@ export default function LogoCloudsComponentPage() {
       <DocsComponent
         title="Minimal Fast Marquee"
         description="A lightweight, high-speed marquee with no title boundaries or styling constraints."
+        props={[
+          "gradient: boolean"
+        ]}
         preview={
           <div className="w-full rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50 dark:bg-zinc-950/20 p-6">
             <LogoClouds variant="marquee" speed={80} gradient={true} />
@@ -139,73 +160,84 @@ export default function LogoCloudsComponentPage() {
 />`}
       />
 
-      <div className="pt-4">
-        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
-        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
-              <tr>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Prop
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Type
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Default
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  variant
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  "marquee" | "grid" | "swap"
-                </td>
-                <td className="px-4 py-3 font-mono">"grid"</td>
-                <td className="px-4 py-3">
-                  Exhibits marquee scroll, grid cards, or batch swap options.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  speed
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">40</td>
-                <td className="px-4 py-3">
-                  Speed multiplier for infinite marquee sliding motion.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  swapCount
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">4</td>
-                <td className="px-4 py-3">
-                  Number of visible partner items shown at once in swap batch.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  interval
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">number</td>
-                <td className="px-4 py-3 font-mono">3000</td>
-                <td className="px-4 py-3">
-                  Cooldown timer miliseconds to transition next batch.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
+
+      <DocsComponent
+        title="Props — LogoClouds"
+        description="Props for customizing the LogoClouds component."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">variant</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">"marquee" | "grid" | "swap"</td>
+                  <td className="px-3 py-2 text-muted-foreground">"grid"</td>
+                  <td className="px-3 py-2 text-muted-foreground">Exhibits marquee scroll, grid cards, or batch swap options.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">speed</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">40</td>
+                  <td className="px-3 py-2 text-muted-foreground">Speed multiplier for infinite marquee sliding motion.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">swapCount</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">4</td>
+                  <td className="px-3 py-2 text-muted-foreground">Number of visible partner items shown at once in swap batch.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">interval</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">3000</td>
+                  <td className="px-3 py-2 text-muted-foreground">Cooldown timer miliseconds to transition next batch.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">cols</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 text-muted-foreground">4</td>
+                  <td className="px-3 py-2 text-muted-foreground">Number of columns in grid layout</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">title</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Section heading label rendered above the grid</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">subtitle</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Supporting subtext rendered below the title</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">pauseOnHover</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Pauses marquee motion when hovered</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">gradient</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Adds fade edge gradient overlay to marquee edges</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      <AccessibilityCard />
 
       <DocsPagination />
     </div>

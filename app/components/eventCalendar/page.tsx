@@ -2,6 +2,7 @@
 
 import { Icon } from "@iconify/react";
 import * as React from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -9,6 +10,7 @@ import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Button } from "@/components/ui/button/button";
+import { Separator } from "@/components/ui/separator/separator";
 import {
   Dialog,
   DialogClose,
@@ -147,6 +149,7 @@ export default function EventCalendarPage() {
       <DocsComponent
         title="Default"
         description="Standard monthly event calendar mapping current scheduled milestones."
+        props={["events: CalendarEvent[]", "onSelectDate: (date: Date) => void", "onEventClick: (event: CalendarEvent) => void"]}
         preview={
           <div className="w-full p-2 bg-zinc-50 dark:bg-zinc-950/40 rounded-xl border border-zinc-200 dark:border-zinc-800">
             <EventCalendar
@@ -183,6 +186,7 @@ export default function EventCalendarPage() {
       <DocsComponent
         title="Interactive Dialog Integration"
         description="Use a Dialog to schedule new events dynamically, including multi-day events."
+        props={["events: CalendarEvent[]"]}
         preview={
           <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/40 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-4">
             <div className="flex justify-between items-center">
@@ -276,81 +280,54 @@ const handleAddEvent = () => {
 <EventCalendar events={events} />`}
       />
 
-      <div className="pt-4">
-        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
-        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
-              <tr>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Prop
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Type
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Default
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  events
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  CalendarEvent[]
-                </td>
-                <td className="px-4 py-3 font-mono">[]</td>
-                <td className="px-4 py-3">
-                  List of event objects with dates, labels, and state colors to
-                  plot on the grid.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  onSelectDate
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  {"(date: Date) => void"}
-                </td>
-                <td className="px-4 py-3 font-mono">undefined</td>
-                <td className="px-4 py-3">
-                  Callback fired when a grid cell date is selected.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  onEventClick
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  {"(event: CalendarEvent) => void"}
-                </td>
-                <td className="px-4 py-3 font-mono">undefined</td>
-                <td className="px-4 py-3">
-                  Callback fired when an individual event block inside a day
-                  cell is clicked.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  radius
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  keyof typeof designRadius
-                </td>
-                <td className="px-4 py-3 font-mono">"md"</td>
-                <td className="px-4 py-3">
-                  Corner radius design token of the calendar card.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
+
+      <DocsComponent
+        title="Props — EventCalendar"
+        description="Properties for configuring the EventCalendar component."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">events</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">CalendarEvent[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">[]</td>
+                  <td className="px-3 py-2 text-muted-foreground">List of event objects with dates, labels, and state colors to plot on the grid.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">onSelectDate</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(date: Date) => void"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback fired when a grid cell date is selected.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">onEventClick</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(event: CalendarEvent) => void"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">Callback fired when an individual event block inside a day cell is clicked.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">radius</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">keyof typeof designRadius</td>
+                  <td className="px-3 py-2 text-muted-foreground">'md'</td>
+                  <td className="px-3 py-2 text-muted-foreground">Corner radius design token of the calendar card.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      <AccessibilityCard />
 
       <DocsPagination />
     </div>

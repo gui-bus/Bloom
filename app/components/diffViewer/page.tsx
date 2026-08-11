@@ -8,9 +8,11 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { Button } from "@/components/ui/button/button";
 import { DiffViewer } from "@/components/ui/diffViewer/diffViewer";
 import { diffViewerCode } from "@/components/ui/diffViewer/diffViewer.code";
+import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
   TabsContent,
@@ -71,6 +73,7 @@ export default function DiffViewerPage() {
       <DocsComponent
         title="Default"
         description="Shows line additions (green) and deletions (red) in a unified inline format."
+        props={["oldValue: string", "newValue: string"]}
         preview={
           <div className="w-full">
             <DiffViewer oldValue={original} newValue={modified} />
@@ -85,6 +88,7 @@ const modified = "..."
       <DocsComponent
         title="Split View"
         description="Provides a side-by-side comparison panel, aligning deleted lines on the left and added lines on the right."
+        props={["splitView: boolean"]}
         preview={
           <div className="w-full space-y-4">
             <div className="flex justify-end">
@@ -105,6 +109,7 @@ const modified = "..."
       <DocsComponent
         title="Variants"
         description="Supports different border styles matching the Bloom aesthetics."
+        props={["variant: 'default' | 'bordered' | 'flat'"]}
         preview={
           <div className="w-full space-y-6">
             <div>
@@ -133,82 +138,60 @@ const modified = "..."
 <DiffViewer oldValue={original} newValue={modified} variant="bordered" />`}
       />
 
-      <div className="pt-4">
-        <h2 className="text-xl font-semibold mb-4">API Reference</h2>
-        <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-medium">
-              <tr>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Prop
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Type
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Default
-                </th>
-                <th className="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-600 dark:text-zinc-400">
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  oldValue
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">string</td>
-                <td className="px-4 py-3 font-mono">""</td>
-                <td className="px-4 py-3">
-                  The original/previous string block.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  newValue
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">string</td>
-                <td className="px-4 py-3 font-mono">""</td>
-                <td className="px-4 py-3">
-                  The modified/new string block to compare against.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  splitView
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">boolean</td>
-                <td className="px-4 py-3 font-mono">false</td>
-                <td className="px-4 py-3">
-                  Renders side-by-side columns instead of unified inline list.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  variant
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  "default" | "bordered" | "flat"
-                </td>
-                <td className="px-4 py-3 font-mono">"default"</td>
-                <td className="px-4 py-3">The outer layout styling wrapper.</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-zinc-900 dark:text-zinc-100">
-                  radius
-                </td>
-                <td className="px-4 py-3 font-mono text-primary">
-                  keyof typeof designRadius
-                </td>
-                <td className="px-4 py-3 font-mono">"md"</td>
-                <td className="px-4 py-3">Outer layout corner radius.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
+      <DocsComponent
+        title="Props — DiffViewer"
+        description="Props for the DiffViewer component."
+        preview={
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">oldValue</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 text-muted-foreground">""</td>
+                  <td className="px-3 py-2 text-muted-foreground">The original/previous string block.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">newValue</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 text-muted-foreground">""</td>
+                  <td className="px-3 py-2 text-muted-foreground">The modified/new string block to compare against.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">splitView</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">Renders side-by-side columns instead of unified inline list.</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">variant</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">"default" | "bordered" | "flat"</td>
+                  <td className="px-3 py-2 text-muted-foreground">"default"</td>
+                  <td className="px-3 py-2 text-muted-foreground">The outer layout styling wrapper.</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">radius</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">keyof typeof designRadius</td>
+                  <td className="px-3 py-2 text-muted-foreground">"md"</td>
+                  <td className="px-3 py-2 text-muted-foreground">Outer layout corner radius.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      />
+
+      <AccessibilityCard />
       <DocsPagination />
     </div>
   );
