@@ -22,6 +22,8 @@ todo/
 
 # production
 /build
+packages/react/dist/
+packages/react/src/
 
 # misc
 .DS_Store
