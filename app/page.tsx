@@ -1,13 +1,15 @@
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { DocsPagination } from "@/components/core/docsPagination";
+
+import { Snippet } from "@/components/ui/snippet/snippet";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs/tabs";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card/card";
-import { Terminal, type TerminalLine } from "@/components/ui/terminal/terminal";
 
 const FeatureCard = ({
   icon,
@@ -29,18 +31,6 @@ const FeatureCard = ({
     </CardHeader>
   </Card>
 );
-
-const terminalCliLines: TerminalLine[] = [
-  { text: "npx @bloomui-react/cli init", type: "command" },
-  { text: "Design system tokens initialized in project", type: "success" },
-  { text: "npx @bloomui-react/cli add button tableOfContents snippet", type: "command" },
-  { text: "Components added directly into components/ui", type: "success" },
-];
-
-const terminalNpmLines: TerminalLine[] = [
-  { text: "npm install @bloomui/react", type: "command" },
-  { text: "Installed @bloomui/react v0.1.0 (95 components included)", type: "success" },
-];
 
 export default function Home() {
   return (
@@ -94,28 +84,36 @@ export default function Home() {
       <section id="quickstart" className="space-y-6">
         <div>
           <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Hybrid Workflow — CLI or NPM
+            Quick Installation
           </h3>
           <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
-            Choose the installation model that best fits your project architecture.
+            Choose your preferred integration method to get started in seconds.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
-              Option 1: CLI (Copy-Paste Code Ownership)
-            </span>
-            <Terminal variant="mac" lines={terminalCliLines} />
-          </div>
-
-          <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
-              Option 2: NPM Package Distribution
-            </span>
-            <Terminal variant="mac" lines={terminalNpmLines} />
-          </div>
-        </div>
+        <Tabs defaultValue="cli" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 max-w-xs mb-4">
+            <TabsTrigger value="cli">CLI (Copy-Paste)</TabsTrigger>
+            <TabsTrigger value="npm">NPM Package</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="cli" className="space-y-3">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              Initialize Bloom in your project and copy raw source code directly:
+            </p>
+            <div className="space-y-2">
+              <Snippet variant="mac" symbol="$" prompt="npx @bloomui-react/cli init" text="npx @bloomui-react/cli init" />
+              <Snippet variant="mac" symbol="$" prompt="npx @bloomui-react/cli add button tableOfContents snippet" text="npx @bloomui-react/cli add button tableOfContents snippet" />
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="npm" className="space-y-3">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              Install the pre-compiled package for traditional dependency management:
+            </p>
+            <Snippet variant="mac" symbol="$" prompt="npm install @bloomui/react" text="npm install @bloomui/react" />
+          </TabsContent>
+        </Tabs>
       </section>
 
       <hr className="border-zinc-200 dark:border-zinc-800" />
