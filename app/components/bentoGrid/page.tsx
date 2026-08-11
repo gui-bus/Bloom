@@ -1,6 +1,7 @@
 "use client";
 
 import { Icon } from "@iconify/react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -10,13 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bentoGrid/bentoGrid";
 import { bentoGridCode } from "@/components/ui/bentoGrid/bentoGrid.code";
 import { Separator } from "@/components/ui/separator/separator";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 const VisualHeaderOne = () => (
   <div className="flex flex-1 w-full h-full min-h-[6rem] bg-zinc-50 dark:bg-zinc-800/40 p-6 flex-col justify-between">
@@ -59,30 +53,23 @@ export default function BentoGridPage() {
 
       <InstallationBlock componentName="bentoGrid" />
 
-      <Tabs defaultValue="bentoGrid">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="bentoGrid"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            bentoGrid.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="bentoGrid">
-          <CodeBlock
-            code={bentoGridCode}
-            componentName="bentoGrid.tsx"
-            description="Clean BentoGrid container and grid items with standard props."
-            tags={["React", "Grid", "Layout", "Bento"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={bentoGridCode}
+        componentName="bentoGrid.tsx"
+        description="Clean BentoGrid container and grid items with standard props."
+        tags={["React", "Grid", "Layout", "Bento"]}
+      />
 
       <DocsComponent
         title="Default"
         description="A beautiful layout with clean styling, image backgrounds, and custom headers. Uses default gap values and neutral border highlight effects."
-        props={["colSpan: number | string", "rowSpan: number | string", "imageSrc: string", "header: ReactNode", "icon: ReactNode"]}
+        props={[
+          "colSpan: number | string",
+          "rowSpan: number | string",
+          "imageSrc: string",
+          "header: ReactNode",
+          "icon: ReactNode",
+        ]}
         preview={
           <div className="w-full max-w-5xl mx-auto p-4 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
             <BentoGrid>
@@ -154,54 +141,92 @@ export default function BentoGridPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">title</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Card item title or heading string.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Card item title or heading string.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">description</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    description
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Supporting text or description details.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Supporting text or description details.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">imageSrc</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Optional Unsplash image source background overlay.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Optional Unsplash image source background overlay.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">header</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Custom component overlay or section for the top.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Custom component overlay or section for the top.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">icon</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">ReactNode</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    ReactNode
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Icon component shown at the bottom.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Icon component shown at the bottom.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">colSpan</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number | string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number | string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">1</td>
-                  <td className="px-3 py-2 text-muted-foreground">Responsive column grid span parameter.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Responsive column grid span parameter.
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">rowSpan</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number | string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number | string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">1</td>
-                  <td className="px-3 py-2 text-muted-foreground">Responsive row grid span parameter.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Responsive row grid span parameter.
+                  </td>
                 </tr>
               </tbody>
             </table>

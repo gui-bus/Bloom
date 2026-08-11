@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -19,12 +18,6 @@ import {
 } from "@/components/ui/select/select";
 import { selectCode } from "@/components/ui/select/select.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 const sampleOptions: SelectOption[] = [
   {
@@ -108,25 +101,12 @@ export default function SelectComponentPage() {
 
       <InstallationBlock componentName="select" />
 
-      <Tabs defaultValue="select">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="select"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            select.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="select">
-          <CodeBlock
-            code={selectCode}
-            componentName="select.tsx"
-            description="Core implementation of the Select component."
-            tags={["React", "Select", "Form", "MultiSelect"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={selectCode}
+        componentName="select.tsx"
+        description="Core implementation of the Select component."
+        tags={["React", "Select", "Form", "MultiSelect"]}
+      />
 
       <DocsComponent
         title="Default"

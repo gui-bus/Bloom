@@ -115,4 +115,3 @@ export function TableOfContents() {
     </aside>
   );
 }
-

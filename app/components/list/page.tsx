@@ -12,12 +12,6 @@ import { Badge } from "@/components/ui/badge/badge";
 import { List, ListItem } from "@/components/ui/list/list";
 import { listCode } from "@/components/ui/list/list.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function ListComponentPage() {
   return (
@@ -33,25 +27,12 @@ export default function ListComponentPage() {
 
       <InstallationBlock componentName="list" />
 
-      <Tabs defaultValue="list">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="list"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            list.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="list">
-          <CodeBlock
-            code={listCode}
-            componentName="list.tsx"
-            description="Core implementation of the List component."
-            tags={["React", "Tailwind", "List", "Layout"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={listCode}
+        componentName="list.tsx"
+        description="Core implementation of the List component."
+        tags={["React", "Tailwind", "List", "Layout"]}
+      />
 
       <DocsComponent
         title="Default"

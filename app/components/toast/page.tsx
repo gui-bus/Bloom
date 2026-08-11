@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -10,12 +9,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Button } from "@/components/ui/button/button";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 import { Toast, toast } from "@/components/ui/toast/toast";
 import { toastCode } from "@/components/ui/toast/toast.code";
 
@@ -35,25 +28,12 @@ export default function ToastComponentPage() {
 
       <InstallationBlock componentName="toast" />
 
-      <Tabs defaultValue="toast">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="toast"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            toast.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="toast">
-          <CodeBlock
-            code={toastCode}
-            componentName="toast.tsx"
-            description="Core implementation of the custom Toast component."
-            tags={["React", "Sonner", "Toast", "Notification", "Glassmorphism"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={toastCode}
+        componentName="toast.tsx"
+        description="Core implementation of the custom Toast component."
+        tags={["React", "Sonner", "Toast", "Notification", "Glassmorphism"]}
+      />
 
       <DocsComponent
         title="Default"
@@ -222,17 +202,15 @@ toast.info("System Update Available", { description: "Version v2.4.0 is ready." 
             </Button>
           </div>
         }
-        code={`// 1. Loading Only
+        code={`
 toast.loading("Synchronizing Data...", { id: "my-toast" });
 
-// 2. Loading -> Success
 const id = "upload-toast";
 toast.loading("Uploading Assets...", { id });
 setTimeout(() => {
   toast.success("Upload Complete!", { id, description: "All assets are live." });
 }, 2500);
 
-// 3. Loading -> Error
 toast.loading("Connecting to DB...", { id: "db-toast" });
 setTimeout(() => {
   toast.error("Connection Failed!", { id: "db-toast" });

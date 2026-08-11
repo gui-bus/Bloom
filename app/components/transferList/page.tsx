@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -10,12 +9,6 @@ import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 import {
   type TransferItem,
   TransferList,
@@ -48,30 +41,21 @@ export default function TransferListPage() {
 
       <InstallationBlock componentName="transferList" />
 
-      <Tabs defaultValue="transferList">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="transferList"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            transferList.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="transferList">
-          <CodeBlock
-            code={transferListCode}
-            componentName="transferList.tsx"
-            description="Core implementation of the TransferList component displaying dual panels, multiple/all navigation click controls, and checkbox items."
-            tags={["React", "Tailwind", "Form", "Select", "TransferList"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={transferListCode}
+        componentName="transferList.tsx"
+        description="Core implementation of the TransferList component displaying dual panels, multiple/all navigation click controls, and checkbox items."
+        tags={["React", "Tailwind", "Form", "Select", "TransferList"]}
+      />
 
       <DocsComponent
         title="Default"
         description="Features available, checked, and disabled items that can be transferred left or right."
-        props={["leftItems: TransferItem[]", "rightItems: TransferItem[]", "onChange: (left: TransferItem[], right: TransferItem[]) => void"]}
+        props={[
+          "leftItems: TransferItem[]",
+          "rightItems: TransferItem[]",
+          "onChange: (left: TransferItem[], right: TransferItem[]) => void",
+        ]}
         preview={
           <div className="w-full">
             <TransferList
@@ -159,54 +143,107 @@ const [right, setRight] = React.useState([
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">leftItems</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">TransferItem[]</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    leftItems
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    TransferItem[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">List of elements in the left panel.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    List of elements in the left panel.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">rightItems</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">TransferItem[]</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    rightItems
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    TransferItem[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">List of elements in the right panel.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    List of elements in the right panel.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">leftTitle</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">&ldquo;Available Items&rdquo;</td>
-                  <td className="px-3 py-2 text-muted-foreground">Header label for the left panel.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    leftTitle
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    &ldquo;Available Items&rdquo;
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Header label for the left panel.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">rightTitle</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">&ldquo;Selected Items&rdquo;</td>
-                  <td className="px-3 py-2 text-muted-foreground">Header label for the right panel.</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    rightTitle
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    &ldquo;Selected Items&rdquo;
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Header label for the right panel.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">onChange</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(left: TransferItem[], right: TransferItem[]) => void"}</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {"(left: TransferItem[], right: TransferItem[]) => void"}
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback fired when items are transferred between pools.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback fired when items are transferred between pools.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">&lsquo;default&rsquo; | &lsquo;bordered&rsquo; | &lsquo;flat&rsquo;</td>
-                  <td className="px-3 py-2 text-muted-foreground">&lsquo;default&rsquo;</td>
-                  <td className="px-3 py-2 text-muted-foreground">The border/background styling of list boxes.</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    &lsquo;default&rsquo; | &lsquo;bordered&rsquo; |
+                    &lsquo;flat&rsquo;
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    &lsquo;default&rsquo;
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    The border/background styling of list boxes.
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">keyof typeof designRadius</td>
-                  <td className="px-3 py-2 text-muted-foreground">&lsquo;md&rsquo;</td>
-                  <td className="px-3 py-2 text-muted-foreground">Corner radius of list boxes.</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    keyof typeof designRadius
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    &lsquo;md&rsquo;
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Corner radius of list boxes.
+                  </td>
                 </tr>
               </tbody>
             </table>

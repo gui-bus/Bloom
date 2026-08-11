@@ -111,7 +111,7 @@ graph TB
 
 ---
 
-## 🚀 Componentes Implementados (92 Componentes)
+## 🚀 Componentes Implementados (95 Componentes)
 
 | Componente | Categoria | Descrição |
 | :--- | :--- | :--- |
@@ -141,6 +141,7 @@ graph TB
 | **Select** | Inputs & Controles | Menu de seleção suspenso com grupos, busca e opções estilizadas. |
 | **Signature Input** | Inputs & Controles | Campo de desenho de assinatura manuscrita com opções de cor, traço e exportação em PNG/SVG. |
 | **Slider** | Inputs & Controles | Controle deslizante para seleção de intervalos ou valores numéricos. |
+| **Snippet** | Inputs & Controles | Bloco de comando em linha única com cópia rápida e variantes de SO (mac, powershell, cmd, ubuntu, default). |
 | **Switch** | Inputs & Controles | Interruptor de alternância ligar/desligar com suporte a cores, tamanhos e modo card. |
 | **Tag Input** | Inputs & Controles | Entrada de tags dinâmicas com autocompletar, limites, duplicações e validações customizadas. |
 | **Textarea** | Inputs & Controles | Campo de texto multilinha com auto-expansão de altura e contador de caracteres. |
@@ -179,7 +180,7 @@ graph TB
 | **Card** | Layout & Exibição | Contêiner neutro estruturado com cabeçalho, corpo e rodapé. |
 | **Carousel** | Layout & Exibição | Carrossel de slides fluido com gestos de swipe e controles de navegação. |
 | **Chart** | Layout & Exibição | Gráficos visuais interativos construídos para dashboards. |
-| **Code Block** | Layout & Exibição | Bloco de código com destaque de sintaxe, cópia com um clique e tags. |
+| **Code Block** | Layout & Exibição | Bloco de código com destaque de sintaxe, variante de SO, cópia com um clique e tags. |
 | **Collapsible** | Layout & Exibição | Elemento expansível/recolhível com animação suave de altura. |
 | **Data Table** | Layout & Exibição | Tabela de dados avançada com ordenação, filtros e paginação. |
 | **Diff Viewer** | Layout & Exibição | Visualizador comparativo de diferenças de código (Diff) em modos lado a lado ou linha por linha. |
@@ -200,6 +201,7 @@ graph TB
 | **Spinner** | Layout & Exibição | Indicador de carregamento rotativo com tamanhos e cores semânticas. |
 | **Stat Card** | Layout & Exibição | Cartão de métricas KPI com ícones, valores e indicadores de tendência. |
 | **Table** | Layout & Exibição | Tabela HTML estilizada com bordas arredondadas e seleção de linhas. |
+| **Table of Contents** | Layout & Exibição | Navegação por índice de tópicos com destaque dinâmico por scroll (IntersectionObserver) e autoScan. |
 | **Testimonials** | Layout & Exibição | Depoimentos de clientes em variantes grid, masonry, carrossel, split e marquee infinito. |
 | **Timeline** | Layout & Exibição | Linha de eventos cronológicos ordenados com suporte a ícones e nós. |
 | **Tree View** | Layout & Exibição | Árvore de navegação e diretórios interativa com nós expansíveis. |

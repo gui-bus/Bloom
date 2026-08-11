@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -11,12 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { ColorPicker } from "@/components/ui/colorPicker/colorPicker";
 import { colorPickerCode } from "@/components/ui/colorPicker/colorPicker.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function ColorPickerComponentPage() {
   return (
@@ -32,25 +25,12 @@ export default function ColorPickerComponentPage() {
 
       <InstallationBlock componentName="colorPicker" />
 
-      <Tabs defaultValue="colorPicker">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="colorPicker"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            colorPicker.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="colorPicker">
-          <CodeBlock
-            code={colorPickerCode}
-            componentName="colorPicker.tsx"
-            description="Color picker component with canvas color wheel, HEX/RGB/HSL format switching, and copy button."
-            tags={["React", "Canvas", "Tailwind", "UI Component", "Forms"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={colorPickerCode}
+        componentName="colorPicker.tsx"
+        description="Color picker component with canvas color wheel, HEX/RGB/HSL format switching, and copy button."
+        tags={["React", "Canvas", "Tailwind", "UI Component", "Forms"]}
+      />
 
       <DocsComponent
         title="Default"

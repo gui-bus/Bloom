@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -21,12 +20,6 @@ import {
 } from "@/components/ui/menubar/menubar";
 import { menubarCode } from "@/components/ui/menubar/menubar.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function MenubarComponentPage() {
   const [showGrid, setShowGrid] = React.useState(true);
@@ -45,25 +38,12 @@ export default function MenubarComponentPage() {
 
       <InstallationBlock componentName="menubar" />
 
-      <Tabs defaultValue="menubar">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="menubar"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            menubar.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="menubar">
-          <CodeBlock
-            code={menubarCode}
-            componentName="menubar.tsx"
-            description="Core implementation of the Menubar component."
-            tags={["React", "Radix UI", "Menubar", "Navigation"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={menubarCode}
+        componentName="menubar.tsx"
+        description="Core implementation of the Menubar component."
+        tags={["React", "Radix UI", "Menubar", "Navigation"]}
+      />
 
       <DocsComponent
         title="Default"

@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -11,12 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Progress } from "@/components/ui/progress/progress";
 import { progressCode } from "@/components/ui/progress/progress.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function ProgressComponentPage() {
   return (
@@ -32,25 +25,12 @@ export default function ProgressComponentPage() {
 
       <InstallationBlock componentName="progress" />
 
-      <Tabs defaultValue="progress">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="progress"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            progress.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="progress">
-          <CodeBlock
-            code={progressCode}
-            componentName="progress.tsx"
-            description="Core implementation of the Progress component."
-            tags={["React", "Radix UI", "Progress", "Feedback"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={progressCode}
+        componentName="progress.tsx"
+        description="Core implementation of the Progress component."
+        tags={["React", "Radix UI", "Progress", "Feedback"]}
+      />
 
       <DocsComponent
         title="Default"

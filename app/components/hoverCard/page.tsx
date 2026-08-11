@@ -21,12 +21,6 @@ import {
 } from "@/components/ui/hoverCard/hoverCard";
 import { hoverCardCode } from "@/components/ui/hoverCard/hoverCard.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function HoverCardComponentPage() {
   return (
@@ -42,25 +36,12 @@ export default function HoverCardComponentPage() {
 
       <InstallationBlock componentName="hoverCard" />
 
-      <Tabs defaultValue="hoverCard">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="hoverCard"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            hoverCard.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="hoverCard">
-          <CodeBlock
-            code={hoverCardCode}
-            componentName="hoverCard.tsx"
-            description="Core implementation of the HoverCard component."
-            tags={["React", "Radix UI", "Tailwind", "HoverCard"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={hoverCardCode}
+        componentName="hoverCard.tsx"
+        description="Core implementation of the HoverCard component."
+        tags={["React", "Radix UI", "Tailwind", "HoverCard"]}
+      />
 
       <DocsComponent
         title="Default"

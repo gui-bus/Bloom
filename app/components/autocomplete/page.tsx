@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -12,12 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Autocomplete } from "@/components/ui/autocomplete/autocomplete";
 import { autocompleteCode } from "@/components/ui/autocomplete/autocomplete.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 const sampleFrameworks = [
   {
@@ -64,25 +57,12 @@ export default function AutocompletePage() {
 
       <InstallationBlock componentName="autocomplete" />
 
-      <Tabs defaultValue="autocomplete">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="autocomplete"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            autocomplete.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="autocomplete">
-          <CodeBlock
-            code={autocompleteCode}
-            componentName="autocomplete.tsx"
-            description="Autocomplete input component with match highlighting and async searching support."
-            tags={["React", "Autocomplete", "Input", "Search"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={autocompleteCode}
+        componentName="autocomplete.tsx"
+        description="Autocomplete input component with match highlighting and async searching support."
+        tags={["React", "Autocomplete", "Input", "Search"]}
+      />
 
       <DocsComponent
         title="Default"

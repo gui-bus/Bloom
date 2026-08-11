@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -11,12 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Image } from "@/components/ui/image/image";
 import { imageCode } from "@/components/ui/image/image.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function ImageComponentPage() {
   const sampleImage =
@@ -35,25 +28,12 @@ export default function ImageComponentPage() {
 
       <InstallationBlock componentName="image" />
 
-      <Tabs defaultValue="image">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="image"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            image.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="image">
-          <CodeBlock
-            code={imageCode}
-            componentName="image.tsx"
-            description="Core implementation of the Image component."
-            tags={["React", "Tailwind", "Media", "Image"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={imageCode}
+        componentName="image.tsx"
+        description="Core implementation of the Image component."
+        tags={["React", "Tailwind", "Media", "Image"]}
+      />
 
       <DocsComponent
         title="Default"

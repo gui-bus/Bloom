@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -8,15 +7,9 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { Separator } from "@/components/ui/separator/separator";
 import { JsonTreeViewer } from "@/components/ui/jsonTreeViewer/jsonTreeViewer";
 import { jsonTreeViewerCode } from "@/components/ui/jsonTreeViewer/jsonTreeViewer.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
+import { Separator } from "@/components/ui/separator/separator";
 
 export default function JsonTreeViewerPage() {
   const sampleData = {
@@ -46,25 +39,12 @@ export default function JsonTreeViewerPage() {
 
       <InstallationBlock componentName="jsonTreeViewer" />
 
-      <Tabs defaultValue="jsonTreeViewer">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="jsonTreeViewer"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            jsonTreeViewer.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="jsonTreeViewer">
-          <CodeBlock
-            code={jsonTreeViewerCode}
-            componentName="jsonTreeViewer.tsx"
-            description="Nested collapsible list recursively formatting JS objects."
-            tags={["React", "Tree", "JSON", "Viewer"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={jsonTreeViewerCode}
+        componentName="jsonTreeViewer.tsx"
+        description="Nested collapsible list recursively formatting JS objects."
+        tags={["React", "Tree", "JSON", "Viewer"]}
+      />
 
       <DocsComponent
         title="Default"
@@ -131,8 +111,8 @@ export default function JsonTreeViewerPage() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">1</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Maximum hierarchy depth nodes are automatically expanded to by
-                    default
+                    Maximum hierarchy depth nodes are automatically expanded to
+                    by default
                   </td>
                 </tr>
               </tbody>

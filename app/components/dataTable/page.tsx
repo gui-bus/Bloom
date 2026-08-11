@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -12,12 +11,6 @@ import { Badge } from "@/components/ui/badge/badge";
 import { DataTable } from "@/components/ui/dataTable/dataTable";
 import { dataTableCode } from "@/components/ui/dataTable/dataTable.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 const columns = [
   { accessorKey: "id", header: "ID" },
@@ -109,32 +102,19 @@ export default function DataTableComponentPage() {
 
       <InstallationBlock componentName="dataTable" />
 
-      <Tabs defaultValue="dataTable">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="dataTable"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            dataTable.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="dataTable">
-          <CodeBlock
-            code={dataTableCode}
-            componentName="dataTable.tsx"
-            description="Core implementation of the DataTable component with column reordering, visibility menu, filter builder, and spreadsheet export."
-            tags={[
-              "React",
-              "TanStack Table",
-              "Tailwind",
-              "Data Grid",
-              "DataTable",
-              "Export",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={dataTableCode}
+        componentName="dataTable.tsx"
+        description="Core implementation of the DataTable component with column reordering, visibility menu, filter builder, and spreadsheet export."
+        tags={[
+          "React",
+          "TanStack Table",
+          "Tailwind",
+          "Data Grid",
+          "DataTable",
+          "Export",
+        ]}
+      />
 
       <DocsComponent
         title="Full-Featured Data Table"
@@ -218,10 +198,10 @@ export default function DataTableComponentPage() {
   data={data}
   enableExport
   onExportCSV={(table) => {
-    // Custom handling for CSV export
+    
   }}
   onExportExcel={(table) => {
-    // Custom handling for Excel export
+    
   }}
 />`}
         props={[

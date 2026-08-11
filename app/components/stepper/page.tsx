@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -20,12 +19,6 @@ import {
   StepperTitle,
 } from "@/components/ui/stepper/stepper";
 import { stepperCode } from "@/components/ui/stepper/stepper.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function StepperComponentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
@@ -44,25 +37,12 @@ export default function StepperComponentPage() {
 
       <InstallationBlock componentName="stepper" />
 
-      <Tabs defaultValue="stepper">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="stepper"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            stepper.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="stepper">
-          <CodeBlock
-            code={stepperCode}
-            componentName="stepper.tsx"
-            description="Core implementation of the Stepper component."
-            tags={["React", "Stepper", "Progress", "Form"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={stepperCode}
+        componentName="stepper.tsx"
+        description="Core implementation of the Stepper component."
+        tags={["React", "Stepper", "Progress", "Form"]}
+      />
 
       <DocsComponent
         title="Default Interactive"

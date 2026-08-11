@@ -9,12 +9,6 @@ import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 import { Timeline, TimelineItem } from "@/components/ui/timeline/timeline";
 import { timelineCode } from "@/components/ui/timeline/timeline.code";
 
@@ -32,25 +26,12 @@ export default function TimelinePage() {
 
       <InstallationBlock componentName="timeline" />
 
-      <Tabs defaultValue="timeline">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="timeline"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            timeline.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="timeline">
-          <CodeBlock
-            code={timelineCode}
-            componentName="timeline.tsx"
-            description="Timeline component with status indicators, custom icons, and chronological event display."
-            tags={["React", "Tailwind", "UI Component", "Timeline"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={timelineCode}
+        componentName="timeline.tsx"
+        description="Timeline component with status indicators, custom icons, and chronological event display."
+        tags={["React", "Tailwind", "UI Component", "Timeline"]}
+      />
 
       <DocsComponent
         title="Default"

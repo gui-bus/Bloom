@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -22,12 +21,6 @@ import {
 } from "@/components/ui/pagination/pagination";
 import { paginationCode } from "@/components/ui/pagination/pagination.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function PaginationComponentPage() {
   const [page, setPage] = React.useState(1);
@@ -46,25 +39,12 @@ export default function PaginationComponentPage() {
 
       <InstallationBlock componentName="pagination" />
 
-      <Tabs defaultValue="pagination">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="pagination"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            pagination.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="pagination">
-          <CodeBlock
-            code={paginationCode}
-            componentName="pagination.tsx"
-            description="Core implementation of the Pagination suite."
-            tags={["React", "Pagination", "Table", "Toolbar"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={paginationCode}
+        componentName="pagination.tsx"
+        description="Core implementation of the Pagination suite."
+        tags={["React", "Pagination", "Table", "Toolbar"]}
+      />
 
       <DocsComponent
         title="Full Pagination Toolbar Suite"

@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -9,12 +8,6 @@ import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 import { Typography } from "@/components/ui/typography/typography";
 import { typographyCode } from "@/components/ui/typography/typography.code";
 
@@ -32,25 +25,12 @@ export default function TypographyComponentPage() {
 
       <InstallationBlock componentName="typography" />
 
-      <Tabs defaultValue="typography">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="typography"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            typography.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="typography">
-          <CodeBlock
-            code={typographyCode}
-            componentName="typography.tsx"
-            description="Core implementation of the Typography component."
-            tags={["React", "Typography", "Headings", "Text"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={typographyCode}
+        componentName="typography.tsx"
+        description="Core implementation of the Typography component."
+        tags={["React", "Typography", "Headings", "Text"]}
+      />
 
       <DocsComponent
         title="Default"

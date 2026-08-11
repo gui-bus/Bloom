@@ -128,8 +128,8 @@ export function Sidebar() {
         { href: "/components/sheet", label: "Sheet" },
         { href: "/components/skeleton", label: "Skeleton" },
         { href: "/components/slider", label: "Slider" },
+        { href: "/components/snippet", label: "Snippet" },
         { href: "/components/spinner", label: "Spinner" },
-        { href: "/components/statCard", label: "Stat Card" },
         { href: "/components/stepper", label: "Stepper" },
         { href: "/components/switch", label: "Switch" },
         { href: "/components/table", label: "Table" },
@@ -164,6 +164,8 @@ export function Sidebar() {
         { href: "/components/logoClouds", label: "Logo Clouds" },
         { href: "/components/mentionTextarea", label: "Mention Textarea" },
         { href: "/components/signatureInput", label: "Signature Input" },
+        { href: "/components/statCard", label: "Stat Card" },
+        { href: "/components/tableOfContents", label: "Table of Contents" },
         { href: "/components/terminal", label: "Terminal" },
         { href: "/components/testimonials", label: "Testimonials" },
         { href: "/components/tour", label: "Tour Guide" },
@@ -209,6 +211,9 @@ export function Sidebar() {
           onChange={(e) => setSearchQuery(e.target.value)}
           isClearable={true}
           onClear={() => setSearchQuery("")}
+          autoComplete="off"
+          name="searchQuery"
+          id="sidebar-search-input"
           startContent={<Search className="size-3.5 text-zinc-400" />}
         />
       </div>

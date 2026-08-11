@@ -20,12 +20,6 @@ import {
 } from "@/components/ui/command/command";
 import { commandCode } from "@/components/ui/command/command.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function CommandComponentPage() {
   return (
@@ -41,25 +35,12 @@ export default function CommandComponentPage() {
 
       <InstallationBlock componentName="command" />
 
-      <Tabs defaultValue="command">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="command"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            command.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="command">
-          <CodeBlock
-            code={commandCode}
-            componentName="command.tsx"
-            description="Core implementation of the Command component."
-            tags={["React", "cmdk", "Tailwind", "Overlays", "Command"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={commandCode}
+        componentName="command.tsx"
+        description="Core implementation of the Command component."
+        tags={["React", "cmdk", "Tailwind", "Overlays", "Command"]}
+      />
 
       <DocsComponent
         title="Default"

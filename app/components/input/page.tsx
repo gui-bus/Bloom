@@ -12,12 +12,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Input } from "@/components/ui/input/input";
 import { inputCode } from "@/components/ui/input/input.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 import { Toast } from "@/components/ui/toast/toast";
 
 export default function InputComponentPage() {
@@ -37,25 +31,12 @@ export default function InputComponentPage() {
 
       <InstallationBlock componentName="input" />
 
-      <Tabs defaultValue="input">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="input"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            input.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="input">
-          <CodeBlock
-            code={inputCode}
-            componentName="input.tsx"
-            description="Core implementation of the Input component with CVA variants, masks, and interactive features."
-            tags={["React", "Tailwind", "UI Component", "Forms", "Input"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={inputCode}
+        componentName="input.tsx"
+        description="Core implementation of the Input component with CVA variants, masks, and interactive features."
+        tags={["React", "Tailwind", "UI Component", "Forms", "Input"]}
+      />
 
       <DocsComponent
         title="Default"

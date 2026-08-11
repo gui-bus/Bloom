@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -9,13 +8,7 @@ import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
-import { Terminal, TerminalLine } from "@/components/ui/terminal/terminal";
+import { Terminal, type TerminalLine } from "@/components/ui/terminal/terminal";
 import { terminalCode } from "@/components/ui/terminal/terminal.code";
 
 const demoLines: TerminalLine[] = [
@@ -41,30 +34,19 @@ export default function TerminalPage() {
 
       <InstallationBlock componentName="terminal" />
 
-      <Tabs defaultValue="terminal">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="terminal"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            terminal.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="terminal">
-          <CodeBlock
-            code={terminalCode}
-            componentName="terminal.tsx"
-            description="Complete command line interface component source code with multi-OS variants."
-            tags={["React", "Terminal", "CLI", "Code"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={terminalCode}
+        componentName="terminal.tsx"
+        description="Complete command line interface component source code with multi-OS variants."
+        tags={["React", "Terminal", "CLI", "Code"]}
+      />
 
       <DocsComponent
         title="Default Variant"
         description="Neutral dark terminal window with traffic lights and copy button."
-        props={["variant?: 'default' | 'mac' | 'powershell' | 'cmd' | 'ubuntu'"]}
+        props={[
+          "variant?: 'default' | 'mac' | 'powershell' | 'cmd' | 'ubuntu'",
+        ]}
         preview={
           <div className="w-full p-4">
             <Terminal variant="default" lines={demoLines} />
@@ -127,42 +109,72 @@ export default function TerminalPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">"default" | "mac" | "powershell" | "cmd" | "ubuntu"</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    "default" | "mac" | "powershell" | "cmd" | "ubuntu"
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">"default"</td>
-                  <td className="px-3 py-2 text-muted-foreground">Operating system visual theme variant.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Operating system visual theme variant.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">title</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">auto (variant default)</td>
-                  <td className="px-3 py-2 text-muted-foreground">Custom title bar text overlay.</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    auto (variant default)
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Custom title bar text overlay.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">lines</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">TerminalLine[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    TerminalLine[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">Array of terminal line items.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Array of terminal line items.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">keyof typeof designRadius</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    keyof typeof designRadius
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">"xl"</td>
-                  <td className="px-3 py-2 text-muted-foreground">Corner border radius styling.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Corner border radius styling.
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">showCopy</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Whether to display the copy commands button in header.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Whether to display the copy commands button in header.
+                  </td>
                 </tr>
               </tbody>
             </table>

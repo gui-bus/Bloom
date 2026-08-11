@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -9,12 +8,6 @@ import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 import { Textarea } from "@/components/ui/textarea/textarea";
 import { textareaCode } from "@/components/ui/textarea/textarea.code";
 
@@ -32,25 +25,12 @@ export default function TextareaComponentPage() {
 
       <InstallationBlock componentName="textarea" />
 
-      <Tabs defaultValue="textarea">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="textarea"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            textarea.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="textarea">
-          <CodeBlock
-            code={textareaCode}
-            componentName="textarea.tsx"
-            description="Core implementation of the Textarea component."
-            tags={["React", "Textarea", "Input", "Form"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={textareaCode}
+        componentName="textarea.tsx"
+        description="Core implementation of the Textarea component."
+        tags={["React", "Textarea", "Input", "Form"]}
+      />
 
       <DocsComponent
         title="Default"

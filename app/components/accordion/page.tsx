@@ -18,12 +18,6 @@ import {
 import { accordionCode } from "@/components/ui/accordion/accordion.code";
 import { Button } from "@/components/ui/button/button";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function AccordionPage() {
   const [controlledValue, setControlledValue] =
@@ -42,31 +36,12 @@ export default function AccordionPage() {
 
       <InstallationBlock componentName="accordion" />
 
-      <Tabs defaultValue="accordion">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="accordion"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            accordion.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="accordion">
-          <CodeBlock
-            code={accordionCode}
-            componentName="accordion.tsx"
-            description="Accordion component powered by Radix Primitives supporting controlled state, start/end content icons, disabled states, and visual variants."
-            tags={[
-              "React",
-              "Radix UI",
-              "Tailwind",
-              "UI Component",
-              "Accordion",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={accordionCode}
+        componentName="accordion.tsx"
+        description="Accordion component powered by Radix Primitives supporting controlled state, start/end content icons, disabled states, and visual variants."
+        tags={["React", "Radix UI", "Tailwind", "UI Component", "Accordion"]}
+      />
 
       <DocsComponent
         title="Default"

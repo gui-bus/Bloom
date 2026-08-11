@@ -1,23 +1,16 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
+import { Separator } from "@/components/ui/separator/separator";
 import { SignatureInput } from "@/components/ui/signatureInput/signatureInput";
 import { signatureInputCode } from "@/components/ui/signatureInput/signatureInput.code";
-import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function SignatureInputPage() {
   const [signature1, setSignature1] = React.useState<string | null>(null);
@@ -36,30 +29,20 @@ export default function SignatureInputPage() {
 
       <InstallationBlock componentName="signatureInput" />
 
-      <Tabs defaultValue="signatureInput">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="signatureInput"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            signatureInput.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="signatureInput">
-          <CodeBlock
-            code={signatureInputCode}
-            componentName="signatureInput.tsx"
-            description="Core implementation of the SignatureInput component with drawing controls, pointer events, history undo stack, and clean card styling."
-            tags={["React", "Tailwind", "Canvas", "SignatureInput", "Form"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={signatureInputCode}
+        componentName="signatureInput.tsx"
+        description="Core implementation of the SignatureInput component with drawing controls, pointer events, history undo stack, and clean card styling."
+        tags={["React", "Tailwind", "Canvas", "SignatureInput", "Form"]}
+      />
 
       <DocsComponent
         title="Default"
         description="A simple signature pad with drawing capabilities, clear, and undo functionality."
-        props={["onChange: (signature: string | null) => void", "placeholder: string"]}
+        props={[
+          "onChange: (signature: string | null) => void",
+          "placeholder: string",
+        ]}
         preview={
           <div className="w-full max-w-md space-y-4">
             <SignatureInput
@@ -128,7 +111,11 @@ export default function SignatureInputPage() {
       <DocsComponent
         title="Customizations"
         description="Customize pen stroke color, line width, and bounding height."
-        props={["strokeColor: string", "lineWidth: number", "height: number | string"]}
+        props={[
+          "strokeColor: string",
+          "lineWidth: number",
+          "height: number | string",
+        ]}
         preview={
           <div className="w-full max-w-md space-y-6">
             <div>
@@ -195,66 +182,117 @@ export default function SignatureInputPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">width</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number | string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number | string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">"100%"</td>
-                  <td className="px-3 py-2 text-muted-foreground">CSS width of the canvas wrapper.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    CSS width of the canvas wrapper.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">height</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number | string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number | string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">200</td>
-                  <td className="px-3 py-2 text-muted-foreground">CSS height of the canvas drawing area.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    CSS height of the canvas drawing area.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">strokeColor</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
-                  <td className="px-3 py-2 text-muted-foreground">"currentColor"</td>
-                  <td className="px-3 py-2 text-muted-foreground">Hex or named color of the signature stroke. Uses current font color if "currentColor".</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    strokeColor
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    "currentColor"
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Hex or named color of the signature stroke. Uses current
+                    font color if "currentColor".
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">lineWidth</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    lineWidth
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">2.5</td>
-                  <td className="px-3 py-2 text-muted-foreground">Width/thickness of the drawing line in pixels.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Width/thickness of the drawing line in pixels.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">"default" | "bordered" | "flat"</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    "default" | "bordered" | "flat"
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">"default"</td>
-                  <td className="px-3 py-2 text-muted-foreground">The styling variant of the signature wrapper box.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    The styling variant of the signature wrapper box.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">keyof typeof designRadius</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    keyof typeof designRadius
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">"md"</td>
-                  <td className="px-3 py-2 text-muted-foreground">Corner radius of the signature card.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Corner radius of the signature card.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">onChange</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{`(signature: string | null) => void`}</td>
                   <td className="px-3 py-2 text-muted-foreground">-</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback containing base64 data URL png output of signature when drawing ends, or null when cleared.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback containing base64 data URL png output of signature
+                    when drawing ends, or null when cleared.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">onClear</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{`() => void`}</td>
                   <td className="px-3 py-2 text-muted-foreground">-</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback fired when the signature is cleared.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback fired when the signature is cleared.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">isDisabled</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isDisabled
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Disables all pointer interactions and fades the component out slightly.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Disables all pointer interactions and fades the component
+                    out slightly.
+                  </td>
                 </tr>
               </tbody>
             </table>

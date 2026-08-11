@@ -1,20 +1,13 @@
 "use client";
 
-import { Icon } from "@iconify/react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 import {
   type TestimonialItem,
   Testimonials,
@@ -104,32 +97,19 @@ export default function TestimonialsComponentPage() {
 
       <InstallationBlock componentName="testimonials" />
 
-      <Tabs defaultValue="testimonials">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="testimonials"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            testimonials.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="testimonials">
-          <CodeBlock
-            code={testimonialsCode}
-            componentName="testimonials.tsx"
-            description="Multi-layout testimonials showcase component rendering rating stars, client avatars, and infinite scrolling marquees."
-            tags={[
-              "React",
-              "Tailwind",
-              "UI Component",
-              "Testimonials",
-              "Marquee",
-              "Slider",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={testimonialsCode}
+        componentName="testimonials.tsx"
+        description="Multi-layout testimonials showcase component rendering rating stars, client avatars, and infinite scrolling marquees."
+        tags={[
+          "React",
+          "Tailwind",
+          "UI Component",
+          "Testimonials",
+          "Marquee",
+          "Slider",
+        ]}
+      />
 
       <DocsComponent
         title="Default"
@@ -137,7 +117,7 @@ export default function TestimonialsComponentPage() {
         props={[
           "items: TestimonialItem[]",
           "layout: 'grid' | 'masonry' | 'carousel' | 'split' | 'marquee'",
-          "cols: number"
+          "cols: number",
         ]}
         preview={
           <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
@@ -161,7 +141,7 @@ export default function TestimonialsComponentPage() {
         props={[
           "layout: 'grid' | 'masonry' | 'carousel' | 'split' | 'marquee'",
           "speed: number",
-          "pauseOnHover: boolean"
+          "pauseOnHover: boolean",
         ]}
         preview={
           <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
@@ -187,7 +167,7 @@ export default function TestimonialsComponentPage() {
         props={[
           "layout: 'grid' | 'masonry' | 'carousel' | 'split' | 'marquee'",
           "autoplay: boolean",
-          "autoplayDelay: number"
+          "autoplayDelay: number",
         ]}
         preview={
           <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
@@ -211,7 +191,9 @@ export default function TestimonialsComponentPage() {
       <DocsComponent
         title="Split Featured Layout"
         description="Highlight a main featured testimonial on the left side while displaying supporting secondary reviews on the right."
-        props={["layout: 'grid' | 'masonry' | 'carousel' | 'split' | 'marquee'"]}
+        props={[
+          "layout: 'grid' | 'masonry' | 'carousel' | 'split' | 'marquee'",
+        ]}
         preview={
           <div className="w-full p-6 bg-zinc-50 dark:bg-zinc-950/20 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80">
             <Testimonials items={sampleTestimonials} layout="split" />
@@ -233,54 +215,95 @@ export default function TestimonialsComponentPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">items</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">TestimonialItem[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    TestimonialItem[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">Array of testimonial review objects</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Array of testimonial review objects
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">layout</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'grid' | 'masonry' | 'carousel' | 'split' | 'marquee'</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'grid' | 'masonry' | 'carousel' | 'split' | 'marquee'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'grid'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Organizes reviews in grid, masonry, split, slider, or marquee layouts</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Organizes reviews in grid, masonry, split, slider, or
+                    marquee layouts
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">cols</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">3</td>
-                  <td className="px-3 py-2 text-muted-foreground">Number of columns for grid and carousel layouts</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Number of columns for grid and carousel layouts
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">speed</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">40</td>
-                  <td className="px-3 py-2 text-muted-foreground">Marquee layout infinite movement speed index</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Marquee layout infinite movement speed index
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">pauseOnHover</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    pauseOnHover
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Pauses marquee on hover</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Pauses marquee on hover
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">autoplay</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Enables automatic slide transitions in carousel</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables automatic slide transitions in carousel
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">autoplayDelay</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    autoplayDelay
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">3000</td>
-                  <td className="px-3 py-2 text-muted-foreground">Delay in milliseconds between autoplay slide transitions</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Delay in milliseconds between autoplay slide transitions
+                  </td>
                 </tr>
               </tbody>
             </table>

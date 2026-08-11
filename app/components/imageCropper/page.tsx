@@ -1,6 +1,6 @@
 "use client";
 
-import { Icon } from "@iconify/react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -10,13 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { ImageCropper } from "@/components/ui/imageCropper/imageCropper";
 import { imageCropperCode } from "@/components/ui/imageCropper/imageCropper.code";
 import { Separator } from "@/components/ui/separator/separator";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function ImageCropperPage() {
   return (
@@ -32,30 +25,21 @@ export default function ImageCropperPage() {
 
       <InstallationBlock componentName="imageCropper" />
 
-      <Tabs defaultValue="imageCropper">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="imageCropper"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            imageCropper.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="imageCropper">
-          <CodeBlock
-            code={imageCropperCode}
-            componentName="imageCropper.tsx"
-            description="HTML5 Canvas image editor with drag and zoom scaling."
-            tags={["React", "Canvas", "Cropper", "Editor"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={imageCropperCode}
+        componentName="imageCropper.tsx"
+        description="HTML5 Canvas image editor with drag and zoom scaling."
+        tags={["React", "Canvas", "Cropper", "Editor"]}
+      />
 
       <DocsComponent
         title="Default"
         description="A standard cropper with locked 1:1 aspect ratio."
-        props={["src: string", "aspectRatio: number", "onCrop: (base64: string) => void"]}
+        props={[
+          "src: string",
+          "aspectRatio: number",
+          "onCrop: (base64: string) => void",
+        ]}
         preview={
           <div className="w-full max-w-xl p-4 bg-zinc-50 dark:bg-zinc-950/40 rounded-xl border border-zinc-200 dark:border-zinc-800">
             <ImageCropper
@@ -104,36 +88,62 @@ export default function ImageCropperPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">src</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">required</td>
-                  <td className="px-3 py-2 text-muted-foreground">Source URL path for target picture to edit</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Source URL path for target picture to edit
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">aspectRatio</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    aspectRatio
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">1</td>
-                  <td className="px-3 py-2 text-muted-foreground">Dimension ratio configuration constraint</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Dimension ratio configuration constraint
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">circular</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders a round cropping viewport overlay</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders a round cropping viewport overlay
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">onCrop</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(base64: string) => void"}</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {"(base64: string) => void"}
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Extraction hook returning cropped base64 PNG data</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Extraction hook returning cropped base64 PNG data
+                  </td>
                 </tr>
               </tbody>
             </table>

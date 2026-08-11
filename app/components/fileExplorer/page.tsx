@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { useState } from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -15,12 +14,6 @@ import {
 } from "@/components/ui/fileExplorer/fileExplorer";
 import { fileExplorerCode } from "@/components/ui/fileExplorer/fileExplorer.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 const initialData: FileNode[] = [
   {
@@ -126,36 +119,23 @@ export default function FileExplorerPage() {
 
       <InstallationBlock componentName="fileExplorer" />
 
-      <Tabs defaultValue="fileExplorer">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="fileExplorer"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            fileExplorer.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="fileExplorer">
-          <CodeBlock
-            code={fileExplorerCode}
-            componentName="fileExplorer.tsx"
-            description="Nested file tree explorer with expand/collapse, rename, delete, add node, and search capabilities."
-            tags={[
-              "React",
-              "Tailwind",
-              "UI Component",
-              "Tree",
-              "File Explorer",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={fileExplorerCode}
+        componentName="fileExplorer.tsx"
+        description="Nested file tree explorer with expand/collapse, rename, delete, add node, and search capabilities."
+        tags={["React", "Tailwind", "UI Component", "Tree", "File Explorer"]}
+      />
 
       <DocsComponent
         title="Default"
         description="Interactive file tree with expand/collapse folders, inline rename, delete, and add file or folder actions."
-        props={["data: FileNode[]", "onNodeClick: (node: FileNode) => void", "onAddNode: (parentId, type, name) => void", "onRenameNode: (nodeId, newName) => void", "onDeleteNode: (nodeId) => void"]}
+        props={[
+          "data: FileNode[]",
+          "onNodeClick: (node: FileNode) => void",
+          "onAddNode: (parentId, type, name) => void",
+          "onRenameNode: (nodeId, newName) => void",
+          "onDeleteNode: (nodeId) => void",
+        ]}
         preview={
           <div className="w-full max-w-md">
             <FileExplorer
@@ -186,42 +166,80 @@ export default function FileExplorerPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">data</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">FileNode[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    FileNode[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">required</td>
-                  <td className="px-3 py-2 text-muted-foreground">Array of file and folder nodes to display.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Array of file and folder nodes to display.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">onNodeClick</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(node: FileNode) => void"}</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onNodeClick
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {"(node: FileNode) => void"}
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback fired when a node is clicked.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback fired when a node is clicked.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">onAddNode</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(parentId: string | null, type: 'file' | 'folder', name: string) => void"}</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onAddNode
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {
+                      "(parentId: string | null, type: 'file' | 'folder', name: string) => void"
+                    }
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback to add a new file or folder to a parent node.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback to add a new file or folder to a parent node.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">onRenameNode</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(nodeId: string, newName: string) => void"}</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onRenameNode
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {"(nodeId: string, newName: string) => void"}
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback to rename an existing node.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback to rename an existing node.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">onDeleteNode</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(nodeId: string) => void"}</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onDeleteNode
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {"(nodeId: string) => void"}
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback to delete a node by ID.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback to delete a node by ID.
+                  </td>
                 </tr>
               </tbody>
             </table>

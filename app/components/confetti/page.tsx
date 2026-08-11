@@ -1,24 +1,17 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { Separator } from "@/components/ui/separator/separator";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { Button } from "@/components/ui/button/button";
 import { Confetti } from "@/components/ui/confetti/confetti";
 import { confettiCode } from "@/components/ui/confetti/confetti.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
+import { Separator } from "@/components/ui/separator/separator";
 
 export default function ConfettiPage() {
   const [fireCount, setFireCount] = React.useState(0);
@@ -48,30 +41,20 @@ export default function ConfettiPage() {
 
       <InstallationBlock componentName="confetti" />
 
-      <Tabs defaultValue="confetti">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="confetti"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            confetti.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="confetti">
-          <CodeBlock
-            code={confettiCode}
-            componentName="confetti.tsx"
-            description="Core wrapper component around canvas-confetti providing standard preset physics bursts and custom configuration parameters."
-            tags={["React", "Tailwind", "Animation", "Confetti", "Effects"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={confettiCode}
+        componentName="confetti.tsx"
+        description="Core wrapper component around canvas-confetti providing standard preset physics bursts and custom configuration parameters."
+        tags={["React", "Tailwind", "Animation", "Confetti", "Effects"]}
+      />
 
       <DocsComponent
         title="Default"
         description="Trigger a single burst from the center of the screen."
-        props={["fire: boolean | number", "variant: 'cannon' | 'fireworks' | 'shower' | 'school-pride'"]}
+        props={[
+          "fire: boolean | number",
+          "variant: 'cannon' | 'fireworks' | 'shower' | 'school-pride'",
+        ]}
         preview={
           <div className="w-full flex justify-center py-6">
             <Button onClick={() => fireConfetti("cannon")}>
@@ -138,7 +121,7 @@ export default function ConfettiPage() {
         }
         code={`<Confetti
   fire={fireCount}
-  colors={["#a855f7", "#eab308", "#10b981"]} // Purple, Gold, Emerald
+  colors={["#a855f7", "#eab308", "#10b981"]} 
 />`}
       />
 
@@ -165,8 +148,8 @@ export default function ConfettiPage() {
         }
         code={`<Confetti
   fire={fireCount}
-  particleCount={400} // High density burst
-  spread={180}        // Extends all the way horizontally
+  particleCount={400} 
+  spread={180}        
 />`}
       />
 
@@ -194,9 +177,9 @@ export default function ConfettiPage() {
         }
         code={`<Confetti
   fire={fireCount}
-  gravity={0.3}       // Very light gravity (floats longer)
-  drift={1.5}         // Strong sideways drift to the right
-  startVelocity={20}  // Slower starting speed
+  gravity={0.3}       
+  drift={1.5}         
+  startVelocity={20}  
 />`}
       />
 
@@ -219,8 +202,8 @@ export default function ConfettiPage() {
         }
         code={`<Confetti
   fire={fireCount}
-  scalar={2.5}       // Over-sized elements
-  particleCount={40}  // Fewer elements to prevent cluttering
+  scalar={2.5}       
+  particleCount={40}  
 />`}
       />
 
@@ -234,102 +217,182 @@ export default function ConfettiPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">fire</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean | number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean | number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">Triggers a new animation burst when the value changes or is set to true.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Triggers a new animation burst when the value changes or is
+                    set to true.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">"cannon" | "fireworks" | "shower" | "school-pride"</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    "cannon" | "fireworks" | "shower" | "school-pride"
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">"cannon"</td>
-                  <td className="px-3 py-2 text-muted-foreground">The layout movement preset of the confetti particles.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    The layout movement preset of the confetti particles.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">particleCount</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    particleCount
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">100 / 50</td>
-                  <td className="px-3 py-2 text-muted-foreground">Total number of confetti particles per burst.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Total number of confetti particles per burst.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">spread</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">70</td>
-                  <td className="px-3 py-2 text-muted-foreground">Angle range spread of the burst particles in degrees.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Angle range spread of the burst particles in degrees.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">colors</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Custom color hex string array for particles.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Custom color hex string array for particles.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">angle</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">90</td>
-                  <td className="px-3 py-2 text-muted-foreground">Angle direction from which particles rise (e.g. 90 is straight up).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Angle direction from which particles rise (e.g. 90 is
+                    straight up).
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">startVelocity</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    startVelocity
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">45</td>
-                  <td className="px-3 py-2 text-muted-foreground">Initial speed of launched particles (higher values shoot faster/higher).</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Initial speed of launched particles (higher values shoot
+                    faster/higher).
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">decay</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">0.9</td>
-                  <td className="px-3 py-2 text-muted-foreground">Friction factor determining how fast particles slow down.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Friction factor determining how fast particles slow down.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">gravity</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">1</td>
-                  <td className="px-3 py-2 text-muted-foreground">Gravity factor pulling particles downwards. Decreasing floats particles longer.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Gravity factor pulling particles downwards. Decreasing
+                    floats particles longer.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">drift</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">0</td>
-                  <td className="px-3 py-2 text-muted-foreground">Sideways drift force simulating wind direction effects.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Sideways drift force simulating wind direction effects.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">ticks</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">200</td>
-                  <td className="px-3 py-2 text-muted-foreground">Lifetime limit of animation frames before particles disappear.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Lifetime limit of animation frames before particles
+                    disappear.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">scalar</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">1</td>
-                  <td className="px-3 py-2 text-muted-foreground">Scaling size multiplier of the confetti particles.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Scaling size multiplier of the confetti particles.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">zIndex</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">number</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">100</td>
-                  <td className="px-3 py-2 text-muted-foreground">CSS z-index of the confetti rendering canvas layer.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    CSS z-index of the confetti rendering canvas layer.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">options</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">confetti.Options</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    confetti.Options
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Standard options passed directly to the canvas-confetti library.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Standard options passed directly to the canvas-confetti
+                    library.
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">onComplete</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">() =&gt; void</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onComplete
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    () =&gt; void
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback fired when a particle burst completes.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback fired when a particle burst completes.
+                  </td>
                 </tr>
               </tbody>
             </table>

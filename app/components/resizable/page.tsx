@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -15,12 +14,6 @@ import {
 } from "@/components/ui/resizable/resizable";
 import { resizableCode } from "@/components/ui/resizable/resizable.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function ResizableComponentPage() {
   return (
@@ -36,25 +29,12 @@ export default function ResizableComponentPage() {
 
       <InstallationBlock componentName="resizable" />
 
-      <Tabs defaultValue="resizable">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="resizable"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            resizable.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="resizable">
-          <CodeBlock
-            code={resizableCode}
-            componentName="resizable.tsx"
-            description="Core implementation of the Resizable component."
-            tags={["React", "Resizable", "Layout", "Split Pane"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={resizableCode}
+        componentName="resizable.tsx"
+        description="Core implementation of the Resizable component."
+        tags={["React", "Resizable", "Layout", "Split Pane"]}
+      />
 
       <DocsComponent
         title="Default"

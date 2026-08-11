@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -11,12 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Chart } from "@/components/ui/chart/chart";
 import { chartCode } from "@/components/ui/chart/chart.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 const sampleData = [
   { month: "Jan", revenue: 4200, users: 2100 },
@@ -41,31 +34,12 @@ export default function ChartComponentPage() {
 
       <InstallationBlock componentName="chart" />
 
-      <Tabs defaultValue="chart">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="chart"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            chart.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="chart">
-          <CodeBlock
-            code={chartCode}
-            componentName="chart.tsx"
-            description="Core implementation of the Chart component supporting responsive Line and Bar visualizations."
-            tags={[
-              "React",
-              "Recharts",
-              "Tailwind",
-              "Data Visualization",
-              "Chart",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={chartCode}
+        componentName="chart.tsx"
+        description="Core implementation of the Chart component supporting responsive Line and Bar visualizations."
+        tags={["React", "Recharts", "Tailwind", "Data Visualization", "Chart"]}
+      />
 
       <DocsComponent
         title="Default"

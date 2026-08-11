@@ -12,12 +12,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
 import { Switch } from "@/components/ui/switch/switch";
 import { switchCode } from "@/components/ui/switch/switch.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function SwitchComponentPage() {
   const [isDarkMode, setIsDarkMode] = React.useState(true);
@@ -36,32 +30,19 @@ export default function SwitchComponentPage() {
 
       <InstallationBlock componentName="switch" />
 
-      <Tabs defaultValue="switch">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="switch"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            switch.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="switch">
-          <CodeBlock
-            code={switchCode}
-            componentName="switch.tsx"
-            description="Core implementation of the Switch component."
-            tags={[
-              "React",
-              "Radix UI",
-              "Switch",
-              "Toggle",
-              "Thumb Icons",
-              "Dual Labels",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={switchCode}
+        componentName="switch.tsx"
+        description="Core implementation of the Switch component."
+        tags={[
+          "React",
+          "Radix UI",
+          "Switch",
+          "Toggle",
+          "Thumb Icons",
+          "Dual Labels",
+        ]}
+      />
 
       <DocsComponent
         title="Default Switch"

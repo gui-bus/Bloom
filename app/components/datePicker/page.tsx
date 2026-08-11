@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -11,12 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { DatePicker } from "@/components/ui/datePicker/datePicker";
 import { datePickerCode } from "@/components/ui/datePicker/datePicker.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function DatePickerComponentPage() {
   const today = new Date();
@@ -35,32 +28,19 @@ export default function DatePickerComponentPage() {
 
       <InstallationBlock componentName="datePicker" />
 
-      <Tabs defaultValue="datePicker">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="datePicker"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            datePicker.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="datePicker">
-          <CodeBlock
-            code={datePickerCode}
-            componentName="datePicker.tsx"
-            description="Core implementation of the DatePicker component with integrated time picker and fiscal quarter/year modes."
-            tags={[
-              "React",
-              "Tailwind",
-              "Calendar",
-              "TimePicker",
-              "FiscalYear",
-              "DatePicker",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={datePickerCode}
+        componentName="datePicker.tsx"
+        description="Core implementation of the DatePicker component with integrated time picker and fiscal quarter/year modes."
+        tags={[
+          "React",
+          "Tailwind",
+          "Calendar",
+          "TimePicker",
+          "FiscalYear",
+          "DatePicker",
+        ]}
+      />
 
       <DocsComponent
         title="Integrated Time Picker Selection"

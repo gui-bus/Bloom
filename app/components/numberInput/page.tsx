@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -12,12 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { NumberInput } from "@/components/ui/numberInput/numberInput";
 import { numberInputCode } from "@/components/ui/numberInput/numberInput.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function NumberInputComponentPage() {
   const [val, setVal] = React.useState(2500);
@@ -35,25 +28,12 @@ export default function NumberInputComponentPage() {
 
       <InstallationBlock componentName="numberInput" />
 
-      <Tabs defaultValue="numberInput">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="numberInput"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            numberInput.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="numberInput">
-          <CodeBlock
-            code={numberInputCode}
-            componentName="numberInput.tsx"
-            description="Core implementation of the NumberInput component."
-            tags={["React", "NumberInput", "Stepper", "Currency", "Intl"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={numberInputCode}
+        componentName="numberInput.tsx"
+        description="Core implementation of the NumberInput component."
+        tags={["React", "NumberInput", "Stepper", "Currency", "Intl"]}
+      />
 
       <DocsComponent
         title="Stepper Positions (stepperPosition)"

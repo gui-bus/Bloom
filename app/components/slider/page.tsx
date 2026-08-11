@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -12,12 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
 import { Slider } from "@/components/ui/slider/slider";
 import { sliderCode } from "@/components/ui/slider/slider.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function SliderComponentPage() {
   const [val1, setVal1] = React.useState([45]);
@@ -39,25 +32,12 @@ export default function SliderComponentPage() {
 
       <InstallationBlock componentName="slider" />
 
-      <Tabs defaultValue="slider">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="slider"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            slider.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="slider">
-          <CodeBlock
-            code={sliderCode}
-            componentName="slider.tsx"
-            description="Core implementation of the Slider component."
-            tags={["React", "Radix UI", "Slider", "Form", "Histogram"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={sliderCode}
+        componentName="slider.tsx"
+        description="Core implementation of the Slider component."
+        tags={["React", "Radix UI", "Slider", "Form", "Histogram"]}
+      />
 
       <DocsComponent
         title="Single Thumb & Floating Tooltip"

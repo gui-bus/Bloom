@@ -11,12 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Button } from "@/components/ui/button/button";
 import { Separator } from "@/components/ui/separator/separator";
 import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
-import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -38,25 +32,12 @@ export default function TooltipComponentPage() {
 
       <InstallationBlock componentName="tooltip" />
 
-      <Tabs defaultValue="tooltip">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="tooltip"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            tooltip.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="tooltip">
-          <CodeBlock
-            code={tooltipCode}
-            componentName="tooltip.tsx"
-            description="Core implementation of the Tooltip component."
-            tags={["React", "Radix UI", "Tooltip", "Popover"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={tooltipCode}
+        componentName="tooltip.tsx"
+        description="Core implementation of the Tooltip component."
+        tags={["React", "Radix UI", "Tooltip", "Popover"]}
+      />
 
       <DocsComponent
         title="Default"

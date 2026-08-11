@@ -26,12 +26,6 @@ import {
 } from "@/components/ui/contextMenu/contextMenu";
 import { contextMenuCode } from "@/components/ui/contextMenu/contextMenu.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 function TargetWrapperDemo() {
   const targetRef = React.useRef<HTMLDivElement>(null);
@@ -93,25 +87,12 @@ export default function ContextMenuComponentPage() {
 
       <InstallationBlock componentName="contextMenu" />
 
-      <Tabs defaultValue="contextMenu">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="contextMenu"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            contextMenu.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="contextMenu">
-          <CodeBlock
-            code={contextMenuCode}
-            componentName="contextMenu.tsx"
-            description="Core implementation of the ContextMenu component with target element wrapping and nested submenu primitives."
-            tags={["React", "Radix UI", "Tailwind", "Overlays", "ContextMenu"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={contextMenuCode}
+        componentName="contextMenu.tsx"
+        description="Core implementation of the ContextMenu component with target element wrapping and nested submenu primitives."
+        tags={["React", "Radix UI", "Tailwind", "Overlays", "ContextMenu"]}
+      />
 
       <DocsComponent
         title="Custom Target Element Binding (ContextMenuTrigger target={...})"

@@ -12,7 +12,7 @@ export interface AudioRecorderProps {
   variant?: "default" | "bordered" | "flat";
   radius?: keyof typeof designRadius;
   visualizerColor?: string;
-  maxDuration?: number; // in seconds
+  maxDuration?: number;
   isDisabled?: boolean;
 }
 
@@ -21,7 +21,7 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
   onStop,
   variant = "default",
   radius = "lg",
-  visualizerColor = "#0ea5e9", // Sky-500
+  visualizerColor = "#0ea5e9",
   maxDuration,
   isDisabled = false,
 }) => {
@@ -47,7 +47,6 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Set canvas resolution
     const rect = canvas.getBoundingClientRect();
     canvas.width = rect.width;
     canvas.height = 64;
@@ -83,7 +82,7 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
         barHeight = (dataArray[i] / 255) * canvas.height * 0.8;
 
         ctx.fillStyle = visualizerColor;
-        // Center the wave bars vertically
+
         const y = (canvas.height - barHeight) / 2;
 
         ctx.beginPath();
@@ -167,7 +166,7 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
     if (isPaused) {
       mediaRecorderRef.current.resume();
       setIsPaused(false);
-      // Restart visualizer
+
       if (streamRef.current) startVisualizer(streamRef.current);
     } else {
       mediaRecorderRef.current.pause();
@@ -179,7 +178,7 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
   const stopRecording = () => {
     if (!mediaRecorderRef.current) return;
     mediaRecorderRef.current.stop();
-    // Stop stream tracks
+
     streamRef.current?.getTracks().forEach((track) => {
       track.stop();
     });
@@ -223,7 +222,6 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
       )}
     >
       <div className="flex flex-col items-center justify-center py-4">
-        {/* Timer / Waveform area */}
         <div className="w-full flex flex-col items-center justify-center h-20 mb-4 relative">
           {isRecording ? (
             <div className="w-full flex flex-col items-center justify-center">
@@ -240,7 +238,7 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
             </div>
           ) : audioUrl ? (
             <div className="w-full flex flex-col items-center justify-center">
-              {/* biome-ignore lint/a11y/useMediaCaption: custom audio player preview */}
+              {/* biome-ignore lint/a11y/useMediaCaption: User recorded audio preview */}
               <audio
                 src={audioUrl}
                 controls
@@ -257,7 +255,6 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
           )}
         </div>
 
-        {/* Action Controls */}
         <div className="flex items-center justify-center gap-4">
           {isRecording ? (
             <>

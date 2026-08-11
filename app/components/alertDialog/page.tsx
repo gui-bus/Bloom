@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -24,12 +23,6 @@ import { alertDialogCode } from "@/components/ui/alertDialog/alertDialog.code";
 import { Button } from "@/components/ui/button/button";
 import { Input } from "@/components/ui/input/input";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function AlertDialogComponentPage() {
   const [confirmInput, setConfirmInput] = React.useState("");
@@ -56,25 +49,12 @@ export default function AlertDialogComponentPage() {
 
       <InstallationBlock componentName="alertDialog" />
 
-      <Tabs defaultValue="alertDialog">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="alertDialog"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            alertDialog.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="alertDialog">
-          <CodeBlock
-            code={alertDialogCode}
-            componentName="alertDialog.tsx"
-            description="Core implementation of the AlertDialog component featuring accessible Radix UI primitives and neutral theme colors."
-            tags={["React", "Radix UI", "Tailwind", "Overlays", "Dialog"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={alertDialogCode}
+        componentName="alertDialog.tsx"
+        description="Core implementation of the AlertDialog component featuring accessible Radix UI primitives and neutral theme colors."
+        tags={["React", "Radix UI", "Tailwind", "Overlays", "Dialog"]}
+      />
 
       <DocsComponent
         title="Default"

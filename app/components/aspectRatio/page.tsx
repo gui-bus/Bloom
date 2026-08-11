@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react";
 import type { Metadata } from "next";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -16,16 +15,10 @@ export const metadata: Metadata = {
 import { AspectRatio } from "@/components/ui/aspectRatio/aspectRatio";
 import { aspectRatioCode } from "@/components/ui/aspectRatio/aspectRatio.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function AspectRatioPage() {
   return (
-    <main className="p-5 space-y-8">
+    <div className="space-y-8">
       <DocsTitle
         title="Aspect Ratio"
         description="Displays content within a desired aspect ratio, preserving proportions responsively across viewport sizes with ratio presets and skeleton loading placeholders."
@@ -37,25 +30,12 @@ export default function AspectRatioPage() {
 
       <InstallationBlock componentName="aspectRatio" />
 
-      <Tabs defaultValue="aspectRatio">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="aspectRatio"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            aspectRatio.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="aspectRatio">
-          <CodeBlock
-            code={aspectRatioCode}
-            componentName="aspectRatio.tsx"
-            description="Aspect Ratio component powered by Radix Primitives to maintain responsive dimensions."
-            tags={["React", "Radix UI", "Tailwind", "UI Component", "Layout"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={aspectRatioCode}
+        componentName="aspectRatio.tsx"
+        description="Aspect Ratio component powered by Radix Primitives to maintain responsive dimensions."
+        tags={["React", "Radix UI", "Tailwind", "UI Component", "Layout"]}
+      />
 
       <DocsComponent
         title="Preset Ratios (preset)"
@@ -196,6 +176,6 @@ export default function AspectRatioPage() {
       />
 
       <DocsPagination />
-    </main>
+    </div>
   );
 }

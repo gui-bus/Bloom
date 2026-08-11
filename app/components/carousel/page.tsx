@@ -25,12 +25,6 @@ import {
 } from "@/components/ui/carousel/carousel";
 import { carouselCode } from "@/components/ui/carousel/carousel.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 const images = [
   "https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=800",
@@ -106,31 +100,12 @@ export default function CarouselPage() {
 
       <InstallationBlock componentName="carousel" />
 
-      <Tabs defaultValue="carousel">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="carousel"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            carousel.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="carousel">
-          <CodeBlock
-            code={carouselCode}
-            componentName="carousel.tsx"
-            description="Carousel slider component supporting touch gestures, autoplay, dots pagination, and clean navigation controls."
-            tags={[
-              "React",
-              "Embla Carousel",
-              "Tailwind",
-              "UI Component",
-              "Slider",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={carouselCode}
+        componentName="carousel.tsx"
+        description="Carousel slider component supporting touch gestures, autoplay, dots pagination, and clean navigation controls."
+        tags={["React", "Embla Carousel", "Tailwind", "UI Component", "Slider"]}
+      />
 
       <DocsComponent
         title="Default"

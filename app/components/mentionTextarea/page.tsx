@@ -1,7 +1,7 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { useState } from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -10,14 +10,7 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { MentionTextarea } from "@/components/ui/mentionTextarea/mentionTextarea";
 import { mentionTextareaCode } from "@/components/ui/mentionTextarea/mentionTextarea.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 import { Separator } from "@/components/ui/separator/separator";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 
 const TEAM_MEMBERS = [
   { id: "1", display: "Alice Johnson", subtitle: "@alice_j" },
@@ -54,30 +47,21 @@ export default function MentionTextareaPage() {
 
       <InstallationBlock componentName="mentionTextarea" />
 
-      <Tabs defaultValue="mentionTextarea">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="mentionTextarea"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            mentionTextarea.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="mentionTextarea">
-          <CodeBlock
-            code={mentionTextareaCode}
-            componentName="mentionTextarea.tsx"
-            description="Overlay caret calculation coordinates positioning suggestion portal."
-            tags={["React", "Input", "Editor", "Mention"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={mentionTextareaCode}
+        componentName="mentionTextarea.tsx"
+        description="Overlay caret calculation coordinates positioning suggestion portal."
+        tags={["React", "Input", "Editor", "Mention"]}
+      />
 
       <DocsComponent
         title="User Mentions (@)"
         description="Standard auto-completion trigger triggered by '@' to reference teammates, complete with avatar fallback icons and handles."
-        props={["items: MentionItem[]", "onMention: (item: MentionItem) => void", "placeholder: string"]}
+        props={[
+          "items: MentionItem[]",
+          "onMention: (item: MentionItem) => void",
+          "placeholder: string",
+        ]}
         preview={
           <div className="w-full max-w-lg p-6 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-4">
             <div>
@@ -174,30 +158,52 @@ const [value, setValue] = useState("");
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">trigger</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'@'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Character trigger that triggers suggestion list popup</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Character trigger that triggers suggestion list popup
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">items</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">MentionItem[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    MentionItem[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">required</td>
-                  <td className="px-3 py-2 text-muted-foreground">Autocomplete suggestions metadata list</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Autocomplete suggestions metadata list
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">onMention</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(item: MentionItem) => void"}</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onMention
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {"(item: MentionItem) => void"}
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback fired when a user selects a suggestion block</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback fired when a user selects a suggestion block
+                  </td>
                 </tr>
               </tbody>
             </table>

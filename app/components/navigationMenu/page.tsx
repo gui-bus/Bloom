@@ -20,12 +20,6 @@ import {
 } from "@/components/ui/navigationMenu/navigationMenu";
 import { navigationMenuCode } from "@/components/ui/navigationMenu/navigationMenu.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 function MegaMenuDemo() {
   return (
@@ -153,25 +147,12 @@ export default function NavigationMenuComponentPage() {
 
       <InstallationBlock componentName="navigationMenu" />
 
-      <Tabs defaultValue="navigationMenu">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="navigationMenu"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            navigationMenu.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="navigationMenu">
-          <CodeBlock
-            code={navigationMenuCode}
-            componentName="navigationMenu.tsx"
-            description="Core implementation of the NavigationMenu component with rich mega-menu layout panels and active sliding indicator arrow."
-            tags={["React", "Radix UI", "NavigationMenu", "Header", "MegaMenu"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={navigationMenuCode}
+        componentName="navigationMenu.tsx"
+        description="Core implementation of the NavigationMenu component with rich mega-menu layout panels and active sliding indicator arrow."
+        tags={["React", "Radix UI", "NavigationMenu", "Header", "MegaMenu"]}
+      />
 
       <DocsComponent
         title="Default"

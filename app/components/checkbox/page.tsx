@@ -17,12 +17,6 @@ import {
 } from "@/components/ui/checkbox/checkbox";
 import { checkboxCode } from "@/components/ui/checkbox/checkbox.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function CheckboxComponentPage() {
   const [selectedGroup, setSelectedGroup] = React.useState<string[]>([
@@ -57,31 +51,12 @@ export default function CheckboxComponentPage() {
 
       <InstallationBlock componentName="checkbox" />
 
-      <Tabs defaultValue="checkbox">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="checkbox"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            checkbox.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="checkbox">
-          <CodeBlock
-            code={checkboxCode}
-            componentName="checkbox.tsx"
-            description="Core implementation of Checkbox, CheckboxGroup, and useCheckboxGroup."
-            tags={[
-              "React",
-              "Radix UI",
-              "Tailwind",
-              "CheckboxGroup",
-              "Checkbox",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={checkboxCode}
+        componentName="checkbox.tsx"
+        description="Core implementation of Checkbox, CheckboxGroup, and useCheckboxGroup."
+        tags={["React", "Radix UI", "Tailwind", "CheckboxGroup", "Checkbox"]}
+      />
 
       <DocsComponent
         title="Single Checkbox"

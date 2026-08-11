@@ -11,12 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Link } from "@/components/ui/link/link";
 import { linkCode } from "@/components/ui/link/link.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function LinkComponentPage() {
   return (
@@ -32,25 +26,12 @@ export default function LinkComponentPage() {
 
       <InstallationBlock componentName="link" />
 
-      <Tabs defaultValue="link">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="link"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            link.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="link">
-          <CodeBlock
-            code={linkCode}
-            componentName="link.tsx"
-            description="Core implementation of the Link component."
-            tags={["React", "Next.js", "Link", "Navigation"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={linkCode}
+        componentName="link.tsx"
+        description="Core implementation of the Link component."
+        tags={["React", "Next.js", "Link", "Navigation"]}
+      />
 
       <DocsComponent
         title="Default"

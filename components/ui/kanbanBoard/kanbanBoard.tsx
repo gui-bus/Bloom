@@ -100,7 +100,6 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
                 "bg-zinc-100 dark:bg-zinc-800/40 border-transparent",
             )}
           >
-            {/* Column Header */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-sm text-zinc-900 dark:text-zinc-100">
@@ -129,7 +128,6 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
               )}
             </div>
 
-            {/* Column Cards */}
             <div className="flex flex-col gap-3 flex-1 overflow-y-auto max-h-[500px] pr-1">
               {columnCards.map((card) => (
                 <div
@@ -150,7 +148,6 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
                     </p>
                   )}
 
-                  {/* Card Tags and Date */}
                   {(card.tags || card.dueDate) && (
                     <div className="flex flex-wrap items-center justify-between gap-2 mt-2 pt-2 border-t border-zinc-100 dark:border-zinc-800/50">
                       {card.tags && card.tags.length > 0 && (

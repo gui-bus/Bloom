@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -11,12 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { FileUpload } from "@/components/ui/fileUpload/fileUpload";
 import { fileUploadCode } from "@/components/ui/fileUpload/fileUpload.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function FileUploadComponentPage() {
   return (
@@ -32,31 +25,18 @@ export default function FileUploadComponentPage() {
 
       <InstallationBlock componentName="fileUpload" />
 
-      <Tabs defaultValue="fileUpload">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="fileUpload"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            fileUpload.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="fileUpload">
-          <CodeBlock
-            code={fileUploadCode}
-            componentName="fileUpload.tsx"
-            description="Core implementation of the FileUpload component supporting image cropping/rotation, clipboard pasting, and file validation rules."
-            tags={[
-              "React",
-              "File Upload",
-              "Drag and Drop",
-              "Image Crop",
-              "Validation",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={fileUploadCode}
+        componentName="fileUpload.tsx"
+        description="Core implementation of the FileUpload component supporting image cropping/rotation, clipboard pasting, and file validation rules."
+        tags={[
+          "React",
+          "File Upload",
+          "Drag and Drop",
+          "Image Crop",
+          "Validation",
+        ]}
+      />
 
       <DocsComponent
         title="Default (Drag & Drop with Animated Progress)"

@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -11,12 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { ScrollArea } from "@/components/ui/scrollArea/scrollArea";
 import { scrollAreaCode } from "@/components/ui/scrollArea/scrollArea.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 const tags = [
   "v1.0.0",
@@ -46,25 +39,12 @@ export default function ScrollAreaComponentPage() {
 
       <InstallationBlock componentName="scrollArea" />
 
-      <Tabs defaultValue="scrollArea">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="scrollArea"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            scrollArea.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="scrollArea">
-          <CodeBlock
-            code={scrollAreaCode}
-            componentName="scrollArea.tsx"
-            description="Core implementation of the ScrollArea component."
-            tags={["React", "Radix UI", "ScrollArea", "Layout"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={scrollAreaCode}
+        componentName="scrollArea.tsx"
+        description="Core implementation of the ScrollArea component."
+        tags={["React", "Radix UI", "ScrollArea", "Layout"]}
+      />
 
       <DocsComponent
         title="Default"

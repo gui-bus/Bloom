@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -23,12 +22,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet/sheet";
 import { sheetCode } from "@/components/ui/sheet/sheet.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function SheetComponentPage() {
   return (
@@ -44,25 +37,12 @@ export default function SheetComponentPage() {
 
       <InstallationBlock componentName="sheet" />
 
-      <Tabs defaultValue="sheet">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="sheet"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            sheet.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="sheet">
-          <CodeBlock
-            code={sheetCode}
-            componentName="sheet.tsx"
-            description="Core implementation of the Sheet component."
-            tags={["React", "Radix UI", "Sheet", "Drawer", "Overlay"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={sheetCode}
+        componentName="sheet.tsx"
+        description="Core implementation of the Sheet component."
+        tags={["React", "Radix UI", "Sheet", "Drawer", "Overlay"]}
+      />
 
       <DocsComponent
         title="Default"

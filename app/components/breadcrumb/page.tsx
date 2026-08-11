@@ -25,12 +25,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdownMenu/dropdownMenu";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function BreadcrumbDocsPage() {
   return (
@@ -46,31 +40,12 @@ export default function BreadcrumbDocsPage() {
 
       <InstallationBlock componentName="breadcrumb" />
 
-      <Tabs defaultValue="breadcrumb">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="breadcrumb"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            breadcrumb.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="breadcrumb">
-          <CodeBlock
-            code={breadcrumbCode}
-            componentName="breadcrumb.tsx"
-            description="Breadcrumb trail component supporting icons, custom separators, and interactive dropdown ellipsis."
-            tags={[
-              "React",
-              "Tailwind",
-              "UI Component",
-              "Navigation",
-              "Breadcrumb",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={breadcrumbCode}
+        componentName="breadcrumb.tsx"
+        description="Breadcrumb trail component supporting icons, custom separators, and interactive dropdown ellipsis."
+        tags={["React", "Tailwind", "UI Component", "Navigation", "Breadcrumb"]}
+      />
 
       <DocsComponent
         title="Default"

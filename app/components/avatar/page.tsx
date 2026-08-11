@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -15,12 +14,6 @@ import {
 } from "@/components/ui/avatar/avatar";
 import { avatarCode } from "@/components/ui/avatar/avatar.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function AvatarPage() {
   return (
@@ -36,25 +29,12 @@ export default function AvatarPage() {
 
       <InstallationBlock componentName="avatar" />
 
-      <Tabs defaultValue="avatar">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="avatar"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            avatar.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="avatar">
-          <CodeBlock
-            code={avatarCode}
-            componentName="avatar.tsx"
-            description="Avatar component featuring image fallbacks, pressable interactions, editable overlays, status dots, and clean dark/light neutral colors."
-            tags={["React", "Tailwind", "Radix UI", "UI Component", "Avatar"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={avatarCode}
+        componentName="avatar.tsx"
+        description="Avatar component featuring image fallbacks, pressable interactions, editable overlays, status dots, and clean dark/light neutral colors."
+        tags={["React", "Tailwind", "Radix UI", "UI Component", "Avatar"]}
+      />
 
       <DocsComponent
         title="Default"

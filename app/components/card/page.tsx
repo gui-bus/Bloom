@@ -20,12 +20,6 @@ import {
 } from "@/components/ui/card/card";
 import { cardCode } from "@/components/ui/card/card.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function CardComponentPage() {
   return (
@@ -41,25 +35,12 @@ export default function CardComponentPage() {
 
       <InstallationBlock componentName="card" />
 
-      <Tabs defaultValue="card">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="card"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            card.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="card">
-          <CodeBlock
-            code={cardCode}
-            componentName="card.tsx"
-            description="Core implementation of the Card component with modular subcomponents and full style variance support."
-            tags={["React", "Tailwind", "UI Component", "Layout", "Card"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={cardCode}
+        componentName="card.tsx"
+        description="Core implementation of the Card component with modular subcomponents and full style variance support."
+        tags={["React", "Tailwind", "UI Component", "Layout", "Card"]}
+      />
 
       <DocsComponent
         title="Default"
@@ -343,7 +324,11 @@ export default function CardComponentPage() {
     </CardHeader>
   </Card>
 </div>`}
-        props={["isHoverable: boolean", "isPressable: boolean", "disableRipple: boolean"]}
+        props={[
+          "isHoverable: boolean",
+          "isPressable: boolean",
+          "disableRipple: boolean",
+        ]}
       />
 
       <DocsComponent
@@ -489,7 +474,8 @@ export default function CardComponentPage() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Iconify icon string to render as a background watermark overlay in the bottom-right corner.
+                    Iconify icon string to render as a background watermark
+                    overlay in the bottom-right corner.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -524,7 +510,8 @@ export default function CardComponentPage() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Enables active press animations, ripple feedback, and interactive button role accessibility.
+                    Enables active press animations, ripple feedback, and
+                    interactive button role accessibility.
                   </td>
                 </tr>
                 <tr className="border-b border-border">

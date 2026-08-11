@@ -1,10 +1,9 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import * as React from "react";
 import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
-import { Terminal, TerminalLine } from "@/components/ui/terminal/terminal";
+import { Terminal, type TerminalLine } from "@/components/ui/terminal/terminal";
 
 const terminalInitLines: TerminalLine[] = [
   { text: "npx bloom-ui init", type: "command" },
@@ -21,7 +20,10 @@ const terminalAddLines: TerminalLine[] = [
   { text: "Created components/ui/switch/switch.tsx", type: "success" },
   { text: "Created components/ui/avatar/avatar.tsx", type: "success" },
   { text: "Created components/ui/card/card.tsx", type: "success" },
-  { text: "All components added directly into your codebase!", type: "success" },
+  {
+    text: "All components added directly into your codebase!",
+    type: "success",
+  },
 ];
 
 export default function InstallationPage() {
@@ -32,7 +34,6 @@ export default function InstallationPage() {
         description="Initialize Bloom UI in your React or Next.js project using our official CLI, and add components directly into your codebase."
       />
 
-      {/* Step 1: Init */}
       <section className="space-y-4">
         <div className="flex items-center gap-2">
           <span className="flex items-center justify-center size-6 rounded-full bg-sky-500 text-white text-xs font-bold shrink-0">
@@ -43,12 +44,12 @@ export default function InstallationPage() {
           </h2>
         </div>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
-          Run the initialization command in your project root to set up design system tokens, helper utilities, and configuration manifests.
+          Run the initialization command in your project root to set up design
+          system tokens, helper utilities, and configuration manifests.
         </p>
         <Terminal variant="mac" lines={terminalInitLines} />
       </section>
 
-      {/* Step 2: Add Components */}
       <section className="space-y-4">
         <div className="flex items-center gap-2">
           <span className="flex items-center justify-center size-6 rounded-full bg-sky-500 text-white text-xs font-bold shrink-0">
@@ -59,12 +60,12 @@ export default function InstallationPage() {
           </h2>
         </div>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
-          Add any component directly to your project. The CLI downloads raw React source code without hiding logic behind third-party packages.
+          Add any component directly to your project. The CLI downloads raw
+          React source code without hiding logic behind third-party packages.
         </p>
         <Terminal variant="mac" lines={terminalAddLines} />
       </section>
 
-      {/* What init sets up */}
       <section className="space-y-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
         <div>
           <h3 className="text-base font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">

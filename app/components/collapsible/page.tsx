@@ -17,12 +17,6 @@ import {
 } from "@/components/ui/collapsible/collapsible";
 import { collapsibleCode } from "@/components/ui/collapsible/collapsible.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 function DefaultDemo() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -261,31 +255,12 @@ export default function CollapsiblePage() {
 
       <InstallationBlock componentName="collapsible" />
 
-      <Tabs defaultValue="collapsible">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="collapsible"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            collapsible.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="collapsible">
-          <CodeBlock
-            code={collapsibleCode}
-            componentName="collapsible.tsx"
-            description="Collapsible panel built with Radix Primitives for expanding and contracting UI elements."
-            tags={[
-              "React",
-              "Radix UI",
-              "Tailwind",
-              "UI Component",
-              "Collapsible",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={collapsibleCode}
+        componentName="collapsible.tsx"
+        description="Collapsible panel built with Radix Primitives for expanding and contracting UI elements."
+        tags={["React", "Radix UI", "Tailwind", "UI Component", "Collapsible"]}
+      />
 
       <DocsComponent
         title="Default"

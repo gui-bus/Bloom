@@ -1,25 +1,18 @@
 "use client";
 
-import { Icon } from "@iconify/react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
-import { Separator } from "@/components/ui/separator/separator";
 import {
   GanttChart,
   type GanttTask,
 } from "@/components/ui/ganttChart/ganttChart";
 import { ganttChartCode } from "@/components/ui/ganttChart/ganttChart.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
+import { Separator } from "@/components/ui/separator/separator";
 
 export default function GanttChartPage() {
   const sampleTasks: GanttTask[] = [
@@ -88,30 +81,22 @@ export default function GanttChartPage() {
 
       <InstallationBlock componentName="ganttChart" />
 
-      <Tabs defaultValue="ganttChart">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="ganttChart"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            ganttChart.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="ganttChart">
-          <CodeBlock
-            code={ganttChartCode}
-            componentName="ganttChart.tsx"
-            description="Timeline grid calculation and task duration layout."
-            tags={["React", "Timeline", "Gantt", "Scheduler"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={ganttChartCode}
+        componentName="ganttChart.tsx"
+        description="Timeline grid calculation and task duration layout."
+        tags={["React", "Timeline", "Gantt", "Scheduler"]}
+      />
 
       <DocsComponent
         title="Default"
         description="Standard Gantt view plotting task progress percentages across time."
-        props={["tasks: GanttTask[]", "viewStartDate: Date", "viewEndDate: Date", "onTaskClick: (task: GanttTask) => void"]}
+        props={[
+          "tasks: GanttTask[]",
+          "viewStartDate: Date",
+          "viewEndDate: Date",
+          "onTaskClick: (task: GanttTask) => void",
+        ]}
         preview={
           <div className="w-full p-4 bg-zinc-50 dark:bg-zinc-950/40 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-x-auto">
             <GanttChart
@@ -160,36 +145,66 @@ export default function GanttChartPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">tasks</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">GanttTask[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    GanttTask[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">List of tasks to plot on the timeline</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    List of tasks to plot on the timeline
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">viewStartDate</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">Date</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    viewStartDate
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    Date
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">required</td>
-                  <td className="px-3 py-2 text-muted-foreground">Starting viewport boundary date for scale mapping</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Starting viewport boundary date for scale mapping
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">viewEndDate</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">Date</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    viewEndDate
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    Date
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">required</td>
-                  <td className="px-3 py-2 text-muted-foreground">Ending viewport boundary date for scale mapping</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Ending viewport boundary date for scale mapping
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">onTaskClick</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(task: GanttTask) => void"}</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onTaskClick
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {"(task: GanttTask) => void"}
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Fires when clicking any task block on the scheduler timeline</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Fires when clicking any task block on the scheduler timeline
+                  </td>
                 </tr>
               </tbody>
             </table>

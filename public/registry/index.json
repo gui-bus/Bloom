@@ -424,6 +424,12 @@
     ]
   },
   {
+    "name": "snippet",
+    "dependencies": [
+      "@iconify/react"
+    ]
+  },
+  {
     "name": "spinner",
     "dependencies": []
   },
@@ -447,6 +453,10 @@
   },
   {
     "name": "table",
+    "dependencies": []
+  },
+  {
+    "name": "tableOfContents",
     "dependencies": []
   },
   {

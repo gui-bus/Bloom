@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -22,12 +21,6 @@ import {
 import { dialogCode } from "@/components/ui/dialog/dialog.code";
 import { Input } from "@/components/ui/input/input";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function DialogComponentPage() {
   return (
@@ -43,25 +36,12 @@ export default function DialogComponentPage() {
 
       <InstallationBlock componentName="dialog" />
 
-      <Tabs defaultValue="dialog">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="dialog"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            dialog.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="dialog">
-          <CodeBlock
-            code={dialogCode}
-            componentName="dialog.tsx"
-            description="Core implementation of the Dialog component with overlay variants and size scales."
-            tags={["React", "Radix UI", "Tailwind", "Overlays", "Dialog"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={dialogCode}
+        componentName="dialog.tsx"
+        description="Core implementation of the Dialog component with overlay variants and size scales."
+        tags={["React", "Radix UI", "Tailwind", "Overlays", "Dialog"]}
+      />
 
       <DocsComponent
         title="Default"

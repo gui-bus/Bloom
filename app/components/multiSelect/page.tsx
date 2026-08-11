@@ -12,12 +12,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { MultiSelect } from "@/components/ui/multiSelect/multiSelect";
 import { multiSelectCode } from "@/components/ui/multiSelect/multiSelect.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 const fruitOptions = [
   { label: "Apple", value: "apple" },
@@ -182,32 +176,19 @@ export default function MultiSelectPage() {
 
       <InstallationBlock componentName="multiSelect" />
 
-      <Tabs defaultValue="multiSelect">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="multiSelect"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            multiSelect.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="multiSelect">
-          <CodeBlock
-            code={multiSelectCode}
-            componentName="multiSelect.tsx"
-            description="Searchable multi-select input supporting batch select/deselect actions and collapsible category grouping."
-            tags={[
-              "React",
-              "Tailwind",
-              "UI Component",
-              "Form",
-              "Multi Select",
-              "Categories",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={multiSelectCode}
+        componentName="multiSelect.tsx"
+        description="Searchable multi-select input supporting batch select/deselect actions and collapsible category grouping."
+        tags={[
+          "React",
+          "Tailwind",
+          "UI Component",
+          "Form",
+          "Multi Select",
+          "Categories",
+        ]}
+      />
 
       <DocsComponent
         title="Default"

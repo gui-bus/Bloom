@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -12,12 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { RichTextEditor } from "@/components/ui/richTextEditor/richTextEditor";
 import { richTextEditorCode } from "@/components/ui/richTextEditor/richTextEditor.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 function DefaultDemo() {
   const [html, setHtml] = React.useState(
@@ -63,25 +56,12 @@ export default function RichTextEditorPage() {
 
       <InstallationBlock componentName="richTextEditor" />
 
-      <Tabs defaultValue="richTextEditor">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="richTextEditor"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            richTextEditor.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="richTextEditor">
-          <CodeBlock
-            code={richTextEditorCode}
-            componentName="richTextEditor.tsx"
-            description="WYSIWYG rich text editor with Tiptap, StarterKit, and toolbar controls."
-            tags={["React", "Tiptap", "UI Component", "Editor", "WYSIWYG"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={richTextEditorCode}
+        componentName="richTextEditor.tsx"
+        description="WYSIWYG rich text editor with Tiptap, StarterKit, and toolbar controls."
+        tags={["React", "Tiptap", "UI Component", "Editor", "WYSIWYG"]}
+      />
 
       <DocsComponent
         title="Default"

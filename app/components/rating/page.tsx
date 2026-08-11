@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -12,12 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Rating } from "@/components/ui/rating/rating";
 import { ratingCode } from "@/components/ui/rating/rating.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function RatingComponentPage() {
   const [val1, setVal1] = React.useState(3.5);
@@ -36,25 +29,12 @@ export default function RatingComponentPage() {
 
       <InstallationBlock componentName="rating" />
 
-      <Tabs defaultValue="rating">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="rating"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            rating.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="rating">
-          <CodeBlock
-            code={ratingCode}
-            componentName="rating.tsx"
-            description="Core implementation of the Rating component."
-            tags={["React", "Rating", "Star", "Emoji", "HalfStar"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={ratingCode}
+        componentName="rating.tsx"
+        description="Core implementation of the Rating component."
+        tags={["React", "Rating", "Star", "Emoji", "HalfStar"]}
+      />
 
       <DocsComponent
         title="Default Star Rating"

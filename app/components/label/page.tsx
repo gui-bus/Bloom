@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -12,12 +11,6 @@ import { Input } from "@/components/ui/input/input";
 import { Label } from "@/components/ui/label/label";
 import { labelCode } from "@/components/ui/label/label.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function LabelComponentPage() {
   return (
@@ -33,25 +26,12 @@ export default function LabelComponentPage() {
 
       <InstallationBlock componentName="label" />
 
-      <Tabs defaultValue="label">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="label"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            label.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="label">
-          <CodeBlock
-            code={labelCode}
-            componentName="label.tsx"
-            description="Core implementation of the Label component."
-            tags={["React", "Radix UI", "Tailwind", "Form", "Label"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={labelCode}
+        componentName="label.tsx"
+        description="Core implementation of the Label component."
+        tags={["React", "Radix UI", "Tailwind", "Form", "Label"]}
+      />
 
       <DocsComponent
         title="Default"

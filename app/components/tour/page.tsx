@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -10,15 +9,9 @@ import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Button } from "@/components/ui/button/button";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
+import { Separator } from "@/components/ui/separator/separator";
 import { Tour, type TourStep } from "@/components/ui/tour/tour";
 import { tourCode } from "@/components/ui/tour/tour.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function TourPage() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -78,30 +71,22 @@ export default function TourPage() {
 
       <InstallationBlock componentName="tour" />
 
-      <Tabs defaultValue="tour">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="tour"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            tour.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="tour">
-          <CodeBlock
-            code={tourCode}
-            componentName="tour.tsx"
-            description="Core implementation of the Tour component showcasing CSS spotlights, document resize callbacks, and step direction positioning."
-            tags={["React", "Tailwind", "Onboarding", "Tour", "Guide"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={tourCode}
+        componentName="tour.tsx"
+        description="Core implementation of the Tour component showcasing CSS spotlights, document resize callbacks, and step direction positioning."
+        tags={["React", "Tailwind", "Onboarding", "Tour", "Guide"]}
+      />
 
       <DocsComponent
         title="Default"
         description="A standard multi-step guide highlighting targets without triggering additional effects upon completion."
-        props={["steps: TourStep[]", "run: boolean", "onClose: () => void", "showConfetti: boolean"]}
+        props={[
+          "steps: TourStep[]",
+          "run: boolean",
+          "onClose: () => void",
+          "showConfetti: boolean",
+        ]}
         preview={
           <div className="w-full space-y-8 p-4">
             <div className="flex justify-center">
@@ -212,42 +197,74 @@ export default function TourPage() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">steps</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">TourStep[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    TourStep[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">List of step objects specifying targets, text descriptions, and directions</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    List of step objects specifying targets, text descriptions,
+                    and directions
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">run</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">A active switch state that displays/mounts the tour layout</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    A active switch state that displays/mounts the tour layout
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">onClose</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">() =&gt; void</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    () =&gt; void
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Fires when the guide is skipped or completed</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Fires when the guide is skipped or completed
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">keyof typeof designRadius</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    keyof typeof designRadius
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Corner radius of spotlight box and info card</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Corner radius of spotlight box and info card
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">showConfetti</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showConfetti
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Triggers celebratory confetti particles when user clicks 'Finish' on the final step</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Triggers celebratory confetti particles when user clicks
+                    'Finish' on the final step
+                  </td>
                 </tr>
               </tbody>
             </table>

@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -13,12 +12,6 @@ import { FormField } from "@/components/ui/formField/formField";
 import { formFieldCode } from "@/components/ui/formField/formField.code";
 import { Input } from "@/components/ui/input/input";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 function CharacterCounterDemo() {
   const [bio, setBio] = React.useState(
@@ -57,25 +50,12 @@ export default function FormFieldComponentPage() {
 
       <InstallationBlock componentName="formField" />
 
-      <Tabs defaultValue="formField">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="formField"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            formField.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="formField">
-          <CodeBlock
-            code={formFieldCode}
-            componentName="formField.tsx"
-            description="Core implementation of the FormField component with character counter, helper text alignment, and required asterisk tooltips."
-            tags={["React", "Form", "FormField", "CharacterCounter", "Tooltip"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={formFieldCode}
+        componentName="formField.tsx"
+        description="Core implementation of the FormField component with character counter, helper text alignment, and required asterisk tooltips."
+        tags={["React", "Form", "FormField", "CharacterCounter", "Tooltip"]}
+      />
 
       <DocsComponent
         title="Default"

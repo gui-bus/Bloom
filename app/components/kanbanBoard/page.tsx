@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -9,19 +8,13 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { Separator } from "@/components/ui/separator/separator";
 import {
   KanbanBoard,
   type KanbanCard,
   type KanbanColumn,
 } from "@/components/ui/kanbanBoard/kanbanBoard";
 import { kanbanBoardCode } from "@/components/ui/kanbanBoard/kanbanBoard.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
+import { Separator } from "@/components/ui/separator/separator";
 
 export default function KanbanBoardPage() {
   const initialColumns: KanbanColumn[] = [
@@ -102,30 +95,22 @@ export default function KanbanBoardPage() {
 
       <InstallationBlock componentName="kanbanBoard" />
 
-      <Tabs defaultValue="kanbanBoard">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="kanbanBoard"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            kanbanBoard.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="kanbanBoard">
-          <CodeBlock
-            code={kanbanBoardCode}
-            componentName="kanbanBoard.tsx"
-            description="Core implementation of the Kanban Board using native HTML5 drag-and-drop handles and theme card wrappers."
-            tags={["React", "Tailwind", "Board", "Kanban", "Drag and Drop"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={kanbanBoardCode}
+        componentName="kanbanBoard.tsx"
+        description="Core implementation of the Kanban Board using native HTML5 drag-and-drop handles and theme card wrappers."
+        tags={["React", "Tailwind", "Board", "Kanban", "Drag and Drop"]}
+      />
 
       <DocsComponent
         title="Default"
         description="A responsive kanban board layout showing column cards, due dates, tags, and column counts."
-        props={["columns: KanbanColumn[]", "cards: KanbanCard[]", "onCardMove: (cardId: string, targetColumnId: string) => void", "onAddCard: (columnId: string) => void"]}
+        props={[
+          "columns: KanbanColumn[]",
+          "cards: KanbanCard[]",
+          "onCardMove: (cardId: string, targetColumnId: string) => void",
+          "onAddCard: (columnId: string) => void",
+        ]}
         preview={
           <div className="w-full">
             <KanbanBoard
@@ -214,54 +199,98 @@ const handleCardMove = (cardId, targetColumnId) => {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">columns</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">KanbanColumn[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    KanbanColumn[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">List of columns config containing ID, title, and color</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    List of columns config containing ID, title, and color
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">cards</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">KanbanCard[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    KanbanCard[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">List of task cards mapped to column IDs</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    List of task cards mapped to column IDs
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">onCardMove</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(cardId: string, targetColumnId: string) =&gt; void</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onCardMove
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    (cardId: string, targetColumnId: string) =&gt; void
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback fired when a card is dropped on a column</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback fired when a card is dropped on a column
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">onAddCard</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">(columnId: string) =&gt; void</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onAddCard
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    (columnId: string) =&gt; void
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Optional callback to show an add action on the column headers</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Optional callback to show an add action on the column
+                    headers
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">'default' | 'flat' | 'bordered'</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    'default' | 'flat' | 'bordered'
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Style of the column wrappers</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Style of the column wrappers
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">keyof typeof designRadius</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    keyof typeof designRadius
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'lg'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Corner radius of columns</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Corner radius of columns
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">isDisabled</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isDisabled
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Prevents all dragging, drop interactions, and blocks the add card action</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Prevents all dragging, drop interactions, and blocks the add
+                    card action
+                  </td>
                 </tr>
               </tbody>
             </table>

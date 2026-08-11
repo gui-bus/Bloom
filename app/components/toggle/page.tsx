@@ -10,12 +10,6 @@ import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 import { Toggle } from "@/components/ui/toggle/toggle";
 import { toggleCode } from "@/components/ui/toggle/toggle.code";
 
@@ -35,25 +29,12 @@ export default function ToggleComponentPage() {
 
       <InstallationBlock componentName="toggle" />
 
-      <Tabs defaultValue="toggle">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="toggle"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            toggle.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="toggle">
-          <CodeBlock
-            code={toggleCode}
-            componentName="toggle.tsx"
-            description="Core implementation of the Toggle component."
-            tags={["React", "Radix UI", "Toggle", "Button"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={toggleCode}
+        componentName="toggle.tsx"
+        description="Core implementation of the Toggle component."
+        tags={["React", "Radix UI", "Toggle", "Button"]}
+      />
 
       <DocsComponent
         title="Default"

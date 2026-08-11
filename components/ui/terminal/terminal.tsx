@@ -11,7 +11,12 @@ export interface TerminalLine {
   prompt?: string;
 }
 
-export type TerminalVariant = "default" | "mac" | "powershell" | "cmd" | "ubuntu";
+export type TerminalVariant =
+  | "default"
+  | "mac"
+  | "powershell"
+  | "cmd"
+  | "ubuntu";
 
 export interface TerminalProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
@@ -42,7 +47,8 @@ const variantStyles: Record<
   },
   mac: {
     container: "bg-zinc-950 text-zinc-100 border-zinc-800 shadow-2xl",
-    header: "border-b border-zinc-800/80 bg-zinc-900/70 text-zinc-400 backdrop-blur-xs",
+    header:
+      "border-b border-zinc-800/80 bg-zinc-900/70 text-zinc-400 backdrop-blur-xs",
     dotsStyle: "mac",
     defaultPrompt: "user@macbook ~ %",
     commandText: "text-zinc-100 font-medium",
@@ -121,7 +127,6 @@ export const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
         )}
         {...props}
       >
-        {/* Header Bar */}
         <div
           className={cn(
             "flex items-center justify-between px-4 py-2.5 select-none",
@@ -178,7 +183,6 @@ export const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
           )}
         </div>
 
-        {/* Content Body */}
         <div className="p-4 space-y-2 overflow-x-auto">
           {lines.map((line, index) => {
             const key = `${line.text}-${index}`;

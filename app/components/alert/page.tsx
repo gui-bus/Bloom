@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -18,12 +17,6 @@ import {
 import { Badge } from "@/components/ui/badge/badge";
 import { Button } from "@/components/ui/button/button";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function AlertComponentPage() {
   return (
@@ -39,25 +32,12 @@ export default function AlertComponentPage() {
 
       <InstallationBlock componentName="alert" />
 
-      <Tabs defaultValue="alert">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="alert"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            alert.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="alert">
-          <CodeBlock
-            code={alertCode}
-            componentName="alert.tsx"
-            description="Core implementation of the Alert component featuring clean neutral cards, status-colored titles, and custom slots."
-            tags={["React", "Tailwind", "Feedback", "UI Component", "Alert"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={alertCode}
+        componentName="alert.tsx"
+        description="Core implementation of the Alert component featuring clean neutral cards, status-colored titles, and custom slots."
+        tags={["React", "Tailwind", "Feedback", "UI Component", "Alert"]}
+      />
 
       <DocsComponent
         title="Default"

@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -17,12 +16,6 @@ import {
 } from "@/components/ui/inputOtp/inputOtp";
 import { inputOtpCode } from "@/components/ui/inputOtp/inputOtp.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function InputOtpComponentPage() {
   const [val1, setVal1] = React.useState("");
@@ -43,25 +36,12 @@ export default function InputOtpComponentPage() {
 
       <InstallationBlock componentName="inputOtp" />
 
-      <Tabs defaultValue="inputOtp">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="inputOtp"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            inputOtp.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="inputOtp">
-          <CodeBlock
-            code={inputOtpCode}
-            componentName="inputOtp.tsx"
-            description="Core implementation of the InputOTP component."
-            tags={["React", "Input OTP", "Auto-Paste", "Separators"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={inputOtpCode}
+        componentName="inputOtp.tsx"
+        description="Core implementation of the InputOTP component."
+        tags={["React", "Input OTP", "Auto-Paste", "Separators"]}
+      />
 
       <DocsComponent
         title="Group Separators (3 - 3)"

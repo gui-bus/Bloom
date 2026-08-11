@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -12,12 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { PasswordInput } from "@/components/ui/passwordInput/passwordInput";
 import { passwordInputCode } from "@/components/ui/passwordInput/passwordInput.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function PasswordInputComponentPage() {
   const [isValid, setIsValid] = React.useState(false);
@@ -52,31 +45,12 @@ export default function PasswordInputComponentPage() {
 
       <InstallationBlock componentName="passwordInput" />
 
-      <Tabs defaultValue="passwordInput">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="passwordInput"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            passwordInput.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="passwordInput">
-          <CodeBlock
-            code={passwordInputCode}
-            componentName="passwordInput.tsx"
-            description="Core implementation of the PasswordInput component."
-            tags={[
-              "React",
-              "PasswordInput",
-              "Validation",
-              "StrengthMeter",
-              "Form",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={passwordInputCode}
+        componentName="passwordInput.tsx"
+        description="Core implementation of the PasswordInput component."
+        tags={["React", "PasswordInput", "Validation", "StrengthMeter", "Form"]}
+      />
 
       <DocsComponent
         title="Default"

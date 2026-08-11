@@ -22,12 +22,6 @@ import {
 } from "@/components/ui/drawer/drawer";
 import { drawerCode } from "@/components/ui/drawer/drawer.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function DrawerComponentPage() {
   const [goal, setGoal] = React.useState(350);
@@ -49,25 +43,12 @@ export default function DrawerComponentPage() {
 
       <InstallationBlock componentName="drawer" />
 
-      <Tabs defaultValue="drawer">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="drawer"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            drawer.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="drawer">
-          <CodeBlock
-            code={drawerCode}
-            componentName="drawer.tsx"
-            description="Core implementation of the Drawer component."
-            tags={["React", "Radix UI", "Tailwind", "Overlays", "Drawer"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={drawerCode}
+        componentName="drawer.tsx"
+        description="Core implementation of the Drawer component."
+        tags={["React", "Radix UI", "Tailwind", "Overlays", "Drawer"]}
+      />
 
       <DocsComponent
         title="Default"

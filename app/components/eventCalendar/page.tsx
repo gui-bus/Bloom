@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -10,7 +9,6 @@ import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Button } from "@/components/ui/button/button";
-import { Separator } from "@/components/ui/separator/separator";
 import {
   Dialog,
   DialogClose,
@@ -27,12 +25,7 @@ import {
 import { eventCalendarCode } from "@/components/ui/eventCalendar/eventCalendar.code";
 import { Input } from "@/components/ui/input/input";
 import { Select } from "@/components/ui/select/select";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
+import { Separator } from "@/components/ui/separator/separator";
 
 export default function EventCalendarPage() {
   const today = new Date();
@@ -126,30 +119,21 @@ export default function EventCalendarPage() {
 
       <InstallationBlock componentName="eventCalendar" />
 
-      <Tabs defaultValue="eventCalendar">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="eventCalendar"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            eventCalendar.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="eventCalendar">
-          <CodeBlock
-            code={eventCalendarCode}
-            componentName="eventCalendar.tsx"
-            description="Event calendar monthly layout logic displaying scheduled event cells."
-            tags={["React", "Tailwind", "Calendar", "Scheduler", "Grid"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={eventCalendarCode}
+        componentName="eventCalendar.tsx"
+        description="Event calendar monthly layout logic displaying scheduled event cells."
+        tags={["React", "Tailwind", "Calendar", "Scheduler", "Grid"]}
+      />
 
       <DocsComponent
         title="Default"
         description="Standard monthly event calendar mapping current scheduled milestones."
-        props={["events: CalendarEvent[]", "onSelectDate: (date: Date) => void", "onEventClick: (event: CalendarEvent) => void"]}
+        props={[
+          "events: CalendarEvent[]",
+          "onSelectDate: (date: Date) => void",
+          "onEventClick: (event: CalendarEvent) => void",
+        ]}
         preview={
           <div className="w-full p-2 bg-zinc-50 dark:bg-zinc-950/40 rounded-xl border border-zinc-200 dark:border-zinc-800">
             <EventCalendar
@@ -252,7 +236,7 @@ export default function EventCalendarPage() {
             <EventCalendar events={events} />
           </div>
         }
-        code={`// In your page component:
+        code={`
 const [events, setEvents] = React.useState(initialEvents);
 const [dialogOpen, setDialogOpen] = React.useState(false);
 
@@ -272,7 +256,7 @@ const handleAddEvent = () => {
   <Button onClick={() => setDialogOpen(true)}>Add New Event</Button>
   <DialogContent>
     <Input label="Event Title" value={title} onChange={...} />
-    {/* Start & End Date Inputs */}
+    
     <Button onClick={handleAddEvent}>Schedule Event</Button>
   </DialogContent>
 </Dialog>
@@ -290,36 +274,66 @@ const handleAddEvent = () => {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">events</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">CalendarEvent[]</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    CalendarEvent[]
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">[]</td>
-                  <td className="px-3 py-2 text-muted-foreground">List of event objects with dates, labels, and state colors to plot on the grid.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    List of event objects with dates, labels, and state colors
+                    to plot on the grid.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">onSelectDate</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(date: Date) => void"}</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onSelectDate
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {"(date: Date) => void"}
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback fired when a grid cell date is selected.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback fired when a grid cell date is selected.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">onEventClick</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{"(event: CalendarEvent) => void"}</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    onEventClick
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {"(event: CalendarEvent) => void"}
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
-                  <td className="px-3 py-2 text-muted-foreground">Callback fired when an individual event block inside a day cell is clicked.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Callback fired when an individual event block inside a day
+                    cell is clicked.
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">keyof typeof designRadius</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    keyof typeof designRadius
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">'md'</td>
-                  <td className="px-3 py-2 text-muted-foreground">Corner radius design token of the calendar card.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Corner radius design token of the calendar card.
+                  </td>
                 </tr>
               </tbody>
             </table>

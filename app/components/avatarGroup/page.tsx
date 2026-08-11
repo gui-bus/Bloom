@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -16,12 +15,6 @@ import {
 import { AvatarGroup } from "@/components/ui/avatarGroup/avatarGroup";
 import { avatarGroupCode } from "@/components/ui/avatarGroup/avatarGroup.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function AvatarGroupPage() {
   return (
@@ -37,31 +30,12 @@ export default function AvatarGroupPage() {
 
       <InstallationBlock componentName="avatarGroup" />
 
-      <Tabs defaultValue="avatarGroup">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="avatarGroup"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            avatarGroup.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="avatarGroup">
-          <CodeBlock
-            code={avatarGroupCode}
-            componentName="avatarGroup.tsx"
-            description="AvatarGroup component for displaying overlapping avatar stacks with butter-smooth hover expansion transitions and orientation control."
-            tags={[
-              "React",
-              "Tailwind",
-              "UI Component",
-              "Layout",
-              "AvatarGroup",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={avatarGroupCode}
+        componentName="avatarGroup.tsx"
+        description="AvatarGroup component for displaying overlapping avatar stacks with butter-smooth hover expansion transitions and orientation control."
+        tags={["React", "Tailwind", "UI Component", "Layout", "AvatarGroup"]}
+      />
 
       <DocsComponent
         title="Default"

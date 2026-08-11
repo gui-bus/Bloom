@@ -35,7 +35,7 @@ export const SignatureInput = React.forwardRef<
       className,
       width = "100%",
       height = 200,
-      strokeColor = "currentColor", // uses font color (zinc-900/zinc-100)
+      strokeColor = "currentColor",
       lineWidth = 2.5,
       backgroundColor = "transparent",
       variant = "default",
@@ -64,7 +64,6 @@ export const SignatureInput = React.forwardRef<
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
       const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
 
-      // Account for scale factors if CSS bounds differ from canvas properties
       const scaleX = canvas.width / rect.width;
       const scaleY = canvas.height / rect.height;
 
@@ -89,7 +88,6 @@ export const SignatureInput = React.forwardRef<
       const ctx = canvas?.getContext("2d");
       if (!canvas || !ctx) return;
 
-      // Save current state to history before starting new line
       saveState();
 
       ctx.beginPath();
@@ -98,7 +96,6 @@ export const SignatureInput = React.forwardRef<
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
 
-      // Dynamically fetch actual text/stroke color from DOM or fallback
       if (strokeColor === "currentColor") {
         const style = window.getComputedStyle(canvas);
         ctx.strokeStyle = style.color;
@@ -145,7 +142,6 @@ export const SignatureInput = React.forwardRef<
       const canvas = canvasRef.current;
       if (!canvas) return;
 
-      // Check if canvas is actually empty (or close to it)
       if (isEmpty) {
         onChange?.(null);
       } else {
@@ -187,7 +183,6 @@ export const SignatureInput = React.forwardRef<
       }
     };
 
-    // Resize canvas internal buffer to match bounding client rect on mount/resize
     React.useEffect(() => {
       const canvas = canvasRef.current;
       if (!canvas) return;
@@ -196,7 +191,6 @@ export const SignatureInput = React.forwardRef<
       canvas.width = rect.width;
       canvas.height = rect.height;
 
-      // Redraw backdrop if background color specified
       const ctx = canvas.getContext("2d");
       if (ctx && backgroundColor !== "transparent") {
         ctx.fillStyle = backgroundColor;

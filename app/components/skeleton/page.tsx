@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -11,12 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
 import { Skeleton } from "@/components/ui/skeleton/skeleton";
 import { skeletonCode } from "@/components/ui/skeleton/skeleton.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function SkeletonComponentPage() {
   return (
@@ -32,25 +25,12 @@ export default function SkeletonComponentPage() {
 
       <InstallationBlock componentName="skeleton" />
 
-      <Tabs defaultValue="skeleton">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="skeleton"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            skeleton.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="skeleton">
-          <CodeBlock
-            code={skeletonCode}
-            componentName="skeleton.tsx"
-            description="Core implementation of the Skeleton component."
-            tags={["React", "Skeleton", "Loading", "Placeholder"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={skeletonCode}
+        componentName="skeleton.tsx"
+        description="Core implementation of the Skeleton component."
+        tags={["React", "Skeleton", "Loading", "Placeholder"]}
+      />
 
       <DocsComponent
         title="Default"

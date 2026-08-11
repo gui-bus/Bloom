@@ -12,12 +12,6 @@ import { Button } from "@/components/ui/button/button";
 import { ButtonGroup } from "@/components/ui/buttonGroup/buttonGroup";
 import { buttonGroupCode } from "@/components/ui/buttonGroup/buttonGroup.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function ButtonGroupPage() {
   return (
@@ -33,31 +27,12 @@ export default function ButtonGroupPage() {
 
       <InstallationBlock componentName="buttonGroup" />
 
-      <Tabs defaultValue="buttonGroup">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="buttonGroup"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            buttonGroup.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="buttonGroup">
-          <CodeBlock
-            code={buttonGroupCode}
-            componentName="buttonGroup.tsx"
-            description="Implementation of the ButtonGroup component, managing layout logic and propagating visual traits to children buttons."
-            tags={[
-              "React",
-              "Tailwind",
-              "UI Component",
-              "Layout",
-              "ButtonGroup",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={buttonGroupCode}
+        componentName="buttonGroup.tsx"
+        description="Implementation of the ButtonGroup component, managing layout logic and propagating visual traits to children buttons."
+        tags={["React", "Tailwind", "UI Component", "Layout", "ButtonGroup"]}
+      />
 
       <DocsComponent
         title="Default"

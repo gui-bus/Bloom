@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -21,12 +20,6 @@ import {
   TableRow,
 } from "@/components/ui/table/table";
 import { tableCode } from "@/components/ui/table/table.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function TableComponentPage() {
   return (
@@ -42,25 +35,12 @@ export default function TableComponentPage() {
 
       <InstallationBlock componentName="table" />
 
-      <Tabs defaultValue="table">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="table"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            table.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="table">
-          <CodeBlock
-            code={tableCode}
-            componentName="table.tsx"
-            description="Core implementation of the Table component."
-            tags={["React", "Table", "Data", "Grid"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={tableCode}
+        componentName="table.tsx"
+        description="Core implementation of the Table component."
+        tags={["React", "Table", "Data", "Grid"]}
+      />
 
       <DocsComponent
         title="Default"

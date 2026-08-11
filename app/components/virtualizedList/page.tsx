@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -10,12 +9,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Badge } from "@/components/ui/badge/badge";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 import { VirtualizedList } from "@/components/ui/virtualizedList/virtualizedList";
 import { virtualizedListCode } from "@/components/ui/virtualizedList/virtualizedList.code";
 
@@ -45,31 +38,18 @@ export default function VirtualizedListPage() {
 
       <InstallationBlock componentName="virtualizedList" />
 
-      <Tabs defaultValue="virtualizedList">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="virtualizedList"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            virtualizedList.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="virtualizedList">
-          <CodeBlock
-            code={virtualizedListCode}
-            componentName="virtualizedList.tsx"
-            description="Virtualized scroll container rendering only visible items for high-performance lists."
-            tags={[
-              "React",
-              "Tailwind",
-              "UI Component",
-              "Performance",
-              "Virtualization",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={virtualizedListCode}
+        componentName="virtualizedList.tsx"
+        description="Virtualized scroll container rendering only visible items for high-performance lists."
+        tags={[
+          "React",
+          "Tailwind",
+          "UI Component",
+          "Performance",
+          "Virtualization",
+        ]}
+      />
 
       <DocsComponent
         title="Default"

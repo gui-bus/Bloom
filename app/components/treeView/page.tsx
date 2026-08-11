@@ -10,12 +10,6 @@ import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 import { TreeNode, TreeView } from "@/components/ui/treeView/treeView";
 import { treeViewCode } from "@/components/ui/treeView/treeView.code";
 
@@ -33,31 +27,12 @@ export default function TreeViewPage() {
 
       <InstallationBlock componentName="treeView" />
 
-      <Tabs defaultValue="treeView">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="treeView"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            treeView.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="treeView">
-          <CodeBlock
-            code={treeViewCode}
-            componentName="treeView.tsx"
-            description="Hierarchical tree component with expand/collapse, selection, and ARIA tree role support."
-            tags={[
-              "React",
-              "Tailwind",
-              "UI Component",
-              "Navigation",
-              "Tree View",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={treeViewCode}
+        componentName="treeView.tsx"
+        description="Hierarchical tree component with expand/collapse, selection, and ARIA tree role support."
+        tags={["React", "Tailwind", "UI Component", "Navigation", "Tree View"]}
+      />
 
       <DocsComponent
         title="Default"

@@ -1,24 +1,17 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
+import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { Button } from "@/components/ui/button/button";
 import { DiffViewer } from "@/components/ui/diffViewer/diffViewer";
 import { diffViewerCode } from "@/components/ui/diffViewer/diffViewer.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function DiffViewerPage() {
   const original = `function greet(name) {
@@ -50,25 +43,12 @@ export default function DiffViewerPage() {
 
       <InstallationBlock componentName="diffViewer" />
 
-      <Tabs defaultValue="diffViewer">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="diffViewer"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            diffViewer.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="diffViewer">
-          <CodeBlock
-            code={diffViewerCode}
-            componentName="diffViewer.tsx"
-            description="Core implementation of the DiffViewer component comparing strings using a line-by-line longest common subsequence algorithm."
-            tags={["React", "Tailwind", "DiffViewer", "Git", "Code Compare"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={diffViewerCode}
+        componentName="diffViewer.tsx"
+        description="Core implementation of the DiffViewer component comparing strings using a line-by-line longest common subsequence algorithm."
+        tags={["React", "Tailwind", "DiffViewer", "Git", "Code Compare"]}
+      />
 
       <DocsComponent
         title="Default"
@@ -148,42 +128,72 @@ const modified = "..."
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Prop</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Type</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Default</th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Prop
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Type
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Default
+                  </th>
+                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                    Description
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">oldValue</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">""</td>
-                  <td className="px-3 py-2 text-muted-foreground">The original/previous string block.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    The original/previous string block.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">newValue</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">string</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">""</td>
-                  <td className="px-3 py-2 text-muted-foreground">The modified/new string block to compare against.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    The modified/new string block to compare against.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">splitView</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">boolean</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    splitView
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">Renders side-by-side columns instead of unified inline list.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Renders side-by-side columns instead of unified inline list.
+                  </td>
                 </tr>
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">"default" | "bordered" | "flat"</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    "default" | "bordered" | "flat"
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">"default"</td>
-                  <td className="px-3 py-2 text-muted-foreground">The outer layout styling wrapper.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    The outer layout styling wrapper.
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-3 py-2 font-mono text-primary">radius</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">keyof typeof designRadius</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    keyof typeof designRadius
+                  </td>
                   <td className="px-3 py-2 text-muted-foreground">"md"</td>
-                  <td className="px-3 py-2 text-muted-foreground">Outer layout corner radius.</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Outer layout corner radius.
+                  </td>
                 </tr>
               </tbody>
             </table>

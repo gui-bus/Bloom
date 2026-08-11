@@ -20,7 +20,6 @@ interface DiffLine {
   newLineNumber?: number;
 }
 
-// Simple LCS based Diff Algorithm
 function computeLineDiff(oldStr: string, newStr: string): DiffLine[] {
   const oldLines = oldStr.split(/\r?\n/);
   const newLines = newStr.split(/\r?\n/);
@@ -28,7 +27,6 @@ function computeLineDiff(oldStr: string, newStr: string): DiffLine[] {
   const m = oldLines.length;
   const n = newLines.length;
 
-  // LCS Table
   const dp: number[][] = Array(m + 1)
     .fill(null)
     .map(() => Array(n + 1).fill(0));
@@ -43,7 +41,6 @@ function computeLineDiff(oldStr: string, newStr: string): DiffLine[] {
     }
   }
 
-  // Backtrack to build diff representation
   const diff: DiffLine[] = [];
   let i = m;
   let j = n;
@@ -101,7 +98,6 @@ export const DiffViewer: React.FC<DiffViewerProps> = ({
     let lIdx = 0;
     let rIdx = 0;
 
-    // Align additions and removals side-by-side where possible
     while (lIdx < leftSide.length || rIdx < rightSide.length) {
       const left = leftSide[lIdx];
       const right = rightSide[rIdx];
@@ -138,7 +134,6 @@ export const DiffViewer: React.FC<DiffViewerProps> = ({
         )}
       >
         <div className="grid grid-cols-2 divide-x divide-zinc-200 dark:divide-zinc-800 min-w-[700px]">
-          {/* Header */}
           <div className="px-4 py-2 bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800 text-zinc-500 font-medium">
             Original
           </div>
@@ -146,7 +141,6 @@ export const DiffViewer: React.FC<DiffViewerProps> = ({
             Modified
           </div>
 
-          {/* Body */}
           <div className="flex flex-col">
             {splitRows.map((row, idx) => {
               const line = row.left;
@@ -205,7 +199,6 @@ export const DiffViewer: React.FC<DiffViewerProps> = ({
     );
   }
 
-  // Unified / Inline View
   return (
     <div
       className={cn(
@@ -232,19 +225,16 @@ export const DiffViewer: React.FC<DiffViewerProps> = ({
             line.type === "unchanged" && "text-zinc-600 dark:text-zinc-400",
           )}
         >
-          {/* Line Numbers */}
           <div className="flex select-none w-20 text-zinc-400 dark:text-zinc-600 text-right mr-3 py-0.5 border-r border-zinc-200 dark:border-zinc-800 pr-2">
             <span className="w-1/2">{line.oldLineNumber || ""}</span>
             <span className="w-1/2 ml-1">{line.newLineNumber || ""}</span>
           </div>
 
-          {/* Indicator */}
           <span className="w-4 select-none text-center mr-1 text-xs">
             {line.type === "added" && "+"}
             {line.type === "removed" && "-"}
           </span>
 
-          {/* Content */}
           <span className="whitespace-pre py-0.5">{line.content}</span>
         </div>
       ))}

@@ -11,12 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Badge } from "@/components/ui/badge/badge";
 import { badgeCode } from "@/components/ui/badge/badge.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function BadgeComponentPage() {
   return (
@@ -32,31 +26,12 @@ export default function BadgeComponentPage() {
 
       <InstallationBlock componentName="badge" />
 
-      <Tabs defaultValue="badge">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="badge"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            badge.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="badge">
-          <CodeBlock
-            code={badgeCode}
-            componentName="badge.tsx"
-            description="Core implementation of the Badge component with color, variant, size, radius, pressable interaction, and slot support."
-            tags={[
-              "React",
-              "Tailwind",
-              "UI Component",
-              "Accessibility",
-              "Badge",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={badgeCode}
+        componentName="badge.tsx"
+        description="Core implementation of the Badge component with color, variant, size, radius, pressable interaction, and slot support."
+        tags={["React", "Tailwind", "UI Component", "Accessibility", "Badge"]}
+      />
 
       <DocsComponent
         title="Default"

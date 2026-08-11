@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -15,12 +14,6 @@ import {
 } from "@/components/ui/combobox/combobox";
 import { comboboxCode } from "@/components/ui/combobox/combobox.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 const groupedTechStack: ComboboxOption[] = [
   {
@@ -161,32 +154,19 @@ export default function ComboboxComponentPage() {
 
       <InstallationBlock componentName="combobox" />
 
-      <Tabs defaultValue="combobox">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="combobox"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            combobox.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="combobox">
-          <CodeBlock
-            code={comboboxCode}
-            componentName="combobox.tsx"
-            description="Core implementation of the Combobox component with multi-select tag pills, creation on the fly, and virtualized list rendering."
-            tags={[
-              "React",
-              "Tailwind",
-              "Autocomplete",
-              "Fuzzy Search",
-              "Virtualized",
-              "Combobox",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={comboboxCode}
+        componentName="combobox.tsx"
+        description="Core implementation of the Combobox component with multi-select tag pills, creation on the fly, and virtualized list rendering."
+        tags={[
+          "React",
+          "Tailwind",
+          "Autocomplete",
+          "Fuzzy Search",
+          "Virtualized",
+          "Combobox",
+        ]}
+      />
 
       <DocsComponent
         title="Multi-Select Mode with Tag Pills"

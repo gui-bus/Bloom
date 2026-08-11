@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -15,12 +14,6 @@ import {
 } from "@/components/ui/radioGroup/radioGroup";
 import { radioGroupCode } from "@/components/ui/radioGroup/radioGroup.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function RadioGroupComponentPage() {
   const [selectedPlan, setSelectedPlan] = React.useState("pro");
@@ -38,25 +31,12 @@ export default function RadioGroupComponentPage() {
 
       <InstallationBlock componentName="radioGroup" />
 
-      <Tabs defaultValue="radioGroup">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="radioGroup"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            radioGroup.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="radioGroup">
-          <CodeBlock
-            code={radioGroupCode}
-            componentName="radioGroup.tsx"
-            description="Core implementation of the RadioGroup component."
-            tags={["React", "Radix UI", "RadioGroup", "Form", "Cards"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={radioGroupCode}
+        componentName="radioGroup.tsx"
+        description="Core implementation of the RadioGroup component."
+        tags={["React", "Radix UI", "RadioGroup", "Form", "Cards"]}
+      />
 
       <DocsComponent
         title="Default Selection"

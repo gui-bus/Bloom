@@ -7,7 +7,7 @@ import { designRadius } from "@/lib/design-system";
 import { cn } from "@/lib/utils";
 
 export interface TourStep {
-  target: string; // CSS selector, e.g. '#header-logo' or '.sidebar-item'
+  target: string;
   title: string;
   content: string;
   placement?: "top" | "bottom" | "left" | "right";
@@ -59,7 +59,6 @@ export const Tour: React.FC<TourProps> = ({
     const element = document.querySelector(activeStep.target);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "center" });
-      // Update coordinates after a small delay to sync with smooth scrolling transition
       const timer = setTimeout(() => {
         setCoords(element.getBoundingClientRect());
       }, 100);
@@ -108,7 +107,6 @@ export const Tour: React.FC<TourProps> = ({
     setCurrentStepIndex(0);
   };
 
-  // Compute position of popover relative to highlighted target
   const getPopoverStyle = (): React.CSSProperties => {
     if (isMobile) {
       return {
@@ -168,10 +166,8 @@ export const Tour: React.FC<TourProps> = ({
   return (
     <div className="fixed inset-0 z-50 pointer-events-none select-none">
       {fireConfetti > 0 && <Confetti fire={fireConfetti} variant="cannon" />}
-      {/* Dimmed Overlay Backdrop (transparent wrapper to block clicks) */}
       <div className="absolute inset-0 bg-transparent pointer-events-auto" />
 
-      {/* Spotlight highlight overlay */}
       {coords && (
         <div
           style={{
@@ -188,7 +184,6 @@ export const Tour: React.FC<TourProps> = ({
         />
       )}
 
-      {/* Tooltip Card */}
       <div
         style={getPopoverStyle()}
         className={cn(

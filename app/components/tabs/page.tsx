@@ -91,25 +91,12 @@ export default function TabsComponentPage() {
 
       <InstallationBlock componentName="tabs" />
 
-      <Tabs defaultValue="tabs">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="tabs"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            tabs.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="tabs">
-          <CodeBlock
-            code={tabsCode}
-            componentName="tabs.tsx"
-            description="Core implementation of the Tabs component."
-            tags={["React", "Radix UI", "Tabs", "Closable", "Vertical"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={tabsCode}
+        componentName="tabs.tsx"
+        description="Core implementation of the Tabs component."
+        tags={["React", "Radix UI", "Tabs", "Closable", "Vertical"]}
+      />
 
       <DocsComponent
         title="Default Contained"

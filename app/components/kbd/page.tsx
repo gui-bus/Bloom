@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -11,12 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Kbd } from "@/components/ui/kbd/kbd";
 import { kbdCode } from "@/components/ui/kbd/kbd.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function KbdComponentPage() {
   return (
@@ -32,25 +25,12 @@ export default function KbdComponentPage() {
 
       <InstallationBlock componentName="kbd" />
 
-      <Tabs defaultValue="kbd">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="kbd"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            kbd.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="kbd">
-          <CodeBlock
-            code={kbdCode}
-            componentName="kbd.tsx"
-            description="Core implementation of the Kbd component."
-            tags={["React", "Tailwind", "Typography", "Kbd"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={kbdCode}
+        componentName="kbd.tsx"
+        description="Core implementation of the Kbd component."
+        tags={["React", "Tailwind", "Typography", "Kbd"]}
+      />
 
       <DocsComponent
         title="Default"

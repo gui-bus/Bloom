@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -15,12 +14,6 @@ import { formCode } from "@/components/ui/form/form.code";
 import { FormField } from "@/components/ui/formField/formField";
 import { Input } from "@/components/ui/input/input";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 interface DemoFormValues {
   username: string;
@@ -84,25 +77,12 @@ export default function FormComponentPage() {
 
       <InstallationBlock componentName="form" />
 
-      <Tabs defaultValue="form">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="form"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            form.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="form">
-          <CodeBlock
-            code={formCode}
-            componentName="form.tsx"
-            description="Core implementation of the Form component with scroll-to-error, dirty state guard, and reset button."
-            tags={["React", "Form", "React Hook Form", "Validation"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={formCode}
+        componentName="form.tsx"
+        description="Core implementation of the Form component with scroll-to-error, dirty state guard, and reset button."
+        tags={["React", "Form", "React Hook Form", "Validation"]}
+      />
 
       <DocsComponent
         title="Default"

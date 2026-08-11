@@ -29,12 +29,6 @@ import {
 } from "@/components/ui/dropdownMenu/dropdownMenu";
 import { dropdownMenuCode } from "@/components/ui/dropdownMenu/dropdownMenu.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 function SearchFilterMenuDemo() {
   const [search, setSearch] = React.useState("");
@@ -112,25 +106,12 @@ export default function DropdownMenuDocsPage() {
 
       <InstallationBlock componentName="dropdownMenu" />
 
-      <Tabs defaultValue="dropdownMenu">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="dropdownMenu"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            dropdownMenu.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="dropdownMenu">
-          <CodeBlock
-            code={dropdownMenuCode}
-            componentName="dropdownMenu.tsx"
-            description="Dropdown menu component supporting search input filters, arrow pointers, radio/checkbox groups, and submenus."
-            tags={["React", "Radix UI", "Tailwind", "UI Component", "Menu"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={dropdownMenuCode}
+        componentName="dropdownMenu.tsx"
+        description="Dropdown menu component supporting search input filters, arrow pointers, radio/checkbox groups, and submenus."
+        tags={["React", "Radix UI", "Tailwind", "UI Component", "Menu"]}
+      />
 
       <DocsComponent
         title="Default"

@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -10,12 +9,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
 import { separatorCode } from "@/components/ui/separator/separator.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function SeparatorComponentPage() {
   return (
@@ -31,25 +24,12 @@ export default function SeparatorComponentPage() {
 
       <InstallationBlock componentName="separator" />
 
-      <Tabs defaultValue="separator">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="separator"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            separator.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="separator">
-          <CodeBlock
-            code={separatorCode}
-            componentName="separator.tsx"
-            description="Core implementation of the Separator component."
-            tags={["React", "Radix UI", "Separator", "Layout"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={separatorCode}
+        componentName="separator.tsx"
+        description="Core implementation of the Separator component."
+        tags={["React", "Radix UI", "Separator", "Layout"]}
+      />
 
       <DocsComponent
         title="Default"

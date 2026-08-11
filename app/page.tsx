@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card/card";
-import { Terminal, TerminalLine } from "@/components/ui/terminal/terminal";
+import { Terminal, type TerminalLine } from "@/components/ui/terminal/terminal";
 
 const FeatureCard = ({
   icon,
@@ -40,7 +40,6 @@ const terminalQuickstartLines: TerminalLine[] = [
 export default function Home() {
   return (
     <main className="w-full space-y-16">
-      {/* Hero Section */}
       <section id="introduction" className="space-y-8 pt-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 text-xs font-medium tracking-tight">
           <span className="size-1.5 rounded-full bg-sky-500" />
@@ -52,7 +51,9 @@ export default function Home() {
             Craft sleek, accessible UI with zero compromise.
           </h1>
           <p className="text-base sm:text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed font-normal">
-            A high-performance React component library designed with clean neutral tokens, strict accessibility standards, and copy-paste ownership. Powered by Radix UI and Tailwind CSS.
+            A high-performance React component library designed with clean
+            neutral tokens, strict accessibility standards, and copy-paste
+            ownership. Powered by Radix UI and Tailwind CSS.
           </p>
         </div>
 
@@ -68,7 +69,10 @@ export default function Home() {
             href="/installation"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 font-medium text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors duration-150 shadow-xs"
           >
-            <Icon icon="hugeicons:download-01" className="size-4 text-zinc-500" />
+            <Icon
+              icon="hugeicons:download-01"
+              className="size-4 text-zinc-500"
+            />
             Installation
           </Link>
           <a
@@ -83,7 +87,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Terminal Block Section */}
       <section id="quickstart" className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
@@ -95,7 +98,6 @@ export default function Home() {
 
       <hr className="border-zinc-200 dark:border-zinc-800" />
 
-      {/* Principles Section */}
       <section id="principles" className="space-y-6">
         <div>
           <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
@@ -146,6 +148,3 @@ export default function Home() {
     </main>
   );
 }
-
-
-

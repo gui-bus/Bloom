@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -12,12 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { ColorSwatches } from "@/components/ui/colorSwatches/colorSwatches";
 import { colorSwatchesCode } from "@/components/ui/colorSwatches/colorSwatches.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 const defaultNamedColors = [
   { color: "#ef4444", name: "Red 500" },
@@ -156,25 +149,12 @@ export default function ColorSwatchesPage() {
 
       <InstallationBlock componentName="colorSwatches" />
 
-      <Tabs defaultValue="colorSwatches">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="colorSwatches"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            colorSwatches.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="colorSwatches">
-          <CodeBlock
-            code={colorSwatchesCode}
-            componentName="colorSwatches.tsx"
-            description="Color palette grid with multi-selection support, contrast ratio tooltips, and size/shape options."
-            tags={["React", "Tailwind", "UI Component", "Color", "Selection"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={colorSwatchesCode}
+        componentName="colorSwatches.tsx"
+        description="Color palette grid with multi-selection support, contrast ratio tooltips, and size/shape options."
+        tags={["React", "Tailwind", "UI Component", "Color", "Selection"]}
+      />
 
       <DocsComponent
         title="Default with Contrast Tooltip"

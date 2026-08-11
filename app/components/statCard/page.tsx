@@ -11,12 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
 import { StatCard } from "@/components/ui/statCard/statCard";
 import { statCardCode } from "@/components/ui/statCard/statCard.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function StatCardComponentPage() {
   return (
@@ -32,25 +26,12 @@ export default function StatCardComponentPage() {
 
       <InstallationBlock componentName="statCard" />
 
-      <Tabs defaultValue="statCard">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="statCard"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            statCard.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="statCard">
-          <CodeBlock
-            code={statCardCode}
-            componentName="statCard.tsx"
-            description="Core implementation of the StatCard component."
-            tags={["React", "StatCard", "Metrics", "Dashboard"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={statCardCode}
+        componentName="statCard.tsx"
+        description="Core implementation of the StatCard component."
+        tags={["React", "StatCard", "Metrics", "Dashboard"]}
+      />
 
       <DocsComponent
         title="Default"

@@ -11,12 +11,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
 import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
-import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/ui/toggleGroup/toggleGroup";
@@ -39,25 +33,12 @@ export default function ToggleGroupComponentPage() {
 
       <InstallationBlock componentName="toggleGroup" />
 
-      <Tabs defaultValue="toggleGroup">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="toggleGroup"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            toggleGroup.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="toggleGroup">
-          <CodeBlock
-            code={toggleGroupCode}
-            componentName="toggleGroup.tsx"
-            description="Core implementation of the ToggleGroup component."
-            tags={["React", "Radix UI", "ToggleGroup", "SegmentedControl"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={toggleGroupCode}
+        componentName="toggleGroup.tsx"
+        description="Core implementation of the ToggleGroup component."
+        tags={["React", "Radix UI", "ToggleGroup", "SegmentedControl"]}
+      />
 
       <DocsComponent
         title="Default"

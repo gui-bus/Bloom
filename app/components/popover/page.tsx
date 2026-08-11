@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -21,12 +20,6 @@ import {
 } from "@/components/ui/popover/popover";
 import { popoverCode } from "@/components/ui/popover/popover.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function PopoverComponentPage() {
   return (
@@ -42,25 +35,12 @@ export default function PopoverComponentPage() {
 
       <InstallationBlock componentName="popover" />
 
-      <Tabs defaultValue="popover">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="popover"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            popover.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="popover">
-          <CodeBlock
-            code={popoverCode}
-            componentName="popover.tsx"
-            description="Core implementation of the Popover component."
-            tags={["React", "Radix UI", "Popover", "Overlay"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={popoverCode}
+        componentName="popover.tsx"
+        description="Core implementation of the Popover component."
+        tags={["React", "Radix UI", "Popover", "Overlay"]}
+      />
 
       <DocsComponent
         title="Default"

@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -11,12 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
 import { Spinner } from "@/components/ui/spinner/spinner";
 import { spinnerCode } from "@/components/ui/spinner/spinner.code";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 export default function SpinnerComponentPage() {
   return (
@@ -32,25 +25,12 @@ export default function SpinnerComponentPage() {
 
       <InstallationBlock componentName="spinner" />
 
-      <Tabs defaultValue="spinner">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="spinner"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            spinner.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="spinner">
-          <CodeBlock
-            code={spinnerCode}
-            componentName="spinner.tsx"
-            description="Core implementation of the Spinner component."
-            tags={["React", "Spinner", "Loader", "Animation"]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={spinnerCode}
+        componentName="spinner.tsx"
+        description="Core implementation of the Spinner component."
+        tags={["React", "Spinner", "Loader", "Animation"]}
+      />
 
       <DocsComponent
         title="Default"

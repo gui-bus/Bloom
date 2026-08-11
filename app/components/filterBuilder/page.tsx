@@ -1,6 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
@@ -16,12 +15,6 @@ import {
 } from "@/components/ui/filterBuilder/filterBuilder";
 import { filterBuilderCode } from "@/components/ui/filterBuilder/filterBuilder.code";
 import { Separator } from "@/components/ui/separator/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs/tabs";
 
 const defaultFields: FilterField[] = [
   { id: "name", label: "Name", type: "text" },
@@ -117,33 +110,20 @@ export default function FilterBuilderPage() {
 
       <InstallationBlock componentName="filterBuilder" />
 
-      <Tabs defaultValue="filterBuilder">
-        <TabsList background={false}>
-          <TabsTrigger
-            value="filterBuilder"
-            startContent={<Icon icon="devicon:react" className="size-5" />}
-          >
-            filterBuilder.tsx
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="filterBuilder">
-          <CodeBlock
-            code={filterBuilderCode}
-            componentName="filterBuilder.tsx"
-            description="Visual query builder supporting nested AND/OR sub-clauses, query preset storage, and SQL/MongoDB/GraphQL exporter."
-            tags={[
-              "React",
-              "Tailwind",
-              "UI Component",
-              "Filter",
-              "Query Builder",
-              "SQL",
-              "MongoDB",
-            ]}
-          />
-        </TabsContent>
-      </Tabs>
+      <CodeBlock
+        code={filterBuilderCode}
+        componentName="filterBuilder.tsx"
+        description="Visual query builder supporting nested AND/OR sub-clauses, query preset storage, and SQL/MongoDB/GraphQL exporter."
+        tags={[
+          "React",
+          "Tailwind",
+          "UI Component",
+          "Filter",
+          "Query Builder",
+          "SQL",
+          "MongoDB",
+        ]}
+      />
 
       <DocsComponent
         title="Default"
