@@ -102,8 +102,8 @@ export default function Home() {
               Initialize Bloom in your project and copy raw source code directly:
             </p>
             <div className="space-y-2">
-              <Snippet variant="mac" symbol="$" prompt="npx @bloomui-react/cli init" text="npx @bloomui-react/cli init" />
-              <Snippet variant="mac" symbol="$" prompt="npx @bloomui-react/cli add button tableOfContents snippet" text="npx @bloomui-react/cli add button tableOfContents snippet" />
+              <Snippet variant="mac" symbol="$" text="npx @bloomui-react/cli init" />
+              <Snippet variant="mac" symbol="$" text="npx @bloomui-react/cli add button tableOfContents snippet" />
             </div>
           </TabsContent>
           
