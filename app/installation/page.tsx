@@ -6,7 +6,7 @@ import DocsTitle from "@/components/core/docsTitle";
 import { Terminal, type TerminalLine } from "@/components/ui/terminal/terminal";
 
 const terminalInitLines: TerminalLine[] = [
-  { text: "npx bloom-ui init", type: "command" },
+  { text: "npx @bloomui-react/cli init", type: "command" },
   { text: "Created lib/utils.ts", type: "success" },
   { text: "Created lib/design-system.ts", type: "success" },
   { text: "Created bloom.json project manifest", type: "success" },
@@ -14,16 +14,22 @@ const terminalInitLines: TerminalLine[] = [
 ];
 
 const terminalAddLines: TerminalLine[] = [
-  { text: "npx bloom-ui add button switch avatar card", type: "command" },
+  { text: "npx @bloomui-react/cli add button switch avatar card tableOfContents", type: "command" },
   { text: "Fetching component definitions from registry...", type: "info" },
   { text: "Created components/ui/button/button.tsx", type: "success" },
   { text: "Created components/ui/switch/switch.tsx", type: "success" },
   { text: "Created components/ui/avatar/avatar.tsx", type: "success" },
   { text: "Created components/ui/card/card.tsx", type: "success" },
+  { text: "Created components/ui/tableOfContents/tableOfContents.tsx", type: "success" },
   {
     text: "All components added directly into your codebase!",
     type: "success",
   },
+];
+
+const terminalNpmLines: TerminalLine[] = [
+  { text: "npm install @bloomui/react", type: "command" },
+  { text: "Installed @bloomui/react v0.1.0 (ESM & CJS bundles)", type: "success" },
 ];
 
 export default function InstallationPage() {
@@ -31,39 +37,66 @@ export default function InstallationPage() {
     <div className="space-y-12 w-full">
       <DocsTitle
         title="Installation"
-        description="Initialize Bloom UI in your React or Next.js project using our official CLI, and add components directly into your codebase."
+        description="Choose how to use Bloom UI in your React or Next.js project: copy components directly using our official CLI, or install the compiled @bloomui/react package via NPM."
       />
 
-      <section className="space-y-4">
+      <section className="space-y-6">
         <div className="flex items-center gap-2">
           <span className="flex items-center justify-center size-6 rounded-full bg-sky-500 text-white text-xs font-bold shrink-0">
-            1
+            A
           </span>
           <h2 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Initialize Bloom UI
+            Method 1: CLI (Copy-Paste Code Ownership)
           </h2>
         </div>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
-          Run the initialization command in your project root to set up design
-          system tokens, helper utilities, and configuration manifests.
+          Download raw React component code directly into your repository. Modify styling, logic, and structure freely without third-party wrapper constraints.
         </p>
-        <Terminal variant="mac" lines={terminalInitLines} />
+
+        <div className="space-y-6 border-l-2 border-zinc-200 dark:border-zinc-800 pl-4 ml-2">
+          <div className="space-y-2">
+            <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+              1. Initialize Bloom UI
+            </h3>
+            <Terminal variant="mac" lines={terminalInitLines} />
+          </div>
+
+          <div className="space-y-2">
+            <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+              2. Add Components
+            </h3>
+            <Terminal variant="mac" lines={terminalAddLines} />
+          </div>
+        </div>
       </section>
 
-      <section className="space-y-4">
+      <section className="space-y-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
         <div className="flex items-center gap-2">
           <span className="flex items-center justify-center size-6 rounded-full bg-sky-500 text-white text-xs font-bold shrink-0">
-            2
+            B
           </span>
           <h2 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Add Components
+            Method 2: NPM Package (@bloomui/react)
           </h2>
         </div>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 font-normal">
-          Add any component directly to your project. The CLI downloads raw
-          React source code without hiding logic behind third-party packages.
+          Install the pre-compiled library package for traditional dependency management in Vite, Next.js, or Remix applications.
         </p>
-        <Terminal variant="mac" lines={terminalAddLines} />
+
+        <Terminal variant="mac" lines={terminalNpmLines} />
+
+        <div className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 space-y-2">
+          <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100 block">
+            Importing from @bloomui/react
+          </span>
+          <pre className="text-xs font-mono text-zinc-700 dark:text-zinc-300 overflow-x-auto p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-200 dark:border-zinc-800">
+{`import { Button, TableOfContents, Snippet } from "@bloomui/react";
+
+export default function App() {
+  return <Button color="primary">Hello Bloom</Button>;
+}`}
+          </pre>
+        </div>
       </section>
 
       <section className="space-y-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">

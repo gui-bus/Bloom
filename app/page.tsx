@@ -30,11 +30,16 @@ const FeatureCard = ({
   </Card>
 );
 
-const terminalQuickstartLines: TerminalLine[] = [
-  { text: "npx bloom-ui init", type: "command" },
-  { text: "Design system tokens initialized successfully", type: "success" },
-  { text: "npx bloom-ui add button avatar badge terminal", type: "command" },
-  { text: "Components added to components/ui", type: "success" },
+const terminalCliLines: TerminalLine[] = [
+  { text: "npx @bloomui-react/cli init", type: "command" },
+  { text: "Design system tokens initialized in project", type: "success" },
+  { text: "npx @bloomui-react/cli add button tableOfContents snippet", type: "command" },
+  { text: "Components added directly into components/ui", type: "success" },
+];
+
+const terminalNpmLines: TerminalLine[] = [
+  { text: "npm install @bloomui/react", type: "command" },
+  { text: "Installed @bloomui/react v0.1.0 (95 components included)", type: "success" },
 ];
 
 export default function Home() {
@@ -43,17 +48,16 @@ export default function Home() {
       <section id="introduction" className="space-y-8 pt-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 text-xs font-medium tracking-tight">
           <span className="size-1.5 rounded-full bg-sky-500" />
-          Bloom UI v1.0 — React 19 Component Library
+          Bloom UI v1.0 — 95 Premium React 19 Components
         </div>
 
         <div className="space-y-4">
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 leading-tight">
-            Craft sleek, accessible UI with zero compromise.
+            Craft sleek, accessible UI with total flexibility.
           </h1>
           <p className="text-base sm:text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed font-normal">
-            A high-performance React component library designed with clean
-            neutral tokens, strict accessibility standards, and copy-paste
-            ownership. Powered by Radix UI and Tailwind CSS.
+            A high-performance React component library available in a hybrid model:
+            use our official CLI to own the code, or install the compiled package via NPM. Powered by Radix UI and Tailwind CSS.
           </p>
         </div>
 
@@ -63,7 +67,7 @@ export default function Home() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-medium text-sm transition-colors duration-150 shadow-xs"
           >
             <Icon icon="hugeicons:grid-view" className="size-4" />
-            Explore Components
+            Explore 95 Components
           </Link>
           <Link
             href="/installation"
@@ -73,7 +77,7 @@ export default function Home() {
               icon="hugeicons:download-01"
               className="size-4 text-zinc-500"
             />
-            Installation
+            Installation Guide
           </Link>
           <a
             href="https://github.com/gui-bus/Bloom"
@@ -87,13 +91,31 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="quickstart" className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
-            Quickstart CLI
+      <section id="quickstart" className="space-y-6">
+        <div>
+          <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+            Hybrid Workflow — CLI or NPM
           </h3>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+            Choose the installation model that best fits your project architecture.
+          </p>
         </div>
-        <Terminal variant="mac" lines={terminalQuickstartLines} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+              Option 1: CLI (Copy-Paste Code Ownership)
+            </span>
+            <Terminal variant="mac" lines={terminalCliLines} />
+          </div>
+
+          <div className="space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+              Option 2: NPM Package Distribution
+            </span>
+            <Terminal variant="mac" lines={terminalNpmLines} />
+          </div>
+        </div>
       </section>
 
       <hr className="border-zinc-200 dark:border-zinc-800" />
@@ -111,8 +133,8 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
           <FeatureCard
             icon="hugeicons:source-code"
-            title="Complete Ownership"
-            description="Copy full source code directly into your repository. Modify styling, logic, and structure without third-party abstraction layers."
+            title="Hybrid Ownership"
+            description="Copy raw source code directly via CLI or import as a compiled NPM package (@bloomui/react). Zero lock-in."
           />
           <FeatureCard
             icon="hugeicons:paint-board"
@@ -136,7 +158,7 @@ export default function Home() {
           />
           <FeatureCard
             icon="hugeicons:package"
-            title="Modular Components"
+            title="95 Modular Components"
             description="Independent components designed for composition. Zero bloated dependencies and optimized bundle size."
           />
         </div>
