@@ -46,6 +46,30 @@ const terminalAiLines: TerminalLine[] = [
   { text: "AI rules files generated successfully!", type: "success" },
 ];
 
+const terminalUpdateLines: TerminalLine[] = [
+  { text: "npx @bloomui-react/cli update", type: "command" },
+  { text: "? Select components to update: button, avatar", type: "info" },
+  { text: "Updating button component...", type: "info" },
+  { text: "Updated button component files", type: "success" },
+  { text: "Updating avatar component...", type: "info" },
+  { text: "Updated avatar component files", type: "success" },
+  { text: "Successfully updated components in your project!", type: "success" },
+];
+
+const terminalDoctorLines: TerminalLine[] = [
+  { text: "npx @bloomui-react/cli doctor", type: "command" },
+  { text: "Analyzing Bloom UI project health...", type: "info" },
+  { text: "✔ bloom.json manifest exists and is valid JSON.", type: "success" },
+  { text: "✔ Component directory exists at: components/ui", type: "success" },
+  { text: "✔ Utility directory exists at: lib", type: "success" },
+  { text: "✔ Utility file found: lib/utils.ts", type: "success" },
+  { text: "✔ Utility file found: lib/design-system.ts", type: "success" },
+  { text: "✔ Ripple animations directory found at: lib/ripple", type: "success" },
+  { text: "✔ Local markdown documentation directory found at: lib/docs", type: "success" },
+  { text: "✔ Dependency 'clsx' is installed.", type: "success" },
+  { text: "✔ Perfect! Your Bloom UI setup is completely healthy.", type: "success" },
+];
+
 const terminalNpmLines: TerminalLine[] = [
   { text: "npm install @bloomui-react/components", type: "command" },
   {
@@ -119,6 +143,26 @@ export default function InstallationPage() {
               </p>
               <Terminal variant="mac" lines={terminalAiLines} />
             </div>
+
+            <div className="space-y-2 pt-2">
+              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                4. Update Components
+              </h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Keep your components and dynamic markdown docs up-to-date with the latest versions from our registry.
+              </p>
+              <Terminal variant="mac" lines={terminalUpdateLines} />
+            </div>
+
+            <div className="space-y-2 pt-2">
+              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                5. Health Check / Diagnostics
+              </h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Validate imports, files, configurations, and peer dependencies in your workspace.
+              </p>
+              <Terminal variant="mac" lines={terminalDoctorLines} />
+            </div>
           </div>
         </div>
       </section>
@@ -186,7 +230,7 @@ export default function App() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4">
           {[
             {
               file: "lib/utils.ts",
@@ -199,6 +243,12 @@ export default function App() {
               title: "Design Tokens",
               desc: "Defines design radius scales, sizing scales, and neutral theme color tokens.",
               icon: "hugeicons:paint-board",
+            },
+            {
+              file: "lib/docs/",
+              title: "Local Markdown Docs",
+              desc: "Stores full markdown documentation files for each installed component to give detailed context for AI Coding Assistants.",
+              icon: "hugeicons:file-attachment",
             },
             {
               file: "bloom.json",

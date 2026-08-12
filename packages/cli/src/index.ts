@@ -765,6 +765,348 @@ program
   });
 
 program
+  .command("update")
+  .argument("[component]", "Name of the component to update")
+  .description("Update installed components to the latest version")
+  .option("-y, --yes", "Bypass prompts and confirm action", false)
+  .action(async (componentName, options) => {
+    const isTTY = process.stdout.isTTY;
+    const skipPrompts = options.yes || !isTTY;
+
+    const configFile = path.join(process.cwd(), "bloom.json");
+    if (!fs.existsSync(configFile)) {
+      console.error(
+        pc.red("bloom.json not found. Run 'npx bloom init' first."),
+      );
+      return;
+    }
+
+    const config = JSON.parse(fs.readFileSync(configFile, "utf8"));
+    const componentDir = config.componentDir || "components/ui";
+
+    if (!skipPrompts) {
+      intro(pc.bgMagenta(pc.black(" Bloom UI — Update Components ")));
+    }
+
+    const targetComponentDir = path.join(process.cwd(), componentDir);
+    const installedComponents: string[] = [];
+    if (fs.existsSync(targetComponentDir)) {
+      try {
+        const dirs = fs.readdirSync(targetComponentDir, { withFileTypes: true });
+        for (const d of dirs) {
+          if (d.isDirectory()) {
+            installedComponents.push(d.name.toLowerCase());
+          }
+        }
+      } catch (_e) {}
+    }
+
+    if (installedComponents.length === 0) {
+      if (!skipPrompts) {
+        outro(pc.yellow("No Bloom UI components found to update."));
+      } else {
+        console.log("No Bloom UI components found to update.");
+      }
+      return;
+    }
+
+    let selectedComponents: string[] = [];
+    if (componentName) {
+      const lowerComp = componentName.toLowerCase();
+      if (!installedComponents.includes(lowerComp)) {
+        if (!skipPrompts) {
+          outro(pc.red(`Component ${componentName} is not currently installed.`));
+        } else {
+          console.error(`Component ${componentName} is not currently installed.`);
+        }
+        return;
+      }
+      selectedComponents = [lowerComp];
+    } else {
+      if (skipPrompts) {
+        selectedComponents = installedComponents;
+      } else {
+        const selection = await multiselect({
+          message: "Select components to update:",
+          options: installedComponents.map((c) => ({ value: c, label: c })),
+          required: true,
+        });
+
+        if (typeof selection === "symbol") return;
+        selectedComponents = selection as string[];
+      }
+    }
+
+    const registryBase = await getRegistryBase();
+
+    for (const selectedComponent of selectedComponents) {
+      const sAdd = spinner();
+      if (!skipPrompts) {
+        sAdd.start(`Updating ${selectedComponent} component`);
+      } else {
+        console.log(`Updating component: ${selectedComponent}...`);
+      }
+
+      try {
+        const res = await fetch(
+          `${registryBase}/components/${selectedComponent}.json`,
+        );
+        if (!res.ok) {
+          if (!skipPrompts) {
+            sAdd.stop(`Component ${selectedComponent} not found in registry.`);
+          } else {
+            console.error(
+              `Component ${selectedComponent} not found in registry.`,
+            );
+          }
+          continue;
+        }
+
+        interface RegistryComponent {
+          name: string;
+          dependencies: string[];
+          files: { name: string; content: string }[];
+          docs?: string;
+        }
+
+        const componentData = (await res.json()) as RegistryComponent;
+
+        const targetDir = path.join(
+          process.cwd(),
+          componentDir,
+          selectedComponent,
+        );
+        if (!fs.existsSync(targetDir)) {
+          fs.mkdirSync(targetDir, { recursive: true });
+        }
+
+        for (const file of componentData.files) {
+          let updatedContent = file.content;
+
+          const fromPath = path.join(componentDir, selectedComponent);
+          const toPath = config.utilsDir || "lib";
+          let relativeImportPath = path
+            .relative(fromPath, toPath)
+            .replace(/\\/g, "/");
+          if (!relativeImportPath.startsWith(".")) {
+            relativeImportPath = `./${relativeImportPath}`;
+          }
+
+          updatedContent = updatedContent.replace(
+            /@\/lib\/utils/g,
+            `${relativeImportPath}/utils`,
+          );
+          updatedContent = updatedContent.replace(
+            /@\/lib\/design-system/g,
+            `${relativeImportPath}/design-system`,
+          );
+          updatedContent = updatedContent.replace(
+            /@\/hooks\/ripple/g,
+            `../../hooks/ripple`,
+          );
+
+          fs.writeFileSync(
+            path.join(targetDir, file.name),
+            updatedContent,
+            "utf8",
+          );
+        }
+
+        if (componentData.docs) {
+          const targetDocsDir = path.join(process.cwd(), config.utilsDir || "lib", "docs");
+          if (!fs.existsSync(targetDocsDir)) {
+            fs.mkdirSync(targetDocsDir, { recursive: true });
+          }
+          let updatedDocs = componentData.docs;
+          const cleanCompDir = componentDir.replace(/\\/g, "/");
+          updatedDocs = updatedDocs.replace(
+            /@\/components\/ui/g,
+            `@/${cleanCompDir}`,
+          );
+          fs.writeFileSync(
+            path.join(targetDocsDir, `${selectedComponent}.md`),
+            updatedDocs,
+            "utf8",
+          );
+        }
+
+        if (!skipPrompts) {
+          sAdd.stop(`Updated ${selectedComponent} component files`);
+        } else {
+          console.log(`Updated ${selectedComponent} component files.`);
+        }
+
+        if (componentData.dependencies && componentData.dependencies.length > 0) {
+          const pkgManager = detectPackageManager();
+          const sDeps = spinner();
+          if (!skipPrompts) {
+            sDeps.start(
+              `Installing dependencies for ${selectedComponent}: ${componentData.dependencies.join(", ")}`,
+            );
+          } else {
+            console.log(
+              `Installing dependencies for ${selectedComponent}: ${componentData.dependencies.join(", ")}...`,
+            );
+          }
+          try {
+            let installCmd = "";
+            if (pkgManager === "pnpm") {
+              installCmd = `pnpm add ${componentData.dependencies.join(" ")}`;
+            } else if (pkgManager === "yarn") {
+              installCmd = `yarn add ${componentData.dependencies.join(" ")}`;
+            } else if (pkgManager === "bun") {
+              installCmd = `bun add ${componentData.dependencies.join(" ")}`;
+            } else {
+              installCmd = `npm install ${componentData.dependencies.join(" ")}`;
+            }
+            await execPromise(installCmd);
+            if (!skipPrompts) {
+              sDeps.stop("Dependencies installed successfully");
+            } else {
+              console.log("Dependencies installed successfully.");
+            }
+          } catch (_err) {
+            if (!skipPrompts) {
+              sDeps.stop(
+                "Failed to install dependencies automatically. Please install them manually.",
+              );
+            } else {
+              console.warn(
+                "Failed to install dependencies automatically. Please install them manually.",
+              );
+            }
+          }
+        }
+      } catch (_e) {
+        if (!skipPrompts) {
+          sAdd.stop(`Failed to download or write ${selectedComponent} component files.`);
+        } else {
+          console.error(
+            `Failed to download or write ${selectedComponent} component files.`,
+          );
+        }
+      }
+    }
+
+    await autoUpdateExistingAiRules();
+
+    if (!skipPrompts) {
+      outro(
+        pc.green(
+          `Successfully updated components in your project!`,
+        ),
+      );
+    } else {
+      console.log(
+        `Successfully updated components in your project!`,
+      );
+    }
+  });
+
+program
+  .command("doctor")
+  .description("Check the health of Bloom UI workspace files and configuration")
+  .action(async () => {
+    const s = spinner();
+    s.start("Analyzing Bloom UI project health");
+
+    const issues: string[] = [];
+    const successes: string[] = [];
+
+    const configFile = path.join(process.cwd(), "bloom.json");
+    if (!fs.existsSync(configFile)) {
+      s.stop("Verification finished with critical errors.");
+      console.log(pc.red("✖ Critical: bloom.json not found in the current workspace. Run 'npx bloom init' to initialize."));
+      return;
+    }
+
+    try {
+      const config = JSON.parse(fs.readFileSync(configFile, "utf8"));
+      successes.push("bloom.json manifest exists and is valid JSON.");
+
+      const componentDir = config.componentDir || "components/ui";
+      const utilsDir = config.utilsDir || "lib";
+
+      const compPath = path.join(process.cwd(), componentDir);
+      if (fs.existsSync(compPath)) {
+        successes.push(`Component directory exists at: ${componentDir}`);
+      } else {
+        issues.push(`Component directory is missing: ${componentDir}`);
+      }
+
+      const utilsPath = path.join(process.cwd(), utilsDir);
+      if (fs.existsSync(utilsPath)) {
+        successes.push(`Utility directory exists at: ${utilsDir}`);
+
+        const requiredUtils = ["utils.ts", "design-system.ts"];
+        for (const file of requiredUtils) {
+          const filePath = path.join(utilsPath, file);
+          if (fs.existsSync(filePath)) {
+            successes.push(`Utility file found: ${utilsDir}/${file}`);
+          } else {
+            issues.push(`Utility file is missing: ${utilsDir}/${file}`);
+          }
+        }
+
+        const rippleDir = path.join(utilsPath, "ripple");
+        if (fs.existsSync(rippleDir)) {
+          successes.push(`Ripple animations directory found at: ${utilsDir}/ripple`);
+        } else {
+          issues.push(`Ripple animations directory is missing at: ${utilsDir}/ripple`);
+        }
+
+        const docsDir = path.join(utilsPath, "docs");
+        if (fs.existsSync(docsDir)) {
+          successes.push(`Local markdown documentation directory found at: ${utilsDir}/docs`);
+        } else {
+          issues.push(`Local markdown documentation directory is missing at: ${utilsDir}/docs`);
+        }
+      } else {
+        issues.push(`Utility directory is missing: ${utilsDir}`);
+      }
+
+      const pkgJsonPath = path.join(process.cwd(), "package.json");
+      if (fs.existsSync(pkgJsonPath)) {
+        try {
+          const pkg = JSON.parse(fs.readFileSync(pkgJsonPath, "utf8"));
+          const deps = { ...pkg.dependencies, ...pkg.devDependencies };
+          const requiredDeps = ["clsx", "tailwind-merge", "lucide-react"];
+          for (const dep of requiredDeps) {
+            if (deps[dep]) {
+              successes.push(`Dependency '${dep}' is installed.`);
+            } else {
+              issues.push(`Missing peer dependency '${dep}' in package.json.`);
+            }
+          }
+        } catch (_e) {
+          issues.push("Could not parse package.json. File may be malformed.");
+        }
+      } else {
+        issues.push("package.json not found in process root.");
+      }
+
+      s.stop("Health check complete.");
+
+      console.log(pc.bold("\n--- HEALTH DIAGNOSIS ---"));
+      for (const msg of successes) {
+        console.log(pc.green(`✔ ${msg}`));
+      }
+
+      if (issues.length > 0) {
+        console.log(pc.bold(pc.red("\n✖ Found issues in your project:")));
+        for (const msg of issues) {
+          console.log(pc.red(`  - ${msg}`));
+        }
+      } else {
+        console.log(pc.bold(pc.green("\n✔ Perfect! Your Bloom UI setup is completely healthy.")));
+      }
+    } catch (_err) {
+      s.stop("Health check failed.");
+      console.error(pc.red("An error occurred during diagnosis."));
+    }
+  });
+
+program
   .command("uninstall")
   .description("Uninstall Bloom UI and delete all generated files")
   .option("-y, --yes", "Bypass prompts and confirm action", false)

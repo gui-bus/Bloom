@@ -45,8 +45,17 @@ O Bloom oferece suporte a um **modelo híbrido de instalação**: você pode ter
 # 1. Inicialize o Bloom no seu projeto
 npx @bloomui-react/cli init
 
-# 2. Adicione o componente desejado
-npx @bloomui-react/cli add button
+# 2. Adicione componentes ao seu projeto (cria também documentações markdown em lib/docs/ para IAs)
+npx @bloomui-react/cli add button card
+
+# 3. Atualize componentes para as versões mais recentes
+npx @bloomui-react/cli update
+
+# 4. Verifique a integridade do seu setup (health-check)
+npx @bloomui-react/cli doctor
+
+# 5. Desinstale componentes e limpe os arquivos gerados
+npx @bloomui-react/cli uninstall
 ```
 
 👉 **[Veja o guia completo de uso da CLI](./docs/cli.md)**
