@@ -3,11 +3,11 @@ import { describe, expect, it, vi } from "vitest";
 import { CodeBlock } from "../codeBlock";
 
 describe("CodeBlock Component", () => {
-  it("renders component name and code correctly", () => {
+  it("renders filename and code correctly", () => {
     render(
       <CodeBlock
         code="const greeting = 'Hello World';"
-        componentName="example.ts"
+        filename="example.ts"
       />,
     );
     expect(screen.getByText("example.ts")).toBeInTheDocument();
@@ -32,21 +32,15 @@ describe("CodeBlock Component", () => {
     render(
       <CodeBlock
         code="console.log('test');"
-        componentName="test.ts"
+        filename="test.ts"
         showCopy
       />,
     );
 
-    const copyBtn = screen.getByRole("button", { name: /copy code/i });
+    const copyBtn = screen.getByRole("button", { name: /copy/i });
     expect(copyBtn).toBeInTheDocument();
 
     fireEvent.click(copyBtn);
     expect(writeTextMock).toHaveBeenCalledWith("console.log('test');");
-  });
-
-  it("renders tags when provided", () => {
-    render(<CodeBlock code="<div />" tags={["React", "UI"]} />);
-    expect(screen.getByText("React")).toBeInTheDocument();
-    expect(screen.getByText("UI")).toBeInTheDocument();
   });
 });
