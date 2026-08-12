@@ -258,6 +258,21 @@ program
     }
   });
 
+async function autoUpdateExistingAiRules() {
+  const existingAgents: string[] = [];
+  if (fs.existsSync(path.join(process.cwd(), "AGENTS.md"))) existingAgents.push("antigravity");
+  if (fs.existsSync(path.join(process.cwd(), "CLAUDE.md"))) existingAgents.push("claude");
+  if (fs.existsSync(path.join(process.cwd(), ".cursorrules"))) existingAgents.push("cursor");
+  if (fs.existsSync(path.join(process.cwd(), ".windsurfrules"))) existingAgents.push("windsurf");
+  if (fs.existsSync(path.join(process.cwd(), ".github/copilot-instructions.md"))) existingAgents.push("copilot");
+  if (fs.existsSync(path.join(process.cwd(), ".copilotinstructions"))) existingAgents.push("codex");
+  if (fs.existsSync(path.join(process.cwd(), "llms.txt"))) existingAgents.push("universal");
+
+  if (existingAgents.length > 0) {
+    await generateAiRules(existingAgents, true);
+  }
+}
+
 async function generateAiRules(selectedAgents: string[], skipPrompts = false) {
   const configFile = path.join(process.cwd(), "bloom.json");
   let config = { componentDir: "components/ui", utilsDir: "lib" };
@@ -395,7 +410,7 @@ async function generateAiRules(selectedAgents: string[], skipPrompts = false) {
             const registryName = names.find((n: string) => 
               registryComponents.some(rc => rc.name.toLowerCase() === n)
             ) || names[0];
-            return `### ${p1} [Status: AVAILABLE - Run 'npx bloom add ${registryName}' to install]`;
+            return `### ${p1} [Status: AVAILABLE - Run 'npx @bloomui-react/cli add ${registryName}' to install]`;
           }
           return `### ${p1}`;
         }
@@ -678,6 +693,9 @@ program
           }
         }
       }
+
+      // Automatically update AI rules files if they exist in the project
+      await autoUpdateExistingAiRules();
 
       if (!skipPrompts) {
         outro(
