@@ -150,12 +150,25 @@ function main() {
       }
     }
 
+    let docs = "";
+    const codeFilePath = path.join(compDir, `${name}.code.ts`);
+    if (fs.existsSync(codeFilePath)) {
+      try {
+        const codeContent = fs.readFileSync(codeFilePath, "utf8");
+        const match = codeContent.match(/export const \w+AiDocs = ("[\s\S]*?");/);
+        if (match) {
+          docs = JSON.parse(match[1]);
+        }
+      } catch (_e) {}
+    }
+
     const dependenciesList = Array.from(allDeps);
 
     const componentRegistryData = {
       name,
       dependencies: dependenciesList,
       files: filesData,
+      docs,
     };
 
     fs.writeFileSync(

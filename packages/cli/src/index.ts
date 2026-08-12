@@ -111,6 +111,10 @@ program
     if (!fs.existsSync(targetUtilsDir)) {
       fs.mkdirSync(targetUtilsDir, { recursive: true });
     }
+    const targetDocsDir = path.join(targetUtilsDir, "docs");
+    if (!fs.existsSync(targetDocsDir)) {
+      fs.mkdirSync(targetDocsDir, { recursive: true });
+    }
 
     const registryBase = await getRegistryBase();
 
@@ -411,28 +415,11 @@ async function generateAiRules(selectedAgents: string[], skipPrompts = false) {
         }
       });
     }
-    let installedDocs = "";
-    if (installedComponents.size > 0) {
-      for (const compName of installedComponents) {
-        const codeFilePath = path.join(targetComponentDir, compName, `${compName}.code.ts`);
-        if (fs.existsSync(codeFilePath)) {
-          try {
-            const codeContent = fs.readFileSync(codeFilePath, "utf8");
-            const match = codeContent.match(/export const \w+AiDocs = ("[\s\S]*?");/);
-            if (match) {
-              const aiDocsStr = JSON.parse(match[1]);
-              if (aiDocsStr) {
-                installedDocs += aiDocsStr + "\n---\n\n";
-              }
-            }
-          } catch (_e) {}
-        }
-      }
-    }
+    const cleanUtilsPath = (config.utilsDir || "lib").replace(/\\/g, "/");
+    let installedDocs = `Detailed API references, available props, and code examples for each installed component are saved inside the workspace at:
+- **\`${cleanUtilsPath}/docs/[component_name].md\`**
 
-    if (!installedDocs) {
-      installedDocs = "No components installed yet. Run `npx @bloomui-react/cli add <component_name>` to install components, which will automatically update this section with their specific props and examples.";
-    }
+Whenever you are working with an installed component, you MUST read its specific markdown file (e.g. \`${cleanUtilsPath}/docs/button.md\` or \`${cleanUtilsPath}/docs/carousel.md\`) to check the exact props, types, defaults, and code examples before writing or refactoring code.`;
 
     content = content.replace("[INSTALLED_DOCS_PLACEHOLDER]", installedDocs);
     for (const agent of selectedAgents) {
@@ -621,6 +608,7 @@ program
           name: string;
           dependencies: string[];
           files: { name: string; content: string }[];
+          docs?: string;
         }
 
         const componentData = (await res.json()) as RegistryComponent;
@@ -662,6 +650,24 @@ program
           fs.writeFileSync(
             path.join(targetDir, file.name),
             updatedContent,
+            "utf8",
+          );
+        }
+
+        if (componentData.docs) {
+          const targetDocsDir = path.join(process.cwd(), config.utilsDir || "lib", "docs");
+          if (!fs.existsSync(targetDocsDir)) {
+            fs.mkdirSync(targetDocsDir, { recursive: true });
+          }
+          let updatedDocs = componentData.docs;
+          const cleanCompDir = componentDir.replace(/\\/g, "/");
+          updatedDocs = updatedDocs.replace(
+            /@\/components\/ui/g,
+            `@/${cleanCompDir}`,
+          );
+          fs.writeFileSync(
+            path.join(targetDocsDir, `${selectedComponent}.md`),
+            updatedDocs,
             "utf8",
           );
         }
@@ -793,6 +799,11 @@ program
         const rippleDir = path.join(utilsPath, "ripple");
         if (fs.existsSync(rippleDir)) {
           fs.rmSync(rippleDir, { recursive: true, force: true });
+        }
+
+        const docsDir = path.join(utilsPath, "docs");
+        if (fs.existsSync(docsDir)) {
+          fs.rmSync(docsDir, { recursive: true, force: true });
         }
       }
 
