@@ -48,6 +48,8 @@ jobs:
         run: pnpm exec tsc --noEmit
 
       - name: Run Unit Tests
+        env:
+          NODE_OPTIONS: "--max-old-space-size=8192"
         run: pnpm run test:unit
 
       - name: Synchronize Code Strings & Build Component Registry

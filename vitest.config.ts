@@ -20,7 +20,6 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
-    maxWorkers: 2,
-    isolate: false,
+    isolate: true,
   },
 });
