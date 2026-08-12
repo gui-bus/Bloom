@@ -155,7 +155,7 @@ function main() {
     if (fs.existsSync(codeFilePath)) {
       try {
         const codeContent = fs.readFileSync(codeFilePath, "utf8");
-        const match = codeContent.match(/export const \w+AiDocs = ("[\s\S]*?");/);
+        const match = codeContent.match(/export const \w+AiDocs = ("(?:[^"\\]|\\.)*");/);
         if (match) {
           docs = JSON.parse(match[1]);
         }
