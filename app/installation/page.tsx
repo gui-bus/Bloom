@@ -95,7 +95,6 @@ export default function InstallationPage() {
         description="Choose how to use Bloom UI in your React or Next.js project: copy components directly using our official CLI, or install the compiled @bloomui/react package via NPM."
       />
 
-      {/* Method 1: CLI */}
       <section className="space-y-6">
         <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 space-y-6">
           <div className="flex items-center justify-between border-b border-zinc-200/60 dark:border-zinc-800/80 pb-4">
@@ -178,7 +177,6 @@ export default function InstallationPage() {
         </div>
       </section>
 
-      {/* Method 2: NPM Package */}
       <section className="space-y-6">
         <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 space-y-6">
           <div className="flex items-center justify-between border-b border-zinc-200/60 dark:border-zinc-800/80 pb-4">

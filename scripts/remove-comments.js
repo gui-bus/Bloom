@@ -30,16 +30,12 @@ function walk(dir) {
 function removeCommentsFromFile(filePath) {
   let content = fs.readFileSync(filePath, "utf8");
 
-  // Replace JSX comments {/* ... */}
   content = content.replace(/\{\/\*[\s\S]*?\*\/\}/g, "");
 
-  // Replace single line comments // ... (careful with http:// or https://)
   content = content.replace(/(^|[^:"'\\])\/\/(?![^\n]*['"])[^\n]*/g, "$1");
 
-  // Replace multi-line comments /* ... */
   content = content.replace(/\/\*[\s\S]*?\*\//g, "");
 
-  // Clean up empty comment lines
   content = content.replace(/\n\s*\n\s*\n/g, "\n\n");
 
   fs.writeFileSync(filePath, content, "utf8");

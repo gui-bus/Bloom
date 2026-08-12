@@ -256,7 +256,7 @@ const handleAddEvent = () => {
   <Button onClick={() => setDialogOpen(true)}>Add New Event</Button>
   <DialogContent>
     <Input label="Event Title" value={title} onChange={...} />
-    
+
     <Button onClick={handleAddEvent}>Schedule Event</Button>
   </DialogContent>
 </Dialog>

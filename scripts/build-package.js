@@ -38,15 +38,12 @@ function main() {
 
   ensureDir(SRC_DIR);
 
-  // 1. Copy UI components (.tsx files only, omit .code.ts)
   copyFolderSync(UI_DIR, PKG_COMPONENTS_DIR, (filename) => {
     return filename.endsWith(".tsx") && !filename.endsWith(".code.ts");
   });
 
-  // 2. Copy lib utilities (design-system.ts, utils.ts, etc)
   copyFolderSync(LIB_DIR, PKG_LIB_DIR);
 
-  // 3. Scan all exported components to generate index.ts
   const exports = [];
   const compDirs = fs.readdirSync(PKG_COMPONENTS_DIR);
 
@@ -60,7 +57,6 @@ function main() {
     }
   });
 
-  // Add lib exports
   exports.push(`export * from "./lib/design-system";`);
   exports.push(`export * from "./lib/utils";`);
 

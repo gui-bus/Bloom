@@ -198,10 +198,10 @@ export default function DataTableComponentPage() {
   data={data}
   enableExport
   onExportCSV={(table) => {
-    
+
   }}
   onExportExcel={(table) => {
-    
+
   }}
 />`}
         props={[

@@ -110,7 +110,6 @@ export default function Home() {
         </div>
 
         <div className="space-y-8">
-          {/* Method 1: CLI */}
           <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
@@ -133,7 +132,6 @@ export default function Home() {
             <Terminal variant="mac" lines={terminalCliLines} />
           </div>
 
-          {/* Method 2: NPM Package */}
           <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">

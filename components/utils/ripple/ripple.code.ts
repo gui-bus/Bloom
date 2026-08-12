@@ -11,7 +11,7 @@ interface RippleProps {
 }
 
 export const Ripple = React.memo(({ x, y, size, onComplete }: RippleProps) => {
-  
+
   React.useEffect(() => {
     const timer = setTimeout(onComplete, 600);
     return () => clearTimeout(timer);

@@ -22,7 +22,6 @@ let updatedCount = 0;
 files.forEach((filePath) => {
   let content = fs.readFileSync(filePath, "utf8");
 
-  // Match <Tabs ...> ... <CodeBlock ... /> ... </Tabs>
   const tabsRegex = /<Tabs\s+defaultValue="[^"]*"\s*>([\s\S]*?)<\/Tabs>/g;
 
   if (tabsRegex.test(content)) {

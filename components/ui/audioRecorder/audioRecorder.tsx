@@ -238,12 +238,13 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
             </div>
           ) : audioUrl ? (
             <div className="w-full flex flex-col items-center justify-center">
-              {/* biome-ignore lint/a11y/useMediaCaption: User recorded audio preview */}
               <audio
                 src={audioUrl}
                 controls
                 className="h-10 w-full max-w-xs focus:outline-none"
-              />
+              >
+                <track kind="captions" />
+              </audio>
             </div>
           ) : (
             <div className="flex flex-col items-center text-zinc-400 dark:text-zinc-500">
