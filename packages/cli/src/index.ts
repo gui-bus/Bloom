@@ -411,7 +411,30 @@ async function generateAiRules(selectedAgents: string[], skipPrompts = false) {
         }
       });
     }
+    let installedDocs = "";
+    if (installedComponents.size > 0) {
+      for (const compName of installedComponents) {
+        const codeFilePath = path.join(targetComponentDir, compName, `${compName}.code.ts`);
+        if (fs.existsSync(codeFilePath)) {
+          try {
+            const codeContent = fs.readFileSync(codeFilePath, "utf8");
+            const match = codeContent.match(/export const \w+AiDocs = ("[\s\S]*?");/);
+            if (match) {
+              const aiDocsStr = JSON.parse(match[1]);
+              if (aiDocsStr) {
+                installedDocs += aiDocsStr + "\n---\n\n";
+              }
+            }
+          } catch (_e) {}
+        }
+      }
+    }
 
+    if (!installedDocs) {
+      installedDocs = "No components installed yet. Run `npx @bloomui-react/cli add <component_name>` to install components, which will automatically update this section with their specific props and examples.";
+    }
+
+    content = content.replace("[INSTALLED_DOCS_PLACEHOLDER]", installedDocs);
     for (const agent of selectedAgents) {
       let targetPath = "";
       if (agent === "antigravity") {
@@ -527,9 +550,11 @@ program
     }
 
     const registryBase = await getRegistryBase();
-    let selectedComponent = componentName;
+    let selectedComponents: string[] = [];
 
-    if (!selectedComponent) {
+    if (componentName) {
+      selectedComponents = [componentName];
+    } else {
       if (skipPrompts) {
         console.error(
           pc.red(
@@ -559,156 +584,267 @@ program
         return;
       }
 
-      const selection = await select({
-        message: "Select a component to add:",
+      const selection = await multiselect({
+        message: "Select components to add:",
         options: list.map((c) => ({ value: c.name, label: c.name })),
+        required: true,
       });
 
       if (typeof selection === "symbol") return;
-      selectedComponent = selection;
+      selectedComponents = selection as string[];
     }
 
-    const sAdd = spinner();
+    for (const selectedComponent of selectedComponents) {
+      const sAdd = spinner();
+      if (!skipPrompts) {
+        sAdd.start(`Adding ${selectedComponent} component`);
+      } else {
+        console.log(`Adding component: ${selectedComponent}...`);
+      }
+
+      try {
+        const res = await fetch(
+          `${registryBase}/components/${selectedComponent}.json`,
+        );
+        if (!res.ok) {
+          if (!skipPrompts) {
+            sAdd.stop(`Component ${selectedComponent} not found in registry.`);
+          } else {
+            console.error(
+              `Component ${selectedComponent} not found in registry.`,
+            );
+          }
+          continue;
+        }
+
+        interface RegistryComponent {
+          name: string;
+          dependencies: string[];
+          files: { name: string; content: string }[];
+        }
+
+        const componentData = (await res.json()) as RegistryComponent;
+
+        const targetDir = path.join(
+          process.cwd(),
+          componentDir,
+          selectedComponent,
+        );
+        if (!fs.existsSync(targetDir)) {
+          fs.mkdirSync(targetDir, { recursive: true });
+        }
+
+        for (const file of componentData.files) {
+          let updatedContent = file.content;
+
+          const fromPath = path.join(componentDir, selectedComponent);
+          const toPath = config.utilsDir || "lib";
+          let relativeImportPath = path
+            .relative(fromPath, toPath)
+            .replace(/\\/g, "/");
+          if (!relativeImportPath.startsWith(".")) {
+            relativeImportPath = `./${relativeImportPath}`;
+          }
+
+          updatedContent = updatedContent.replace(
+            /@\/lib\/utils/g,
+            `${relativeImportPath}/utils`,
+          );
+          updatedContent = updatedContent.replace(
+            /@\/lib\/design-system/g,
+            `${relativeImportPath}/design-system`,
+          );
+          updatedContent = updatedContent.replace(
+            /@\/hooks\/ripple/g,
+            `../../hooks/ripple`,
+          );
+
+          fs.writeFileSync(
+            path.join(targetDir, file.name),
+            updatedContent,
+            "utf8",
+          );
+        }
+
+        if (!skipPrompts) {
+          sAdd.stop(`Added ${selectedComponent} component files`);
+        } else {
+          console.log(`Added ${selectedComponent} component files.`);
+        }
+
+        if (componentData.dependencies && componentData.dependencies.length > 0) {
+          const pkgManager = detectPackageManager();
+          const sDeps = spinner();
+          if (!skipPrompts) {
+            sDeps.start(
+              `Installing dependencies for ${selectedComponent}: ${componentData.dependencies.join(", ")}`,
+            );
+          } else {
+            console.log(
+              `Installing dependencies for ${selectedComponent}: ${componentData.dependencies.join(", ")}...`,
+            );
+          }
+          try {
+            let installCmd = "";
+            if (pkgManager === "pnpm") {
+              installCmd = `pnpm add ${componentData.dependencies.join(" ")}`;
+            } else if (pkgManager === "yarn") {
+              installCmd = `yarn add ${componentData.dependencies.join(" ")}`;
+            } else if (pkgManager === "bun") {
+              installCmd = `bun add ${componentData.dependencies.join(" ")}`;
+            } else {
+              installCmd = `npm install ${componentData.dependencies.join(" ")}`;
+            }
+            await execPromise(installCmd);
+            if (!skipPrompts) {
+              sDeps.stop("Dependencies installed successfully");
+            } else {
+              console.log("Dependencies installed successfully.");
+            }
+          } catch (_err) {
+            if (!skipPrompts) {
+              sDeps.stop(
+                "Failed to install dependencies automatically. Please install them manually.",
+              );
+            } else {
+              console.warn(
+                "Failed to install dependencies automatically. Please install them manually.",
+              );
+            }
+          }
+        }
+      } catch (_e) {
+        if (!skipPrompts) {
+          sAdd.stop(`Failed to download or write ${selectedComponent} component files.`);
+        } else {
+          console.error(
+            `Failed to download or write ${selectedComponent} component files.`,
+          );
+        }
+      }
+    }
+
+    await autoUpdateExistingAiRules();
+
     if (!skipPrompts) {
-      sAdd.start(`Adding ${selectedComponent} component`);
+      outro(
+        pc.green(
+          `Successfully added components to your project!`,
+        ),
+      );
     } else {
-      console.log(`Adding component: ${selectedComponent}...`);
+      console.log(
+        `Successfully added components to your project!`,
+      );
+    }
+  });
+
+program
+  .command("uninstall")
+  .description("Uninstall Bloom UI and delete all generated files")
+  .option("-y, --yes", "Bypass prompts and confirm action", false)
+  .action(async (options) => {
+    const isTTY = process.stdout.isTTY;
+    const skipPrompts = options.yes || !isTTY;
+
+    if (!skipPrompts) {
+      intro(pc.bgRed(pc.black(" Bloom UI — Uninstall ")));
+      const confirmUninstall = await confirm({
+        message: "Are you sure you want to uninstall Bloom UI and delete all related files?",
+        initialValue: false,
+      });
+
+      if (typeof confirmUninstall === "symbol" || !confirmUninstall) {
+        outro(pc.yellow("Uninstall cancelled."));
+        return;
+      }
+    }
+
+    const configFile = path.join(process.cwd(), "bloom.json");
+    if (!fs.existsSync(configFile)) {
+      if (!skipPrompts) {
+        outro(pc.yellow("No bloom.json found. Bloom UI is not initialized in this project."));
+      } else {
+        console.log("No bloom.json found. Bloom UI is not initialized in this project.");
+      }
+      return;
     }
 
     try {
-      const res = await fetch(
-        `${registryBase}/components/${selectedComponent}.json`,
-      );
-      if (!res.ok) {
-        if (!skipPrompts) {
-          sAdd.stop(`Component ${selectedComponent} not found in registry.`);
-          outro(pc.red("Download failed."));
-        } else {
-          console.error(
-            `Component ${selectedComponent} not found in registry. Download failed.`,
-          );
-        }
-        return;
+      const config = JSON.parse(fs.readFileSync(configFile, "utf8"));
+      const componentDir = config.componentDir;
+      const utilsDir = config.utilsDir;
+
+      const s = spinner();
+      if (!skipPrompts) {
+        s.start("Uninstalling Bloom UI and removing files");
       }
 
-      interface RegistryComponent {
-        name: string;
-        dependencies: string[];
-        files: { name: string; content: string }[];
-      }
-
-      const componentData = (await res.json()) as RegistryComponent;
-
-      const targetDir = path.join(
-        process.cwd(),
-        componentDir,
-        selectedComponent,
-      );
-      if (!fs.existsSync(targetDir)) {
-        fs.mkdirSync(targetDir, { recursive: true });
-      }
-
-      for (const file of componentData.files) {
-        let updatedContent = file.content;
-
-        const fromPath = path.join(componentDir, selectedComponent);
-        const toPath = config.utilsDir || "lib";
-        let relativeImportPath = path
-          .relative(fromPath, toPath)
-          .replace(/\\/g, "/");
-        if (!relativeImportPath.startsWith(".")) {
-          relativeImportPath = `./${relativeImportPath}`;
+      if (utilsDir) {
+        const utilsPath = path.join(process.cwd(), utilsDir);
+        const filesToDelete = ["utils.ts", "design-system.ts"];
+        for (const file of filesToDelete) {
+          const filePath = path.join(utilsPath, file);
+          if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+          }
         }
 
-        updatedContent = updatedContent.replace(
-          /@\/lib\/utils/g,
-          `${relativeImportPath}/utils`,
-        );
-        updatedContent = updatedContent.replace(
-          /@\/lib\/design-system/g,
-          `${relativeImportPath}/design-system`,
-        );
-        updatedContent = updatedContent.replace(
-          /@\/hooks\/ripple/g,
-          `../../hooks/ripple`,
-        );
+        const rippleDir = path.join(utilsPath, "ripple");
+        if (fs.existsSync(rippleDir)) {
+          fs.rmSync(rippleDir, { recursive: true, force: true });
+        }
+      }
 
-        fs.writeFileSync(
-          path.join(targetDir, file.name),
-          updatedContent,
-          "utf8",
-        );
+      if (componentDir) {
+        const compPath = path.join(process.cwd(), componentDir);
+        if (fs.existsSync(compPath)) {
+          try {
+            const dirs = fs.readdirSync(compPath, { withFileTypes: true });
+            for (const d of dirs) {
+              if (d.isDirectory()) {
+                const innerFiles = fs.readdirSync(path.join(compPath, d.name));
+                const isBloomComponent = innerFiles.some(f => f.endsWith(".code.ts") || f === `${d.name}.tsx`);
+                if (isBloomComponent) {
+                  fs.rmSync(path.join(compPath, d.name), { recursive: true, force: true });
+                }
+              }
+            }
+          } catch (_e) {}
+        }
+      }
+
+      const rulesFiles = [
+        "AGENTS.md",
+        "CLAUDE.md",
+        ".cursorrules",
+        ".windsurfrules",
+        ".github/copilot-instructions.md",
+        ".copilotinstructions",
+        "llms.txt"
+      ];
+      for (const ruleFile of rulesFiles) {
+        const filePath = path.join(process.cwd(), ruleFile);
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+        }
+      }
+
+      if (fs.existsSync(configFile)) {
+        fs.unlinkSync(configFile);
       }
 
       if (!skipPrompts) {
-        sAdd.stop(`Added ${selectedComponent} component files`);
+        s.stop("All Bloom UI files removed successfully");
+        outro(pc.green("Bloom UI uninstalled successfully."));
       } else {
-        console.log(`Added ${selectedComponent} component files.`);
+        console.log("Bloom UI uninstalled successfully.");
       }
-
-      if (componentData.dependencies && componentData.dependencies.length > 0) {
-        const pkgManager = detectPackageManager();
-        const sDeps = spinner();
-        if (!skipPrompts) {
-          sDeps.start(
-            `Installing dependencies: ${componentData.dependencies.join(", ")}`,
-          );
-        } else {
-          console.log(
-            `Installing dependencies: ${componentData.dependencies.join(", ")}...`,
-          );
-        }
-        try {
-          let installCmd = "";
-          if (pkgManager === "pnpm") {
-            installCmd = `pnpm add ${componentData.dependencies.join(" ")}`;
-          } else if (pkgManager === "yarn") {
-            installCmd = `yarn add ${componentData.dependencies.join(" ")}`;
-          } else if (pkgManager === "bun") {
-            installCmd = `bun add ${componentData.dependencies.join(" ")}`;
-          } else {
-            installCmd = `npm install ${componentData.dependencies.join(" ")}`;
-          }
-          await execPromise(installCmd);
-          if (!skipPrompts) {
-            sDeps.stop("Dependencies installed successfully");
-          } else {
-            console.log("Dependencies installed successfully.");
-          }
-        } catch (_err) {
-          if (!skipPrompts) {
-            sDeps.stop(
-              "Failed to install dependencies automatically. Please install them manually.",
-            );
-          } else {
-            console.warn(
-              "Failed to install dependencies automatically. Please install them manually.",
-            );
-          }
-        }
-      }
-
-      await autoUpdateExistingAiRules();
-
+    } catch (e) {
       if (!skipPrompts) {
-        outro(
-          pc.green(
-            `Successfully added ${selectedComponent} component to your project!`,
-          ),
-        );
+        outro(pc.red("An error occurred during uninstallation."));
       } else {
-        console.log(
-          `Successfully added ${selectedComponent} component to your project!`,
-        );
-      }
-    } catch (_e) {
-      if (!skipPrompts) {
-        sAdd.stop("Failed to download or write component files.");
-        outro(pc.red("Error adding component."));
-      } else {
-        console.error(
-          "Failed to download or write component files. Error adding component.",
-        );
+        console.error("An error occurred during uninstallation:", e);
       }
     }
   });
