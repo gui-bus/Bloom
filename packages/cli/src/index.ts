@@ -220,7 +220,7 @@ program
     if (!skipPrompts) {
       const configureAi = await confirm({
         message: "Do you want to configure rules for AI Coding Assistants (e.g. Antigravity, Cursor, Copilot)?",
-        defaultValue: true,
+        initialValue: true,
       });
 
       if (configureAi && typeof configureAi !== "symbol") {
