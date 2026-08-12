@@ -1,22 +1,21 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
+const mockApi = {
+  scrollPrev: vi.fn(),
+  scrollNext: vi.fn(),
+  scrollTo: vi.fn(),
+  canScrollPrev: () => true,
+  canScrollNext: () => true,
+  selectedScrollSnap: () => 0,
+  scrollSnapList: () => [0, 1],
+  on: vi.fn(),
+  off: vi.fn(),
+};
+
 vi.mock("embla-carousel-react", () => {
   return {
-    default: () => [
-      (node: HTMLElement | null) => node,
-      {
-        scrollPrev: vi.fn(),
-        scrollNext: vi.fn(),
-        scrollTo: vi.fn(),
-        canScrollPrev: () => true,
-        canScrollNext: () => true,
-        selectedScrollSnap: () => 0,
-        scrollSnapList: () => [0, 1],
-        on: vi.fn(),
-        off: vi.fn(),
-      },
-    ],
+    default: () => [(node: HTMLElement | null) => node, mockApi],
   };
 });
 
