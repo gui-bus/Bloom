@@ -551,6 +551,19 @@ program
         return;
       }
 
+      const installedComponents = new Set<string>();
+      const targetComponentDir = path.join(process.cwd(), componentDir);
+      if (fs.existsSync(targetComponentDir)) {
+        try {
+          const dirs = fs.readdirSync(targetComponentDir, { withFileTypes: true });
+          for (const d of dirs) {
+            if (d.isDirectory()) {
+              installedComponents.add(d.name.toLowerCase());
+            }
+          }
+        } catch (_e) {}
+      }
+
       const sList = spinner();
       sList.start("Fetching available components");
       let list: { name: string }[] = [];
@@ -573,7 +586,13 @@ program
 
       const selection = await multiselect({
         message: "Select components to add:",
-        options: list.map((c) => ({ value: c.name, label: c.name })),
+        options: list.map((c) => {
+          const isInstalled = installedComponents.has(c.name.toLowerCase());
+          return {
+            value: c.name,
+            label: isInstalled ? `${pc.dim(c.name)} ${pc.green("✔ (installed)")}` : c.name,
+          };
+        }),
         required: true,
       });
 

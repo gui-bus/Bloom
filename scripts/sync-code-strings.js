@@ -17,52 +17,74 @@ function extractAiDocs(compName, pageContent) {
     importSnippet = importMatch[1] || importMatch[2];
   }
 
-  const examples = [];
-  const codeRegex = /code=(?:"([^"]+)"|{\`([\s\S]*?)\`})/g;
-  let match;
-  while ((match = codeRegex.exec(pageContent)) !== null) {
-    const code = match[1] || match[2];
-    if (code && !code.includes("import ") && !code.includes(".css")) {
-      examples.push(code.trim());
-      if (examples.length >= 2) break;
-    }
-  }
-
-  let propsTableMarkdown = "";
-  const tableMatch = pageContent.match(/<table[\s\S]*?>([\s\S]*?)<\/table>/);
-  if (tableMatch) {
-    const tableBody = tableMatch[1];
-    const rows = [];
-    const rowRegex = /<tr[\s\S]*?>([\s\S]*?)<\/tr>/g;
-    let rMatch;
-    while ((rMatch = rowRegex.exec(tableBody)) !== null) {
-      const cells = [];
-      const cellRegex = /<td[\s\S]*?>([\s\S]*?)<\/td>/g;
-      let cMatch;
-      while ((cMatch = cellRegex.exec(rMatch[1])) !== null) {
-        const cellText = cMatch[1].replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
-        cells.push(cellText);
-      }
-      if (cells.length > 0) {
-        rows.push(`| ${cells.join(" | ")} |`);
-      }
-    }
-    if (rows.length > 0) {
-      propsTableMarkdown = `| Prop | Type | Default | Description |\n| --- | --- | --- | --- |\n${rows.join("\n")}`;
-    }
-  }
-
   let md = `### ${compName.charAt(0).toUpperCase() + compName.slice(1)}\n${description}\n\n`;
   md += `**Import Path**:\n\`\`\`typescript\n${importSnippet}\n\`\`\`\n\n`;
-  if (propsTableMarkdown) {
-    md += `**API Reference**:\n${propsTableMarkdown}\n\n`;
+
+  const docsCompRegex = /<DocsComponent([\s\S]*?)(?=<DocsComponent|<Separator|<AccessibilityCard|DocsPagination|export default)/g;
+  let docMatch;
+  while ((docMatch = docsCompRegex.exec(pageContent)) !== null) {
+    const blockContent = docMatch[1];
+    
+    let title = "";
+    const titleM = blockContent.match(/title=(?:"([^"]+)"|{\`([\s\S]*?)\`})/);
+    if (titleM) {
+      title = titleM[1] || titleM[2];
+    }
+    
+    let desc = "";
+    const descM = blockContent.match(/description=(?:"([^"]+)"|{\`([\s\S]*?)\`})/);
+    if (descM) {
+      desc = descM[1] || descM[2];
+    }
+
+    if (!title) continue;
+
+    md += `#### ${title}\n`;
+    if (desc) {
+      md += `${desc}\n\n`;
+    }
+
+    const tableMatch = blockContent.match(/<table[\s\S]*?>([\s\S]*?)<\/table>/);
+    if (tableMatch) {
+      const tableBody = tableMatch[1];
+      const rows = [];
+      const rowRegex = /<tr[\s\S]*?>([\s\S]*?)<\/tr>/g;
+      let rMatch;
+      while ((rMatch = rowRegex.exec(tableBody)) !== null) {
+        const cells = [];
+        const cellRegex = /<(?:td|th)[\s\S]*?>([\s\S]*?)<\/(?:td|th)>/g;
+        let cMatch;
+        while ((cMatch = cellRegex.exec(rMatch[1])) !== null) {
+          const cellText = cMatch[1].replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+          cells.push(cellText);
+        }
+        if (cells.length > 0) {
+          rows.push(`| ${cells.join(" | ")} |`);
+        }
+      }
+      if (rows.length > 0) {
+        let tableMd = "";
+        if (tableBody.includes("<th")) {
+          const header = rows[0];
+          const align = rows[0].split("|").map((_, i) => i === 0 || i === rows[0].split("|").length - 1 ? "" : "---").join("|");
+          tableMd = `${header}\n${align}\n${rows.slice(1).join("\n")}`;
+        } else {
+          tableMd = `| Prop | Type | Default | Description |\n| --- | --- | --- | --- |\n${rows.join("\n")}`;
+        }
+        md += `${tableMd}\n\n`;
+      }
+    }
+
+    let code = "";
+    const codeM = blockContent.match(/code=(?:"([^"]+)"|{\`([\s\S]*?)\`})/);
+    if (codeM) {
+      code = codeM[1] || codeM[2];
+    }
+    if (code) {
+      md += `\`\`\`tsx\n${code.trim()}\n\`\`\`\n\n`;
+    }
   }
-  if (examples.length > 0) {
-    md += `**Code Examples**:\n`;
-    examples.forEach((ex) => {
-      md += `\`\`\`tsx\n${ex}\n\`\`\`\n\n`;
-    });
-  }
+
   return md;
 }
 
