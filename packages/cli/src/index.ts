@@ -291,8 +291,6 @@ async function generateAiRules(selectedAgents: string[], skipPrompts = false) {
 
   try {
     const registryBase = await getRegistryBase();
-    
-    // 1. Detect installed components locally
     const installedComponents = new Set<string>();
     const targetComponentDir = path.join(process.cwd(), config.componentDir || "components/ui");
     if (fs.existsSync(targetComponentDir)) {
@@ -306,7 +304,6 @@ async function generateAiRules(selectedAgents: string[], skipPrompts = false) {
       } catch (_e) {}
     }
 
-    // 2. Fetch index.json to get all components in registry
     let registryComponents: { name: string }[] = [];
     const localIndexPath = path.join(process.cwd(), "public/registry/index.json");
     const parentLocalIndexPath = path.join(process.cwd(), "../../public/registry/index.json");
@@ -332,7 +329,6 @@ async function generateAiRules(selectedAgents: string[], skipPrompts = false) {
       } catch (_e) {}
     }
 
-    // 3. Fetch rules template
     let rulesTemplate = "";
     const localTemplate1 = path.join(process.cwd(), "public/registry/bloom-rules.md");
     const localTemplate2 = path.join(process.cwd(), "public/registry/llms.txt");
@@ -385,7 +381,6 @@ async function generateAiRules(selectedAgents: string[], skipPrompts = false) {
       return;
     }
 
-    // 4. Adapt paths and status in the template
     let content = rulesTemplate;
 
     const cleanCompDir = (config.componentDir || "components/ui").replace(/\\/g, "/");
@@ -417,7 +412,6 @@ async function generateAiRules(selectedAgents: string[], skipPrompts = false) {
       });
     }
 
-    // 5. Write to selected agent files
     for (const agent of selectedAgents) {
       let targetPath = "";
       if (agent === "antigravity") {
@@ -694,7 +688,6 @@ program
         }
       }
 
-      // Automatically update AI rules files if they exist in the project
       await autoUpdateExistingAiRules();
 
       if (!skipPrompts) {
