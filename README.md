@@ -99,15 +99,15 @@ O Bloom baseia sua arquitetura na separação clara entre a camada de lógica es
 
 ```mermaid
 graph TB
-    subgraph Client ["🎨 Frontend & Documentation Page"]
+    subgraph Client ["🎨 Frontend and Documentation Page"]
         DocPage["📄 Next.js App Router Pages"]
         DocsComponent["⚙️ DocsComponent (Explicit Code Snippets)"]
         UI["🧩 Component Instances (Button, StatCard, Stepper, Toast, etc.)"]
     end
 
-    subgraph Core ["💎 Design Tokens & Semantics"]
+    subgraph Core ["💎 Design Tokens and Semantics"]
         Tokens["lib/design-system.ts (Radius, Sizes, Colors)"]
-        GlobalsCSS["globals.css (@theme & CSS Variables)"]
+        GlobalsCSS["globals.css (@theme and CSS Variables)"]
     end
 
     subgraph Engine ["🛠️ Core Component Stack"]
@@ -118,7 +118,7 @@ graph TB
         Sonner["sonner"]
     end
 
-    subgraph CI ["🧪 Testing & Quality Gate"]
+    subgraph CI ["🧪 Testing and Quality Gate"]
         Vitest["🧪 Vitest + JSDOM (Unit Tests)"]
         Playwright["🎭 Playwright (E2E Integration)"]
     end
