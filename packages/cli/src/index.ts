@@ -1,9 +1,12 @@
-import { execSync } from "node:child_process";
+import { exec } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
+import { promisify } from "node:util";
 import { confirm, intro, outro, select, spinner, text, multiselect } from "@clack/prompts";
 import { Command } from "commander";
 import pc from "picocolors";
+
+const execPromise = promisify(exec);
 
 const packageJsonPath = path.join(__dirname, "../package.json");
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
@@ -64,7 +67,7 @@ program
 
     if (!skipPrompts) {
       const componentDirInput = await text({
-        message: "Where would you like to install the components?",
+        message: "Where would you like to install the components? (Press Enter for default: components/ui)",
         placeholder: "components/ui",
         defaultValue: "components/ui",
       });
@@ -74,7 +77,7 @@ program
 
       const utilsDirInput = await text({
         message:
-          "Where would you like to install the utility files (utils/design-system)?",
+          "Where would you like to install the utility files (utils/design-system)? (Press Enter for default: lib)",
         placeholder: "lib",
         defaultValue: "lib",
       });
@@ -198,7 +201,7 @@ program
           installCmd = "bun add clsx tailwind-merge lucide-react";
         else installCmd = "npm install clsx tailwind-merge lucide-react";
 
-        execSync(installCmd, { stdio: "ignore" });
+        await execPromise(installCmd);
         if (!skipPrompts) {
           sDeps.stop("Required dependencies installed");
         } else {
@@ -228,9 +231,11 @@ program
           message: "Select the AI assistants you use (Space to select, Enter to confirm):",
           options: [
             { value: "antigravity", label: "Antigravity (AGENTS.md)" },
+            { value: "claude", label: "Claude Code (CLAUDE.md)" },
             { value: "cursor", label: "Cursor (.cursorrules)" },
             { value: "windsurf", label: "Windsurf (.windsurfrules)" },
             { value: "copilot", label: "GitHub Copilot (.github/copilot-instructions.md)" },
+            { value: "codex", label: "VS Code Copilot / Codex (.copilotinstructions)" },
             { value: "universal", label: "Universal Context (llms.txt)" },
           ],
           required: false,
@@ -402,6 +407,8 @@ async function generateAiRules(selectedAgents: string[], skipPrompts = false) {
       let targetPath = "";
       if (agent === "antigravity") {
         targetPath = path.join(process.cwd(), "AGENTS.md");
+      } else if (agent === "claude") {
+        targetPath = path.join(process.cwd(), "CLAUDE.md");
       } else if (agent === "cursor") {
         targetPath = path.join(process.cwd(), ".cursorrules");
       } else if (agent === "windsurf") {
@@ -412,6 +419,8 @@ async function generateAiRules(selectedAgents: string[], skipPrompts = false) {
           fs.mkdirSync(githubDir, { recursive: true });
         }
         targetPath = path.join(githubDir, "copilot-instructions.md");
+      } else if (agent === "codex") {
+        targetPath = path.join(process.cwd(), ".copilotinstructions");
       } else if (agent === "universal") {
         targetPath = path.join(process.cwd(), "llms.txt");
       }
@@ -456,16 +465,18 @@ program
       return;
     }
 
-    let selectedAgents: string[] = ["antigravity", "cursor", "windsurf", "copilot", "universal"];
+    let selectedAgents: string[] = ["antigravity", "claude", "cursor", "windsurf", "copilot", "codex", "universal"];
 
     if (!skipPrompts) {
       const agents = await multiselect({
         message: "Select the AI assistants you use (Space to select, Enter to confirm):",
         options: [
           { value: "antigravity", label: "Antigravity (AGENTS.md)" },
+          { value: "claude", label: "Claude Code (CLAUDE.md)" },
           { value: "cursor", label: "Cursor (.cursorrules)" },
           { value: "windsurf", label: "Windsurf (.windsurfrules)" },
           { value: "copilot", label: "GitHub Copilot (.github/copilot-instructions.md)" },
+          { value: "codex", label: "VS Code Copilot / Codex (.copilotinstructions)" },
           { value: "universal", label: "Universal Context (llms.txt)" },
         ],
         required: true,
@@ -649,7 +660,7 @@ program
           } else {
             installCmd = `npm install ${componentData.dependencies.join(" ")}`;
           }
-          execSync(installCmd, { stdio: "ignore" });
+          await execPromise(installCmd);
           if (!skipPrompts) {
             sDeps.stop("Dependencies installed successfully");
           } else {

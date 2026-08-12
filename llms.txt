@@ -106,98 +106,98 @@ Bloom UI components are installed on-demand. If a component is missing in the wo
 `npx @bloomui-react/cli add <component_name>`
 
 Here is the list of all available Bloom components:
-- **accordion**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add accordion`. Import via `@/components/ui/accordion/accordion`.
-- **alert**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add alert`. Import via `@/components/ui/alert/alert`.
-- **alertDialog**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add alertDialog`. Import via `@/components/ui/alertDialog/alertDialog`.
-- **aspectRatio**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add aspectRatio`. Import via `@/components/ui/aspectRatio/aspectRatio`.
-- **audioRecorder**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add audioRecorder`. Import via `@/components/ui/audioRecorder/audioRecorder`.
-- **autocomplete**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add autocomplete`. Import via `@/components/ui/autocomplete/autocomplete`.
-- **avatar**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add avatar`. Import via `@/components/ui/avatar/avatar`.
-- **avatarGroup**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add avatarGroup`. Import via `@/components/ui/avatarGroup/avatarGroup`.
-- **badge**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add badge`. Import via `@/components/ui/badge/badge`.
-- **banner**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add banner`. Import via `@/components/ui/banner/banner`.
-- **bentoGrid**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add bentoGrid`. Import via `@/components/ui/bentoGrid/bentoGrid`.
-- **breadcrumb**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add breadcrumb`. Import via `@/components/ui/breadcrumb/breadcrumb`.
-- **button**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add button`. Import via `@/components/ui/button/button`.
-- **buttonGroup**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add buttonGroup`. Import via `@/components/ui/buttonGroup/buttonGroup`.
-- **card**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add card`. Import via `@/components/ui/card/card`.
-- **carousel**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add carousel`. Import via `@/components/ui/carousel/carousel`.
-- **chart**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add chart`. Import via `@/components/ui/chart/chart`.
-- **checkbox**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add checkbox`. Import via `@/components/ui/checkbox/checkbox`.
-- **codeBlock**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add codeBlock`. Import via `@/components/ui/codeBlock/codeBlock`.
-- **collapsible**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add collapsible`. Import via `@/components/ui/collapsible/collapsible`.
-- **colorPicker**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add colorPicker`. Import via `@/components/ui/colorPicker/colorPicker`.
-- **colorSwatches**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add colorSwatches`. Import via `@/components/ui/colorSwatches/colorSwatches`.
-- **combobox**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add combobox`. Import via `@/components/ui/combobox/combobox`.
-- **command**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add command`. Import via `@/components/ui/command/command`.
-- **confetti**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add confetti`. Import via `@/components/ui/confetti/confetti`.
-- **contextMenu**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add contextMenu`. Import via `@/components/ui/contextMenu/contextMenu`.
-- **dataTable**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add dataTable`. Import via `@/components/ui/dataTable/dataTable`.
-- **datePicker**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add datePicker`. Import via `@/components/ui/datePicker/datePicker`.
-- **dialog**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add dialog`. Import via `@/components/ui/dialog/dialog`.
-- **diffViewer**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add diffViewer`. Import via `@/components/ui/diffViewer/diffViewer`.
-- **drawer**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add drawer`. Import via `@/components/ui/drawer/drawer`.
-- **dropdownMenu**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add dropdownMenu`. Import via `@/components/ui/dropdownMenu/dropdownMenu`.
-- **eventCalendar**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add eventCalendar`. Import via `@/components/ui/eventCalendar/eventCalendar`.
-- **fileExplorer**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add fileExplorer`. Import via `@/components/ui/fileExplorer/fileExplorer`.
-- **fileUpload**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add fileUpload`. Import via `@/components/ui/fileUpload/fileUpload`.
-- **filterBuilder**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add filterBuilder`. Import via `@/components/ui/filterBuilder/filterBuilder`.
-- **form**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add form`. Import via `@/components/ui/form/form`.
-- **formField**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add formField`. Import via `@/components/ui/formField/formField`.
-- **ganttChart**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add ganttChart`. Import via `@/components/ui/ganttChart/ganttChart`.
-- **heatmapGrid**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add heatmapGrid`. Import via `@/components/ui/heatmapGrid/heatmapGrid`.
-- **hoverCard**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add hoverCard`. Import via `@/components/ui/hoverCard/hoverCard`.
-- **image**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add image`. Import via `@/components/ui/image/image`.
-- **imageCropper**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add imageCropper`. Import via `@/components/ui/imageCropper/imageCropper`.
-- **input**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add input`. Import via `@/components/ui/input/input`.
-- **inputOtp**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add inputOtp`. Import via `@/components/ui/inputOtp/inputOtp`.
-- **jsonTreeViewer**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add jsonTreeViewer`. Import via `@/components/ui/jsonTreeViewer/jsonTreeViewer`.
-- **kanbanBoard**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add kanbanBoard`. Import via `@/components/ui/kanbanBoard/kanbanBoard`.
-- **kbd**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add kbd`. Import via `@/components/ui/kbd/kbd`.
-- **label**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add label`. Import via `@/components/ui/label/label`.
-- **link**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add link`. Import via `@/components/ui/link/link`.
-- **list**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add list`. Import via `@/components/ui/list/list`.
-- **logoClouds**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add logoClouds`. Import via `@/components/ui/logoClouds/logoClouds`.
-- **mentionTextarea**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add mentionTextarea`. Import via `@/components/ui/mentionTextarea/mentionTextarea`.
-- **menubar**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add menubar`. Import via `@/components/ui/menubar/menubar`.
-- **multiSelect**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add multiSelect`. Import via `@/components/ui/multiSelect/multiSelect`.
-- **navigationMenu**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add navigationMenu`. Import via `@/components/ui/navigationMenu/navigationMenu`.
-- **numberInput**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add numberInput`. Import via `@/components/ui/numberInput/numberInput`.
-- **pagination**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add pagination`. Import via `@/components/ui/pagination/pagination`.
-- **passwordInput**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add passwordInput`. Import via `@/components/ui/passwordInput/passwordInput`.
-- **popover**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add popover`. Import via `@/components/ui/popover/popover`.
-- **progress**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add progress`. Import via `@/components/ui/progress/progress`.
-- **radioGroup**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add radioGroup`. Import via `@/components/ui/radioGroup/radioGroup`.
-- **rating**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add rating`. Import via `@/components/ui/rating/rating`.
-- **resizable**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add resizable`. Import via `@/components/ui/resizable/resizable`.
-- **richTextEditor**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add richTextEditor`. Import via `@/components/ui/richTextEditor/richTextEditor`.
-- **scrollArea**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add scrollArea`. Import via `@/components/ui/scrollArea/scrollArea`.
-- **select**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add select`. Import via `@/components/ui/select/select`.
-- **separator**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add separator`. Import via `@/components/ui/separator/separator`.
-- **sheet**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add sheet`. Import via `@/components/ui/sheet/sheet`.
-- **signatureInput**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add signatureInput`. Import via `@/components/ui/signatureInput/signatureInput`.
-- **skeleton**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add skeleton`. Import via `@/components/ui/skeleton/skeleton`.
-- **slider**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add slider`. Import via `@/components/ui/slider/slider`.
-- **snippet**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add snippet`. Import via `@/components/ui/snippet/snippet`.
-- **spinner**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add spinner`. Import via `@/components/ui/spinner/spinner`.
-- **statCard**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add statCard`. Import via `@/components/ui/statCard/statCard`.
-- **stepper**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add stepper`. Import via `@/components/ui/stepper/stepper`.
-- **switch**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add switch`. Import via `@/components/ui/switch/switch`.
-- **table**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add table`. Import via `@/components/ui/table/table`.
-- **tableOfContents**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add tableOfContents`. Import via `@/components/ui/tableOfContents/tableOfContents`.
-- **tabs**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add tabs`. Import via `@/components/ui/tabs/tabs`.
-- **tagInput**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add tagInput`. Import via `@/components/ui/tagInput/tagInput`.
-- **terminal**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add terminal`. Import via `@/components/ui/terminal/terminal`.
-- **testimonials**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add testimonials`. Import via `@/components/ui/testimonials/testimonials`.
-- **textarea**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add textarea`. Import via `@/components/ui/textarea/textarea`.
-- **timePicker**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add timePicker`. Import via `@/components/ui/timePicker/timePicker`.
-- **timeline**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add timeline`. Import via `@/components/ui/timeline/timeline`.
-- **toast**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add toast`. Import via `@/components/ui/toast/toast`.
-- **toggle**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add toggle`. Import via `@/components/ui/toggle/toggle`.
-- **toggleGroup**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add toggleGroup`. Import via `@/components/ui/toggleGroup/toggleGroup`.
-- **tooltip**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add tooltip`. Import via `@/components/ui/tooltip/tooltip`.
-- **tour**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add tour`. Import via `@/components/ui/tour/tour`.
-- **transferList**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add transferList`. Import via `@/components/ui/transferList/transferList`.
-- **treeView**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add treeView`. Import via `@/components/ui/treeView/treeView`.
-- **typography**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add typography`. Import via `@/components/ui/typography/typography`.
-- **virtualizedList**: Available. If not installed locally, advise the user to run `npx @bloomui-react/cli add virtualizedList`. Import via `@/components/ui/virtualizedList/virtualizedList`.
+- **accordion**: Collapsible content panels. Use for organizing grouped information like FAQs or stacked settings. Import via `@/components/ui/accordion/accordion`.
+- **alert**: Inline callouts (Warning, Error, Info, Success) for conveying critical messages. Import via `@/components/ui/alert/alert`.
+- **alertDialog**: Modal dialog interrupting user flow for high-impact confirmations (e.g. deletion, reset). Import via `@/components/ui/alertDialog/alertDialog`.
+- **aspectRatio**: Constrains visual elements (images, videos, maps) to fixed aspect ratios (16:9, 4:3, 1:1). Import via `@/components/ui/aspectRatio/aspectRatio`.
+- **audioRecorder**: Interactive microphone recorder with real-time waveform visualization and exporter. Import via `@/components/ui/audioRecorder/audioRecorder`.
+- **autocomplete**: Text input field coupled with search-as-you-type combobox suggestions. Import via `@/components/ui/autocomplete/autocomplete`.
+- **avatar**: Circle profile picture with built-in placeholder initials and fallback indicators. Import via `@/components/ui/avatar/avatar`.
+- **avatarGroup**: Horizontal overlapping avatar stack with count indicators for excess profiles. Import via `@/components/ui/avatarGroup/avatarGroup`.
+- **badge**: Compact rounded tag labels showing status, counts, or categories. Import via `@/components/ui/badge/badge`.
+- **banner**: Wide top/bottom banner callouts for site announcements and promotions. Import via `@/components/ui/banner/banner`.
+- **bentoGrid**: Modern, dashboard-style grid cards layout for highlighting product features. Import via `@/components/ui/bentoGrid/bentoGrid`.
+- **breadcrumb**: Hierarchy trail navigation (e.g., Home > Shop > Category) for deep site maps. Import via `@/components/ui/breadcrumb/breadcrumb`.
+- **button**: Interactive click targets with smooth ripples, icons, and loading animations. Import via `@/components/ui/button/button`.
+- **buttonGroup**: Side-by-side or vertical button combinations joined into a single visual block. Import via `@/components/ui/buttonGroup/buttonGroup`.
+- **card**: Content container box with modular Header, Body, and Footer sections. Import via `@/components/ui/card/card`.
+- **carousel**: Horizontal content slider powered by Embla Carousel with controls and dots indicator. Import via `@/components/ui/carousel/carousel`.
+- **chart**: Data visualization components powered by Recharts (Bar, Line, Area, Pie, Radar charts). Import via `@/components/ui/chart/chart`.
+- **checkbox**: Boolean form input for toggle options and multi-select agreements. Import via `@/components/ui/checkbox/checkbox`.
+- **codeBlock**: Advanced syntax highlighter using highlight.js with copying, line numbers, and dark mode toggles. Import via `@/components/ui/codeBlock/codeBlock`.
+- **collapsible**: Expandable disclosure container for clean progressive disclosure. Import via `@/components/ui/collapsible/collapsible`.
+- **colorPicker**: Hex/RGB color selector popover with swatch presets and alpha controllers. Import via `@/components/ui/colorPicker/colorPicker`.
+- **colorSwatches**: Grid selection of predefined color pellets. Import via `@/components/ui/colorSwatches/colorSwatches`.
+- **combobox**: Searchable selection dropdown for filtering huge option lists. Import via `@/components/ui/combobox/combobox`.
+- **command**: Keyboard-driven quick shortcut command palette launcher (like cmd+k). Import via `@/components/ui/command/command`.
+- **confetti**: Success celebration confetti canvas explosion overlay. Import via `@/components/ui/confetti/confetti`.
+- **contextMenu**: Cursor right-click popup context menu. Import via `@/components/ui/contextMenu/contextMenu`.
+- **dataTable**: High-performance Tanstack table supporting sorting, filtering, selection, and paginating. Import via `@/components/ui/dataTable/dataTable`.
+- **datePicker**: Popover calendar input for selecting single dates or custom date ranges. Prefer this over raw inputs for date selection. Import via `@/components/ui/datePicker/datePicker`.
+- **dialog**: Focus-trapped popover modal window overlay for user interactions. Import via `@/components/ui/dialog/dialog`.
+- **diffViewer**: Side-by-side text diff comparison utility for code changes. Import via `@/components/ui/diffViewer/diffViewer`.
+- **drawer**: Bottom-anchored slide-up sheet (Vaul) optimized for mobile layouts. Import via `@/components/ui/drawer/drawer`.
+- **dropdownMenu**: Contextual popup lists triggered by buttons or click elements. Import via `@/components/ui/dropdownMenu/dropdownMenu`.
+- **eventCalendar**: Multi-view planner calendar showing schedules, dates, and event list cards. Import via `@/components/ui/eventCalendar/eventCalendar`.
+- **fileExplorer**: Multi-level folder directory manager showing nested files and folders list. Import via `@/components/ui/fileExplorer/fileExplorer`.
+- **fileUpload**: Drag-and-drop file uploader zone with file type validation and upload progress bars. Import via `@/components/ui/fileUpload/fileUpload`.
+- **filterBuilder**: Query condition builder for generating complex logic rules (e.g. Where name equals 'x' AND age > 20). Import via `@/components/ui/filterBuilder/filterBuilder`.
+- **form**: React-hook-form schema wrapper for structuring form submission validation. Import via `@/components/ui/form/form`.
+- **formField**: Form context controller tracking errors and values for individual inputs. Import via `@/components/ui/formField/formField`.
+- **ganttChart**: Visual project manager timeline for tasks, durations, and scheduling. Import via `@/components/ui/ganttChart/ganttChart`.
+- **heatmapGrid**: Calendar activity grid plotting density/values using shades (e.g. GitHub contributions). Import via `@/components/ui/heatmapGrid/heatmapGrid`.
+- **hoverCard**: Preview popup card appearing instantly on mouse hover. Import via `@/components/ui/hoverCard/hoverCard`.
+- **image**: Image component supporting lazy loading, zoom, blur placeholders, and loading states. Import via `@/components/ui/image/image`.
+- **imageCropper**: UI cropper overlay for resizing and positioning images. Import via `@/components/ui/imageCropper/imageCropper`.
+- **input**: Basic text field. NOTE: Do not use raw input for passwords/dates/OTPs; use passwordInput, datePicker, or inputOtp. Import via `@/components/ui/input/input`.
+- **inputOtp**: Custom 4 to 6 character OTP verification passcode input boxes. Import via `@/components/ui/inputOtp/inputOtp`.
+- **jsonTreeViewer**: Collapsible tree viewer for visualizing deep JSON data structures. Import via `@/components/ui/jsonTreeViewer/jsonTreeViewer`.
+- **kanbanBoard**: Kanban task board card columns with drag-and-drop layout. Import via `@/components/ui/kanbanBoard/kanbanBoard`.
+- **kbd**: Keyboard shortcut key badge indicators (e.g. Ctrl, Cmd, Shift). Import via `@/components/ui/kbd/kbd`.
+- **label**: Typography label tag for form fields. Import via `@/components/ui/label/label`.
+- **link**: Styled text hyperlink anchors. Import via `@/components/ui/link/link`.
+- **list**: Custom lists supporting custom icons, dividers, and alignments. Import via `@/components/ui/list/list`.
+- **logoClouds**: Responsive showcase block for brand, client, or sponsor logo sets. Import via `@/components/ui/logoClouds/logoClouds`.
+- **mentionTextarea**: Text area input supporting @username autocomplete suggestions. Import via `@/components/ui/mentionTextarea/mentionTextarea`.
+- **menubar**: Top application horizontal layout menu system. Import via `@/components/ui/menubar/menubar`.
+- **multiSelect**: Multi-choice selection pills container with tags filter dropdown. Import via `@/components/ui/multiSelect/multiSelect`.
+- **navigationMenu**: Rich header dropdown layout navigation menu. Import via `@/components/ui/navigationMenu/navigationMenu`.
+- **numberInput**: Safe numeric input with increment/decrement steppers. Import via `@/components/ui/numberInput/numberInput`.
+- **pagination**: Page navigation controls (prev, next, active page). Import via `@/components/ui/pagination/pagination`.
+- **passwordInput**: Secure text field with reveal/hide password eye toggle. Always use this instead of raw input type="password". Import via `@/components/ui/passwordInput/passwordInput`.
+- **popover**: Anchor-pinned overlay popup for floating contents. Import via `@/components/ui/popover/popover`.
+- **progress**: Loading progress bars. Import via `@/components/ui/progress/progress`.
+- **radioGroup**: Mutual exclusion option items lists. Import via `@/components/ui/radioGroup/radioGroup`.
+- **rating**: Interactive star rating bar. Import via `@/components/ui/rating/rating`.
+- **resizable**: Draggable split-panel grid layouts. Import via `@/components/ui/resizable/resizable`.
+- **richTextEditor**: Tiptap-powered WYSIWYG text editor. Import via `@/components/ui/richTextEditor/richTextEditor`.
+- **scrollArea**: Custom scrollbar wrappers. Import via `@/components/ui/scrollArea/scrollArea`.
+- **select**: Form select option dropdown menus. Import via `@/components/ui/select/select`.
+- **separator**: Horizontal/vertical line dividers. Import via `@/components/ui/separator/separator`.
+- **sheet**: Sidebar sliding popout panel drawers. Import via `@/components/ui/sheet/sheet`.
+- **signatureInput**: Interactive signature drawing canvas pad. Import via `@/components/ui/signatureInput/signatureInput`.
+- **skeleton**: Loading animation placeholders mimicking layout blocks. Import via `@/components/ui/skeleton/skeleton`.
+- **slider**: Drag-to-select range sliders. Import via `@/components/ui/slider/slider`.
+- **snippet**: Clipboard click-to-copy code blocks. Import via `@/components/ui/snippet/snippet`.
+- **spinner**: Circular loading indicators. Import via `@/components/ui/spinner/spinner`.
+- **statCard**: Metric card dashboard widgets with trend badges and statistics. Import via `@/components/ui/statCard/statCard`.
+- **stepper**: Stage progress trackers showing steps. Import via `@/components/ui/stepper/stepper`.
+- **switch**: Toggle switch buttons. Import via `@/components/ui/switch/switch`.
+- **table**: Clean HTML/Tailwind tabular data layouts. Import via `@/components/ui/table/table`.
+- **tableOfContents**: Page article outline index showing sections. Import via `@/components/ui/tableOfContents/tableOfContents`.
+- **tabs**: Segmented tab pages switcher. Import via `@/components/ui/tabs/tabs`.
+- **tagInput**: Input for writing tags or keywords. Import via `@/components/ui/tagInput/tagInput`.
+- **terminal**: Styled code command terminal wrapper logs. Import via `@/components/ui/terminal/terminal`.
+- **testimonials**: Card grids showcasing reviews/feedbacks. Import via `@/components/ui/testimonials/testimonials`.
+- **textarea**: Multi-line description input fields. Import via `@/components/ui/textarea/textarea`.
+- **timePicker**: Time selector spinner dropdowns. Import via `@/components/ui/timePicker/timePicker`.
+- **timeline**: Vertical event list timeline cards. Import via `@/components/ui/timeline/timeline`.
+- **toast**: Sonner floating notification alerts. Import via `@/components/ui/toast/toast`.
+- **toggle**: Pressable toggle buttons. Import via `@/components/ui/toggle/toggle`.
+- **toggleGroup**: Group of toggle button selections. Import via `@/components/ui/toggleGroup/toggleGroup`.
+- **tooltip**: Hover label descriptions. Import via `@/components/ui/tooltip/tooltip`.
+- **tour**: Interactive tutorial helper pointing at step-by-step element guides. Import via `@/components/ui/tour/tour`.
+- **transferList**: Transfer items picker list columns. Import via `@/components/ui/transferList/transferList`.
+- **treeView**: Directory trees. Import via `@/components/ui/treeView/treeView`.
+- **typography**: Tailwind utility classes for typography text. Import via `@/components/ui/typography/typography`.
+- **virtualizedList**: Virtualized list container for rendering huge items arrays. Import via `@/components/ui/virtualizedList/virtualizedList`.
