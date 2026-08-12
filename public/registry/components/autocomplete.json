@@ -1,8 +1,6 @@
 {
   "name": "autocomplete",
-  "dependencies": [
-    "@iconify/react"
-  ],
+  "dependencies": ["@iconify/react"],
   "files": [
     {
       "name": "autocomplete.tsx",

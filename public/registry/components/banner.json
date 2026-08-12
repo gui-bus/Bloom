@@ -1,9 +1,6 @@
 {
   "name": "banner",
-  "dependencies": [
-    "lucide-react",
-    "class-variance-authority"
-  ],
+  "dependencies": ["lucide-react", "class-variance-authority"],
   "files": [
     {
       "name": "banner.tsx",

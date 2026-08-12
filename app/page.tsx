@@ -33,13 +33,19 @@ const FeatureCard = ({
 const terminalCliLines: TerminalLine[] = [
   { text: "npx @bloomui-react/cli init", type: "command" },
   { text: "Design system tokens initialized in project", type: "success" },
-  { text: "npx @bloomui-react/cli add button tableOfContents snippet", type: "command" },
+  {
+    text: "npx @bloomui-react/cli add button tableOfContents snippet",
+    type: "command",
+  },
   { text: "Components added directly into components/ui", type: "success" },
 ];
 
 const terminalNpmLines: TerminalLine[] = [
   { text: "npm install @bloomui-react/components", type: "command" },
-  { text: "Installed @bloomui-react/components v0.1.0 (95 components included)", type: "success" },
+  {
+    text: "Installed @bloomui-react/components v0.1.0 (95 components included)",
+    type: "success",
+  },
 ];
 
 export default function Home() {
@@ -56,8 +62,9 @@ export default function Home() {
             Craft sleek, accessible UI with total flexibility.
           </h1>
           <p className="text-base sm:text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed font-normal">
-            A high-performance React component library available in a hybrid model:
-            use our official CLI to own the code, or install the compiled package via NPM. Powered by Radix UI and Tailwind CSS.
+            A high-performance React component library available in a hybrid
+            model: use our official CLI to own the code, or install the compiled
+            package via NPM. Powered by Radix UI and Tailwind CSS.
           </p>
         </div>
 
@@ -97,7 +104,8 @@ export default function Home() {
             Installation Methods
           </h3>
           <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
-            Choose between full source code ownership using our CLI or a standard NPM package dependency.
+            Choose between full source code ownership using our CLI or a
+            standard NPM package dependency.
           </p>
         </div>
 
@@ -118,7 +126,9 @@ export default function Home() {
               </span>
             </div>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Use our CLI to download raw React component code directly into your repository. Modify styling, logic, and structure freely without third-party wrapper constraints.
+              Use our CLI to download raw React component code directly into
+              your repository. Modify styling, logic, and structure freely
+              without third-party wrapper constraints.
             </p>
             <Terminal variant="mac" lines={terminalCliLines} />
           </div>
@@ -139,7 +149,8 @@ export default function Home() {
               </span>
             </div>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Install pre-compiled components via NPM if you prefer traditional version management across your applications.
+              Install pre-compiled components via NPM if you prefer traditional
+              version management across your applications.
             </p>
             <Terminal variant="mac" lines={terminalNpmLines} />
           </div>

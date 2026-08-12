@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
 const UI_DIR = path.join(ROOT_DIR, "components", "ui");

@@ -64,10 +64,19 @@ const terminalDoctorLines: TerminalLine[] = [
   { text: "✔ Utility directory exists at: lib", type: "success" },
   { text: "✔ Utility file found: lib/utils.ts", type: "success" },
   { text: "✔ Utility file found: lib/design-system.ts", type: "success" },
-  { text: "✔ Ripple animations directory found at: lib/ripple", type: "success" },
-  { text: "✔ Local markdown documentation directory found at: lib/docs", type: "success" },
+  {
+    text: "✔ Ripple animations directory found at: lib/ripple",
+    type: "success",
+  },
+  {
+    text: "✔ Local markdown documentation directory found at: lib/docs",
+    type: "success",
+  },
   { text: "✔ Dependency 'clsx' is installed.", type: "success" },
-  { text: "✔ Perfect! Your Bloom UI setup is completely healthy.", type: "success" },
+  {
+    text: "✔ Perfect! Your Bloom UI setup is completely healthy.",
+    type: "success",
+  },
 ];
 
 const terminalNpmLines: TerminalLine[] = [
@@ -149,7 +158,8 @@ export default function InstallationPage() {
                 4. Update Components
               </h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                Keep your components and dynamic markdown docs up-to-date with the latest versions from our registry.
+                Keep your components and dynamic markdown docs up-to-date with
+                the latest versions from our registry.
               </p>
               <Terminal variant="mac" lines={terminalUpdateLines} />
             </div>
@@ -159,7 +169,8 @@ export default function InstallationPage() {
                 5. Health Check / Diagnostics
               </h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                Validate imports, files, configurations, and peer dependencies in your workspace.
+                Validate imports, files, configurations, and peer dependencies
+                in your workspace.
               </p>
               <Terminal variant="mac" lines={terminalDoctorLines} />
             </div>

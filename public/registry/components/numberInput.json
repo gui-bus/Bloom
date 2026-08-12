@@ -1,8 +1,6 @@
 {
   "name": "numberInput",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react"],
   "files": [
     {
       "name": "numberInput.tsx",

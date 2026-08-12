@@ -6,13 +6,17 @@ const uiComponentsDir = path.join(projectRoot, "components/ui");
 
 function extractAiDocs(compName, pageContent) {
   let description = "";
-  const descMatch = pageContent.match(/DocsTitle[^>]*description=(?:"([^"]+)"|{\`([\s\S]*?)\`})/);
+  const descMatch = pageContent.match(
+    /DocsTitle[^>]*description=(?:"([^"]+)"|{`([\s\S]*?)`})/,
+  );
   if (descMatch) {
     description = descMatch[1] || descMatch[2];
   }
 
   let importSnippet = `import { ${compName.charAt(0).toUpperCase() + compName.slice(1)} } from "@/components/ui/${compName}/${compName}";`;
-  const importMatch = pageContent.match(/ImportSnippet[^>]*importCode=(?:"([^"]+)"|{\`([\s\S]*?)\`})/);
+  const importMatch = pageContent.match(
+    /ImportSnippet[^>]*importCode=(?:"([^"]+)"|{`([\s\S]*?)`})/,
+  );
   if (importMatch) {
     importSnippet = importMatch[1] || importMatch[2];
   }
@@ -20,19 +24,23 @@ function extractAiDocs(compName, pageContent) {
   let md = `### ${compName.charAt(0).toUpperCase() + compName.slice(1)}\n${description}\n\n`;
   md += `**Import Path**:\n\`\`\`typescript\n${importSnippet}\n\`\`\`\n\n`;
 
-  const docsCompRegex = /<DocsComponent([\s\S]*?)(?=<DocsComponent|<Separator|<AccessibilityCard|DocsPagination|export default)/g;
-  let docMatch;
-  while ((docMatch = docsCompRegex.exec(pageContent)) !== null) {
+  const docsCompRegex =
+    /<DocsComponent([\s\S]*?)(?=<DocsComponent|<Separator|<AccessibilityCard|DocsPagination|export default)/g;
+  while (true) {
+    const docMatch = docsCompRegex.exec(pageContent);
+    if (docMatch === null) break;
     const blockContent = docMatch[1];
-    
+
     let title = "";
-    const titleM = blockContent.match(/title=(?:"([^"]+)"|{\`([\s\S]*?)\`})/);
+    const titleM = blockContent.match(/title=(?:"([^"]+)"|{`([\s\S]*?)`})/);
     if (titleM) {
       title = titleM[1] || titleM[2];
     }
-    
+
     let desc = "";
-    const descM = blockContent.match(/description=(?:"([^"]+)"|{\`([\s\S]*?)\`})/);
+    const descM = blockContent.match(
+      /description=(?:"([^"]+)"|{`([\s\S]*?)`})/,
+    );
     if (descM) {
       desc = descM[1] || descM[2];
     }
@@ -49,13 +57,18 @@ function extractAiDocs(compName, pageContent) {
       const tableBody = tableMatch[1];
       const rows = [];
       const rowRegex = /<tr[\s\S]*?>([\s\S]*?)<\/tr>/g;
-      let rMatch;
-      while ((rMatch = rowRegex.exec(tableBody)) !== null) {
+      while (true) {
+        const rMatch = rowRegex.exec(tableBody);
+        if (rMatch === null) break;
         const cells = [];
         const cellRegex = /<(?:td|th)[\s\S]*?>([\s\S]*?)<\/(?:td|th)>/g;
-        let cMatch;
-        while ((cMatch = cellRegex.exec(rMatch[1])) !== null) {
-          const cellText = cMatch[1].replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+        while (true) {
+          const cMatch = cellRegex.exec(rMatch[1]);
+          if (cMatch === null) break;
+          const cellText = cMatch[1]
+            .replace(/<[^>]*>/g, "")
+            .replace(/\s+/g, " ")
+            .trim();
           cells.push(cellText);
         }
         if (cells.length > 0) {
@@ -66,7 +79,12 @@ function extractAiDocs(compName, pageContent) {
         let tableMd = "";
         if (tableBody.includes("<th")) {
           const header = rows[0];
-          const align = rows[0].split("|").map((_, i) => i === 0 || i === rows[0].split("|").length - 1 ? "" : "---").join("|");
+          const align = rows[0]
+            .split("|")
+            .map((_, i) =>
+              i === 0 || i === rows[0].split("|").length - 1 ? "" : "---",
+            )
+            .join("|");
           tableMd = `${header}\n${align}\n${rows.slice(1).join("\n")}`;
         } else {
           tableMd = `| Prop | Type | Default | Description |\n| --- | --- | --- | --- |\n${rows.join("\n")}`;
@@ -76,7 +94,7 @@ function extractAiDocs(compName, pageContent) {
     }
 
     let code = "";
-    const codeM = blockContent.match(/code=(?:"([^"]+)"|{\`([\s\S]*?)\`})/);
+    const codeM = blockContent.match(/code=(?:"([^"]+)"|{`([\s\S]*?)`})/);
     if (codeM) {
       code = codeM[1] || codeM[2];
     }
@@ -120,7 +138,10 @@ function main() {
     const codeFilePath = path.join(compDir, codeFileName);
 
     let aiDocs = "";
-    const pageFilePath = path.join(projectRoot, `app/components/${compName}/page.tsx`);
+    const pageFilePath = path.join(
+      projectRoot,
+      `app/components/${compName}/page.tsx`,
+    );
     if (fs.existsSync(pageFilePath)) {
       try {
         const pageContent = fs.readFileSync(pageFilePath, "utf8");

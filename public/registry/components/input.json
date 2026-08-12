@@ -1,8 +1,6 @@
 {
   "name": "input",
-  "dependencies": [
-    "class-variance-authority"
-  ],
+  "dependencies": ["class-variance-authority"],
   "files": [
     {
       "name": "input.tsx",
