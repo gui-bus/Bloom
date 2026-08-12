@@ -1,7 +1,7 @@
 import { execSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { confirm, intro, outro, select, spinner, text } from "@clack/prompts";
+import { confirm, intro, outro, select, spinner, text, multiselect } from "@clack/prompts";
 import { Command } from "commander";
 import pc from "picocolors";
 
@@ -218,6 +218,31 @@ program
     }
 
     if (!skipPrompts) {
+      const configureAi = await confirm({
+        message: "Do you want to configure rules for AI Coding Assistants (e.g. Antigravity, Cursor, Copilot)?",
+        defaultValue: true,
+      });
+
+      if (configureAi && typeof configureAi !== "symbol") {
+        const agents = await multiselect({
+          message: "Select the AI assistants you use (Space to select, Enter to confirm):",
+          options: [
+            { value: "antigravity", label: "Antigravity (AGENTS.md)" },
+            { value: "cursor", label: "Cursor (.cursorrules)" },
+            { value: "windsurf", label: "Windsurf (.windsurfrules)" },
+            { value: "copilot", label: "GitHub Copilot (.github/copilot-instructions.md)" },
+            { value: "universal", label: "Universal Context (llms.txt)" },
+          ],
+          required: false,
+        });
+
+        if (typeof agents !== "symbol" && agents.length > 0) {
+          await generateAiRules(agents as string[], false);
+        }
+      }
+    }
+
+    if (!skipPrompts) {
       outro(
         pc.green(
           "Bloom UI initialized! You can now add components using: npx bloom add <component>",
@@ -225,6 +250,235 @@ program
       );
     } else {
       console.log("Bloom UI successfully initialized!");
+    }
+  });
+
+async function generateAiRules(selectedAgents: string[], skipPrompts = false) {
+  const configFile = path.join(process.cwd(), "bloom.json");
+  let config = { componentDir: "components/ui", utilsDir: "lib" };
+  if (fs.existsSync(configFile)) {
+    try {
+      config = JSON.parse(fs.readFileSync(configFile, "utf8"));
+    } catch (_e) {}
+  }
+
+  const s = spinner();
+  if (!skipPrompts) {
+    s.start("Generating AI context rules");
+  } else {
+    console.log("Generating AI context rules...");
+  }
+
+  try {
+    const registryBase = await getRegistryBase();
+    
+    // 1. Detect installed components locally
+    const installedComponents = new Set<string>();
+    const targetComponentDir = path.join(process.cwd(), config.componentDir || "components/ui");
+    if (fs.existsSync(targetComponentDir)) {
+      try {
+        const dirs = fs.readdirSync(targetComponentDir, { withFileTypes: true });
+        for (const d of dirs) {
+          if (d.isDirectory()) {
+            installedComponents.add(d.name.toLowerCase());
+          }
+        }
+      } catch (_e) {}
+    }
+
+    // 2. Fetch index.json to get all components in registry
+    let registryComponents: { name: string }[] = [];
+    const localIndexPath = path.join(process.cwd(), "public/registry/index.json");
+    const parentLocalIndexPath = path.join(process.cwd(), "../../public/registry/index.json");
+    const devIndexPath = path.join(__dirname, "../../../public/registry/index.json");
+    if (fs.existsSync(localIndexPath)) {
+      try {
+        registryComponents = JSON.parse(fs.readFileSync(localIndexPath, "utf8"));
+      } catch (_e) {}
+    } else if (fs.existsSync(parentLocalIndexPath)) {
+      try {
+        registryComponents = JSON.parse(fs.readFileSync(parentLocalIndexPath, "utf8"));
+      } catch (_e) {}
+    } else if (fs.existsSync(devIndexPath)) {
+      try {
+        registryComponents = JSON.parse(fs.readFileSync(devIndexPath, "utf8"));
+      } catch (_e) {}
+    } else {
+      try {
+        const indexRes = await fetch(`${registryBase}/index.json`);
+        if (indexRes.ok) {
+          registryComponents = await indexRes.json() as { name: string }[];
+        }
+      } catch (_e) {}
+    }
+
+    // 3. Fetch rules template
+    let rulesTemplate = "";
+    const localTemplate1 = path.join(process.cwd(), "public/registry/bloom-rules.md");
+    const localTemplate2 = path.join(process.cwd(), "public/registry/llms.txt");
+    const parentLocalTemplate1 = path.join(process.cwd(), "../../public/registry/bloom-rules.md");
+    const parentLocalTemplate2 = path.join(process.cwd(), "../../public/registry/llms.txt");
+    const localTemplateRoot = path.join(process.cwd(), "llms.txt");
+    const parentLocalTemplateRoot = path.join(process.cwd(), "../../llms.txt");
+    const devTemplate1 = path.join(__dirname, "../../../public/registry/bloom-rules.md");
+    const devTemplate2 = path.join(__dirname, "../../../public/registry/llms.txt");
+    const devTemplateRoot = path.join(__dirname, "../../../llms.txt");
+
+    if (fs.existsSync(localTemplate1)) {
+      rulesTemplate = fs.readFileSync(localTemplate1, "utf8");
+    } else if (fs.existsSync(localTemplate2)) {
+      rulesTemplate = fs.readFileSync(localTemplate2, "utf8");
+    } else if (fs.existsSync(parentLocalTemplate1)) {
+      rulesTemplate = fs.readFileSync(parentLocalTemplate1, "utf8");
+    } else if (fs.existsSync(parentLocalTemplate2)) {
+      rulesTemplate = fs.readFileSync(parentLocalTemplate2, "utf8");
+    } else if (fs.existsSync(devTemplate1)) {
+      rulesTemplate = fs.readFileSync(devTemplate1, "utf8");
+    } else if (fs.existsSync(devTemplate2)) {
+      rulesTemplate = fs.readFileSync(devTemplate2, "utf8");
+    } else if (fs.existsSync(localTemplateRoot)) {
+      rulesTemplate = fs.readFileSync(localTemplateRoot, "utf8");
+    } else if (fs.existsSync(parentLocalTemplateRoot)) {
+      rulesTemplate = fs.readFileSync(parentLocalTemplateRoot, "utf8");
+    } else if (fs.existsSync(devTemplateRoot)) {
+      rulesTemplate = fs.readFileSync(devTemplateRoot, "utf8");
+    } else {
+      try {
+        const rulesRes = await fetch(`${registryBase}/bloom-rules.md`);
+        if (rulesRes.ok) {
+          rulesTemplate = await rulesRes.text();
+        } else {
+          const llmsRes = await fetch(`${registryBase}/llms.txt`);
+          if (llmsRes.ok) {
+            rulesTemplate = await llmsRes.text();
+          }
+        }
+      } catch (_e) {}
+    }
+
+    if (!rulesTemplate) {
+      if (!skipPrompts) {
+        s.stop("Failed to retrieve AI rules template from registry.");
+      } else {
+        console.error("Failed to retrieve AI rules template from registry.");
+      }
+      return;
+    }
+
+    // 4. Adapt paths and status in the template
+    let content = rulesTemplate;
+
+    const cleanCompDir = (config.componentDir || "components/ui").replace(/\\/g, "/");
+    content = content.replace(/@\/components\/ui/g, `@/${cleanCompDir}`);
+
+    const cleanUtilsDir = (config.utilsDir || "lib").replace(/\\/g, "/");
+    content = content.replace(/@\/lib\/utils/g, `@/${cleanUtilsDir}/utils`);
+    content = content.replace(/@\/lib\/design-system/g, `@/${cleanUtilsDir}/design-system`);
+
+    if (registryComponents.length > 0) {
+      content = content.replace(/###\s+(\d+\.\s+([A-Za-z0-9 &]+))/g, (match, p1, namePart) => {
+        const names = namePart.split(/\s*&\s*/).map((n: string) => n.trim().toLowerCase());
+        const isAnyInstalled = names.some((n: string) => installedComponents.has(n));
+        
+        if (isAnyInstalled) {
+          return `### ${p1} [Status: INSTALLED]`;
+        } else {
+          const isAnyInRegistry = names.some((n: string) => 
+            registryComponents.some(rc => rc.name.toLowerCase() === n)
+          );
+          if (isAnyInRegistry) {
+            const registryName = names.find((n: string) => 
+              registryComponents.some(rc => rc.name.toLowerCase() === n)
+            ) || names[0];
+            return `### ${p1} [Status: AVAILABLE - Run 'npx bloom add ${registryName}' to install]`;
+          }
+          return `### ${p1}`;
+        }
+      });
+    }
+
+    // 5. Write to selected agent files
+    for (const agent of selectedAgents) {
+      let targetPath = "";
+      if (agent === "antigravity") {
+        targetPath = path.join(process.cwd(), "AGENTS.md");
+      } else if (agent === "cursor") {
+        targetPath = path.join(process.cwd(), ".cursorrules");
+      } else if (agent === "windsurf") {
+        targetPath = path.join(process.cwd(), ".windsurfrules");
+      } else if (agent === "copilot") {
+        const githubDir = path.join(process.cwd(), ".github");
+        if (!fs.existsSync(githubDir)) {
+          fs.mkdirSync(githubDir, { recursive: true });
+        }
+        targetPath = path.join(githubDir, "copilot-instructions.md");
+      } else if (agent === "universal") {
+        targetPath = path.join(process.cwd(), "llms.txt");
+      }
+
+      if (targetPath) {
+        fs.writeFileSync(targetPath, content, "utf8");
+      }
+    }
+
+    if (!skipPrompts) {
+      s.stop("AI rules files generated successfully!");
+    } else {
+      console.log("AI rules files generated successfully!");
+    }
+  } catch (err) {
+    if (!skipPrompts) {
+      s.stop("Error generating AI rules.");
+      console.error(err);
+    } else {
+      console.error("Error generating AI rules:", err);
+    }
+  }
+}
+
+program
+  .command("setup-ai")
+  .description("Configure rule files for AI Coding Assistants (Antigravity, Cursor, etc.)")
+  .option("-y, --yes", "Skip prompts and configure all rule files", false)
+  .action(async (options) => {
+    const isTTY = process.stdout.isTTY;
+    const skipPrompts = options.yes || !isTTY;
+
+    if (!skipPrompts) {
+      intro(pc.bgMagenta(pc.black(" Bloom UI — AI Context Setup ")));
+    }
+
+    const configFile = path.join(process.cwd(), "bloom.json");
+    if (!fs.existsSync(configFile)) {
+      console.error(
+        pc.red("bloom.json not found. Run 'npx bloom init' first to set up config."),
+      );
+      return;
+    }
+
+    let selectedAgents: string[] = ["antigravity", "cursor", "windsurf", "copilot", "universal"];
+
+    if (!skipPrompts) {
+      const agents = await multiselect({
+        message: "Select the AI assistants you use (Space to select, Enter to confirm):",
+        options: [
+          { value: "antigravity", label: "Antigravity (AGENTS.md)" },
+          { value: "cursor", label: "Cursor (.cursorrules)" },
+          { value: "windsurf", label: "Windsurf (.windsurfrules)" },
+          { value: "copilot", label: "GitHub Copilot (.github/copilot-instructions.md)" },
+          { value: "universal", label: "Universal Context (llms.txt)" },
+        ],
+        required: true,
+      });
+
+      if (typeof agents === "symbol") return;
+      selectedAgents = agents as string[];
+    }
+
+    await generateAiRules(selectedAgents, skipPrompts);
+
+    if (!skipPrompts) {
+      outro(pc.green("AI context setup completed!"));
     }
   });
 

@@ -1,9 +1,9 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { CodeBlock as PublicCodeBlock } from "@/components/ui/codeBlock/codeBlock";
 import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
+import { CodeBlock as PublicCodeBlock } from "@/components/ui/codeBlock/codeBlock";
 import { Terminal, type TerminalLine } from "@/components/ui/terminal/terminal";
 
 const terminalInitLines: TerminalLine[] = [
@@ -15,22 +15,43 @@ const terminalInitLines: TerminalLine[] = [
 ];
 
 const terminalAddLines: TerminalLine[] = [
-  { text: "npx @bloomui-react/cli add button switch avatar card tableOfContents", type: "command" },
+  {
+    text: "npx @bloomui-react/cli add button switch avatar card tableOfContents",
+    type: "command",
+  },
   { text: "Fetching component definitions from registry...", type: "info" },
   { text: "Created components/ui/button/button.tsx", type: "success" },
   { text: "Created components/ui/switch/switch.tsx", type: "success" },
   { text: "Created components/ui/avatar/avatar.tsx", type: "success" },
   { text: "Created components/ui/card/card.tsx", type: "success" },
-  { text: "Created components/ui/tableOfContents/tableOfContents.tsx", type: "success" },
+  {
+    text: "Created components/ui/tableOfContents/tableOfContents.tsx",
+    type: "success",
+  },
   {
     text: "All components added directly into your codebase!",
     type: "success",
   },
 ];
 
+const terminalAiLines: TerminalLine[] = [
+  { text: "npx @bloomui-react/cli setup-ai", type: "command" },
+  {
+    text: "? Select the AI assistants you use: Antigravity, Cursor",
+    type: "info",
+  },
+  { text: "Generating AI context rules...", type: "info" },
+  { text: "Created AGENTS.md (for Antigravity)", type: "success" },
+  { text: "Created .cursorrules (for Cursor)", type: "success" },
+  { text: "AI rules files generated successfully!", type: "success" },
+];
+
 const terminalNpmLines: TerminalLine[] = [
   { text: "npm install @bloomui-react/components", type: "command" },
-  { text: "Installed @bloomui-react/components v0.1.0 (ESM & CJS bundles)", type: "success" },
+  {
+    text: "Installed @bloomui-react/components v0.1.0 (ESM & CJS bundles)",
+    type: "success",
+  },
 ];
 
 export default function InstallationPage() {
@@ -54,7 +75,8 @@ export default function InstallationPage() {
                   CLI — Full Source Code Ownership
                 </h2>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                  Download raw React component code directly into your repository.
+                  Download raw React component code directly into your
+                  repository.
                 </p>
               </div>
             </div>
@@ -69,7 +91,8 @@ export default function InstallationPage() {
                 1. Initialize Bloom UI
               </h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                Run the initialization command in your project root to set up design system tokens and helper utilities.
+                Run the initialization command in your project root to set up
+                design system tokens and helper utilities.
               </p>
               <Terminal variant="mac" lines={terminalInitLines} />
             </div>
@@ -82,6 +105,19 @@ export default function InstallationPage() {
                 Add any of our 95 components directly to your project codebase.
               </p>
               <Terminal variant="mac" lines={terminalAddLines} />
+            </div>
+
+            <div className="space-y-2 pt-2">
+              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                3. Configure AI Assistant Rules (Optional)
+              </h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Generate dynamic context files for AI Coding Tools (Antigravity,
+                Cursor, Windsurf, Copilot, or llms.txt). The generated rules
+                list all components, exact props, and path imports customized to
+                your project.
+              </p>
+              <Terminal variant="mac" lines={terminalAiLines} />
             </div>
           </div>
         </div>
@@ -122,7 +158,8 @@ export default function InstallationPage() {
                 2. Import Components
               </h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                Import any component directly from <code className="text-sky-500 font-mono">@bloomui/react</code>:
+                Import any component directly from{" "}
+                <code className="text-sky-500 font-mono">@bloomui/react</code>:
               </p>
               <PublicCodeBlock
                 variant="mac"
