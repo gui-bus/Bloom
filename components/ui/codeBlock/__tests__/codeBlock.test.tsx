@@ -30,11 +30,7 @@ describe("CodeBlock Component", () => {
     });
 
     render(
-      <CodeBlock
-        code="console.log('test');"
-        filename="test.ts"
-        showCopy
-      />,
+      <CodeBlock code="console.log('test');" filename="test.ts" showCopy />,
     );
 
     const copyBtn = screen.getByRole("button", { name: /copy/i });
