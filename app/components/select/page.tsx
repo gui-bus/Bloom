@@ -268,8 +268,6 @@ export default function SelectComponentPage() {
         ]}
       />
 
-
-
       <DocsComponent
         title="Legacy Compositional Syntax"
         description="Full backward compatibility with Radix UI Select primitive trigger and item components."

@@ -15,6 +15,24 @@ import {
 import { comboboxCode } from "@/components/ui/combobox/combobox.code";
 import { Separator } from "@/components/ui/separator/separator";
 
+function DefaultDemo() {
+  const [value, setValue] = React.useState("react");
+  return (
+    <div className="w-full max-w-sm">
+      <Combobox
+        label="Select Framework"
+        options={[
+          { value: "react", label: "React" },
+          { value: "vue", label: "Vue" },
+          { value: "angular", label: "Angular" },
+        ]}
+        value={value}
+        onValueChange={setValue}
+      />
+    </div>
+  );
+}
+
 const groupedTechStack: ComboboxOption[] = [
   {
     value: "react",
@@ -244,6 +262,24 @@ export default function ComboboxComponentPage() {
           "Virtualized",
           "Combobox",
         ]}
+      />
+
+      <DocsComponent
+        title="Default"
+        description="Standard autocomplete single-select combobox."
+        preview={<DefaultDemo />}
+        code={`const [value, setValue] = React.useState("react");
+
+<Combobox
+  label="Select Framework"
+  options={[
+    { value: "react", label: "React" },
+    { value: "vue", label: "Vue" },
+    { value: "angular", label: "Angular" }
+  ]}
+  value={value}
+  onValueChange={setValue}
+/>`}
       />
 
       <DocsComponent

@@ -13,7 +13,8 @@
       "!.next",
       "!dist",
       "!build",
-      "!packages/cli/dist"
+      "!packages/cli/dist",
+      "!public"
     ]
   },
   "css": {
