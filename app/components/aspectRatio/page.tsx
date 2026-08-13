@@ -38,7 +38,7 @@ export default function AspectRatioPage() {
       />
 
       <DocsComponent
-        title="Preset Ratios (preset)"
+        title="Preset Ratios"
         description="Use predefined ratio aliases ('video', 'square', 'golden', 'cinema', 'portrait', 'ultrawide')."
         preview={
           <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -91,7 +91,7 @@ export default function AspectRatioPage() {
       />
 
       <DocsComponent
-        title="Loading Skeleton Placeholder (isLoading)"
+        title="Loading Skeleton Placeholder"
         description="Display a pulsing skeleton container while high-resolution media is loading."
         preview={
           <div className="w-full max-w-md">

@@ -138,7 +138,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
           );
 
           if (showTooltip) {
-            const label = child.props.title || child.props.alt || "User";
+            const label = child.props.title || "User";
             return (
               <Tooltip key={index}>
                 <TooltipTrigger asChild>

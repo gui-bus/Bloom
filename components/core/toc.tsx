@@ -21,6 +21,9 @@ export function TableOfContents() {
   const [activeId, setActiveId] = React.useState<string>(sectionParam || "");
 
   React.useEffect(() => {
+    setItems([]);
+    setActiveId("");
+
     const timer = setTimeout(() => {
       const sections = Array.from(
         document.querySelectorAll<HTMLElement>("section[id]"),
@@ -45,7 +48,7 @@ export function TableOfContents() {
     }, 150);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [_pathname]);
 
   React.useEffect(() => {
     if (items.length === 0) return;

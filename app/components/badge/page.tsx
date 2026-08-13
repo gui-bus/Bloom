@@ -11,6 +11,7 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Badge } from "@/components/ui/badge/badge";
 import { badgeCode } from "@/components/ui/badge/badge.code";
 import { Separator } from "@/components/ui/separator/separator";
+import { toast } from "@/components/ui/toast/toast";
 
 export default function BadgeComponentPage() {
   return (
@@ -84,194 +85,59 @@ export default function BadgeComponentPage() {
 
       <DocsComponent
         title="Colors"
-        description="Semantic color scale for the badge. Stacked vertically for clear visual comparison."
+        description="Semantic color scale for the badge. Each color is shown across all six visual variants for clear comparison."
         preview={
           <div className="w-full flex flex-col gap-4">
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="default"
-              </span>
-              <div className="flex flex-wrap gap-2">
-                <Badge color="default" variant="flat">
-                  Flat
-                </Badge>
-                <Badge color="default" variant="bordered">
-                  Bordered
-                </Badge>
-                <Badge color="default" variant="default">
-                  Solid
-                </Badge>
-                <Badge color="default" variant="shadow">
-                  Shadow
-                </Badge>
+            {(
+              [
+                "default",
+                "primary",
+                "secondary",
+                "accent",
+                "success",
+                "warning",
+                "danger",
+              ] as const
+            ).map((color) => (
+              <div key={color}>
+                <span className="text-xs font-mono text-muted-foreground block mb-2">
+                  color="{color}"
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  <Badge color={color} variant="flat">
+                    Flat
+                  </Badge>
+                  <Badge color={color} variant="bordered">
+                    Bordered
+                  </Badge>
+                  <Badge color={color} variant="default">
+                    Solid
+                  </Badge>
+                  <Badge color={color} variant="ghost">
+                    Ghost
+                  </Badge>
+                  <Badge color={color} variant="shadow">
+                    Shadow
+                  </Badge>
+                  <Badge color={color} variant="dot">
+                    Dot
+                  </Badge>
+                </div>
               </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="primary"
-              </span>
-              <div className="flex flex-wrap gap-2">
-                <Badge color="primary" variant="flat">
-                  Flat
-                </Badge>
-                <Badge color="primary" variant="bordered">
-                  Bordered
-                </Badge>
-                <Badge color="primary" variant="default">
-                  Solid
-                </Badge>
-                <Badge color="primary" variant="shadow">
-                  Shadow
-                </Badge>
-              </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="secondary"
-              </span>
-              <div className="flex flex-wrap gap-2">
-                <Badge color="secondary" variant="flat">
-                  Flat
-                </Badge>
-                <Badge color="secondary" variant="bordered">
-                  Bordered
-                </Badge>
-                <Badge color="secondary" variant="default">
-                  Solid
-                </Badge>
-                <Badge color="secondary" variant="shadow">
-                  Shadow
-                </Badge>
-              </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="accent"
-              </span>
-              <div className="flex flex-wrap gap-2">
-                <Badge color="accent" variant="flat">
-                  Flat
-                </Badge>
-                <Badge color="accent" variant="bordered">
-                  Bordered
-                </Badge>
-                <Badge color="accent" variant="default">
-                  Solid
-                </Badge>
-                <Badge color="accent" variant="shadow">
-                  Shadow
-                </Badge>
-              </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="success"
-              </span>
-              <div className="flex flex-wrap gap-2">
-                <Badge color="success" variant="flat">
-                  Flat
-                </Badge>
-                <Badge color="success" variant="bordered">
-                  Bordered
-                </Badge>
-                <Badge color="success" variant="default">
-                  Solid
-                </Badge>
-                <Badge color="success" variant="shadow">
-                  Shadow
-                </Badge>
-              </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="warning"
-              </span>
-              <div className="flex flex-wrap gap-2">
-                <Badge color="warning" variant="flat">
-                  Flat
-                </Badge>
-                <Badge color="warning" variant="bordered">
-                  Bordered
-                </Badge>
-                <Badge color="warning" variant="default">
-                  Solid
-                </Badge>
-                <Badge color="warning" variant="shadow">
-                  Shadow
-                </Badge>
-              </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="danger"
-              </span>
-              <div className="flex flex-wrap gap-2">
-                <Badge color="danger" variant="flat">
-                  Flat
-                </Badge>
-                <Badge color="danger" variant="bordered">
-                  Bordered
-                </Badge>
-                <Badge color="danger" variant="default">
-                  Solid
-                </Badge>
-                <Badge color="danger" variant="shadow">
-                  Shadow
-                </Badge>
-              </div>
-            </div>
+            ))}
           </div>
         }
         code={`<div className="space-y-4">
   <Badge color="primary" variant="flat">Flat</Badge>
-  <Badge color="success" variant="bordered">Bordered</Badge>
-  <Badge color="danger" variant="default">Solid</Badge>
+  <Badge color="primary" variant="bordered">Bordered</Badge>
+  <Badge color="primary" variant="default">Solid</Badge>
+  <Badge color="primary" variant="ghost">Ghost</Badge>
+  <Badge color="primary" variant="shadow">Shadow</Badge>
+  <Badge color="primary" variant="dot">Dot</Badge>
 </div>`}
         props={[
           "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
         ]}
-      />
-
-      <DocsComponent
-        title="Pressable (isPressable)"
-        description="Add 'isPressable' to make badges interactive with scale micro-animations and active press feedback."
-        preview={
-          <div className="w-full flex flex-wrap items-center gap-3">
-            <Badge
-              isPressable
-              color="primary"
-              onClick={() => alert("Clicked Primary Badge")}
-            >
-              Clickable Primary
-            </Badge>
-            <Badge
-              isPressable
-              color="success"
-              variant="bordered"
-              onClick={() => alert("Clicked Success Badge")}
-            >
-              Clickable Success
-            </Badge>
-            <Badge
-              isPressable
-              color="danger"
-              variant="flat"
-              onClick={() => alert("Clicked Danger Badge")}
-            >
-              Clickable Danger
-            </Badge>
-          </div>
-        }
-        code={`<Badge isPressable color="primary" onClick={() => alert("Clicked")}>
-  Clickable Primary
-</Badge>`}
-        props={["isPressable: boolean"]}
       />
 
       <DocsComponent
@@ -334,6 +200,54 @@ export default function BadgeComponentPage() {
         props={[
           "radius: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'",
         ]}
+      />
+
+      <DocsComponent
+        title="Pressable"
+        description="Add 'isPressable' to make badges interactive with scale micro-animations and active press feedback."
+        preview={
+          <div className="w-full flex flex-wrap items-center gap-3">
+            <Badge
+              isPressable
+              color="primary"
+              onClick={() =>
+                toast.success("Clicked Primary Badge", {
+                  description: "The primary badge was pressed.",
+                })
+              }
+            >
+              Clickable Primary
+            </Badge>
+            <Badge
+              isPressable
+              color="success"
+              variant="bordered"
+              onClick={() =>
+                toast.success("Clicked Success Badge", {
+                  description: "The success badge was pressed.",
+                })
+              }
+            >
+              Clickable Success
+            </Badge>
+            <Badge
+              isPressable
+              color="danger"
+              variant="flat"
+              onClick={() =>
+                toast.error("Clicked Danger Badge", {
+                  description: "The danger badge was pressed.",
+                })
+              }
+            >
+              Clickable Danger
+            </Badge>
+          </div>
+        }
+        code={`<Badge isPressable color="primary" onClick={() => toast.success("Clicked")}>
+  Clickable Primary
+</Badge>`}
+        props={["isPressable: boolean"]}
       />
 
       <DocsComponent
@@ -436,7 +350,7 @@ export default function BadgeComponentPage() {
       />
 
       <DocsComponent
-        title="Live Pulsing Status (isPulsing)"
+        title="Live Pulsing Status"
         description="Use 'isPulsing' to render a live animated pulse ring effect for real-time status indicators (e.g. 'LIVE', 'Recording')."
         preview={
           <div className="w-full flex flex-wrap items-center gap-4">
@@ -465,7 +379,7 @@ export default function BadgeComponentPage() {
       />
 
       <DocsComponent
-        title="Removable Tags (isRemovable & onRemove)"
+        title="Removable Tags"
         description="Render a dismiss close button inside the badge using 'isRemovable' and 'onRemove'."
         preview={
           <div className="w-full flex flex-wrap items-center gap-2">
@@ -473,7 +387,9 @@ export default function BadgeComponentPage() {
               color="primary"
               variant="flat"
               isRemovable
-              onRemove={() => alert("Tag removed")}
+              onRemove={() =>
+                toast("Tag removed", { description: "React tag was dismissed." })
+              }
             >
               React
             </Badge>
@@ -481,7 +397,11 @@ export default function BadgeComponentPage() {
               color="secondary"
               variant="flat"
               isRemovable
-              onRemove={() => alert("Tag removed")}
+              onRemove={() =>
+                toast("Tag removed", {
+                  description: "Next.js tag was dismissed.",
+                })
+              }
             >
               Next.js
             </Badge>
@@ -489,7 +409,11 @@ export default function BadgeComponentPage() {
               color="accent"
               variant="flat"
               isRemovable
-              onRemove={() => alert("Tag removed")}
+              onRemove={() =>
+                toast("Tag removed", {
+                  description: "Tailwind tag was dismissed.",
+                })
+              }
             >
               Tailwind
             </Badge>
