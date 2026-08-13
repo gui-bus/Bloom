@@ -50,7 +50,7 @@ describe("AlertDialog Component", () => {
   it("supports color props on AlertDialogAction", () => {
     const colors = [
       "danger",
-      "primary",
+      "info",
       "warning",
       "success",
       "default",
