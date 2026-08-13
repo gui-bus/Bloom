@@ -1,8 +1,6 @@
 {
   "name": "carousel",
-  "dependencies": [
-    "embla-carousel-react"
-  ],
+  "dependencies": ["embla-carousel-react"],
   "files": [
     {
       "name": "carousel.tsx",
