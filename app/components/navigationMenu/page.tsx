@@ -1,7 +1,6 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -175,7 +174,7 @@ export default function NavigationMenuComponentPage() {
                             className="size-6 text-sky-500 mb-2"
                           />
                           <div className="mb-1 text-sm font-bold text-foreground">
-                            Zoe UI Library
+                            Bloom Library
                           </div>
                           <p className="text-xs text-muted-foreground">
                             Beautifully designed neutral components built with
@@ -363,8 +362,6 @@ export default function NavigationMenuComponentPage() {
           </div>
         }
       />
-
-      <AccessibilityCard />
 
       <DocsPagination />
     </div>

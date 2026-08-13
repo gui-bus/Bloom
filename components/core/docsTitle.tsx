@@ -14,7 +14,12 @@ const DocsTitle = ({ title, description }: DocsTitleProps) => {
 
   React.useEffect(() => {
     if (title) {
-      document.title = `Bloom UI — ${title} | React Component Library`;
+      const updateTitle = () => {
+        document.title = `Bloom UI — ${title} | React Component Library`;
+      };
+      updateTitle();
+      const timeoutId = setTimeout(updateTitle, 100);
+      return () => clearTimeout(timeoutId);
     }
   }, [title]);
 

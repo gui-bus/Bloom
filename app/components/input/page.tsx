@@ -2,7 +2,6 @@
 
 import { Icon } from "@iconify/react";
 import * as React from "react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -233,7 +232,7 @@ export default function InputComponentPage() {
               showCharacterCount
               maxLength={20}
               label="Bio (Max 20 chars)"
-              defaultValue="Hello world Zoe UI"
+              defaultValue="Hello world Bloom"
             />
             <div className="space-y-2">
               <Input
@@ -253,7 +252,7 @@ export default function InputComponentPage() {
             </div>
           </div>
         }
-        code={`<Input showCharacterCount maxLength={20} label="Bio" defaultValue="Hello world Zoe UI" />
+        code={`<Input showCharacterCount maxLength={20} label="Bio" defaultValue="Hello world Bloom" />
 <Input debouncedOnChange={(val) => console.log(val)} debounceTimeout={400} label="Debounced Search" />`}
         props={[
           "showCharacterCount: boolean",
@@ -262,8 +261,6 @@ export default function InputComponentPage() {
           "debounceTimeout: number",
         ]}
       />
-
-      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

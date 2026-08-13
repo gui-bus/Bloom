@@ -218,3 +218,30 @@
 .animate-shimmer {
   animation: shimmer 1.8s infinite;
 }
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%) scaleX(0.2);
+  }
+  50% {
+    transform: translateX(-10%) scaleX(0.8);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.2);
+  }
+}
+.animate-progress-indeterminate {
+  animation: progress-indeterminate 1.5s infinite linear;
+}
+
+@keyframes stripe-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1rem 0;
+  }
+}
+.animate-stripe-move {
+  animation: stripe-move 1s linear infinite;
+}

@@ -1,6 +1,5 @@
 "use client";
 
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -120,8 +119,6 @@ export default function JsonTreeViewerPage() {
           </div>
         }
       />
-
-      <AccessibilityCard />
       <DocsPagination />
     </div>
   );

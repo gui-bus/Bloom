@@ -1,12 +1,17 @@
 "use client";
 
-import * as React from "react";
+import type * as React from "react";
 import {
+  Controller,
   type FieldValues,
+  FormProvider,
   type SubmitHandler,
   type UseFormProps,
   type UseFormReturn,
+  useFieldArray,
   useForm,
+  useFormContext,
+  useWatch,
 } from "react-hook-form";
 import { cn } from "@/lib/utils";
 
@@ -15,39 +20,19 @@ export interface FormProps<TFieldValues extends FieldValues = FieldValues>
   form: UseFormReturn<TFieldValues>;
   onSubmit: SubmitHandler<TFieldValues>;
   scrollToFirstError?: boolean;
-  confirmUnsavedChanges?: boolean;
-  showResetButton?: boolean;
-  onResetCustom?: () => void;
 }
 
 export function Form<TFieldValues extends FieldValues = FieldValues>({
   form,
   onSubmit,
   scrollToFirstError = true,
-  confirmUnsavedChanges = false,
-  showResetButton = false,
-  onResetCustom,
   children,
   className,
   ...props
 }: FormProps<TFieldValues>) {
-  React.useEffect(() => {
-    if (!confirmUnsavedChanges) return;
-
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (form.formState.isDirty) {
-        e.preventDefault();
-        e.returnValue = "";
-      }
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, [confirmUnsavedChanges, form.formState.isDirty]);
-
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const _result = await form.handleSubmit(onSubmit)(e);
+    await form.handleSubmit(onSubmit)(e);
 
     if (scrollToFirstError && Object.keys(form.formState.errors).length > 0) {
       setTimeout(() => {
@@ -63,40 +48,25 @@ export function Form<TFieldValues extends FieldValues = FieldValues>({
     }
   };
 
-  const handleReset = () => {
-    form.reset();
-    onResetCustom?.();
-  };
-
   return (
-    <form
-      onSubmit={handleFormSubmit}
-      className={cn("space-y-4 w-full relative", className)}
-      {...props}
-    >
-      {form.formState.isDirty && confirmUnsavedChanges && (
-        <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-semibold flex items-center justify-between">
-          <span>Unsaved changes detected in form.</span>
-        </div>
-      )}
-
-      {children}
-
-      {showResetButton && (
-        <div className="pt-2 flex justify-end">
-          <button
-            type="button"
-            onClick={handleReset}
-            disabled={!form.formState.isDirty}
-            className="px-3 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-40 transition-colors"
-          >
-            Reset Default Values
-          </button>
-        </div>
-      )}
-    </form>
+    <FormProvider {...form}>
+      <form
+        onSubmit={handleFormSubmit}
+        className={cn("space-y-4 w-full relative", className)}
+        {...props}
+      >
+        {children}
+      </form>
+    </FormProvider>
   );
 }
 
 export type { SubmitHandler, UseFormProps, UseFormReturn };
-export { useForm };
+export {
+  Controller,
+  FormProvider,
+  useFieldArray,
+  useForm,
+  useFormContext,
+  useWatch,
+};

@@ -1,6 +1,5 @@
 "use client";
 
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -61,6 +60,82 @@ export default function FileUploadComponentPage() {
   maxSizeMB={25}
 />`}
         props={["simulateProgress: boolean", "showPreviews: boolean"]}
+      />
+
+      <DocsComponent
+        title="Variants"
+        description="Choose between default, bordered, flat, filled, glow, glassmorphism, gradient-border, and underlined styles."
+        preview={
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
+            <FileUpload
+              label="Default"
+              variant="default"
+              description="Default style"
+              simulateProgress={false}
+              showPreviews={false}
+            />
+            <FileUpload
+              label="Bordered"
+              variant="bordered"
+              description="Bordered style"
+              simulateProgress={false}
+              showPreviews={false}
+            />
+            <FileUpload
+              label="Flat"
+              variant="flat"
+              description="Flat style"
+              simulateProgress={false}
+              showPreviews={false}
+            />
+            <FileUpload
+              label="Filled"
+              variant="filled"
+              description="Filled style"
+              simulateProgress={false}
+              showPreviews={false}
+            />
+            <FileUpload
+              label="Glow"
+              variant="glow"
+              description="Glow style"
+              simulateProgress={false}
+              showPreviews={false}
+            />
+            <FileUpload
+              label="Glassmorphism"
+              variant="glassmorphism"
+              description="Glassmorphism style"
+              simulateProgress={false}
+              showPreviews={false}
+            />
+            <FileUpload
+              label="Gradient Border"
+              variant="gradient-border"
+              description="Gradient border style"
+              simulateProgress={false}
+              showPreviews={false}
+            />
+            <FileUpload
+              label="Underlined"
+              variant="underlined"
+              description="Underlined style"
+              simulateProgress={false}
+              showPreviews={false}
+            />
+          </div>
+        }
+        code={`<FileUpload variant="default" label="Default" />
+<FileUpload variant="bordered" label="Bordered" />
+<FileUpload variant="flat" label="Flat" />
+<FileUpload variant="filled" label="Filled" />
+<FileUpload variant="glow" label="Glow" />
+<FileUpload variant="glassmorphism" label="Glassmorphism" />
+<FileUpload variant="gradient-border" label="Gradient Border" />
+<FileUpload variant="underlined" label="Underlined" />`}
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'filled' | 'glow' | 'glassmorphism' | 'gradient-border' | 'underlined'",
+        ]}
       />
 
       <DocsComponent
@@ -143,6 +218,28 @@ export default function FileUploadComponentPage() {
       />
 
       <DocsComponent
+        title="File Size & Type Validation"
+        description="Limit allowed uploads by specifying multiple comma-separated format extensions (using 'accept' like '.pdf,.docx,.xlsx') and maximum file size (using 'maxSizeMB'). Files violating these constraints will display immediate validation error status cards."
+        preview={
+          <div className="max-w-md w-full">
+            <FileUpload
+              label="Documents & Reports"
+              accept=".pdf,.docx,.xlsx"
+              maxSizeMB={5}
+              description="Only PDF, DOCX or XLSX files up to 5MB are accepted."
+            />
+          </div>
+        }
+        code={`<FileUpload
+  label="Documents & Reports"
+  accept=".pdf,.docx,.xlsx"
+  maxSizeMB={5}
+  description="Only PDF, DOCX or XLSX files up to 5MB are accepted."
+/>`}
+        props={["accept: string", "maxSizeMB: number"]}
+      />
+
+      <DocsComponent
         title="Resolution & Aspect Ratio Validation Rules"
         description="Pass 'validationRules' to enforce minimum/maximum pixel dimensions or required aspect ratios (e.g. 1:1 square, 16:9 widescreen)."
         preview={
@@ -170,8 +267,6 @@ export default function FileUploadComponentPage() {
 />`}
         props={["validationRules: FileValidationRules"]}
       />
-
-      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

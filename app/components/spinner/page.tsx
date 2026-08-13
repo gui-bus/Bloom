@@ -1,6 +1,5 @@
 "use client";
 
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -110,8 +109,6 @@ export default function SpinnerComponentPage() {
 <Spinner size="xl" />`}
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
-
-      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

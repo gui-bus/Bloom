@@ -1,7 +1,6 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -75,89 +74,97 @@ export default function ListComponentPage() {
       />
 
       <DocsComponent
-        title="Bordered Variant"
-        description="Encapsulated card list container with item dividers using variant='bordered'."
+        title="Variants"
+        description="List supports multiple layouts: bordered cards with internal separators, or separated floating items."
         preview={
-          <div className="max-w-md w-full">
-            <List variant="bordered">
-              <ListItem
-                startContent={
-                  <Icon icon="hugeicons:mail-01" className="size-4" />
-                }
-                endContent={<Badge size="sm">12 Unread</Badge>}
-                isHoverable
-              >
-                Inbox Messages
-              </ListItem>
-              <ListItem
-                startContent={<Icon icon="hugeicons:star" className="size-4" />}
-                endContent={
-                  <span className="text-xs text-muted-foreground">3</span>
-                }
-                isHoverable
-              >
-                Starred Conversations
-              </ListItem>
+          <div className="max-w-md w-full space-y-6">
+            <div className="space-y-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                Bordered
+              </span>
+              <List variant="bordered">
+                <ListItem
+                  startContent={
+                    <Icon icon="hugeicons:mail-01" className="size-4" />
+                  }
+                  endContent={<Badge size="sm">12 Unread</Badge>}
+                  isHoverable
+                >
+                  Inbox Messages
+                </ListItem>
+                <ListItem
+                  startContent={
+                    <Icon icon="hugeicons:star" className="size-4" />
+                  }
+                  endContent={
+                    <span className="text-xs text-zinc-400 dark:text-zinc-500">
+                      3
+                    </span>
+                  }
+                  isHoverable
+                >
+                  Starred Conversations
+                </ListItem>
+                <ListItem
+                  startContent={
+                    <Icon icon="hugeicons:delete-02" className="size-4" />
+                  }
+                  isHoverable
+                >
+                  Trash & Archived Files
+                </ListItem>
+              </List>
+            </div>
 
-              <ListItem
-                startContent={
-                  <Icon icon="hugeicons:delete-02" className="size-4" />
-                }
-                isHoverable
-              >
-                Trash & Archived Files
-              </ListItem>
-            </List>
+            <div className="space-y-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                Separated
+              </span>
+              <List variant="separated">
+                <ListItem
+                  className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 rounded-xl"
+                  startContent={
+                    <Icon
+                      icon="hugeicons:checkmark-circle-02"
+                      className="size-4 text-emerald-500"
+                    />
+                  }
+                  isActive
+                  isHoverable
+                >
+                  Active Billing Plan — Pro Team
+                </ListItem>
+                <ListItem
+                  className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 rounded-xl"
+                  startContent={
+                    <Icon
+                      icon="hugeicons:alert-circle"
+                      className="size-4 text-amber-500"
+                    />
+                  }
+                  isHoverable
+                >
+                  Payment Method Expiring Soon
+                </ListItem>
+              </List>
+            </div>
           </div>
         }
-        code={`<List variant="bordered">
-  <ListItem startContent={<Icon icon="..." />} endContent={<Badge>12</Badge>} isHoverable>
+        code={`// Bordered Variant
+<List variant="bordered">
+  <ListItem startContent={<Icon icon="hugeicons:mail-01" />} isHoverable>
     Inbox Messages
+  </ListItem>
+</List>
+
+// Separated Variant
+<List variant="separated">
+  <ListItem className="border rounded-xl" isHoverable>
+    Floating Row Item
   </ListItem>
 </List>`}
         props={["variant: 'default' | 'bordered' | 'separated'"]}
       />
-
-      <DocsComponent
-        title="Separated Cards Variant"
-        description="Renders list items as decoupled floating card rows with variant='separated'."
-        preview={
-          <div className="max-w-md w-full">
-            <List variant="separated">
-              <ListItem
-                className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-xl"
-                startContent={
-                  <Icon
-                    icon="hugeicons:checkmark-circle-02"
-                    className="size-4 text-emerald-500"
-                  />
-                }
-                isActive
-                isHoverable
-              >
-                Active Billing Plan — Pro Team
-              </ListItem>
-              <ListItem
-                className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-xl"
-                startContent={
-                  <Icon
-                    icon="hugeicons:alert-circle"
-                    className="size-4 text-amber-500"
-                  />
-                }
-                isHoverable
-              >
-                Payment Method Expiring Soon
-              </ListItem>
-            </List>
-          </div>
-        }
-        code={`<List variant="separated">
-  <ListItem isActive isHoverable>Active Billing Plan</ListItem>
-</List>`}
-      />
-
-      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
@@ -165,81 +172,84 @@ export default function ListComponentPage() {
         title="Props — List & ListItem"
         description="Supported properties for List and ListItem components."
         preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
+          <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
+            <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Prop
                   </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Type
                   </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Default
                   </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Description
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    variant (List)
+              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                    variant
                   </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
                     'default' | 'bordered' | 'separated'
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Container layout style variant.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    startContent / endContent
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    ReactNode
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Leading or trailing icons or badges inside ListItem.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">isActive</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    boolean
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Highlights item as selected/active.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    isHoverable
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    boolean
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Enables hover background highlight.
+                  <td className="px-4 py-3 text-zinc-400">'default'</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Style variant of the list layout container.
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">
-                    isDisabled
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                    startContent
                   </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    ReactNode
+                  </td>
+                  <td className="px-4 py-3 text-zinc-400">—</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Element (icon, avatar) rendered on the left of list items.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                    endContent
+                  </td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    ReactNode
+                  </td>
+                  <td className="px-4 py-3 text-zinc-400">—</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Element (badge, indicator) rendered on the right of list
+                    items.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                    isActive
+                  </td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
                     boolean
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Disables item interactions.
+                  <td className="px-4 py-3 text-zinc-400">false</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Marks item as active with colored background.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                    isHoverable
+                  </td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    boolean
+                  </td>
+                  <td className="px-4 py-3 text-zinc-400">false</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Enables hover style feedback and pointer cursor.
                   </td>
                 </tr>
               </tbody>

@@ -2,7 +2,6 @@
 
 import { Icon } from "@iconify/react";
 import * as React from "react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -296,7 +295,7 @@ export default function DrawerComponentPage() {
       />
 
       <DocsComponent
-        title="Drawer Sizes (Shadcn Scale)"
+        title="Drawer Sizes"
         description="Scale drawer width or height using the 'size' prop: 'sm', 'md', 'lg', 'xl', or 'full'."
         preview={
           <div className="flex flex-wrap gap-3 w-full">
@@ -393,7 +392,7 @@ export default function DrawerComponentPage() {
       />
 
       <DocsComponent
-        title="Swipe-to-Close Drag Handle (Vaul-style Bottom Sheet)"
+        title="Swipe-to-Close Drag Handle"
         description="Features touch gesture listeners (onTouchStart, onTouchMove, onTouchEnd) allowing mobile users to drag down the handle or sheet content (>100px threshold) to dismiss the drawer smoothly."
         preview={
           <div className="w-full">
@@ -520,8 +519,6 @@ export default function DrawerComponentPage() {
           </div>
         }
       />
-
-      <AccessibilityCard />
 
       <DocsPagination />
     </div>

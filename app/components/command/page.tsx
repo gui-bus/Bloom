@@ -1,7 +1,6 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -198,8 +197,6 @@ export default function CommandComponentPage() {
           </div>
         }
       />
-
-      <AccessibilityCard />
 
       <DocsPagination />
     </div>

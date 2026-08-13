@@ -2,7 +2,6 @@
 
 import { Icon } from "@iconify/react";
 import * as React from "react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -245,20 +244,6 @@ export default function TreeViewPage() {
         props={["onLoadChildren: (id: string) => Promise<TreeDataItem[]>"]}
       />
 
-      <Separator label={<span className="px-2">Accessibility</span>} gradient />
-
-      <AccessibilityCard
-        shortcuts={[
-          {
-            key: "Enter / Space",
-            description: "Select and toggle expand/collapse of focused node",
-          },
-          {
-            key: "Tab",
-            description: "Move focus to the next focusable element",
-          },
-        ]}
-      />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -89,20 +88,6 @@ export default function RichTextEditorPage() {
 />`}
       />
 
-      <Separator label={<span className="px-2">Accessibility</span>} gradient />
-
-      <AccessibilityCard
-        shortcuts={[
-          { key: "Ctrl/⌘ + B", description: "Toggle bold formatting" },
-          { key: "Ctrl/⌘ + I", description: "Toggle italic formatting" },
-          { key: "Ctrl/⌘ + Shift + X", description: "Toggle strikethrough" },
-          { key: "Ctrl/⌘ + Shift + 7", description: "Toggle ordered list" },
-          { key: "Ctrl/⌘ + Shift + 8", description: "Toggle bullet list" },
-          { key: "Ctrl/⌘ + Shift + B", description: "Toggle blockquote" },
-          { key: "Tab", description: "Indent list item" },
-          { key: "Shift + Tab", description: "Outdent list item" },
-        ]}
-      />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

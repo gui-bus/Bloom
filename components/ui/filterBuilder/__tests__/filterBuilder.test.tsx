@@ -22,7 +22,8 @@ describe("FilterBuilder Component", () => {
         onChange={handleChange}
       />,
     );
-    expect(screen.getByDisplayValue("Name")).toBeInTheDocument();
+    expect(screen.getByText("Name")).toBeInTheDocument();
+    expect(screen.getByText("Equals")).toBeInTheDocument();
     expect(screen.getByDisplayValue("Alice")).toBeInTheDocument();
   });
 

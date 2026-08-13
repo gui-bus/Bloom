@@ -1,6 +1,5 @@
 "use client";
 
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -281,8 +280,6 @@ toast.loading("Compiling Code...", { spinnerVariant: "gradient" });`}
           "spinnerVariant: 'default' | 'dots' | 'bars' | 'pulse' | 'ring' | 'gradient'",
         ]}
       />
-
-      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

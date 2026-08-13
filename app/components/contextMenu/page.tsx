@@ -2,7 +2,6 @@
 
 import { Icon } from "@iconify/react";
 import * as React from "react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -95,6 +94,66 @@ export default function ContextMenuComponentPage() {
       />
 
       <DocsComponent
+        title="Default"
+        description="Standard context menu triggered on any HTML element via child nesting."
+        preview={
+          <div className="w-full">
+            <ContextMenu>
+              <ContextMenuTrigger className="flex h-36 w-full items-center justify-center rounded-2xl border-2 border-dashed border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs font-semibold text-zinc-500 dark:text-zinc-400 select-none cursor-pointer">
+                Right click inside this area
+              </ContextMenuTrigger>
+              <ContextMenuContent>
+                <ContextMenuItem>
+                  <Icon
+                    icon="hugeicons:arrow-left-01"
+                    className="size-4 mr-2"
+                  />
+                  <span>Back</span>
+                  <ContextMenuShortcut>Alt + Left</ContextMenuShortcut>
+                </ContextMenuItem>
+                <ContextMenuItem disabled>
+                  <Icon
+                    icon="hugeicons:arrow-right-01"
+                    className="size-4 mr-2"
+                  />
+                  <span>Forward</span>
+                  <ContextMenuShortcut>Alt + Right</ContextMenuShortcut>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                  <Icon icon="hugeicons:reload" className="size-4 mr-2" />
+                  <span>Reload</span>
+                  <ContextMenuShortcut>Ctrl + R</ContextMenuShortcut>
+                </ContextMenuItem>
+                <ContextMenuSeparator />
+                <ContextMenuItem>
+                  <Icon icon="hugeicons:bookmark" className="size-4 mr-2" />
+                  <span>Bookmark Page</span>
+                </ContextMenuItem>
+              </ContextMenuContent>
+            </ContextMenu>
+          </div>
+        }
+        code={`<ContextMenu>
+  <ContextMenuTrigger className="border-dashed">
+    Right click inside this area
+  </ContextMenuTrigger>
+  <ContextMenuContent>
+    <ContextMenuItem>
+      <span>Back</span>
+      <ContextMenuShortcut>Alt + Left</ContextMenuShortcut>
+    </ContextMenuItem>
+    <ContextMenuItem isDisabled>
+      <span>Forward</span>
+    </ContextMenuItem>
+    <ContextMenuItem>
+      <span>Reload</span>
+      <ContextMenuShortcut>Ctrl + R</ContextMenuShortcut>
+    </ContextMenuItem>
+  </ContextMenuContent>
+</ContextMenu>`}
+      />
+
+      <DocsComponent
         title="Custom Target Element Binding (ContextMenuTrigger target={...})"
         description="Bind the right-click context menu trigger to any standalone DOM element or ref using the 'target' prop on ContextMenuTrigger."
         preview={<TargetWrapperDemo />}
@@ -138,7 +197,7 @@ export default function ContextMenuComponentPage() {
                   </ContextMenuSubTrigger>
                   <ContextMenuSubContent>
                     <ContextMenuItem>Project Alpha</ContextMenuItem>
-                    <ContextMenuItem>ZoeUI Core</ContextMenuItem>
+                    <ContextMenuItem>Bloom Core</ContextMenuItem>
                     <ContextMenuSub>
                       <ContextMenuSubTrigger>
                         More Projects
@@ -366,8 +425,6 @@ export default function ContextMenuComponentPage() {
           </div>
         }
       />
-
-      <AccessibilityCard />
 
       <DocsPagination />
     </div>

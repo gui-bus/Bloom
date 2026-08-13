@@ -1,8 +1,54 @@
 "use client";
 
 import { Icon } from "@iconify/react";
+import { cva } from "class-variance-authority";
 import * as React from "react";
 import { cn } from "@/lib/utils";
+
+export const fileUploadDragVariants = cva(
+  "relative flex flex-col items-center justify-center p-8 border-2 border-dashed rounded-2xl transition-all duration-300 cursor-pointer select-none group",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-white dark:bg-zinc-950 border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30",
+        bordered:
+          "bg-transparent border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50/30 dark:hover:bg-zinc-900/10",
+        flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/70 dark:hover:bg-zinc-800",
+        underlined:
+          "bg-transparent border-t-0 border-x-0 border-b-2 border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50/10 rounded-none",
+        filled:
+          "bg-zinc-100 dark:bg-zinc-800/80 border-transparent hover:bg-zinc-200/50 dark:hover:bg-zinc-800/40",
+        glassmorphism:
+          "backdrop-blur-md bg-white/10 dark:bg-black/10 border-white/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-black/20 shadow-lg",
+        "gradient-border":
+          "bg-white dark:bg-zinc-950 border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30",
+        glow: "bg-white dark:bg-zinc-950 border-zinc-200 dark:border-zinc-800 shadow-xs hover:shadow-[0_0_12px_rgba(14,165,233,0.15)]",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
+
+const matchAcceptRule = (
+  fileName: string,
+  fileType: string,
+  accept: string,
+) => {
+  const rules = accept.split(",").map((r) => r.trim().toLowerCase());
+  return rules.some((rule) => {
+    if (rule.startsWith(".")) {
+      return fileName.toLowerCase().endsWith(rule);
+    }
+    if (rule.endsWith("/*")) {
+      const baseType = rule.replace("/*", "");
+      return fileType.toLowerCase().startsWith(baseType);
+    }
+    return fileType.toLowerCase() === rule;
+  });
+};
 
 export interface FileItemState {
   id: string;
@@ -35,6 +81,15 @@ export interface FileUploadProps {
   disabled?: boolean;
   showPreviews?: boolean;
   simulateProgress?: boolean;
+  variant?:
+    | "default"
+    | "bordered"
+    | "flat"
+    | "underlined"
+    | "filled"
+    | "glassmorphism"
+    | "gradient-border"
+    | "glow";
   className?: string;
 }
 
@@ -51,6 +106,7 @@ export function FileUpload({
   disabled = false,
   showPreviews = true,
   simulateProgress = true,
+  variant = "default",
   className,
 }: FileUploadProps) {
   const [dragActive, setDragActive] = React.useState(false);
@@ -62,7 +118,7 @@ export function FileUpload({
   const [cropZoom, setCropZoom] = React.useState<number>(1);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const validateImageDimensions = (file: File): Promise<string | null> => {
+  const _validateImageDimensions = (file: File): Promise<string | null> => {
     return new Promise((resolve) => {
       if (!validationRules || !file.type.startsWith("image/")) {
         resolve(null);
@@ -135,8 +191,10 @@ export function FileUpload({
 
         if (file.size > maxSizeMB * 1024 * 1024) {
           errorMessage = `File size exceeds ${maxSizeMB}MB limit.`;
+        } else if (accept && !matchAcceptRule(file.name, file.type, accept)) {
+          errorMessage = `Invalid file type. Allowed: ${accept}`;
         } else {
-          const valError = await validateImageDimensions(file);
+          const valError = await _validateImageDimensions(file);
           if (valError) errorMessage = valError;
         }
 
@@ -180,12 +238,13 @@ export function FileUpload({
     },
     [
       maxSizeMB,
+      accept,
       simulateProgress,
       multiple,
       fileItems,
       onFilesSelected,
       enableCrop,
-      validateImageDimensions,
+      _validateImageDimensions,
     ],
   );
 
@@ -318,10 +377,9 @@ export function FileUpload({
         onDrop={handleDrop}
         onClick={() => !disabled && inputRef.current?.click()}
         className={cn(
-          "relative flex flex-col items-center justify-center p-8 border-2 border-dashed rounded-2xl transition-all duration-300 cursor-pointer bg-zinc-50/50 dark:bg-zinc-900/50 hover:bg-zinc-100/60 dark:hover:bg-zinc-800/60 select-none group",
-          dragActive
-            ? "border-sky-500 bg-sky-500/10 dark:border-sky-400 dark:bg-sky-400/10 scale-[1.01]"
-            : "border-zinc-200 dark:border-zinc-800",
+          fileUploadDragVariants({ variant }),
+          dragActive &&
+            "border-sky-500 bg-sky-500/10 dark:border-sky-400 dark:bg-sky-400/10 scale-[1.01]",
           disabled && "opacity-50 cursor-not-allowed pointer-events-none",
         )}
       >

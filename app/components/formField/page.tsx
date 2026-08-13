@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -15,7 +14,7 @@ import { Separator } from "@/components/ui/separator/separator";
 
 function CharacterCounterDemo() {
   const [bio, setBio] = React.useState(
-    "Building modern UI components with ZoeUI.",
+    "Building modern UI components with Bloom.",
   );
   return (
     <div className="max-w-sm w-full space-y-4">
@@ -144,8 +143,6 @@ export default function FormFieldComponentPage() {
           "helperAlign: 'left' | 'right' | 'between'",
         ]}
       />
-
-      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

@@ -1,6 +1,5 @@
 "use client";
 
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -102,7 +101,7 @@ export default function TypographyComponentPage() {
         preview={
           <div className="max-w-md w-full p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
             <Typography clampLines={2} showExpandToggle variant="p">
-              ZoeUI provides a rich collection of modular, accessible components
+              Bloom provides a rich collection of modular, accessible components
               designed for modern web applications. Every component adheres
               strictly to dark/light neutral design tokens and provides smooth
               micro-animations, customizable variants, and comprehensive API
@@ -111,12 +110,10 @@ export default function TypographyComponentPage() {
           </div>
         }
         code={`<Typography clampLines={2} showExpandToggle variant="p">
-  ZoeUI provides a rich collection of modular, accessible components...
+  Bloom provides a rich collection of modular, accessible components...
 </Typography>`}
         props={["clampLines: number", "showExpandToggle: boolean"]}
       />
-
-      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
+import * as React from "react";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -11,12 +11,38 @@ import { Progress } from "@/components/ui/progress/progress";
 import { progressCode } from "@/components/ui/progress/progress.code";
 import { Separator } from "@/components/ui/separator/separator";
 
+function RealTimeSimulatedProgressDemo() {
+  const [value, setValue] = React.useState(0);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setValue((oldValue) => {
+        if (oldValue === 100) return 0;
+        return Math.min(100, oldValue + 1);
+      });
+    }, 100);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="max-w-md w-full">
+      <Progress
+        value={value}
+        showValueLabel
+        label="Downloading Assets..."
+        color="primary"
+      />
+    </div>
+  );
+}
+
 export default function ProgressComponentPage() {
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Progress"
-        description="Displays an indicator showing the completion progress of a task, typically displayed as a progress bar."
+        description="Clean progress bar indicator displaying the status of a task or dynamic operations."
       />
 
       <ImportSnippet
@@ -29,177 +55,97 @@ export default function ProgressComponentPage() {
         code={progressCode}
         componentName="progress.tsx"
         description="Core implementation of the Progress component."
-        tags={["React", "Radix UI", "Progress", "Feedback"]}
+        tags={["React", "Tailwind", "Progress", "Indicator"]}
       />
 
       <DocsComponent
         title="Default"
-        description="Standard progress bar."
+        description="Standard progress bar representing a completed percentage."
         preview={
           <div className="max-w-md w-full">
-            <Progress value={65} />
+            <Progress value={60} showValueLabel label="System Loading" />
           </div>
         }
-        code={`<Progress value={65} />`}
-      />
-
-      <DocsComponent
-        title="With Label & Percentage"
-        description="Display text header and percentage badge using 'label' and 'showValueLabel'."
-        preview={
-          <div className="max-w-md w-full">
-            <Progress
-              label="Downloading System Update..."
-              showValueLabel
-              value={82}
-            />
-          </div>
-        }
-        code={`<Progress label="Downloading System Update..." showValueLabel value={82} />`}
-        props={["label: string", "showValueLabel: boolean"]}
-      />
-
-      <DocsComponent
-        title="Sizes"
-        description="Bar height scale using the 'size' prop: 'sm', 'md', or 'lg'."
-        preview={
-          <div className="flex flex-col gap-4 max-w-md w-full">
-            <Progress size="sm" value={30} label="Small (sm)" showValueLabel />
-            <Progress size="md" value={60} label="Medium (md)" showValueLabel />
-            <Progress size="lg" value={90} label="Large (lg)" showValueLabel />
-          </div>
-        }
-        code={`<Progress size="sm" value={30} />
-<Progress size="md" value={60} />
-<Progress size="lg" value={90} />`}
-        props={["size: 'sm' | 'md' | 'lg'"]}
+        code={`<Progress value={60} showValueLabel label="System Loading" />`}
       />
 
       <DocsComponent
         title="Colors"
-        description="Indicator color variants: 'primary', 'secondary', 'accent', 'success', 'warning', or 'danger'."
+        description="Progress supports alert-aligned colors: primary, success, warning, danger, and default."
         preview={
-          <div className="flex flex-col gap-4 max-w-md w-full">
+          <div className="max-w-md w-full space-y-4">
+            <Progress value={45} color="primary" label="Primary (sky-500)" />
             <Progress
-              color="primary"
-              value={45}
-              label="Primary (Sky)"
-              showValueLabel
-            />
-            <Progress
-              color="success"
               value={75}
-              label="Success (Emerald)"
-              showValueLabel
+              color="success"
+              label="Success (emerald-500)"
             />
-            <Progress
-              color="warning"
-              value={55}
-              label="Warning (Amber)"
-              showValueLabel
-            />
-            <Progress
-              color="danger"
-              value={95}
-              label="Danger (Rose)"
-              showValueLabel
-            />
+            <Progress value={60} color="warning" label="Warning (amber-500)" />
+            <Progress value={30} color="danger" label="Danger (rose-500)" />
+            <Progress value={90} color="default" label="Default (neutral)" />
           </div>
         }
-        code={`<Progress color="primary" value={45} />
-<Progress color="success" value={75} />
-<Progress color="warning" value={55} />
-<Progress color="danger" value={95} />`}
+        code={`<Progress value={45} color="primary" />
+<Progress value={75} color="success" />
+<Progress value={60} color="warning" />
+<Progress value={30} color="danger" />
+<Progress value={90} color="default" />`}
         props={[
-          "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
+          "color: 'primary' | 'success' | 'warning' | 'danger' | 'default'",
         ]}
       />
 
       <DocsComponent
-        title="Indeterminate & Barber-Pole Animated Stripes"
-        description="Indeterminate loading bar with smooth barber-pole animated stripes using 'isBarberPole'."
+        title="Sizes"
+        description="Control height dimensions using the 'size' prop: 'sm', 'md', or 'lg'."
         preview={
-          <div className="flex flex-col gap-4 max-w-md w-full">
+          <div className="max-w-md w-full space-y-4">
+            <Progress value={50} size="sm" label="Small (sm - h-1.5)" />
+            <Progress value={50} size="md" label="Medium (md - h-2.5)" />
+            <Progress value={50} size="lg" label="Large (lg - h-4)" />
+          </div>
+        }
+        code={`<Progress value={50} size="sm" />
+<Progress value={50} size="md" />
+<Progress value={50} size="lg" />`}
+        props={["size: 'sm' | 'md' | 'lg'"]}
+      />
+
+      <DocsComponent
+        title="Indeterminate & Barber-Pole Animated Stripes"
+        description="Use 'isIndeterminate' to display a looping loading bar when the progress duration is unknown, or combine with 'isBarberPole' for an animated striped pattern."
+        preview={
+          <div className="max-w-md w-full space-y-4">
+            <Progress isIndeterminate label="Indeterminate operation..." />
             <Progress
-              label="Connecting to Server..."
-              isIndeterminate
-              color="primary"
-            />
-            <Progress
-              label="Uploading Assets (Barber Pole)..."
-              isIndeterminate
+              value={75}
               isBarberPole
-              color="success"
+              label="Barber-pole stripes animated"
             />
           </div>
         }
-        code={`<Progress label="Connecting..." isIndeterminate />
-<Progress label="Uploading..." isIndeterminate isBarberPole color="success" />`}
+        code={`<Progress isIndeterminate label="Loading..." />
+<Progress value={75} isBarberPole label="Processing..." />`}
         props={["isIndeterminate: boolean", "isBarberPole: boolean"]}
       />
 
       <DocsComponent
-        title="Circular Progress Ring"
-        description='Circular progress ring variant rendered as responsive SVG with type="circle".'
-        preview={
-          <div className="flex items-center gap-6">
-            <Progress
-              type="circle"
-              value={45}
-              size="sm"
-              showValueLabel
-              color="primary"
-              label="Storage"
-            />
-            <Progress
-              type="circle"
-              value={75}
-              size="md"
-              showValueLabel
-              color="success"
-              label="Memory"
-            />
-            <Progress
-              type="circle"
-              value={92}
-              size="lg"
-              showValueLabel
-              color="danger"
-              label="CPU Load"
-            />
-          </div>
-        }
-        code={`<Progress type="circle" value={45} size="sm" showValueLabel label="Storage" />
-<Progress type="circle" value={75} size="md" showValueLabel label="Memory" />
-<Progress type="circle" value={92} size="lg" showValueLabel label="CPU Load" />`}
-        props={["type: 'line' | 'circle'"]}
-      />
+        title="Real-Time Simulated Progress"
+        description="Continuously simulating a background operation moving from 0 to 100 to showcase real-time transitions."
+        preview={<RealTimeSimulatedProgressDemo />}
+        code={`function Demo() {
+  const [value, setValue] = React.useState(0);
 
-      <DocsComponent
-        title="Milestone Step Markers"
-        description="Render step milestone dots along the progress track with the 'steps' prop."
-        preview={
-          <div className="max-w-md w-full">
-            <Progress
-              value={60}
-              color="primary"
-              label="Onboarding Progress (25%, 50%, 75% steps)"
-              showValueLabel
-              steps={[{ value: 25 }, { value: 50 }, { value: 75 }]}
-            />
-          </div>
-        }
-        code={`<Progress
-  value={60}
-  color="primary"
-  label="Onboarding Progress"
-  showValueLabel
-  steps={[{ value: 25 }, { value: 50 }, { value: 75 }]}
-/>`}
-        props={["steps: (number | ProgressStep)[]"]}
-      />
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setValue((oldValue) => (oldValue === 100 ? 0 : oldValue + 1));
+    }, 100);
+    return () => clearInterval(timer);
+  }, []);
 
-      <AccessibilityCard />
+  return <Progress value={value} showValueLabel label="Downloading..." />;
+}`}
+      />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
@@ -207,55 +153,84 @@ export default function ProgressComponentPage() {
         title="Props — Progress"
         description="Supported properties for the Progress component."
         preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
+          <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
+            <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Prop
                   </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Type
                   </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Default
                   </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Description
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">type</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'line' | 'circle'
+              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                    value
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">'line'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Progress visual format (horizontal bar or circular ring).
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    number
+                  </td>
+                  <td className="px-4 py-3 text-zinc-400">0</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Current progress percentage value (0 to 100).
                   </td>
                 </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    isBarberPole
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                    size
                   </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    'sm' | 'md' | 'lg'
+                  </td>
+                  <td className="px-4 py-3 text-zinc-400">'md'</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Height size configuration of the progress track.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                    color
+                  </td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    'default' | 'primary' | 'success' | 'warning' | 'danger'
+                  </td>
+                  <td className="px-4 py-3 text-zinc-400">'primary'</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Background color fill palette for progress indicator.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                    isIndeterminate
+                  </td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
                     boolean
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Applies animated barber-pole diagonal stripes overlay.
+                  <td className="px-4 py-3 text-zinc-400">false</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Removes exact value and displays infinite looping loader.
                   </td>
                 </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">steps</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    (number | ProgressStep)[]
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                    isBarberPole
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Milestone step markers rendered along the track.
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    boolean
+                  </td>
+                  <td className="px-4 py-3 text-zinc-400">false</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Applies animated diagonal stripes background pattern over
+                    progress bar.
                   </td>
                 </tr>
               </tbody>

@@ -1,7 +1,8 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import * as React from "react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
+import * as z from "zod";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -14,61 +15,174 @@ import { formCode } from "@/components/ui/form/form.code";
 import { FormField } from "@/components/ui/formField/formField";
 import { Input } from "@/components/ui/input/input";
 import { Separator } from "@/components/ui/separator/separator";
+import { toast } from "@/components/ui/toast/toast";
 
+// --- Demos ---
+
+// 1. Default Demo
 interface DemoFormValues {
   username: string;
-  email: string;
 }
 
-function AdvancedFormDemo() {
-  const form = useForm({
-    defaultValues: {
-      bio: "Software Engineer",
-      website: "https://example.com",
-    },
+function DefaultFormDemo() {
+  const form = useForm<DemoFormValues>({
+    defaultValues: { username: "" },
   });
+  const [submitted, setSubmitted] = React.useState<string | null>(null);
 
   return (
-    <Form
-      form={form}
-      onSubmit={(data) => alert(`Saved: ${JSON.stringify(data)}`)}
-      confirmUnsavedChanges
-      showResetButton
-      scrollToFirstError
-    >
-      <FormField label="Bio" description="Short biography for profile.">
-        <Input {...form.register("bio", { required: true })} />
-      </FormField>
-      <FormField label="Website URL">
-        <Input {...form.register("website")} />
-      </FormField>
-      <Button type="submit" color="primary">
-        Save Profile
-      </Button>
-    </Form>
+    <div className="max-w-md w-full">
+      <Form form={form} onSubmit={(data) => setSubmitted(JSON.stringify(data))}>
+        <FormField
+          label="Username"
+          isRequired
+          description="Enter your public display name."
+        >
+          <Input placeholder="johndoe" {...form.register("username")} />
+        </FormField>
+        <Button type="submit" color="primary" className="w-full mt-2">
+          Submit
+        </Button>
+      </Form>
+      {submitted && (
+        <pre className="mt-4 p-3 bg-zinc-150 dark:bg-zinc-800 rounded-xl text-xs font-mono text-sky-500">
+          {submitted}
+        </pre>
+      )}
+    </div>
   );
 }
 
-export default function FormComponentPage() {
-  const form = useForm<DemoFormValues>({
-    defaultValues: {
-      username: "",
-      email: "",
-    },
+// 2. Zod Validation Demo
+const zodSchema = z.object({
+  email: z.string().email("Please enter a valid email address."),
+  age: z
+    .number({ invalid_type_error: "Age must be a number." })
+    .min(18, "You must be at least 18 years old."),
+});
+
+type ZodFormValues = z.infer<typeof zodSchema>;
+
+function ZodValidationFormDemo() {
+  const form = useForm<ZodFormValues>({
+    resolver: zodResolver(zodSchema),
+    defaultValues: { email: "", age: 18 },
+  });
+  const [submitted, setSubmitted] = React.useState<string | null>(null);
+
+  return (
+    <div className="max-w-md w-full">
+      <Form
+        form={form}
+        onSubmit={(data) => setSubmitted(JSON.stringify(data))}
+        className="space-y-4"
+      >
+        <FormField
+          label="Email Address"
+          isRequired
+          isInvalid={!!form.formState.errors.email}
+          errorMessage={form.formState.errors.email?.message}
+        >
+          <Input
+            type="email"
+            placeholder="john@example.com"
+            {...form.register("email")}
+          />
+        </FormField>
+
+        <FormField
+          label="Age"
+          isRequired
+          isInvalid={!!form.formState.errors.age}
+          errorMessage={form.formState.errors.age?.message}
+        >
+          <Input
+            type="number"
+            {...form.register("age", { valueAsNumber: true })}
+          />
+        </FormField>
+
+        <Button type="submit" color="primary" className="w-full mt-2">
+          Register Account
+        </Button>
+      </Form>
+      {submitted && (
+        <pre className="mt-4 p-3 bg-zinc-150 dark:bg-zinc-800 rounded-xl text-xs font-mono text-sky-500">
+          {submitted}
+        </pre>
+      )}
+    </div>
+  );
+}
+
+// 3. Auto Scroll Demo
+const errorSchema = z.object({
+  fieldA: z.string().min(1, "Field A is required."),
+  fieldB: z.string().min(1, "Field B is required."),
+});
+
+type ErrorFormValues = z.infer<typeof errorSchema>;
+
+function AutoScrollFormDemo() {
+  const form = useForm<ErrorFormValues>({
+    resolver: zodResolver(errorSchema),
+    defaultValues: { fieldA: "", fieldB: "" },
   });
 
-  const [submittedData, setSubmittedData] =
-    React.useState<DemoFormValues | null>(null);
+  return (
+    <div className="max-w-md w-full">
+      <Form
+        form={form}
+        onSubmit={(data) => {
+          toast.success("Submitted successfully!", {
+            description: JSON.stringify(data),
+          });
+        }}
+        scrollToFirstError
+        className="space-y-4"
+      >
+        <FormField
+          label="Field A"
+          isInvalid={!!form.formState.errors.fieldA}
+          errorMessage={form.formState.errors.fieldA?.message}
+        >
+          <Input
+            placeholder="Enter something..."
+            {...form.register("fieldA")}
+          />
+        </FormField>
 
-  const onSubmit = (data: DemoFormValues) => {
-    setSubmittedData(data);
-  };
+        <div className="h-20 flex items-center justify-center bg-zinc-100/50 dark:bg-zinc-900/30 rounded-xl border border-dashed border-zinc-200 dark:border-zinc-800 text-[10px] text-zinc-400 font-mono">
+          Spacer Block (Simulates height)
+        </div>
 
+        <FormField
+          label="Field B"
+          isInvalid={!!form.formState.errors.fieldB}
+          errorMessage={form.formState.errors.fieldB?.message}
+        >
+          <Input
+            placeholder="Enter something..."
+            {...form.register("fieldB")}
+          />
+        </FormField>
+
+        <Button type="submit" color="primary" className="w-full mt-2">
+          Submit Form
+        </Button>
+      </Form>
+    </div>
+  );
+}
+
+// --- Page Main ---
+
+export default function FormComponentPage() {
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Form"
-        description="A wrapper component for building forms with React Hook Form integration, automatic scroll to first error, unsaved changes confirmation guard, and reset button support."
+        description="A wrapper component for building forms with React Hook Form integration, Zod schema validation, and automatic smooth scroll to first error."
       />
 
       <ImportSnippet
@@ -80,51 +194,14 @@ export default function FormComponentPage() {
       <CodeBlock
         code={formCode}
         componentName="form.tsx"
-        description="Core implementation of the Form component with scroll-to-error, dirty state guard, and reset button."
-        tags={["React", "Form", "React Hook Form", "Validation"]}
+        description="Core implementation of the Form component."
+        tags={["React", "Form", "React Hook Form", "Zod", "Validation"]}
       />
 
       <DocsComponent
         title="Default"
-        description="Standard Form with submit handler and field inputs."
-        preview={
-          <div className="max-w-md w-full">
-            <Form form={form} onSubmit={onSubmit}>
-              <FormField
-                label="Username"
-                isRequired
-                description="Enter your public display name."
-              >
-                <Input placeholder="johndoe" {...form.register("username")} />
-              </FormField>
-
-              <FormField
-                label="Email Address"
-                isRequired
-                description="We'll never share your email with anyone."
-              >
-                <Input
-                  type="email"
-                  placeholder="john@example.com"
-                  {...form.register("email")}
-                />
-              </FormField>
-
-              <Button type="submit" color="primary" className="w-full mt-2">
-                Submit Account Form
-              </Button>
-            </Form>
-
-            {submittedData && (
-              <div className="mt-4 p-3 bg-zinc-100 dark:bg-zinc-800 rounded-xl text-xs font-mono">
-                <div>Submitted JSON:</div>
-                <pre className="text-sky-500 font-semibold">
-                  {JSON.stringify(submittedData, null, 2)}
-                </pre>
-              </div>
-            )}
-          </div>
-        }
+        description="Basic Form with submit handler and field inputs."
+        preview={<DefaultFormDemo />}
         code={`const form = useForm<FormValues>();
 
 <Form form={form} onSubmit={(data) => console.log(data)}>
@@ -136,32 +213,48 @@ export default function FormComponentPage() {
       />
 
       <DocsComponent
-        title="Dirty State Guard, Auto Scroll & Reset Button"
-        description="Features automatic scroll-to-invalid-input, confirm unsaved changes navigation guard when dirty, and a reset button."
-        preview={
-          <div className="max-w-md w-full">
-            <AdvancedFormDemo />
-          </div>
-        }
+        title="Schema Validation with Zod"
+        description="Integrate Zod schemas and zodResolver to validate data types, email formats, and custom error boundaries."
+        preview={<ZodValidationFormDemo />}
+        code={`import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
+const zodSchema = z.object({
+  email: z.string().email("Please enter a valid email address."),
+  age: z.number().min(18, "You must be at least 18 years old."),
+});
+
+const form = useForm<FormValues>({
+  resolver: zodResolver(zodSchema),
+  defaultValues: { email: "", age: 18 },
+});
+
+<Form form={form} onSubmit={onSubmit}>
+  <FormField
+    label="Email Address"
+    isInvalid={!!form.formState.errors.email}
+    errorMessage={form.formState.errors.email?.message}
+  >
+    <Input type="email" {...form.register("email")} />
+  </FormField>
+</Form>`}
+      />
+
+      <DocsComponent
+        title="Auto Scroll to First Error"
+        description="Submitting a form with validation errors automatically scrolls the window viewport to center and focus the first invalid field using smooth behavior."
+        preview={<AutoScrollFormDemo />}
         code={`<Form
   form={form}
   onSubmit={onSubmit}
   scrollToFirstError
-  confirmUnsavedChanges
-  showResetButton
 >
-  <FormField label="Bio">
-    <Input {...form.register("bio")} />
+  <FormField label="Field A" isInvalid={!!errors.fieldA} errorMessage={errors.fieldA?.message}>
+    <Input {...form.register("fieldA")} />
   </FormField>
 </Form>`}
-        props={[
-          "scrollToFirstError: boolean",
-          "confirmUnsavedChanges: boolean",
-          "showResetButton: boolean",
-        ]}
+        props={["scrollToFirstError: boolean"]}
       />
-
-      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
@@ -169,62 +262,36 @@ export default function FormComponentPage() {
         title="Props — Form"
         description="Supported properties for the Form component."
         preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
+          <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
+            <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Prop
                   </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Type
                   </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Default
                   </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Description
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
+              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
                     scrollToFirstError
                   </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
                     boolean
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">true</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Automatically scrolls viewport to first invalid field input
-                    on submit.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    confirmUnsavedChanges
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    boolean
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Adds beforeunload navigation guard and unsaved changes
-                    banner when form is dirty.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    showResetButton
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    boolean
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Renders a button to restore initial default values when form
-                    is dirty.
+                  <td className="px-4 py-3 text-zinc-400">true</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Automatically scrolls viewport smoothly to first invalid
+                    field input on submit.
                   </td>
                 </tr>
               </tbody>

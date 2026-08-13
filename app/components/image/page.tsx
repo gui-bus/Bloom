@@ -1,6 +1,5 @@
 "use client";
 
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -89,23 +88,6 @@ export default function ImageComponentPage() {
       />
 
       <DocsComponent
-        title="Blurred Glow Backdrop"
-        description="Create an ambient colored glow shadow under the image with the 'isBlurred' prop."
-        preview={
-          <div className="max-w-md w-full py-4">
-            <Image
-              src={sampleImage}
-              alt="Glow landscape"
-              isBlurred
-              caption="Ambient blurred shadow glow background"
-            />
-          </div>
-        }
-        code={`<Image src="https://images.unsplash.com/..." alt="..." isBlurred />`}
-        props={["isBlurred: boolean"]}
-      />
-
-      <DocsComponent
         title="Aspect Ratios"
         description="Control container dimensions using the 'aspectRatio' prop: 'square', 'video', '4/3', or '21/9'."
         preview={
@@ -156,8 +138,6 @@ export default function ImageComponentPage() {
           "blurUpPlaceholder: string",
         ]}
       />
-
-      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

@@ -2,40 +2,41 @@
 
 import { Icon } from "@iconify/react";
 import * as React from "react";
+import { designRadius } from "@/lib/design-system";
 import { cn } from "@/lib/utils";
 
-type PaginationVariant =
+export type PaginationVariant =
   | "default"
   | "bordered"
   | "flat"
-  | "light"
-  | "pills"
-  | "line";
-type PaginationShape = "square" | "rounded" | "circle";
-type PaginationColor =
+  | "underlined"
+  | "filled"
+  | "glassmorphism"
+  | "gradient-border"
+  | "glow";
+
+export type PaginationColor =
   | "default"
   | "primary"
-  | "secondary"
-  | "accent"
   | "success"
   | "warning"
   | "danger";
 
 const PaginationContext = React.createContext<{
   variant: PaginationVariant;
-  shape: PaginationShape;
+  radius: keyof typeof designRadius;
   color: PaginationColor;
   size: "sm" | "md" | "lg";
 }>({
   variant: "default",
-  shape: "rounded",
+  radius: "xl",
   color: "primary",
   size: "md",
 });
 
 export interface PaginationProps extends React.ComponentProps<"nav"> {
   variant?: PaginationVariant;
-  shape?: PaginationShape;
+  radius?: keyof typeof designRadius;
   color?: PaginationColor;
   size?: "sm" | "md" | "lg";
 }
@@ -43,15 +44,15 @@ export interface PaginationProps extends React.ComponentProps<"nav"> {
 const Pagination = ({
   className,
   variant = "default",
-  shape = "rounded",
+  radius = "xl",
   color = "primary",
   size = "md",
   ...props
 }: PaginationProps) => (
-  <PaginationContext.Provider value={{ variant, shape, color, size }}>
+  <PaginationContext.Provider value={{ variant, radius, color, size }}>
     <nav
       aria-label="pagination"
-      className={cn("mx-auto flex w-full justify-center", className)}
+      className={cn("flex w-full justify-start", className)}
       {...props}
     />
   </PaginationContext.Provider>
@@ -85,19 +86,19 @@ export interface PaginationLinkProps extends React.ComponentProps<"button"> {
 
 const colorActiveMap: Record<PaginationColor, string> = {
   default:
-    "bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 border-zinc-900 dark:border-zinc-100",
+    "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border-zinc-200 dark:border-zinc-700",
   primary: "bg-sky-500 text-white border-sky-500",
-  secondary: "bg-purple-500 text-white border-purple-500",
-  accent: "bg-pink-500 text-white border-pink-500",
   success: "bg-emerald-500 text-white border-emerald-500",
   warning: "bg-amber-500 text-white border-amber-500",
   danger: "bg-rose-500 text-white border-rose-500",
 };
 
-const shapeMap: Record<PaginationShape, string> = {
-  square: "rounded-none",
-  rounded: "rounded-xl",
-  circle: "rounded-full",
+const colorTextMap: Record<PaginationColor, string> = {
+  default: "text-zinc-900 dark:text-zinc-100",
+  primary: "text-sky-600 dark:text-sky-400",
+  success: "text-emerald-600 dark:text-emerald-400",
+  warning: "text-amber-600 dark:text-amber-400",
+  danger: "text-rose-600 dark:text-rose-400",
 };
 
 const sizeMap = {
@@ -113,7 +114,7 @@ const PaginationLink = ({
   children,
   ...props
 }: PaginationLinkProps) => {
-  const { variant, shape, color, size } = React.useContext(PaginationContext);
+  const { variant, radius, color, size } = React.useContext(PaginationContext);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -125,20 +126,26 @@ const PaginationLink = ({
       ? `${colorActiveMap[color]} font-semibold shadow-xs`
       : "border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800",
     bordered: isActive
-      ? `border-2 ${colorActiveMap[color]} font-semibold`
+      ? `border-2 ${colorActiveMap[color]} bg-transparent ${colorTextMap[color]} font-bold`
       : "border border-zinc-200 dark:border-zinc-800 bg-transparent text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800",
     flat: isActive
-      ? `${colorActiveMap[color]} font-semibold`
+      ? `bg-sky-500/10 dark:bg-sky-400/10 ${colorTextMap[color]} font-bold`
       : "border-transparent bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700",
-    light: isActive
-      ? `border-transparent ${colorActiveMap[color]} font-semibold`
-      : "border-transparent bg-transparent text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800",
-    pills: isActive
-      ? `${colorActiveMap[color]} font-semibold rounded-full`
-      : "border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full",
-    line: isActive
-      ? `border-b-2 border-sky-500 text-sky-500 font-bold bg-transparent rounded-none`
-      : "border-b-2 border-transparent bg-transparent text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-none",
+    underlined: isActive
+      ? `border-b-2 ${color === "default" ? "border-zinc-900 dark:border-zinc-100" : `border-${color === "primary" ? "sky" : color}-500`} ${colorTextMap[color]} font-bold rounded-none`
+      : "border-b-2 border-transparent bg-transparent text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-none",
+    filled: isActive
+      ? `${colorActiveMap[color]} font-semibold`
+      : "border-transparent bg-zinc-150 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-750",
+    glassmorphism: isActive
+      ? "bg-zinc-950/20 dark:bg-white/10 backdrop-blur-md border border-zinc-200/30 dark:border-white/10 shadow-md font-bold text-zinc-900 dark:text-zinc-100"
+      : "bg-zinc-100/30 dark:bg-white/5 backdrop-blur-xs border border-zinc-200/20 dark:border-white/5 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100/50 dark:hover:bg-white/10",
+    "gradient-border": isActive
+      ? `border-2 ${colorActiveMap[color]} font-semibold`
+      : "border border-zinc-200 dark:border-zinc-800 bg-transparent text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800",
+    glow: isActive
+      ? `${colorActiveMap[color]} shadow-[0_0_15px_rgba(56,189,248,0.5)] font-semibold`
+      : "border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800",
   };
 
   return (
@@ -150,7 +157,7 @@ const PaginationLink = ({
       className={cn(
         "inline-flex items-center justify-center font-medium transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/20 disabled:pointer-events-none disabled:opacity-50",
         sizeMap[size],
-        variant !== "pills" && variant !== "line" && shapeMap[shape],
+        variant !== "underlined" && designRadius[radius],
         variantClasses[variant],
         className,
       )}
@@ -257,7 +264,7 @@ export interface PaginationToolbarProps {
   showFirstButton?: boolean;
   showLastButton?: boolean;
   variant?: PaginationVariant;
-  shape?: PaginationShape;
+  radius?: keyof typeof designRadius;
   color?: PaginationColor;
   size?: "sm" | "md" | "lg";
   className?: string;
@@ -276,7 +283,7 @@ export function PaginationToolbar({
   showFirstButton = true,
   showLastButton = true,
   variant = "default",
-  shape = "rounded",
+  radius = "xl",
   color = "primary",
   size = "md",
   className,
@@ -346,7 +353,7 @@ export function PaginationToolbar({
 
         <Pagination
           variant={variant}
-          shape={shape}
+          radius={radius}
           color={color}
           size={size}
           className="w-auto mx-0"

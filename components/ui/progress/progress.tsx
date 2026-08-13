@@ -7,8 +7,6 @@ import { cn } from "@/lib/utils";
 export type ProgressColor =
   | "default"
   | "primary"
-  | "secondary"
-  | "accent"
   | "success"
   | "warning"
   | "danger";
@@ -23,7 +21,6 @@ export interface ProgressProps
   value?: number;
   size?: "sm" | "md" | "lg";
   color?: ProgressColor;
-  type?: "line" | "circle";
   isIndeterminate?: boolean;
   isBarberPole?: boolean;
   steps?: (number | ProgressStep)[];
@@ -37,30 +34,12 @@ const progressSizes = {
   lg: "h-4",
 };
 
-const circleSizeMap = {
-  sm: { size: 48, stroke: 4, font: "text-[10px]" },
-  md: { size: 72, stroke: 6, font: "text-xs" },
-  lg: { size: 96, stroke: 8, font: "text-sm" },
-};
-
 const progressColors: Record<ProgressColor, string> = {
-  default: "bg-zinc-900 dark:bg-zinc-100",
+  default: "bg-zinc-950 dark:bg-zinc-50",
   primary: "bg-sky-500 dark:bg-sky-400",
-  secondary: "bg-purple-500 dark:bg-purple-400",
-  accent: "bg-pink-500 dark:bg-pink-400",
   success: "bg-emerald-500 dark:bg-emerald-400",
   warning: "bg-amber-500 dark:bg-amber-400",
   danger: "bg-rose-500 dark:bg-rose-400",
-};
-
-const progressStrokeColors: Record<ProgressColor, string> = {
-  default: "stroke-zinc-900 dark:stroke-zinc-100",
-  primary: "stroke-sky-500 dark:stroke-sky-400",
-  secondary: "stroke-purple-500 dark:stroke-purple-400",
-  accent: "stroke-pink-500 dark:stroke-pink-400",
-  success: "stroke-emerald-500 dark:stroke-emerald-400",
-  warning: "stroke-amber-500 dark:stroke-amber-400",
-  danger: "stroke-rose-500 dark:stroke-rose-400",
 };
 
 const Progress = React.forwardRef<
@@ -73,7 +52,6 @@ const Progress = React.forwardRef<
       value = 0,
       size = "md",
       color = "primary",
-      type = "line",
       isIndeterminate = false,
       isBarberPole = false,
       steps,
@@ -84,69 +62,6 @@ const Progress = React.forwardRef<
     ref,
   ) => {
     const clampedValue = Math.min(100, Math.max(0, value));
-
-    if (type === "circle") {
-      const circleConfig = circleSizeMap[size];
-      const radius = (circleConfig.size - circleConfig.stroke) / 2;
-      const circumference = 2 * Math.PI * radius;
-      const strokeDashoffset =
-        circumference - (clampedValue / 100) * circumference;
-
-      return (
-        <div
-          className={cn("inline-flex flex-col items-center gap-1.5", className)}
-        >
-          <div className="relative inline-flex items-center justify-center">
-            <svg
-              width={circleConfig.size}
-              height={circleConfig.size}
-              className={cn(
-                "rotate-[-90deg]",
-                isIndeterminate && "animate-spin",
-              )}
-            >
-              <circle
-                cx={circleConfig.size / 2}
-                cy={circleConfig.size / 2}
-                r={radius}
-                className="stroke-zinc-200 dark:stroke-zinc-800 fill-none"
-                strokeWidth={circleConfig.stroke}
-              />
-              <circle
-                cx={circleConfig.size / 2}
-                cy={circleConfig.size / 2}
-                r={radius}
-                className={cn(
-                  "fill-none transition-all duration-500 ease-out",
-                  progressStrokeColors[color],
-                )}
-                strokeWidth={circleConfig.stroke}
-                strokeDasharray={circumference}
-                strokeDashoffset={
-                  isIndeterminate ? circumference * 0.25 : strokeDashoffset
-                }
-                strokeLinecap="round"
-              />
-            </svg>
-            {showValueLabel && !isIndeterminate && (
-              <span
-                className={cn(
-                  "absolute font-bold font-mono text-zinc-900 dark:text-zinc-100",
-                  circleConfig.font,
-                )}
-              >
-                {Math.round(clampedValue)}%
-              </span>
-            )}
-          </div>
-          {label && (
-            <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
-              {label}
-            </span>
-          )}
-        </div>
-      );
-    }
 
     return (
       <div className="w-full space-y-1.5">
@@ -181,7 +96,7 @@ const Progress = React.forwardRef<
                   !isBarberPole &&
                   "animate-progress-indeterminate origin-left",
                 isBarberPole &&
-                  "bg-[linear-gradient(45deg,rgba(255,255,255,0.25)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.25)_50%,rgba(255,255,255,0.25)_75%,transparent_75%,transparent)] bg-[length:1rem_1rem] animate-[stripe-move_1s_linear_infinite]",
+                  "bg-[linear-gradient(45deg,rgba(255,255,255,0.25)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.25)_50%,rgba(255,255,255,0.25)_75%,transparent_75%,transparent)] bg-[length:1rem_1rem] animate-stripe-move",
               )}
               style={
                 isIndeterminate

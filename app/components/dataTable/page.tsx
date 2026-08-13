@@ -1,6 +1,5 @@
 "use client";
 
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -117,6 +116,20 @@ export default function DataTableComponentPage() {
       />
 
       <DocsComponent
+        title="Default"
+        description="Standard data table showing custom column schemas and record rows."
+        preview={
+          <div className="w-full">
+            <DataTable columns={columns} data={sampleData} />
+          </div>
+        }
+        code={`<DataTable
+  columns={columns}
+  data={data}
+/>`}
+      />
+
+      <DocsComponent
         title="Full-Featured Data Table"
         description="Includes drag-and-drop column reordering, column visibility toggle menu, global search, per-column filter builder, and CSV/Excel spreadsheet export."
         preview={
@@ -209,8 +222,6 @@ export default function DataTableComponentPage() {
           "onExportExcel: (table) => void",
         ]}
       />
-
-      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

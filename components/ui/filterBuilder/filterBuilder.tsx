@@ -2,6 +2,11 @@
 
 import { Icon } from "@iconify/react";
 import * as React from "react";
+import { Badge } from "@/components/ui/badge/badge";
+import { Button } from "@/components/ui/button/button";
+import { CodeBlock } from "@/components/ui/codeBlock/codeBlock";
+import { Input } from "@/components/ui/input/input";
+import { Select } from "@/components/ui/select/select";
 import { cn } from "@/lib/utils";
 
 export interface FilterField {
@@ -156,11 +161,19 @@ export function FilterBuilder({
     onChange(preset.filter);
   };
 
-  const selectClasses =
-    "h-9 px-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-sm text-zinc-900 dark:text-zinc-100 outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition-colors";
-
-  const inputClasses =
-    "h-9 px-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition-colors";
+  const deletePreset = (presetId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const updated = savedPresets.filter((p) => p.id !== presetId);
+    setSavedPresets(updated);
+    if (storageKey) {
+      try {
+        localStorage.setItem(
+          `zoe_filter_${storageKey}`,
+          JSON.stringify(updated),
+        );
+      } catch (_e) {}
+    }
+  };
 
   const renderGroup = (
     currentGroup: FilterGroupNode,
@@ -216,39 +229,44 @@ export function FilterBuilder({
     return (
       <div
         className={cn(
-          "space-y-3 p-3 rounded-2xl border transition-colors",
+          "space-y-4 p-4 rounded-2xl border transition-colors duration-200",
           depth === 0
-            ? "border-transparent"
-            : "border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-800/30 ml-2 sm:ml-4",
+            ? "border-transparent p-0"
+            : "border-zinc-200 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 ml-2 sm:ml-6",
         )}
       >
         {currentGroup.rules.map((item, index) => (
           <React.Fragment key={index}>
             {index > 0 && (
-              <div className="flex justify-center my-1">
-                <button
-                  type="button"
+              <div className="flex items-center gap-4 py-1">
+                <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800/60" />
+                <Button
+                  variant="bordered"
+                  size="sm"
                   onClick={toggleConjunction}
-                  className="px-3 py-1 rounded-full text-xs font-bold border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors shadow-xs"
+                  className="h-7 px-3 text-xs font-bold rounded-full border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 shadow-2xs cursor-pointer active:scale-95"
                 >
                   {currentGroup.conjunction}
-                </button>
+                </Button>
+                <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800/60" />
               </div>
             )}
 
             {isGroupNode(item) ? (
-              <div className="relative">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] uppercase font-bold text-zinc-400">
+              <div className="relative border border-zinc-200/80 dark:border-zinc-800 rounded-2xl p-2 bg-white/50 dark:bg-zinc-950/20 shadow-2xs">
+                <div className="flex items-center justify-between px-3 py-1 mb-2">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-400 dark:text-zinc-500">
                     Nested Group ({item.conjunction})
                   </span>
-                  <button
-                    type="button"
+                  <Button
+                    variant="flat"
+                    size="sm"
+                    color="danger"
                     onClick={() => removeRuleOrGroup(index)}
-                    className="text-xs text-rose-500 hover:underline"
+                    className="h-6 px-2 text-xs rounded-lg font-semibold"
                   >
-                    Remove Sub-clause
-                  </button>
+                    Remove Group
+                  </Button>
                 </div>
                 {renderGroup(
                   item,
@@ -257,110 +275,132 @@ export function FilterBuilder({
                 )}
               </div>
             ) : (
-              <div className="flex items-center gap-2 flex-wrap">
-                <select
-                  value={item.field}
-                  onChange={(e) =>
-                    updateRuleOrGroup(index, { ...item, field: e.target.value })
-                  }
-                  className={cn(selectClasses, "min-w-[120px]")}
-                >
-                  {fields.map((f) => (
-                    <option key={f.id} value={f.id}>
-                      {f.label}
-                    </option>
-                  ))}
-                </select>
-
-                <select
-                  value={item.operator}
-                  onChange={(e) =>
-                    updateRuleOrGroup(index, {
-                      ...item,
-                      operator: e.target.value as FilterRule["operator"],
-                    })
-                  }
-                  className={cn(selectClasses, "min-w-[120px]")}
-                >
-                  {operatorOptions.map((op) => (
-                    <option key={op.value} value={op.value}>
-                      {op.label}
-                    </option>
-                  ))}
-                </select>
-
-                {fields.find((f) => f.id === item.field)?.type === "select" ? (
-                  <select
-                    value={String(item.value)}
-                    onChange={(e) =>
-                      updateRuleOrGroup(index, {
-                        ...item,
-                        value: e.target.value,
-                      })
+              <div className="flex items-center gap-3 flex-wrap bg-white dark:bg-zinc-900/40 p-2 border border-zinc-200/60 dark:border-zinc-800/40 rounded-2xl shadow-3xs">
+                <div className="w-full sm:w-[160px]">
+                  <Select
+                    value={item.field}
+                    onValueChange={(val) =>
+                      updateRuleOrGroup(index, { ...item, field: val })
                     }
-                    className={cn(selectClasses, "flex-1 min-w-[120px]")}
-                  >
-                    <option value="">Select...</option>
-                    {fields
-                      .find((f) => f.id === item.field)
-                      ?.options?.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                          {opt.label}
-                        </option>
-                      ))}
-                  </select>
-                ) : (
-                  <input
-                    type={
-                      fields.find((f) => f.id === item.field)?.type === "number"
-                        ? "number"
-                        : "text"
-                    }
-                    value={String(item.value)}
-                    onChange={(e) =>
-                      updateRuleOrGroup(index, {
-                        ...item,
-                        value:
-                          fields.find((f) => f.id === item.field)?.type ===
-                          "number"
-                            ? Number(e.target.value)
-                            : e.target.value,
-                      })
-                    }
-                    placeholder="Value..."
-                    className={cn(inputClasses, "flex-1 min-w-[120px]")}
+                    options={fields.map((f) => ({
+                      value: f.id,
+                      label: f.label,
+                    }))}
+                    placeholder="Field"
+                    className="w-full"
+                    size="sm"
                   />
-                )}
+                </div>
 
-                <button
-                  type="button"
+                <div className="w-full sm:w-[130px]">
+                  <Select
+                    value={item.operator}
+                    onValueChange={(val) =>
+                      updateRuleOrGroup(index, {
+                        ...item,
+                        operator: val as FilterRule["operator"],
+                      })
+                    }
+                    options={operatorOptions}
+                    placeholder="Operator"
+                    className="w-full"
+                    size="sm"
+                  />
+                </div>
+
+                <div className="flex-1 min-w-[150px]">
+                  {fields.find((f) => f.id === item.field)?.type ===
+                  "select" ? (
+                    <Select
+                      value={String(item.value)}
+                      onValueChange={(val) =>
+                        updateRuleOrGroup(index, {
+                          ...item,
+                          value: val,
+                        })
+                      }
+                      options={
+                        fields
+                          .find((f) => f.id === item.field)
+                          ?.options?.map((opt) => ({
+                            value: opt.value,
+                            label: opt.label,
+                          })) || []
+                      }
+                      placeholder="Select value..."
+                      className="w-full"
+                      size="sm"
+                    />
+                  ) : (
+                    <Input
+                      type={
+                        fields.find((f) => f.id === item.field)?.type ===
+                        "number"
+                          ? "number"
+                          : "text"
+                      }
+                      value={String(item.value)}
+                      onChange={(e) =>
+                        updateRuleOrGroup(index, {
+                          ...item,
+                          value:
+                            fields.find((f) => f.id === item.field)?.type ===
+                            "number"
+                              ? Number(e.target.value)
+                              : e.target.value,
+                        })
+                      }
+                      placeholder="Enter value..."
+                      className="w-full"
+                      size="sm"
+                    />
+                  )}
+                </div>
+
+                <Button
+                  variant="bordered"
+                  size="sm"
+                  isIconOnly
                   onClick={() => removeRuleOrGroup(index)}
-                  className="flex items-center justify-center size-9 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-400 hover:text-rose-500 hover:border-rose-300 dark:hover:border-rose-700 transition-colors"
+                  className="h-8 w-8 rounded-xl border-zinc-200 dark:border-zinc-800 text-zinc-400 hover:text-rose-500 hover:border-rose-300 dark:hover:border-rose-800 transition-colors shadow-2xs"
+                  ariaLabel="Delete rule"
                 >
                   <Icon icon="hugeicons:delete-02" className="size-4" />
-                </button>
+                </Button>
               </div>
             )}
           </React.Fragment>
         ))}
 
         <div className="flex items-center gap-2 pt-2">
-          <button
-            type="button"
+          <Button
+            variant="flat"
+            size="sm"
             onClick={addRule}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-sky-600 bg-sky-50 dark:bg-sky-950/40 hover:bg-sky-100 transition-colors"
+            startContent={
+              <Icon
+                icon="hugeicons:add-circle"
+                className="size-3.5 text-sky-500"
+              />
+            }
+            className="h-8 text-xs font-semibold rounded-xl text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/20 hover:bg-sky-100 dark:hover:bg-sky-950/40"
           >
-            <Icon icon="hugeicons:add-circle" className="size-3.5" />
             Add Rule
-          </button>
-          <button
-            type="button"
+          </Button>
+          <Button
+            variant="flat"
+            size="sm"
             onClick={addSubGroup}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-indigo-600 bg-indigo-50 dark:bg-indigo-950/40 hover:bg-indigo-100 transition-colors"
+            startContent={
+              <Icon
+                icon="hugeicons:structure-01"
+                className="size-3.5 text-indigo-500"
+              />
+            }
+            className="h-8 text-xs font-semibold rounded-xl text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/20 hover:bg-indigo-100 dark:hover:bg-indigo-950/40"
           >
-            <Icon icon="hugeicons:structure-01" className="size-3.5" />
             Add Sub-group
-          </button>
+          </Button>
         </div>
       </div>
     );
@@ -369,107 +409,121 @@ export function FilterBuilder({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 space-y-4",
+        "rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-950 p-6 space-y-6 shadow-xs",
         className,
       )}
     >
       {renderGroup(value, onChange)}
 
-      <div className="pt-3 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2 flex-1 min-w-[200px]">
-          <input
-            type="text"
+      <div className="pt-4 border-t border-zinc-200/80 dark:border-zinc-800/60 flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-2 flex-1 min-w-[240px]">
+          <Input
+            size="sm"
+            variant="flat"
             placeholder="Preset query name..."
             value={presetName}
             onChange={(e) => setPresetName(e.target.value)}
-            className="h-8 px-2.5 text-xs rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 outline-none flex-1 max-w-xs"
+            className="max-w-xs w-full"
           />
-          <button
-            type="button"
+          <Button
+            size="sm"
+            variant="flat"
+            color="default"
             onClick={saveCurrentPreset}
             disabled={!presetName.trim()}
-            className="h-8 px-3 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-semibold hover:opacity-90 disabled:opacity-40 transition-opacity"
+            className="h-8 font-semibold rounded-xl shrink-0"
           >
             Save Preset
-          </button>
+          </Button>
         </div>
 
         {enableExport && (
-          <button
-            type="button"
+          <Button
+            variant="default"
+            color="primary"
+            size="sm"
             onClick={() => setShowExportModal(true)}
-            className="h-8 px-3 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-semibold text-zinc-700 dark:text-zinc-300 transition-colors flex items-center gap-1.5"
+            startContent={<Icon icon="hugeicons:code" className="size-3.5" />}
+            className="h-8 rounded-xl font-semibold"
           >
-            <Icon icon="hugeicons:code" className="size-3.5" />
             Export Query
-          </button>
+          </Button>
         )}
       </div>
 
       {savedPresets.length > 0 && (
-        <div className="flex items-center gap-2 flex-wrap pt-1">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+        <div className="flex items-center gap-2 flex-wrap pt-2 border-t border-zinc-100 dark:border-zinc-900/60">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
             Presets:
           </span>
           {savedPresets.map((preset) => (
-            <button
+            <Badge
               key={preset.id}
-              type="button"
+              variant="flat"
+              color="default"
+              isRemovable
+              onRemove={() => {
+                const event = { stopPropagation: () => {} } as any;
+                deletePreset(preset.id, event);
+              }}
               onClick={() => loadPreset(preset)}
-              className="px-2.5 py-1 rounded-full text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-sky-50 dark:hover:bg-sky-950/40 hover:text-sky-600 transition-colors"
+              className="cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors"
             >
               {preset.name}
-            </button>
+            </Badge>
           ))}
         </div>
       )}
 
       {showExportModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-          <div className="w-full max-w-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 shadow-2xl space-y-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-4">
+          <div className="w-full max-w-lg bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
+              <h3 className="text-base font-bold text-zinc-950 dark:text-zinc-50">
                 Export Formatted Query
               </h3>
-              <button
-                type="button"
+              <Button
+                variant="flat"
+                size="sm"
+                isIconOnly
                 onClick={() => setShowExportModal(false)}
-                className="p-1 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400"
+                className="h-7 w-7 rounded-lg text-zinc-400"
+                ariaLabel="Close modal"
               >
                 <Icon icon="hugeicons:cancel-01" className="size-4" />
-              </button>
+              </Button>
             </div>
 
-            <div className="flex items-center gap-2 border-b border-zinc-200 dark:border-zinc-800 pb-2">
+            <div className="flex items-center gap-2 border-b border-zinc-200 dark:border-zinc-800/80 pb-2">
               {(["sql", "mongodb", "graphql"] as const).map((fmt) => (
-                <button
+                <Button
                   key={fmt}
-                  type="button"
+                  variant={activeFormat === fmt ? "default" : "flat"}
+                  size="sm"
                   onClick={() => setActiveFormat(fmt)}
-                  className={cn(
-                    "px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-colors",
-                    activeFormat === fmt
-                      ? "bg-sky-600 text-white"
-                      : "text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800",
-                  )}
+                  className="h-7 px-3 text-xs font-bold uppercase rounded-lg"
                 >
                   {fmt}
-                </button>
+                </Button>
               ))}
             </div>
 
-            <div className="p-3 bg-zinc-950 rounded-xl text-zinc-200 text-xs font-mono overflow-x-auto max-h-60 border border-zinc-800">
-              <pre>{exportQuery(value, activeFormat)}</pre>
-            </div>
+            <CodeBlock
+              variant="mac"
+              code={exportQuery(value, activeFormat)}
+              language={activeFormat === "sql" ? "sql" : "json"}
+              maxHeight={200}
+              showCopy
+            />
 
             <div className="flex justify-end pt-2">
-              <button
-                type="button"
+              <Button
+                size="sm"
                 onClick={() => setShowExportModal(false)}
-                className="px-4 py-2 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-semibold"
+                className="px-4 py-2 rounded-xl font-semibold"
               >
                 Close
-              </button>
+              </Button>
             </div>
           </div>
         </div>

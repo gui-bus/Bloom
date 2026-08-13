@@ -1,7 +1,6 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -49,7 +48,9 @@ export default function HoverCardComponentPage() {
         preview={
           <HoverCard>
             <HoverCardTrigger asChild>
-              <Button variant="flat">@nextjs</Button>
+              <Button variant="flat" radius="sm">
+                @nextjs
+              </Button>
             </HoverCardTrigger>
             <HoverCardContent>
               <div className="flex justify-between space-x-4">
@@ -80,7 +81,7 @@ export default function HoverCardComponentPage() {
         }
         code={`<HoverCard>
   <HoverCardTrigger asChild>
-    <Button variant="flat">@nextjs</Button>
+    <Button variant="flat" radius="sm">@nextjs</Button>
   </HoverCardTrigger>
   <HoverCardContent>
     <div className="flex justify-between space-x-4">
@@ -104,7 +105,7 @@ export default function HoverCardComponentPage() {
           <div className="flex flex-wrap gap-4">
             <HoverCard>
               <HoverCardTrigger asChild>
-                <Button variant="bordered" size="sm">
+                <Button variant="flat" radius="sm" size="sm">
                   Align Start
                 </Button>
               </HoverCardTrigger>
@@ -117,7 +118,7 @@ export default function HoverCardComponentPage() {
 
             <HoverCard>
               <HoverCardTrigger asChild>
-                <Button variant="bordered" size="sm">
+                <Button variant="flat" radius="sm" size="sm">
                   Align Center
                 </Button>
               </HoverCardTrigger>
@@ -130,7 +131,7 @@ export default function HoverCardComponentPage() {
 
             <HoverCard>
               <HoverCardTrigger asChild>
-                <Button variant="bordered" size="sm">
+                <Button variant="flat" radius="sm" size="sm">
                   Align End
                 </Button>
               </HoverCardTrigger>
@@ -155,7 +156,7 @@ export default function HoverCardComponentPage() {
           <div className="flex flex-wrap gap-4">
             <HoverCard openDelay={0} closeDelay={100}>
               <HoverCardTrigger asChild>
-                <Button variant="bordered" size="sm">
+                <Button variant="flat" radius="sm" size="sm">
                   Instant Hover (0ms)
                 </Button>
               </HoverCardTrigger>
@@ -166,7 +167,7 @@ export default function HoverCardComponentPage() {
 
             <HoverCard openDelay={800} closeDelay={300}>
               <HoverCardTrigger asChild>
-                <Button variant="bordered" size="sm">
+                <Button variant="flat" radius="sm" size="sm">
                   Delayed Hover (800ms)
                 </Button>
               </HoverCardTrigger>
@@ -178,7 +179,7 @@ export default function HoverCardComponentPage() {
         }
         code={`<HoverCard openDelay={0} closeDelay={100}>
   <HoverCardTrigger asChild>
-    <Button>Instant Hover</Button>
+    <Button variant="flat" radius="sm">Instant Hover</Button>
   </HoverCardTrigger>
   <HoverCardContent avoidCollisions>...</HoverCardContent>
 </HoverCard>`}
@@ -255,8 +256,6 @@ export default function HoverCardComponentPage() {
           </div>
         }
       />
-
-      <AccessibilityCard />
 
       <DocsPagination />
     </div>

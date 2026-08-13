@@ -1,13 +1,18 @@
 "use client";
 
 import { Icon } from "@iconify/react";
+import NextImage from "next/image";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export type ImageRadius = "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "full";
 export type ImageAspectRatio = "auto" | "square" | "video" | "4/3" | "21/9";
 
-export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+export interface ImageProps
+  extends Omit<
+    React.ComponentPropsWithoutRef<typeof NextImage>,
+    "src" | "radius" | "placeholder" | "alt"
+  > {
   src?: string;
   fallbackSrc?: string;
   alt?: string;
@@ -16,7 +21,6 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallback?: React.ReactNode;
   isZoomable?: boolean;
   enableLightbox?: boolean;
-  isBlurred?: boolean;
   placeholder?: boolean;
   isPlaceholder?: boolean;
   blurUpPlaceholder?: string;
@@ -34,7 +38,7 @@ const radiusStyles: Record<ImageRadius, string> = {
 };
 
 const aspectRatioStyles: Record<ImageAspectRatio, string> = {
-  auto: "aspect-auto",
+  auto: "aspect-auto min-h-[200px]",
   square: "aspect-square",
   video: "aspect-video",
   "4/3": "aspect-4/3",
@@ -54,7 +58,6 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       fallback,
       isZoomable = false,
       enableLightbox = false,
-      isBlurred = false,
       placeholder = false,
       isPlaceholder = false,
       blurUpPlaceholder,
@@ -64,18 +67,12 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       onLoad,
       ...props
     },
-    ref,
+    _ref,
   ) => {
     const [currentSrc, setCurrentSrc] = React.useState<string | undefined>(src);
     const [hasError, setHasError] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(true);
     const [isLightboxOpen, setIsLightboxOpen] = React.useState(false);
-    const internalRef = React.useRef<HTMLImageElement>(null);
-
-    React.useImperativeHandle(
-      ref,
-      () => internalRef.current as HTMLImageElement,
-    );
 
     const usePlaceholder = placeholder || isPlaceholder;
     const activeSrc = usePlaceholder ? PLACEHOLDER_SVG_SRC : currentSrc;
@@ -83,13 +80,8 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     React.useEffect(() => {
       setCurrentSrc(src);
       setHasError(false);
+      setIsLoading(true);
     }, [src]);
-
-    React.useEffect(() => {
-      if (internalRef.current?.complete) {
-        setIsLoading(false);
-      }
-    }, []);
 
     const handleImageError = (
       e: React.SyntheticEvent<HTMLImageElement, Event>,
@@ -97,47 +89,37 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       if (fallbackSrc && currentSrc !== fallbackSrc) {
         setCurrentSrc(fallbackSrc);
         setHasError(false);
+        setIsLoading(true);
       } else {
         setHasError(true);
         setIsLoading(false);
       }
-      onError?.(e);
+      onError?.(e as any);
     };
 
     const handleImageLoad = (
       e: React.SyntheticEvent<HTMLImageElement, Event>,
     ) => {
       setIsLoading(false);
-      onLoad?.(e);
+      onLoad?.(e as any);
     };
 
     const handleImageClick = (e: React.MouseEvent<HTMLImageElement>) => {
       if (enableLightbox && !hasError && activeSrc) {
         setIsLightboxOpen(true);
       }
-      props.onClick?.(e);
+      props.onClick?.(e as any);
     };
 
     return (
       <>
-        <figure className="relative inline-flex flex-col max-w-full">
-          {isBlurred && !hasError && activeSrc && (
-            <img
-              src={activeSrc}
-              alt=""
-              aria-hidden="true"
-              className={cn(
-                "absolute inset-0 size-full object-cover blur-lg opacity-60 scale-105 pointer-events-none transition-opacity duration-300",
-                radiusStyles[radius],
-              )}
-            />
-          )}
-
+        <figure className="relative inline-flex flex-col w-full max-w-full">
           <div
             className={cn(
-              "relative overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center border border-zinc-200/60 dark:border-zinc-800/60 transition-all duration-300",
+              "relative overflow-hidden bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center border border-zinc-200/60 dark:border-zinc-800/60 transition-all duration-300 w-full",
               radiusStyles[radius],
               aspectRatioStyles[aspectRatio],
+              aspectRatio === "auto" && "h-64",
               className,
             )}
           >
@@ -156,39 +138,45 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             ) : (
               <>
                 {blurUpPlaceholder && isLoading && (
-                  <img
+                  <NextImage
                     src={blurUpPlaceholder}
                     alt=""
+                    fill
+                    unoptimized
                     aria-hidden="true"
                     className="absolute inset-0 size-full object-cover blur-md scale-110"
                   />
                 )}
 
                 {isLoading && !blurUpPlaceholder && (
-                  <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-800 animate-pulse flex items-center justify-center">
+                  <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-800 animate-pulse flex items-center justify-center z-10">
                     <Icon
                       icon="hugeicons:image-01"
                       className="size-8 text-zinc-400 dark:text-zinc-600 animate-bounce"
                     />
                   </div>
                 )}
-                <img
-                  ref={internalRef}
-                  src={activeSrc}
-                  alt={alt}
-                  onLoad={handleImageLoad}
-                  onError={handleImageError}
-                  onClick={handleImageClick}
-                  className={cn(
-                    "w-full h-full object-cover transition-all duration-500 ease-out",
-                    isLoading
-                      ? "opacity-0 scale-105 blur-sm"
-                      : "opacity-100 scale-100 blur-0",
-                    (isZoomable || enableLightbox) &&
-                      "hover:scale-105 cursor-pointer",
-                  )}
-                  {...props}
-                />
+
+                {activeSrc && (
+                  <NextImage
+                    src={activeSrc}
+                    alt={alt}
+                    fill
+                    unoptimized
+                    onLoad={handleImageLoad}
+                    onError={handleImageError}
+                    onClick={handleImageClick as any}
+                    className={cn(
+                      "w-full h-full object-cover transition-all duration-500 ease-out",
+                      isLoading
+                        ? "opacity-0 scale-105 blur-sm"
+                        : "opacity-100 scale-100 blur-0",
+                      (isZoomable || enableLightbox) &&
+                        "hover:scale-105 cursor-pointer",
+                    )}
+                    {...(props as any)}
+                  />
+                )}
               </>
             )}
           </div>

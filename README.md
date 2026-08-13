@@ -139,7 +139,7 @@ graph TB
 
 ---
 
-## 🚀 Componentes Implementados (95 Componentes)
+## 🚀 Componentes Implementados (97 Componentes)
 
 | Componente | Categoria | Descrição |
 | :--- | :--- | :--- |
@@ -152,6 +152,7 @@ graph TB
 | **Color Swatches** | Inputs & Controles | Paleta de cores pré-definidas para seleção rápida e amigável. |
 | **Combobox** | Inputs & Controles | Campo de busca pesquisável com filtro dinâmico de opções e teclado. |
 | **Date Picker** | Inputs & Controles | Seleção de datas com suporte a calendários modais e intervalos. |
+| **File Input** | Inputs & Controles | Entrada de arquivos estilizada com suporte a tamanho máximo, progresso, tipos permitidos e badges de tags. |
 | **File Upload** | Inputs & Controles | Zona de drag & drop para envio de arquivos com barras de progresso. |
 | **Filter Builder** | Inputs & Controles | Construtor de filtros booleanos estruturados para consultas avançadas. |
 | **Form / FormField** | Inputs & Controles | Estrutura de formulários com validação, campos envelopados e mensagens de erro. |
@@ -208,6 +209,7 @@ graph TB
 | **Card** | Layout & Exibição | Contêiner neutro estruturado com cabeçalho, corpo e rodapé. |
 | **Carousel** | Layout & Exibição | Carrossel de slides fluido com gestos de swipe e controles de navegação. |
 | **Chart** | Layout & Exibição | Gráficos visuais interativos construídos para dashboards. |
+| **Circular Progress** | Layout & Exibição | Indicador de progresso circular radial com porcentagem central, tamanhos e cores. |
 | **Code Block** | Layout & Exibição | Bloco de código com destaque de sintaxe, variante de SO, cópia com um clique e tags. |
 | **Collapsible** | Layout & Exibição | Elemento expansível/recolhível com animação suave de altura. |
 | **Data Table** | Layout & Exibição | Tabela de dados avançada com ordenação, filtros e paginação. |
@@ -245,8 +247,8 @@ O ecossistema Bloom adota uma cobertura de testes automatizada para assegurar es
 ```mermaid
 flowchart LR
     subgraph Unit ["🧪 Vitest (Suíte Unitária)"]
-        U1["21 Arquivos de Teste"]
-        U2["57+ Assertivas Unitárias"]
+        U1["97+ Arquivos de Teste"]
+        U2["300+ Assertivas Unitárias"]
     end
 
     subgraph E2E ["🎭 Playwright (Suíte E2E)"]

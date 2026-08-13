@@ -2,7 +2,6 @@
 
 import { Icon } from "@iconify/react";
 import * as React from "react";
-import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
 import { DocsPagination } from "@/components/core/docsPagination";
@@ -381,8 +380,6 @@ export default function CollapsiblePage() {
 </Collapsible>`}
         props={["disabled: boolean"]}
       />
-
-      <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 

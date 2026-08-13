@@ -106,6 +106,10 @@
     ]
   },
   {
+    "name": "circularProgress",
+    "dependencies": []
+  },
+  {
     "name": "codeBlock",
     "dependencies": [
       "highlight.js",
@@ -199,6 +203,13 @@
   {
     "name": "fileExplorer",
     "dependencies": []
+  },
+  {
+    "name": "fileInput",
+    "dependencies": [
+      "@iconify/react",
+      "class-variance-authority"
+    ]
   },
   {
     "name": "fileUpload",
