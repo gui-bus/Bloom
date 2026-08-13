@@ -155,138 +155,58 @@ export default function ButtonComponentPage() {
 
       <DocsComponent
         title="Colors"
-        description="Defines the button color scheme through the 'color' prop. Stacked vertically for clear visual comparison."
+        description="Defines the button color scheme through the 'color' prop. Each color is shown across all seven variants for a complete reference."
         preview={
-          <div className="w-full flex flex-col gap-4">
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="default"
-              </span>
-              <div className="flex flex-wrap gap-3">
-                <Button color="default" variant="default">
-                  Solid
-                </Button>
-                <Button color="default" variant="bordered">
-                  Bordered
-                </Button>
-                <Button color="default" variant="flat">
-                  Flat
-                </Button>
+          <div className="w-full flex flex-col gap-6">
+            {(
+              [
+                "default",
+                "primary",
+                "secondary",
+                "accent",
+                "success",
+                "warning",
+                "danger",
+              ] as const
+            ).map((color) => (
+              <div key={color}>
+                <span className="text-xs font-mono text-muted-foreground block mb-2">
+                  color="{color}"
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  <Button color={color} variant="default">
+                    Default
+                  </Button>
+                  <Button color={color} variant="bordered">
+                    Bordered
+                  </Button>
+                  <Button color={color} variant="flat">
+                    Flat
+                  </Button>
+                  <Button color={color} variant="light">
+                    Light
+                  </Button>
+                  <Button color={color} variant="ghost">
+                    Ghost
+                  </Button>
+                  <Button color={color} variant="shadow">
+                    Shadow
+                  </Button>
+                  <Button color={color} variant="link">
+                    Link
+                  </Button>
+                </div>
               </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="primary"
-              </span>
-              <div className="flex flex-wrap gap-3">
-                <Button color="primary" variant="default">
-                  Solid
-                </Button>
-                <Button color="primary" variant="bordered">
-                  Bordered
-                </Button>
-                <Button color="primary" variant="flat">
-                  Flat
-                </Button>
-              </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="secondary"
-              </span>
-              <div className="flex flex-wrap gap-3">
-                <Button color="secondary" variant="default">
-                  Solid
-                </Button>
-                <Button color="secondary" variant="bordered">
-                  Bordered
-                </Button>
-                <Button color="secondary" variant="flat">
-                  Flat
-                </Button>
-              </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="accent"
-              </span>
-              <div className="flex flex-wrap gap-3">
-                <Button color="accent" variant="default">
-                  Solid
-                </Button>
-                <Button color="accent" variant="bordered">
-                  Bordered
-                </Button>
-                <Button color="accent" variant="flat">
-                  Flat
-                </Button>
-              </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="success"
-              </span>
-              <div className="flex flex-wrap gap-3">
-                <Button color="success" variant="default">
-                  Solid
-                </Button>
-                <Button color="success" variant="bordered">
-                  Bordered
-                </Button>
-                <Button color="success" variant="flat">
-                  Flat
-                </Button>
-              </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="warning"
-              </span>
-              <div className="flex flex-wrap gap-3">
-                <Button color="warning" variant="default">
-                  Solid
-                </Button>
-                <Button color="warning" variant="bordered">
-                  Bordered
-                </Button>
-                <Button color="warning" variant="flat">
-                  Flat
-                </Button>
-              </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="danger"
-              </span>
-              <div className="flex flex-wrap gap-3">
-                <Button color="danger" variant="default">
-                  Solid
-                </Button>
-                <Button color="danger" variant="bordered">
-                  Bordered
-                </Button>
-                <Button color="danger" variant="flat">
-                  Flat
-                </Button>
-              </div>
-            </div>
+            ))}
           </div>
         }
-        code={`<div className="space-y-4">
-  <Button color="default">Default</Button>
-  <Button color="primary">Primary</Button>
-  <Button color="secondary">Secondary</Button>
-  <Button color="accent">Accent</Button>
-  <Button color="success">Success</Button>
-  <Button color="warning">Warning</Button>
-  <Button color="danger">Danger</Button>
-</div>`}
+        code={`<Button color="primary" variant="default">Default</Button>
+<Button color="primary" variant="bordered">Bordered</Button>
+<Button color="primary" variant="flat">Flat</Button>
+<Button color="primary" variant="light">Light</Button>
+<Button color="primary" variant="ghost">Ghost</Button>
+<Button color="primary" variant="shadow">Shadow</Button>
+<Button color="primary" variant="link">Link</Button>`}
         props={[
           "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
         ]}
@@ -397,7 +317,7 @@ export default function ButtonComponentPage() {
       />
 
       <DocsComponent
-        title="Icon Only (isIconOnly)"
+        title="Icon Only"
         description="Displays a compact button with only an icon. Mandatory 'ariaLabel' ensures full accessibility."
         preview={
           <div className="w-full flex flex-wrap items-center gap-4">
@@ -454,7 +374,7 @@ export default function ButtonComponentPage() {
       />
 
       <DocsComponent
-        title="Full Width (isFullWidth)"
+        title="Full Width"
         description="Expands the button to span 100% of its parent container width."
         preview={
           <div className="w-full max-w-sm border border-border p-4 rounded-xl">
@@ -467,6 +387,39 @@ export default function ButtonComponentPage() {
   Full Width Action
 </Button>`}
         props={["isFullWidth: boolean"]}
+      />
+
+      <DocsComponent
+        title="Disable Ripple"
+        description="Set 'disableRipple' to remove the click ripple effect. Useful for icon-only buttons or when integrating with custom interaction feedback."
+        preview={
+          <div className="w-full flex flex-wrap gap-4">
+            <Button color="primary">With Ripple</Button>
+            <Button color="primary" disableRipple>
+              No Ripple
+            </Button>
+            <Button
+              isIconOnly
+              ariaLabel="Settings"
+              color="primary"
+              startContent={
+                <Icon icon="hugeicons:settings-01" className="size-5" />
+              }
+            />
+            <Button
+              isIconOnly
+              ariaLabel="Settings no ripple"
+              color="primary"
+              disableRipple
+              startContent={
+                <Icon icon="hugeicons:settings-01" className="size-5" />
+              }
+            />
+          </div>
+        }
+        code={`<Button color="primary">With Ripple</Button>
+<Button color="primary" disableRipple>No Ripple</Button>`}
+        props={["disableRipple: boolean"]}
       />
 
       <DocsComponent

@@ -26,16 +26,42 @@ import {
 } from "@/components/ui/dropdownMenu/dropdownMenu";
 import { Separator } from "@/components/ui/separator/separator";
 
+function BreadcrumbDemo({
+  variant,
+  separator,
+}: {
+  variant?: "default" | "bordered" | "flat" | "ghost" | "shadow";
+  separator?: React.ReactNode;
+}) {
+  return (
+    <Breadcrumb variant={variant} separator={separator}>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Components</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}
+
 export default function BreadcrumbDocsPage() {
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Breadcrumb"
-        description="A navigational helper that reveals the user's location within a website or web application hierarchy."
+        description="A navigational helper that reveals the user's location within a website or web application hierarchy. Supports system design variants, custom separators, icons, and auto-collapse."
       />
 
       <ImportSnippet
-        importCode={`import { Breadcrumb } from "@/components/ui/breadcrumb/breadcrumb";`}
+        importCode={`import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis } from "@/components/ui/breadcrumb/breadcrumb";`}
       />
 
       <InstallationBlock componentName="breadcrumb" />
@@ -43,7 +69,7 @@ export default function BreadcrumbDocsPage() {
       <CodeBlock
         code={breadcrumbCode}
         componentName="breadcrumb.tsx"
-        description="Breadcrumb trail component supporting icons, custom separators, and interactive dropdown ellipsis."
+        description="Breadcrumb trail component supporting system variants, custom separators, icons, and interactive dropdown ellipsis."
         tags={["React", "Tailwind", "UI Component", "Navigation", "Breadcrumb"]}
       />
 
@@ -52,21 +78,7 @@ export default function BreadcrumbDocsPage() {
         description="A standard breadcrumb navigation path leading to the current active page."
         preview={
           <div className="w-full">
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#">Home</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#">Components</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <BreadcrumbDemo />
           </div>
         }
         code={`<Breadcrumb>
@@ -84,6 +96,100 @@ export default function BreadcrumbDocsPage() {
     </BreadcrumbItem>
   </BreadcrumbList>
 </Breadcrumb>`}
+      />
+
+      <DocsComponent
+        title="Variants"
+        description="Breadcrumb follows the system design language: default, bordered, flat, ghost, and shadow — matching the same vocabulary as Button and other components."
+        preview={
+          <div className="w-full flex flex-col gap-5">
+            {(["default", "bordered", "flat", "ghost", "shadow"] as const).map(
+              (v) => (
+                <div key={v} className="flex flex-col gap-1.5">
+                  <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+                    variant="{v}"
+                  </span>
+                  <BreadcrumbDemo variant={v} />
+                </div>
+              ),
+            )}
+          </div>
+        }
+        code={`<Breadcrumb variant="bordered">
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="#">Home</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbLink href="#">Components</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>`}
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'ghost' | 'shadow'",
+        ]}
+      />
+
+      <DocsComponent
+        title="Custom Separator"
+        description="Pass any ReactNode to 'separator' on the root Breadcrumb — use an icon component or a plain string like '/' or '·'. The separator flows to all BreadcrumbSeparator children automatically."
+        preview={
+          <div className="w-full flex flex-col gap-5">
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+                separator="/"
+              </span>
+              <BreadcrumbDemo separator="/" />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+                separator="·"
+              </span>
+              <BreadcrumbDemo separator="·" />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+                separator="-"
+              </span>
+              <BreadcrumbDemo separator="-" />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+                separator={`<Icon icon="hugeicons:arrow-right-01" />`}
+              </span>
+              <BreadcrumbDemo
+                separator={
+                  <Icon icon="hugeicons:arrow-right-01" className="size-3.5" />
+                }
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+                separator={`<Icon icon="hugeicons:arrow-right-02" />`}
+              </span>
+              <BreadcrumbDemo
+                separator={
+                  <Icon icon="hugeicons:arrow-right-02" className="size-3.5" />
+                }
+              />
+            </div>
+          </div>
+        }
+        code={`{/* Text separator */}
+<Breadcrumb separator="/">
+  ...
+</Breadcrumb>
+
+{/* Icon separator */}
+<Breadcrumb separator={<Icon icon="hugeicons:chevron-right" className="size-3.5" />}>
+  ...
+</Breadcrumb>`}
+        props={["separator: ReactNode"]}
       />
 
       <DocsComponent
@@ -134,7 +240,7 @@ export default function BreadcrumbDocsPage() {
 
       <DocsComponent
         title="Collapsed Items with Dropdown Menu"
-        description="Clicking the BreadcrumbEllipsis trigger opens our DropdownMenu popover containing hidden route items without shifting page layout."
+        description="Clicking the BreadcrumbEllipsis trigger opens a DropdownMenu containing hidden route items without shifting page layout."
         preview={
           <div className="w-full">
             <Breadcrumb>
@@ -211,7 +317,7 @@ export default function BreadcrumbDocsPage() {
       />
 
       <DocsComponent
-        title="Automatic Middle Collapse (maxItems)"
+        title="Automatic Middle Collapse"
         description="Set 'maxItems' on BreadcrumbList to automatically collapse middle steps into a popover when paths exceed limit."
         preview={
           <div className="w-full">
@@ -252,36 +358,6 @@ export default function BreadcrumbDocsPage() {
         props={["maxItems: number"]}
       />
 
-      <DocsComponent
-        title="Structured SEO JSON-LD Schema (enableJsonLdSchema)"
-        description="Automatically injects Google-compliant BreadcrumbList JSON-LD structured data script for search engine crawlers."
-        preview={
-          <div className="w-full">
-            <Breadcrumb enableJsonLdSchema>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="https://example.com">
-                    Home
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>SEO Optimized Page</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-        }
-        code={`<Breadcrumb enableJsonLdSchema>
-  <BreadcrumbList>
-    <BreadcrumbItem><BreadcrumbLink href="https://example.com">Home</BreadcrumbLink></BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem><BreadcrumbPage>SEO Page</BreadcrumbPage></BreadcrumbItem>
-  </BreadcrumbList>
-</Breadcrumb>`}
-        props={["enableJsonLdSchema: boolean"]}
-      />
-
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -311,10 +387,26 @@ export default function BreadcrumbDocsPage() {
                     Breadcrumb
                   </td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    HTMLNavProps
+                    variant?: 'default' | 'bordered' | 'flat' | 'ghost' |
+                    'shadow'
+                    <br />
+                    separator?: ReactNode
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Root container with aria-label="breadcrumb".
+                    Root container. Variant and separator context flows to all
+                    sub-components.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">
+                    BreadcrumbList
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    maxItems?: number
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Ordered list with optional auto-collapse when exceeding
+                    maxItems.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -325,7 +417,7 @@ export default function BreadcrumbDocsPage() {
                     icon?: string
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Interactive link with optional icon.
+                    Interactive link with optional icon. Styled per variant.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -336,7 +428,19 @@ export default function BreadcrumbDocsPage() {
                     icon?: string
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Active page with aria-current="page".
+                    Active page with aria-current="page". Styled per variant.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">
+                    BreadcrumbSeparator
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    children?: ReactNode
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Uses root separator by default. Pass children to override
+                    locally.
                   </td>
                 </tr>
                 <tr>

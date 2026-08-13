@@ -1,6 +1,9 @@
 {
   "name": "toggle",
-  "dependencies": ["@radix-ui/react-toggle", "class-variance-authority"],
+  "dependencies": [
+    "@radix-ui/react-toggle",
+    "class-variance-authority"
+  ],
   "files": [
     {
       "name": "toggle.tsx",

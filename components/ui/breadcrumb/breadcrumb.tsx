@@ -4,83 +4,47 @@ import { Icon } from "@iconify/react";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+export type BreadcrumbVariant =
+  | "default"
+  | "bordered"
+  | "flat"
+  | "ghost"
+  | "shadow";
+
+const BreadcrumbContext = React.createContext<{
+  variant: BreadcrumbVariant;
+  separator: React.ReactNode;
+}>({ variant: "default", separator: null });
+
 const Breadcrumb = React.forwardRef<
   HTMLElement,
   React.ComponentPropsWithoutRef<"nav"> & {
-    separator?: React.ReactNode;
     maxItems?: number;
     itemsBeforeCollapse?: number;
     itemsAfterCollapse?: number;
-    enableJsonLdSchema?: boolean;
+    variant?: BreadcrumbVariant;
+    separator?: React.ReactNode;
   }
 >(
   (
     {
       children,
-      separator,
       maxItems,
       itemsBeforeCollapse = 1,
       itemsAfterCollapse = 1,
-      enableJsonLdSchema = false,
+      variant = "default",
+      separator,
       className,
       ...props
     },
     ref,
   ) => {
-    const generateJsonLd = () => {
-      if (!enableJsonLdSchema) return null;
-      const itemListElement: any[] = [];
-      let position = 1;
-
-      React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child) && child.type === BreadcrumbList) {
-          const listProps = (child as React.ReactElement<any>).props;
-          React.Children.forEach(listProps.children, (item) => {
-            if (React.isValidElement(item) && item.type === BreadcrumbItem) {
-              const itemProps = (item as React.ReactElement<any>).props;
-              React.Children.forEach(itemProps.children, (link) => {
-                if (React.isValidElement(link)) {
-                  const linkEl = link as React.ReactElement<any>;
-                  if (linkEl.type === BreadcrumbLink && linkEl.props.href) {
-                    itemListElement.push({
-                      "@type": "ListItem",
-                      position: position++,
-                      name: linkEl.props.children,
-                      item: linkEl.props.href,
-                    });
-                  } else if (linkEl.type === BreadcrumbPage) {
-                    itemListElement.push({
-                      "@type": "ListItem",
-                      position: position++,
-                      name: linkEl.props.children,
-                    });
-                  }
-                }
-              });
-            }
-          });
-        }
-      });
-
-      const schema = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement,
-      };
-
-      return (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      );
-    };
-
     return (
-      <nav ref={ref} aria-label="breadcrumb" className={className} {...props}>
-        {generateJsonLd()}
-        {children}
-      </nav>
+      <BreadcrumbContext.Provider value={{ variant, separator }}>
+        <nav ref={ref} aria-label="breadcrumb" className={className} {...props}>
+          {children}
+        </nav>
+      </BreadcrumbContext.Provider>
     );
   },
 );
@@ -210,16 +174,31 @@ const BreadcrumbLink = React.forwardRef<
     icon?: string;
   }
 >(({ className, icon, children, ...props }, ref) => {
+  const { variant } = React.useContext(BreadcrumbContext);
+
+  const variantStyles: Record<BreadcrumbVariant, string> = {
+    default:
+      "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 font-medium",
+    bordered:
+      "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 font-medium border border-zinc-200 dark:border-zinc-700 rounded-md px-2 py-0.5 hover:bg-zinc-50 dark:hover:bg-zinc-800",
+    flat: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100 font-medium bg-zinc-100 dark:bg-zinc-800 rounded-md px-2 py-0.5 hover:bg-zinc-200 dark:hover:bg-zinc-700",
+    ghost:
+      "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 font-medium rounded-md px-2 py-0.5 hover:bg-zinc-100 dark:hover:bg-zinc-800",
+    shadow:
+      "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100 font-medium rounded-md px-2 py-0.5 shadow-sm border border-zinc-200/60 dark:border-zinc-700/60 hover:shadow-md bg-white dark:bg-zinc-900",
+  };
+
   return (
     <a
       ref={ref}
       className={cn(
-        "inline-flex items-center gap-1.5 transition-colors text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 cursor-pointer font-medium",
+        "inline-flex items-center gap-1.5 transition-colors cursor-pointer",
+        variantStyles[variant],
         className,
       )}
       {...props}
     >
-      {icon && <Icon icon={icon} className="size-4 shrink-0" />}
+      {icon && <Icon icon={icon} className="size-3.5 shrink-0" />}
       {children}
     </a>
   );
@@ -231,47 +210,71 @@ const BreadcrumbPage = React.forwardRef<
   React.ComponentPropsWithoutRef<"span"> & {
     icon?: string;
   }
->(({ className, icon, children, ...props }, ref) => (
-  <span
-    ref={ref}
-    role="link"
-    tabIndex={0}
-    aria-disabled="true"
-    aria-current="page"
-    className={cn(
-      "inline-flex items-center gap-1.5 font-semibold text-zinc-900 dark:text-zinc-100",
-      className,
-    )}
-    {...props}
-  >
-    {icon && (
-      <Icon
-        icon={icon}
-        className="size-4 shrink-0 text-sky-600 dark:text-sky-400"
-      />
-    )}
-    {children}
-  </span>
-));
+>(({ className, icon, children, ...props }, ref) => {
+  const { variant } = React.useContext(BreadcrumbContext);
+
+  const variantStyles: Record<BreadcrumbVariant, string> = {
+    default: "font-semibold text-zinc-900 dark:text-zinc-100",
+    bordered:
+      "font-semibold text-sky-600 dark:text-sky-400 border border-sky-200 dark:border-sky-800 rounded-md px-2 py-0.5 bg-sky-50 dark:bg-sky-950/40",
+    flat: "font-semibold text-sky-600 dark:text-sky-400 bg-sky-100 dark:bg-sky-900/40 rounded-md px-2 py-0.5",
+    ghost:
+      "font-semibold text-zinc-900 dark:text-zinc-100 rounded-md px-2 py-0.5 bg-zinc-100 dark:bg-zinc-800",
+    shadow:
+      "font-semibold text-zinc-900 dark:text-zinc-100 rounded-md px-2 py-0.5 shadow-sm border border-zinc-200/60 dark:border-zinc-700/60 bg-white dark:bg-zinc-900",
+  };
+
+  return (
+    <span
+      ref={ref}
+      role="link"
+      tabIndex={0}
+      aria-disabled="true"
+      aria-current="page"
+      className={cn(
+        "inline-flex items-center gap-1.5",
+        variantStyles[variant],
+        className,
+      )}
+      {...props}
+    >
+      {icon && (
+        <Icon
+          icon={icon}
+          className="size-3.5 shrink-0 text-sky-600 dark:text-sky-400"
+        />
+      )}
+      {children}
+    </span>
+  );
+});
 BreadcrumbPage.displayName = "BreadcrumbPage";
 
 const BreadcrumbSeparator = ({
   children,
   className,
   ...props
-}: React.ComponentProps<"li">) => (
-  <li
-    role="presentation"
-    aria-hidden="true"
-    className={cn(
-      "[&>svg]:size-3.5 text-zinc-400 dark:text-zinc-600 select-none",
-      className,
-    )}
-    {...props}
-  >
-    {children ?? <Icon icon="hugeicons:arrow-right-01" className="size-3.5" />}
-  </li>
-);
+}: React.ComponentProps<"li">) => {
+  const { separator } = React.useContext(BreadcrumbContext);
+
+  const resolvedSeparator = children ?? separator;
+
+  return (
+    <li
+      role="presentation"
+      aria-hidden="true"
+      className={cn(
+        "[&>svg]:size-3.5 text-zinc-400 dark:text-zinc-600 select-none",
+        className,
+      )}
+      {...props}
+    >
+      {resolvedSeparator ?? (
+        <Icon icon="hugeicons:arrow-right-01" className="size-3.5" />
+      )}
+    </li>
+  );
+};
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
 
 const BreadcrumbEllipsis = ({

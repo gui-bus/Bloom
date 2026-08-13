@@ -1,6 +1,8 @@
 {
   "name": "alertDialog",
-  "dependencies": ["@radix-ui/react-alert-dialog"],
+  "dependencies": [
+    "@radix-ui/react-alert-dialog"
+  ],
   "files": [
     {
       "name": "alertDialog.tsx",

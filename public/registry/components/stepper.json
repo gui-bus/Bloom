@@ -1,6 +1,8 @@
 {
   "name": "stepper",
-  "dependencies": ["@iconify/react"],
+  "dependencies": [
+    "@iconify/react"
+  ],
   "files": [
     {
       "name": "stepper.tsx",

@@ -97,15 +97,15 @@ export const designColors = {
     default:
       "bg-secondary text-secondary-foreground hover:opacity-90 focus-visible:ring-secondary/50",
     bordered:
-      "border border-secondary text-secondary hover:bg-secondary/10 focus-visible:ring-secondary/50",
+      "border border-secondary text-secondary dark:text-secondary-foreground hover:bg-secondary/10 focus-visible:ring-secondary/50",
     light:
-      "bg-transparent text-secondary hover:bg-secondary/15 focus-visible:ring-secondary/50",
-    flat: "bg-secondary/20 text-secondary hover:bg-secondary/30 focus-visible:ring-secondary/50",
+      "bg-transparent text-secondary dark:text-secondary-foreground hover:bg-secondary/15 focus-visible:ring-secondary/50",
+    flat: "bg-secondary/20 text-secondary dark:text-secondary-foreground hover:bg-secondary/30 focus-visible:ring-secondary/50",
     ghost:
-      "bg-transparent border border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground focus-visible:ring-secondary/50",
+      "bg-transparent border border-secondary text-secondary dark:text-secondary-foreground hover:bg-secondary hover:text-secondary-foreground focus-visible:ring-secondary/50",
     shadow:
       "bg-secondary text-secondary-foreground hover:opacity-90 shadow-md shadow-secondary/20 focus-visible:ring-secondary/50",
-    link: "bg-transparent text-secondary underline hover:opacity-80 border-none",
+    link: "bg-transparent text-secondary dark:text-secondary-foreground underline hover:opacity-80 border-none",
   },
   accent: {
     default:

@@ -1,6 +1,8 @@
 {
   "name": "transferList",
-  "dependencies": ["@iconify/react"],
+  "dependencies": [
+    "@iconify/react"
+  ],
   "files": [
     {
       "name": "transferList.tsx",
