@@ -5,8 +5,15 @@ import {
   Avatar,
   AvatarFallback,
   type AvatarProps,
+  AvatarContext,
 } from "@/components/ui/avatar/avatar";
 import { cn } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip/tooltip";
 
 export type AvatarGroupOrientation = "horizontal" | "vertical";
 export type AvatarGroupOverlap = "sm" | "md" | "lg";
@@ -23,6 +30,8 @@ export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   isBordered?: boolean;
   isGrid?: boolean;
   isDisabled?: boolean;
+  isPressable?: boolean;
+  showTooltip?: boolean;
   renderCount?: (count: number) => React.ReactNode;
 }
 
@@ -52,6 +61,8 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       isBordered = true,
       isGrid = false,
       isDisabled = false,
+      isPressable = false,
+      showTooltip = false,
       renderCount,
       className,
       ...props
@@ -71,8 +82,9 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
 
     const isVertical = orientation === "vertical";
 
-    return (
-      <div
+    const groupContent = (
+      <AvatarContext.Provider value={{ color, isInGroup: true }}>
+        <div
         ref={ref}
         role="group"
         aria-label="Avatar group"
@@ -103,15 +115,18 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
               child.props.isDisabled !== undefined
                 ? child.props.isDisabled
                 : isDisabled,
+            isPressable:
+              child.props.isPressable !== undefined
+                ? child.props.isPressable
+                : isPressable,
             className: cn(
               "ring-2 ring-white dark:ring-zinc-900 transition-all duration-300 ease-out",
               child.props.className,
             ),
           });
 
-          return (
+          const avatarItem = (
             <div
-              key={index}
               className={cn(
                 "relative transition-all duration-300 ease-out hover:z-30 hover:scale-105",
                 isVertical ? "hover:translate-x-1" : "hover:-translate-y-1",
@@ -120,6 +135,24 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
             >
               {clonedAvatar}
             </div>
+          );
+
+          if (showTooltip) {
+            const label = child.props.title || child.props.alt || "User";
+            return (
+              <Tooltip key={index}>
+                <TooltipTrigger asChild>
+                  {avatarItem}
+                </TooltipTrigger>
+                <TooltipContent>{label}</TooltipContent>
+              </Tooltip>
+            );
+          }
+
+          return (
+            <React.Fragment key={index}>
+              {avatarItem}
+            </React.Fragment>
           );
         })}
 
@@ -148,8 +181,19 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
             </Avatar>
           </div>
         )}
-      </div>
+        </div>
+      </AvatarContext.Provider>
     );
+
+    if (showTooltip) {
+      return (
+        <TooltipProvider>
+          {groupContent}
+        </TooltipProvider>
+      );
+    }
+
+    return groupContent;
   },
 );
 

@@ -19,10 +19,12 @@ type StatusPosition = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 
 interface AvatarContextValue {
   color: AvatarColor;
+  isInGroup?: boolean;
 }
 
 const AvatarContext = React.createContext<AvatarContextValue>({
   color: "default",
+  isInGroup: false,
 });
 
 const useAvatarContext = () => React.useContext(AvatarContext);
@@ -115,6 +117,7 @@ const Avatar = React.forwardRef<
     },
     ref,
   ) => {
+    const { isInGroup } = useAvatarContext();
     const isEffectivelyDisabled = isDisabled;
 
     const avatarContent = (
@@ -186,7 +189,7 @@ const Avatar = React.forwardRef<
       </div>
     );
 
-    if (title || description) {
+    if ((title || description) && !isInGroup) {
       return (
         <AvatarContext.Provider value={{ color }}>
           <div className={cn("inline-flex items-center gap-3", className)}>
@@ -250,4 +253,4 @@ const AvatarFallback = React.forwardRef<
 AvatarFallback.displayName = "AvatarFallback";
 
 export type { AvatarColor, AvatarSize, StatusPosition };
-export { Avatar, AvatarFallback, AvatarImage };
+export { Avatar, AvatarFallback, AvatarImage, AvatarContext };

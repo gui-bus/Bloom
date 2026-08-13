@@ -15,6 +15,7 @@ import {
 import { AvatarGroup } from "@/components/ui/avatarGroup/avatarGroup";
 import { avatarGroupCode } from "@/components/ui/avatarGroup/avatarGroup.code";
 import { Separator } from "@/components/ui/separator/separator";
+import { Toast, toast } from "@/components/ui/toast/toast";
 
 export default function AvatarGroupPage() {
   return (
@@ -86,7 +87,7 @@ export default function AvatarGroupPage() {
       />
 
       <DocsComponent
-        title="Overlap Density (overlap)"
+        title="Overlap Density"
         description="Adjust spacing overlap tightness using the 'overlap' prop ('sm', 'md', 'lg')."
         preview={
           <div className="w-full space-y-4">
@@ -182,6 +183,108 @@ export default function AvatarGroupPage() {
         props={["max: number"]}
       />
 
+      <DocsComponent
+        title="Hover with Tooltip"
+        description="Enable tooltips by setting the 'showTooltip' prop. Hovering over each avatar displays its corresponding 'title' or 'alt' label."
+        preview={
+          <div className="w-full">
+            <AvatarGroup showTooltip>
+              <Avatar title="Sarah Jenkins">
+                <AvatarImage
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+                  alt="Sarah Jenkins"
+                />
+                <AvatarFallback>SJ</AvatarFallback>
+              </Avatar>
+              <Avatar title="Emily Davis">
+                <AvatarImage
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150"
+                  alt="Emily Davis"
+                />
+                <AvatarFallback>ED</AvatarFallback>
+              </Avatar>
+              <Avatar title="Alex Rivera">
+                <AvatarImage
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
+                  alt="Alex Rivera"
+                />
+                <AvatarFallback>AR</AvatarFallback>
+              </Avatar>
+            </AvatarGroup>
+          </div>
+        }
+        code={`<AvatarGroup showTooltip>
+  <Avatar title="Sarah Jenkins">
+    <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
+    <AvatarFallback>SJ</AvatarFallback>
+  </Avatar>
+  <Avatar title="Emily Davis">
+    <AvatarImage src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="Emily Davis" />
+    <AvatarFallback>ED</AvatarFallback>
+  </Avatar>
+  <Avatar title="Alex Rivera">
+    <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Alex Rivera" />
+    <AvatarFallback>AR</AvatarFallback>
+  </Avatar>
+</AvatarGroup>`}
+        props={["showTooltip: boolean"]}
+      />
+
+      <DocsComponent
+        title="Pressable Avatars"
+        description="Make avatars interactive by adding the 'isPressable' prop. You can add 'onClick' listeners to trigger custom actions, like showing toast notifications."
+        preview={
+          <div className="w-full">
+            <AvatarGroup isPressable>
+              <Avatar
+                title="Sarah Jenkins"
+                onClick={() => toast("Clicked Sarah Jenkins")}
+              >
+                <AvatarImage
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+                  alt="Sarah Jenkins"
+                />
+                <AvatarFallback>SJ</AvatarFallback>
+              </Avatar>
+              <Avatar
+                title="Emily Davis"
+                onClick={() => toast("Clicked Emily Davis")}
+              >
+                <AvatarImage
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150"
+                  alt="Emily Davis"
+                />
+                <AvatarFallback>ED</AvatarFallback>
+              </Avatar>
+              <Avatar
+                title="Alex Rivera"
+                onClick={() => toast("Clicked Alex Rivera")}
+              >
+                <AvatarImage
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
+                  alt="Alex Rivera"
+                />
+                <AvatarFallback>AR</AvatarFallback>
+              </Avatar>
+            </AvatarGroup>
+            <Toast />
+          </div>
+        }
+        code={`import { toast } from "@/components/ui/toast/toast";
+
+<AvatarGroup isPressable>
+  <Avatar title="Sarah Jenkins" onClick={() => toast("Clicked Sarah Jenkins")}>
+    <AvatarImage src="..." alt="..." />
+    <AvatarFallback>SJ</AvatarFallback>
+  </Avatar>
+  <Avatar title="Emily Davis" onClick={() => toast("Clicked Emily Davis")}>
+    <AvatarImage src="..." alt="..." />
+    <AvatarFallback>ED</AvatarFallback>
+  </Avatar>
+</AvatarGroup>`}
+        props={["isPressable: boolean"]}
+      />
+
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -233,7 +336,7 @@ export default function AvatarGroupPage() {
                     Stack direction scale for grouping avatars.
                   </td>
                 </tr>
-                <tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">max</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     number
@@ -242,6 +345,26 @@ export default function AvatarGroupPage() {
                   <td className="px-3 py-2 text-muted-foreground">
                     Maximum number of avatars to display before rendering excess
                     (+N) badge.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">showTooltip</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables showing tooltips above each avatar showing its title or alt description on hover.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">isPressable</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables scaling animations on mouse hover/press for nested avatars.
                   </td>
                 </tr>
               </tbody>
