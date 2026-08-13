@@ -78,7 +78,12 @@ export default function BannerPage() {
             </Banner>
             <Banner
               variant="success"
-              icon={<Icon icon="hugeicons:tick-circle" className="h-4 w-4" />}
+              icon={
+                <Icon
+                  icon="hugeicons:checkmark-circle-02"
+                  className="h-4 w-4"
+                />
+              }
             >
               Your data export has successfully completed and is ready to
               download.
@@ -105,7 +110,7 @@ export default function BannerPage() {
 <Banner variant="primary" icon={<Icon icon="hugeicons:information-circle" className="h-4 w-4" />}>
   A new software update is available for download!
 </Banner>
-<Banner variant="success" icon={<Icon icon="hugeicons:tick-circle" className="h-4 w-4" />}>
+<Banner variant="success" icon={<Icon icon="hugeicons:checkmark-circle-02" className="h-4 w-4" />}>
   Your data export has successfully completed.
 </Banner>
 <Banner variant="warning" icon={<Icon icon="hugeicons:alert-02" className="h-4 w-4" />}>
@@ -253,7 +258,7 @@ export default function BannerPage() {
             <Banner
               variant="danger"
               customIcon={
-                <Icon icon="hugeicons:shield-block-01" className="h-4 w-4" />
+                <Icon icon="hugeicons:cancel-square" className="h-4 w-4" />
               }
             >
               Suspicious login attempt blocked from an unknown device.

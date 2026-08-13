@@ -1,8 +1,6 @@
 {
   "name": "dataTable",
-  "dependencies": [
-    "@tanstack/react-table"
-  ],
+  "dependencies": ["@tanstack/react-table"],
   "files": [
     {
       "name": "dataTable.tsx",

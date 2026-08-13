@@ -1,8 +1,6 @@
 {
   "name": "logoClouds",
-  "dependencies": [
-    "framer-motion"
-  ],
+  "dependencies": ["framer-motion"],
   "files": [
     {
       "name": "logoClouds.tsx",

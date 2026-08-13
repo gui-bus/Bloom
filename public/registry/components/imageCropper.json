@@ -1,8 +1,6 @@
 {
   "name": "imageCropper",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react"],
   "files": [
     {
       "name": "imageCropper.tsx",

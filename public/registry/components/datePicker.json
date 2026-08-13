@@ -1,8 +1,6 @@
 {
   "name": "datePicker",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react"],
   "files": [
     {
       "name": "datePicker.tsx",
