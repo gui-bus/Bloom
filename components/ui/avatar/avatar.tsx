@@ -28,7 +28,7 @@ const AvatarContext = React.createContext<AvatarContextValue>({
 const useAvatarContext = () => React.useContext(AvatarContext);
 
 export interface AvatarProps
-  extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
+  extends Omit<React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>, "title"> {
   size?: AvatarSize;
   color?: AvatarColor;
   radius?: keyof typeof designRadius;
@@ -39,6 +39,8 @@ export interface AvatarProps
   statusPosition?: StatusPosition;
   isEditable?: boolean;
   onUpload?: () => void;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
 }
 
 const avatarSizes: Record<AvatarSize, string> = {
@@ -107,80 +109,108 @@ const Avatar = React.forwardRef<
       className,
       children,
       tabIndex,
+      title,
+      description,
       ...props
     },
     ref,
   ) => {
     const isEffectivelyDisabled = isDisabled;
 
+    const avatarContent = (
+      <div className="relative inline-flex shrink-0 group">
+        <AvatarPrimitive.Root
+          ref={ref}
+          tabIndex={
+            isPressable && !isEffectivelyDisabled ? (tabIndex ?? 0) : tabIndex
+          }
+          className={cn(
+            "relative flex shrink-0 overflow-hidden items-center justify-center select-none font-semibold transition-all duration-200",
+            avatarSizes[size],
+            designRadius[radius],
+            isBordered &&
+              cn(
+                "ring-offset-2 ring-offset-background",
+                avatarColorBorders[color],
+              ),
+            isPressable &&
+              !isEffectivelyDisabled &&
+              "cursor-pointer hover:scale-105 active:scale-95 hover:opacity-90 transition-all duration-200 ease-in-out will-change-transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring outline-none",
+            isEffectivelyDisabled &&
+              "opacity-50 grayscale cursor-not-allowed pointer-events-none",
+            !title && !description && className,
+          )}
+          {...props}
+        >
+          {children}
+          {isEditable && (
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                onUpload?.();
+              }}
+              className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer text-white"
+            >
+              <svg
+                className="size-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            </div>
+          )}
+        </AvatarPrimitive.Root>
+        {status && (
+          <span
+            aria-hidden="true"
+            className={cn(
+              "absolute size-3 rounded-full ring-2 ring-white dark:ring-zinc-900 z-10",
+              statusColors[status],
+              statusPositions[statusPosition],
+            )}
+          />
+        )}
+      </div>
+    );
+
+    if (title || description) {
+      return (
+        <AvatarContext.Provider value={{ color }}>
+          <div className={cn("inline-flex items-center gap-3", className)}>
+            {avatarContent}
+            <div className="flex flex-col">
+              {title && (
+                <span className="text-sm font-semibold text-zinc-950 dark:text-zinc-50 leading-none">
+                  {title}
+                </span>
+              )}
+              {description && (
+                <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 leading-none">
+                  {description}
+                </span>
+              )}
+            </div>
+          </div>
+        </AvatarContext.Provider>
+      );
+    }
+
     return (
       <AvatarContext.Provider value={{ color }}>
-        <div className="relative inline-flex shrink-0 group">
-          <AvatarPrimitive.Root
-            ref={ref}
-            tabIndex={
-              isPressable && !isEffectivelyDisabled ? (tabIndex ?? 0) : tabIndex
-            }
-            className={cn(
-              "relative flex shrink-0 overflow-hidden items-center justify-center select-none font-semibold transition-all duration-200",
-              avatarSizes[size],
-              designRadius[radius],
-              isBordered &&
-                cn(
-                  "ring-offset-2 ring-offset-background",
-                  avatarColorBorders[color],
-                ),
-              isPressable &&
-                !isEffectivelyDisabled &&
-                "cursor-pointer hover:scale-105 active:scale-95 hover:opacity-90 transition-all duration-200 ease-in-out will-change-transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring outline-none",
-              isEffectivelyDisabled &&
-                "opacity-50 grayscale cursor-not-allowed pointer-events-none",
-              className,
-            )}
-            {...props}
-          >
-            {children}
-            {isEditable && (
-              <div
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onUpload?.();
-                }}
-                className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer text-white"
-              >
-                <svg
-                  className="size-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </div>
-            )}
-          </AvatarPrimitive.Root>
-          {status && (
-            <span
-              aria-hidden="true"
-              className={cn(
-                "absolute size-3 rounded-full ring-2 ring-white dark:ring-zinc-900 z-10",
-                statusColors[status],
-                statusPositions[statusPosition],
-              )}
-            />
-          )}
-        </div>
+        {avatarContent}
       </AvatarContext.Provider>
     );
   },

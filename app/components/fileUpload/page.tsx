@@ -39,7 +39,7 @@ export default function FileUploadComponentPage() {
       />
 
       <DocsComponent
-        title="Default (Drag & Drop with Animated Progress)"
+        title="Default"
         description="Interactive drop zone featuring live progress bars per file with pause, resume, and cancellation buttons."
         preview={
           <div className="max-w-md w-full">
@@ -124,7 +124,7 @@ export default function FileUploadComponentPage() {
       />
 
       <DocsComponent
-        title="Paste from Clipboard (allowPaste)"
+        title="Paste from Clipboard"
         description="Pass 'allowPaste' to intercept global Ctrl+V image clipboard events and automatically upload captured screenshots or copied images."
         preview={
           <div className="max-w-md w-full">

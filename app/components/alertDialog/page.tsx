@@ -1,6 +1,8 @@
 "use client";
 
 import * as React from "react";
+import { AlertTriangle } from "lucide-react";
+import { Toast, toast } from "@/components/ui/toast/toast";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -27,12 +29,17 @@ import { Separator } from "@/components/ui/separator/separator";
 export default function AlertDialogComponentPage() {
   const [confirmInput, setConfirmInput] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isAsyncOpen, setIsAsyncOpen] = React.useState(false);
 
   const handleAsyncAction = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
+      setIsAsyncOpen(false);
+      toast.success("Remote Cluster Synchronized", {
+        description: "All cluster state data is fully updated across edge nodes.",
+      });
     }, 2000);
   };
 
@@ -98,6 +105,55 @@ export default function AlertDialogComponentPage() {
     <AlertDialogFooter>
       <AlertDialogCancel>Cancel</AlertDialogCancel>
       <AlertDialogAction color="danger">Delete Account</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`}
+      />
+
+      <DocsComponent
+        title="Colors"
+        description="Configure the primary action button to inherit different semantic colors: default, info, success, warning, and danger."
+        preview={
+          <div className="flex flex-wrap gap-3">
+            {(["default", "info", "success", "warning", "danger"] as const).map((color) => (
+              <AlertDialog key={color}>
+                <AlertDialogTrigger asChild>
+                  <Button color={color === "info" ? "primary" : color === "default" ? "default" : color}>
+                    {color.charAt(0).toUpperCase() + color.slice(1)} Dialog
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="capitalize">{color} Action Confirmation</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Are you sure you want to perform this {color} operation? This action is styled specifically for semantic clarity.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction color={color}>
+                      Confirm Action
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            ))}
+          </div>
+        }
+        code={`<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button color="info">Info Dialog</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Info Action Confirmation</AlertDialogTitle>
+      <AlertDialogDescription>
+        Perform this info action?
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction color="info">Confirm Action</AlertDialogAction>
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}
@@ -174,11 +230,62 @@ export default function AlertDialogComponentPage() {
       />
 
       <DocsComponent
-        title="Async Action Loading (isLoading)"
-        description="Render a loading spinner state on the action button during asynchronous operations."
+        title="Custom Header Layout"
+        description="Embed graphic icons, colored header text, and specialized callouts to emphasize danger or urgency."
         preview={
           <div className="w-full">
             <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button color="danger" variant="bordered">Open Alert Danger</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle className="text-red-600 dark:text-red-400 flex items-center gap-2">
+                    <AlertTriangle className="size-5 shrink-0" />
+                    Danger Zone Violation
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Warning: You are attempting to access system configuration files. Unauthorized modifications may lead to kernel corruption.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Go Back</AlertDialogCancel>
+                  <AlertDialogAction color="danger">
+                    Understand & Proceed
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
+        }
+        code={`<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button color="danger" variant="bordered">Open Alert Danger</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle className="text-red-600 flex items-center gap-2">
+        <AlertTriangle className="size-5" />
+        Danger Zone Violation
+      </AlertDialogTitle>
+      <AlertDialogDescription>
+        Unauthorized modifications may lead to kernel corruption.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Go Back</AlertDialogCancel>
+      <AlertDialogAction color="danger">Understand & Proceed</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`}
+      />
+
+      <DocsComponent
+        title="Async Action Loading"
+        description="Render a loading spinner state on the action button during asynchronous operations. The dialog programmatically closes upon success."
+        preview={
+          <div className="w-full">
+            <AlertDialog open={isAsyncOpen} onOpenChange={setIsAsyncOpen}>
               <AlertDialogTrigger asChild>
                 <Button color="primary">Sync Remote Cluster</Button>
               </AlertDialogTrigger>
@@ -193,7 +300,7 @@ export default function AlertDialogComponentPage() {
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
                   <AlertDialogAction
-                    color="primary"
+                    color="info"
                     isLoading={isLoading}
                     onClick={handleAsyncAction}
                   >
@@ -205,10 +312,39 @@ export default function AlertDialogComponentPage() {
           </div>
         }
         code={`const [isLoading, setIsLoading] = useState(false);
+const [isAsyncOpen, setIsAsyncOpen] = useState(false);
 
-<AlertDialogAction color="primary" isLoading={isLoading} onClick={handleAsyncAction}>
-  Start Sync Process
-</AlertDialogAction>`}
+const handleAsyncAction = (e) => {
+  e.preventDefault();
+  setIsLoading(true);
+  setTimeout(() => {
+    setIsLoading(false);
+    setIsAsyncOpen(false);
+    toast.success("Remote Cluster Synchronized", {
+      description: "All cluster state data is fully updated across edge nodes.",
+    });
+  }, 2000);
+};
+
+return (
+  <AlertDialog open={isAsyncOpen} onOpenChange={setIsAsyncOpen}>
+    <AlertDialogTrigger asChild>
+      <Button color="primary">Sync Remote Cluster</Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Sync Cluster Nodes?</AlertDialogTitle>
+        <AlertDialogDescription>This will sync all state data.</AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction color="info" isLoading={isLoading} onClick={handleAsyncAction}>
+          Start Sync Process
+        </AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+);`}
         props={["isLoading: boolean"]}
       />
 
@@ -240,7 +376,7 @@ export default function AlertDialogComponentPage() {
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'danger' | 'primary' | 'warning' | 'success' | 'default'
+                    'default' | 'info' | 'success' | 'warning' | 'danger'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'danger'</td>
                   <td className="px-3 py-2 text-muted-foreground">
@@ -265,6 +401,8 @@ export default function AlertDialogComponentPage() {
           </div>
         }
       />
+
+      <Toast />
 
       <AccessibilityCard />
 

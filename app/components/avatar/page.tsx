@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -14,8 +15,61 @@ import {
 } from "@/components/ui/avatar/avatar";
 import { avatarCode } from "@/components/ui/avatar/avatar.code";
 import { Separator } from "@/components/ui/separator/separator";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog/dialog";
+import { ImageCropper, ImageCropperRef } from "@/components/ui/imageCropper/imageCropper";
+import { Toast, toast } from "@/components/ui/toast/toast";
+import { Button } from "@/components/ui/button/button";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
+} from "@/components/ui/dropdownMenu/dropdownMenu";
+import { FileUpload } from "@/components/ui/fileUpload/fileUpload";
 
 export default function AvatarPage() {
+  const [isCropOpen, setIsCropOpen] = React.useState(false);
+  const [cropResult, setCropResult] = React.useState<string | null>(null);
+  const [uploadedPhotoUrl, setUploadedPhotoUrl] = React.useState<string | null>(null);
+  const cropperRef = React.useRef<ImageCropperRef>(null);
+
+  const handlePhotoUploadSelected = (files: File[]) => {
+    if (files && files[0]) {
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (e.target?.result) {
+          setUploadedPhotoUrl(e.target.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSaveCrop = () => {
+    if (cropperRef.current) {
+      const cropped = cropperRef.current.crop();
+      if (cropped) {
+        setCropResult(cropped);
+        setUploadedPhotoUrl(null);
+      }
+    }
+    setIsCropOpen(false);
+    toast.success("Profile photo updated successfully!", {
+      description: "Your new avatar image has been cropped and synchronized.",
+    });
+  };
+
   return (
     <div className="space-y-8">
       <DocsTitle
@@ -75,17 +129,57 @@ export default function AvatarPage() {
       />
 
       <DocsComponent
-        title="Editable Photo Upload Overlay (isEditable)"
-        description="Render a hover photo upload icon overlay using 'isEditable' and trigger 'onUpload' callback."
+        title="Sizes"
+        description="Scales seamlessly from 'xs' (24px) to '3xl' (80px) across predefined design scale tokens."
+        preview={
+          <div className="w-full flex flex-wrap items-center gap-4">
+            <Avatar size="xs">
+              <AvatarFallback>XS</AvatarFallback>
+            </Avatar>
+            <Avatar size="sm">
+              <AvatarFallback>SM</AvatarFallback>
+            </Avatar>
+            <Avatar size="md">
+              <AvatarFallback>MD</AvatarFallback>
+            </Avatar>
+            <Avatar size="lg">
+              <AvatarFallback>LG</AvatarFallback>
+            </Avatar>
+            <Avatar size="xl">
+              <AvatarFallback>XL</AvatarFallback>
+            </Avatar>
+            <Avatar size="2xl">
+              <AvatarFallback>2X</AvatarFallback>
+            </Avatar>
+            <Avatar size="3xl">
+              <AvatarFallback>3X</AvatarFallback>
+            </Avatar>
+          </div>
+        }
+        code={`<div className="flex flex-wrap items-center gap-4">
+  <Avatar size="xs"><AvatarFallback>XS</AvatarFallback></Avatar>
+  <Avatar size="sm"><AvatarFallback>SM</AvatarFallback></Avatar>
+  <Avatar size="md"><AvatarFallback>MD</AvatarFallback></Avatar>
+  <Avatar size="lg"><AvatarFallback>LG</AvatarFallback></Avatar>
+  <Avatar size="xl"><AvatarFallback>XL</AvatarFallback></Avatar>
+  <Avatar size="2xl"><AvatarFallback>2X</AvatarFallback></Avatar>
+  <Avatar size="3xl"><AvatarFallback>3X</AvatarFallback></Avatar>
+</div>`}
+        props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
+      />
+
+      <DocsComponent
+        title="Editable Photo Upload Overlay"
+        description="Render a hover photo upload icon overlay using 'isEditable' and trigger 'onUpload' callback. Click the editable avatar to open the cropper modal flow."
         preview={
           <div className="w-full flex flex-wrap items-center gap-5">
             <Avatar
               size="xl"
               isEditable
-              onUpload={() => alert("Upload photo clicked!")}
+              onUpload={() => setIsCropOpen(true)}
             >
               <AvatarImage
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+                src={cropResult ?? "/utils/image-cropper.webp"}
                 alt="Sarah Jenkins"
               />
               <AvatarFallback>SJ</AvatarFallback>
@@ -95,25 +189,131 @@ export default function AvatarPage() {
               isEditable
               isBordered
               color="primary"
-              onUpload={() => alert("Upload photo clicked!")}
+              onUpload={() => setIsCropOpen(true)}
             >
               <AvatarFallback>SJ</AvatarFallback>
             </Avatar>
+
+            <Dialog open={isCropOpen} onOpenChange={(open) => {
+              setIsCropOpen(open);
+              if (!open) setUploadedPhotoUrl(null);
+            }}>
+              <DialogContent size="lg">
+                <DialogHeader>
+                  <DialogTitle>Edit Profile Photo</DialogTitle>
+                  <DialogDescription>
+                    Adjust scale, rotate, and crop your profile avatar.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="py-4">
+                  {!uploadedPhotoUrl ? (
+                    <FileUpload
+                      label="Select Profile Photo"
+                      accept="image/*"
+                      showPreviews={false}
+                      simulateProgress={false}
+                      onFilesSelected={handlePhotoUploadSelected}
+                    />
+                  ) : (
+                    <ImageCropper
+                      ref={cropperRef}
+                      src={uploadedPhotoUrl}
+                      circular
+                      showCropButton={false}
+                    />
+                  )}
+                </div>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="flat">Cancel</Button>
+                  </DialogClose>
+                  <Button color="primary" onClick={handleSaveCrop} disabled={!uploadedPhotoUrl}>
+                    Apply Changes
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
         }
-        code={`<Avatar size="xl" isEditable onUpload={() => handleUpload()}>
-  <AvatarImage src="..." alt="Sarah Jenkins" />
-  <AvatarFallback>SJ</AvatarFallback>
-</Avatar>`}
+        code={`const [isCropOpen, setIsCropOpen] = useState(false);
+const [cropResult, setCropResult] = useState(null);
+const [uploadedPhotoUrl, setUploadedPhotoUrl] = useState(null);
+const cropperRef = useRef(null);
+
+const handlePhotoUploadSelected = (files) => {
+  if (files && files[0]) {
+    const file = files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (e.target?.result) setUploadedPhotoUrl(e.target.result);
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+const handleSaveCrop = () => {
+  if (cropperRef.current) {
+    const cropped = cropperRef.current.crop();
+    if (cropped) {
+      setCropResult(cropped);
+      setUploadedPhotoUrl(null);
+    }
+  }
+  setIsCropOpen(false);
+  toast.success("Profile photo updated successfully!");
+};
+
+return (
+  <div className="flex items-center gap-5">
+    <Avatar size="xl" isEditable onUpload={() => setIsCropOpen(true)}>
+      <AvatarImage src={cropResult ?? "/utils/image-cropper.webp"} alt="Sarah Jenkins" />
+      <AvatarFallback>SJ</AvatarFallback>
+    </Avatar>
+
+    <Dialog open={isCropOpen} onOpenChange={(open) => {
+      setIsCropOpen(open);
+      if (!open) setUploadedPhotoUrl(null);
+    }}>
+      <DialogContent size="lg">
+        <DialogHeader>
+          <DialogTitle>Edit Profile Photo</DialogTitle>
+          <DialogDescription>Adjust scale, rotate, and crop your profile avatar.</DialogDescription>
+        </DialogHeader>
+        
+        {!uploadedPhotoUrl ? (
+          <FileUpload
+            label="Select Profile Photo"
+            accept="image/*"
+            showPreviews={false}
+            simulateProgress={false}
+            onFilesSelected={handlePhotoUploadSelected}
+          />
+        ) : (
+          <ImageCropper
+            ref={cropperRef}
+            src={uploadedPhotoUrl}
+            circular
+            showCropButton={false}
+          />
+        )}
+        
+        <DialogFooter>
+          <DialogClose asChild><Button variant="flat">Cancel</Button></DialogClose>
+          <Button color="primary" onClick={handleSaveCrop} disabled={!uploadedPhotoUrl}>Apply Changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  </div>
+);`}
         props={["isEditable: boolean", "onUpload: () => void"]}
       />
 
       <DocsComponent
-        title="Pressable Avatars (isPressable)"
+        title="Pressable Avatars"
         description="Enable interactive press behavior using 'isPressable' for profile triggers, user menus, or clickable list avatars."
         preview={
           <div className="w-full flex flex-wrap items-center gap-5">
-            <Avatar isPressable onClick={() => alert("Clicked avatar 1")}>
+            <Avatar isPressable onClick={() => toast.info("Clicked Jenkins Profile")}>
               <AvatarImage
                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
                 alt="Sarah Jenkins"
@@ -124,7 +324,7 @@ export default function AvatarPage() {
               isPressable
               isBordered
               color="primary"
-              onClick={() => alert("Clicked avatar 2")}
+              onClick={() => toast.info("Clicked Alex Profile")}
             >
               <AvatarImage
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
@@ -135,24 +335,24 @@ export default function AvatarPage() {
             <Avatar
               isPressable
               color="success"
-              onClick={() => alert("Clicked avatar 3")}
+              onClick={() => toast.info("Clicked Guest Profile")}
             >
               <AvatarFallback>MK</AvatarFallback>
             </Avatar>
           </div>
         }
         code={`<div className="flex flex-wrap items-center gap-5">
-  <Avatar isPressable onClick={() => console.log("Clicked")}>
+  <Avatar isPressable onClick={() => toast.info("Clicked Profile")}>
     <AvatarImage src="..." alt="Sarah Jenkins" />
     <AvatarFallback>SJ</AvatarFallback>
   </Avatar>
 
-  <Avatar isPressable isBordered color="primary" onClick={() => console.log("Clicked")}>
+  <Avatar isPressable isBordered color="primary" onClick={() => toast.info("Clicked Profile")}>
     <AvatarImage src="..." alt="Alex Rivera" />
     <AvatarFallback>AR</AvatarFallback>
   </Avatar>
 
-  <Avatar isPressable color="success" onClick={() => console.log("Clicked")}>
+  <Avatar isPressable color="success" onClick={() => toast.info("Clicked Profile")}>
     <AvatarFallback>MK</AvatarFallback>
   </Avatar>
 </div>`}
@@ -203,46 +403,6 @@ export default function AvatarPage() {
       />
 
       <DocsComponent
-        title="Sizes"
-        description="Scales seamlessly from 'xs' (24px) to '3xl' (80px) across predefined design scale tokens."
-        preview={
-          <div className="w-full flex flex-wrap items-center gap-4">
-            <Avatar size="xs">
-              <AvatarFallback>XS</AvatarFallback>
-            </Avatar>
-            <Avatar size="sm">
-              <AvatarFallback>SM</AvatarFallback>
-            </Avatar>
-            <Avatar size="md">
-              <AvatarFallback>MD</AvatarFallback>
-            </Avatar>
-            <Avatar size="lg">
-              <AvatarFallback>LG</AvatarFallback>
-            </Avatar>
-            <Avatar size="xl">
-              <AvatarFallback>XL</AvatarFallback>
-            </Avatar>
-            <Avatar size="2xl">
-              <AvatarFallback>2X</AvatarFallback>
-            </Avatar>
-            <Avatar size="3xl">
-              <AvatarFallback>3X</AvatarFallback>
-            </Avatar>
-          </div>
-        }
-        code={`<div className="flex flex-wrap items-center gap-4">
-  <Avatar size="xs"><AvatarFallback>XS</AvatarFallback></Avatar>
-  <Avatar size="sm"><AvatarFallback>SM</AvatarFallback></Avatar>
-  <Avatar size="md"><AvatarFallback>MD</AvatarFallback></Avatar>
-  <Avatar size="lg"><AvatarFallback>LG</AvatarFallback></Avatar>
-  <Avatar size="xl"><AvatarFallback>XL</AvatarFallback></Avatar>
-  <Avatar size="2xl"><AvatarFallback>2X</AvatarFallback></Avatar>
-  <Avatar size="3xl"><AvatarFallback>3X</AvatarFallback></Avatar>
-</div>`}
-        props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
-      />
-
-      <DocsComponent
         title="Status Indicators"
         description="Adds a status dot indicator (online, away, offline, dnd) positioned at any corner."
         preview={
@@ -272,6 +432,123 @@ export default function AvatarPage() {
           "statusPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'",
         ]}
       />
+
+      <DocsComponent
+        title="User Info Layout"
+        description="Display custom headers, name, email, or role labels (title and description metadata) aligned alongside the Avatar component using title and description props."
+        preview={
+          <div className="w-full flex flex-wrap gap-8 items-center">
+            <Avatar
+              title="Sarah Jenkins"
+              description="sarah.j@example.com"
+            >
+              <AvatarImage
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+                alt="Sarah Jenkins"
+              />
+              <AvatarFallback>SJ</AvatarFallback>
+            </Avatar>
+
+            <Avatar
+              color="success"
+              isBordered
+              title="Alex Rivera"
+              description={<span className="text-emerald-600 dark:text-emerald-400 font-medium">System Admin</span>}
+            >
+              <AvatarImage
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
+                alt="Alex Rivera"
+              />
+              <AvatarFallback>AR</AvatarFallback>
+            </Avatar>
+          </div>
+        }
+        code={`<Avatar
+  title="Sarah Jenkins"
+  description="sarah.j@example.com"
+>
+  <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
+  <AvatarFallback>SJ</AvatarFallback>
+</Avatar>
+
+<Avatar
+  color="success"
+  isBordered
+  title="Alex Rivera"
+  description={<span className="text-emerald-600 dark:text-emerald-400 font-medium">System Admin</span>}
+>
+  <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Alex Rivera" />
+  <AvatarFallback>AR</AvatarFallback>
+</Avatar>`}
+      />
+
+      <DocsComponent
+        title="Avatar with Dropdown Menu"
+        description="Nest an interactive pressable Avatar within a DropdownMenu trigger to represent typical account or authentication menu systems."
+        preview={
+          <div className="w-full flex items-center justify-start py-2">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Avatar isPressable>
+                  <AvatarImage
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+                    alt="Sarah Jenkins"
+                  />
+                  <AvatarFallback>SJ</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="start">
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-semibold text-zinc-950 dark:text-zinc-50 leading-none">Sarah Jenkins</p>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-none">sarah.j@example.com</p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => toast.info("Navigating to Profile")}>Profile</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => toast.info("Navigating to Settings")}>Settings</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => toast.info("Navigating to Billing")}>Billing</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="text-rose-600 dark:text-rose-400 font-semibold" onClick={() => toast.success("Successfully logged out")}>Log out</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        }
+        code={`import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
+} from "@/components/ui/dropdownMenu/dropdownMenu";
+
+return (
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Avatar isPressable>
+        <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Sarah Jenkins" />
+        <AvatarFallback>SJ</AvatarFallback>
+      </Avatar>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent className="w-56" align="start">
+      <DropdownMenuLabel className="font-normal">
+        <div className="flex flex-col space-y-1">
+          <p className="text-sm font-semibold text-zinc-950 dark:text-zinc-50 leading-none">Sarah Jenkins</p>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-none">sarah.j@example.com</p>
+        </div>
+      </DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem onClick={() => console.log("Profile")}>Profile</DropdownMenuItem>
+      <DropdownMenuItem onClick={() => console.log("Settings")}>Settings</DropdownMenuItem>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem className="text-rose-600" onClick={() => console.log("Log out")}>Log out</DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+);`}
+      />
+
+      <Toast />
 
       <AccessibilityCard />
 

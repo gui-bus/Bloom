@@ -116,13 +116,11 @@ const AlertDialogDescription = React.forwardRef<
 AlertDialogDescription.displayName = "AlertDialogDescription";
 
 export type AlertDialogActionColor =
-  | "danger"
-  | "primary"
-  | "secondary"
-  | "accent"
+  | "default"
+  | "info"
   | "success"
   | "warning"
-  | "default";
+  | "danger";
 
 export interface AlertDialogActionProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -131,16 +129,11 @@ export interface AlertDialogActionProps
 }
 
 const actionColorMap: Record<AlertDialogActionColor, string> = {
-  danger: "bg-rose-500 hover:bg-rose-600 text-white shadow-rose-500/20",
-  primary: "bg-sky-500 hover:bg-sky-600 text-white shadow-sky-500/20",
-  secondary:
-    "bg-purple-500 hover:bg-purple-600 text-white shadow-purple-500/20",
-  accent: "bg-pink-500 hover:bg-pink-600 text-white shadow-pink-500/20",
-  success:
-    "bg-emerald-500 hover:bg-emerald-600 text-white shadow-emerald-500/20",
-  warning: "bg-amber-500 hover:bg-amber-600 text-white shadow-amber-500/20",
-  default:
-    "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:opacity-90",
+  danger: "bg-danger hover:opacity-90 text-danger-foreground",
+  info: "bg-primary hover:opacity-90 text-primary-foreground",
+  success: "bg-success hover:opacity-90 text-success-foreground",
+  warning: "bg-warning hover:opacity-95 text-warning-foreground",
+  default: "bg-default hover:bg-default/80 text-default-foreground",
 };
 
 const AlertDialogAction = React.forwardRef<
@@ -173,7 +166,11 @@ const AlertDialogAction = React.forwardRef<
       >
         {isLoading ? (
           <>
-            <Icon icon="hugeicons:loading-01" className="size-4 animate-spin" />
+            <span
+              role="status"
+              className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+              aria-label="Loading"
+            />
             <span>Loading...</span>
           </>
         ) : (

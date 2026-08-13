@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -10,8 +11,24 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { ImageCropper } from "@/components/ui/imageCropper/imageCropper";
 import { imageCropperCode } from "@/components/ui/imageCropper/imageCropper.code";
 import { Separator } from "@/components/ui/separator/separator";
+import { FileUpload } from "@/components/ui/fileUpload/fileUpload";
 
 export default function ImageCropperPage() {
+  const [uploadedSrc, setUploadedSrc] = useState<string | null>(null);
+
+  const handleFilesSelected = (files: File[]) => {
+    if (files && files[0]) {
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (e.target?.result) {
+          setUploadedSrc(e.target.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="space-y-8">
       <DocsTitle
@@ -28,7 +45,7 @@ export default function ImageCropperPage() {
       <CodeBlock
         code={imageCropperCode}
         componentName="imageCropper.tsx"
-        description="HTML5 Canvas image editor with drag and zoom scaling."
+        description="Core implementation of the ImageCropper component."
         tags={["React", "Canvas", "Cropper", "Editor"]}
       />
 
@@ -41,41 +58,147 @@ export default function ImageCropperPage() {
           "onCrop: (base64: string) => void",
         ]}
         preview={
-          <div className="w-full max-w-xl p-4 bg-zinc-50 dark:bg-zinc-950/40 rounded-xl border border-zinc-200 dark:border-zinc-800">
+          <div className="w-full max-w-xl">
             <ImageCropper
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&auto=format&fit=crop&q=60"
+              src="/utils/image-cropper.webp"
               aspectRatio={1}
               onCrop={(base64) => console.log("Cropped:", base64)}
             />
           </div>
         }
         code={`<ImageCropper
-  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+  src="/utils/image-cropper.webp"
   aspectRatio={1}
   onCrop={(base64) => console.log(base64)}
 />`}
       />
 
       <DocsComponent
-        title="Circular Crop"
-        description="A crop editor that cuts the selected picture into a circular layout (ideal for profile avatars)."
+        title="Crop Format"
+        description="Selectable crop layout shapes. Choose between circular (default) and square formats."
         props={["circular: boolean"]}
         preview={
-          <div className="w-full max-w-xl p-4 bg-zinc-50 dark:bg-zinc-950/40 rounded-xl border border-zinc-200 dark:border-zinc-800">
+          <div className="w-full flex flex-col md:flex-row gap-8 items-start">
+            <div className="flex-1 w-full">
+              <h4 className="text-sm font-semibold mb-3 text-zinc-500 uppercase tracking-wider">Circular (Default)</h4>
+              <ImageCropper
+                src="/utils/image-cropper.webp"
+                aspectRatio={1}
+                circular={true}
+                onCrop={(base64) => console.log("Cropped circular:", base64)}
+              />
+            </div>
+            <div className="flex-1 w-full">
+              <h4 className="text-sm font-semibold mb-3 text-zinc-500 uppercase tracking-wider">Square</h4>
+              <ImageCropper
+                src="/utils/image-cropper.webp"
+                aspectRatio={1}
+                circular={false}
+                onCrop={(base64) => console.log("Cropped square:", base64)}
+              />
+            </div>
+          </div>
+        }
+        code={`{/* Circular (Default) */}
+<ImageCropper
+  src="/utils/image-cropper.webp"
+  aspectRatio={1}
+  circular={true}
+/>
+
+{/* Square */}
+<ImageCropper
+  src="/utils/image-cropper.webp"
+  aspectRatio={1}
+  circular={false}
+/>`}
+      />
+
+      <DocsComponent
+        title="Aspect Ratios & Banners"
+        description="Configure crop boxes for specific width and height pixel dimensions (such as 4K resolution 3840x2160). When width and height are provided, circular and square overlays are automatically disabled."
+        preview={
+          <div className="w-full">
             <ImageCropper
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&auto=format&fit=crop&q=60"
-              aspectRatio={1}
-              circular={true}
-              onCrop={(base64) => console.log("Cropped:", base64)}
+              src="/utils/image-cropper-banner.webp"
+              width={3840}
+              height={2160}
+              defaultZoom={55}
+              onCrop={(base64) => console.log("Cropped 4K banner:", base64)}
             />
           </div>
         }
         code={`<ImageCropper
-  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
-  aspectRatio={1}
-  circular={true}
+  src="/utils/image-cropper-banner.webp"
+  width={3840}
+  height={2160}
+  defaultZoom={55}
   onCrop={(base64) => console.log(base64)}
 />`}
+      />
+
+      <DocsComponent
+        title="Interactive Upload Flow"
+        description="Upload your own picture using FileUpload first, then crop it using the ImageCropper."
+        preview={
+          <div className="w-full max-w-xl space-y-6">
+            {!uploadedSrc ? (
+              <FileUpload
+                label="Profile Picture Upload"
+                accept="image/*"
+                showPreviews={false}
+                simulateProgress={false}
+                onFilesSelected={handleFilesSelected}
+              />
+            ) : (
+              <div className="space-y-4">
+                <ImageCropper
+                  src={uploadedSrc}
+                  aspectRatio={1}
+                  circular
+                  onCrop={(base64) => console.log("Cropped uploaded:", base64)}
+                />
+                <button
+                  onClick={() => setUploadedSrc(null)}
+                  className="px-4 py-2 text-sm font-semibold text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-xl transition-colors"
+                >
+                  Upload a different image
+                </button>
+              </div>
+            )}
+          </div>
+        }
+        code={`const [uploadedSrc, setUploadedSrc] = useState(null);
+
+const handleFilesSelected = (files) => {
+  if (files && files[0]) {
+    const file = files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (e.target?.result) setUploadedSrc(e.target.result);
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+return (
+  <div>
+    {!uploadedSrc ? (
+      <FileUpload
+        label="Profile Picture Upload"
+        accept="image/*"
+        showPreviews={false}
+        simulateProgress={false}
+        onFilesSelected={handleFilesSelected}
+      />
+    ) : (
+      <div>
+        <ImageCropper src={uploadedSrc} aspectRatio={1} circular />
+        <button onClick={() => setUploadedSrc(null)}>Upload different</button>
+      </div>
+    )}
+  </div>
+);`}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -130,9 +253,39 @@ export default function ImageCropperPage() {
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     boolean
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Renders a round cropping viewport overlay
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">showCropButton</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    If false, hides the built-in Crop button and results section (useful for custom external action flows)
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">width</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Custom output crop box width in pixels. If set with height, circular/square presets are disabled.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">height</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    number
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">undefined</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Custom output crop box height in pixels. If set with width, circular/square presets are disabled.
                   </td>
                 </tr>
                 <tr>

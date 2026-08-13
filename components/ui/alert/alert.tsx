@@ -12,9 +12,6 @@ import { cn } from "@/lib/utils";
 
 type AlertColor =
   | "default"
-  | "primary"
-  | "secondary"
-  | "accent"
   | "info"
   | "success"
   | "warning"
@@ -43,9 +40,6 @@ const useAlertContext = () => React.useContext(AlertContext);
 
 const titleColorMap: Record<AlertColor, string> = {
   default: "text-zinc-900 dark:text-zinc-100 font-semibold",
-  primary: "text-sky-600 dark:text-sky-400 font-semibold",
-  secondary: "text-purple-600 dark:text-purple-400 font-semibold",
-  accent: "text-pink-600 dark:text-pink-400 font-semibold",
   info: "text-sky-600 dark:text-sky-400 font-semibold",
   success: "text-emerald-600 dark:text-emerald-400 font-semibold",
   warning: "text-amber-600 dark:text-amber-400 font-semibold",
@@ -54,9 +48,6 @@ const titleColorMap: Record<AlertColor, string> = {
 
 const iconColorMap: Record<AlertColor, string> = {
   default: "text-zinc-500 dark:text-zinc-400",
-  primary: "text-sky-500",
-  secondary: "text-purple-500",
-  accent: "text-pink-500",
   info: "text-sky-500",
   success: "text-emerald-500",
   warning: "text-amber-500",
@@ -65,9 +56,6 @@ const iconColorMap: Record<AlertColor, string> = {
 
 const accentLeftBorderMap: Record<AlertColor, string> = {
   default: "border-l-4 border-l-zinc-500",
-  primary: "border-l-4 border-l-sky-500",
-  secondary: "border-l-4 border-l-purple-500",
-  accent: "border-l-4 border-l-pink-500",
   info: "border-l-4 border-l-sky-500",
   success: "border-l-4 border-l-emerald-500",
   warning: "border-l-4 border-l-amber-500",
@@ -77,12 +65,6 @@ const accentLeftBorderMap: Record<AlertColor, string> = {
 const glowMap: Record<AlertColor, string> = {
   default:
     "shadow-[0_0_15px_rgba(113,113,122,0.25)] border-zinc-300 dark:border-zinc-700",
-  primary:
-    "shadow-[0_0_15px_rgba(14,165,233,0.3)] border-sky-400/50 dark:border-sky-500/50",
-  secondary:
-    "shadow-[0_0_15px_rgba(168,85,247,0.3)] border-purple-400/50 dark:border-purple-500/50",
-  accent:
-    "shadow-[0_0_15px_rgba(236,72,153,0.3)] border-pink-400/50 dark:border-pink-500/50",
   info: "shadow-[0_0_15px_rgba(14,165,233,0.3)] border-sky-400/50 dark:border-sky-500/50",
   success:
     "shadow-[0_0_15px_rgba(16,185,129,0.3)] border-emerald-400/50 dark:border-emerald-500/50",
@@ -109,9 +91,6 @@ const variantCardMap: Record<AlertVariant, string> = {
 
 const iconMap: Record<AlertColor, React.ElementType> = {
   default: Info,
-  primary: Info,
-  secondary: Info,
-  accent: Info,
   info: Info,
   success: CheckCircle2,
   warning: AlertTriangle,
@@ -124,6 +103,7 @@ export interface AlertProps
   color?: AlertColor;
   title?: React.ReactNode;
   icon?: React.ReactNode;
+  customIcon?: React.ReactNode;
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
   hideIcon?: boolean;
@@ -132,6 +112,7 @@ export interface AlertProps
   durationMs?: number;
   onClose?: () => void;
   action?: React.ReactNode;
+  showWatermark?: boolean;
 }
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
@@ -142,6 +123,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       color = "info",
       title,
       icon,
+      customIcon,
       startContent,
       endContent,
       hideIcon = false,
@@ -150,6 +132,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       durationMs,
       onClose,
       action,
+      showWatermark = false,
       children,
       ...props
     },
@@ -174,15 +157,23 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     if (!isVisible) return null;
 
     const IconComponent = iconMap[color];
+    const activeIcon = customIcon ?? icon;
 
     const renderedStart =
-      startContent ??
-      (!hideIcon &&
-        (icon ?? (
-          <IconComponent
-            className={cn("size-5 shrink-0 mt-0.5", iconColorMap[color])}
-          />
-        )));
+      !showWatermark &&
+      (startContent ??
+        (!hideIcon &&
+          (activeIcon ?? (
+            <IconComponent
+              className={cn("size-5 shrink-0 mt-0.5", iconColorMap[color])}
+            />
+          ))));
+
+    const watermarkElement = showWatermark && !hideIcon && (
+      <div className="absolute right-4 bottom-0 -mb-4 -mr-2 opacity-[0.08] dark:opacity-[0.04] pointer-events-none select-none text-zinc-900 dark:text-white">
+        {activeIcon ?? <IconComponent className="size-24" />}
+      </div>
+    );
 
     const canClose = isClosable || isDismissible;
 
@@ -192,7 +183,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
           ref={ref}
           role="alert"
           className={cn(
-            "relative w-full rounded-2xl p-4 text-sm flex gap-3.5 items-start leading-relaxed transition-all duration-200",
+            "relative w-full rounded-2xl p-4 text-sm flex gap-3.5 items-start leading-relaxed transition-all duration-200 overflow-hidden",
             variantCardMap[variant],
             variant === "accent-left" && accentLeftBorderMap[color],
             variant === "glow" && glowMap[color],
@@ -200,11 +191,26 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
           )}
           {...props}
         >
-          {renderedStart}
-
+          {watermarkElement}
           <div className="flex flex-col flex-1 min-w-0">
-            {title && <AlertTitle>{title}</AlertTitle>}
-            {children &&
+            {title ? (
+              <div className="flex items-center gap-2 mb-1">
+                {renderedStart}
+                <AlertTitle>{title}</AlertTitle>
+              </div>
+            ) : (
+              <div className="flex items-start gap-2">
+                {renderedStart}
+                {children &&
+                  (typeof children === "string" ? (
+                    <AlertDescription className="mt-0">{children}</AlertDescription>
+                  ) : (
+                    children
+                  ))}
+              </div>
+            )}
+
+            {title && children &&
               (typeof children === "string" ? (
                 <AlertDescription>{children}</AlertDescription>
               ) : (

@@ -23,6 +23,17 @@ export default function AccordionPage() {
   const [controlledValue, setControlledValue] =
     React.useState<string>("item-2");
 
+  const handlePrev = () => {
+    if (controlledValue === "item-2") setControlledValue("item-1");
+    else if (controlledValue === "item-3") setControlledValue("item-2");
+  };
+
+  const handleNext = () => {
+    if (!controlledValue) setControlledValue("item-1");
+    else if (controlledValue === "item-1") setControlledValue("item-2");
+    else if (controlledValue === "item-2") setControlledValue("item-3");
+  };
+
   return (
     <div className="space-y-8">
       <DocsTitle
@@ -102,29 +113,32 @@ export default function AccordionPage() {
             <div className="flex flex-wrap items-center gap-2">
               <Button
                 size="sm"
-                variant={controlledValue === "item-1" ? "default" : "bordered"}
-                onClick={() => setControlledValue("item-1")}
+                variant="flat"
+                radius="sm"
+                onClick={handlePrev}
+                disabled={controlledValue === "item-1" || !controlledValue}
+                isIconOnly
+                ariaLabel="Previous Item"
               >
-                Open Item 1
+                <Icon icon="hugeicons:arrow-up-01" className="size-4" />
               </Button>
               <Button
                 size="sm"
-                variant={controlledValue === "item-2" ? "default" : "bordered"}
-                onClick={() => setControlledValue("item-2")}
+                variant="flat"
+                radius="sm"
+                onClick={handleNext}
+                disabled={controlledValue === "item-3"}
+                isIconOnly
+                ariaLabel="Next Item"
               >
-                Open Item 2
+                <Icon icon="hugeicons:arrow-down-01" className="size-4" />
               </Button>
               <Button
                 size="sm"
-                variant={controlledValue === "item-3" ? "default" : "bordered"}
-                onClick={() => setControlledValue("item-3")}
-              >
-                Open Item 3
-              </Button>
-              <Button
-                size="sm"
-                variant="ghost"
+                variant="flat"
+                radius="sm"
                 onClick={() => setControlledValue("")}
+                disabled={!controlledValue}
               >
                 Close All
               </Button>
@@ -170,12 +184,27 @@ export default function AccordionPage() {
         }
         code={`const [value, setValue] = useState("item-2");
 
+const handlePrev = () => {
+  if (value === "item-2") setValue("item-1");
+  else if (value === "item-3") setValue("item-2");
+};
+
+const handleNext = () => {
+  if (!value) setValue("item-1");
+  else if (value === "item-1") setValue("item-2");
+  else if (value === "item-2") setValue("item-3");
+};
+
 return (
   <div className="space-y-4">
     <div className="flex gap-2">
-      <Button onClick={() => setValue("item-1")}>Open Item 1</Button>
-      <Button onClick={() => setValue("item-2")}>Open Item 2</Button>
-      <Button onClick={() => setValue("")}>Close All</Button>
+      <Button onClick={handlePrev} disabled={value === "item-1" || !value} isIconOnly ariaLabel="Previous Item" radius="sm" variant="flat">
+        <Icon icon="hugeicons:arrow-up-01" className="size-4" />
+      </Button>
+      <Button onClick={handleNext} disabled={value === "item-3"} isIconOnly ariaLabel="Next Item" radius="sm" variant="flat">
+        <Icon icon="hugeicons:arrow-down-01" className="size-4" />
+      </Button>
+      <Button onClick={() => setValue("")} disabled={!value} radius="sm" variant="flat">Close All</Button>
     </div>
 
     <Accordion type="single" collapsible value={value} onValueChange={setValue} variant="bordered">
@@ -187,6 +216,10 @@ return (
         <AccordionTrigger>Security & Authentication</AccordionTrigger>
         <AccordionContent>Configure two-factor authentication.</AccordionContent>
       </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Notifications</AccordionTrigger>
+        <AccordionContent>Choose alerts to receive.</AccordionContent>
+      </AccordionItem>
     </Accordion>
   </div>
 );`}
@@ -197,7 +230,47 @@ return (
       />
 
       <DocsComponent
-        title="Start & End Icons (startContent & endContent)"
+        title="Multiple"
+        description="Allow multiple accordion items to be expanded at the same time by setting the type prop to 'multiple'."
+        preview={
+          <div className="w-full">
+            <Accordion type="multiple" defaultValue={["item-1", "item-2"]} variant="bordered">
+              <AccordionItem value="item-1">
+                <AccordionTrigger>First Section</AccordionTrigger>
+                <AccordionContent>
+                  This is the content of the first section. You can keep this and other sections open simultaneously.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>Second Section</AccordionTrigger>
+                <AccordionContent>
+                  This is the content of the second section. Expanding this won't collapse the first one.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3">
+                <AccordionTrigger>Third Section</AccordionTrigger>
+                <AccordionContent>
+                  This is the content of the third section.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        }
+        code={`<Accordion type="multiple" defaultValue={["item-1", "item-2"]} variant="bordered">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>First Section</AccordionTrigger>
+    <AccordionContent>This is the content of the first section.</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Second Section</AccordionTrigger>
+    <AccordionContent>This is the content of the second section.</AccordionContent>
+  </AccordionItem>
+</Accordion>`}
+        props={["type: 'multiple'"]}
+      />
+
+      <DocsComponent
+        title="Start & End Icons"
         description="Add custom icons before the title using 'startContent', or customize/replace the right-side arrow indicator using 'endContent'."
         preview={
           <div className="w-full ">
@@ -237,7 +310,7 @@ return (
                     />
                   }
                 >
-                  Advanced Security (Custom End Icon)
+                  Advanced Security
                 </AccordionTrigger>
                 <AccordionContent>
                   Data protection featuring end-to-end encryption and physical
@@ -293,7 +366,7 @@ return (
       />
 
       <DocsComponent
-        title="Disabled State (isDisabled)"
+        title="Disabled State"
         description="Disable specific accordion items or an entire accordion block using the 'isDisabled' (or 'disabled') prop."
         preview={
           <div className="w-full  space-y-6">
@@ -373,6 +446,40 @@ return (
   </AccordionItem>
 </Accordion>`}
         props={["isDisabled: boolean"]}
+      />
+
+      <DocsComponent
+        title="Without Dividers"
+        description="Remove the separator lines between accordion items by setting the showDividers prop to false."
+        preview={
+          <div className="w-full">
+            <Accordion type="single" collapsible defaultValue="item-1" showDividers={false}>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>First Option</AccordionTrigger>
+                <AccordionContent>
+                  Notice there is no line separating this item from the next one.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>Second Option</AccordionTrigger>
+                <AccordionContent>
+                  The separation between items is cleaner without divider lines.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        }
+        code={`<Accordion type="single" collapsible defaultValue="item-1" showDividers={false}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>First Option</AccordionTrigger>
+    <AccordionContent>Notice there is no line separating this item.</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Second Option</AccordionTrigger>
+    <AccordionContent>The separation between items is cleaner.</AccordionContent>
+  </AccordionItem>
+</Accordion>`}
+        props={["showDividers: boolean"]}
       />
 
       <DocsComponent
@@ -497,7 +604,7 @@ return (
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
-        title="Props — Accordion (Root)"
+        title="Props — Accordion"
         description="Properties for configuring the Root Accordion container."
         preview={
           <div className="overflow-x-auto">
@@ -508,7 +615,7 @@ return (
                     Prop
                   </th>
                   <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Type
+                     Type
                   </th>
                   <th className="text-left py-2 px-3 font-semibold text-foreground">
                     Default
@@ -587,7 +694,7 @@ return (
                     clicking its trigger again.
                   </td>
                 </tr>
-                <tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">
                     isDisabled
                   </td>
@@ -597,6 +704,18 @@ return (
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Disables interaction with all accordion items.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showDividers
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">true</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Determines if borders/dividers are shown between items.
                   </td>
                 </tr>
               </tbody>

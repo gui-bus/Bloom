@@ -1,6 +1,10 @@
 {
   "name": "codeBlock",
-  "dependencies": ["highlight.js", "framer-motion", "@iconify/react"],
+  "dependencies": [
+    "highlight.js",
+    "framer-motion",
+    "@iconify/react"
+  ],
   "files": [
     {
       "name": "codeBlock.tsx",

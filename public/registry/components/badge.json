@@ -1,6 +1,8 @@
 {
   "name": "badge",
-  "dependencies": ["class-variance-authority"],
+  "dependencies": [
+    "class-variance-authority"
+  ],
   "files": [
     {
       "name": "badge.tsx",

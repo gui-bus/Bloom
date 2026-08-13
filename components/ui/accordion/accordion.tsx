@@ -15,11 +15,13 @@ type AccordionVariant =
 interface AccordionContextValue {
   variant: AccordionVariant;
   isKeepMounted?: boolean;
+  showDividers?: boolean;
 }
 
 const AccordionContext = React.createContext<AccordionContextValue>({
   variant: "default",
   isKeepMounted: false,
+  showDividers: true,
 });
 
 const useAccordionContext = () => React.useContext(AccordionContext);
@@ -30,6 +32,7 @@ type AccordionProps = React.ComponentPropsWithoutRef<
   variant?: AccordionVariant;
   isDisabled?: boolean;
   isKeepMounted?: boolean;
+  showDividers?: boolean;
 };
 
 const Accordion = React.forwardRef<
@@ -43,6 +46,7 @@ const Accordion = React.forwardRef<
       isDisabled,
       disabled,
       isKeepMounted = false,
+      showDividers = true,
       ...props
     },
     ref,
@@ -60,7 +64,7 @@ const Accordion = React.forwardRef<
     );
 
     return (
-      <AccordionContext.Provider value={{ variant, isKeepMounted }}>
+      <AccordionContext.Provider value={{ variant, isKeepMounted, showDividers }}>
         <AccordionPrimitive.Root
           ref={ref}
           disabled={isAccordionDisabled}
@@ -83,7 +87,7 @@ const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   AccordionItemProps
 >(({ className, isDisabled, disabled, ...props }, ref) => {
-  const { variant } = useAccordionContext();
+  const { variant, showDividers } = useAccordionContext();
   const isItemDisabled = isDisabled || disabled;
 
   return (
@@ -92,15 +96,15 @@ const AccordionItem = React.forwardRef<
       disabled={isItemDisabled}
       className={cn(
         variant === "default" &&
-          "border-b border-zinc-200 dark:border-zinc-800 last:border-b-0 px-4",
+          cn("px-4", showDividers && "border-b border-zinc-200 dark:border-zinc-800 last:border-b-0"),
         variant === "bordered" &&
-          "border-b border-zinc-200 dark:border-zinc-800 last:border-b-0 px-4",
+          cn("px-4", showDividers && "border-b border-zinc-200 dark:border-zinc-800 last:border-b-0"),
         variant === "splitted" &&
           "bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 shadow-xs px-4",
         variant === "shadow" &&
-          "border-b border-zinc-200/40 dark:border-zinc-800/40 last:border-b-0 px-4",
+          cn("px-4", showDividers && "border-b border-zinc-200/40 dark:border-zinc-800/40 last:border-b-0"),
         variant === "compact" &&
-          "border-b border-zinc-200 dark:border-zinc-800 last:border-b-0 px-3",
+          cn("px-3", showDividers && "border-b border-zinc-200 dark:border-zinc-800 last:border-b-0"),
         isItemDisabled &&
           "opacity-50 pointer-events-none data-[disabled]:opacity-50",
         className,
@@ -146,7 +150,7 @@ const AccordionTrigger = React.forwardRef<
           ref={ref}
           disabled={isTriggerDisabled}
           className={cn(
-            "flex flex-1 items-center justify-between gap-3 text-sm font-medium text-zinc-900 dark:text-zinc-100 transition-all hover:underline text-left outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm",
+            "flex flex-1 items-center justify-between gap-3 text-sm font-medium text-zinc-900 dark:text-zinc-100 transition-all hover:underline text-left outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm cursor-pointer",
             "disabled:pointer-events-none disabled:opacity-50",
             "[&[data-state=open]_.accordion-indicator]:rotate-180",
             variant === "compact" ? "py-2.5" : "py-4",

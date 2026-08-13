@@ -1,6 +1,8 @@
 {
   "name": "radioGroup",
-  "dependencies": ["@radix-ui/react-radio-group"],
+  "dependencies": [
+    "@radix-ui/react-radio-group"
+  ],
   "files": [
     {
       "name": "radioGroup.tsx",

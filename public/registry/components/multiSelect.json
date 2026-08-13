@@ -1,6 +1,8 @@
 {
   "name": "multiSelect",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "files": [
     {
       "name": "multiSelect.tsx",

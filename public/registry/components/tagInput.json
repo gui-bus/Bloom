@@ -1,6 +1,9 @@
 {
   "name": "tagInput",
-  "dependencies": ["@iconify/react", "class-variance-authority"],
+  "dependencies": [
+    "@iconify/react",
+    "class-variance-authority"
+  ],
   "files": [
     {
       "name": "tagInput.tsx",
