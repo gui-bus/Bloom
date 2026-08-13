@@ -88,7 +88,6 @@ export default function RichTextEditorPage() {
 />`}
       />
 
-
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800">

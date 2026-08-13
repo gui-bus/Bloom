@@ -244,7 +244,6 @@ export default function TreeViewPage() {
         props={["onLoadChildren: (id: string) => Promise<TreeDataItem[]>"]}
       />
 
-
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <div className="space-y-6">
