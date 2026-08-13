@@ -20,6 +20,8 @@ describe("ImageCropper Component", () => {
     const onCropMock = vi.fn();
     render(<ImageCropper src="image.png" onCrop={onCropMock} />);
 
-    expect(screen.getByText("Crop Image")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Crop Image" }),
+    ).toBeInTheDocument();
   });
 });
