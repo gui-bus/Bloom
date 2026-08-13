@@ -14,7 +14,8 @@
       "!dist",
       "!build",
       "!packages/cli/dist",
-      "!public"
+      "!public",
+      "!**/*.code.ts"
     ]
   },
   "css": {
