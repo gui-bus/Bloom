@@ -348,23 +348,29 @@ export default function AvatarGroupPage() {
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showTooltip</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showTooltip
+                  </td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     boolean
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Enables showing tooltips above each avatar showing its title or alt description on hover.
+                    Enables showing tooltips above each avatar showing its title
+                    or alt description on hover.
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-primary">isPressable</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    isPressable
+                  </td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     boolean
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Enables scaling animations on mouse hover/press for nested avatars.
+                    Enables scaling animations on mouse hover/press for nested
+                    avatars.
                   </td>
                 </tr>
               </tbody>

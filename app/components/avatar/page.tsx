@@ -14,7 +14,7 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar/avatar";
 import { avatarCode } from "@/components/ui/avatar/avatar.code";
-import { Separator } from "@/components/ui/separator/separator";
+import { Button } from "@/components/ui/button/button";
 import {
   Dialog,
   DialogClose,
@@ -24,27 +24,32 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog/dialog";
-import { ImageCropper, ImageCropperRef } from "@/components/ui/imageCropper/imageCropper";
-import { Toast, toast } from "@/components/ui/toast/toast";
-import { Button } from "@/components/ui/button/button";
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdownMenu/dropdownMenu";
 import { FileUpload } from "@/components/ui/fileUpload/fileUpload";
+import {
+  ImageCropper,
+  type ImageCropperRef,
+} from "@/components/ui/imageCropper/imageCropper";
+import { Separator } from "@/components/ui/separator/separator";
+import { Toast, toast } from "@/components/ui/toast/toast";
 
 export default function AvatarPage() {
   const [isCropOpen, setIsCropOpen] = React.useState(false);
   const [cropResult, setCropResult] = React.useState<string | null>(null);
-  const [uploadedPhotoUrl, setUploadedPhotoUrl] = React.useState<string | null>(null);
+  const [uploadedPhotoUrl, setUploadedPhotoUrl] = React.useState<string | null>(
+    null,
+  );
   const cropperRef = React.useRef<ImageCropperRef>(null);
 
   const handlePhotoUploadSelected = (files: File[]) => {
-    if (files && files[0]) {
+    if (files?.[0]) {
       const file = files[0];
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -173,11 +178,7 @@ export default function AvatarPage() {
         description="Render a hover photo upload icon overlay using 'isEditable' and trigger 'onUpload' callback. Click the editable avatar to open the cropper modal flow."
         preview={
           <div className="w-full flex flex-wrap items-center gap-5">
-            <Avatar
-              size="xl"
-              isEditable
-              onUpload={() => setIsCropOpen(true)}
-            >
+            <Avatar size="xl" isEditable onUpload={() => setIsCropOpen(true)}>
               <AvatarImage
                 src={cropResult ?? "/utils/image-cropper.webp"}
                 alt="Sarah Jenkins"
@@ -194,10 +195,13 @@ export default function AvatarPage() {
               <AvatarFallback>SJ</AvatarFallback>
             </Avatar>
 
-            <Dialog open={isCropOpen} onOpenChange={(open) => {
-              setIsCropOpen(open);
-              if (!open) setUploadedPhotoUrl(null);
-            }}>
+            <Dialog
+              open={isCropOpen}
+              onOpenChange={(open) => {
+                setIsCropOpen(open);
+                if (!open) setUploadedPhotoUrl(null);
+              }}
+            >
               <DialogContent size="lg">
                 <DialogHeader>
                   <DialogTitle>Edit Profile Photo</DialogTitle>
@@ -227,7 +231,11 @@ export default function AvatarPage() {
                   <DialogClose asChild>
                     <Button variant="flat">Cancel</Button>
                   </DialogClose>
-                  <Button color="primary" onClick={handleSaveCrop} disabled={!uploadedPhotoUrl}>
+                  <Button
+                    color="primary"
+                    onClick={handleSaveCrop}
+                    disabled={!uploadedPhotoUrl}
+                  >
                     Apply Changes
                   </Button>
                 </DialogFooter>
@@ -313,7 +321,10 @@ return (
         description="Enable interactive press behavior using 'isPressable' for profile triggers, user menus, or clickable list avatars."
         preview={
           <div className="w-full flex flex-wrap items-center gap-5">
-            <Avatar isPressable onClick={() => toast.info("Clicked Jenkins Profile")}>
+            <Avatar
+              isPressable
+              onClick={() => toast.info("Clicked Jenkins Profile")}
+            >
               <AvatarImage
                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
                 alt="Sarah Jenkins"
@@ -438,10 +449,7 @@ return (
         description="Display custom headers, name, email, or role labels (title and description metadata) aligned alongside the Avatar component using title and description props."
         preview={
           <div className="w-full flex flex-wrap gap-8 items-center">
-            <Avatar
-              title="Sarah Jenkins"
-              description="sarah.j@example.com"
-            >
+            <Avatar title="Sarah Jenkins" description="sarah.j@example.com">
               <AvatarImage
                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
                 alt="Sarah Jenkins"
@@ -453,7 +461,11 @@ return (
               color="success"
               isBordered
               title="Alex Rivera"
-              description={<span className="text-emerald-600 dark:text-emerald-400 font-medium">System Admin</span>}
+              description={
+                <span className="text-emerald-600 dark:text-emerald-400 font-medium">
+                  System Admin
+                </span>
+              }
             >
               <AvatarImage
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
@@ -500,16 +512,37 @@ return (
               <DropdownMenuContent className="w-56" align="start">
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-semibold text-zinc-950 dark:text-zinc-50 leading-none">Sarah Jenkins</p>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-none">sarah.j@example.com</p>
+                    <p className="text-sm font-semibold text-zinc-950 dark:text-zinc-50 leading-none">
+                      Sarah Jenkins
+                    </p>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-none">
+                      sarah.j@example.com
+                    </p>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => toast.info("Navigating to Profile")}>Profile</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => toast.info("Navigating to Settings")}>Settings</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => toast.info("Navigating to Billing")}>Billing</DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => toast.info("Navigating to Profile")}
+                >
+                  Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => toast.info("Navigating to Settings")}
+                >
+                  Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => toast.info("Navigating to Billing")}
+                >
+                  Billing
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-rose-600 dark:text-rose-400 font-semibold" onClick={() => toast.success("Successfully logged out")}>Log out</DropdownMenuItem>
+                <DropdownMenuItem
+                  className="text-rose-600 dark:text-rose-400 font-semibold"
+                  onClick={() => toast.success("Successfully logged out")}
+                >
+                  Log out
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

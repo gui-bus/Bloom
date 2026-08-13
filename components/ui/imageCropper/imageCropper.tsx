@@ -1,16 +1,17 @@
 "use client";
 
-import {
-  Crop,
-  Download,
-  RotateCcw,
-  RotateCw,
-} from "lucide-react";
+import { Crop, Download, RotateCcw } from "lucide-react";
 import * as React from "react";
-import { useCallback, useEffect, useRef, useState, useImperativeHandle } from "react";
-import { cn } from "@/lib/utils";
-import { Slider } from "@/components/ui/slider/slider";
+import {
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import { Button } from "@/components/ui/button/button";
+import { Slider } from "@/components/ui/slider/slider";
+import { cn } from "@/lib/utils";
 
 export interface ImageCropperRef {
   crop: () => string | null;
@@ -28,7 +29,10 @@ export interface ImageCropperProps {
   defaultZoom?: number;
 }
 
-export const ImageCropper = React.forwardRef<ImageCropperRef, ImageCropperProps>(
+export const ImageCropper = React.forwardRef<
+  ImageCropperRef,
+  ImageCropperProps
+>(
   (
     {
       src,
@@ -58,7 +62,11 @@ export const ImageCropper = React.forwardRef<ImageCropperRef, ImageCropperProps>
 
     const isCustomSize = width !== undefined && height !== undefined;
     const effectiveCircular = isCustomSize ? false : circular;
-    const effectiveAspectRatio = isCustomSize ? (width! / height!) : (effectiveCircular ? 1 : aspectRatio);
+    const effectiveAspectRatio = isCustomSize
+      ? width! / height!
+      : effectiveCircular
+        ? 1
+        : aspectRatio;
 
     // Dynamic crop box sizing based on aspect ratio and container dimensions
     useEffect(() => {
@@ -121,9 +129,13 @@ export const ImageCropper = React.forwardRef<ImageCropperRef, ImageCropperProps>
 
     useEffect(() => {
       if (isDragging) {
-        window.addEventListener("mousemove", handleMouseMove, { passive: false });
+        window.addEventListener("mousemove", handleMouseMove, {
+          passive: false,
+        });
         window.addEventListener("mouseup", handleMouseUp);
-        window.addEventListener("touchmove", handleMouseMove, { passive: false });
+        window.addEventListener("touchmove", handleMouseMove, {
+          passive: false,
+        });
         window.addEventListener("touchend", handleMouseUp);
       }
       return () => {
@@ -203,7 +215,17 @@ export const ImageCropper = React.forwardRef<ImageCropperRef, ImageCropperProps>
         onCrop(base64);
       }
       return base64;
-    }, [effectiveCircular, onCrop, position, rotation, scale, isCustomSize, width, height, boxSize]);
+    }, [
+      effectiveCircular,
+      onCrop,
+      position,
+      rotation,
+      scale,
+      isCustomSize,
+      width,
+      height,
+      boxSize,
+    ]);
 
     useImperativeHandle(
       ref,

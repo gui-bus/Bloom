@@ -1,8 +1,6 @@
 {
   "name": "treeView",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react"],
   "files": [
     {
       "name": "treeView.tsx",

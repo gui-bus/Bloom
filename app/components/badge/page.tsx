@@ -388,7 +388,9 @@ export default function BadgeComponentPage() {
               variant="flat"
               isRemovable
               onRemove={() =>
-                toast("Tag removed", { description: "React tag was dismissed." })
+                toast("Tag removed", {
+                  description: "React tag was dismissed.",
+                })
               }
             >
               React

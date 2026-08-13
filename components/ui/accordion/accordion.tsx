@@ -64,7 +64,9 @@ const Accordion = React.forwardRef<
     );
 
     return (
-      <AccordionContext.Provider value={{ variant, isKeepMounted, showDividers }}>
+      <AccordionContext.Provider
+        value={{ variant, isKeepMounted, showDividers }}
+      >
         <AccordionPrimitive.Root
           ref={ref}
           disabled={isAccordionDisabled}
@@ -96,15 +98,31 @@ const AccordionItem = React.forwardRef<
       disabled={isItemDisabled}
       className={cn(
         variant === "default" &&
-          cn("px-4", showDividers && "border-b border-zinc-200 dark:border-zinc-800 last:border-b-0"),
+          cn(
+            "px-4",
+            showDividers &&
+              "border-b border-zinc-200 dark:border-zinc-800 last:border-b-0",
+          ),
         variant === "bordered" &&
-          cn("px-4", showDividers && "border-b border-zinc-200 dark:border-zinc-800 last:border-b-0"),
+          cn(
+            "px-4",
+            showDividers &&
+              "border-b border-zinc-200 dark:border-zinc-800 last:border-b-0",
+          ),
         variant === "splitted" &&
           "bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 shadow-xs px-4",
         variant === "shadow" &&
-          cn("px-4", showDividers && "border-b border-zinc-200/40 dark:border-zinc-800/40 last:border-b-0"),
+          cn(
+            "px-4",
+            showDividers &&
+              "border-b border-zinc-200/40 dark:border-zinc-800/40 last:border-b-0",
+          ),
         variant === "compact" &&
-          cn("px-3", showDividers && "border-b border-zinc-200 dark:border-zinc-800 last:border-b-0"),
+          cn(
+            "px-3",
+            showDividers &&
+              "border-b border-zinc-200 dark:border-zinc-800 last:border-b-0",
+          ),
         isItemDisabled &&
           "opacity-50 pointer-events-none data-[disabled]:opacity-50",
         className,

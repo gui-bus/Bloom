@@ -1,8 +1,6 @@
 {
   "name": "toast",
-  "dependencies": [
-    "sonner"
-  ],
+  "dependencies": ["sonner"],
   "files": [
     {
       "name": "toast.tsx",

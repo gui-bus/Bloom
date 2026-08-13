@@ -1,8 +1,6 @@
 {
   "name": "drawer",
-  "dependencies": [
-    "vaul"
-  ],
+  "dependencies": ["vaul"],
   "files": [
     {
       "name": "drawer.tsx",

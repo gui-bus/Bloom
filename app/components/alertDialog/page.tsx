@@ -1,8 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { AlertTriangle } from "lucide-react";
-import { Toast, toast } from "@/components/ui/toast/toast";
+import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -25,6 +24,7 @@ import { alertDialogCode } from "@/components/ui/alertDialog/alertDialog.code";
 import { Button } from "@/components/ui/button/button";
 import { Input } from "@/components/ui/input/input";
 import { Separator } from "@/components/ui/separator/separator";
+import { Toast, toast } from "@/components/ui/toast/toast";
 
 export default function AlertDialogComponentPage() {
   const [confirmInput, setConfirmInput] = React.useState("");
@@ -38,7 +38,8 @@ export default function AlertDialogComponentPage() {
       setIsLoading(false);
       setIsAsyncOpen(false);
       toast.success("Remote Cluster Synchronized", {
-        description: "All cluster state data is fully updated across edge nodes.",
+        description:
+          "All cluster state data is fully updated across edge nodes.",
       });
     }, 2000);
   };
@@ -115,29 +116,42 @@ export default function AlertDialogComponentPage() {
         description="Configure the primary action button to inherit different semantic colors: default, info, success, warning, and danger."
         preview={
           <div className="flex flex-wrap gap-3">
-            {(["default", "info", "success", "warning", "danger"] as const).map((color) => (
-              <AlertDialog key={color}>
-                <AlertDialogTrigger asChild>
-                  <Button color={color === "info" ? "primary" : color === "default" ? "default" : color}>
-                    {color.charAt(0).toUpperCase() + color.slice(1)} Dialog
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle className="capitalize">{color} Action Confirmation</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      Are you sure you want to perform this {color} operation? This action is styled specifically for semantic clarity.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction color={color}>
-                      Confirm Action
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            ))}
+            {(["default", "info", "success", "warning", "danger"] as const).map(
+              (color) => (
+                <AlertDialog key={color}>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      color={
+                        color === "info"
+                          ? "primary"
+                          : color === "default"
+                            ? "default"
+                            : color
+                      }
+                    >
+                      {color.charAt(0).toUpperCase() + color.slice(1)} Dialog
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle className="capitalize">
+                        {color} Action Confirmation
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        Are you sure you want to perform this {color} operation?
+                        This action is styled specifically for semantic clarity.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction color={color}>
+                        Confirm Action
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              ),
+            )}
           </div>
         }
         code={`<AlertDialog>
@@ -236,7 +250,9 @@ export default function AlertDialogComponentPage() {
           <div className="w-full">
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button color="danger" variant="bordered">Open Alert Danger</Button>
+                <Button color="danger" variant="bordered">
+                  Open Alert Danger
+                </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
@@ -245,7 +261,9 @@ export default function AlertDialogComponentPage() {
                     Danger Zone Violation
                   </AlertDialogTitle>
                   <AlertDialogDescription>
-                    Warning: You are attempting to access system configuration files. Unauthorized modifications may lead to kernel corruption.
+                    Warning: You are attempting to access system configuration
+                    files. Unauthorized modifications may lead to kernel
+                    corruption.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

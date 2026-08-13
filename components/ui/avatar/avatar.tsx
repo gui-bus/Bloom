@@ -30,7 +30,10 @@ const AvatarContext = React.createContext<AvatarContextValue>({
 const useAvatarContext = () => React.useContext(AvatarContext);
 
 export interface AvatarProps
-  extends Omit<React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>, "title"> {
+  extends Omit<
+    React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>,
+    "title"
+  > {
   size?: AvatarSize;
   color?: AvatarColor;
   radius?: keyof typeof designRadius;
@@ -253,4 +256,4 @@ const AvatarFallback = React.forwardRef<
 AvatarFallback.displayName = "AvatarFallback";
 
 export type { AvatarColor, AvatarSize, StatusPosition };
-export { Avatar, AvatarFallback, AvatarImage, AvatarContext };
+export { Avatar, AvatarContext, AvatarFallback, AvatarImage };

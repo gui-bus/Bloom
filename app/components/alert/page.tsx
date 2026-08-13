@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { Icon } from "@iconify/react";
+import * as React from "react";
 import { AccessibilityCard } from "@/components/core/accessibilityCard";
 import { CodeBlock } from "@/components/core/codeBlock";
 import { DocsComponent } from "@/components/core/docsComponent";
@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/avatar/avatar";
 import { Badge } from "@/components/ui/badge/badge";
 import { Button } from "@/components/ui/button/button";
-import { Progress } from "@/components/ui/progress/progress";
 import { Separator } from "@/components/ui/separator/separator";
 
 export default function AlertComponentPage() {
@@ -98,11 +97,17 @@ export default function AlertComponentPage() {
             <Alert variant="shadow" color="default" title="Shadow Variant">
               Prominent elevation layout with soft drop shadows.
             </Alert>
-            <Alert variant="accent-left" color="default" title="Accent Left Variant">
-              High priority alert banner featuring a 4px solid left accent border line.
+            <Alert
+              variant="accent-left"
+              color="default"
+              title="Accent Left Variant"
+            >
+              High priority alert banner featuring a 4px solid left accent
+              border line.
             </Alert>
             <Alert variant="glow" color="default" title="Glow Variant">
-              Vibrant ambient glow border for critical announcements and featured callouts.
+              Vibrant ambient glow border for critical announcements and
+              featured callouts.
             </Alert>
           </div>
         }
@@ -136,7 +141,8 @@ export default function AlertComponentPage() {
               You have used 85% of your available cloud storage.
             </Alert>
             <Alert color="danger" title="Connection Error">
-              Unable to connect to the database server. Please check network logs.
+              Unable to connect to the database server. Please check network
+              logs.
             </Alert>
           </div>
         }
@@ -147,9 +153,7 @@ export default function AlertComponentPage() {
   <Alert color="warning" title="Storage Limit Warning">85% cloud storage used.</Alert>
   <Alert color="danger" title="Connection Error">Unable to connect to database.</Alert>
 </div>`}
-        props={[
-          "color: 'default' | 'info' | 'success' | 'warning' | 'danger'",
-        ]}
+        props={["color: 'default' | 'info' | 'success' | 'warning' | 'danger'"]}
       />
 
       <DocsComponent
@@ -176,13 +180,16 @@ export default function AlertComponentPage() {
               durationMs={5000}
             >
               <div className="space-y-3">
-                <p>This alert notification will automatically hide in 5 seconds.</p>
+                <p>
+                  This alert notification will automatically hide in 5 seconds.
+                </p>
                 <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-1 overflow-hidden">
                   <div
                     className="bg-emerald-500 h-full rounded-full"
                     style={{
                       width: `${progressVal}%`,
-                      transition: progressVal === 100 ? "none" : "width 50ms linear"
+                      transition:
+                        progressVal === 100 ? "none" : "width 50ms linear",
                     }}
                   />
                 </div>
@@ -254,8 +261,14 @@ return (
                 Trigger Alert
               </Button>
             </div>
-            <Alert key={closableKey} color="info" title="Dismissible Update" isClosable>
-              This alert contains a close button in the top-right corner. It stays visible until you click the close icon.
+            <Alert
+              key={closableKey}
+              color="info"
+              title="Dismissible Update"
+              isClosable
+            >
+              This alert contains a close button in the top-right corner. It
+              stays visible until you click the close icon.
             </Alert>
           </div>
         }
@@ -294,8 +307,16 @@ return (
             <Alert color="danger" title="Critical Failure" showWatermark>
               Danger banner displaying an alert circle watermark icon.
             </Alert>
-            <Alert color="default" title="System Settings" customIcon={<Icon icon="hugeicons:settings-02" className="size-24" />} showWatermark>
-              This alert uses a custom settings icon as its background watermark.
+            <Alert
+              color="default"
+              title="System Settings"
+              customIcon={
+                <Icon icon="hugeicons:settings-02" className="size-24" />
+              }
+              showWatermark
+            >
+              This alert uses a custom settings icon as its background
+              watermark.
             </Alert>
           </div>
         }
@@ -321,7 +342,12 @@ return (
               title="Subscription Suspended"
               action={
                 <div className="flex items-center gap-2.5 mt-2.5">
-                  <Button size="md" color="primary" variant="default" radius="md">
+                  <Button
+                    size="md"
+                    color="primary"
+                    variant="default"
+                    radius="md"
+                  >
                     Update Billing
                   </Button>
                   <Button size="md" color="default" variant="flat" radius="md">
@@ -330,7 +356,9 @@ return (
                 </div>
               }
             >
-              Your subscription has been suspended due to an outstanding balance on invoice #10492. Please update your payment details immediately to restore access.
+              Your subscription has been suspended due to an outstanding balance
+              on invoice #10492. Please update your payment details immediately
+              to restore access.
             </Alert>
           </div>
         }
@@ -431,7 +459,7 @@ return (
                 </tr>
               </thead>
               <tbody>
-                 <tr className="border-b border-border">
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">color</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     'default' | 'info' | 'success' | 'warning' | 'danger'
@@ -490,7 +518,7 @@ return (
                     support.
                   </td>
                 </tr>
-                 <tr className="border-b border-border">
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">
                     durationMs
                   </td>
@@ -512,7 +540,8 @@ return (
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">—</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Custom icon to render in the Alert instead of the default status icon.
+                    Custom icon to render in the Alert instead of the default
+                    status icon.
                   </td>
                 </tr>
                 <tr>
@@ -524,7 +553,8 @@ return (
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Displays the status icon (or custom icon) as a large background watermark.
+                    Displays the status icon (or custom icon) as a large
+                    background watermark.
                   </td>
                 </tr>
               </tbody>

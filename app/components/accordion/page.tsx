@@ -234,17 +234,23 @@ return (
         description="Allow multiple accordion items to be expanded at the same time by setting the type prop to 'multiple'."
         preview={
           <div className="w-full">
-            <Accordion type="multiple" defaultValue={["item-1", "item-2"]} variant="bordered">
+            <Accordion
+              type="multiple"
+              defaultValue={["item-1", "item-2"]}
+              variant="bordered"
+            >
               <AccordionItem value="item-1">
                 <AccordionTrigger>First Section</AccordionTrigger>
                 <AccordionContent>
-                  This is the content of the first section. You can keep this and other sections open simultaneously.
+                  This is the content of the first section. You can keep this
+                  and other sections open simultaneously.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
                 <AccordionTrigger>Second Section</AccordionTrigger>
                 <AccordionContent>
-                  This is the content of the second section. Expanding this won't collapse the first one.
+                  This is the content of the second section. Expanding this
+                  won't collapse the first one.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
@@ -453,11 +459,17 @@ return (
         description="Remove the separator lines between accordion items by setting the showDividers prop to false."
         preview={
           <div className="w-full">
-            <Accordion type="single" collapsible defaultValue="item-1" showDividers={false}>
+            <Accordion
+              type="single"
+              collapsible
+              defaultValue="item-1"
+              showDividers={false}
+            >
               <AccordionItem value="item-1">
                 <AccordionTrigger>First Option</AccordionTrigger>
                 <AccordionContent>
-                  Notice there is no line separating this item from the next one.
+                  Notice there is no line separating this item from the next
+                  one.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
@@ -615,7 +627,7 @@ return (
                     Prop
                   </th>
                   <th className="text-left py-2 px-3 font-semibold text-foreground">
-                     Type
+                    Type
                   </th>
                   <th className="text-left py-2 px-3 font-semibold text-foreground">
                     Default

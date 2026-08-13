@@ -10,12 +10,7 @@ import {
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-type AlertColor =
-  | "default"
-  | "info"
-  | "success"
-  | "warning"
-  | "danger";
+type AlertColor = "default" | "info" | "success" | "warning" | "danger";
 
 type AlertVariant =
   | "default"
@@ -203,14 +198,17 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
                 {renderedStart}
                 {children &&
                   (typeof children === "string" ? (
-                    <AlertDescription className="mt-0">{children}</AlertDescription>
+                    <AlertDescription className="mt-0">
+                      {children}
+                    </AlertDescription>
                   ) : (
                     children
                   ))}
               </div>
             )}
 
-            {title && children &&
+            {title &&
+              children &&
               (typeof children === "string" ? (
                 <AlertDescription>{children}</AlertDescription>
               ) : (

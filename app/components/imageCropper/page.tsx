@@ -8,16 +8,16 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
+import { FileUpload } from "@/components/ui/fileUpload/fileUpload";
 import { ImageCropper } from "@/components/ui/imageCropper/imageCropper";
 import { imageCropperCode } from "@/components/ui/imageCropper/imageCropper.code";
 import { Separator } from "@/components/ui/separator/separator";
-import { FileUpload } from "@/components/ui/fileUpload/fileUpload";
 
 export default function ImageCropperPage() {
   const [uploadedSrc, setUploadedSrc] = useState<string | null>(null);
 
   const handleFilesSelected = (files: File[]) => {
-    if (files && files[0]) {
+    if (files?.[0]) {
       const file = files[0];
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -80,7 +80,9 @@ export default function ImageCropperPage() {
         preview={
           <div className="w-full flex flex-col md:flex-row gap-8 items-start">
             <div className="flex-1 w-full">
-              <h4 className="text-sm font-semibold mb-3 text-zinc-500 uppercase tracking-wider">Circular (Default)</h4>
+              <h4 className="text-sm font-semibold mb-3 text-zinc-500 uppercase tracking-wider">
+                Circular (Default)
+              </h4>
               <ImageCropper
                 src="/utils/image-cropper.webp"
                 aspectRatio={1}
@@ -89,7 +91,9 @@ export default function ImageCropperPage() {
               />
             </div>
             <div className="flex-1 w-full">
-              <h4 className="text-sm font-semibold mb-3 text-zinc-500 uppercase tracking-wider">Square</h4>
+              <h4 className="text-sm font-semibold mb-3 text-zinc-500 uppercase tracking-wider">
+                Square
+              </h4>
               <ImageCropper
                 src="/utils/image-cropper.webp"
                 aspectRatio={1}
@@ -259,13 +263,16 @@ return (
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">showCropButton</td>
+                  <td className="px-3 py-2 font-mono text-primary">
+                    showCropButton
+                  </td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
                     boolean
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">true</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    If false, hides the built-in Crop button and results section (useful for custom external action flows)
+                    If false, hides the built-in Crop button and results section
+                    (useful for custom external action flows)
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -275,7 +282,8 @@ return (
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Custom output crop box width in pixels. If set with height, circular/square presets are disabled.
+                    Custom output crop box width in pixels. If set with height,
+                    circular/square presets are disabled.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -285,7 +293,8 @@ return (
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">undefined</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Custom output crop box height in pixels. If set with width, circular/square presets are disabled.
+                    Custom output crop box height in pixels. If set with width,
+                    circular/square presets are disabled.
                   </td>
                 </tr>
                 <tr>
