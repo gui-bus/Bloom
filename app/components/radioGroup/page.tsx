@@ -15,6 +15,93 @@ import {
 import { radioGroupCode } from "@/components/ui/radioGroup/radioGroup.code";
 import { Separator } from "@/components/ui/separator/separator";
 
+function RadioGroupVariantsDemo() {
+  return (
+    <div className="flex flex-col gap-6 w-full max-w-xl">
+      <div className="flex flex-col gap-2">
+        <span className="text-xs font-semibold text-zinc-500">
+          Default & Bordered
+        </span>
+        <RadioGroup columns={2} defaultValue="a" variant="default">
+          <RadioGroupItem
+            isCard
+            value="a"
+            label="Default Option A"
+            description="Standard style"
+          />
+          <RadioGroupItem
+            isCard
+            value="b"
+            variant="bordered"
+            label="Bordered Option B"
+            description="Bordered style override"
+          />
+        </RadioGroup>
+      </div>
+      <div className="flex flex-col gap-2">
+        <span className="text-xs font-semibold text-zinc-500">
+          Flat & Filled
+        </span>
+        <RadioGroup columns={2} defaultValue="c" variant="flat">
+          <RadioGroupItem
+            isCard
+            value="c"
+            label="Flat Option C"
+            description="Flat style"
+          />
+          <RadioGroupItem
+            isCard
+            value="d"
+            variant="filled"
+            label="Filled Option D"
+            description="Filled style override"
+          />
+        </RadioGroup>
+      </div>
+      <div className="flex flex-col gap-2">
+        <span className="text-xs font-semibold text-zinc-500">
+          Glow & Glassmorphism
+        </span>
+        <RadioGroup columns={2} defaultValue="e" variant="glow">
+          <RadioGroupItem
+            isCard
+            value="e"
+            label="Glow Option E"
+            description="Glow style"
+          />
+          <RadioGroupItem
+            isCard
+            value="f"
+            variant="glassmorphism"
+            label="Glassmorphism Option F"
+            description="Glassmorphism override"
+          />
+        </RadioGroup>
+      </div>
+      <div className="flex flex-col gap-2">
+        <span className="text-xs font-semibold text-zinc-500">
+          Gradient Border & Underlined
+        </span>
+        <RadioGroup columns={2} defaultValue="g" variant="gradient-border">
+          <RadioGroupItem
+            isCard
+            value="g"
+            label="Gradient Option G"
+            description="Gradient style"
+          />
+          <RadioGroupItem
+            isCard
+            value="h"
+            variant="underlined"
+            label="Underlined Option H"
+            description="Underlined style override"
+          />
+        </RadioGroup>
+      </div>
+    </div>
+  );
+}
+
 export default function RadioGroupComponentPage() {
   const [selectedPlan, setSelectedPlan] = React.useState("pro");
 
@@ -39,7 +126,7 @@ export default function RadioGroupComponentPage() {
       />
 
       <DocsComponent
-        title="Default Selection"
+        title="Default"
         description="Standard radio buttons with smooth CSS indicator scale animations."
         preview={
           <div className="max-w-xs w-full">
@@ -60,7 +147,20 @@ export default function RadioGroupComponentPage() {
       />
 
       <DocsComponent
-        title="Selectable Card Mode (isCard) with Prices & Badges"
+        title="Variants"
+        description="Defines the visual appearance of the radio group items when used as selection cards."
+        preview={<RadioGroupVariantsDemo />}
+        code={`<RadioGroup variant="default">
+  <RadioGroupItem isCard value="a" label="Default" />
+</RadioGroup>
+
+<RadioGroup variant="bordered">
+  <RadioGroupItem isCard value="b" label="Bordered" />
+</RadioGroup>`}
+      />
+
+      <DocsComponent
+        title="Selectable Card Mode with Prices and Badges"
         description="Interactive plan selection cards featuring animated borders, icons, price tags, and badges using 'isCard'."
         preview={
           <div className="w-full max-w-xl">

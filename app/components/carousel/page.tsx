@@ -467,6 +467,54 @@ export default function CarouselPage() {
         props={["dragFree: boolean", "swipeThreshold: number"]}
       />
 
+      <DocsComponent
+        title="Infinite Loop"
+        description="Set 'loop' to true to enable infinite cycling through slides. Transitioning past the last item returns to the first item with a continuous forward motion."
+        preview={
+          <div className="w-full">
+            <Carousel loop className="w-full">
+              <CarouselContent>
+                {images.map((src, index) => (
+                  <CarouselItem key={index}>
+                    <div className="overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video bg-zinc-100 dark:bg-zinc-900">
+                      <img
+                        src={src}
+                        alt={`Slide ${index + 1}`}
+                        className="size-full object-cover"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+
+              <div className="flex items-center justify-center gap-3 mt-4">
+                <CarouselPrevious />
+                <CarouselDots />
+                <CarouselNext />
+              </div>
+            </Carousel>
+          </div>
+        }
+        code={`<Carousel loop className="w-full">
+  <CarouselContent>
+    {images.map((src, index) => (
+      <CarouselItem key={index}>
+        <div className="overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video">
+          <img src={src} alt="Slide" className="size-full object-cover" />
+        </div>
+      </CarouselItem>
+    ))}
+  </CarouselContent>
+
+  <div className="flex items-center justify-center gap-3 mt-4">
+    <CarouselPrevious />
+    <CarouselDots />
+    <CarouselNext />
+  </div>
+</Carousel>`}
+        props={["loop: boolean"]}
+      />
+
       <AccessibilityCard />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -566,6 +614,16 @@ export default function CarouselPage() {
                   <td className="px-3 py-2 text-muted-foreground">
                     Pixel distance threshold to trigger swipe navigation on
                     touch devices.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">loop</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables infinite looping when navigating slides.
                   </td>
                 </tr>
                 <tr className="border-b border-border">

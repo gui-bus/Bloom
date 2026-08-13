@@ -2,8 +2,36 @@
 
 import { Icon } from "@iconify/react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
+import { cva } from "class-variance-authority";
 import * as React from "react";
 import { cn } from "@/lib/utils";
+
+const radioCardVariants = cva(
+  "relative flex items-center gap-3 p-4 transition-all duration-200 cursor-pointer select-none",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs has-[:checked]:border-sky-500 has-[:checked]:ring-2 has-[:checked]:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+        bordered:
+          "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 has-[:checked]:border-sky-500 text-zinc-900 dark:text-zinc-100",
+        flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/70 dark:hover:bg-zinc-800 has-[:checked]:bg-white dark:has-[:checked]:bg-zinc-900 has-[:checked]:border-sky-500 border text-zinc-900 dark:text-zinc-100",
+        underlined:
+          "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 has-[:checked]:border-sky-500 text-zinc-900 dark:text-zinc-100",
+        filled:
+          "bg-zinc-100 dark:bg-zinc-800/80 border border-transparent has-[:checked]:border-sky-500 has-[:checked]:ring-2 has-[:checked]:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+        glassmorphism:
+          "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 has-[:checked]:border-sky-500 shadow-lg text-zinc-900 dark:text-zinc-100",
+        "gradient-border":
+          "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 relative [background-clip:padding-box] border border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 has-[:checked]:ring-2 has-[:checked]:ring-indigo-500/30",
+        glow: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs has-[:checked]:border-sky-500 has-[:checked]:shadow-[0_0_12px_rgba(14,165,233,0.35)] text-zinc-900 dark:text-zinc-100",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
 
 export interface RadioGroupProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root> {
@@ -15,6 +43,15 @@ export interface RadioGroupProps
     | "success"
     | "warning"
     | "danger";
+  variant?:
+    | "default"
+    | "bordered"
+    | "flat"
+    | "underlined"
+    | "filled"
+    | "glassmorphism"
+    | "gradient-border"
+    | "glow";
   orientation?: "horizontal" | "vertical";
   columns?: 1 | 2 | 3 | 4 | 5 | 6;
   label?: React.ReactNode;
@@ -41,6 +78,7 @@ const colorMap = {
 
 const RadioGroupContext = React.createContext<{
   color?: RadioGroupProps["color"];
+  variant?: RadioGroupProps["variant"];
 }>({});
 
 const columnStyles: Record<number, string> = {
@@ -60,6 +98,7 @@ const RadioGroup = React.forwardRef<
     {
       className,
       color = "primary",
+      variant = "default",
       orientation = "vertical",
       columns,
       label,
@@ -71,7 +110,7 @@ const RadioGroup = React.forwardRef<
     ref,
   ) => {
     return (
-      <RadioGroupContext.Provider value={{ color }}>
+      <RadioGroupContext.Provider value={{ color, variant }}>
         <div className="flex flex-col gap-2 w-full">
           {(label || description) && (
             <div className="flex flex-col gap-0.5 select-none">
@@ -122,6 +161,7 @@ export interface RadioGroupItemProps
   icon?: string;
   badge?: string | React.ReactNode;
   price?: string;
+  variant?: RadioGroupProps["variant"];
 }
 
 const RadioGroupItem = React.forwardRef<
@@ -139,13 +179,17 @@ const RadioGroupItem = React.forwardRef<
       price,
       id,
       disabled,
+      variant: localVariant,
       ...props
     },
     ref,
   ) => {
     const generatedId = React.useId();
     const itemId = id || generatedId;
-    const { color = "primary" } = React.useContext(RadioGroupContext);
+    const { color = "primary", variant: contextVariant = "default" } =
+      React.useContext(RadioGroupContext);
+
+    const variant = localVariant || contextVariant;
 
     const innerContent = (
       <>
@@ -205,7 +249,8 @@ const RadioGroupItem = React.forwardRef<
         <label
           htmlFor={itemId}
           className={cn(
-            "relative flex items-center gap-3 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 transition-all duration-200 cursor-pointer hover:border-sky-500/50 has-[:checked]:border-sky-500 has-[:checked]:bg-sky-50/40 dark:has-[:checked]:bg-sky-950/30 has-[:checked]:ring-1 has-[:checked]:ring-sky-500/20 shadow-xs select-none",
+            radioCardVariants({ variant }),
+            variant !== "underlined" && "rounded-2xl",
             disabled && "opacity-40 cursor-not-allowed pointer-events-none",
           )}
         >

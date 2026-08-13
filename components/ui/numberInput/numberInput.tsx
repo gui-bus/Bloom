@@ -19,6 +19,15 @@ export interface NumberInputProps {
   description?: React.ReactNode;
   size?: "sm" | "md" | "lg";
   radius?: keyof typeof designRadius;
+  variant?:
+    | "default"
+    | "bordered"
+    | "flat"
+    | "underlined"
+    | "filled"
+    | "glassmorphism"
+    | "gradient-border"
+    | "glow";
   disabled?: boolean;
   isInvalid?: boolean;
   stepperPosition?: StepperPosition;
@@ -42,6 +51,23 @@ const buttonSizeMap = {
   lg: "size-8 text-base",
 };
 
+const variantMap = {
+  default:
+    "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+  bordered:
+    "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
+  flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/70 dark:hover:bg-zinc-800 focus-within:bg-white dark:focus-within:bg-zinc-900 focus-within:border-sky-500 border text-zinc-900 dark:text-zinc-100",
+  underlined:
+    "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
+  filled:
+    "bg-zinc-100 dark:bg-zinc-800/80 border border-transparent focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+  glassmorphism:
+    "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 focus-within:border-sky-500 shadow-lg text-zinc-900 dark:text-zinc-100",
+  "gradient-border":
+    "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 relative [background-clip:padding-box] border border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 focus-within:ring-2 focus-within:ring-indigo-500/30",
+  glow: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:shadow-[0_0_12px_rgba(14,165,233,0.35)] text-zinc-900 dark:text-zinc-100",
+};
+
 export function NumberInput({
   value,
   defaultValue = 0,
@@ -53,6 +79,7 @@ export function NumberInput({
   description,
   size = "md",
   radius = "lg",
+  variant = "default",
   disabled = false,
   isInvalid = false,
   stepperPosition = "split",
@@ -145,7 +172,7 @@ export function NumberInput({
         disabled={isMinDisabled}
         onClick={handleDecrement}
         className={cn(
-          "flex items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200/80 dark:border-zinc-700/80 hover:bg-zinc-200 dark:hover:bg-zinc-700 active:scale-95 transition-all shrink-0 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed",
+          "flex items-center justify-center rounded-lg bg-zinc-100/50 dark:bg-zinc-800/50 text-zinc-900 dark:text-zinc-100 border border-zinc-200/50 dark:border-zinc-700/50 hover:bg-zinc-200 dark:hover:bg-zinc-700 active:scale-95 transition-all shrink-0 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed",
           buttonSizeMap[size],
         )}
       >
@@ -163,7 +190,7 @@ export function NumberInput({
         disabled={isMaxDisabled}
         onClick={handleIncrement}
         className={cn(
-          "flex items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200/80 dark:border-zinc-700/80 hover:bg-zinc-200 dark:hover:bg-zinc-700 active:scale-95 transition-all shrink-0 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed",
+          "flex items-center justify-center rounded-lg bg-zinc-100/50 dark:bg-zinc-800/50 text-zinc-900 dark:text-zinc-100 border border-zinc-200/50 dark:border-zinc-700/50 hover:bg-zinc-200 dark:hover:bg-zinc-700 active:scale-95 transition-all shrink-0 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed",
           buttonSizeMap[size],
         )}
       >
@@ -232,9 +259,10 @@ export function NumberInput({
       <div
         onWheel={handleWheel}
         className={cn(
-          "flex items-center justify-between border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs transition-colors focus-within:ring-2 focus-within:ring-sky-500/20",
+          "flex items-center justify-between transition-colors",
+          variantMap[variant],
           sizeMap[size],
-          designRadius[radius],
+          variant !== "underlined" && designRadius[radius],
           isInvalid && "border-rose-500 dark:border-rose-500",
           disabled && "opacity-50 pointer-events-none",
         )}

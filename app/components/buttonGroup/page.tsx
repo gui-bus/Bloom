@@ -82,12 +82,56 @@ export default function ButtonGroupPage() {
 
             <div>
               <span className="text-xs font-mono text-muted-foreground block mb-2">
+                variant="light"
+              </span>
+              <ButtonGroup variant="light">
+                <Button>Light 1</Button>
+                <Button>Light 2</Button>
+                <Button>Light 3</Button>
+              </ButtonGroup>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
                 variant="flat"
               </span>
               <ButtonGroup variant="flat">
                 <Button>Flat 1</Button>
                 <Button>Flat 2</Button>
                 <Button>Flat 3</Button>
+              </ButtonGroup>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                variant="ghost"
+              </span>
+              <ButtonGroup variant="ghost">
+                <Button>Ghost 1</Button>
+                <Button>Ghost 2</Button>
+                <Button>Ghost 3</Button>
+              </ButtonGroup>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                variant="shadow"
+              </span>
+              <ButtonGroup variant="shadow">
+                <Button>Shadow 1</Button>
+                <Button>Shadow 2</Button>
+                <Button>Shadow 3</Button>
+              </ButtonGroup>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                variant="link"
+              </span>
+              <ButtonGroup variant="link">
+                <Button>Link 1</Button>
+                <Button>Link 2</Button>
+                <Button>Link 3</Button>
               </ButtonGroup>
             </div>
           </div>
@@ -106,90 +150,54 @@ export default function ButtonGroupPage() {
         title="Colors"
         description="Defines the color theme of all buttons inside the group via the 'color' prop. Stacked vertically for clear visual comparison."
         preview={
-          <div className="w-full flex flex-col gap-4">
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="default"
-              </span>
-              <ButtonGroup color="default">
-                <Button>Option A</Button>
-                <Button>Option B</Button>
-                <Button>Option C</Button>
-              </ButtonGroup>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="primary"
-              </span>
-              <ButtonGroup color="primary">
-                <Button>Option A</Button>
-                <Button>Option B</Button>
-                <Button>Option C</Button>
-              </ButtonGroup>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="secondary"
-              </span>
-              <ButtonGroup color="secondary">
-                <Button>Option A</Button>
-                <Button>Option B</Button>
-                <Button>Option C</Button>
-              </ButtonGroup>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="accent"
-              </span>
-              <ButtonGroup color="accent">
-                <Button>Option A</Button>
-                <Button>Option B</Button>
-                <Button>Option C</Button>
-              </ButtonGroup>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="success"
-              </span>
-              <ButtonGroup color="success">
-                <Button>Option A</Button>
-                <Button>Option B</Button>
-                <Button>Option C</Button>
-              </ButtonGroup>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="warning"
-              </span>
-              <ButtonGroup color="warning">
-                <Button>Option A</Button>
-                <Button>Option B</Button>
-                <Button>Option C</Button>
-              </ButtonGroup>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                color="danger"
-              </span>
-              <ButtonGroup color="danger">
-                <Button>Option A</Button>
-                <Button>Option B</Button>
-                <Button>Option C</Button>
-              </ButtonGroup>
-            </div>
+          <div className="w-full flex flex-col gap-6">
+            {[
+              "default",
+              "primary",
+              "secondary",
+              "accent",
+              "success",
+              "warning",
+              "danger",
+            ].map((color) => (
+              <div key={color} className="space-y-2">
+                <span className="text-xs font-mono text-muted-foreground block capitalize">
+                  color="{color}"
+                </span>
+                <div className="flex flex-wrap gap-4 items-end">
+                  {[
+                    "default",
+                    "bordered",
+                    "light",
+                    "flat",
+                    "ghost",
+                    "shadow",
+                    "link",
+                  ].map((variant) => (
+                    <div key={variant} className="flex flex-col gap-1.5">
+                      <span className="text-[10px] font-mono text-muted-foreground">
+                        {variant}
+                      </span>
+                      <ButtonGroup
+                        color={color as any}
+                        variant={variant as any}
+                      >
+                        <Button>A</Button>
+                        <Button>B</Button>
+                        <Button>C</Button>
+                      </ButtonGroup>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         }
-        code={`<div className="space-y-4">
-  <ButtonGroup color="primary">...</ButtonGroup>
-  <ButtonGroup color="success">...</ButtonGroup>
-  <ButtonGroup color="danger">...</ButtonGroup>
-</div>`}
+        code={`<ButtonGroup color="primary" variant="flat">
+  <Button>A</Button>
+  <Button>B</Button>
+  <Button>C</Button>
+</ButtonGroup>`}
         props={[
           "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
         ]}
@@ -200,40 +208,22 @@ export default function ButtonGroupPage() {
         description="Adjusts the size scale of each button in the group using the 'size' prop."
         preview={
           <div className="w-full flex flex-col gap-4">
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                size="sm"
-              </span>
-              <ButtonGroup size="sm" color="primary">
-                <Button>Small A</Button>
-                <Button>Small B</Button>
-              </ButtonGroup>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                size="md"
-              </span>
-              <ButtonGroup size="md" color="primary">
-                <Button>Medium A</Button>
-                <Button>Medium B</Button>
-              </ButtonGroup>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                size="lg"
-              </span>
-              <ButtonGroup size="lg" color="primary">
-                <Button>Large A</Button>
-                <Button>Large B</Button>
-              </ButtonGroup>
-            </div>
+            {["xs", "sm", "md", "lg", "xl", "2xl", "3xl"].map((size) => (
+              <div key={size}>
+                <span className="text-xs font-mono text-muted-foreground block mb-2">
+                  size="{size}"
+                </span>
+                <ButtonGroup size={size as any} color="primary">
+                  <Button>{size.toUpperCase()} A</Button>
+                  <Button>{size.toUpperCase()} B</Button>
+                </ButtonGroup>
+              </div>
+            ))}
           </div>
         }
         code={`<ButtonGroup size="lg" color="primary">
-  <Button>Large A</Button>
-  <Button>Large B</Button>
+  <Button>LG A</Button>
+  <Button>LG B</Button>
 </ButtonGroup>`}
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
@@ -247,7 +237,7 @@ export default function ButtonGroupPage() {
               <span className="text-xs font-mono text-muted-foreground block mb-2">
                 radius="none"
               </span>
-              <ButtonGroup radius="none" color="secondary">
+              <ButtonGroup radius="none" color="default" variant="flat">
                 <Button>None A</Button>
                 <Button>None B</Button>
                 <Button>None C</Button>
@@ -258,7 +248,7 @@ export default function ButtonGroupPage() {
               <span className="text-xs font-mono text-muted-foreground block mb-2">
                 radius="sm" (with size="sm")
               </span>
-              <ButtonGroup size="sm" radius="sm" color="secondary">
+              <ButtonGroup size="sm" radius="sm" color="default" variant="flat">
                 <Button>Small A</Button>
                 <Button>Small B</Button>
                 <Button>Small C</Button>
@@ -269,7 +259,7 @@ export default function ButtonGroupPage() {
               <span className="text-xs font-mono text-muted-foreground block mb-2">
                 radius="md"
               </span>
-              <ButtonGroup radius="md" color="secondary">
+              <ButtonGroup radius="md" color="default" variant="flat">
                 <Button>Medium A</Button>
                 <Button>Medium B</Button>
                 <Button>Medium C</Button>
@@ -280,7 +270,7 @@ export default function ButtonGroupPage() {
               <span className="text-xs font-mono text-muted-foreground block mb-2">
                 radius="full"
               </span>
-              <ButtonGroup radius="full" color="secondary">
+              <ButtonGroup radius="full" color="default" variant="flat">
                 <Button>Full A</Button>
                 <Button>Full B</Button>
                 <Button>Full C</Button>
@@ -288,19 +278,19 @@ export default function ButtonGroupPage() {
             </div>
           </div>
         }
-        code={`<ButtonGroup radius="none">
+        code={`<ButtonGroup radius="none" variant="flat" color="default">
   <Button>None A</Button>
 </ButtonGroup>
 
-<ButtonGroup size="sm" radius="sm">
+<ButtonGroup size="sm" radius="sm" variant="flat" color="default">
   <Button>Small A</Button>
 </ButtonGroup>
 
-<ButtonGroup radius="md">
+<ButtonGroup radius="md" variant="flat" color="default">
   <Button>Medium A</Button>
 </ButtonGroup>
 
-<ButtonGroup radius="full">
+<ButtonGroup radius="full" variant="flat" color="default">
   <Button>Full A</Button>
 </ButtonGroup>`}
         props={[
@@ -309,7 +299,7 @@ export default function ButtonGroupPage() {
       />
 
       <DocsComponent
-        title="Loading state (isLoading)"
+        title="Loading state"
         description="Pass 'isLoading' to ButtonGroup to propagate active loading spinners across all buttons in the group."
         preview={
           <div className="w-full">
@@ -327,7 +317,7 @@ export default function ButtonGroupPage() {
       />
 
       <DocsComponent
-        title="Disabled state (isDisabled)"
+        title="Disabled State"
         description="Pass 'isDisabled' to ButtonGroup to disable interaction for all buttons in the group."
         preview={
           <div className="w-full">
@@ -391,7 +381,7 @@ export default function ButtonGroupPage() {
       />
 
       <DocsComponent
-        title="Vertical Orientation (orientation)"
+        title="Vertical Orientation"
         description="Stack buttons vertically using orientation='vertical'."
         preview={
           <div className="w-full">
@@ -411,7 +401,7 @@ export default function ButtonGroupPage() {
       />
 
       <DocsComponent
-        title="Spaced Out Buttons (isAttached={false})"
+        title="Spaced Out Buttons"
         description="Set isAttached={false} to add clean spacing between buttons instead of merging borders."
         preview={
           <div className="w-full">

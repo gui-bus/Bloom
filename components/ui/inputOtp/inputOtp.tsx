@@ -1,6 +1,7 @@
 "use client";
 
 import { Icon } from "@iconify/react";
+import { cva, type VariantProps } from "class-variance-authority";
 import {
   OTPInput,
   OTPInputContext,
@@ -69,7 +70,8 @@ const InputOTPGroup = React.forwardRef<
 InputOTPGroup.displayName = "InputOTPGroup";
 
 export interface InputOTPSlotProps
-  extends React.ComponentPropsWithoutRef<"div"> {
+  extends React.ComponentPropsWithoutRef<"div">,
+    VariantProps<typeof slotVariants> {
   index: number;
   size?: OTPSize;
   maskCode?: boolean;
@@ -81,41 +83,72 @@ const slotSizeStyles: Record<OTPSize, string> = {
   lg: "size-14 text-lg rounded-2xl",
 };
 
+const slotVariants = cva(
+  "relative flex items-center justify-center font-bold transition-all duration-200 select-none data-[active=true]:z-10 data-[active=true]:scale-105",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs data-[active=true]:border-sky-500 data-[active=true]:ring-2 data-[active=true]:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+        bordered:
+          "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 data-[active=true]:border-sky-500 text-zinc-900 dark:text-zinc-100",
+        flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/70 dark:hover:bg-zinc-800 data-[active=true]:bg-white dark:data-[active=true]:bg-zinc-900 data-[active=true]:border-sky-500 border text-zinc-900 dark:text-zinc-100",
+        underlined:
+          "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 data-[active=true]:border-sky-500 text-zinc-900 dark:text-zinc-100",
+        filled:
+          "bg-zinc-100 dark:bg-zinc-800/80 border border-transparent data-[active=true]:border-sky-500 data-[active=true]:ring-2 data-[active=true]:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+        glassmorphism:
+          "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 data-[active=true]:border-sky-500 shadow-lg text-zinc-900 dark:text-zinc-100",
+        "gradient-border":
+          "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 relative [background-clip:padding-box] border border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 data-[active=true]:ring-2 data-[active=true]:ring-indigo-500/30",
+        glow: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs data-[active=true]:border-sky-500 data-[active=true]:shadow-[0_0_12px_rgba(14,165,233,0.35)] text-zinc-900 dark:text-zinc-100",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
+
 const InputOTPSlot = React.forwardRef<
   React.ElementRef<"div">,
   InputOTPSlotProps
->(({ index, size = "md", maskCode = false, className, ...props }, ref) => {
-  const inputOTPContext = React.useContext(OTPInputContext);
-  const slot = inputOTPContext.slots[index];
-  const { char, hasFakeCaret, isActive } = slot || {};
+>(
+  (
+    { index, size = "md", variant, maskCode = false, className, ...props },
+    ref,
+  ) => {
+    const inputOTPContext = React.useContext(OTPInputContext);
+    const slot = inputOTPContext.slots[index];
+    const { char, hasFakeCaret, isActive } = slot || {};
 
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "relative flex items-center justify-center border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 font-bold shadow-xs transition-all duration-200 select-none",
-        slotSizeStyles[size],
-        isActive &&
-          "z-10 border-sky-500 ring-2 ring-sky-500/20 dark:border-sky-400 dark:ring-sky-400/20 scale-105",
-        className,
-      )}
-      {...props}
-    >
-      {char ? (
-        maskCode ? (
-          <span className="size-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 animate-in zoom-in-50" />
-        ) : (
-          char
-        )
-      ) : null}
-      {hasFakeCaret && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-4 w-0.5 animate-pulse bg-sky-500 duration-1000" />
-        </div>
-      )}
-    </div>
-  );
-});
+    return (
+      <div
+        ref={ref}
+        data-active={isActive}
+        className={cn(
+          slotVariants({ variant }),
+          slotSizeStyles[size],
+          className,
+        )}
+        {...props}
+      >
+        {char ? (
+          maskCode ? (
+            <span className="size-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 animate-in zoom-in-50" />
+          ) : (
+            char
+          )
+        ) : null}
+        {hasFakeCaret && (
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <div className="h-4 w-0.5 animate-pulse bg-sky-500 duration-1000" />
+          </div>
+        )}
+      </div>
+    );
+  },
+);
 InputOTPSlot.displayName = "InputOTPSlot";
 
 export interface InputOTPSeparatorProps

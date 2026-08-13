@@ -6,6 +6,15 @@ import { cn } from "@/lib/utils";
 
 export interface TimePickerProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
+  variant?:
+    | "default"
+    | "bordered"
+    | "flat"
+    | "underlined"
+    | "filled"
+    | "glassmorphism"
+    | "gradient-border"
+    | "glow";
   value?: string;
   onChange?: (time: string) => void;
   format?: "12h" | "24h";
@@ -23,6 +32,7 @@ export interface TimePickerProps
 export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
   (
     {
+      variant = "default",
       value = "12:00 PM",
       onChange,
       format = "12h",
@@ -145,6 +155,23 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       lg: "w-8 text-lg",
     };
 
+    const variantClasses = {
+      default:
+        "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+      bordered:
+        "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
+      flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/70 dark:hover:bg-zinc-800 focus-within:bg-white dark:focus-within:bg-zinc-900 focus-within:border-sky-500 border text-zinc-900 dark:text-zinc-100",
+      underlined:
+        "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
+      filled:
+        "bg-zinc-100 dark:bg-zinc-800/80 border border-transparent focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+      glassmorphism:
+        "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 focus-within:border-sky-500 shadow-lg text-zinc-900 dark:text-zinc-100",
+      "gradient-border":
+        "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 relative [background-clip:padding-box] border border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 focus-within:ring-2 focus-within:ring-indigo-500/30",
+      glow: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:shadow-[0_0_12px_rgba(14,165,233,0.35)] text-zinc-900 dark:text-zinc-100",
+    };
+
     const hoursList = React.useMemo(() => {
       if (format === "12h") {
         return Array.from({ length: 12 }, (_, i) =>
@@ -179,7 +206,9 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
 
           <div
             className={cn(
-              "flex items-center justify-center gap-2 p-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl w-fit shadow-xs select-none",
+              "flex items-center justify-center gap-2 p-3 w-fit select-none",
+              variant !== "underlined" ? "rounded-2xl" : "rounded-none",
+              variantClasses[variant],
               isInvalid && "border-rose-500",
               isDisabled && "opacity-50 pointer-events-none",
             )}
@@ -282,8 +311,10 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
         )}
         <div
           className={cn(
-            "flex items-center gap-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl w-fit focus-within:ring-2 focus-within:ring-sky-500/20 focus-within:border-sky-500 transition-colors",
+            "flex items-center gap-1 w-fit transition-colors",
+            variant !== "underlined" ? "rounded-2xl" : "rounded-none",
             sizeClasses[size],
+            variantClasses[variant],
             isInvalid &&
               "border-rose-500 focus-within:ring-rose-500/20 focus-within:border-rose-500",
             isDisabled && "opacity-50 pointer-events-none",

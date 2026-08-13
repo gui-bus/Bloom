@@ -1,5 +1,6 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
@@ -48,6 +49,8 @@ type ButtonBaseProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
     color?: ButtonColor;
     radius?: ButtonRadius;
     disableRipple?: boolean;
+    isCopy?: boolean;
+    copyText?: string;
   };
 
 type IconOnlyProps = {
@@ -116,6 +119,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       type,
       isIconOnly = false,
       ariaLabel,
+      isCopy = false,
+      copyText,
       ...props
     },
     ref,
@@ -127,9 +132,21 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const nativeDisabled = !asChild ? isEffectivelyDisabled : undefined;
     const ariaDisabled = isEffectivelyDisabled || isLoading || undefined;
 
+    const [copied, setCopied] = React.useState(false);
+
     const handleClick = React.useCallback(
       (e: React.MouseEvent<HTMLButtonElement>) => {
         if (isEffectivelyDisabled || isLoading) return;
+
+        if (isCopy) {
+          const textToCopy =
+            copyText || (typeof children === "string" ? children : "");
+          if (textToCopy) {
+            navigator.clipboard.writeText(textToCopy);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+          }
+        }
 
         if (!disableRipple) {
           const rect = e.currentTarget.getBoundingClientRect();
@@ -139,10 +156,57 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
         onClick?.(e);
       },
-      [isEffectivelyDisabled, isLoading, disableRipple, addRipple, onClick],
+      [
+        isEffectivelyDisabled,
+        isLoading,
+        isCopy,
+        copyText,
+        children,
+        disableRipple,
+        addRipple,
+        onClick,
+      ],
     );
 
     const activeVariant = variant || "default";
+
+    const displayedStartContent = isCopy ? (
+      copied ? (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="size-3.5 text-emerald-400"
+        >
+          <path
+            d="M20 6L9 17L4 12"
+            style={{
+              strokeDasharray: 22,
+              strokeDashoffset: 22,
+              animation: "button-copy-draw 250ms ease-out forwards",
+            }}
+          />
+          <style>{`
+            @keyframes button-copy-draw {
+              to { stroke-dashoffset: 0; }
+            }
+          `}</style>
+        </svg>
+      ) : (
+        startContent || <Icon icon="hugeicons:copy-01" className="size-3.5" />
+      )
+    ) : (
+      startContent
+    );
+
+    const displayedChildren = isCopy
+      ? copied
+        ? "Copied"
+        : children || "Copy"
+      : children;
 
     return (
       <Comp
@@ -178,7 +242,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 aria-label="Loading"
               />
             )}
-            <span>{loadingText || children}</span>
+            <span>{loadingText || displayedChildren}</span>
             <span className="sr-only" aria-live="polite" aria-atomic="true">
               {loadingText ?? "Loading, please wait"}
             </span>
@@ -196,12 +260,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 {badgeContent}
               </span>
             )}
-            {startContent && (
+            {displayedStartContent && (
               <span className={cn(!isIconOnly && "mr-2")} aria-hidden="true">
-                {startContent}
+                {displayedStartContent}
               </span>
             )}
-            {children && <span>{children}</span>}
+            {displayedChildren && <span>{displayedChildren}</span>}
             {endContent && (
               <span className={cn(!isIconOnly && "ml-2")} aria-hidden="true">
                 {endContent}

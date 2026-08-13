@@ -13,6 +13,15 @@ export interface PasswordRule {
 
 export interface PasswordInputProps
   extends Omit<React.ComponentPropsWithoutRef<typeof Input>, "type"> {
+  variant?:
+    | "default"
+    | "bordered"
+    | "flat"
+    | "underlined"
+    | "filled"
+    | "glassmorphism"
+    | "gradient-border"
+    | "glow";
   minLength?: number;
   requireUppercase?: boolean;
   requireLowercase?: boolean;
@@ -178,6 +187,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          autoComplete="off"
           {...props}
         />
 

@@ -1,8 +1,8 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import hljs from "highlight.js";
 import * as React from "react";
+import { Button } from "@/components/ui/button/button";
 import { designRadius } from "@/lib/design-system";
 import { cn } from "@/lib/utils";
 
@@ -83,7 +83,6 @@ const CodeBlock = React.forwardRef<HTMLDivElement, CodeBlockProps>(
     ref,
   ) => {
     const codeRef = React.useRef<HTMLElement>(null);
-    const [copied, setCopied] = React.useState(false);
     const [isExpanded, setIsExpanded] = React.useState(false);
     const styleConfig = variantStyles[variant] || variantStyles.default;
 
@@ -97,18 +96,21 @@ const CodeBlock = React.forwardRef<HTMLDivElement, CodeBlockProps>(
       return language;
     }, [filename, language]);
 
-    React.useEffect(() => {
-      if (codeRef.current) {
-        codeRef.current.removeAttribute("data-highlighted");
-        hljs.highlightElement(codeRef.current);
+    const highlightedCode = React.useMemo(() => {
+      try {
+        if (resolvedLang && hljs.getLanguage(resolvedLang)) {
+          return hljs.highlight(code, { language: resolvedLang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      } catch (_err) {
+        return code
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
       }
     }, [code, resolvedLang]);
-
-    const handleCopy = React.useCallback(() => {
-      navigator.clipboard.writeText(code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }, [code]);
 
     return (
       <div
@@ -133,19 +135,14 @@ const CodeBlock = React.forwardRef<HTMLDivElement, CodeBlockProps>(
           </div>
 
           {showCopy && (
-            <button
-              type="button"
-              onClick={handleCopy}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/10 transition-all duration-200 cursor-pointer select-none"
-            >
-              <Icon
-                icon={
-                  copied ? "hugeicons:checkmark-circle-02" : "hugeicons:copy-01"
-                }
-                className={cn("size-3.5", copied && "text-emerald-400")}
-              />
-              <span>{copied ? "Copied" : "Copy"}</span>
-            </button>
+            <Button
+              isCopy
+              copyText={code}
+              variant="flat"
+              size="xs"
+              radius="sm"
+              className="bg-white/10 hover:bg-white/20 text-white border border-white/10"
+            />
           )}
         </div>
 
@@ -160,9 +157,8 @@ const CodeBlock = React.forwardRef<HTMLDivElement, CodeBlockProps>(
             <code
               ref={codeRef}
               className={`language-${resolvedLang} whitespace-pre-wrap font-mono !bg-transparent`}
-            >
-              {code}
-            </code>
+              dangerouslySetInnerHTML={{ __html: highlightedCode }}
+            />
           </pre>
         </div>
 

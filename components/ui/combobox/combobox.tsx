@@ -1,9 +1,37 @@
 "use client";
 
 import { Icon } from "@iconify/react";
+import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 import { Input } from "@/components/ui/input/input";
 import { cn } from "@/lib/utils";
+
+export const comboboxVariants = cva(
+  "min-h-10 w-full flex items-center justify-between px-3 py-1.5 text-sm transition-all cursor-pointer select-none outline-none",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus:border-sky-500 focus:ring-2 focus:ring-sky-500/40 text-zinc-900 dark:text-zinc-100 rounded-xl",
+        bordered:
+          "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 focus:border-sky-500 text-zinc-900 dark:text-zinc-100 rounded-xl",
+        flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/70 dark:hover:bg-zinc-800 focus:bg-white dark:focus:bg-zinc-900 focus:border-sky-500 border text-zinc-900 dark:text-zinc-100 rounded-xl",
+        underlined:
+          "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 px-0 focus:border-sky-500 text-zinc-900 dark:text-zinc-100 rounded-none",
+        filled:
+          "bg-zinc-100 dark:bg-zinc-800/80 border border-transparent focus:border-sky-500 focus:ring-2 focus:ring-sky-500/40 text-zinc-900 dark:text-zinc-100 rounded-xl",
+        glassmorphism:
+          "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 focus:border-sky-500 shadow-lg text-zinc-900 dark:text-zinc-100 rounded-xl",
+        "gradient-border":
+          "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 relative [background-clip:padding-box] border border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 focus:ring-2 focus:ring-indigo-500/30 rounded-xl",
+        glow: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus:border-sky-500 focus:shadow-[0_0_12px_rgba(14,165,233,0.35)] text-zinc-900 dark:text-zinc-100 rounded-xl",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
 
 export interface ComboboxOption {
   value: string;
@@ -16,7 +44,7 @@ export interface ComboboxOption {
   [key: string]: any;
 }
 
-export interface ComboboxProps {
+export interface ComboboxProps extends VariantProps<typeof comboboxVariants> {
   options: ComboboxOption[];
   value?: string;
   defaultValue?: string;
@@ -86,6 +114,7 @@ export function Combobox({
   isClearable = false,
   isFuzzySearch = true,
   className,
+  variant,
 }: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
@@ -243,7 +272,7 @@ export function Combobox({
   return (
     <div
       ref={containerRef}
-      className={cn("relative w-full flex flex-col gap-1.5", className)}
+      className={cn("relative w-full flex flex-col gap-1.5")}
     >
       {label && (
         <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
@@ -262,9 +291,10 @@ export function Combobox({
           }
         }}
         className={cn(
-          "min-h-10 w-full flex items-center justify-between rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-1.5 text-sm text-zinc-900 dark:text-zinc-100 shadow-xs outline-none focus:ring-2 focus:ring-sky-500/40 transition-all cursor-pointer select-none",
+          comboboxVariants({ variant }),
           isInvalid && "border-rose-500 dark:border-rose-500 text-rose-500",
           disabled && "opacity-50 cursor-not-allowed pointer-events-none",
+          className,
         )}
       >
         <div className="flex flex-wrap items-center gap-1.5 flex-1 min-w-0 pr-2">

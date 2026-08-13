@@ -1,7 +1,7 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import * as React from "react";
+import { Button } from "@/components/ui/button/button";
 import { designRadius } from "@/lib/design-system";
 import { cn } from "@/lib/utils";
 
@@ -101,16 +101,8 @@ const Snippet = React.forwardRef<HTMLDivElement, SnippetProps>(
     },
     ref,
   ) => {
-    const [copied, setCopied] = React.useState(false);
     const styleConfig = variantStyles[variant] || variantStyles.default;
     const resolvedSymbol = symbol ?? defaultSymbols[variant];
-
-    const handleCopy = React.useCallback(() => {
-      navigator.clipboard.writeText(code);
-      setCopied(true);
-      onCopy?.();
-      setTimeout(() => setCopied(false), 2000);
-    }, [code, onCopy]);
 
     return (
       <div
@@ -146,27 +138,23 @@ const Snippet = React.forwardRef<HTMLDivElement, SnippetProps>(
           </div>
 
           {showCopy && (
-            <button
-              type="button"
-              onClick={handleCopy}
+            <Button
+              isCopy
+              copyText={code}
+              onClick={onCopy}
+              variant="flat"
+              size="xs"
+              radius="sm"
               className={cn(
-                "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 shrink-0 cursor-pointer select-none",
+                "border shrink-0",
                 variant === "mac" ||
                   variant === "cmd" ||
                   variant === "ubuntu" ||
                   variant === "powershell"
-                  ? "bg-white/10 hover:bg-white/20 text-white border border-white/10"
-                  : "border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700",
+                  ? "bg-white/10 hover:bg-white/20 text-white border-white/10"
+                  : "border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700",
               )}
-            >
-              <Icon
-                icon={
-                  copied ? "hugeicons:checkmark-circle-02" : "hugeicons:copy-01"
-                }
-                className={cn("size-3.5", copied && "text-emerald-400")}
-              />
-              <span>{copied ? "Copied" : "Copy"}</span>
-            </button>
+            />
           )}
         </div>
       </div>

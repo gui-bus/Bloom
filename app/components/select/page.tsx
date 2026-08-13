@@ -124,6 +124,71 @@ export default function SelectComponentPage() {
       />
 
       <DocsComponent
+        title="Variants"
+        description="Defines the visual appearance of the Select trigger using the 'variant' prop."
+        preview={
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+            <Select
+              label="Default"
+              options={sampleOptions}
+              defaultValue="react"
+              variant="default"
+            />
+            <Select
+              label="Bordered"
+              options={sampleOptions}
+              defaultValue="react"
+              variant="bordered"
+            />
+            <Select
+              label="Flat"
+              options={sampleOptions}
+              defaultValue="react"
+              variant="flat"
+            />
+            <Select
+              label="Filled"
+              options={sampleOptions}
+              defaultValue="react"
+              variant="filled"
+            />
+            <Select
+              label="Glow"
+              options={sampleOptions}
+              defaultValue="react"
+              variant="glow"
+            />
+            <Select
+              label="Glassmorphism"
+              options={sampleOptions}
+              defaultValue="react"
+              variant="glassmorphism"
+            />
+            <Select
+              label="Gradient Border"
+              options={sampleOptions}
+              defaultValue="react"
+              variant="gradient-border"
+            />
+            <Select
+              label="Underlined"
+              options={sampleOptions}
+              defaultValue="react"
+              variant="underlined"
+            />
+          </div>
+        }
+        code={`<Select variant="default" label="Default" options={options} />
+<Select variant="bordered" label="Bordered" options={options} />
+<Select variant="flat" label="Flat" options={options} />
+<Select variant="filled" label="Filled" options={options} />
+<Select variant="glow" label="Glow" options={options} />
+<Select variant="glassmorphism" label="Glassmorphism" options={options} />
+<Select variant="gradient-border" label="Gradient Border" options={options} />
+<Select variant="underlined" label="Underlined" options={options} />`}
+      />
+
+      <DocsComponent
         title="Multi-Selection & maxTagsVisible"
         description="Multi-selection mode with removable chip tags, search filter inside the menu, and customizable max visible chips limit."
         preview={
@@ -175,7 +240,7 @@ export default function SelectComponentPage() {
       />
 
       <DocsComponent
-        title="Batch Selection (Select / Deselect All)"
+        title="Batch Selection"
         description="Enable quick 1-click 'Select All' and 'Deselect All' actions at the top of the multi-select dropdown."
         preview={
           <div className="max-w-md w-full">
@@ -203,55 +268,10 @@ export default function SelectComponentPage() {
         ]}
       />
 
-      <DocsComponent
-        title="Visual Variants"
-        description="5 available design variants: default, bordered, flat, underlined, and faded."
-        preview={
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-            <Select
-              variant="default"
-              label="Default"
-              options={sampleOptions}
-              defaultValue="react"
-            />
-            <Select
-              variant="bordered"
-              label="Bordered"
-              options={sampleOptions}
-              defaultValue="react"
-            />
-            <Select
-              variant="flat"
-              label="Flat"
-              options={sampleOptions}
-              defaultValue="react"
-            />
-            <Select
-              variant="faded"
-              label="Faded"
-              options={sampleOptions}
-              defaultValue="react"
-            />
-            <Select
-              variant="underlined"
-              label="Underlined"
-              options={sampleOptions}
-              defaultValue="react"
-            />
-          </div>
-        }
-        code={`<Select variant="default" label="Default" options={sampleOptions} />
-<Select variant="bordered" label="Bordered" options={sampleOptions} />
-<Select variant="flat" label="Flat" options={sampleOptions} />
-<Select variant="faded" label="Faded" options={sampleOptions} />
-<Select variant="underlined" label="Underlined" options={sampleOptions} />`}
-        props={[
-          "variant: 'default' | 'bordered' | 'flat' | 'underlined' | 'faded'",
-        ]}
-      />
+
 
       <DocsComponent
-        title="Legacy Compositional Syntax (Radix UI)"
+        title="Legacy Compositional Syntax"
         description="Full backward compatibility with Radix UI Select primitive trigger and item components."
         preview={
           <div className="max-w-xs w-full">

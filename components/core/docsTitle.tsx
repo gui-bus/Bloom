@@ -12,6 +12,12 @@ interface DocsTitleProps {
 const DocsTitle = ({ title, description }: DocsTitleProps) => {
   const [copied, setCopied] = React.useState(false);
 
+  React.useEffect(() => {
+    if (title) {
+      document.title = `Bloom UI — ${title} | React Component Library`;
+    }
+  }, [title]);
+
   const handleCopyMarkdown = () => {
     let markdown = `# ${title}\n\n${description}\n\n`;
 

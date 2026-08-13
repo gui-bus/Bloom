@@ -50,34 +50,6 @@ export default function InputComponentPage() {
       />
 
       <DocsComponent
-        title="Label Placement"
-        description="Position the label on top, left, inside (floating style), or outside."
-        preview={
-          <div className="flex flex-col gap-5 w-full max-w-md">
-            <Input
-              label="Top Placement"
-              labelPlacement="top"
-              placeholder="Label placed on top"
-            />
-            <Input
-              label="Left Placement"
-              labelPlacement="left"
-              placeholder="Label placed on left"
-            />
-            <Input
-              label="Inside Placement"
-              labelPlacement="inside"
-              placeholder="Floating inside label"
-            />
-          </div>
-        }
-        code={`<Input label="Top Placement" labelPlacement="top" placeholder="Label placed on top" />
-<Input label="Left Placement" labelPlacement="left" placeholder="Label placed on left" />
-<Input label="Inside Placement" labelPlacement="inside" placeholder="Floating inside label" />`}
-        props={["labelPlacement: 'top' | 'left' | 'inside' | 'outside'"]}
-      />
-
-      <DocsComponent
         title="Variants"
         description="Choose between default, bordered, flat, filled, glow, glassmorphism, gradient-border, and underlined styles."
         preview={
@@ -123,6 +95,34 @@ export default function InputComponentPage() {
         props={[
           "variant: 'default' | 'bordered' | 'flat' | 'filled' | 'glow' | 'glassmorphism' | 'gradient-border' | 'underlined'",
         ]}
+      />
+
+      <DocsComponent
+        title="Label Placement"
+        description="Position the label on top, left, inside (floating style), or outside."
+        preview={
+          <div className="flex flex-col gap-5 w-full max-w-md">
+            <Input
+              label="Top Placement"
+              labelPlacement="top"
+              placeholder="Label placed on top"
+            />
+            <Input
+              label="Left Placement"
+              labelPlacement="left"
+              placeholder="Label placed on left"
+            />
+            <Input
+              label="Inside Placement"
+              labelPlacement="inside"
+              placeholder="Floating inside label"
+            />
+          </div>
+        }
+        code={`<Input label="Top Placement" labelPlacement="top" placeholder="Label placed on top" />
+<Input label="Left Placement" labelPlacement="left" placeholder="Label placed on left" />
+<Input label="Inside Placement" labelPlacement="inside" placeholder="Floating inside label" />`}
+        props={["labelPlacement: 'top' | 'left' | 'inside' | 'outside'"]}
       />
 
       <DocsComponent

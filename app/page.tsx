@@ -54,7 +54,7 @@ export default function Home() {
       <section id="introduction" className="space-y-8 pt-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 text-xs font-medium tracking-tight">
           <span className="size-1.5 rounded-full bg-sky-500" />
-          Bloom UI v1.0 — 95 Premium React 19 Components
+          Bloom UI v1.0 — 95 React 19 Components
         </div>
 
         <div className="space-y-4">

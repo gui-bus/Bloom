@@ -59,15 +59,12 @@ const CollapsibleContent = React.forwardRef<
     <CollapsiblePrimitive.CollapsibleContent
       ref={contentRef}
       className={cn(
-        "grid transition-all duration-300 ease-in-out",
-        "data-[state=closed]:grid-rows-[0fr] data-[state=open]:grid-rows-[1fr]",
+        "overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down",
         className,
       )}
       {...props}
     >
-      <div className="overflow-hidden min-h-0">
-        {shouldRenderChildren ? children : null}
-      </div>
+      {shouldRenderChildren ? children : null}
     </CollapsiblePrimitive.CollapsibleContent>
   );
 });

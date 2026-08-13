@@ -1,6 +1,8 @@
 {
   "name": "timeline",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "files": [
     {
       "name": "timeline.tsx",

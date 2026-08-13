@@ -20,8 +20,8 @@ const firacode = Fira_Code({
 
 export const metadata: Metadata = {
   title: {
-    default: "Bloom UI — Premium React Component Library",
-    template: "%s — Bloom UI",
+    default: "Bloom UI | React Component Library",
+    template: "Bloom UI — %s | React Component Library",
   },
   description:
     "An accessible, customizable, and high-performance React component library built on Radix UI, Tailwind CSS v4, and Framer Motion.",
@@ -43,14 +43,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://bloomui.dev",
-    title: "Bloom UI — Premium React Component Library",
+    title: "Bloom UI | React Component Library",
     description:
       "An accessible, customizable, and high-performance React component library built on Radix UI, Tailwind CSS v4, and Framer Motion.",
     siteName: "Bloom UI",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bloom UI — Premium React Component Library",
+    title: "Bloom UI | React Component Library",
     description:
       "An accessible, customizable, and high-performance React component library built on Radix UI, Tailwind CSS v4, and Framer Motion.",
   },

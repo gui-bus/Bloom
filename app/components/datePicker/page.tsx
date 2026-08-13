@@ -43,6 +43,78 @@ export default function DatePickerComponentPage() {
       />
 
       <DocsComponent
+        title="Default"
+        description="Standard single date picker input with interactive calendar grid popup."
+        preview={
+          <div className="w-full max-w-sm">
+            <DatePicker
+              mode="single"
+              label="Birth Date"
+              placeholder="Select your birth date..."
+            />
+          </div>
+        }
+        code={`<DatePicker mode="single" label="Birth Date" placeholder="Select your birth date..." />`}
+      />
+
+      <DocsComponent
+        title="Variants"
+        description="Defines the visual appearance of the Date Picker trigger using the 'variant' prop."
+        preview={
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+            <DatePicker
+              label="Default"
+              placeholder="Select date..."
+              variant="default"
+            />
+            <DatePicker
+              label="Bordered"
+              placeholder="Select date..."
+              variant="bordered"
+            />
+            <DatePicker
+              label="Flat"
+              placeholder="Select date..."
+              variant="flat"
+            />
+            <DatePicker
+              label="Filled"
+              placeholder="Select date..."
+              variant="filled"
+            />
+            <DatePicker
+              label="Glow"
+              placeholder="Select date..."
+              variant="glow"
+            />
+            <DatePicker
+              label="Glassmorphism"
+              placeholder="Select date..."
+              variant="glassmorphism"
+            />
+            <DatePicker
+              label="Gradient Border"
+              placeholder="Select date..."
+              variant="gradient-border"
+            />
+            <DatePicker
+              label="Underlined"
+              placeholder="Select date..."
+              variant="underlined"
+            />
+          </div>
+        }
+        code={`<DatePicker variant="default" label="Default" />
+<DatePicker variant="bordered" label="Bordered" />
+<DatePicker variant="flat" label="Flat" />
+<DatePicker variant="filled" label="Filled" />
+<DatePicker variant="glow" label="Glow" />
+<DatePicker variant="glassmorphism" label="Glassmorphism" />
+<DatePicker variant="gradient-border" label="Gradient Border" />
+<DatePicker variant="underlined" label="Underlined" />`}
+      />
+
+      <DocsComponent
         title="Integrated Time Picker Selection"
         description="Enable 'showTimePicker' to display interactive hours and minutes dropdown selectors at the bottom of the date calendar popup."
         preview={
@@ -96,22 +168,6 @@ export default function DatePickerComponentPage() {
           "viewMode: 'date' | 'fiscalQuarter' | 'fiscalYear'",
           "fiscalYearStartMonth: number (1-12)",
         ]}
-      />
-
-      <DocsComponent
-        title="Single Selection Mode"
-        description="Standard single date picker input with interactive calendar grid popup."
-        preview={
-          <div className="w-full max-w-sm">
-            <DatePicker
-              mode="single"
-              label="Birth Date"
-              placeholder="Select your birth date..."
-            />
-          </div>
-        }
-        code={`<DatePicker mode="single" label="Birth Date" placeholder="Select your birth date..." />`}
-        props={["mode: 'single' | 'range' | 'multiple'"]}
       />
 
       <DocsComponent

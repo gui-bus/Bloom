@@ -11,7 +11,10 @@ export type SelectVariant =
   | "bordered"
   | "flat"
   | "underlined"
-  | "faded";
+  | "filled"
+  | "glassmorphism"
+  | "gradient-border"
+  | "glow";
 
 export interface SelectOption {
   value: string;
@@ -66,14 +69,19 @@ export interface SelectProps
 
 const variantStyles: Record<SelectVariant, string> = {
   default:
-    "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus:ring-2 focus:ring-sky-500/20 text-zinc-900 dark:text-zinc-100",
+    "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus:border-sky-500 focus:ring-2 focus:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
   bordered:
     "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 focus:border-sky-500 text-zinc-900 dark:text-zinc-100",
-  flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/70 dark:hover:bg-zinc-800 focus:bg-white dark:focus:bg-zinc-900 border text-zinc-900 dark:text-zinc-100",
+  flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/70 dark:hover:bg-zinc-800 focus:bg-white dark:focus:bg-zinc-900 focus:border-sky-500 border text-zinc-900 dark:text-zinc-100",
   underlined:
     "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 focus:border-sky-500 text-zinc-900 dark:text-zinc-100",
-  faded:
-    "bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200/80 dark:border-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 text-zinc-900 dark:text-zinc-100",
+  filled:
+    "bg-zinc-100 dark:bg-zinc-800/80 border border-transparent focus:border-sky-500 focus:ring-2 focus:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+  glassmorphism:
+    "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 focus:border-sky-500 shadow-lg text-zinc-900 dark:text-zinc-100",
+  "gradient-border":
+    "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 relative [background-clip:padding-box] border border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 focus:ring-2 focus:ring-indigo-500/30",
+  glow: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus:border-sky-500 focus:shadow-[0_0_12px_rgba(14,165,233,0.35)] text-zinc-900 dark:text-zinc-100",
 };
 
 const sizeMap = {

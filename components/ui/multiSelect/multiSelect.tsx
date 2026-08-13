@@ -1,8 +1,36 @@
 "use client";
 
 import { Icon } from "@iconify/react";
+import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 import { cn } from "@/lib/utils";
+
+const multiSelectVariants = cva(
+  "flex flex-wrap items-center gap-1.5 min-h-[42px] px-3 py-2 rounded-2xl transition-colors cursor-text",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+        bordered:
+          "bg-transparent border-2 border-zinc-200 dark:border-zinc-800 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
+        flat: "bg-zinc-100 dark:bg-zinc-800/60 border-transparent hover:bg-zinc-200/70 dark:hover:bg-zinc-800 focus-within:bg-white dark:focus-within:bg-zinc-900 focus-within:border-sky-500 border text-zinc-900 dark:text-zinc-100",
+        underlined:
+          "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
+        filled:
+          "bg-zinc-100 dark:bg-zinc-800/80 border border-transparent focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+        glassmorphism:
+          "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 focus-within:border-sky-500 shadow-lg text-zinc-900 dark:text-zinc-100",
+        "gradient-border":
+          "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 relative [background-clip:padding-box] border border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 focus-within:ring-2 focus-within:ring-indigo-500/30",
+        glow: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:shadow-[0_0_12px_rgba(14,165,233,0.35)] text-zinc-900 dark:text-zinc-100",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
 
 export interface MultiSelectOption {
   label: string;
@@ -11,7 +39,7 @@ export interface MultiSelectOption {
   icon?: React.ReactNode;
 }
 
-interface MultiSelectProps {
+interface MultiSelectProps extends VariantProps<typeof multiSelectVariants> {
   options: MultiSelectOption[];
   value: string[];
   onChange: (value: string[]) => void;
@@ -34,6 +62,7 @@ export function MultiSelect({
   showSelectAll = true,
   isDisabled = false,
   isInvalid = false,
+  variant,
   className,
 }: MultiSelectProps) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -135,10 +164,10 @@ export function MultiSelect({
       )}
       <div
         className={cn(
-          "flex flex-wrap items-center gap-1.5 min-h-[42px] px-3 py-2 rounded-2xl border bg-white dark:bg-zinc-900 transition-colors cursor-text",
+          multiSelectVariants({ variant }),
           isInvalid
             ? "border-rose-500 focus-within:ring-2 focus-within:ring-rose-500/20"
-            : "border-zinc-200 dark:border-zinc-800 focus-within:ring-2 focus-within:ring-sky-500/20 focus-within:border-sky-500",
+            : "",
           isDisabled && "opacity-50 cursor-not-allowed",
         )}
         onClick={() => {

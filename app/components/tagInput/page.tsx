@@ -24,6 +24,8 @@ export default function TagInputPage() {
   const [tags2d, setTags2d] = React.useState<string[]>(["Bloom"]);
   const [tags2e, setTags2e] = React.useState<string[]>(["Bloom"]);
   const [tags2f, setTags2f] = React.useState<string[]>(["Bloom"]);
+  const [tags2g, setTags2g] = React.useState<string[]>(["Bloom"]);
+  const [tags2h, setTags2h] = React.useState<string[]>(["Bloom"]);
 
   const [tags3a, setTags3a] = React.useState<string[]>([]);
   const [tags3b, setTags3b] = React.useState<string[]>([]);
@@ -80,56 +82,67 @@ export default function TagInputPage() {
 
       <DocsComponent
         title="Variants"
-        description="Supports different visual variations matching the Bloom design system."
-        props={[
-          "variant: 'default' | 'bordered' | 'flat' | 'underlined' | 'filled' | 'glow'",
-        ]}
+        description="Defines the visual appearance of the tag input using the 'variant' prop."
         preview={
-          <div className="w-full max-w-md space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
             <TagInput
               variant="default"
               value={tags2a}
               onChange={setTags2a}
-              label="Default Variant"
+              label="Default"
             />
             <TagInput
               variant="bordered"
               value={tags2b}
               onChange={setTags2b}
-              label="Bordered Variant"
+              label="Bordered"
             />
             <TagInput
               variant="flat"
               value={tags2c}
               onChange={setTags2c}
-              label="Flat Variant"
-            />
-            <TagInput
-              variant="underlined"
-              value={tags2d}
-              onChange={setTags2d}
-              label="Underlined Variant"
+              label="Flat"
             />
             <TagInput
               variant="filled"
               value={tags2e}
               onChange={setTags2e}
-              label="Filled Variant"
+              label="Filled"
             />
             <TagInput
               variant="glow"
               value={tags2f}
               onChange={setTags2f}
-              label="Glow Variant"
+              label="Glow"
+            />
+            <TagInput
+              variant="glassmorphism"
+              value={tags2g}
+              onChange={setTags2g}
+              label="Glassmorphism"
+            />
+            <TagInput
+              variant="gradient-border"
+              value={tags2h}
+              onChange={setTags2h}
+              label="Gradient Border"
+            />
+            <TagInput
+              variant="underlined"
+              value={tags2d}
+              onChange={setTags2d}
+              label="Underlined"
             />
           </div>
         }
-        code={`<TagInput variant="default" value={tags} onChange={setTags} label="Default Variant" />
-<TagInput variant="bordered" value={tags} onChange={setTags} label="Bordered Variant" />
-<TagInput variant="flat" value={tags} onChange={setTags} label="Flat Variant" />
-<TagInput variant="underlined" value={tags} onChange={setTags} label="Underlined Variant" />
-<TagInput variant="filled" value={tags} onChange={setTags} label="Filled Variant" />
-<TagInput variant="glow" value={tags} onChange={setTags} label="Glow Variant" />`}
+        code={`<TagInput variant="default" value={tags} onChange={setTags} label="Default" />
+<TagInput variant="bordered" value={tags} onChange={setTags} label="Bordered" />
+<TagInput variant="flat" value={tags} onChange={setTags} label="Flat" />
+<TagInput variant="filled" value={tags} onChange={setTags} label="Filled" />
+<TagInput variant="glow" value={tags} onChange={setTags} label="Glow" />
+<TagInput variant="glassmorphism" value={tags} onChange={setTags} label="Glassmorphism" />
+<TagInput variant="gradient-border" value={tags} onChange={setTags} label="Gradient Border" />
+<TagInput variant="underlined" value={tags} onChange={setTags} label="Underlined" />`}
       />
 
       <DocsComponent

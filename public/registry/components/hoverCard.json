@@ -1,6 +1,8 @@
 {
   "name": "hoverCard",
-  "dependencies": ["@radix-ui/react-hover-card"],
+  "dependencies": [
+    "@radix-ui/react-hover-card"
+  ],
   "files": [
     {
       "name": "hoverCard.tsx",

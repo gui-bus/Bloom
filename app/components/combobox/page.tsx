@@ -140,6 +140,84 @@ function VirtualizedListDemo() {
   );
 }
 
+function ComboboxVariantsDemo() {
+  const [val1, setVal1] = React.useState("");
+  const [val2, setVal2] = React.useState("");
+  const [val3, setVal3] = React.useState("");
+  const [val4, setVal4] = React.useState("");
+  const [val5, setVal5] = React.useState("");
+  const [val6, setVal6] = React.useState("");
+  const [val7, setVal7] = React.useState("");
+  const [val8, setVal8] = React.useState("");
+
+  const simpleOptions = [
+    { value: "react", label: "React" },
+    { value: "vue", label: "Vue" },
+    { value: "angular", label: "Angular" },
+  ];
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+      <Combobox
+        label="Default"
+        options={simpleOptions}
+        value={val1}
+        onValueChange={setVal1}
+        variant="default"
+      />
+      <Combobox
+        label="Bordered"
+        options={simpleOptions}
+        value={val2}
+        onValueChange={setVal2}
+        variant="bordered"
+      />
+      <Combobox
+        label="Flat"
+        options={simpleOptions}
+        value={val3}
+        onValueChange={setVal3}
+        variant="flat"
+      />
+      <Combobox
+        label="Filled"
+        options={simpleOptions}
+        value={val4}
+        onValueChange={setVal4}
+        variant="filled"
+      />
+      <Combobox
+        label="Glow"
+        options={simpleOptions}
+        value={val5}
+        onValueChange={setVal5}
+        variant="glow"
+      />
+      <Combobox
+        label="Glassmorphism"
+        options={simpleOptions}
+        value={val6}
+        onValueChange={setVal6}
+        variant="glassmorphism"
+      />
+      <Combobox
+        label="Gradient Border"
+        options={simpleOptions}
+        value={val7}
+        onValueChange={setVal7}
+        variant="gradient-border"
+      />
+      <Combobox
+        label="Underlined"
+        options={simpleOptions}
+        value={val8}
+        onValueChange={setVal8}
+        variant="underlined"
+      />
+    </div>
+  );
+}
+
 export default function ComboboxComponentPage() {
   return (
     <div className="space-y-8">
@@ -166,6 +244,20 @@ export default function ComboboxComponentPage() {
           "Virtualized",
           "Combobox",
         ]}
+      />
+
+      <DocsComponent
+        title="Variants"
+        description="Defines the visual appearance of the combobox trigger using the 'variant' prop."
+        preview={<ComboboxVariantsDemo />}
+        code={`<Combobox variant="default" label="Default" options={options} value={value} onValueChange={setValue} />
+<Combobox variant="bordered" label="Bordered" options={options} value={value} onValueChange={setValue} />
+<Combobox variant="flat" label="Flat" options={options} value={value} onValueChange={setValue} />
+<Combobox variant="filled" label="Filled" options={options} value={value} onValueChange={setValue} />
+<Combobox variant="glow" label="Glow" options={options} value={value} onValueChange={setValue} />
+<Combobox variant="glassmorphism" label="Glassmorphism" options={options} value={value} onValueChange={setValue} />
+<Combobox variant="gradient-border" label="Gradient Border" options={options} value={value} onValueChange={setValue} />
+<Combobox variant="underlined" label="Underlined" options={options} value={value} onValueChange={setValue} />`}
       />
 
       <DocsComponent

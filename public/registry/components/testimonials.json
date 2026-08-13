@@ -1,6 +1,9 @@
 {
   "name": "testimonials",
-  "dependencies": ["@iconify/react", "embla-carousel-react"],
+  "dependencies": [
+    "@iconify/react",
+    "embla-carousel-react"
+  ],
   "files": [
     {
       "name": "testimonials.tsx",

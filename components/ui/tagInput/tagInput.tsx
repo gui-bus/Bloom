@@ -14,7 +14,15 @@ export interface TagInputProps
   > {
   value?: string[];
   onChange?: (value: string[]) => void;
-  variant?: "default" | "bordered" | "flat" | "underlined" | "filled" | "glow";
+  variant?:
+    | "default"
+    | "bordered"
+    | "flat"
+    | "underlined"
+    | "filled"
+    | "glassmorphism"
+    | "gradient-border"
+    | "glow";
   color?:
     | "default"
     | "primary"
@@ -60,6 +68,10 @@ const tagInputVariants = cva(
           "bg-transparent border-b-2 border-zinc-200 dark:border-zinc-800 rounded-none px-0 focus-within:border-sky-500 text-zinc-900 dark:text-zinc-100",
         filled:
           "bg-zinc-100 dark:bg-zinc-800/80 border border-transparent focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/40 text-zinc-900 dark:text-zinc-100",
+        glassmorphism:
+          "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 focus-within:border-sky-500 shadow-lg text-zinc-900 dark:text-zinc-100",
+        "gradient-border":
+          "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 relative [background-clip:padding-box] border border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 focus-within:ring-2 focus-within:ring-indigo-500/30",
         glow: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:shadow-[0_0_12px_rgba(14,165,233,0.35)] text-zinc-900 dark:text-zinc-100",
       },
       size: {
@@ -181,7 +193,7 @@ export const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
         <div
           className={cn(
             tagInputVariants({ variant, size }),
-            designRadius[radius],
+            variant !== "underlined" && designRadius[radius],
             hasError &&
               "border-danger focus-within:border-danger focus-within:ring-danger/30 focus-within:shadow-[0_0_12px_rgba(239,68,68,0.35)]",
             isDisabled &&

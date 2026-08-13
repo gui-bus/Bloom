@@ -162,6 +162,78 @@ function GroupedCategoryDemo() {
   );
 }
 
+function MultiSelectVariantsDemo() {
+  const [val1, setVal1] = React.useState<string[]>(["apple"]);
+  const [val2, setVal2] = React.useState<string[]>(["banana"]);
+  const [val3, setVal3] = React.useState<string[]>(["cherry"]);
+  const [val4, setVal4] = React.useState<string[]>(["dragon-fruit"]);
+  const [val5, setVal5] = React.useState<string[]>([]);
+  const [val6, setVal6] = React.useState<string[]>([]);
+  const [val7, setVal7] = React.useState<string[]>([]);
+  const [val8, setVal8] = React.useState<string[]>([]);
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+      <MultiSelect
+        label="Default"
+        options={fruitOptions}
+        value={val1}
+        onChange={setVal1}
+        variant="default"
+      />
+      <MultiSelect
+        label="Bordered"
+        options={fruitOptions}
+        value={val2}
+        onChange={setVal2}
+        variant="bordered"
+      />
+      <MultiSelect
+        label="Flat"
+        options={fruitOptions}
+        value={val3}
+        onChange={setVal3}
+        variant="flat"
+      />
+      <MultiSelect
+        label="Filled"
+        options={fruitOptions}
+        value={val4}
+        onChange={setVal4}
+        variant="filled"
+      />
+      <MultiSelect
+        label="Glow"
+        options={fruitOptions}
+        value={val5}
+        onChange={setVal5}
+        variant="glow"
+      />
+      <MultiSelect
+        label="Glassmorphism"
+        options={fruitOptions}
+        value={val6}
+        onChange={setVal6}
+        variant="glassmorphism"
+      />
+      <MultiSelect
+        label="Gradient Border"
+        options={fruitOptions}
+        value={val7}
+        onChange={setVal7}
+        variant="gradient-border"
+      />
+      <MultiSelect
+        label="Underlined"
+        options={fruitOptions}
+        value={val8}
+        onChange={setVal8}
+        variant="underlined"
+      />
+    </div>
+  );
+}
+
 export default function MultiSelectPage() {
   return (
     <div className="space-y-8">
@@ -207,6 +279,20 @@ export default function MultiSelectPage() {
   placeholder="Select fruits..."
   label="Fruits"
 />`}
+      />
+
+      <DocsComponent
+        title="Variants"
+        description="Defines the visual appearance of the multi-select input using the 'variant' prop."
+        preview={<MultiSelectVariantsDemo />}
+        code={`<MultiSelect variant="default" label="Default" options={options} value={value} onChange={setValue} />
+<MultiSelect variant="bordered" label="Bordered" options={options} value={value} onChange={setValue} />
+<MultiSelect variant="flat" label="Flat" options={options} value={value} onChange={setValue} />
+<MultiSelect variant="filled" label="Filled" options={options} value={value} onChange={setValue} />
+<MultiSelect variant="glow" label="Glow" options={options} value={value} onChange={setValue} />
+<MultiSelect variant="glassmorphism" label="Glassmorphism" options={options} value={value} onChange={setValue} />
+<MultiSelect variant="gradient-border" label="Gradient Border" options={options} value={value} onChange={setValue} />
+<MultiSelect variant="underlined" label="Underlined" options={options} value={value} onChange={setValue} />`}
       />
 
       <DocsComponent

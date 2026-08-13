@@ -1,6 +1,8 @@
 {
   "name": "colorPicker",
-  "dependencies": ["@iconify/react"],
+  "dependencies": [
+    "@iconify/react"
+  ],
   "files": [
     {
       "name": "colorPicker.tsx",

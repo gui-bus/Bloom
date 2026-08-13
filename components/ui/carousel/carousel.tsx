@@ -24,6 +24,7 @@ type CarouselProps = {
   pauseOnHover?: boolean;
   dragFree?: boolean;
   swipeThreshold?: number;
+  loop?: boolean;
 };
 
 type CarouselContextProps = {
@@ -63,6 +64,7 @@ const Carousel = React.forwardRef<
       pauseOnHover = true,
       dragFree = false,
       swipeThreshold = 10,
+      loop = false,
       className,
       children,
       ...props
@@ -85,6 +87,7 @@ const Carousel = React.forwardRef<
 
     const [carouselRef, api] = useEmblaCarousel(
       {
+        loop,
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
         dragFree,
@@ -153,6 +156,7 @@ const Carousel = React.forwardRef<
           pauseOnHover,
           dragFree,
           swipeThreshold,
+          loop,
         }}
       >
         <div
@@ -177,7 +181,10 @@ const CarouselContent = React.forwardRef<
   const { carouselRef, orientation } = useCarousel();
 
   return (
-    <div ref={carouselRef} className="overflow-hidden size-full">
+    <div
+      ref={carouselRef}
+      className="overflow-hidden size-full cursor-grab active:cursor-grabbing"
+    >
       <div
         ref={ref}
         className={cn(

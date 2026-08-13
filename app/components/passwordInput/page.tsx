@@ -75,6 +75,63 @@ export default function PasswordInputComponentPage() {
       />
 
       <DocsComponent
+        title="Variants"
+        description="Defines the visual appearance of the password input using the 'variant' prop."
+        preview={
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+            <PasswordInput
+              label="Default"
+              placeholder="Default variant"
+              variant="default"
+            />
+            <PasswordInput
+              label="Bordered"
+              placeholder="Bordered variant"
+              variant="bordered"
+            />
+            <PasswordInput
+              label="Flat"
+              placeholder="Flat variant"
+              variant="flat"
+            />
+            <PasswordInput
+              label="Filled"
+              placeholder="Filled variant"
+              variant="filled"
+            />
+            <PasswordInput
+              label="Glow"
+              placeholder="Glow variant"
+              variant="glow"
+            />
+            <PasswordInput
+              label="Glassmorphism"
+              placeholder="Glassmorphism variant"
+              variant="glassmorphism"
+            />
+            <PasswordInput
+              label="Gradient Border"
+              placeholder="Gradient Border variant"
+              variant="gradient-border"
+            />
+            <PasswordInput
+              label="Underlined"
+              placeholder="Underlined variant"
+              variant="underlined"
+            />
+          </div>
+        }
+        code={`<PasswordInput variant="default" label="Default" />
+<PasswordInput variant="bordered" label="Bordered" />
+<PasswordInput variant="flat" label="Flat" />
+<PasswordInput variant="filled" label="Filled" />
+<PasswordInput variant="glow" label="Glow" />
+<PasswordInput variant="glassmorphism" label="Glassmorphism" />
+<PasswordInput variant="gradient-border" label="Gradient Border" />
+<PasswordInput variant="underlined" label="Underlined" />`}
+      />
+
+      <DocsComponent
         title="Custom Validation Rules"
         description="Define custom password criteria by passing an array of rules with validation functions."
         preview={

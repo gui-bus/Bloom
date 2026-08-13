@@ -23,7 +23,6 @@ export interface CheckboxProps
   isCard?: boolean;
   isIndeterminate?: boolean;
   icon?: string;
-  checkIcon?: React.ReactNode;
   badge?: string | React.ReactNode;
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
@@ -212,7 +211,6 @@ const Checkbox = React.forwardRef<
       isCard = false,
       isIndeterminate = false,
       icon,
-      checkIcon,
       badge,
       startContent,
       endContent,
@@ -257,7 +255,7 @@ const Checkbox = React.forwardRef<
         checked={checkedState}
         onCheckedChange={handleCheckedChange}
         className={cn(
-          "peer size-4 shrink-0 border transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer mt-0.5 data-[state=unchecked]:bg-white dark:data-[state=unchecked]:bg-zinc-900 data-[state=unchecked]:border-zinc-300 dark:data-[state=unchecked]:border-zinc-700",
+          "peer size-4 shrink-0 border transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer data-[state=unchecked]:bg-white dark:data-[state=unchecked]:bg-zinc-900 data-[state=unchecked]:border-zinc-300 dark:data-[state=unchecked]:border-zinc-700",
           designRadius[radius],
           colorMap[color],
           effectiveInvalid && "border-rose-500 dark:border-rose-500",
@@ -270,17 +268,38 @@ const Checkbox = React.forwardRef<
         >
           {isIndeterminate ? (
             <Icon icon="hugeicons:minus-sign" className="size-3.5 stroke-[3]" />
-          ) : checkIcon ? (
-            checkIcon
           ) : (
-            <Icon icon="hugeicons:tick-02" className="size-3.5 stroke-[3]" />
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="size-3"
+            >
+              <path
+                d="M20 6L9 17L4 12"
+                style={{
+                  strokeDasharray: 22,
+                  strokeDashoffset: 22,
+                  animation:
+                    "checkbox-draw 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards",
+                }}
+              />
+              <style>{`
+                @keyframes checkbox-draw {
+                  to { stroke-dashoffset: 0; }
+                }
+              `}</style>
+            </svg>
           )}
         </CheckboxPrimitive.Indicator>
       </CheckboxPrimitive.Root>
     );
 
     const content = (
-      <div className="inline-flex items-start gap-2.5 flex-1 min-w-0">
+      <div className="inline-flex items-center gap-2.5 flex-1 min-w-0">
         {checkboxPosition === "start" && checkboxRoot}
         {startContent && (
           <div className="shrink-0 flex items-center">{startContent}</div>

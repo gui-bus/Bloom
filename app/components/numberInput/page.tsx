@@ -14,6 +14,7 @@ import { Separator } from "@/components/ui/separator/separator";
 
 export default function NumberInputComponentPage() {
   const [val, setVal] = React.useState(2500);
+  const [defaultVal, setDefaultVal] = React.useState(0);
 
   return (
     <div className="space-y-8">
@@ -36,7 +37,72 @@ export default function NumberInputComponentPage() {
       />
 
       <DocsComponent
-        title="Stepper Positions (stepperPosition)"
+        title="Default"
+        description="Standard numeric stepper input with default settings."
+        preview={
+          <div className="max-w-xs w-full">
+            <NumberInput
+              label="Standard Number Input"
+              defaultValue={0}
+              onValueChange={setDefaultVal}
+            />
+            <p className="text-xs text-muted-foreground mt-2 font-mono">
+              Current value: {defaultVal}
+            </p>
+          </div>
+        }
+        code={`const [value, setValue] = React.useState(0);
+
+<NumberInput
+  label="Standard Number Input"
+  defaultValue={0}
+  onValueChange={setValue}
+/>`}
+      />
+
+      <DocsComponent
+        title="Variants"
+        description="Defines the visual appearance of the number input using the 'variant' prop."
+        preview={
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+            <NumberInput label="Default" defaultValue={10} variant="default" />
+            <NumberInput
+              label="Bordered"
+              defaultValue={20}
+              variant="bordered"
+            />
+            <NumberInput label="Flat" defaultValue={30} variant="flat" />
+            <NumberInput label="Filled" defaultValue={40} variant="filled" />
+            <NumberInput label="Glow" defaultValue={50} variant="glow" />
+            <NumberInput
+              label="Glassmorphism"
+              defaultValue={60}
+              variant="glassmorphism"
+            />
+            <NumberInput
+              label="Gradient Border"
+              defaultValue={70}
+              variant="gradient-border"
+            />
+            <NumberInput
+              label="Underlined"
+              defaultValue={80}
+              variant="underlined"
+            />
+          </div>
+        }
+        code={`<NumberInput variant="default" label="Default" />
+<NumberInput variant="bordered" label="Bordered" />
+<NumberInput variant="flat" label="Flat" />
+<NumberInput variant="filled" label="Filled" />
+<NumberInput variant="glow" label="Glow" />
+<NumberInput variant="glassmorphism" label="Glassmorphism" />
+<NumberInput variant="gradient-border" label="Gradient Border" />
+<NumberInput variant="underlined" label="Underlined" />`}
+      />
+
+      <DocsComponent
+        title="Stepper Positions"
         description="Choose stepper button layout: 'split' (left & right), 'right' (both buttons on right), or 'inline' (compact up/down arrows)."
         preview={
           <div className="flex flex-col gap-4 max-w-xs w-full">
@@ -123,7 +189,7 @@ export default function NumberInputComponentPage() {
       />
 
       <DocsComponent
-        title="Mouse Wheel Scroll Control (allowMouseWheel)"
+        title="Mouse Wheel Scroll Control"
         description="Enable value adjustments by hovering and scrolling the mouse wheel."
         preview={
           <div className="max-w-xs w-full">

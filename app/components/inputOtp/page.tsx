@@ -44,7 +44,156 @@ export default function InputOtpComponentPage() {
       />
 
       <DocsComponent
-        title="Group Separators (3 - 3)"
+        title="Default"
+        description="Standard 4-digit one-time password input."
+        preview={
+          <div className="w-full max-w-xs">
+            <InputOTP maxLength={4} value={val1} onChange={setVal1}>
+              <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+                <InputOTPSlot index={3} />
+              </InputOTPGroup>
+            </InputOTP>
+          </div>
+        }
+        code={`const [value, setValue] = React.useState("");
+
+<InputOTP maxLength={4} value={value} onChange={setValue}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
+  </InputOTPGroup>
+</InputOTP>`}
+      />
+
+      <DocsComponent
+        title="Variants"
+        description="Defines the visual appearance of the Input OTP slots using the 'variant' prop."
+        preview={
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-semibold text-zinc-500">
+                Default
+              </span>
+              <InputOTP maxLength={4}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} variant="default" />
+                  <InputOTPSlot index={1} variant="default" />
+                  <InputOTPSlot index={2} variant="default" />
+                  <InputOTPSlot index={3} variant="default" />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-semibold text-zinc-500">
+                Bordered
+              </span>
+              <InputOTP maxLength={4}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} variant="bordered" />
+                  <InputOTPSlot index={1} variant="bordered" />
+                  <InputOTPSlot index={2} variant="bordered" />
+                  <InputOTPSlot index={3} variant="bordered" />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-semibold text-zinc-500">Flat</span>
+              <InputOTP maxLength={4}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} variant="flat" />
+                  <InputOTPSlot index={1} variant="flat" />
+                  <InputOTPSlot index={2} variant="flat" />
+                  <InputOTPSlot index={3} variant="flat" />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-semibold text-zinc-500">
+                Filled
+              </span>
+              <InputOTP maxLength={4}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} variant="filled" />
+                  <InputOTPSlot index={1} variant="filled" />
+                  <InputOTPSlot index={2} variant="filled" />
+                  <InputOTPSlot index={3} variant="filled" />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-semibold text-zinc-500">Glow</span>
+              <InputOTP maxLength={4}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} variant="glow" />
+                  <InputOTPSlot index={1} variant="glow" />
+                  <InputOTPSlot index={2} variant="glow" />
+                  <InputOTPSlot index={3} variant="glow" />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-semibold text-zinc-500">
+                Glassmorphism
+              </span>
+              <InputOTP maxLength={4}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} variant="glassmorphism" />
+                  <InputOTPSlot index={1} variant="glassmorphism" />
+                  <InputOTPSlot index={2} variant="glassmorphism" />
+                  <InputOTPSlot index={3} variant="glassmorphism" />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-semibold text-zinc-500">
+                Gradient Border
+              </span>
+              <InputOTP maxLength={4}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} variant="gradient-border" />
+                  <InputOTPSlot index={1} variant="gradient-border" />
+                  <InputOTPSlot index={2} variant="gradient-border" />
+                  <InputOTPSlot index={3} variant="gradient-border" />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-semibold text-zinc-500">
+                Underlined
+              </span>
+              <InputOTP maxLength={4}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} variant="underlined" />
+                  <InputOTPSlot index={1} variant="underlined" />
+                  <InputOTPSlot index={2} variant="underlined" />
+                  <InputOTPSlot index={3} variant="underlined" />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+          </div>
+        }
+        code={`<InputOTP maxLength={4}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} variant="default" />
+    <InputOTPSlot index={1} variant="default" />
+  </InputOTPGroup>
+</InputOTP>
+
+<InputOTP maxLength={4}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} variant="bordered" />
+    <InputOTPSlot index={1} variant="bordered" />
+  </InputOTPGroup>
+</InputOTP>`}
+      />
+
+      <DocsComponent
+        title="Group Separators"
         description="Split 6-digit OTP codes into two groups of 3 using <InputOTPSeparator />."
         preview={
           <div className="space-y-3">
@@ -84,7 +233,7 @@ export default function InputOtpComponentPage() {
       />
 
       <DocsComponent
-        title="Custom Multi-Group Separators (2 - 2 - 2)"
+        title="Custom Multi-Group Separators"
         description="Divide codes into any custom layout such as three groups of two digits with multiple separators."
         preview={
           <div className="space-y-3">
@@ -125,7 +274,7 @@ export default function InputOtpComponentPage() {
       />
 
       <DocsComponent
-        title="Allowed Types (Numeric, Letters, Alphanumeric)"
+        title="Allowed Types"
         description="Restrict user entry to specific character sets using the 'allowedType' prop: 'numeric', 'alphabetic', or 'alphanumeric'."
         preview={
           <div className="flex flex-col gap-6">

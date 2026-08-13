@@ -423,7 +423,34 @@ export default function ButtonComponentPage() {
       />
 
       <DocsComponent
-        title="Disabled state"
+        title="Copy Button"
+        description="A specialized button type configured by passing the 'isCopy' prop. When clicked, it copies the string text (either from its 'copyText' property or directly from its text children) and transitions to showing a smooth animated checkmark and a 'Copied' state."
+        preview={
+          <div className="w-full flex items-center gap-4">
+            <Button isCopy copyText="npm install bloom-ui">
+              Copy command
+            </Button>
+            <Button
+              isCopy
+              variant="flat"
+              color="primary"
+              copyText="Hello from Bloom UI!"
+            >
+              Copy Greeting
+            </Button>
+          </div>
+        }
+        code={`<Button isCopy copyText="npm install bloom-ui">
+  Copy command
+</Button>
+<Button isCopy variant="flat" color="primary" copyText="Hello from Bloom UI!">
+  Copy Greeting
+</Button>`}
+        props={["isCopy: boolean", "copyText: string"]}
+      />
+
+      <DocsComponent
+        title="Disabled State"
         description="Disables the button, preventing interaction and applying muted opacity styling."
         preview={
           <div className="w-full flex flex-wrap gap-4">
@@ -553,7 +580,7 @@ export default function ButtonComponentPage() {
                     Disables user interaction.
                   </td>
                 </tr>
-                <tr>
+                <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">
                     disableRipple
                   </td>
@@ -563,6 +590,27 @@ export default function ButtonComponentPage() {
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
                     Disables click ripple effect.
+                  </td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2 font-mono text-primary">isCopy</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    boolean
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">false</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    Enables copying functionality and animation.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-primary">copyText</td>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                    string
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground">—</td>
+                  <td className="px-3 py-2 text-muted-foreground">
+                    The specific text to be copied to the clipboard. Defaults to
+                    children.
                   </td>
                 </tr>
               </tbody>

@@ -60,6 +60,43 @@ export default function TimePickerPage() {
       />
 
       <DocsComponent
+        title="Variants"
+        description="Defines the visual appearance of the Time Picker trigger using the 'variant' prop."
+        preview={
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+            <TimePicker label="Default" value="09:00 AM" variant="default" />
+            <TimePicker label="Bordered" value="09:00 AM" variant="bordered" />
+            <TimePicker label="Flat" value="09:00 AM" variant="flat" />
+            <TimePicker label="Filled" value="09:00 AM" variant="filled" />
+            <TimePicker label="Glow" value="09:00 AM" variant="glow" />
+            <TimePicker
+              label="Glassmorphism"
+              value="09:00 AM"
+              variant="glassmorphism"
+            />
+            <TimePicker
+              label="Gradient Border"
+              value="09:00 AM"
+              variant="gradient-border"
+            />
+            <TimePicker
+              label="Underlined"
+              value="09:00 AM"
+              variant="underlined"
+            />
+          </div>
+        }
+        code={`<TimePicker variant="default" label="Default" />
+<TimePicker variant="bordered" label="Bordered" />
+<TimePicker variant="flat" label="Flat" />
+<TimePicker variant="filled" label="Filled" />
+<TimePicker variant="glow" label="Glow" />
+<TimePicker variant="glassmorphism" label="Glassmorphism" />
+<TimePicker variant="gradient-border" label="Gradient Border" />
+<TimePicker variant="underlined" label="Underlined" />`}
+      />
+
+      <DocsComponent
         title="12h vs 24h Format"
         description="The time picker supports both 12-hour (with AM/PM toggle) and 24-hour formats."
         preview={

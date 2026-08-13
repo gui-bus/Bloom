@@ -103,8 +103,10 @@ export const ButtonGroup = React.memo(
         aria-label={ariaLabel}
         aria-orientation={orientation}
         className={cn(
-          "inline-flex items-center",
-          orientation === "vertical" ? "flex-col" : "flex-row",
+          "inline-flex",
+          orientation === "vertical"
+            ? "flex-col items-stretch"
+            : "flex-row items-center",
           !isAttached && (orientation === "vertical" ? "gap-2" : "gap-2"),
           className,
         )}
