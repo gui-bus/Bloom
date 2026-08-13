@@ -1,6 +1,8 @@
 {
   "name": "kanbanBoard",
-  "dependencies": ["@iconify/react"],
+  "dependencies": [
+    "@iconify/react"
+  ],
   "files": [
     {
       "name": "kanbanBoard.tsx",

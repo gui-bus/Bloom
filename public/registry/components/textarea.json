@@ -1,6 +1,8 @@
 {
   "name": "textarea",
-  "dependencies": ["class-variance-authority"],
+  "dependencies": [
+    "class-variance-authority"
+  ],
   "files": [
     {
       "name": "textarea.tsx",

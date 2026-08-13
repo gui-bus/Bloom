@@ -1,6 +1,8 @@
 {
   "name": "fileUpload",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "files": [
     {
       "name": "fileUpload.tsx",

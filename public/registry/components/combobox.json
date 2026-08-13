@@ -1,6 +1,8 @@
 {
   "name": "combobox",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "files": [
     {
       "name": "combobox.tsx",

@@ -1,6 +1,8 @@
 {
   "name": "terminal",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "files": [
     {
       "name": "terminal.tsx",
