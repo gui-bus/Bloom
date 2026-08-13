@@ -48,13 +48,7 @@ describe("AlertDialog Component", () => {
   });
 
   it("supports color props on AlertDialogAction", () => {
-    const colors = [
-      "danger",
-      "info",
-      "warning",
-      "success",
-      "default",
-    ] as const;
+    const colors = ["danger", "info", "warning", "success", "default"] as const;
 
     for (const color of colors) {
       const { unmount } = render(

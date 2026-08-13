@@ -63,7 +63,7 @@ export const ImageCropper = React.forwardRef<
     const isCustomSize = width !== undefined && height !== undefined;
     const effectiveCircular = isCustomSize ? false : circular;
     const effectiveAspectRatio = isCustomSize
-      ? width! / height!
+      ? (width ?? 0) / (height ?? 0)
       : effectiveCircular
         ? 1
         : aspectRatio;
@@ -168,8 +168,8 @@ export const ImageCropper = React.forwardRef<
 
       // If custom size is specified, output exact pixel dimensions requested by user
       if (isCustomSize) {
-        canvas.width = width!;
-        canvas.height = height!;
+        canvas.width = width ?? 0;
+        canvas.height = height ?? 0;
       } else {
         canvas.width = cropBoxWidth;
         canvas.height = cropBoxHeight;
@@ -191,7 +191,7 @@ export const ImageCropper = React.forwardRef<
 
       if (isCustomSize) {
         // Map from container-relative drawing to target output scale
-        const scaleFactor = width! / cropBoxWidth;
+        const scaleFactor = (width ?? 0) / cropBoxWidth;
         ctx.translate(
           canvas.width / 2 + position.x * scaleFactor,
           canvas.height / 2 + position.y * scaleFactor,
