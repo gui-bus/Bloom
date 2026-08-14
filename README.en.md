@@ -27,6 +27,9 @@ The interactive documentation portal and complete component guide is available a
 ## 📦 Installation & Hybrid Distribution
 
 <div align="center">
+  <a href="https://github.com/gui-bus/Bloom/actions/workflows/ci.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/gui-bus/Bloom/ci.yml?branch=main&style=for-the-badge&logo=github&label=Build" alt="CI Build Status" />
+  </a>
   <a href="https://www.npmjs.com/package/@bloomui-react/cli">
     <img src="https://img.shields.io/npm/v/@bloomui-react/cli?style=for-the-badge&color=cb3837&logo=npm&logoColor=white&label=CLI" alt="CLI Version" />
   </a>
