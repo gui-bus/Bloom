@@ -34,7 +34,7 @@ function removeCommentsFromFile(filePath) {
 
   content = content.replace(/(^|[^:"'\\])\/\/(?![^\n]*['"])[^\n]*/g, "$1");
 
-  content = content.replace(/\/\*[\s\S]*?\*\//g, "");
+  content = content.replace(/\/\*[\s\S]*?\*\
 
   content = content.replace(/\n\s*\n\s*\n/g, "\n\n");
 

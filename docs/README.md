@@ -1,5 +1,7 @@
 # Documentação Técnica do Bloom
 
+🇺🇸 [English Version](./README.en.md) | 🇧🇷 **Versão em Português**
+
 Esta pasta contém o detalhamento técnico, arquitetura e decisões de design aplicadas no ecossistema Bloom.
 
 ---

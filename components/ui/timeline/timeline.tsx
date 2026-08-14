@@ -114,7 +114,6 @@ const textSizes: Record<
   lg: { title: "text-base font-bold", desc: "text-sm mt-1.5", time: "text-sm" },
 };
 
-// Colors mapping for background / borders / text
 const colorMap: Record<
   TimelineColor,
   {
@@ -192,7 +191,6 @@ const colorMap: Record<
   },
 };
 
-// Map legacy statuses to standard ones
 function resolveStatusColor(
   status: TimelineItemProps["status"],
 ): TimelineColor {
@@ -273,20 +271,17 @@ export const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
     const context = React.useContext(TimelineContext);
     const [isExpanded, setIsExpanded] = React.useState(false);
 
-    // Resolve styling properties (local overrides context)
     const activeVariant = variant || context.variant;
     const activeColor = color || context.color;
     const activeSize = size || context.size;
     const activeRadius = radius || context.radius;
 
-    // Determine color set based on item status or context color
     const resolvedColor = status ? resolveStatusColor(status) : activeColor;
     const palette = colorMap[resolvedColor];
 
     const isRight = position === "right";
     const radiusClass = designRadius[activeRadius] || "rounded-full";
 
-    // CSS styling presets for different variants on the dot indicator
     const dotVariants: Record<TimelineVariant, string> = {
       default: cn(
         "border-2 bg-white dark:bg-zinc-950",
@@ -320,10 +315,9 @@ export const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
 
     return (
       <div ref={ref} className={containerStyle} {...props}>
-        {/* Connection Track Line */}
+
         {!isLast && <div className={lineStyle} />}
 
-        {/* Outer Dot Node */}
         <div
           className={cn(
             "relative z-10 flex items-center justify-center shrink-0 shadow-xs transition-all duration-300",
@@ -347,7 +341,6 @@ export const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
           )}
         </div>
 
-        {/* Content Box */}
         <div
           className={cn(
             "flex-1 pt-0.5 min-w-0 transition-all duration-300",

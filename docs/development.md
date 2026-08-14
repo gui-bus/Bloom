@@ -1,5 +1,7 @@
 # Guia de Desenvolvimento e Publicação (Bloom Owner)
 
+🇺🇸 [English Version](./development.en.md) | 🇧🇷 **Versão em Português**
+
 Este guia é de uso exclusivo para o proprietário/mantenedor do repositório do Bloom. Ele detalha como gerar o registro de componentes e como publicar atualizações da CLI no NPM.
 
 ---

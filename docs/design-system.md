@@ -1,5 +1,7 @@
 # Diretrizes do Design System — Bloom
 
+🇺🇸 [English Version](./design-system.en.md) | 🇧🇷 **Versão em Português**
+
 Este documento especifica a arquitetura de design, estrutura de pastas, padrões de propriedades (props) e regras do ecossistema Bloom. Siga sempre estas regras ao criar ou atualizar componentes.
 
 ---

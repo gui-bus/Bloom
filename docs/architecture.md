@@ -1,5 +1,7 @@
 # Arquitetura do Sistema — Bloom
 
+🇺🇸 [English Version](./architecture.en.md) | 🇧🇷 **Versão em Português**
+
 Este documento especifica a infraestrutura técnica do portal de documentação e da biblioteca de componentes do Bloom.
 
 ---

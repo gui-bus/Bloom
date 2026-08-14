@@ -28,7 +28,7 @@ describe("Timeline Component", () => {
         <TimelineItem title="Task Completed" />
       </Timeline>,
     );
-    // Query the inner dot element which receives the background color
+
     const dot = container.querySelector(".rounded-full span.bg-emerald-500");
     expect(dot).toBeInTheDocument();
   });
@@ -39,7 +39,7 @@ describe("Timeline Component", () => {
         <TimelineItem title="Large Step" />
       </Timeline>,
     );
-    // lg size uses size-10 for the dot container
+
     const outerDot = container.querySelector(".size-10");
     expect(outerDot).toBeInTheDocument();
   });
@@ -53,7 +53,7 @@ describe("Timeline Component", () => {
         />
       </Timeline>,
     );
-    // Contained items get border and card styling on the content wrapper
+
     const card = container.querySelector(".border.rounded-2xl");
     expect(card).toBeInTheDocument();
   });
@@ -65,7 +65,7 @@ describe("Timeline Component", () => {
         <TimelineItem title="Right Item" position="right" />
       </Timeline>,
     );
-    // Right position item root container has flex-row-reverse class
+
     const rightItem = container.querySelector(".flex-row-reverse");
     expect(rightItem).toBeInTheDocument();
   });

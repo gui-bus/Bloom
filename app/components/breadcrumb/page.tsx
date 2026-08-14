@@ -178,12 +178,11 @@ export default function BreadcrumbDocsPage() {
             </div>
           </div>
         }
-        code={`{/* Text separator */}
+        code={`
 <Breadcrumb separator="/">
   ...
 </Breadcrumb>
 
-{/* Icon separator */}
 <Breadcrumb separator={<Icon icon="hugeicons:chevron-right" className="size-3.5" />}>
   ...
 </Breadcrumb>`}

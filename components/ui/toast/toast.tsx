@@ -136,7 +136,6 @@ const createCustomToast = (
 
   const style = iconMap[type];
 
-  // Resolve sizes classes
   const sizeMap = {
     sm: {
       width: "w-72 max-w-xs p-3",
@@ -163,7 +162,6 @@ const createCustomToast = (
 
   const sStyle = sizeMap[activeSize];
 
-  // Determine wrapper container style based on richColors and variants
   let containerBgBorder =
     "bg-white/95 dark:bg-zinc-900/95 border-zinc-200/80 dark:border-zinc-800/80";
   let textColor = "text-zinc-900 dark:text-zinc-100";
@@ -198,7 +196,6 @@ const createCustomToast = (
   const showSmallIcon = !options?.showBgIcon;
   const radiusClass = designRadius[activeRadius] || "rounded-2xl";
 
-  // Resolve ID selector for Sonner dismiss call
   const getToastId = (val: any) => {
     if (typeof val === "object" && val !== null && "id" in val) {
       return val.id;
@@ -218,7 +215,7 @@ const createCustomToast = (
           radiusClass,
         )}
       >
-        {/* Rich Background Icon decoration */}
+
         {options?.showBgIcon && style.icon && (
           <Icon
             icon={style.icon}
@@ -226,14 +223,12 @@ const createCustomToast = (
           />
         )}
 
-        {/* Left accent bar */}
         {leftBarVisible && !options?.richColors && (
           <div
             className={cn("absolute left-0 top-0 bottom-0 w-1.5", style.bar)}
           />
         )}
 
-        {/* Icon status container */}
         {showSmallIcon && (
           <div
             className={cn(
@@ -256,7 +251,6 @@ const createCustomToast = (
           </div>
         )}
 
-        {/* Text descriptions */}
         <div className="flex-1 min-w-0 pr-5">
           <h5
             className={cn(
@@ -297,7 +291,6 @@ const createCustomToast = (
           )}
         </div>
 
-        {/* Auto closing progress bar track */}
         {options?.showProgress && (
           <div
             className={cn(

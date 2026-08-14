@@ -30,11 +30,11 @@ export interface GaugeProps extends React.HTMLAttributes<HTMLDivElement> {
   showTicks?: boolean;
   showTickLabels?: boolean;
   showGradient?: boolean;
-  gradientColors?: string[]; // Custom hex colors array, e.g. ["#10b981", "#f59e0b", "#ef4444"]
+  gradientColors?: string[]; 
   numTicks?: number;
   numDashes?: number;
-  tickStep?: number; // Custom tick step value (e.g. 20)
-  tickValues?: number[]; // Custom explicit tick values array (e.g. [0, 50, 100])
+  tickStep?: number; 
+  tickValues?: number[]; 
 }
 
 const sizeMap = {
@@ -71,7 +71,6 @@ const strokeColors: Record<GaugeColor, string> = {
   danger: "stroke-rose-500 dark:stroke-rose-400",
 };
 
-// Helper to parse hex colors to RGB
 function parseHex(hex: string) {
   const clean = hex.replace("#", "");
   const num = parseInt(clean, 16);
@@ -89,7 +88,6 @@ function parseHex(hex: string) {
   };
 }
 
-// Helper to interpolate RGB colors
 function interpolateColor(color1: string, color2: string, factor: number) {
   const c1 = parseHex(color1);
   const c2 = parseHex(color2);
@@ -99,7 +97,6 @@ function interpolateColor(color1: string, color2: string, factor: number) {
   return `rgb(${r},${g},${b})`;
 }
 
-// Get interpolated color from an array of colors
 function getMultiGradientColor(colors: string[], ratio: number) {
   if (colors.length === 0) return "";
   if (colors.length === 1) return colors[0];
@@ -127,7 +124,7 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
       showTicks = false,
       showTickLabels = false,
       showGradient = false,
-      gradientColors = ["#10b981", "#f59e0b", "#ef4444"], // Default success -> warning -> danger colors
+      gradientColors = ["#10b981", "#f59e0b", "#ef4444"], 
       numTicks = 9,
       numDashes = 25,
       tickStep,
@@ -140,37 +137,28 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
     const radius = (config.size - config.stroke) / 2;
     const circumference = 2 * Math.PI * radius;
 
-    // Calculate percentage
     const clampedValue = Math.min(max, Math.max(min, value));
     const range = max - min;
     const percentage = range > 0 ? ((clampedValue - min) / range) * 100 : 0;
 
-    // Semicircle vs. Radial sweep configuration
     const isSemicircle = type === "semicircle";
     const sweepAngle = isSemicircle ? 180 : 240;
 
-    // Active arc length
     const arcLength = (sweepAngle / 360) * circumference;
 
-    // Offset calculation
     const strokeDashoffset = arcLength - (percentage / 100) * arcLength;
 
-    // Rotation classes to position the sweep properly
     const svgRotation = isSemicircle ? "rotate-[180deg]" : "rotate-[150deg]";
 
-    // Render height adjustments for semicircle layout
     const containerHeight = isSemicircle
       ? config.size / 2 + config.stroke / 2
       : config.size;
 
-    // Center coordinates
     const cx = config.size / 2;
     const cy = config.size / 2;
 
-    // Start angle in SVG space (0 is right, 90 is bottom, etc.)
     const startAngle = isSemicircle ? 180 : 150;
 
-    // Resolve explicit tick values based on user configuration
     const resolvedTickValues = React.useMemo(() => {
       if (Array.isArray(tickValues)) return tickValues;
       if (typeof tickStep === "number" && tickStep > 0) {
@@ -178,13 +166,13 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
         for (let v = min; v <= max; v += tickStep) {
           values.push(v);
         }
-        // Ensure max is included if not exact division
+
         if (values[values.length - 1] !== max) {
           values.push(max);
         }
         return values;
       }
-      // Fallback to numTicks layout mapping
+
       const values = [];
       for (let i = 0; i < numTicks; i++) {
         values.push(Math.round(min + (i / (numTicks - 1)) * range));
@@ -192,7 +180,6 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
       return values;
     }, [tickValues, tickStep, min, max, numTicks, range]);
 
-    // Generate ticks and label coordinates
     const ticksData = React.useMemo(() => {
       const tickItems = [];
       const labelItems = [];
@@ -202,11 +189,9 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
         const angleDeg = startAngle + valRatio * sweepAngle;
         const angleRad = (angleDeg * Math.PI) / 180;
 
-        // Outer point coordinates
         const x1 = Number((cx + radius * Math.cos(angleRad)).toFixed(3));
         const y1 = Number((cy + radius * Math.sin(angleRad)).toFixed(3));
 
-        // Inner point coordinates
         const tickLength = config.stroke * 0.5;
         const x2 = Number(
           (cx + (radius - tickLength) * Math.cos(angleRad)).toFixed(3),
@@ -240,7 +225,6 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
       showTickLabels,
     ]);
 
-    // Generate LED Dashes data
     const dashes = React.useMemo(() => {
       if (variant !== "dashes") return [];
       const items = [];
@@ -248,7 +232,6 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
         const angleDeg = startAngle + (i / (numDashes - 1)) * sweepAngle;
         const angleRad = (angleDeg * Math.PI) / 180;
 
-        // Dash active state
         const active = (i / (numDashes - 1)) * 100 <= percentage;
 
         const x1 = Number((cx + radius * Math.cos(angleRad)).toFixed(3));
@@ -267,7 +250,7 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
         let dashStyle = {};
 
         if (active && showGradient && gradientColors.length > 0) {
-          // Custom interpolated spectrum depending on ratio
+
           const ratio = i / (numDashes - 1);
           const colorVal = getMultiGradientColor(gradientColors, ratio);
           dashStyle = { stroke: colorVal };
@@ -316,7 +299,7 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
               isSemicircle && "absolute top-0",
             )}
           >
-            {/* Linear Gradient for colorful dashboard visualization (solid variant) */}
+
             {showGradient &&
               variant === "solid" &&
               gradientColors.length > 0 && (
@@ -344,7 +327,6 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
                 </defs>
               )}
 
-            {/* Render Solid Arc Layout */}
             {variant === "solid" && (
               <g
                 className={cn(
@@ -352,7 +334,7 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
                   svgRotation,
                 )}
               >
-                {/* Background Track Circle */}
+
                 <circle
                   cx={cx}
                   cy={cy}
@@ -362,7 +344,7 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
                   strokeDasharray={`${Number(arcLength.toFixed(3))} ${Number(circumference.toFixed(3))}`}
                   strokeLinecap="round"
                 />
-                {/* Foreground Value Arc */}
+
                 <circle
                   cx={cx}
                   cy={cy}
@@ -385,7 +367,6 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
               </g>
             )}
 
-            {/* Render Dashes / LED Bar Layout */}
             {variant === "dashes" && (
               <g
                 strokeWidth={Math.max(
@@ -408,7 +389,6 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
               </g>
             )}
 
-            {/* Tick Marks Layer */}
             {showTicks && (
               <g
                 className="stroke-zinc-300 dark:stroke-zinc-700"
@@ -421,7 +401,6 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
               </g>
             )}
 
-            {/* Tick Numbers/Labels Layer */}
             {showTicks && showTickLabels && (
               <g className="fill-zinc-400 dark:fill-zinc-500 font-mono text-[9px] font-medium">
                 {ticksData.labelItems.map((l, idx) => (
@@ -439,7 +418,6 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
             )}
           </svg>
 
-          {/* Central Centered Metric Label */}
           <div
             className={cn(
               "absolute flex flex-col items-center justify-center text-zinc-950 dark:text-zinc-50 pointer-events-none",

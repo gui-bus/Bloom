@@ -285,7 +285,7 @@ return (
           <DialogTitle>Edit Profile Photo</DialogTitle>
           <DialogDescription>Adjust scale, rotate, and crop your profile avatar.</DialogDescription>
         </DialogHeader>
-        
+
         {!uploadedPhotoUrl ? (
           <FileUpload
             label="Select Profile Photo"
@@ -302,7 +302,7 @@ return (
             showCropButton={false}
           />
         )}
-        
+
         <DialogFooter>
           <DialogClose asChild><Button variant="flat">Cancel</Button></DialogClose>
           <Button color="primary" onClick={handleSaveCrop} disabled={!uploadedPhotoUrl}>Apply Changes</Button>

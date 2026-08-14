@@ -107,7 +107,7 @@ const tooltipContentVariants = cva(
       },
     },
     compoundVariants: [
-      // default variant + colors
+
       {
         variant: "default",
         color: "default",
@@ -143,7 +143,7 @@ const tooltipContentVariants = cva(
         color: "danger",
         className: "bg-danger text-danger-foreground",
       },
-      // bordered variant + colors
+
       {
         variant: "bordered",
         color: "default",
@@ -181,7 +181,7 @@ const tooltipContentVariants = cva(
         color: "danger",
         className: "border-danger text-danger",
       },
-      // flat variant + colors
+
       {
         variant: "flat",
         color: "default",
@@ -258,7 +258,7 @@ const TooltipContent = React.forwardRef<
     },
     ref,
   ) => {
-    // Resolve Arrow fill matching tooltip background style
+
     const arrowFillClass = React.useMemo(() => {
       if (variant === "flat") {
         switch (color) {
@@ -281,7 +281,7 @@ const TooltipContent = React.forwardRef<
       if (variant === "bordered") {
         return "fill-white dark:fill-zinc-900";
       }
-      // default solid backgrounds
+
       switch (color) {
         case "primary":
           return "fill-primary";

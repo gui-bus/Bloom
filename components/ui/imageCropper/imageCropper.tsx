@@ -68,7 +68,6 @@ export const ImageCropper = React.forwardRef<
         ? 1
         : aspectRatio;
 
-    // Dynamic crop box sizing based on aspect ratio and container dimensions
     useEffect(() => {
       if (!containerRef.current) return;
       const updateSize = () => {
@@ -91,7 +90,6 @@ export const ImageCropper = React.forwardRef<
       return () => window.removeEventListener("resize", updateSize);
     }, [effectiveAspectRatio]);
 
-    // Fix cache loading issue where image load event has already fired
     useEffect(() => {
       if (imageRef.current) {
         if (imageRef.current.complete) {
@@ -166,7 +164,6 @@ export const ImageCropper = React.forwardRef<
       const cropBoxWidth = boxSize.width;
       const cropBoxHeight = boxSize.height;
 
-      // If custom size is specified, output exact pixel dimensions requested by user
       if (isCustomSize) {
         canvas.width = width ?? 0;
         canvas.height = height ?? 0;
@@ -190,7 +187,7 @@ export const ImageCropper = React.forwardRef<
       }
 
       if (isCustomSize) {
-        // Map from container-relative drawing to target output scale
+
         const scaleFactor = (width ?? 0) / cropBoxWidth;
         ctx.translate(
           canvas.width / 2 + position.x * scaleFactor,

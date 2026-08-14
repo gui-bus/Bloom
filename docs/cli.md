@@ -1,5 +1,7 @@
 # Instalação e Uso via CLI (`@bloomui-react/cli`)
 
+🇺🇸 [English Version](./cli.en.md) | 🇧🇷 **Versão em Português**
+
 O Bloom fornece uma ferramenta de linha de comando (CLI) para automatizar a inicialização do design system e a instalação de componentes diretamente no seu próprio projeto React ou Next.js. 
 
 Desta forma, você não precisa clonar o repositório base ou copiar códigos manualmente — a CLI faz todo o trabalho de download, tradução de caminhos e configuração de dependências.

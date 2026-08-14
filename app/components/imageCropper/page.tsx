@@ -102,14 +102,13 @@ export default function ImageCropperPage() {
             </div>
           </div>
         }
-        code={`{/* Circular (Default) */}
+        code={`
 <ImageCropper
   src="/utils/image-cropper.webp"
   aspectRatio={1}
   circular={true}
 />
 
-{/* Square */}
 <ImageCropper
   src="/utils/image-cropper.webp"
   aspectRatio={1}

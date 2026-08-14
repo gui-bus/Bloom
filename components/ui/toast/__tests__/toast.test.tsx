@@ -27,14 +27,12 @@ describe("Toast Component", () => {
   it("triggers custom toasts and renders content correctly", async () => {
     render(<Toast />);
 
-    // Trigger toast
     toast("Welcome aboard", {
       description: "Setup completed successfully.",
       variant: "bordered",
       size: "lg",
     });
 
-    // Check custom element rendered using async findByText
     expect(await screen.findByText("Welcome aboard")).toBeInTheDocument();
     expect(
       await screen.findByText("Setup completed successfully."),
@@ -50,7 +48,7 @@ describe("Toast Component", () => {
 
     const titleElement = await screen.findByText("Transaction Confirmed");
     const container = titleElement.closest("div.relative");
-    // Should have solid color background class matching designColors Success token bg
+
     expect(container).toHaveClass("bg-success");
   });
 });

@@ -12,7 +12,6 @@ describe("FileInput Component", () => {
     render(<FileInput label="Attach files" placeholder="No file selected" />);
     const clickArea = screen.getByText("No file selected").parentElement;
 
-    // Check if input element is in DOM
     const input = document.querySelector(
       "input[type='file']",
     ) as HTMLInputElement;
@@ -46,7 +45,6 @@ describe("FileInput Component", () => {
       "input[type='file']",
     ) as HTMLInputElement;
 
-    // Mock large file upload
     const largeFile = new File(["a".repeat(3 * 1024 * 1024)], "huge.pdf", {
       type: "application/pdf",
     });

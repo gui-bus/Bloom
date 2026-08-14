@@ -17,9 +17,6 @@ import { Input } from "@/components/ui/input/input";
 import { Separator } from "@/components/ui/separator/separator";
 import { toast } from "@/components/ui/toast/toast";
 
-// --- Demos ---
-
-// 1. Default Demo
 interface DemoFormValues {
   username: string;
 }
@@ -53,7 +50,6 @@ function DefaultFormDemo() {
   );
 }
 
-// 2. Zod Validation Demo
 const zodSchema = z.object({
   email: z.string().email("Please enter a valid email address."),
   age: z
@@ -115,7 +111,6 @@ function ZodValidationFormDemo() {
   );
 }
 
-// 3. Auto Scroll Demo
 const errorSchema = z.object({
   fieldA: z.string().min(1, "Field A is required."),
   fieldB: z.string().min(1, "Field B is required."),
@@ -174,8 +169,6 @@ function AutoScrollFormDemo() {
     </div>
   );
 }
-
-// --- Page Main ---
 
 export default function FormComponentPage() {
   return (

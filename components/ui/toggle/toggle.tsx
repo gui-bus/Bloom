@@ -33,7 +33,7 @@ const toggleVariants = cva(
       },
     },
     compoundVariants: [
-      // default variant colors
+
       {
         variant: "default",
         color: "default",
@@ -76,7 +76,7 @@ const toggleVariants = cva(
         className:
           "data-[state=on]:bg-danger data-[state=on]:text-danger-foreground",
       },
-      // bordered variant colors
+
       {
         variant: "bordered",
         color: "default",
@@ -119,7 +119,7 @@ const toggleVariants = cva(
         className:
           "data-[state=on]:border-danger data-[state=on]:bg-danger/10 data-[state=on]:text-danger",
       },
-      // flat variant colors
+
       {
         variant: "flat",
         color: "default",

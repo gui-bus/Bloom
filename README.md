@@ -4,6 +4,9 @@
   <img src="./public/logo/logo_white.svg" alt="BLOOM Logo" width="280" />
   <br/>
   <br/>
+  <p>
+    🇺🇸 <a href="./README.en.md">English Version</a> | 🇧🇷 <strong>Versão em Português</strong>
+  </p>
 </div>
 
 <br />
