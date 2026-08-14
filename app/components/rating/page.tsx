@@ -152,6 +152,18 @@ export default function RatingComponentPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that selecting a rating is mandatory."
+        preview={
+          <div className="flex flex-col gap-2">
+            <Rating isRequired label="Feedback Score" defaultValue={4} />
+          </div>
+        }
+        code={`<Rating isRequired label="Feedback Score" defaultValue={4} />`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — Rating"
         description="Supported properties for the Rating component."
         preview={

@@ -199,6 +199,21 @@ export default function SwitchComponentPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that toggling the switch is mandatory."
+        preview={
+          <div className="flex flex-col gap-2">
+            <Switch
+              isRequired
+              label="I agree to receive transactional updates"
+            />
+          </div>
+        }
+        code={`<Switch isRequired label="I agree to receive transactional updates" />`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — Switch"
         description="Supported properties for Switch."
         preview={

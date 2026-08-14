@@ -220,6 +220,22 @@ const sampleHistogram = [5, 12, 28, 45, 80, 95, 60, 40, 25, 15, 8, 3];
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that configuring the slider is mandatory."
+        preview={
+          <div className="max-w-xs w-full py-4">
+            <Slider
+              isRequired
+              label="Max Temperature threshold"
+              defaultValue={[65]}
+            />
+          </div>
+        }
+        code={`<Slider isRequired label="Max Temperature threshold" defaultValue={[65]} />`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — Slider"
         description="Supported properties for the Slider component."
         preview={

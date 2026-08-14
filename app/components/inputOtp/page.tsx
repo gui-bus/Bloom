@@ -418,6 +418,36 @@ export default function InputOtpComponentPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that entering the verification code is mandatory."
+        preview={
+          <div className="flex flex-col gap-2">
+            <InputOTP isRequired label="One-Time Password" maxLength={6}>
+              <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+                <InputOTPSlot index={3} />
+                <InputOTPSlot index={4} />
+                <InputOTPSlot index={5} />
+              </InputOTPGroup>
+            </InputOTP>
+          </div>
+        }
+        code={`<InputOTP isRequired label="One-Time Password" maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — InputOTP"
         description="Supported properties for the InputOTP component."
         preview={

@@ -268,6 +268,18 @@ export default function FileUploadComponentPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that uploading a file is mandatory."
+        preview={
+          <div className="max-w-md w-full">
+            <FileUpload isRequired label="Invoice Document" />
+          </div>
+        }
+        code={`<FileUpload isRequired label="Invoice Document" />`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — FileUpload"
         description="Supported properties for the FileUpload component."
         preview={

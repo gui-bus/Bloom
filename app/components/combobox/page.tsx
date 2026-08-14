@@ -12,7 +12,6 @@ import {
   type ComboboxOption,
 } from "@/components/ui/combobox/combobox";
 import { comboboxCode } from "@/components/ui/combobox/combobox.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 function DefaultDemo() {
   const [value, setValue] = React.useState("react");
@@ -407,7 +406,33 @@ export default function ComboboxComponentPage() {
         props={["options[].group: string"]}
       />
 
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
+      <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that choosing an option is mandatory."
+        preview={
+          <div className="w-full max-w-xs">
+            <Combobox
+              isRequired
+              label="Role Selection"
+              placeholder="Select a role..."
+              options={[
+                { value: "admin", label: "Admin" },
+                { value: "user", label: "User" },
+              ]}
+            />
+          </div>
+        }
+        code={`<Combobox
+  isRequired
+  label="Role Selection"
+  placeholder="Select a role..."
+  options={[
+    { value: "admin", label: "Admin" },
+    { value: "user", label: "User" }
+  ]}
+/>`}
+        props={["isRequired: boolean"]}
+      />
 
       <DocsComponent
         title="Props — Combobox"

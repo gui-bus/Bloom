@@ -246,6 +246,18 @@ export default function NumberInputComponentPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that a numeric value is mandatory."
+        preview={
+          <div className="max-w-xs w-full">
+            <NumberInput isRequired label="Total Quantity" defaultValue={1} />
+          </div>
+        }
+        code={`<NumberInput isRequired label="Total Quantity" defaultValue={1} />`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — NumberInput"
         description="Supported properties for the NumberInput component."
         preview={

@@ -262,6 +262,22 @@ export default function InputComponentPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that input value is mandatory."
+        preview={
+          <div className="max-w-xs w-full">
+            <Input
+              isRequired
+              label="Primary Email"
+              placeholder="you@domain.com"
+            />
+          </div>
+        }
+        code={`<Input isRequired label="Primary Email" placeholder="you@domain.com" />`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — Input"
         description="Properties to configure the Input component."
         preview={

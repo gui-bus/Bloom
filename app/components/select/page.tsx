@@ -373,6 +373,34 @@ export default function SelectComponentPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that selecting an option is mandatory."
+        preview={
+          <div className="max-w-xs w-full">
+            <Select
+              isRequired
+              label="User Role"
+              placeholder="Choose role..."
+              options={[
+                { value: "editor", label: "Editor" },
+                { value: "viewer", label: "Viewer" },
+              ]}
+            />
+          </div>
+        }
+        code={`<Select
+  isRequired
+  label="User Role"
+  placeholder="Choose role..."
+  options={[
+    { value: "editor", label: "Editor" },
+    { value: "viewer", label: "Viewer" }
+  ]}
+/>`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — Select"
         description="Supported properties for the Select component."
         preview={

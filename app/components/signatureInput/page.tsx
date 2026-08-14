@@ -171,6 +171,18 @@ export default function SignatureInputPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that signing is mandatory."
+        preview={
+          <div className="max-w-sm w-full">
+            <SignatureInput isRequired label="Client Signature" />
+          </div>
+        }
+        code={`<SignatureInput isRequired label="Client Signature" />`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — SignatureInput"
         description="Properties for configuring the signature input."
         preview={

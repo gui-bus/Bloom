@@ -94,6 +94,22 @@ export default function TextareaComponentPage() {
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that writing a message is mandatory."
+        preview={
+          <div className="max-w-md w-full">
+            <Textarea
+              isRequired
+              label="Cover Letter"
+              placeholder="Paste your cover letter..."
+            />
+          </div>
+        }
+        code={`<Textarea isRequired label="Cover Letter" placeholder="Paste your cover letter..." />`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — Textarea"
         description="Supported properties for Textarea."
         preview={

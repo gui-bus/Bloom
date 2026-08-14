@@ -137,6 +137,18 @@ export default function ColorPickerComponentPage() {
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that choosing a color is mandatory."
+        preview={
+          <div className="max-w-xs">
+            <ColorPicker isRequired label="Theme Color" />
+          </div>
+        }
+        code={`<ColorPicker isRequired label="Theme Color" />`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — ColorPicker"
         description="Properties to configure the ColorPicker component."
         preview={

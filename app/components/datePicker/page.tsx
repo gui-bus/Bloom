@@ -249,6 +249,18 @@ export default function DatePickerComponentPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that selecting a date is mandatory."
+        preview={
+          <div className="max-w-xs w-full">
+            <DatePicker isRequired label="Target Deadline" />
+          </div>
+        }
+        code={`<DatePicker isRequired label="Target Deadline" />`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — DatePicker"
         description="Properties to configure the DatePicker component."
         preview={

@@ -364,6 +364,38 @@ export default function MultiSelectPage() {
         props={["showSelectAll: boolean", "category?: string (in option)"]}
       />
 
+      <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that choosing options is mandatory."
+        preview={
+          <div className="max-w-xs w-full">
+            <MultiSelect
+              isRequired
+              label="Assigned Tags"
+              placeholder="Select tags..."
+              options={[
+                { value: "nextjs", label: "Next.js" },
+                { value: "react", label: "React" },
+              ]}
+              value={[]}
+              onChange={() => {}}
+            />
+          </div>
+        }
+        code={`<MultiSelect
+  isRequired
+  label="Assigned Tags"
+  placeholder="Select tags..."
+  options={[
+    { value: "nextjs", label: "Next.js" },
+    { value: "react", label: "React" }
+  ]}
+  value={value}
+  onChange={setValue}
+/>`}
+        props={["isRequired: boolean"]}
+      />
+
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800">

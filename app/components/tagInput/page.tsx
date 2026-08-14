@@ -262,6 +262,22 @@ export default function TagInputPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that adding tags is mandatory."
+        preview={
+          <div className="max-w-xs w-full">
+            <TagInput
+              isRequired
+              label="Skills & Expertise"
+              placeholder="Type and press enter..."
+            />
+          </div>
+        }
+        code={`<TagInput isRequired label="Skills & Expertise" placeholder="Type and press enter..." />`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — TagInput"
         description="Properties for configuring the TagInput component."
         preview={

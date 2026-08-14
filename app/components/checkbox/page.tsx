@@ -384,6 +384,18 @@ export default function CheckboxComponentPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that the checkbox must be checked."
+        preview={
+          <div className="flex flex-col gap-2">
+            <Checkbox isRequired label="I accept the terms and conditions" />
+          </div>
+        }
+        code={`<Checkbox isRequired label="I accept the terms and conditions" />`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — Checkbox & CheckboxGroup"
         description="Supported properties for Checkbox & CheckboxGroup."
         preview={

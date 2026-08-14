@@ -298,6 +298,22 @@ export default function RadioGroupComponentPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the group label indicating that choosing an option is mandatory."
+        preview={
+          <RadioGroup isRequired label="Preferred Plan" defaultValue="pro">
+            <RadioGroupItem value="free" label="Free Trial" />
+            <RadioGroupItem value="pro" label="Pro Tier ($15/mo)" />
+          </RadioGroup>
+        }
+        code={`<RadioGroup isRequired label="Preferred Plan" defaultValue="pro">
+  <RadioGroupItem value="free" label="Free Trial" />
+  <RadioGroupItem value="pro" label="Pro Tier ($15/mo)" />
+</RadioGroup>`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Props — RadioGroup & RadioGroupItem"
         description="Supported properties for RadioGroup components."
         preview={
