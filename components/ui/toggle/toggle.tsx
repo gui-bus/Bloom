@@ -167,7 +167,10 @@ const toggleVariants = cva(
 );
 
 export interface ToggleProps
-  extends React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>,
+  extends Omit<
+      React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>,
+      "color" | "size"
+    >,
     VariantProps<typeof toggleVariants> {
   radius?: keyof typeof designRadius;
 }

@@ -229,7 +229,10 @@ const tooltipContentVariants = cva(
 );
 
 export interface TooltipContentProps
-  extends React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>,
+  extends Omit<
+      React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>,
+      "color" | "size"
+    >,
     VariantProps<typeof tooltipContentVariants> {
   showArrow?: boolean;
   interactive?: boolean;
