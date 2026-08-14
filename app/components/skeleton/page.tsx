@@ -53,6 +53,21 @@ export default function SkeletonComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "p-4: any",
+          "border: any",
+          "rounded-2xl: any",
+          "space-y-3: any",
+          "variant: any",
+          "rectangle: any",
+          "w-full: any",
+          "h-36: any",
+          "rounded-xl: any",
+          "text: any",
+          "w-4: any",
+          "h-4: any",
+          "h-3: any",
+        ]}
         title="Media Card Placeholder"
         description="Complex UI card skeleton preview structure."
         preview={

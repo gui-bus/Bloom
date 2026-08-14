@@ -55,6 +55,7 @@ export default function TerminalPage() {
       />
 
       <DocsComponent
+        props={["variant: 'mac'"]}
         title="macOS Variant"
         description="Authentic macOS zsh terminal aesthetic with red/yellow/green window control dots."
         preview={
@@ -66,6 +67,7 @@ export default function TerminalPage() {
       />
 
       <DocsComponent
+        props={["variant: 'powershell'"]}
         title="Windows PowerShell Variant"
         description="Classic blue theme with yellow command highlights and PS prompt."
         preview={
@@ -77,6 +79,7 @@ export default function TerminalPage() {
       />
 
       <DocsComponent
+        props={["variant: 'cmd'"]}
         title="Windows Command Prompt (CMD) Variant"
         description="Minimal black theme inspired by traditional Windows cmd.exe."
         preview={
@@ -88,6 +91,7 @@ export default function TerminalPage() {
       />
 
       <DocsComponent
+        props={["variant: 'ubuntu'"]}
         title="Ubuntu Terminal Variant"
         description="Deep purple Ubuntu GNOME Terminal theme with bash prompt styling."
         preview={

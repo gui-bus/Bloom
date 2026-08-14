@@ -9,7 +9,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { PasswordInput } from "@/components/ui/passwordInput/passwordInput";
 import { passwordInputCode } from "@/components/ui/passwordInput/passwordInput.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function PasswordInputComponentPage() {
   const [isValid, setIsValid] = React.useState(false);
@@ -74,6 +73,9 @@ export default function PasswordInputComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'filled' | 'glow' | 'glassmorphism' | 'gradient-border' | 'underlined'",
+        ]}
         title="Variants"
         description="Defines the visual appearance of the password input using the 'variant' prop."
         preview={
@@ -131,6 +133,17 @@ export default function PasswordInputComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "spaces: any",
+          "starts: any",
+          "with: any",
+          "a: any",
+          "letter: any",
+          "customRules: any",
+          "minLength: any",
+          "requireSymbol: any",
+          "false: any",
+        ]}
         title="Custom Validation Rules"
         description="Define custom password criteria by passing an array of rules with validation functions."
         preview={
@@ -169,6 +182,7 @@ export default function PasswordInputComponentPage() {
       />
 
       <DocsComponent
+        props={["showRequirements: any", "always: any", "never: any"]}
         title="Show Requirements Mode"
         description="Control when the password requirement panel is visible: 'always', 'on-focus' (default), or 'never'."
         preview={
@@ -197,6 +211,7 @@ export default function PasswordInputComponentPage() {
       />
 
       <DocsComponent
+        props={["showStrengthMeter: any", "false: any"]}
         title="Hide Strength Meter"
         description="Disable the password strength progress bar indicator."
         preview={
@@ -213,8 +228,6 @@ export default function PasswordInputComponentPage() {
   showStrengthMeter={false}
 />`}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — PasswordInput"

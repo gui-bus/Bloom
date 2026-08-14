@@ -7,7 +7,6 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { Separator } from "@/components/ui/separator/separator";
 import { TableOfContents } from "@/components/ui/tableOfContents/tableOfContents";
 import { tableOfContentsCode } from "@/components/ui/tableOfContents/tableOfContents.code";
 
@@ -135,8 +134,6 @@ export default function TableOfContentsPage() {
         code={`<TableOfContents autoScan title="On this page" />`}
         props={["autoScan: boolean", "selector?: string"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — TableOfContents"

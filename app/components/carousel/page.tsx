@@ -154,6 +154,34 @@ export default function CarouselPage() {
       />
 
       <DocsComponent
+        props={[
+          "w-full: any",
+          "flex: any",
+          "items-center: any",
+          "justify-between: any",
+          "mb-4: any",
+          "font-semibold: any",
+          "text-lg: any",
+          "gap-2: any",
+          "ml-3: any",
+          "key: any",
+          "index: any",
+          "pl-3: any",
+          "basis-full: any",
+          "sm: any",
+          "basis-1: any",
+          "md: any",
+          "p-5: any",
+          "rounded-2xl: any",
+          "border: any",
+          "border-zinc-200: any",
+          "dark: any",
+          "border-zinc-800: any",
+          "bg-white: any",
+          "bg-zinc-900: any",
+          "h-40: any",
+          "mt-4: any",
+        ]}
         title="Header Controls"
         description="Place navigation buttons inside a section header alongside the title while keeping dots underneath."
         preview={
@@ -224,6 +252,29 @@ export default function CarouselPage() {
       />
 
       <DocsComponent
+        props={[
+          "w-full: any",
+          "ml-3: any",
+          "key: any",
+          "index: any",
+          "pl-3: any",
+          "basis-full: any",
+          "sm: any",
+          "basis-1: any",
+          "p-6: any",
+          "rounded-2xl: any",
+          "border: any",
+          "border-zinc-200: any",
+          "dark: any",
+          "border-zinc-800: any",
+          "bg-white: any",
+          "bg-zinc-900: any",
+          "flex: any",
+          "items-center: any",
+          "justify-center: any",
+          "gap-3: any",
+          "mt-4: any",
+        ]}
         title="Testimonial Quote Carousel"
         description="Display customer testimonials and reviews with bottom navigation buttons and dots."
         preview={
@@ -383,6 +434,24 @@ export default function CarouselPage() {
       />
 
       <DocsComponent
+        props={[
+          "w-full: any",
+          "key: any",
+          "index: any",
+          "overflow-hidden: any",
+          "rounded-2xl: any",
+          "border: any",
+          "border-zinc-200: any",
+          "dark: any",
+          "border-zinc-800: any",
+          "aspect-video: any",
+          "src: any",
+          "alt: any",
+          "size-full: any",
+          "object-cover: any",
+          "images: any",
+          "mt-3: any",
+        ]}
         title="Thumbnail Navigation"
         description="Render a dedicated image thumbnail navigation bar using CarouselThumbs underneath the main slider."
         preview={

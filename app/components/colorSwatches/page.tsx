@@ -156,6 +156,17 @@ export default function ColorSwatchesPage() {
       />
 
       <DocsComponent
+        props={["size: 'sm' | 'md' | 'lg'"]}
+        title="Sizes"
+        description="Three size variants control the swatch dimensions."
+        preview={<SizesDemo />}
+        code={`<ColorSwatches colors={colors} value={selected} onChange={setSelected} size="sm" />
+<ColorSwatches colors={colors} value={selected} onChange={setSelected} size="md" />
+<ColorSwatches colors={colors} value={selected} onChange={setSelected} size="lg" />`}
+      />
+
+      <DocsComponent
+        props={["colors: any", "selected: any", "setSelected: any"]}
         title="Default with Contrast Tooltip"
         description="Hover over any color swatch to view its name, HEX value, contrast ratio against background, and WCAG accessibility rating (AAA, AA, Fail)."
         preview={<DefaultDemo />}
@@ -200,20 +211,19 @@ export default function ColorSwatchesPage() {
       />
 
       <DocsComponent
+        props={[
+          "colors: any",
+          "selected: any",
+          "setSelected: any",
+          "shape: any",
+          "circle: any",
+          "square: any",
+        ]}
         title="Shapes"
         description="Switch between circle and square shapes for the color swatches."
         preview={<ShapesDemo />}
         code={`<ColorSwatches colors={colors} value={selected} onChange={setSelected} shape="circle" />
 <ColorSwatches colors={colors} value={selected} onChange={setSelected} shape="square" />`}
-      />
-
-      <DocsComponent
-        title="Sizes"
-        description="Three size variants control the swatch dimensions."
-        preview={<SizesDemo />}
-        code={`<ColorSwatches colors={colors} value={selected} onChange={setSelected} size="sm" />
-<ColorSwatches colors={colors} value={selected} onChange={setSelected} size="md" />
-<ColorSwatches colors={colors} value={selected} onChange={setSelected} size="lg" />`}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />

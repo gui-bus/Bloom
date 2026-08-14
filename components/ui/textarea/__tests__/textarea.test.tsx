@@ -8,6 +8,13 @@ describe("Textarea Component", () => {
     expect(screen.getByLabelText("Bio")).toBeInTheDocument();
   });
 
+  it("renders with gradient-border variant", () => {
+    const { container } = render(
+      <Textarea variant="gradient-border" placeholder="Gradient Border" />,
+    );
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
   it("updates character counter when maxCount is passed", () => {
     render(<Textarea label="Comment" maxCount={100} defaultValue="Hello" />);
     expect(screen.getByText("5/100")).toBeInTheDocument();

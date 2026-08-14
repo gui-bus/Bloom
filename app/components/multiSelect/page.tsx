@@ -281,6 +281,9 @@ export default function MultiSelectPage() {
       />
 
       <DocsComponent
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'filled' | 'glow' | 'glassmorphism' | 'gradient-border' | 'underlined'",
+        ]}
         title="Variants"
         description="Defines the visual appearance of the multi-select input using the 'variant' prop."
         preview={<MultiSelectVariantsDemo />}
@@ -295,6 +298,14 @@ export default function MultiSelectPage() {
       />
 
       <DocsComponent
+        props={[
+          "options: any",
+          "react: any",
+          "icon: any",
+          "devicon: any",
+          "size-4: any",
+          "typescript: any",
+        ]}
         title="With Icons"
         description="Options can include icons for richer visual context."
         preview={<WithIconsDemo />}
@@ -313,6 +324,15 @@ export default function MultiSelectPage() {
       />
 
       <DocsComponent
+        props={[
+          "options: any",
+          "fruitOptions: any",
+          "setValue: any",
+          "up: any",
+          "to: any",
+          "fruits: any",
+          "maxCount: any",
+        ]}
         title="Max Count"
         description="Limit the number of selectable items with the maxCount prop."
         preview={<MaxCountDemo />}

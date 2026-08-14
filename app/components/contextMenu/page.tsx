@@ -176,6 +176,7 @@ export default function ContextMenuComponentPage() {
       />
 
       <DocsComponent
+        props={["border-dashed: any", "p-8: any"]}
         title="Submenu Nesting with Smooth Hover Delay"
         description="Hierarchical submenu nesting with smooth delay transitions. Hover over items with sub-options to expand them."
         preview={
@@ -244,6 +245,7 @@ export default function ContextMenuComponentPage() {
       />
 
       <DocsComponent
+        props={["color: any", "danger: any"]}
         title="Shortcut Key Hints Display Column"
         description="Render aligned keyboard shortcut hints on the right side of menu items using ContextMenuShortcut."
         preview={
@@ -285,6 +287,17 @@ export default function ContextMenuComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "checked: any",
+          "showBookmarks: any",
+          "onCheckedChange: any",
+          "setShowBookmarks: any",
+          "person: any",
+          "onValueChange: any",
+          "setPerson: any",
+          "pedro: any",
+          "colm: any",
+        ]}
         title="With Checkboxes and Radio Groups"
         description="Selectable toggle options and single-choice radio items within a context menu."
         preview={

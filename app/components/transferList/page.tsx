@@ -7,7 +7,6 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { Separator } from "@/components/ui/separator/separator";
 import {
   type TransferItem,
   TransferList,
@@ -121,6 +120,28 @@ const [right, setRight] = React.useState([
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that the transfer selection is mandatory."
+        preview={
+          <div className="w-full">
+            <TransferList
+              isRequired
+              label="Select Core Integrations"
+              leftItems={left}
+              rightItems={right}
+            />
+          </div>
+        }
+        code={`<TransferList
+  isRequired
+  label="Select Core Integrations"
+  leftItems={left}
+  rightItems={right}
+/>`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Disabled State"
         description="Fades list items and blocks all item checkboxes and movement buttons."
         props={["isDisabled: boolean"]}
@@ -131,8 +152,6 @@ const [right, setRight] = React.useState([
         }
         code={`<TransferList leftItems={left} rightItems={right} isDisabled />`}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — TransferList"

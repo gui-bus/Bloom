@@ -14,7 +14,6 @@ import {
   InputOTPSlot,
 } from "@/components/ui/inputOtp/inputOtp";
 import { inputOtpCode } from "@/components/ui/inputOtp/inputOtp.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function InputOtpComponentPage() {
   const [val1, setVal1] = React.useState("");
@@ -70,6 +69,7 @@ export default function InputOtpComponentPage() {
       />
 
       <DocsComponent
+        props={["variant: 'default' | 'bordered'"]}
         title="Variants"
         description="Defines the visual appearance of the Input OTP slots using the 'variant' prop."
         preview={
@@ -192,6 +192,7 @@ export default function InputOtpComponentPage() {
       />
 
       <DocsComponent
+        props={["maxLength: any", "index: any"]}
         title="Group Separators"
         description="Split 6-digit OTP codes into two groups of 3 using <InputOTPSeparator />."
         preview={
@@ -232,6 +233,7 @@ export default function InputOtpComponentPage() {
       />
 
       <DocsComponent
+        props={["maxLength: any", "index: any"]}
         title="Custom Multi-Group Separators"
         description="Divide codes into any custom layout such as three groups of two digits with multiple separators."
         preview={
@@ -414,8 +416,6 @@ export default function InputOtpComponentPage() {
 </InputOTP>`}
         props={["maskCode: boolean"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — InputOTP"

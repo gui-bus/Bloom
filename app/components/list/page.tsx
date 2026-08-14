@@ -10,7 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Badge } from "@/components/ui/badge/badge";
 import { List, ListItem } from "@/components/ui/list/list";
 import { listCode } from "@/components/ui/list/list.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function ListComponentPage() {
   return (
@@ -165,8 +164,6 @@ export default function ListComponentPage() {
 </List>`}
         props={["variant: 'default' | 'bordered' | 'separated'"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — List & ListItem"

@@ -86,6 +86,7 @@ export default function TimelinePage() {
       />
 
       <DocsComponent
+        props={["variant: string"]}
         title="Status Variants"
         description="Timeline items support semantic status colors to indicate the nature of each event."
         preview={
@@ -127,6 +128,16 @@ export default function TimelinePage() {
       />
 
       <DocsComponent
+        props={[
+          "status: any",
+          "success: any",
+          "icon: any",
+          "hugeicons: any",
+          "checkmark-circle-02: any",
+          "size-4: any",
+          "primary: any",
+          "mail-01: any",
+        ]}
         title="With Icons"
         description="Replace status dots with custom icons for richer visual context."
         preview={

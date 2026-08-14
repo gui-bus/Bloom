@@ -65,6 +65,7 @@ export interface ComboboxProps extends VariantProps<typeof comboboxVariants> {
   isInvalid?: boolean;
   isClearable?: boolean;
   isFuzzySearch?: boolean;
+  isRequired?: boolean;
   className?: string;
 }
 
@@ -113,6 +114,7 @@ export function Combobox({
   isInvalid = false,
   isClearable = false,
   isFuzzySearch = true,
+  isRequired = false,
   className,
   variant,
 }: ComboboxProps) {
@@ -277,6 +279,7 @@ export function Combobox({
       {label && (
         <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
           {label}
+          {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
         </label>
       )}
 

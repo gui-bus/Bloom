@@ -9,7 +9,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Input } from "@/components/ui/input/input";
 import { Label } from "@/components/ui/label/label";
 import { labelCode } from "@/components/ui/label/label.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function LabelComponentPage() {
   return (
@@ -48,21 +47,6 @@ export default function LabelComponentPage() {
       />
 
       <DocsComponent
-        title="Required Indicator"
-        description="Add a red asterisk indicator to required field labels using the 'isRequired' prop."
-        preview={
-          <div className="flex flex-col gap-2 max-w-sm w-full">
-            <Label htmlFor="username-required" isRequired>
-              Username
-            </Label>
-            <Input id="username-required" placeholder="johndoe" />
-          </div>
-        }
-        code={`<Label htmlFor="username" isRequired>Username</Label>`}
-        props={["isRequired: boolean"]}
-      />
-
-      <DocsComponent
         title="Sizes"
         description="Set label font size using the 'size' prop: 'sm', 'md', or 'lg'."
         preview={
@@ -78,7 +62,20 @@ export default function LabelComponentPage() {
         props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
+      <DocsComponent
+        title="Required Indicator"
+        description="Add a red asterisk indicator to required field labels using the 'isRequired' prop."
+        preview={
+          <div className="flex flex-col gap-2 max-w-sm w-full">
+            <Label htmlFor="username-required" isRequired>
+              Username
+            </Label>
+            <Input id="username-required" placeholder="johndoe" />
+          </div>
+        }
+        code={`<Label htmlFor="username" isRequired>Username</Label>`}
+        props={["isRequired: boolean"]}
+      />
 
       <DocsComponent
         title="Props — Label"

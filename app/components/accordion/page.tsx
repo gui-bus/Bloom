@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/accordion/accordion";
 import { accordionCode } from "@/components/ui/accordion/accordion.code";
 import { Button } from "@/components/ui/button/button";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function AccordionPage() {
   const [controlledValue, setControlledValue] =
@@ -102,6 +101,125 @@ export default function AccordionPage() {
   </AccordionItem>
 </Accordion>`}
         props={["type: 'single' | 'multiple'", "collapsible: boolean"]}
+      />
+
+      <DocsComponent
+        title="Variants"
+        description="Choose from multiple visual styles using the 'variant' prop ('default', 'bordered', 'splitted', 'shadow', 'compact')."
+        preview={
+          <div className="w-full  space-y-6">
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                variant="default"
+              </span>
+              <Accordion
+                type="single"
+                collapsible
+                defaultValue="item-1"
+                variant="default"
+              >
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>Default Accordion</AccordionTrigger>
+                  <AccordionContent>
+                    Standard style with clean, subtle bottom dividers.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                variant="bordered"
+              </span>
+              <Accordion
+                type="single"
+                collapsible
+                defaultValue="item-1"
+                variant="bordered"
+              >
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>Bordered Accordion</AccordionTrigger>
+                  <AccordionContent>
+                    Enclosed by a clean outer border frame.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                variant="splitted"
+              </span>
+              <Accordion
+                type="single"
+                collapsible
+                defaultValue="item-1"
+                variant="splitted"
+              >
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>Splitted Accordion Item 1</AccordionTrigger>
+                  <AccordionContent>
+                    Each panel rendered as an independent card with spacing.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-2">
+                  <AccordionTrigger>Splitted Accordion Item 2</AccordionTrigger>
+                  <AccordionContent>
+                    Ideal for clear visual separation between distinct topics.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                variant="shadow"
+              </span>
+              <Accordion
+                type="single"
+                collapsible
+                defaultValue="item-1"
+                variant="shadow"
+              >
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>Shadow Accordion</AccordionTrigger>
+                  <AccordionContent>
+                    Features moderate drop shadows for prominent interface
+                    hierarchy.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+
+            <div>
+              <span className="text-xs font-mono text-muted-foreground block mb-2">
+                variant="compact"
+              </span>
+              <Accordion
+                type="single"
+                collapsible
+                defaultValue="item-1"
+                variant="compact"
+              >
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>Compact Accordion</AccordionTrigger>
+                  <AccordionContent>
+                    Reduced vertical padding designed for high-density layouts.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </div>
+        }
+        code={`<Accordion type="single" collapsible variant="splitted">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Splitted Accordion</AccordionTrigger>
+    <AccordionContent>Independent card panel item.</AccordionContent>
+  </AccordionItem>
+</Accordion>`}
+        props={[
+          "variant: 'default' | 'bordered' | 'splitted' | 'shadow' | 'compact'",
+        ]}
       />
 
       <DocsComponent
@@ -226,52 +344,6 @@ return (
           "value: string | string[]",
           "onValueChange: (value: any) => void",
         ]}
-      />
-
-      <DocsComponent
-        title="Multiple"
-        description="Allow multiple accordion items to be expanded at the same time by setting the type prop to 'multiple'."
-        preview={
-          <div className="w-full">
-            <Accordion
-              type="multiple"
-              defaultValue={["item-1", "item-2"]}
-              variant="bordered"
-            >
-              <AccordionItem value="item-1">
-                <AccordionTrigger>First Section</AccordionTrigger>
-                <AccordionContent>
-                  This is the content of the first section. You can keep this
-                  and other sections open simultaneously.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>Second Section</AccordionTrigger>
-                <AccordionContent>
-                  This is the content of the second section. Expanding this
-                  won't collapse the first one.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>Third Section</AccordionTrigger>
-                <AccordionContent>
-                  This is the content of the third section.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        }
-        code={`<Accordion type="multiple" defaultValue={["item-1", "item-2"]} variant="bordered">
-  <AccordionItem value="item-1">
-    <AccordionTrigger>First Section</AccordionTrigger>
-    <AccordionContent>This is the content of the first section.</AccordionContent>
-  </AccordionItem>
-  <AccordionItem value="item-2">
-    <AccordionTrigger>Second Section</AccordionTrigger>
-    <AccordionContent>This is the content of the second section.</AccordionContent>
-  </AccordionItem>
-</Accordion>`}
-        props={["type: 'multiple'"]}
       />
 
       <DocsComponent
@@ -492,127 +564,6 @@ return (
 </Accordion>`}
         props={["showDividers: boolean"]}
       />
-
-      <DocsComponent
-        title="Variants"
-        description="Choose from multiple visual styles using the 'variant' prop ('default', 'bordered', 'splitted', 'shadow', 'compact')."
-        preview={
-          <div className="w-full  space-y-6">
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                variant="default"
-              </span>
-              <Accordion
-                type="single"
-                collapsible
-                defaultValue="item-1"
-                variant="default"
-              >
-                <AccordionItem value="item-1">
-                  <AccordionTrigger>Default Accordion</AccordionTrigger>
-                  <AccordionContent>
-                    Standard style with clean, subtle bottom dividers.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                variant="bordered"
-              </span>
-              <Accordion
-                type="single"
-                collapsible
-                defaultValue="item-1"
-                variant="bordered"
-              >
-                <AccordionItem value="item-1">
-                  <AccordionTrigger>Bordered Accordion</AccordionTrigger>
-                  <AccordionContent>
-                    Enclosed by a clean outer border frame.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                variant="splitted"
-              </span>
-              <Accordion
-                type="single"
-                collapsible
-                defaultValue="item-1"
-                variant="splitted"
-              >
-                <AccordionItem value="item-1">
-                  <AccordionTrigger>Splitted Accordion Item 1</AccordionTrigger>
-                  <AccordionContent>
-                    Each panel rendered as an independent card with spacing.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-2">
-                  <AccordionTrigger>Splitted Accordion Item 2</AccordionTrigger>
-                  <AccordionContent>
-                    Ideal for clear visual separation between distinct topics.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                variant="shadow"
-              </span>
-              <Accordion
-                type="single"
-                collapsible
-                defaultValue="item-1"
-                variant="shadow"
-              >
-                <AccordionItem value="item-1">
-                  <AccordionTrigger>Shadow Accordion</AccordionTrigger>
-                  <AccordionContent>
-                    Features moderate drop shadows for prominent interface
-                    hierarchy.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono text-muted-foreground block mb-2">
-                variant="compact"
-              </span>
-              <Accordion
-                type="single"
-                collapsible
-                defaultValue="item-1"
-                variant="compact"
-              >
-                <AccordionItem value="item-1">
-                  <AccordionTrigger>Compact Accordion</AccordionTrigger>
-                  <AccordionContent>
-                    Reduced vertical padding designed for high-density layouts.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-          </div>
-        }
-        code={`<Accordion type="single" collapsible variant="splitted">
-  <AccordionItem value="item-1">
-    <AccordionTrigger>Splitted Accordion</AccordionTrigger>
-    <AccordionContent>Independent card panel item.</AccordionContent>
-  </AccordionItem>
-</Accordion>`}
-        props={[
-          "variant: 'default' | 'bordered' | 'splitted' | 'shadow' | 'compact'",
-        ]}
-      />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Accordion"

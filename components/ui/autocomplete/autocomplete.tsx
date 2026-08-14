@@ -40,6 +40,7 @@ export interface AutocompleteProps {
   endContent?: React.ReactNode;
   highlightMatch?: boolean;
   className?: string;
+  isRequired?: boolean;
 }
 
 const sizeMap = {
@@ -73,6 +74,7 @@ export const Autocomplete = React.forwardRef<
       endContent,
       highlightMatch = true,
       className,
+      isRequired = false,
     },
     ref,
   ) => {
@@ -176,6 +178,7 @@ export const Autocomplete = React.forwardRef<
         {label && (
           <label className="text-xs font-semibold text-foreground/90">
             {label}
+            {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
           </label>
         )}
         <div

@@ -12,6 +12,8 @@ interface RichTextEditorProps {
   placeholder?: string;
   minHeight?: string;
   isDisabled?: boolean;
+  label?: React.ReactNode;
+  isRequired?: boolean;
   className?: string;
 }
 
@@ -59,6 +61,8 @@ export function RichTextEditor({
   placeholder = "Start writing...",
   minHeight = "150px",
   isDisabled = false,
+  label,
+  isRequired = false,
   className,
 }: RichTextEditorProps) {
   const editor = useEditor({
@@ -84,7 +88,7 @@ export function RichTextEditor({
   });
 
   if (!editor) {
-    return (
+    const fallback = (
       <div
         className={cn(
           "rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 animate-pulse",
@@ -93,9 +97,21 @@ export function RichTextEditor({
         style={{ minHeight: `calc(${minHeight} + 48px)` }}
       />
     );
+    if (label) {
+      return (
+        <div className="flex flex-col gap-1.5 w-full">
+          <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
+            {label}
+            {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
+          </label>
+          {fallback}
+        </div>
+      );
+    }
+    return fallback;
   }
 
-  return (
+  const editorContent = (
     <div
       className={cn(
         "rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden transition-colors",
@@ -189,4 +205,18 @@ export function RichTextEditor({
       <EditorContent editor={editor} />
     </div>
   );
+
+  if (label) {
+    return (
+      <div className="flex flex-col gap-1.5 w-full">
+        <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
+          {label}
+          {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
+        </label>
+        {editorContent}
+      </div>
+    );
+  }
+
+  return editorContent;
 }

@@ -36,8 +36,7 @@ import {
   ImageCropper,
   type ImageCropperRef,
 } from "@/components/ui/imageCropper/imageCropper";
-import { Separator } from "@/components/ui/separator/separator";
-import { Toast, toast } from "@/components/ui/toast/toast";
+import { toast } from "@/components/ui/toast/toast";
 
 export default function AvatarPage() {
   const [isCropOpen, setIsCropOpen] = React.useState(false);
@@ -444,6 +443,28 @@ return (
       />
 
       <DocsComponent
+        props={[
+          "sarah: any",
+          "j: any",
+          "example: any",
+          "com: any",
+          "src: any",
+          "https: any",
+          "images: any",
+          "unsplash: any",
+          "photo-1534528741775-53994a69daeb: any",
+          "w: any",
+          "alt: any",
+          "color: any",
+          "success: any",
+          "isBordered: any",
+          "span: any",
+          "text-emerald-600: any",
+          "dark: any",
+          "text-emerald-400: any",
+          "font-medium: any",
+          "photo-1507003211169-0a1dd7228f2d: any",
+        ]}
         title="User Info Layout"
         description="Display custom headers, name, email, or role labels (title and description metadata) aligned alongside the Avatar component using title and description props."
         preview={
@@ -494,6 +515,35 @@ return (
       />
 
       <DocsComponent
+        props={[
+          "asChild: any",
+          "isPressable: any",
+          "src: any",
+          "https: any",
+          "images: any",
+          "unsplash: any",
+          "com: any",
+          "photo-1534528741775-53994a69daeb: any",
+          "w: any",
+          "alt: any",
+          "w-56: any",
+          "align: any",
+          "start: any",
+          "font-normal: any",
+          "flex: any",
+          "flex-col: any",
+          "space-y-1: any",
+          "text-sm: any",
+          "font-semibold: any",
+          "text-zinc-950: any",
+          "dark: any",
+          "text-zinc-50: any",
+          "leading-none: any",
+          "text-xs: any",
+          "text-zinc-500: any",
+          "text-zinc-400: any",
+          "text-rose-600: any",
+        ]}
         title="Avatar with Dropdown Menu"
         description="Nest an interactive pressable Avatar within a DropdownMenu trigger to represent typical account or authentication menu systems."
         preview={
@@ -579,10 +629,6 @@ return (
   </DropdownMenu>
 );`}
       />
-
-      <Toast />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Avatar"

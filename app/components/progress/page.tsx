@@ -9,7 +9,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Progress } from "@/components/ui/progress/progress";
 import { progressCode } from "@/components/ui/progress/progress.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 function RealTimeSimulatedProgressDemo() {
   const [value, setValue] = React.useState(0);
@@ -126,6 +125,7 @@ export default function ProgressComponentPage() {
       />
 
       <DocsComponent
+        props={["showValueLabel: any"]}
         title="Real-Time Simulated Progress"
         description="Continuously simulating a background operation moving from 0 to 100 to showcase real-time transitions."
         preview={<RealTimeSimulatedProgressDemo />}
@@ -142,8 +142,6 @@ export default function ProgressComponentPage() {
   return <Progress value={value} showValueLabel label="Downloading..." />;
 }`}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Progress"

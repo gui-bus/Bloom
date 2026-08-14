@@ -33,6 +33,7 @@ export interface FileInputProps
   showBadges?: boolean;
   maxSizeMB?: number;
   onFilesSelected?: (files: File[]) => void;
+  isRequired?: boolean;
 }
 
 const fileInputVariants = cva(
@@ -107,6 +108,7 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
       accept,
       disabled,
       className,
+      isRequired = false,
       ...props
     },
     ref,
@@ -172,6 +174,7 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
         {label && (
           <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
             {label}
+            {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
           </label>
         )}
 

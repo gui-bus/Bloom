@@ -17,7 +17,6 @@ import {
   PaginationToolbar,
 } from "@/components/ui/pagination/pagination";
 import { paginationCode } from "@/components/ui/pagination/pagination.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function PaginationComponentPage() {
   const [page, setPage] = React.useState(1);
@@ -85,6 +84,178 @@ export default function PaginationComponentPage() {
     </PaginationItem>
   </PaginationContent>
 </Pagination>`}
+      />
+
+      <DocsComponent
+        title="Variants"
+        description="Surface styling options matched directly to input component configurations."
+        preview={
+          <div className="flex flex-col gap-5 w-full">
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Default
+              </span>
+              <Pagination variant="default">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Bordered
+              </span>
+              <Pagination variant="bordered">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Flat
+              </span>
+              <Pagination variant="flat">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Underlined
+              </span>
+              <Pagination variant="underlined">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Filled
+              </span>
+              <Pagination variant="filled">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Glassmorphism
+              </span>
+              <Pagination variant="glassmorphism">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Glow
+              </span>
+              <Pagination variant="glow">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink isActive>1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+          </div>
+        }
+        code={`<Pagination variant="default">...</Pagination>
+<Pagination variant="bordered">...</Pagination>
+<Pagination variant="flat">...</Pagination>
+<Pagination variant="underlined">...</Pagination>
+<Pagination variant="filled">...</Pagination>
+<Pagination variant="glassmorphism">...</Pagination>
+<Pagination variant="glow">...</Pagination>`}
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'underlined' | 'filled' | 'glassmorphism' | 'gradient-border' | 'glow'",
+        ]}
       />
 
       <DocsComponent
@@ -292,178 +463,6 @@ export default function PaginationComponentPage() {
       />
 
       <DocsComponent
-        title="Variants"
-        description="Surface styling options matched directly to input component configurations."
-        preview={
-          <div className="flex flex-col gap-5 w-full">
-            <div className="space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-                Default
-              </span>
-              <Pagination variant="default">
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink isActive>1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink>2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationNext />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
-
-            <div className="space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-                Bordered
-              </span>
-              <Pagination variant="bordered">
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink isActive>1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink>2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationNext />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
-
-            <div className="space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-                Flat
-              </span>
-              <Pagination variant="flat">
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink isActive>1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink>2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationNext />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
-
-            <div className="space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-                Underlined
-              </span>
-              <Pagination variant="underlined">
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink isActive>1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink>2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationNext />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
-
-            <div className="space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-                Filled
-              </span>
-              <Pagination variant="filled">
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink isActive>1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink>2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationNext />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
-
-            <div className="space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-                Glassmorphism
-              </span>
-              <Pagination variant="glassmorphism">
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink isActive>1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink>2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationNext />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
-
-            <div className="space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-                Glow
-              </span>
-              <Pagination variant="glow">
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink isActive>1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink>2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationNext />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
-          </div>
-        }
-        code={`<Pagination variant="default">...</Pagination>
-<Pagination variant="bordered">...</Pagination>
-<Pagination variant="flat">...</Pagination>
-<Pagination variant="underlined">...</Pagination>
-<Pagination variant="filled">...</Pagination>
-<Pagination variant="glassmorphism">...</Pagination>
-<Pagination variant="glow">...</Pagination>`}
-        props={[
-          "variant: 'default' | 'bordered' | 'flat' | 'underlined' | 'filled' | 'glassmorphism' | 'gradient-border' | 'glow'",
-        ]}
-      />
-
-      <DocsComponent
         title="Radius"
         description="Choose border radius style for pagination active buttons matching design tokens."
         preview={
@@ -583,8 +582,6 @@ const [pageSize, setPageSize] = React.useState(10);
           "showLastButton: boolean",
         ]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — PaginationToolbar"

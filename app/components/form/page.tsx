@@ -213,6 +213,18 @@ export default function FormComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "form: any",
+          "onSubmit: any",
+          "isInvalid: any",
+          "formState: any",
+          "errors: any",
+          "email: any",
+          "errorMessage: any",
+          "message: any",
+          "type: any",
+          "register: any",
+        ]}
         title="Schema Validation with Zod"
         description="Integrate Zod schemas and zodResolver to validate data types, email formats, and custom error boundaries."
         preview={<ZodValidationFormDemo />}

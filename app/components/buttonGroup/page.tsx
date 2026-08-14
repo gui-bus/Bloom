@@ -10,7 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Button } from "@/components/ui/button/button";
 import { ButtonGroup } from "@/components/ui/buttonGroup/buttonGroup";
 import { buttonGroupCode } from "@/components/ui/buttonGroup/buttonGroup.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function ButtonGroupPage() {
   return (
@@ -417,8 +416,6 @@ export default function ButtonGroupPage() {
 </ButtonGroup>`}
         props={["isAttached: boolean"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — ButtonGroup"

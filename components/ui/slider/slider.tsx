@@ -28,6 +28,7 @@ export interface SliderProps
   marks?: SliderMark[];
   histogramData?: number[];
   histogramHeight?: number;
+  isRequired?: boolean;
 }
 
 const trackColorMap = {
@@ -78,6 +79,7 @@ const Slider = React.forwardRef<
       min = 0,
       max = 100,
       onValueChange,
+      isRequired = false,
       ...props
     },
     ref,
@@ -126,8 +128,13 @@ const Slider = React.forwardRef<
     return (
       <div className="w-full flex flex-col gap-2">
         {(label || showValue) && (
-          <div className="flex justify-between items-center text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
-            {label && <span>{label}</span>}
+          <div className="flex items-center justify-between text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+            {label && (
+              <span>
+                {label}
+                {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
+              </span>
+            )}
             {showValue && (
               <span className="text-zinc-500 font-mono text-xs">
                 {formattedDisplay}

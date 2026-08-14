@@ -57,6 +57,7 @@ toast("New Workspace Created", { description: "Your workspace is ready for team 
       />
 
       <DocsComponent
+        props={["variant: string"]}
         title="Status Variants (Success, Error, Warning, Info)"
         description="Trigger feedback notifications with contextual status icons, side accent bars, and color themes."
         preview={

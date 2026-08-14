@@ -11,7 +11,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Banner } from "@/components/ui/banner/banner";
 import { bannerCode } from "@/components/ui/banner/banner.code";
 import { Button } from "@/components/ui/button/button";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function BannerPage() {
   const [dismissKey, setDismissKey] = React.useState(0);
@@ -382,8 +381,6 @@ export default function BannerPage() {
           "storageKey: string",
         ]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Banner"

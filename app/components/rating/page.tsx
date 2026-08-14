@@ -9,7 +9,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Rating } from "@/components/ui/rating/rating";
 import { ratingCode } from "@/components/ui/rating/rating.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function RatingComponentPage() {
   const [val1, setVal1] = React.useState(3.5);
@@ -48,22 +47,6 @@ export default function RatingComponentPage() {
       />
 
       <DocsComponent
-        title="Sizes"
-        description="Choose from small, medium, or large rating item dimensions."
-        preview={
-          <div className="flex flex-col gap-4 max-w-xs w-full">
-            <Rating size="sm" defaultValue={4} label="Small (sm)" />
-            <Rating size="md" defaultValue={4} label="Medium (md)" />
-            <Rating size="lg" defaultValue={4} label="Large (lg)" />
-          </div>
-        }
-        code={`<Rating size="sm" defaultValue={4} />
-<Rating size="md" defaultValue={4} />
-<Rating size="lg" defaultValue={4} />`}
-        props={["size: 'sm' | 'md' | 'lg'"]}
-      />
-
-      <DocsComponent
         title="Variants"
         description="Choose between star and heart shape outlines for different score rating types."
         preview={
@@ -85,6 +68,22 @@ export default function RatingComponentPage() {
         code={`<Rating variant="default" defaultValue={3} />
 <Rating variant="heart" defaultValue={4} />`}
         props={["variant: 'default' | 'heart'"]}
+      />
+
+      <DocsComponent
+        title="Sizes"
+        description="Choose from small, medium, or large rating item dimensions."
+        preview={
+          <div className="flex flex-col gap-4 max-w-xs w-full">
+            <Rating size="sm" defaultValue={4} label="Small (sm)" />
+            <Rating size="md" defaultValue={4} label="Medium (md)" />
+            <Rating size="lg" defaultValue={4} label="Large (lg)" />
+          </div>
+        }
+        code={`<Rating size="sm" defaultValue={4} />
+<Rating size="md" defaultValue={4} />
+<Rating size="lg" defaultValue={4} />`}
+        props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
       <DocsComponent
@@ -151,8 +150,6 @@ export default function RatingComponentPage() {
 />`}
         props={["emojiMap: Record<number, string>"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Rating"

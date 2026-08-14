@@ -41,6 +41,7 @@ export interface SelectProps
   description?: React.ReactNode;
   errorMessage?: React.ReactNode;
   isInvalid?: boolean;
+  isRequired?: boolean;
   className?: string;
   options?: SelectOption[];
 
@@ -101,6 +102,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       description,
       errorMessage,
       isInvalid = false,
+      isRequired = false,
       className,
       options = [],
       value,
@@ -264,6 +266,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           {label && (
             <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
               {label}
+              {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
             </label>
           )}
           <SelectPrimitive.Root
@@ -330,6 +333,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         {label && (
           <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
             {label}
+            {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
           </label>
         )}
 

@@ -7,7 +7,6 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { Separator } from "@/components/ui/separator/separator";
 import { TagInput } from "@/components/ui/tagInput/tagInput";
 import { tagInputCode } from "@/components/ui/tagInput/tagInput.code";
 
@@ -80,6 +79,9 @@ export default function TagInputPage() {
       />
 
       <DocsComponent
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'filled' | 'glow' | 'glassmorphism' | 'gradient-border' | 'underlined'",
+        ]}
         title="Variants"
         description="Defines the visual appearance of the tag input using the 'variant' prop."
         preview={
@@ -258,8 +260,6 @@ export default function TagInputPage() {
   label="Email Validation Only"
 />`}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — TagInput"

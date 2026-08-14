@@ -27,6 +27,7 @@ export interface TimePickerProps
   useWheel?: boolean;
   locale?: string;
   timeZone?: string;
+  isRequired?: boolean;
 }
 
 export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
@@ -45,6 +46,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       useWheel = false,
       locale = "en-US",
       timeZone,
+      isRequired = false,
       className,
       ...props
     },
@@ -201,6 +203,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
           {label && (
             <label className="text-sm font-medium text-zinc-900 dark:text-zinc-100 select-none">
               {label}
+              {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
             </label>
           )}
 
@@ -307,6 +310,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
         {label && (
           <label className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
             {label}
+            {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
           </label>
         )}
         <div

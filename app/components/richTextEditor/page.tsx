@@ -72,6 +72,7 @@ export default function RichTextEditorPage() {
       />
 
       <DocsComponent
+        props={["your: any", "blog: any", "post: any", "here: any"]}
         title="With Placeholder"
         description="An empty editor with a custom placeholder text."
         preview={<PlaceholderDemo />}
@@ -79,6 +80,7 @@ export default function RichTextEditorPage() {
       />
 
       <DocsComponent
+        props={["isDisabled: boolean"]}
         title="Disabled"
         description="A read-only editor with disabled toolbar buttons and non-editable content."
         preview={<DisabledDemo />}

@@ -30,6 +30,7 @@ export interface RatingProps {
   variant?: RatingVariant;
   emojiMap?: Record<number, string>;
   showTooltip?: boolean;
+  isRequired?: boolean;
   className?: string;
 }
 
@@ -72,6 +73,7 @@ export function Rating({
   variant = "default",
   emojiMap,
   showTooltip = false,
+  isRequired = false,
   className,
 }: RatingProps) {
   const [internalVal, setInternalVal] = React.useState<number>(
@@ -125,7 +127,12 @@ export function Rating({
     <div className={cn("flex flex-col gap-1.5 select-none", className)}>
       {(label || showTooltip) && (
         <div className="flex items-center justify-between text-xs font-semibold text-zinc-900 dark:text-zinc-100">
-          {label && <span>{label}</span>}
+          {label && (
+            <span>
+              {label}
+              {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
+            </span>
+          )}
           {showTooltip && (
             <span className="font-mono text-zinc-500 dark:text-zinc-400">
               {activeVal} / {max}

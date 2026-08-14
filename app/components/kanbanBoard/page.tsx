@@ -13,7 +13,6 @@ import {
   type KanbanColumn,
 } from "@/components/ui/kanbanBoard/kanbanBoard";
 import { kanbanBoardCode } from "@/components/ui/kanbanBoard/kanbanBoard.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function KanbanBoardPage() {
   const initialColumns: KanbanColumn[] = [
@@ -187,8 +186,6 @@ const handleCardMove = (cardId, targetColumnId) => {
         }
         code={`<KanbanBoard columns={columns} cards={cards} isDisabled />`}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — KanbanBoard"

@@ -8,7 +8,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Kbd } from "@/components/ui/kbd/kbd";
 import { kbdCode } from "@/components/ui/kbd/kbd.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function KbdComponentPage() {
   return (
@@ -97,6 +96,25 @@ export default function KbdComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "flex: any",
+          "flex-col: any",
+          "gap-2: any",
+          "max-w-sm: any",
+          "border: any",
+          "border-zinc-200: any",
+          "dark: any",
+          "border-zinc-800: any",
+          "bg-white: any",
+          "bg-zinc-900: any",
+          "p-4: any",
+          "rounded-2xl: any",
+          "items-center: any",
+          "justify-between: any",
+          "gap-1: any",
+          "size: any",
+          "sm: any",
+        ]}
         title="Keyboard Shortcuts List"
         description="Combining Kbd badges into a clean user interface reference list."
         preview={
@@ -164,8 +182,6 @@ export default function KbdComponentPage() {
 <Kbd keys={["escape"]} size="md" />`}
         props={["keys: KbdKey[]"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Kbd"

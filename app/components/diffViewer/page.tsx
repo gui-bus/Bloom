@@ -10,7 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Button } from "@/components/ui/button/button";
 import { DiffViewer } from "@/components/ui/diffViewer/diffViewer";
 import { diffViewerCode } from "@/components/ui/diffViewer/diffViewer.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function DiffViewerPage() {
   const original = `function greet(name) {
@@ -65,27 +64,6 @@ const modified = "..."
       />
 
       <DocsComponent
-        title="Split View"
-        description="Provides a side-by-side comparison panel, aligning deleted lines on the left and added lines on the right."
-        props={["splitView: boolean"]}
-        preview={
-          <div className="w-full space-y-4">
-            <div className="flex justify-end">
-              <Button size="sm" onClick={() => setSplit(!split)}>
-                Toggle: {split ? "Inline View" : "Split View"}
-              </Button>
-            </div>
-            <DiffViewer
-              oldValue={original}
-              newValue={modified}
-              splitView={split}
-            />
-          </div>
-        }
-        code={`<DiffViewer oldValue={original} newValue={modified} splitView={true} />`}
-      />
-
-      <DocsComponent
         title="Variants"
         description="Supports different border styles matching the Bloom aesthetics."
         props={["variant: 'default' | 'bordered' | 'flat'"]}
@@ -117,7 +95,26 @@ const modified = "..."
 <DiffViewer oldValue={original} newValue={modified} variant="bordered" />`}
       />
 
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
+      <DocsComponent
+        title="Split View"
+        description="Provides a side-by-side comparison panel, aligning deleted lines on the left and added lines on the right."
+        props={["splitView: boolean"]}
+        preview={
+          <div className="w-full space-y-4">
+            <div className="flex justify-end">
+              <Button size="sm" onClick={() => setSplit(!split)}>
+                Toggle: {split ? "Inline View" : "Split View"}
+              </Button>
+            </div>
+            <DiffViewer
+              oldValue={original}
+              newValue={modified}
+              splitView={split}
+            />
+          </div>
+        }
+        code={`<DiffViewer oldValue={original} newValue={modified} splitView={true} />`}
+      />
 
       <DocsComponent
         title="Props — DiffViewer"

@@ -282,6 +282,9 @@ export default function ComboboxComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'filled' | 'glow' | 'glassmorphism' | 'gradient-border' | 'underlined'",
+        ]}
         title="Variants"
         description="Defines the visual appearance of the combobox trigger using the 'variant' prop."
         preview={<ComboboxVariantsDemo />}

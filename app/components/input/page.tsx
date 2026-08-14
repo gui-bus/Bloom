@@ -10,7 +10,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Input } from "@/components/ui/input/input";
 import { inputCode } from "@/components/ui/input/input.code";
-import { Separator } from "@/components/ui/separator/separator";
 import { Toast } from "@/components/ui/toast/toast";
 
 export default function InputComponentPage() {
@@ -261,8 +260,6 @@ export default function InputComponentPage() {
           "debounceTimeout: number",
         ]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Input"

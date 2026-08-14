@@ -75,6 +75,27 @@ export default function TreeViewPage() {
       />
 
       <DocsComponent
+        props={[
+          "defaultExpanded: any",
+          "docs: any",
+          "icon: any",
+          "hugeicons: any",
+          "folder-01: any",
+          "size-4: any",
+          "text-amber-500: any",
+          "getting-started: any",
+          "book-open-01: any",
+          "text-sky-500: any",
+          "api-reference: any",
+          "code: any",
+          "text-emerald-500: any",
+          "changelog: any",
+          "clock-01: any",
+          "text-violet-500: any",
+          "settings: any",
+          "settings-01: any",
+          "text-zinc-500: any",
+        ]}
         title="With Icons"
         description="Tree nodes with custom icons for folders, files, and specialized content types."
         preview={

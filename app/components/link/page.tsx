@@ -9,7 +9,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Link } from "@/components/ui/link/link";
 import { linkCode } from "@/components/ui/link/link.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function LinkComponentPage() {
   return (
@@ -128,8 +127,6 @@ export default function LinkComponentPage() {
 </Link>`}
         props={["startContent: ReactNode", "endContent: ReactNode"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Link"

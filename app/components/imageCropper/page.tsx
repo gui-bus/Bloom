@@ -118,6 +118,17 @@ export default function ImageCropperPage() {
       />
 
       <DocsComponent
+        props={[
+          "src: any",
+          "utils: any",
+          "image-cropper-banner: any",
+          "webp: any",
+          "width: any",
+          "height: any",
+          "defaultZoom: any",
+          "onCrop: any",
+          "base64: any",
+        ]}
         title="Aspect Ratios & Banners"
         description="Configure crop boxes for specific width and height pixel dimensions (such as 4K resolution 3840x2160). When width and height are provided, circular and square overlays are automatically disabled."
         preview={
@@ -141,6 +152,19 @@ export default function ImageCropperPage() {
       />
 
       <DocsComponent
+        props={[
+          "accept: any",
+          "image: any",
+          "showPreviews: any",
+          "false: any",
+          "simulateProgress: any",
+          "onFilesSelected: any",
+          "handleFilesSelected: any",
+          "src: any",
+          "uploadedSrc: any",
+          "aspectRatio: any",
+          "circular: any",
+        ]}
         title="Interactive Upload Flow"
         description="Upload your own picture using FileUpload first, then crop it using the ImageCropper."
         preview={

@@ -90,6 +90,7 @@ export interface FileUploadProps {
     | "glassmorphism"
     | "gradient-border"
     | "glow";
+  isRequired?: boolean;
   className?: string;
 }
 
@@ -107,6 +108,7 @@ export function FileUpload({
   showPreviews = true,
   simulateProgress = true,
   variant = "default",
+  isRequired = false,
   className,
 }: FileUploadProps) {
   const [dragActive, setDragActive] = React.useState(false);
@@ -367,6 +369,7 @@ export function FileUpload({
       {label && (
         <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
           {label}
+          {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
         </label>
       )}
 

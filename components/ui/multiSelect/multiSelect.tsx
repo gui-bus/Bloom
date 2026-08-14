@@ -50,6 +50,7 @@ interface MultiSelectProps extends VariantProps<typeof multiSelectVariants> {
   isDisabled?: boolean;
   isInvalid?: boolean;
   className?: string;
+  isRequired?: boolean;
 }
 
 export function MultiSelect({
@@ -64,6 +65,7 @@ export function MultiSelect({
   isInvalid = false,
   variant,
   className,
+  isRequired = false,
 }: MultiSelectProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
@@ -160,6 +162,7 @@ export function MultiSelect({
       {label && (
         <label className="block text-sm font-bold text-zinc-700 dark:text-zinc-300 mb-1.5">
           {label}
+          {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
         </label>
       )}
       <div

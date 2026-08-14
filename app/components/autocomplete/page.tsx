@@ -93,6 +93,28 @@ export default function AutocompletePage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that choosing an option is mandatory."
+        preview={
+          <div className="w-full max-w-sm">
+            <Autocomplete
+              isRequired
+              label="Required Framework"
+              placeholder="Search framework..."
+              options={sampleFrameworks}
+            />
+          </div>
+        }
+        code={`<Autocomplete
+  isRequired
+  label="Required Framework"
+  placeholder="Search framework..."
+  options={sampleFrameworks}
+/>`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Async Loading State (isSearching)"
         description="Renders a loading spinner inside the input when fetching remote suggestions."
         preview={

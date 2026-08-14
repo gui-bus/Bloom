@@ -59,6 +59,9 @@ export default function TimePickerPage() {
       />
 
       <DocsComponent
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'filled' | 'glow' | 'glassmorphism' | 'gradient-border' | 'underlined'",
+        ]}
         title="Variants"
         description="Defines the visual appearance of the Time Picker trigger using the 'variant' prop."
         preview={
@@ -96,19 +99,7 @@ export default function TimePickerPage() {
       />
 
       <DocsComponent
-        title="12h vs 24h Format"
-        description="The time picker supports both 12-hour (with AM/PM toggle) and 24-hour formats."
-        preview={
-          <div className="flex flex-col items-center justify-center space-y-8 sm:flex-row sm:space-y-0 sm:space-x-8">
-            <TimePicker format="12h" value="09:00 AM" label="12-Hour Format" />
-            <TimePicker format="24h" value="21:00" label="24-Hour Format" />
-          </div>
-        }
-        code={`<TimePicker format="12h" value="09:00 AM" label="12-Hour Format" />
-<TimePicker format="24h" value="21:00" label="24-Hour Format" />`}
-      />
-
-      <DocsComponent
+        props={["size: 'sm' | 'md' | 'lg'"]}
         title="Sizes"
         description="Available in three sizes: small, medium, and large."
         preview={
@@ -128,6 +119,36 @@ export default function TimePickerPage() {
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that choosing a time is mandatory."
+        preview={
+          <div className="flex flex-col items-center justify-center space-y-4">
+            <TimePicker isRequired label="Appointment Time" value="09:00 AM" />
+          </div>
+        }
+        code={`<TimePicker
+  isRequired
+  label="Appointment Time"
+/>`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
+        props={["format: any", "h: any"]}
+        title="12h vs 24h Format"
+        description="The time picker supports both 12-hour (with AM/PM toggle) and 24-hour formats."
+        preview={
+          <div className="flex flex-col items-center justify-center space-y-8 sm:flex-row sm:space-y-0 sm:space-x-8">
+            <TimePicker format="12h" value="09:00 AM" label="12-Hour Format" />
+            <TimePicker format="24h" value="21:00" label="24-Hour Format" />
+          </div>
+        }
+        code={`<TimePicker format="12h" value="09:00 AM" label="12-Hour Format" />
+<TimePicker format="24h" value="21:00" label="24-Hour Format" />`}
+      />
+
+      <DocsComponent
+        props={["isDisabled: any", "isInvalid: any"]}
         title="States"
         description="Time pickers can show disabled or invalid states."
         preview={

@@ -112,6 +112,7 @@ export default function TableComponentPage() {
       />
 
       <DocsComponent
+        props={["data-state: any", "selected: any"]}
         title="Selected Row Highlights"
         description="Mark rows with data-state='selected' for interactive data selection."
         preview={

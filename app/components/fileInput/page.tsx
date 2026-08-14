@@ -9,7 +9,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { FileInput } from "@/components/ui/fileInput/fileInput";
 import { fileInputCode } from "@/components/ui/fileInput/fileInput.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function FileInputComponentPage() {
   const [progress, setProgress] = React.useState(0);
@@ -75,6 +74,9 @@ export default function FileInputComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'filled' | 'glow' | 'glassmorphism' | 'gradient-border' | 'underlined'",
+        ]}
         title="Variants"
         description="Choose between default, bordered, flat, filled, glow, glassmorphism, gradient-border, and underlined styles."
         preview={
@@ -100,6 +102,42 @@ export default function FileInputComponentPage() {
       />
 
       <DocsComponent
+        props={["size: 'sm' | 'md' | 'lg'"]}
+        title="Sizes"
+        description="Supported in small (sm), medium (md), and large (lg) dimensions."
+        preview={
+          <div className="flex flex-col gap-5 w-full max-w-md">
+            <FileInput size="sm" label="Small (sm)" />
+            <FileInput size="md" label="Medium (md) - Default" />
+            <FileInput size="lg" label="Large (lg)" />
+          </div>
+        }
+        code={`<FileInput size="sm" label="Small (sm)" />
+<FileInput size="md" label="Medium (md) - Default" />
+<FileInput size="lg" label="Large (lg)" />`}
+      />
+
+      <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that choosing a file is mandatory."
+        preview={
+          <div className="max-w-md w-full">
+            <FileInput
+              isRequired
+              label="Tax Declaration PDF"
+              placeholder="Upload tax document..."
+            />
+          </div>
+        }
+        code={`<FileInput
+  isRequired
+  label="Tax Declaration PDF"
+/>`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
+        props={["isLoading: any", "progress: any", "undefined: any"]}
         title="Simulated Upload Progress & Loading"
         description="Display upload loading states and simulated progress indicator bars at the bottom edge."
         preview={
@@ -132,21 +170,15 @@ const [isLoading, setIsLoading] = React.useState(false);
       />
 
       <DocsComponent
-        title="Sizes"
-        description="Supported in small (sm), medium (md), and large (lg) dimensions."
-        preview={
-          <div className="flex flex-col gap-5 w-full max-w-md">
-            <FileInput size="sm" label="Small (sm)" />
-            <FileInput size="md" label="Medium (md) - Default" />
-            <FileInput size="lg" label="Large (lg)" />
-          </div>
-        }
-        code={`<FileInput size="sm" label="Small (sm)" />
-<FileInput size="md" label="Medium (md) - Default" />
-<FileInput size="lg" label="Large (lg)" />`}
-      />
-
-      <DocsComponent
+        props={[
+          "isInvalid: any",
+          "errorMessage: any",
+          "format: any",
+          "is: any",
+          "allowed: any",
+          "for: any",
+          "validation: any",
+        ]}
         title="Validation Feedback"
         description="Toggle red indicator borders and feedback messages with 'isInvalid' and 'errorMessage'."
         preview={
@@ -190,6 +222,7 @@ const [isLoading, setIsLoading] = React.useState(false);
       />
 
       <DocsComponent
+        props={["multiple: any", "files: any", "selected: any"]}
         title="Multiple File Selection"
         description="Allows selecting multiple documents from browser file dialog, separating names with commas."
         preview={
@@ -229,8 +262,6 @@ const [isLoading, setIsLoading] = React.useState(false);
 />`}
         props={["showBadges: boolean"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — FileInput"

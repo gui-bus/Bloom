@@ -25,6 +25,8 @@ export interface TransferListProps {
   radius?: keyof typeof designRadius;
   isDisabled?: boolean;
   showSearch?: boolean;
+  label?: React.ReactNode;
+  isRequired?: boolean;
 }
 
 export const TransferList: React.FC<TransferListProps> = ({
@@ -38,6 +40,8 @@ export const TransferList: React.FC<TransferListProps> = ({
   radius = "md",
   isDisabled = false,
   showSearch = true,
+  label,
+  isRequired = false,
 }) => {
   const [leftChecked, setLeftChecked] = React.useState<string[]>([]);
   const [rightChecked, setRightChecked] = React.useState<string[]>([]);
@@ -183,197 +187,211 @@ export const TransferList: React.FC<TransferListProps> = ({
   };
 
   return (
-    <div
-      className={cn(
-        "flex flex-col sm:flex-row items-center gap-4 w-full select-none",
-        isDisabled && "opacity-50 pointer-events-none",
-        className,
+    <div className="flex flex-col gap-1.5 w-full">
+      {label && (
+        <label className="text-xs font-semibold text-foreground/90">
+          {label}
+          {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
+        </label>
       )}
-    >
       <div
         className={cn(
-          "flex flex-col w-full sm:w-1/2 min-h-[360px] max-h-[460px] border overflow-hidden",
-          designRadius[radius],
-          variant === "default" &&
-            "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 shadow-xs",
-          variant === "bordered" &&
-            "bg-transparent border-2 border-zinc-200 dark:border-zinc-800",
-          variant === "flat" &&
-            "bg-zinc-100 dark:bg-zinc-800/80 border-transparent",
+          "flex flex-col sm:flex-row items-center gap-4 w-full select-none",
+          isDisabled && "opacity-50 pointer-events-none",
+          className,
         )}
       >
-        <div className="px-4 py-2.5 bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-          <div className="flex items-center gap-2">
-            <Checkbox
-              checked={isAllLeftChecked}
-              isIndeterminate={isSomeLeftChecked}
-              onCheckedChange={handleToggleAllLeft}
-              disabled={nonDisabledLeft.length === 0 || isDisabled}
-            />
-            <span>{leftTitle}</span>
-          </div>
-          <span>
-            {
-              leftChecked.filter((id) => leftItems.some((i) => i.id === id))
-                .length
-            }{" "}
-            of {leftItems.length} selected
-          </span>
-        </div>
-        {showSearch && (
-          <div className="p-2 border-b border-zinc-200 dark:border-zinc-800">
-            <Input
-              size="sm"
-              placeholder="Search..."
-              value={leftSearch}
-              onChange={(e) => setLeftSearch(e.target.value)}
-              isClearable
-              startContent={
-                <Icon icon="lucide:search" className="size-3.5 text-zinc-400" />
-              }
-            />
-          </div>
-        )}
-        <div className="flex-1 overflow-y-auto p-2 space-y-1">
-          {filteredLeft.map((item) => (
-            <label
-              key={item.id}
-              className={cn(
-                "flex items-center gap-3 p-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800/50 cursor-pointer text-sm text-zinc-700 dark:text-zinc-300",
-                item.disabled &&
-                  "opacity-50 pointer-events-none cursor-not-allowed",
-              )}
-            >
+        <div
+          className={cn(
+            "flex flex-col w-full sm:w-1/2 min-h-[360px] max-h-[460px] border overflow-hidden",
+            designRadius[radius],
+            variant === "default" &&
+              "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 shadow-xs",
+            variant === "bordered" &&
+              "bg-transparent border-2 border-zinc-200 dark:border-zinc-800",
+            variant === "flat" &&
+              "bg-zinc-100 dark:bg-zinc-800/80 border-transparent",
+          )}
+        >
+          <div className="px-4 py-2.5 bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+            <div className="flex items-center gap-2">
               <Checkbox
-                checked={leftChecked.includes(item.id)}
-                onCheckedChange={() => handleToggleLeft(item.id)}
-                disabled={item.disabled || isDisabled}
+                checked={isAllLeftChecked}
+                isIndeterminate={isSomeLeftChecked}
+                onCheckedChange={handleToggleAllLeft}
+                disabled={nonDisabledLeft.length === 0 || isDisabled}
               />
-              <span>{item.label}</span>
-            </label>
-          ))}
-          {filteredLeft.length === 0 && (
-            <div className="text-center text-xs text-zinc-400 dark:text-zinc-500 py-16">
-              No items found
+              <span>{leftTitle}</span>
+            </div>
+            <span>
+              {
+                leftChecked.filter((id) => leftItems.some((i) => i.id === id))
+                  .length
+              }{" "}
+              of {leftItems.length} selected
+            </span>
+          </div>
+          {showSearch && (
+            <div className="p-2 border-b border-zinc-200 dark:border-zinc-800">
+              <Input
+                size="sm"
+                placeholder="Search..."
+                value={leftSearch}
+                onChange={(e) => setLeftSearch(e.target.value)}
+                isClearable
+                startContent={
+                  <Icon
+                    icon="lucide:search"
+                    className="size-3.5 text-zinc-400"
+                  />
+                }
+              />
             </div>
           )}
-        </div>
-      </div>
-
-      <div className="flex flex-row sm:flex-col gap-2">
-        <Button
-          size="sm"
-          variant="bordered"
-          onClick={moveAllRight}
-          isDisabled={
-            leftItems.filter((i) => !i.disabled).length === 0 || isDisabled
-          }
-          aria-label="Move all right"
-          className="h-9 w-9 p-0"
-        >
-          <Icon icon="lucide:chevrons-right" className="size-4" />
-        </Button>
-        <Button
-          size="sm"
-          variant="bordered"
-          onClick={moveCheckedRight}
-          isDisabled={leftChecked.length === 0 || isDisabled}
-          aria-label="Move selected right"
-          className="h-9 w-9 p-0"
-        >
-          <Icon icon="lucide:chevron-right" className="size-4" />
-        </Button>
-        <Button
-          size="sm"
-          variant="bordered"
-          onClick={moveCheckedLeft}
-          isDisabled={rightChecked.length === 0 || isDisabled}
-          aria-label="Move selected left"
-          className="h-9 w-9 p-0"
-        >
-          <Icon icon="lucide:chevron-left" className="size-4" />
-        </Button>
-        <Button
-          size="sm"
-          variant="bordered"
-          onClick={moveAllLeft}
-          isDisabled={
-            rightItems.filter((i) => !i.disabled).length === 0 || isDisabled
-          }
-          aria-label="Move all left"
-          className="h-9 w-9 p-0"
-        >
-          <Icon icon="lucide:chevrons-left" className="size-4" />
-        </Button>
-      </div>
-
-      <div
-        className={cn(
-          "flex flex-col w-full sm:w-1/2 min-h-[360px] max-h-[460px] border overflow-hidden",
-          designRadius[radius],
-          variant === "default" &&
-            "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 shadow-xs",
-          variant === "bordered" &&
-            "bg-transparent border-2 border-zinc-200 dark:border-zinc-800",
-          variant === "flat" &&
-            "bg-zinc-100 dark:bg-zinc-800/80 border-transparent",
-        )}
-      >
-        <div className="px-4 py-2.5 bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-          <div className="flex items-center gap-2">
-            <Checkbox
-              checked={isAllRightChecked}
-              isIndeterminate={isSomeRightChecked}
-              onCheckedChange={handleToggleAllRight}
-              disabled={nonDisabledRight.length === 0 || isDisabled}
-            />
-            <span>{rightTitle}</span>
+          <div className="flex-1 overflow-y-auto p-2 space-y-1">
+            {filteredLeft.map((item) => (
+              <label
+                key={item.id}
+                className={cn(
+                  "flex items-center gap-3 p-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800/50 cursor-pointer text-sm text-zinc-700 dark:text-zinc-300",
+                  item.disabled &&
+                    "opacity-50 pointer-events-none cursor-not-allowed",
+                )}
+              >
+                <Checkbox
+                  checked={leftChecked.includes(item.id)}
+                  onCheckedChange={() => handleToggleLeft(item.id)}
+                  disabled={item.disabled || isDisabled}
+                />
+                <span>{item.label}</span>
+              </label>
+            ))}
+            {filteredLeft.length === 0 && (
+              <div className="text-center text-xs text-zinc-400 dark:text-zinc-500 py-16">
+                No items found
+              </div>
+            )}
           </div>
-          <span>
-            {
-              rightChecked.filter((id) => rightItems.some((i) => i.id === id))
-                .length
-            }{" "}
-            of {rightItems.length} selected
-          </span>
         </div>
-        {showSearch && (
-          <div className="p-2 border-b border-zinc-200 dark:border-zinc-800">
-            <Input
-              size="sm"
-              placeholder="Search..."
-              value={rightSearch}
-              onChange={(e) => setRightSearch(e.target.value)}
-              isClearable
-              startContent={
-                <Icon icon="lucide:search" className="size-3.5 text-zinc-400" />
-              }
-            />
-          </div>
-        )}
-        <div className="flex-1 overflow-y-auto p-2 space-y-1">
-          {filteredRight.map((item) => (
-            <label
-              key={item.id}
-              className={cn(
-                "flex items-center gap-3 p-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800/50 cursor-pointer text-sm text-zinc-700 dark:text-zinc-300",
-                item.disabled &&
-                  "opacity-50 pointer-events-none cursor-not-allowed",
-              )}
-            >
+
+        <div className="flex flex-row sm:flex-col gap-2">
+          <Button
+            size="sm"
+            variant="bordered"
+            onClick={moveAllRight}
+            isDisabled={
+              leftItems.filter((i) => !i.disabled).length === 0 || isDisabled
+            }
+            aria-label="Move all right"
+            className="h-9 w-9 p-0"
+          >
+            <Icon icon="lucide:chevrons-right" className="size-4" />
+          </Button>
+          <Button
+            size="sm"
+            variant="bordered"
+            onClick={moveCheckedRight}
+            isDisabled={leftChecked.length === 0 || isDisabled}
+            aria-label="Move selected right"
+            className="h-9 w-9 p-0"
+          >
+            <Icon icon="lucide:chevron-right" className="size-4" />
+          </Button>
+          <Button
+            size="sm"
+            variant="bordered"
+            onClick={moveCheckedLeft}
+            isDisabled={rightChecked.length === 0 || isDisabled}
+            aria-label="Move selected left"
+            className="h-9 w-9 p-0"
+          >
+            <Icon icon="lucide:chevron-left" className="size-4" />
+          </Button>
+          <Button
+            size="sm"
+            variant="bordered"
+            onClick={moveAllLeft}
+            isDisabled={
+              rightItems.filter((i) => !i.disabled).length === 0 || isDisabled
+            }
+            aria-label="Move all left"
+            className="h-9 w-9 p-0"
+          >
+            <Icon icon="lucide:chevrons-left" className="size-4" />
+          </Button>
+        </div>
+
+        <div
+          className={cn(
+            "flex flex-col w-full sm:w-1/2 min-h-[360px] max-h-[460px] border overflow-hidden",
+            designRadius[radius],
+            variant === "default" &&
+              "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 shadow-xs",
+            variant === "bordered" &&
+              "bg-transparent border-2 border-zinc-200 dark:border-zinc-800",
+            variant === "flat" &&
+              "bg-zinc-100 dark:bg-zinc-800/80 border-transparent",
+          )}
+        >
+          <div className="px-4 py-2.5 bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+            <div className="flex items-center gap-2">
               <Checkbox
-                checked={rightChecked.includes(item.id)}
-                onCheckedChange={() => handleToggleRight(item.id)}
-                disabled={item.disabled || isDisabled}
+                checked={isAllRightChecked}
+                isIndeterminate={isSomeRightChecked}
+                onCheckedChange={handleToggleAllRight}
+                disabled={nonDisabledRight.length === 0 || isDisabled}
               />
-              <span>{item.label}</span>
-            </label>
-          ))}
-          {filteredRight.length === 0 && (
-            <div className="text-center text-xs text-zinc-400 dark:text-zinc-500 py-16">
-              No items selected
+              <span>{rightTitle}</span>
+            </div>
+            <span>
+              {
+                rightChecked.filter((id) => rightItems.some((i) => i.id === id))
+                  .length
+              }{" "}
+              of {rightItems.length} selected
+            </span>
+          </div>
+          {showSearch && (
+            <div className="p-2 border-b border-zinc-200 dark:border-zinc-800">
+              <Input
+                size="sm"
+                placeholder="Search..."
+                value={rightSearch}
+                onChange={(e) => setRightSearch(e.target.value)}
+                isClearable
+                startContent={
+                  <Icon
+                    icon="lucide:search"
+                    className="size-3.5 text-zinc-400"
+                  />
+                }
+              />
             </div>
           )}
+          <div className="flex-1 overflow-y-auto p-2 space-y-1">
+            {filteredRight.map((item) => (
+              <label
+                key={item.id}
+                className={cn(
+                  "flex items-center gap-3 p-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800/50 cursor-pointer text-sm text-zinc-700 dark:text-zinc-300",
+                  item.disabled &&
+                    "opacity-50 pointer-events-none cursor-not-allowed",
+                )}
+              >
+                <Checkbox
+                  checked={rightChecked.includes(item.id)}
+                  onCheckedChange={() => handleToggleRight(item.id)}
+                  disabled={item.disabled || isDisabled}
+                />
+                <span>{item.label}</span>
+              </label>
+            ))}
+            {filteredRight.length === 0 && (
+              <div className="text-center text-xs text-zinc-400 dark:text-zinc-500 py-16">
+                No items selected
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

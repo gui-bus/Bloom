@@ -72,6 +72,7 @@ export interface DatePickerProps {
     | "glassmorphism"
     | "gradient-border"
     | "glow";
+  isRequired?: boolean;
   className?: string;
 }
 
@@ -197,6 +198,7 @@ export function DatePicker({
   locale = "en-US",
   timeZone,
   variant = "default",
+  isRequired = false,
   className,
 }: DatePickerProps) {
   const [singleDate, setSingleDate] = React.useState<Date | undefined>(value);
@@ -460,6 +462,7 @@ export function DatePicker({
       {label && (
         <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
           {label}
+          {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
         </label>
       )}
 

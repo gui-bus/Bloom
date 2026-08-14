@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/avatar/avatar";
 import { Badge } from "@/components/ui/badge/badge";
 import { Button } from "@/components/ui/button/button";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function AlertComponentPage() {
   const [dismissKey, setDismissKey] = React.useState(0);
@@ -432,8 +431,6 @@ return (
 </Alert>`}
         props={["startContent: ReactNode", "endContent: ReactNode"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Alert"

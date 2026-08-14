@@ -15,7 +15,6 @@ import {
   useCheckboxGroup,
 } from "@/components/ui/checkbox/checkbox";
 import { checkboxCode } from "@/components/ui/checkbox/checkbox.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function CheckboxComponentPage() {
   const [selectedGroup, setSelectedGroup] = React.useState<string[]>([
@@ -96,17 +95,6 @@ export default function CheckboxComponentPage() {
       />
 
       <DocsComponent
-        title="Single Checkbox"
-        description="Standard individual checkbox."
-        preview={
-          <div className="w-full">
-            <Checkbox label="Accept terms and conditions" defaultChecked />
-          </div>
-        }
-        code={`<Checkbox label="Accept terms and conditions" defaultChecked />`}
-      />
-
-      <DocsComponent
         title="Colors"
         description="Defines the checked color theme using the 'color' prop."
         preview={
@@ -125,6 +113,23 @@ export default function CheckboxComponentPage() {
         props={[
           "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
         ]}
+      />
+
+      <DocsComponent
+        props={[
+          "terms: any",
+          "and: any",
+          "conditions: any",
+          "defaultChecked: any",
+        ]}
+        title="Single Checkbox"
+        description="Standard individual checkbox."
+        preview={
+          <div className="w-full">
+            <Checkbox label="Accept terms and conditions" defaultChecked />
+          </div>
+        }
+        code={`<Checkbox label="Accept terms and conditions" defaultChecked />`}
       />
 
       <DocsComponent
@@ -377,8 +382,6 @@ export default function CheckboxComponentPage() {
           "orientation: 'horizontal' | 'vertical'",
         ]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Checkbox & CheckboxGroup"

@@ -10,7 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Button } from "@/components/ui/button/button";
 import { buttonCode } from "@/components/ui/button/button.code";
 import { buttonCSSCode } from "@/components/ui/button/button.css.code";
-import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
   TabsContent,
@@ -466,8 +465,6 @@ export default function ButtonComponentPage() {
         code={`<Button isDisabled color="primary">Disabled Primary</Button>`}
         props={["isDisabled: boolean"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Button"

@@ -26,6 +26,7 @@ export interface SwitchProps
   endLabel?: React.ReactNode;
   isCard?: boolean;
   isDisabled?: boolean;
+  isRequired?: boolean;
 }
 
 const colorMap = {
@@ -82,6 +83,7 @@ const Switch = React.forwardRef<
       checked,
       defaultChecked,
       onCheckedChange,
+      isRequired = false,
       ...props
     },
     ref,
@@ -180,6 +182,7 @@ const Switch = React.forwardRef<
                 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 leading-none cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-40"
               >
                 {label}
+                {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
               </label>
             )}
             {description && (

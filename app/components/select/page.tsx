@@ -16,7 +16,6 @@ import {
   SelectValue,
 } from "@/components/ui/select/select";
 import { selectCode } from "@/components/ui/select/select.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 const sampleOptions: SelectOption[] = [
   {
@@ -123,6 +122,9 @@ export default function SelectComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'filled' | 'glow' | 'glassmorphism' | 'gradient-border' | 'underlined'",
+        ]}
         title="Variants"
         description="Defines the visual appearance of the Select trigger using the 'variant' prop."
         preview={
@@ -268,6 +270,7 @@ export default function SelectComponentPage() {
       />
 
       <DocsComponent
+        props={["light: any", "theme: any", "dark: any"]}
         title="Legacy Compositional Syntax"
         description="Full backward compatibility with Radix UI Select primitive trigger and item components."
         preview={
@@ -368,8 +371,6 @@ export default function SelectComponentPage() {
 />`}
         props={["group?: string (in option)"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Select"

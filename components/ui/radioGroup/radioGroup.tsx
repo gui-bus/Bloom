@@ -57,6 +57,7 @@ export interface RadioGroupProps
   label?: React.ReactNode;
   description?: React.ReactNode;
   isInvalid?: boolean;
+  isRequired?: boolean;
 }
 
 const colorMap = {
@@ -104,6 +105,7 @@ const RadioGroup = React.forwardRef<
       label,
       description,
       isInvalid = false,
+      isRequired = false,
       children,
       ...props
     },
@@ -122,6 +124,9 @@ const RadioGroup = React.forwardRef<
                   )}
                 >
                   {label}
+                  {isRequired && (
+                    <span className="text-rose-500 ml-0.5">*</span>
+                  )}
                 </label>
               )}
               {description && (

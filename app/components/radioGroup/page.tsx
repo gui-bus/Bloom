@@ -12,7 +12,6 @@ import {
   RadioGroupItem,
 } from "@/components/ui/radioGroup/radioGroup";
 import { radioGroupCode } from "@/components/ui/radioGroup/radioGroup.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 function RadioGroupColorsDemo() {
   return (
@@ -173,6 +172,20 @@ export default function RadioGroupComponentPage() {
       />
 
       <DocsComponent
+        props={["variant: 'default' | 'bordered'"]}
+        title="Variants"
+        description="Defines the visual appearance of the radio group items when used as selection cards."
+        preview={<RadioGroupVariantsDemo />}
+        code={`<RadioGroup variant="default">
+  <RadioGroupItem isCard value="a" label="Default" />
+</RadioGroup>
+
+<RadioGroup variant="bordered">
+  <RadioGroupItem isCard value="b" label="Bordered" />
+</RadioGroup>`}
+      />
+
+      <DocsComponent
         title="Colors"
         description="Choose from primary, success, warning, danger, and default options to color the selection state indicator."
         preview={<RadioGroupColorsDemo />}
@@ -185,19 +198,6 @@ export default function RadioGroupComponentPage() {
         props={[
           "color: 'primary' | 'success' | 'warning' | 'danger' | 'default'",
         ]}
-      />
-
-      <DocsComponent
-        title="Variants"
-        description="Defines the visual appearance of the radio group items when used as selection cards."
-        preview={<RadioGroupVariantsDemo />}
-        code={`<RadioGroup variant="default">
-  <RadioGroupItem isCard value="a" label="Default" />
-</RadioGroup>
-
-<RadioGroup variant="bordered">
-  <RadioGroupItem isCard value="b" label="Bordered" />
-</RadioGroup>`}
       />
 
       <DocsComponent
@@ -296,8 +296,6 @@ export default function RadioGroupComponentPage() {
           "orientation: 'horizontal' | 'vertical'",
         ]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — RadioGroup & RadioGroupItem"

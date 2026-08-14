@@ -58,6 +58,20 @@ export default function StatCardComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "grid: any",
+          "grid-cols-1: any",
+          "sm: any",
+          "grid-cols-3: any",
+          "gap-4: any",
+          "change: any",
+          "trend: any",
+          "up: any",
+          "down: any",
+          "m: any",
+          "s: any",
+          "neutral: any",
+        ]}
         title="Metrics Dashboard Grid"
         description="Multiple KPI cards arranged in a responsive grid layout."
         preview={

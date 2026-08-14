@@ -20,6 +20,8 @@ export type InputOTPProps = React.ComponentPropsWithoutRef<typeof OTPInput> & {
   showSeparator?: boolean;
   separatorIcon?: string;
   autoFocus?: boolean;
+  label?: React.ReactNode;
+  isRequired?: boolean;
 };
 
 const patternMap: Record<OTPType, string> = {
@@ -39,21 +41,44 @@ const InputOTP = React.forwardRef<
   InputOTPProps
 >(
   (
-    { className, containerClassName, allowedType = "numeric", ...props },
+    {
+      className,
+      containerClassName,
+      allowedType = "numeric",
+      label,
+      isRequired = false,
+      ...props
+    },
     ref,
-  ) => (
-    <OTPInput
-      ref={ref}
-      pattern={patternMap[allowedType]}
-      inputMode={inputModeMap[allowedType]}
-      containerClassName={cn(
-        "flex items-center gap-2 disabled:cursor-not-allowed",
-        containerClassName,
-      )}
-      className={cn("disabled:cursor-not-allowed", className)}
-      {...props}
-    />
-  ),
+  ) => {
+    const inputOtpComponent = (
+      <OTPInput
+        ref={ref}
+        pattern={patternMap[allowedType]}
+        inputMode={inputModeMap[allowedType]}
+        containerClassName={cn(
+          "flex items-center gap-2 disabled:cursor-not-allowed",
+          containerClassName,
+        )}
+        className={cn("disabled:cursor-not-allowed", className)}
+        {...props}
+      />
+    );
+
+    if (label) {
+      return (
+        <div className="flex flex-col gap-1.5 w-full">
+          <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
+            {label}
+            {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
+          </label>
+          {inputOtpComponent}
+        </div>
+      );
+    }
+
+    return inputOtpComponent;
+  },
 );
 InputOTP.displayName = "InputOTP";
 

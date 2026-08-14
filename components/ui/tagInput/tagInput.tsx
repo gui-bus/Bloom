@@ -52,6 +52,7 @@ export interface TagInputProps
     | "danger";
   tagVariant?: "default" | "bordered" | "flat" | "ghost" | "shadow";
   isDisabled?: boolean;
+  isRequired?: boolean;
 }
 
 const tagInputVariants = cva(
@@ -110,6 +111,7 @@ export const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
       tagVariant = "flat",
       isDisabled = false,
       placeholder = "Add tag...",
+      isRequired = false,
       ...props
     },
     ref,
@@ -187,6 +189,7 @@ export const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
         {label && (
           <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
             {label}
+            {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
           </label>
         )}
 

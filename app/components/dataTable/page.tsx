@@ -130,6 +130,19 @@ export default function DataTableComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "columns: any",
+          "data: any",
+          "searchPlaceholder: any",
+          "team: any",
+          "members: any",
+          "enableColumnReorder: any",
+          "enableColumnVisibility: any",
+          "enableColumnFilters: any",
+          "enableExport: any",
+          "exportFileName: any",
+          "team-members: any",
+        ]}
         title="Full-Featured Data Table"
         description="Includes drag-and-drop column reordering, column visibility toggle menu, global search, per-column filter builder, and CSV/Excel spreadsheet export."
         preview={

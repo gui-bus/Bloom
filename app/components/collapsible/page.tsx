@@ -331,6 +331,43 @@ export default function CollapsiblePage() {
       />
 
       <DocsComponent
+        props={[
+          "open: any",
+          "isOpen: any",
+          "onOpenChange: any",
+          "setIsOpen: any",
+          "rounded-2xl: any",
+          "border: any",
+          "border-zinc-200: any",
+          "dark: any",
+          "border-zinc-800: any",
+          "bg-white: any",
+          "bg-zinc-900: any",
+          "shadow-xs: any",
+          "overflow-hidden: any",
+          "asChild: any",
+          "w-full: any",
+          "flex: any",
+          "items-center: any",
+          "justify-between: any",
+          "gap-4: any",
+          "px-5: any",
+          "py-4: any",
+          "cursor-pointer: any",
+          "gap-3: any",
+          "icon: any",
+          "hugeicons: any",
+          "shield-01: any",
+          "text-sm: any",
+          "font-semibold: any",
+          "text-xs: any",
+          "text-zinc-500: any",
+          "arrow-down-01: any",
+          "border-t: any",
+          "space-y-3: any",
+          "color: any",
+          "success: any",
+        ]}
         title="Card Style"
         description="A collapsible section styled as a bordered card container with icon, heading, and description in the trigger."
         preview={<CardStyleDemo />}

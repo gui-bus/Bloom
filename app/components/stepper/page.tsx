@@ -10,7 +10,6 @@ import { InstallationBlock } from "@/components/core/installationBlock";
 import { Button } from "@/components/ui/button/button";
 import { Input } from "@/components/ui/input/input";
 import { Label } from "@/components/ui/label/label";
-import { Separator } from "@/components/ui/separator/separator";
 import {
   Stepper,
   StepperDescription,
@@ -315,101 +314,6 @@ export default function StepperComponentPage() {
       />
 
       <DocsComponent
-        title="Controlled"
-        description="Control the active step programmatically by binding the activeStep prop to external state."
-        preview={<StepperControlledDemo />}
-        code={`const [activeStep, setActiveStep] = React.useState(1);
-
-<Stepper activeStep={activeStep}>
-  <StepperItem step={0}>...</StepperItem>
-  <StepperSeparator step={0} />
-  <StepperItem step={1}>...</StepperItem>
-  <StepperSeparator step={1} />
-  <StepperItem step={2}>...</StepperItem>
-</Stepper>
-
-<Button onClick={() => setActiveStep(0)}>Step 1</Button>
-<Button onClick={() => setActiveStep(1)}>Step 2</Button>
-<Button onClick={() => setActiveStep(2)}>Step 3</Button>`}
-        props={["activeStep: number"]}
-      />
-
-      <DocsComponent
-        title="Step Validation"
-        description="Block advancing to the next step until all required fields in the current step are filled."
-        preview={<StepperValidationDemo />}
-        code={`const [activeStep, setActiveStep] = React.useState(0);
-const [email, setEmail] = React.useState("");
-const [name, setName] = React.useState("");
-const [error, setError] = React.useState("");
-
-const handleNext = () => {
-  if (activeStep === 0) {
-    if (!name.trim() || !email.trim()) {
-      setError("Please fill in all fields before continuing.");
-      return;
-    }
-  }
-  setError("");
-  setActiveStep((s) => s + 1);
-};
-
-<Stepper activeStep={activeStep}>...</Stepper>
-
-{error && <p className="text-xs text-rose-500">{error}</p>}
-
-<Button color="primary" onClick={handleNext}>Next</Button>`}
-      />
-
-      <DocsComponent
-        title="Colors"
-        description="All steps and connection lines strictly adhere to the chosen theme color."
-        preview={
-          <div className="w-full space-y-6">
-            {(
-              [
-                "primary",
-                "success",
-                "warning",
-                "danger",
-                "secondary",
-                "default",
-              ] as const
-            ).map((color) => (
-              <div key={color}>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-2">
-                  {color}
-                </span>
-                <Stepper color={color} activeStep={1}>
-                  <StepperItem step={0}>
-                    <StepperIndicator step={0} />
-                    <StepperTitle>Step 1</StepperTitle>
-                  </StepperItem>
-                  <StepperSeparator step={0} />
-                  <StepperItem step={1}>
-                    <StepperIndicator step={1} />
-                    <StepperTitle>Step 2</StepperTitle>
-                  </StepperItem>
-                  <StepperSeparator step={1} />
-                  <StepperItem step={2}>
-                    <StepperIndicator step={2} />
-                    <StepperTitle>Step 3</StepperTitle>
-                  </StepperItem>
-                </Stepper>
-              </div>
-            ))}
-          </div>
-        }
-        code={`<Stepper color="primary" activeStep={1}>...</Stepper>
-<Stepper color="success" activeStep={1}>...</Stepper>
-<Stepper color="warning" activeStep={1}>...</Stepper>
-<Stepper color="danger" activeStep={1}>...</Stepper>`}
-        props={[
-          "color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'",
-        ]}
-      />
-
-      <DocsComponent
         title="Variants"
         description="Choose between different step indicator visual structures."
         preview={
@@ -478,6 +382,109 @@ const handleNext = () => {
         code={`<Stepper variant="default" activeStep={1}>...</Stepper>
 <Stepper variant="cards" activeStep={1}>...</Stepper>`}
         props={["variant: 'default' | 'cards'"]}
+      />
+
+      <DocsComponent
+        title="Colors"
+        description="All steps and connection lines strictly adhere to the chosen theme color."
+        preview={
+          <div className="w-full space-y-6">
+            {(
+              [
+                "primary",
+                "success",
+                "warning",
+                "danger",
+                "secondary",
+                "default",
+              ] as const
+            ).map((color) => (
+              <div key={color}>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-2">
+                  {color}
+                </span>
+                <Stepper color={color} activeStep={1}>
+                  <StepperItem step={0}>
+                    <StepperIndicator step={0} />
+                    <StepperTitle>Step 1</StepperTitle>
+                  </StepperItem>
+                  <StepperSeparator step={0} />
+                  <StepperItem step={1}>
+                    <StepperIndicator step={1} />
+                    <StepperTitle>Step 2</StepperTitle>
+                  </StepperItem>
+                  <StepperSeparator step={1} />
+                  <StepperItem step={2}>
+                    <StepperIndicator step={2} />
+                    <StepperTitle>Step 3</StepperTitle>
+                  </StepperItem>
+                </Stepper>
+              </div>
+            ))}
+          </div>
+        }
+        code={`<Stepper color="primary" activeStep={1}>...</Stepper>
+<Stepper color="success" activeStep={1}>...</Stepper>
+<Stepper color="warning" activeStep={1}>...</Stepper>
+<Stepper color="danger" activeStep={1}>...</Stepper>`}
+        props={[
+          "color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'",
+        ]}
+      />
+
+      <DocsComponent
+        title="Controlled"
+        description="Control the active step programmatically by binding the activeStep prop to external state."
+        preview={<StepperControlledDemo />}
+        code={`const [activeStep, setActiveStep] = React.useState(1);
+
+<Stepper activeStep={activeStep}>
+  <StepperItem step={0}>...</StepperItem>
+  <StepperSeparator step={0} />
+  <StepperItem step={1}>...</StepperItem>
+  <StepperSeparator step={1} />
+  <StepperItem step={2}>...</StepperItem>
+</Stepper>
+
+<Button onClick={() => setActiveStep(0)}>Step 1</Button>
+<Button onClick={() => setActiveStep(1)}>Step 2</Button>
+<Button onClick={() => setActiveStep(2)}>Step 3</Button>`}
+        props={["activeStep: number"]}
+      />
+
+      <DocsComponent
+        props={[
+          "activeStep: any",
+          "text-xs: any",
+          "text-rose-500: any",
+          "color: any",
+          "primary: any",
+          "handleNext: any",
+        ]}
+        title="Step Validation"
+        description="Block advancing to the next step until all required fields in the current step are filled."
+        preview={<StepperValidationDemo />}
+        code={`const [activeStep, setActiveStep] = React.useState(0);
+const [email, setEmail] = React.useState("");
+const [name, setName] = React.useState("");
+const [error, setError] = React.useState("");
+
+const handleNext = () => {
+  if (activeStep === 0) {
+    if (!name.trim() || !email.trim()) {
+      setError("Please fill in all fields before continuing.");
+      return;
+    }
+  }
+  setError("");
+  setActiveStep((s) => s + 1);
+};
+
+<Stepper activeStep={activeStep}>...</Stepper>
+
+{error && <p className="text-xs text-rose-500">{error}</p>}
+
+<Button color="primary" onClick={handleNext}>Next</Button>`}
       />
 
       <DocsComponent
@@ -569,8 +576,6 @@ const handleNext = () => {
 </Stepper>`}
         props={["orientation: 'horizontal' | 'vertical'"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Stepper"

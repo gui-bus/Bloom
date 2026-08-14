@@ -193,6 +193,16 @@ export default function DropdownMenuDocsPage() {
       />
 
       <DocsComponent
+        props={[
+          "asChild: any",
+          "variant: any",
+          "bordered: any",
+          "w-56: any",
+          "checked: any",
+          "showStatusBar: any",
+          "onCheckedChange: any",
+          "setShowStatusBar: any",
+        ]}
         title="Checkboxes & Radio Item Groups"
         description="Supports toggleable checkbox items and single-selection radio groups inside the popover."
         preview={
@@ -256,6 +266,13 @@ export default function DropdownMenuDocsPage() {
       />
 
       <DocsComponent
+        props={[
+          "asChild: any",
+          "variant: any",
+          "bordered: any",
+          "w-56: any",
+          "w-48: any",
+        ]}
         title="Nested Submenus"
         description="Nest submenus recursively using 'DropdownMenuSub', 'DropdownMenuSubTrigger', and 'DropdownMenuSubContent'."
         preview={

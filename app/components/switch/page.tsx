@@ -8,7 +8,6 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { Separator } from "@/components/ui/separator/separator";
 import { Switch } from "@/components/ui/switch/switch";
 import { switchCode } from "@/components/ui/switch/switch.code";
 
@@ -47,46 +46,6 @@ export default function SwitchComponentPage() {
       />
 
       <DocsComponent
-        title="Sizes"
-        description="Choose from small, medium, or large switch dimensions."
-        preview={
-          <div className="flex flex-wrap items-center gap-6">
-            <Switch size="sm" defaultChecked label="Small" />
-            <Switch size="md" defaultChecked label="Medium" />
-            <Switch size="lg" defaultChecked label="Large" />
-          </div>
-        }
-        code={`<Switch size="sm" defaultChecked label="Small" />
-<Switch size="md" defaultChecked label="Medium" />
-<Switch size="lg" defaultChecked label="Large" />`}
-        props={["size: 'sm' | 'md' | 'lg'"]}
-      />
-
-      <DocsComponent
-        title="Colors"
-        description="Apply theme alert colors to the active checked track."
-        preview={
-          <div className="flex flex-wrap items-center gap-6">
-            <Switch color="default" defaultChecked label="Default" />
-            <Switch color="primary" defaultChecked label="Primary" />
-            <Switch color="secondary" defaultChecked label="Secondary" />
-            <Switch color="accent" defaultChecked label="Accent" />
-            <Switch color="success" defaultChecked label="Success" />
-            <Switch color="warning" defaultChecked label="Warning" />
-            <Switch color="danger" defaultChecked label="Danger" />
-          </div>
-        }
-        code={`<Switch color="default" defaultChecked />
-<Switch color="primary" defaultChecked />
-<Switch color="success" defaultChecked />
-<Switch color="warning" defaultChecked />
-<Switch color="danger" defaultChecked />`}
-        props={[
-          "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
-        ]}
-      />
-
-      <DocsComponent
         title="Variants"
         description="Render as a card container for settings-style toggle rows."
         preview={
@@ -115,6 +74,46 @@ export default function SwitchComponentPage() {
         code={`<Switch isCard label="Automatic Updates" description="Download updates automatically." defaultChecked />
 <Switch isCard label="Two-Factor Authentication" description="Extra verification code." color="success" />`}
         props={["isCard: boolean", "isDisabled: boolean"]}
+      />
+
+      <DocsComponent
+        title="Colors"
+        description="Apply theme alert colors to the active checked track."
+        preview={
+          <div className="flex flex-wrap items-center gap-6">
+            <Switch color="default" defaultChecked label="Default" />
+            <Switch color="primary" defaultChecked label="Primary" />
+            <Switch color="secondary" defaultChecked label="Secondary" />
+            <Switch color="accent" defaultChecked label="Accent" />
+            <Switch color="success" defaultChecked label="Success" />
+            <Switch color="warning" defaultChecked label="Warning" />
+            <Switch color="danger" defaultChecked label="Danger" />
+          </div>
+        }
+        code={`<Switch color="default" defaultChecked />
+<Switch color="primary" defaultChecked />
+<Switch color="success" defaultChecked />
+<Switch color="warning" defaultChecked />
+<Switch color="danger" defaultChecked />`}
+        props={[
+          "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
+        ]}
+      />
+
+      <DocsComponent
+        title="Sizes"
+        description="Choose from small, medium, or large switch dimensions."
+        preview={
+          <div className="flex flex-wrap items-center gap-6">
+            <Switch size="sm" defaultChecked label="Small" />
+            <Switch size="md" defaultChecked label="Medium" />
+            <Switch size="lg" defaultChecked label="Large" />
+          </div>
+        }
+        code={`<Switch size="sm" defaultChecked label="Small" />
+<Switch size="md" defaultChecked label="Medium" />
+<Switch size="lg" defaultChecked label="Large" />`}
+        props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
       <DocsComponent
@@ -198,8 +197,6 @@ export default function SwitchComponentPage() {
 />`}
         props={["startLabel: ReactNode", "endLabel: ReactNode"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Switch"

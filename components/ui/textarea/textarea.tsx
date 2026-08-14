@@ -14,6 +14,7 @@ export interface TextareaProps
     | "underlined"
     | "filled"
     | "glassmorphism"
+    | "gradient-border"
     | "glow";
   color?:
     | "default"
@@ -34,6 +35,7 @@ export interface TextareaProps
   autoResize?: boolean;
   minRows?: number;
   maxRows?: number;
+  isRequired?: boolean;
 }
 
 const textareaVariants = cva(
@@ -52,6 +54,8 @@ const textareaVariants = cva(
           "bg-zinc-100 dark:bg-zinc-800 border border-transparent focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/20",
         glassmorphism:
           "backdrop-blur-md bg-white/40 dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-700/50 focus-within:border-sky-500 shadow-md",
+        "gradient-border":
+          "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 relative [background-clip:padding-box] border border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 focus-within:ring-2 focus-within:ring-indigo-500/30",
         glow: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xs focus-within:border-sky-500 focus-within:shadow-[0_0_12px_rgba(56,189,248,0.3)]",
       },
       size: {
@@ -84,6 +88,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       autoResize = false,
       minRows = 3,
       maxRows = 10,
+      isRequired = false,
       disabled,
       id,
       value,
@@ -141,6 +146,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         )}
       >
         {label}
+        {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
       </label>
     );
 

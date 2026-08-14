@@ -9,7 +9,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Badge } from "@/components/ui/badge/badge";
 import { badgeCode } from "@/components/ui/badge/badge.code";
-import { Separator } from "@/components/ui/separator/separator";
 import { toast } from "@/components/ui/toast/toast";
 
 export default function BadgeComponentPage() {
@@ -425,8 +424,6 @@ export default function BadgeComponentPage() {
 </Badge>`}
         props={["isRemovable: boolean", "onRemove: () => void"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Badge"

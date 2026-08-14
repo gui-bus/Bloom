@@ -22,7 +22,6 @@ import {
 import { alertDialogCode } from "@/components/ui/alertDialog/alertDialog.code";
 import { Button } from "@/components/ui/button/button";
 import { Input } from "@/components/ui/input/input";
-import { Separator } from "@/components/ui/separator/separator";
 import { Toast, toast } from "@/components/ui/toast/toast";
 
 export default function AlertDialogComponentPage() {
@@ -111,6 +110,7 @@ export default function AlertDialogComponentPage() {
       />
 
       <DocsComponent
+        props={["color: 'info'"]}
         title="Colors"
         description="Configure the primary action button to inherit different semantic colors: default, info, success, warning, and danger."
         preview={
@@ -173,6 +173,16 @@ export default function AlertDialogComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "asChild: any",
+          "color: any",
+          "danger: any",
+          "to: any",
+          "confirm: any",
+          "confirmInput: any",
+          "e: any",
+          "disabled: any",
+        ]}
         title="Text Validation Confirmation"
         description="Require the user to type an exact confirmation string (e.g. 'DELETE') to unlock the action button."
         preview={
@@ -243,6 +253,18 @@ export default function AlertDialogComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "asChild: any",
+          "color: any",
+          "danger: any",
+          "variant: any",
+          "bordered: any",
+          "text-red-600: any",
+          "flex: any",
+          "items-center: any",
+          "gap-2: any",
+          "size-5: any",
+        ]}
         title="Custom Header Layout"
         description="Embed graphic icons, colored header text, and specialized callouts to emphasize danger or urgency."
         preview={
@@ -364,8 +386,6 @@ return (
 );`}
         props={["isLoading: boolean"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — AlertDialogAction"

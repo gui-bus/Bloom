@@ -6,7 +6,6 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { Separator } from "@/components/ui/separator/separator";
 import { Spinner } from "@/components/ui/spinner/spinner";
 import { spinnerCode } from "@/components/ui/spinner/spinner.code";
 
@@ -185,8 +184,6 @@ export default function SpinnerComponentPage() {
 <Spinner size="xl" />`}
         props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Spinner"

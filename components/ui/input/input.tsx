@@ -55,6 +55,7 @@ export interface InputProps
   customMaskPattern?: string;
   debouncedOnChange?: (value: string) => void;
   debounceTimeout?: number;
+  isRequired?: boolean;
 }
 
 const inputVariants = cva(
@@ -181,6 +182,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       customMaskPattern,
       debouncedOnChange,
       debounceTimeout = 300,
+      isRequired = false,
       disabled,
       id,
       type,
@@ -299,6 +301,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
       >
         {label}
+        {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
       </label>
     );
 

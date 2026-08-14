@@ -137,6 +137,7 @@ export default function FilterBuilderPage() {
       />
 
       <DocsComponent
+        props={["fields: any", "filter: any", "setFilter: any"]}
         title="Multiple Rules"
         description="Filter builder with multiple conditions and a toggleable AND/OR conjunction."
         preview={<MultipleRulesDemo />}

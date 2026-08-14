@@ -8,7 +8,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { DatePicker } from "@/components/ui/datePicker/datePicker";
 import { datePickerCode } from "@/components/ui/datePicker/datePicker.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function DatePickerComponentPage() {
   const today = new Date();
@@ -57,6 +56,9 @@ export default function DatePickerComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'filled' | 'glow' | 'glassmorphism' | 'gradient-border' | 'underlined'",
+        ]}
         title="Variants"
         description="Defines the visual appearance of the Date Picker trigger using the 'variant' prop."
         preview={
@@ -245,8 +247,6 @@ export default function DatePickerComponentPage() {
 />`}
         props={["showPresets: boolean", "customPresets: DatePickerPreset[]"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — DatePicker"

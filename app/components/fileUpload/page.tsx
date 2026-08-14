@@ -8,7 +8,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { FileUpload } from "@/components/ui/fileUpload/fileUpload";
 import { fileUploadCode } from "@/components/ui/fileUpload/fileUpload.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function FileUploadComponentPage() {
   return (
@@ -267,8 +266,6 @@ export default function FileUploadComponentPage() {
 />`}
         props={["validationRules: FileValidationRules"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — FileUpload"

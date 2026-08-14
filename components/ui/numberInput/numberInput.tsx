@@ -36,6 +36,7 @@ export interface NumberInputProps {
   locale?: string;
   precision?: number;
   allowMouseWheel?: boolean;
+  isRequired?: boolean;
   className?: string;
 }
 
@@ -87,7 +88,8 @@ export function NumberInput({
   currency = "USD",
   locale = "en-US",
   precision,
-  allowMouseWheel = false,
+  allowMouseWheel = true,
+  isRequired = false,
   className,
 }: NumberInputProps) {
   const [internalVal, setInternalVal] = React.useState<number>(
@@ -253,6 +255,7 @@ export function NumberInput({
       {label && (
         <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
           {label}
+          {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
         </label>
       )}
 

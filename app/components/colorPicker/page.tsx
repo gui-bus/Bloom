@@ -93,6 +93,13 @@ export default function ColorPickerComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "ec4899: any",
+          "showWheel: any",
+          "showFormatSwitcher: any",
+          "defaultFormat: any",
+          "rgb: any",
+        ]}
         title="Full Featured (Wheel + Format Switcher)"
         description="Complete color picker experience combining the interactive color wheel with format switching and copy functionality."
         preview={

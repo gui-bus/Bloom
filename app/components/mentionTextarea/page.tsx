@@ -102,6 +102,27 @@ const [value, setValue] = useState("");
       />
 
       <DocsComponent
+        title="Required State"
+        description="Displays an asterisk next to the label indicating that the textarea is mandatory."
+        preview={
+          <div className="w-full max-w-lg">
+            <MentionTextarea
+              isRequired
+              label="Required Message"
+              placeholder="Please enter your comment..."
+              items={TEAM_MEMBERS}
+            />
+          </div>
+        }
+        code={`<MentionTextarea
+  isRequired
+  label="Required Message"
+  items={TEAM_MEMBERS}
+/>`}
+        props={["isRequired: boolean"]}
+      />
+
+      <DocsComponent
         title="Hashtag Triggers (#)"
         description="Configure any trigger string like '#' to autocomplete tags or topics."
         props={["trigger: string", "items: MentionItem[]"]}

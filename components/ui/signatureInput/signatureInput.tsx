@@ -19,6 +19,8 @@ export interface SignatureInputProps {
   onClear?: () => void;
   placeholder?: string;
   isDisabled?: boolean;
+  label?: React.ReactNode;
+  isRequired?: boolean;
 }
 
 interface Point {
@@ -44,6 +46,8 @@ export const SignatureInput = React.forwardRef<
       onClear,
       placeholder = "Sign here...",
       isDisabled = false,
+      label,
+      isRequired = false,
     },
     ref,
   ) => {
@@ -199,7 +203,13 @@ export const SignatureInput = React.forwardRef<
     }, [backgroundColor]);
 
     return (
-      <div className={cn("flex flex-col gap-2 w-full", className)}>
+      <div className={cn("flex flex-col gap-1.5 w-full", className)}>
+        {label && (
+          <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
+            {label}
+            {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
+          </label>
+        )}
         <div
           className={cn(
             "relative border overflow-hidden flex flex-col group text-zinc-900 dark:text-zinc-100",

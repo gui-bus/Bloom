@@ -7,7 +7,6 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { Separator } from "@/components/ui/separator/separator";
 import { Slider } from "@/components/ui/slider/slider";
 import { sliderCode } from "@/components/ui/slider/slider.code";
 
@@ -219,8 +218,6 @@ const sampleHistogram = [5, 12, 28, 45, 80, 95, 60, 40, 25, 15, 8, 3];
 />`}
         props={["marks: SliderMark[]"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Slider"

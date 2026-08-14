@@ -18,7 +18,6 @@ import {
   CardTitle,
 } from "@/components/ui/card/card";
 import { cardCode } from "@/components/ui/card/card.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function CardComponentPage() {
   return (
@@ -414,8 +413,6 @@ export default function CardComponentPage() {
 </Card>`}
         props={["backgroundIcon: string"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Card"

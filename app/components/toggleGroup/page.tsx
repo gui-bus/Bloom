@@ -8,7 +8,6 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { Separator } from "@/components/ui/separator/separator";
 import {
   ToggleGroup,
   ToggleGroupItem,
@@ -74,6 +73,48 @@ export default function ToggleGroupComponentPage() {
       />
 
       <DocsComponent
+        title="Sizes"
+        description="Scale toggle group button dimensions: 'sm', 'md', or 'lg'."
+        preview={
+          <div className="flex flex-col gap-4 items-start">
+            <div>
+              <p className="text-xs font-semibold text-zinc-500 mb-2">
+                Small Size (sm)
+              </p>
+              <ToggleGroup type="single" size="sm" defaultValue="grid">
+                <ToggleGroupItem value="grid">Grid View</ToggleGroupItem>
+                <ToggleGroupItem value="list">List View</ToggleGroupItem>
+              </ToggleGroup>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold text-zinc-500 mb-2">
+                Medium Size (md)
+              </p>
+              <ToggleGroup type="single" size="md" defaultValue="grid">
+                <ToggleGroupItem value="grid">Grid View</ToggleGroupItem>
+                <ToggleGroupItem value="list">List View</ToggleGroupItem>
+              </ToggleGroup>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold text-zinc-500 mb-2">
+                Large Size (lg)
+              </p>
+              <ToggleGroup type="single" size="lg" defaultValue="grid">
+                <ToggleGroupItem value="grid">Grid View</ToggleGroupItem>
+                <ToggleGroupItem value="list">List View</ToggleGroupItem>
+              </ToggleGroup>
+            </div>
+          </div>
+        }
+        code={`<ToggleGroup type="single" size="sm" defaultValue="grid">...</ToggleGroup>
+<ToggleGroup type="single" size="md" defaultValue="grid">...</ToggleGroup>
+<ToggleGroup type="single" size="lg" defaultValue="grid">...</ToggleGroup>`}
+        props={["size: 'sm' | 'md' | 'lg'"]}
+      />
+
+      <DocsComponent
         title="Variants (Default, Outline, Flat)"
         description="Visual button style variants: 'default', 'outline', or 'flat'."
         preview={
@@ -119,48 +160,6 @@ export default function ToggleGroupComponentPage() {
       />
 
       <DocsComponent
-        title="Sizes"
-        description="Scale toggle group button dimensions: 'sm', 'md', or 'lg'."
-        preview={
-          <div className="flex flex-col gap-4 items-start">
-            <div>
-              <p className="text-xs font-semibold text-zinc-500 mb-2">
-                Small Size (sm)
-              </p>
-              <ToggleGroup type="single" size="sm" defaultValue="grid">
-                <ToggleGroupItem value="grid">Grid View</ToggleGroupItem>
-                <ToggleGroupItem value="list">List View</ToggleGroupItem>
-              </ToggleGroup>
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold text-zinc-500 mb-2">
-                Medium Size (md)
-              </p>
-              <ToggleGroup type="single" size="md" defaultValue="grid">
-                <ToggleGroupItem value="grid">Grid View</ToggleGroupItem>
-                <ToggleGroupItem value="list">List View</ToggleGroupItem>
-              </ToggleGroup>
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold text-zinc-500 mb-2">
-                Large Size (lg)
-              </p>
-              <ToggleGroup type="single" size="lg" defaultValue="grid">
-                <ToggleGroupItem value="grid">Grid View</ToggleGroupItem>
-                <ToggleGroupItem value="list">List View</ToggleGroupItem>
-              </ToggleGroup>
-            </div>
-          </div>
-        }
-        code={`<ToggleGroup type="single" size="sm" defaultValue="grid">...</ToggleGroup>
-<ToggleGroup type="single" size="md" defaultValue="grid">...</ToggleGroup>
-<ToggleGroup type="single" size="lg" defaultValue="grid">...</ToggleGroup>`}
-        props={["size: 'sm' | 'md' | 'lg'"]}
-      />
-
-      <DocsComponent
         title="Multiple Selection Mode"
         description="Allow users to select multiple active toggle items simultaneously."
         preview={
@@ -194,8 +193,6 @@ export default function ToggleGroupComponentPage() {
 </ToggleGroup>`}
         props={["type: 'single' | 'multiple'"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — ToggleGroup"

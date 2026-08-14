@@ -8,7 +8,6 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { Separator } from "@/components/ui/separator/separator";
 import {
   Tabs,
   TabsContent,
@@ -193,53 +192,49 @@ export default function TabsComponentPage() {
       />
 
       <DocsComponent
-        title="Sizes"
-        description="Choose from 5 step sizes to match your layout density."
+        title="Variants"
+        description="Choose from 8 visual styles matching the Input component variants."
         preview={
-          <div className="w-full space-y-4">
-            {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
-              <div key={size}>
+          <div className="w-full space-y-5">
+            {[
+              { label: "Default", variant: "default" },
+              { label: "Contained", variant: "contained" },
+              { label: "Flat", variant: "flat" },
+              { label: "Filled", variant: "filled" },
+              { label: "Bordered", variant: "bordered" },
+              {
+                label: "Underlined",
+                variant: "underlined",
+                listBackground: false,
+              },
+              { label: "Glow", variant: "glow" },
+              { label: "Glassmorphism", variant: "glassmorphism" },
+              { label: "Gradient Border", variant: "gradient-border" },
+            ].map(({ label, variant, listBackground = true }) => (
+              <div key={variant}>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-2">
-                  {size}
+                  {label}
                 </span>
-                <Tabs defaultValue="a">
-                  <TabsList>
-                    <TabsTrigger
-                      value="a"
-                      variant="contained"
-                      color="primary"
-                      size={size}
-                    >
-                      Overview
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="b"
-                      variant="contained"
-                      color="primary"
-                      size={size}
-                    >
-                      Analytics
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="c"
-                      variant="contained"
-                      color="primary"
-                      size={size}
-                    >
-                      Reports
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
+                <TabsPreview
+                  variant={variant}
+                  listBackground={listBackground}
+                />
               </div>
             ))}
           </div>
         }
-        code={`<TabsTrigger size="xs">...</TabsTrigger>
-<TabsTrigger size="sm">...</TabsTrigger>
-<TabsTrigger size="md">...</TabsTrigger>
-<TabsTrigger size="lg">...</TabsTrigger>
-<TabsTrigger size="xl">...</TabsTrigger>`}
-        props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl'"]}
+        code={`<TabsTrigger variant="default">...</TabsTrigger>
+<TabsTrigger variant="contained">...</TabsTrigger>
+<TabsTrigger variant="flat">...</TabsTrigger>
+<TabsTrigger variant="filled">...</TabsTrigger>
+<TabsTrigger variant="bordered">...</TabsTrigger>
+<TabsTrigger variant="underlined">...</TabsTrigger>
+<TabsTrigger variant="glow">...</TabsTrigger>
+<TabsTrigger variant="glassmorphism">...</TabsTrigger>
+<TabsTrigger variant="gradient-border">...</TabsTrigger>`}
+        props={[
+          "variant: 'default' | 'contained' | 'flat' | 'filled' | 'bordered' | 'underlined' | 'glow' | 'glassmorphism' | 'gradient-border'",
+        ]}
       />
 
       <DocsComponent
@@ -287,49 +282,53 @@ export default function TabsComponentPage() {
       />
 
       <DocsComponent
-        title="Variants"
-        description="Choose from 8 visual styles matching the Input component variants."
+        title="Sizes"
+        description="Choose from 5 step sizes to match your layout density."
         preview={
-          <div className="w-full space-y-5">
-            {[
-              { label: "Default", variant: "default" },
-              { label: "Contained", variant: "contained" },
-              { label: "Flat", variant: "flat" },
-              { label: "Filled", variant: "filled" },
-              { label: "Bordered", variant: "bordered" },
-              {
-                label: "Underlined",
-                variant: "underlined",
-                listBackground: false,
-              },
-              { label: "Glow", variant: "glow" },
-              { label: "Glassmorphism", variant: "glassmorphism" },
-              { label: "Gradient Border", variant: "gradient-border" },
-            ].map(({ label, variant, listBackground = true }) => (
-              <div key={variant}>
+          <div className="w-full space-y-4">
+            {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+              <div key={size}>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-2">
-                  {label}
+                  {size}
                 </span>
-                <TabsPreview
-                  variant={variant}
-                  listBackground={listBackground}
-                />
+                <Tabs defaultValue="a">
+                  <TabsList>
+                    <TabsTrigger
+                      value="a"
+                      variant="contained"
+                      color="primary"
+                      size={size}
+                    >
+                      Overview
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="b"
+                      variant="contained"
+                      color="primary"
+                      size={size}
+                    >
+                      Analytics
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="c"
+                      variant="contained"
+                      color="primary"
+                      size={size}
+                    >
+                      Reports
+                    </TabsTrigger>
+                  </TabsList>
+                </Tabs>
               </div>
             ))}
           </div>
         }
-        code={`<TabsTrigger variant="default">...</TabsTrigger>
-<TabsTrigger variant="contained">...</TabsTrigger>
-<TabsTrigger variant="flat">...</TabsTrigger>
-<TabsTrigger variant="filled">...</TabsTrigger>
-<TabsTrigger variant="bordered">...</TabsTrigger>
-<TabsTrigger variant="underlined">...</TabsTrigger>
-<TabsTrigger variant="glow">...</TabsTrigger>
-<TabsTrigger variant="glassmorphism">...</TabsTrigger>
-<TabsTrigger variant="gradient-border">...</TabsTrigger>`}
-        props={[
-          "variant: 'default' | 'contained' | 'flat' | 'filled' | 'bordered' | 'underlined' | 'glow' | 'glassmorphism' | 'gradient-border'",
-        ]}
+        code={`<TabsTrigger size="xs">...</TabsTrigger>
+<TabsTrigger size="sm">...</TabsTrigger>
+<TabsTrigger size="md">...</TabsTrigger>
+<TabsTrigger size="lg">...</TabsTrigger>
+<TabsTrigger size="xl">...</TabsTrigger>`}
+        props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl'"]}
       />
 
       <DocsComponent
@@ -527,8 +526,6 @@ export default function TabsComponentPage() {
 </TabsList>`}
         props={["isScrollable: boolean"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Tabs & TabsTrigger"

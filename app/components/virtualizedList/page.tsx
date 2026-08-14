@@ -92,6 +92,31 @@ export default function VirtualizedListPage() {
       />
 
       <DocsComponent
+        props={[
+          "items: any",
+          "users: any",
+          "itemHeight: any",
+          "height: any",
+          "renderItem: any",
+          "item: any",
+          "flex: any",
+          "items-center: any",
+          "gap-3: any",
+          "px-4: any",
+          "h-full: any",
+          "border-b: any",
+          "flex-1: any",
+          "min-w-0: any",
+          "text-sm: any",
+          "font-medium: any",
+          "truncate: any",
+          "text-xs: any",
+          "text-zinc-400: any",
+          "color: any",
+          "role: any",
+          "danger: any",
+          "default: any",
+        ]}
         title="Custom Render"
         description="Use the renderItem prop to display complex row layouts with icons, badges, and metadata."
         preview={

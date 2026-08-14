@@ -27,6 +27,7 @@ export interface CheckboxProps
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
   checkboxPosition?: "start" | "end";
+  isRequired?: boolean;
 }
 
 export interface UseCheckboxGroupOptions<T extends string> {
@@ -82,6 +83,7 @@ export interface CheckboxGroupProps {
   description?: React.ReactNode;
   isInvalid?: boolean;
   isDisabled?: boolean;
+  isRequired?: boolean;
   className?: string;
 }
 
@@ -122,6 +124,7 @@ const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps>(
       description,
       isInvalid = false,
       isDisabled = false,
+      isRequired = false,
       className,
     },
     ref,
@@ -168,6 +171,9 @@ const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps>(
                   )}
                 >
                   {label}
+                  {isRequired && (
+                    <span className="text-rose-500 ml-0.5">*</span>
+                  )}
                 </label>
               )}
               {description && (
@@ -215,6 +221,7 @@ const Checkbox = React.forwardRef<
       startContent,
       endContent,
       checkboxPosition = "start",
+      isRequired = false,
       id,
       disabled,
       value: itemValue,
@@ -319,6 +326,9 @@ const Checkbox = React.forwardRef<
                   )}
                 >
                   {label}
+                  {isRequired && (
+                    <span className="text-rose-500 ml-0.5">*</span>
+                  )}
                 </label>
               )}
             </div>

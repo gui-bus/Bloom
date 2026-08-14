@@ -102,6 +102,7 @@ export interface ColorPickerProps {
   showWheel?: boolean;
   showFormatSwitcher?: boolean;
   defaultFormat?: ColorFormat;
+  isRequired?: boolean;
 }
 
 function ColorWheel({
@@ -236,6 +237,7 @@ export function ColorPicker({
   showWheel = false,
   showFormatSwitcher = true,
   defaultFormat = "hex",
+  isRequired = false,
 }: ColorPickerProps) {
   const [color, setColor] = React.useState<string>(
     value !== undefined ? value : defaultValue,
@@ -326,6 +328,7 @@ export function ColorPicker({
       {label && (
         <label className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 select-none">
           {label}
+          {isRequired && <span className="text-rose-500 ml-0.5">*</span>}
         </label>
       )}
 

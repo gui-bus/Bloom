@@ -9,7 +9,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { CircularProgress } from "@/components/ui/circularProgress/circularProgress";
 import { circularProgressCode } from "@/components/ui/circularProgress/circularProgress.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 function RealTimeCircularDemo() {
   const [value, setValue] = React.useState(0);
@@ -152,6 +151,7 @@ export default function CircularProgressComponentPage() {
       />
 
       <DocsComponent
+        props={["showValueLabel: any"]}
         title="Real-Time Simulated Progress"
         description="Radial circular progress bar dynamically moving from 0 to 100."
         preview={<RealTimeCircularDemo />}
@@ -168,8 +168,6 @@ export default function CircularProgressComponentPage() {
   return <CircularProgress value={value} showValueLabel label="Syncing..." />;
 }`}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — CircularProgress"

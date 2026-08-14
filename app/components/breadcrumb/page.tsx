@@ -23,7 +23,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdownMenu/dropdownMenu";
-import { Separator } from "@/components/ui/separator/separator";
 
 function BreadcrumbDemo({
   variant,
@@ -238,6 +237,7 @@ export default function BreadcrumbDocsPage() {
       />
 
       <DocsComponent
+        props={["href: any", "asChild: any", "align: any", "start: any"]}
         title="Collapsed Items with Dropdown Menu"
         description="Clicking the BreadcrumbEllipsis trigger opens a DropdownMenu containing hidden route items without shifting page layout."
         preview={
@@ -356,8 +356,6 @@ export default function BreadcrumbDocsPage() {
 </Breadcrumb>`}
         props={["maxItems: number"]}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Breadcrumb"

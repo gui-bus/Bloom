@@ -9,7 +9,6 @@ import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { NumberInput } from "@/components/ui/numberInput/numberInput";
 import { numberInputCode } from "@/components/ui/numberInput/numberInput.code";
-import { Separator } from "@/components/ui/separator/separator";
 
 export default function NumberInputComponentPage() {
   const [val, setVal] = React.useState(2500);
@@ -60,6 +59,9 @@ export default function NumberInputComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "variant: 'default' | 'bordered' | 'flat' | 'filled' | 'glow' | 'glassmorphism' | 'gradient-border' | 'underlined'",
+        ]}
         title="Variants"
         description="Defines the visual appearance of the number input using the 'variant' prop."
         preview={
@@ -213,6 +215,14 @@ export default function NumberInputComponentPage() {
       />
 
       <DocsComponent
+        props={[
+          "val: any",
+          "min: any",
+          "max: any",
+          "step: any",
+          "onValueChange: any",
+          "setVal: any",
+        ]}
         title="Controlled State & Limits"
         description="Controlled number value bound to state with min/max constraints."
         preview={
@@ -234,8 +244,6 @@ export default function NumberInputComponentPage() {
 
 <NumberInput label="Budget Limit" value={val} min={0} max={10000} step={500} onValueChange={setVal} />`}
       />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — NumberInput"

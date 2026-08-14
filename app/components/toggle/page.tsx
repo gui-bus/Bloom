@@ -8,7 +8,6 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
-import { Separator } from "@/components/ui/separator/separator";
 import { Toggle } from "@/components/ui/toggle/toggle";
 import { toggleCode } from "@/components/ui/toggle/toggle.code";
 
@@ -59,6 +58,28 @@ export default function ToggleComponentPage() {
       />
 
       <DocsComponent
+        title="Sizes"
+        description="Scale toggle dimensions: 'sm', 'md', or 'lg'."
+        preview={
+          <div className="flex flex-wrap items-center gap-4">
+            <Toggle size="sm" variant="outline" defaultPressed>
+              Small
+            </Toggle>
+            <Toggle size="md" variant="outline" defaultPressed>
+              Medium
+            </Toggle>
+            <Toggle size="lg" variant="outline" defaultPressed>
+              Large
+            </Toggle>
+          </div>
+        }
+        code={`<Toggle size="sm">Small</Toggle>
+<Toggle size="md">Medium</Toggle>
+<Toggle size="lg">Large</Toggle>`}
+        props={["size: 'sm' | 'md' | 'lg'"]}
+      />
+
+      <DocsComponent
         title="Variants (Default, Outline, Flat)"
         description="Visual style options: 'default', 'outline', or 'flat'."
         preview={
@@ -82,30 +103,6 @@ export default function ToggleComponentPage() {
 <Toggle variant="flat" defaultPressed>Flat</Toggle>`}
         props={["variant: 'default' | 'outline' | 'flat'"]}
       />
-
-      <DocsComponent
-        title="Sizes"
-        description="Scale toggle dimensions: 'sm', 'md', or 'lg'."
-        preview={
-          <div className="flex flex-wrap items-center gap-4">
-            <Toggle size="sm" variant="outline" defaultPressed>
-              Small
-            </Toggle>
-            <Toggle size="md" variant="outline" defaultPressed>
-              Medium
-            </Toggle>
-            <Toggle size="lg" variant="outline" defaultPressed>
-              Large
-            </Toggle>
-          </div>
-        }
-        code={`<Toggle size="sm">Small</Toggle>
-<Toggle size="md">Medium</Toggle>
-<Toggle size="lg">Large</Toggle>`}
-        props={["size: 'sm' | 'md' | 'lg'"]}
-      />
-
-      <Separator label={<span className="px-2">API Reference</span>} gradient />
 
       <DocsComponent
         title="Props — Toggle"
