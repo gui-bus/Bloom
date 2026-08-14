@@ -24,7 +24,7 @@ describe("Toast Component", () => {
     expect(container).toBeInTheDocument();
   });
 
-  it("triggers custom toasts and renders content correctly", () => {
+  it("triggers custom toasts and renders content correctly", async () => {
     render(<Toast />);
 
     // Trigger toast
@@ -34,21 +34,21 @@ describe("Toast Component", () => {
       size: "lg",
     });
 
-    // Check custom element rendered
-    expect(screen.getByText("Welcome aboard")).toBeInTheDocument();
+    // Check custom element rendered using async findByText
+    expect(await screen.findByText("Welcome aboard")).toBeInTheDocument();
     expect(
-      screen.getByText("Setup completed successfully."),
+      await screen.findByText("Setup completed successfully."),
     ).toBeInTheDocument();
   });
 
-  it("applies richColors correctly", () => {
+  it("applies richColors correctly", async () => {
     render(<Toast />);
 
     toast.success("Transaction Confirmed", {
       richColors: true,
     });
 
-    const titleElement = screen.getByText("Transaction Confirmed");
+    const titleElement = await screen.findByText("Transaction Confirmed");
     const container = titleElement.closest("div.relative");
     // Should have solid color background class matching designColors Success token bg
     expect(container).toHaveClass("bg-success");
