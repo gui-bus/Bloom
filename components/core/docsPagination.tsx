@@ -49,6 +49,7 @@ export const componentsNavigationList: DocNavItem[] = [
   { href: "/components/fileInput", label: "File Input" },
   { href: "/components/form", label: "Form" },
   { href: "/components/formField", label: "Form Field" },
+  { href: "/components/gauge", label: "Gauge" },
   { href: "/components/hoverCard", label: "Hover Card" },
   { href: "/components/image", label: "Image" },
   { href: "/components/input", label: "Input" },

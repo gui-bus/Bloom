@@ -238,6 +238,10 @@
     "dependencies": []
   },
   {
+    "name": "gauge",
+    "dependencies": []
+  },
+  {
     "name": "heatmapGrid",
     "dependencies": []
   },

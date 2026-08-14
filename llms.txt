@@ -69,6 +69,7 @@ Here is the list of all available Bloom components:
 - **form**: React-hook-form schema wrapper for structuring form submission validation. Import via `@/components/ui/form/form`.
 - **formField**: Form context controller tracking errors and values for individual inputs. Import via `@/components/ui/formField/formField`.
 - **ganttChart**: Visual project manager timeline for tasks, durations, and scheduling. Import via `@/components/ui/ganttChart/ganttChart`.
+- **gauge**: Speedometer or thermometer circular gauge showing metrics with ticks and dashes. Import via `@/components/ui/gauge/gauge`.
 - **heatmapGrid**: Calendar activity grid plotting density/values using shades (e.g. GitHub contributions). Import via `@/components/ui/heatmapGrid/heatmapGrid`.
 - **hoverCard**: Preview popup card appearing instantly on mouse hover. Import via `@/components/ui/hoverCard/hoverCard`.
 - **image**: Image component supporting lazy loading, zoom, blur placeholders, and loading states. Import via `@/components/ui/image/image`.

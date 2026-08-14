@@ -217,6 +217,7 @@ graph TB
 | **Event Calendar** | Layout & Exibição | Calendário de eventos interativo com modos mês/semana/dia e criação de eventos por clique. |
 | **File Explorer** | Layout & Exibição | Explorador de arquivos em árvore com expand/collapse, rename, delete, add e busca. |
 | **Gantt Chart** | Layout & Exibição | Gráfico de Gantt visual com tarefas, marcos, durações, dependências e agrupamentos. |
+| **Gauge** | Layout & Exibição | Indicador de medição estilo velocímetro/termômetro com suporte a subdivisões (ticks) e estilo de barras LED (dashes). |
 | **Heatmap Grid** | Layout & Exibição | Grade de heatmap para visualização de atividades ao longo do tempo, similar ao GitHub Contributions. |
 | **Image** | Layout & Exibição | Imagem responsiva com fallbacks de carregamento e efeitos visuais. |
 | **JSON Tree Viewer** | Layout & Exibição | Visualizador de objetos JSON em árvore colapsável com destaque por tipo de valor e cópia de chaves. |
