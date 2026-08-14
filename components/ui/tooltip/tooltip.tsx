@@ -107,7 +107,6 @@ const tooltipContentVariants = cva(
       },
     },
     compoundVariants: [
-
       {
         variant: "default",
         color: "default",
@@ -258,7 +257,6 @@ const TooltipContent = React.forwardRef<
     },
     ref,
   ) => {
-
     const arrowFillClass = React.useMemo(() => {
       if (variant === "flat") {
         switch (color) {

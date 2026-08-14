@@ -215,7 +215,6 @@ const createCustomToast = (
           radiusClass,
         )}
       >
-
         {options?.showBgIcon && style.icon && (
           <Icon
             icon={style.icon}

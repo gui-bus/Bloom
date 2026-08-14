@@ -30,11 +30,11 @@ export interface GaugeProps extends React.HTMLAttributes<HTMLDivElement> {
   showTicks?: boolean;
   showTickLabels?: boolean;
   showGradient?: boolean;
-  gradientColors?: string[]; 
+  gradientColors?: string[];
   numTicks?: number;
   numDashes?: number;
-  tickStep?: number; 
-  tickValues?: number[]; 
+  tickStep?: number;
+  tickValues?: number[];
 }
 
 const sizeMap = {
@@ -124,7 +124,7 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
       showTicks = false,
       showTickLabels = false,
       showGradient = false,
-      gradientColors = ["#10b981", "#f59e0b", "#ef4444"], 
+      gradientColors = ["#10b981", "#f59e0b", "#ef4444"],
       numTicks = 9,
       numDashes = 25,
       tickStep,
@@ -250,7 +250,6 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
         let dashStyle = {};
 
         if (active && showGradient && gradientColors.length > 0) {
-
           const ratio = i / (numDashes - 1);
           const colorVal = getMultiGradientColor(gradientColors, ratio);
           dashStyle = { stroke: colorVal };
@@ -299,7 +298,6 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
               isSemicircle && "absolute top-0",
             )}
           >
-
             {showGradient &&
               variant === "solid" &&
               gradientColors.length > 0 && (
@@ -334,7 +332,6 @@ export const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
                   svgRotation,
                 )}
               >
-
                 <circle
                   cx={cx}
                   cy={cy}

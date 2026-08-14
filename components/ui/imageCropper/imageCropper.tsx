@@ -187,7 +187,6 @@ export const ImageCropper = React.forwardRef<
       }
 
       if (isCustomSize) {
-
         const scaleFactor = (width ?? 0) / cropBoxWidth;
         ctx.translate(
           canvas.width / 2 + position.x * scaleFactor,

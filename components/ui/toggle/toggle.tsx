@@ -33,7 +33,6 @@ const toggleVariants = cva(
       },
     },
     compoundVariants: [
-
       {
         variant: "default",
         color: "default",

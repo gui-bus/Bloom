@@ -315,7 +315,6 @@ export const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
 
     return (
       <div ref={ref} className={containerStyle} {...props}>
-
         {!isLast && <div className={lineStyle} />}
 
         <div
