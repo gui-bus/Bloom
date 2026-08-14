@@ -34,10 +34,11 @@ export default function ButtonComponentPage() {
 
       <InstallationBlock componentName="button" />
 
-      <Tabs defaultValue="button">
+      <Tabs defaultValue="button" variant="underline">
         <TabsList background={false}>
           <TabsTrigger
             value="button"
+            color="default"
             startContent={<Icon icon="devicon:react" className="size-5" />}
           >
             button.tsx
@@ -45,6 +46,7 @@ export default function ButtonComponentPage() {
 
           <TabsTrigger
             value="rippleC"
+            color="default"
             startContent={<Icon icon="devicon:react" className="size-5" />}
           >
             ripple.tsx
@@ -52,6 +54,7 @@ export default function ButtonComponentPage() {
 
           <TabsTrigger
             value="globals"
+            color="default"
             startContent={<Icon icon="skill-icons:css" className="size-5" />}
           >
             globals.css
@@ -59,6 +62,7 @@ export default function ButtonComponentPage() {
 
           <TabsTrigger
             value="rippleH"
+            color="default"
             startContent={
               <Icon icon="skill-icons:typescript" className="size-5" />
             }
