@@ -13,13 +13,14 @@ import { Separator } from "@/components/ui/separator/separator";
 
 export default function RatingComponentPage() {
   const [val1, setVal1] = React.useState(3.5);
+  const [val2, setVal2] = React.useState(4.5);
   const [emojiVal, setEmojiVal] = React.useState(4);
 
   return (
     <div className="space-y-8">
       <DocsTitle
         title="Rating"
-        description="Interactive rating component supporting half-star precision (allowHalf), custom icons (e.g. hearts), dynamic emojis, and score tooltips."
+        description="Interactive rating component supporting precise scoring, multiple visual variants, and dynamic emojis feedback."
       />
 
       <ImportSnippet
@@ -36,7 +37,7 @@ export default function RatingComponentPage() {
       />
 
       <DocsComponent
-        title="Default Star Rating"
+        title="Default"
         description="Standard 5-star rating control with tooltip score."
         preview={
           <div className="max-w-xs w-full">
@@ -47,53 +48,79 @@ export default function RatingComponentPage() {
       />
 
       <DocsComponent
-        title="Half Star Precision (allowHalf)"
-        description="Enable 0.5 step star rating selection using the 'allowHalf' prop."
+        title="Sizes"
+        description="Choose from small, medium, or large rating item dimensions."
         preview={
-          <div className="flex flex-col gap-2 max-w-xs w-full">
-            <Rating
-              allowHalf
-              showTooltip
-              value={val1}
-              onValueChange={setVal1}
-              label="Customer Rating (Half Stars Enabled)"
-            />
-            <span className="text-xs font-mono text-muted-foreground">
-              Current Score: {val1} / 5.0
-            </span>
+          <div className="flex flex-col gap-4 max-w-xs w-full">
+            <Rating size="sm" defaultValue={4} label="Small (sm)" />
+            <Rating size="md" defaultValue={4} label="Medium (md)" />
+            <Rating size="lg" defaultValue={4} label="Large (lg)" />
           </div>
         }
-        code={`const [val, setVal] = React.useState(3.5);
-
-<Rating allowHalf showTooltip value={val} onValueChange={setVal} label="Half Stars Enabled" />`}
-        props={["allowHalf: boolean"]}
+        code={`<Rating size="sm" defaultValue={4} />
+<Rating size="md" defaultValue={4} />
+<Rating size="lg" defaultValue={4} />`}
+        props={["size: 'sm' | 'md' | 'lg'"]}
       />
 
       <DocsComponent
-        title="Custom Icons (Hearts)"
-        description="Pass custom icons like hearts ('hugeicons:favourite') and color themes ('danger')."
+        title="Variants"
+        description="Choose between star and heart shape outlines for different score rating types."
         preview={
-          <div className="flex flex-col gap-4 max-w-xs w-full">
-            <Rating
-              icon="hugeicons:favourite"
-              color="danger"
-              size="lg"
-              defaultValue={4}
-              label="Favorite Level (Hearts)"
-            />
+          <div className="flex flex-col gap-5 max-w-xs w-full">
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Default (Star)
+              </span>
+              <Rating variant="default" defaultValue={3} showTooltip />
+            </div>
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Heart
+              </span>
+              <Rating variant="heart" defaultValue={4} showTooltip />
+            </div>
           </div>
         }
-        code={`<Rating
-  icon="hugeicons:favourite"
-  color="danger"
-  size="lg"
-  defaultValue={4}
-  label="Favorite Level"
-/>`}
-        props={[
-          "icon: string (e.g. 'hugeicons:favourite')",
-          "color: 'danger' | 'warning' | ...",
-        ]}
+        code={`<Rating variant="default" defaultValue={3} />
+<Rating variant="heart" defaultValue={4} />`}
+        props={["variant: 'default' | 'heart'"]}
+      />
+
+      <DocsComponent
+        title="Half"
+        description="Enable half-step rating selection using the 'allowHalf' prop on both variants."
+        preview={
+          <div className="flex flex-col gap-5 max-w-xs w-full">
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Default (Star)
+              </span>
+              <Rating
+                variant="default"
+                allowHalf
+                value={val1}
+                onValueChange={setVal1}
+                showTooltip
+              />
+            </div>
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Heart
+              </span>
+              <Rating
+                variant="heart"
+                allowHalf
+                value={val2}
+                onValueChange={setVal2}
+                showTooltip
+              />
+            </div>
+          </div>
+        }
+        code={`<Rating variant="default" allowHalf value={val1} onValueChange={setVal1} />
+<Rating variant="heart" allowHalf value={val2} onValueChange={setVal2} />`}
+        props={["allowHalf: boolean"]}
       />
 
       <DocsComponent
@@ -131,58 +158,59 @@ export default function RatingComponentPage() {
         title="Props — Rating"
         description="Supported properties for the Rating component."
         preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
+          <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
+            <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Prop
                   </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Type
                   </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Default
                   </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
+                  <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
                     Description
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
+              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                    variant
+                  </td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    'default' | 'heart'
+                  </td>
+                  <td className="px-4 py-3 text-zinc-400">'default'</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Visual layout shapes pattern (star or heart).
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
                     allowHalf
                   </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
                     boolean
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">false</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Enables 0.5 half-star selection and hovering.
+                  <td className="px-4 py-3 text-zinc-400">false</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Allows selecting decimal half scores.
                   </td>
                 </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">icon</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    string
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                    emojiMap
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    'hugeicons:star'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Iconify icon identifier (e.g. 'hugeicons:favourite' for
-                    hearts).
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">emojiMap</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
                     Record&lt;number, string&gt;
                   </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Map of rating scores to dynamic emoji representations.
+                  <td className="px-4 py-3 text-zinc-400">—</td>
+                  <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                    Custom emojis dictionary key map.
                   </td>
                 </tr>
               </tbody>

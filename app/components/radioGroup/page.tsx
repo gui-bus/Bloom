@@ -14,6 +14,33 @@ import {
 import { radioGroupCode } from "@/components/ui/radioGroup/radioGroup.code";
 import { Separator } from "@/components/ui/separator/separator";
 
+function RadioGroupColorsDemo() {
+  return (
+    <div className="flex flex-wrap gap-x-8 gap-y-4 w-full">
+      <RadioGroup color="primary" defaultValue="1" orientation="horizontal">
+        <RadioGroupItem value="1" label="Option 1" />
+        <RadioGroupItem value="2" label="Option 2" />
+      </RadioGroup>
+      <RadioGroup color="success" defaultValue="1" orientation="horizontal">
+        <RadioGroupItem value="1" label="Option 1" />
+        <RadioGroupItem value="2" label="Option 2" />
+      </RadioGroup>
+      <RadioGroup color="warning" defaultValue="1" orientation="horizontal">
+        <RadioGroupItem value="1" label="Option 1" />
+        <RadioGroupItem value="2" label="Option 2" />
+      </RadioGroup>
+      <RadioGroup color="danger" defaultValue="1" orientation="horizontal">
+        <RadioGroupItem value="1" label="Option 1" />
+        <RadioGroupItem value="2" label="Option 2" />
+      </RadioGroup>
+      <RadioGroup color="default" defaultValue="1" orientation="horizontal">
+        <RadioGroupItem value="1" label="Option 1" />
+        <RadioGroupItem value="2" label="Option 2" />
+      </RadioGroup>
+    </div>
+  );
+}
+
 function RadioGroupVariantsDemo() {
   return (
     <div className="flex flex-col gap-6 w-full max-w-xl">
@@ -143,6 +170,21 @@ export default function RadioGroupComponentPage() {
   <RadioGroupItem value="default" label="Standard Resolution (1080p)" />
   <RadioGroupItem value="high" label="High Definition (4K HDR)" />
 </RadioGroup>`}
+      />
+
+      <DocsComponent
+        title="Colors"
+        description="Choose from primary, success, warning, danger, and default options to color the selection state indicator."
+        preview={<RadioGroupColorsDemo />}
+        code={`<RadioGroup color="primary" defaultValue="1">
+  <RadioGroupItem value="1" label="Primary" />
+</RadioGroup>
+<RadioGroup color="success" defaultValue="1">
+  <RadioGroupItem value="1" label="Success" />
+</RadioGroup>`}
+        props={[
+          "color: 'primary' | 'success' | 'warning' | 'danger' | 'default'",
+        ]}
       />
 
       <DocsComponent

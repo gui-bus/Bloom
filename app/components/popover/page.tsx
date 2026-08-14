@@ -92,7 +92,7 @@ export default function PopoverComponentPage() {
       />
 
       <DocsComponent
-        title="Backdrop Overlays (Blur, Dark, Light)"
+        title="Backdrop Overlays"
         description="Dim or blur the page background behind the popover using the 'backdrop' prop, exactly like Dialog and Drawer."
         preview={
           <div className="flex flex-wrap gap-4">

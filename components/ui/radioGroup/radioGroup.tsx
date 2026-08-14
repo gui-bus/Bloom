@@ -61,7 +61,7 @@ export interface RadioGroupProps
 
 const colorMap = {
   default:
-    "text-zinc-900 dark:text-zinc-100 border-zinc-300 dark:border-zinc-700 data-[state=checked]:border-zinc-900 dark:data-[state=checked]:border-zinc-100",
+    "text-zinc-700 dark:text-zinc-300 border-zinc-300 dark:border-zinc-700 data-[state=checked]:border-zinc-400 dark:data-[state=checked]:border-zinc-500 data-[state=checked]:text-zinc-700 dark:data-[state=checked]:text-zinc-300",
   primary:
     "text-sky-500 border-zinc-300 dark:border-zinc-700 data-[state=checked]:border-sky-500",
   secondary:

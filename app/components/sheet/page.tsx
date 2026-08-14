@@ -94,7 +94,7 @@ export default function SheetComponentPage() {
       />
 
       <DocsComponent
-        title="Side Positions (Left, Right, Top, Bottom)"
+        title="Side Positions"
         description="Change panel slide entry direction using the 'side' prop."
         preview={
           <div className="flex flex-wrap gap-4">
@@ -148,7 +148,7 @@ export default function SheetComponentPage() {
       />
 
       <DocsComponent
-        title="Backdrop Overlays (Blur, Dark, Light)"
+        title="Backdrop Overlays"
         description="Custom backdrop overlay variants matching Drawer exactly: 'blur', 'dark' (80%), 'light', 'transparent', and 'none'."
         preview={
           <div className="flex flex-wrap gap-4">

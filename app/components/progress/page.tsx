@@ -74,15 +74,11 @@ export default function ProgressComponentPage() {
         description="Progress supports alert-aligned colors: primary, success, warning, danger, and default."
         preview={
           <div className="max-w-md w-full space-y-4">
-            <Progress value={45} color="primary" label="Primary (sky-500)" />
-            <Progress
-              value={75}
-              color="success"
-              label="Success (emerald-500)"
-            />
-            <Progress value={60} color="warning" label="Warning (amber-500)" />
-            <Progress value={30} color="danger" label="Danger (rose-500)" />
-            <Progress value={90} color="default" label="Default (neutral)" />
+            <Progress value={45} color="primary" label="Primary" />
+            <Progress value={75} color="success" label="Success" />
+            <Progress value={60} color="warning" label="Warning" />
+            <Progress value={30} color="danger" label="Danger" />
+            <Progress value={90} color="default" label="Default" />
           </div>
         }
         code={`<Progress value={45} color="primary" />
@@ -100,9 +96,9 @@ export default function ProgressComponentPage() {
         description="Control height dimensions using the 'size' prop: 'sm', 'md', or 'lg'."
         preview={
           <div className="max-w-md w-full space-y-4">
-            <Progress value={50} size="sm" label="Small (sm - h-1.5)" />
-            <Progress value={50} size="md" label="Medium (md - h-2.5)" />
-            <Progress value={50} size="lg" label="Large (lg - h-4)" />
+            <Progress value={50} size="sm" label="Small" />
+            <Progress value={50} size="md" label="Medium" />
+            <Progress value={50} size="lg" label="Large" />
           </div>
         }
         code={`<Progress value={50} size="sm" />

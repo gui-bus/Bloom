@@ -35,7 +35,7 @@ const progressSizes = {
 };
 
 const progressColors: Record<ProgressColor, string> = {
-  default: "bg-zinc-950 dark:bg-zinc-50",
+  default: "bg-zinc-300 dark:bg-zinc-700",
   primary: "bg-sky-500 dark:bg-sky-400",
   success: "bg-emerald-500 dark:bg-emerald-400",
   warning: "bg-amber-500 dark:bg-amber-400",

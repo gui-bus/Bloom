@@ -110,19 +110,19 @@ export default function CircularProgressComponentPage() {
               value={50}
               size="sm"
               showValueLabel
-              label="Small (sm)"
+              label="Small"
             />
             <CircularProgress
               value={50}
               size="md"
               showValueLabel
-              label="Medium (md)"
+              label="Medium"
             />
             <CircularProgress
               value={50}
               size="lg"
               showValueLabel
-              label="Large (lg)"
+              label="Large"
             />
           </div>
         }

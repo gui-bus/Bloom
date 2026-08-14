@@ -29,7 +29,7 @@ const circleSizeMap = {
 };
 
 const progressStrokeColors: Record<CircularProgressColor, string> = {
-  default: "stroke-zinc-950 dark:stroke-zinc-50",
+  default: "stroke-zinc-400 dark:stroke-zinc-600",
   primary: "stroke-sky-500 dark:stroke-sky-400",
   success: "stroke-emerald-500 dark:stroke-emerald-400",
   warning: "stroke-amber-500 dark:stroke-amber-400",

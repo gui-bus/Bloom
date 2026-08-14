@@ -31,7 +31,7 @@ export interface SliderProps
 }
 
 const trackColorMap = {
-  default: "bg-zinc-900 dark:bg-zinc-100",
+  default: "bg-zinc-300 dark:bg-zinc-700",
   primary: "bg-sky-500",
   secondary: "bg-purple-500",
   accent: "bg-pink-500",
@@ -41,7 +41,7 @@ const trackColorMap = {
 };
 
 const thumbBorderMap = {
-  default: "border-zinc-900 dark:border-zinc-100 focus-visible:ring-sky-500/20",
+  default: "border-zinc-400 dark:border-zinc-600 focus-visible:ring-sky-500/20",
   primary: "border-sky-500 focus-visible:ring-sky-500/20",
   secondary: "border-purple-500 focus-visible:ring-purple-500/20",
   accent: "border-pink-500 focus-visible:ring-pink-500/20",

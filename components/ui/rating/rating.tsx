@@ -13,6 +13,8 @@ export type RatingColor =
   | "warning"
   | "danger";
 
+export type RatingVariant = "default" | "heart";
+
 export interface RatingProps {
   value?: number;
   defaultValue?: number;
@@ -25,6 +27,7 @@ export interface RatingProps {
   readOnly?: boolean;
   label?: React.ReactNode;
   icon?: string;
+  variant?: RatingVariant;
   emojiMap?: Record<number, string>;
   showTooltip?: boolean;
   className?: string;
@@ -60,12 +63,13 @@ export function Rating({
   max = 5,
   allowHalf = false,
   onValueChange,
-  color = "warning",
+  color,
   size = "md",
   disabled = false,
   readOnly = false,
   label,
-  icon = "hugeicons:star",
+  icon,
+  variant = "default",
   emojiMap,
   showTooltip = false,
   className,
@@ -112,12 +116,10 @@ export function Rating({
     onValueChange?.(selectedVal);
   };
 
-  const activeEmoji = React.useMemo(() => {
-    if (!emojiMap && !DEFAULT_EMOJIS) return null;
-    const map = emojiMap || DEFAULT_EMOJIS;
-    const roundedIndex = Math.ceil(activeVal);
-    return map[roundedIndex] || null;
-  }, [emojiMap, activeVal]);
+  const defaultIcon =
+    variant === "heart" ? "hugeicons:favourite" : "hugeicons:star";
+  const activeIcon = icon || defaultIcon;
+  const activeColor = color || (variant === "heart" ? "danger" : "warning");
 
   return (
     <div className={cn("flex flex-col gap-1.5 select-none", className)}>
@@ -195,7 +197,7 @@ export function Rating({
                 aria-label={`Rate ${starIndex} out of ${max}`}
               >
                 <Icon
-                  icon={icon}
+                  icon={activeIcon}
                   className={cn(
                     sizeMap[size],
                     "text-zinc-300 dark:text-zinc-700 fill-transparent",
@@ -208,8 +210,8 @@ export function Rating({
                     style={{ width: isHalf ? "50%" : "100%" }}
                   >
                     <Icon
-                      icon={icon}
-                      className={cn(sizeMap[size], colorActiveMap[color])}
+                      icon={activeIcon}
+                      className={cn(sizeMap[size], colorActiveMap[activeColor])}
                     />
                   </div>
                 )}
@@ -217,13 +219,9 @@ export function Rating({
             );
           })
         )}
-
-        {emojiMap && activeEmoji && (
-          <span className="ml-2 text-xs font-semibold text-zinc-500 animate-in fade-in-50">
-            {activeEmoji}
-          </span>
-        )}
       </div>
     </div>
   );
 }
+
+Rating.displayName = "Rating";
