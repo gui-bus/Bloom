@@ -17,6 +17,41 @@ import {
 } from "@/components/ui/tabs/tabs";
 import { tabsCode } from "@/components/ui/tabs/tabs.code";
 
+const CONTENT_CLASS =
+  "p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 mt-3";
+
+function TabsPreview({
+  variant,
+  color = "primary",
+  listBackground = true,
+}: {
+  variant: string;
+  color?:
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "danger"
+    | "default";
+  listBackground?: boolean;
+}) {
+  return (
+    <Tabs defaultValue="tab1" variant={variant as any}>
+      <TabsList background={listBackground}>
+        <TabsTrigger value="tab1" variant={variant as any} color={color}>
+          Overview
+        </TabsTrigger>
+        <TabsTrigger value="tab2" variant={variant as any} color={color}>
+          Analytics
+        </TabsTrigger>
+        <TabsTrigger value="tab3" variant={variant as any} color={color}>
+          Reports
+        </TabsTrigger>
+      </TabsList>
+    </Tabs>
+  );
+}
+
 export default function TabsComponentPage() {
   const [closableTabs, setClosableTabs] = React.useState([
     { id: "tab1", title: "Dashboard", content: "Main Dashboard view panel." },
@@ -81,7 +116,7 @@ export default function TabsComponentPage() {
     <div className="space-y-8">
       <DocsTitle
         title="Tabs"
-        description="Organizes content into multiple panel views with animated transitions, 6 tab variants (default, contained, pills, underlined, bordered, vertical), scrollable navigation controls, closable tabs, and dynamic editable tabs."
+        description="Organizes content into multiple panel views with animated transitions, 8 input-matching visual variants, scrollable navigation, closable tabs, and dynamic editable tabs."
       />
 
       <ImportSnippet
@@ -98,7 +133,7 @@ export default function TabsComponentPage() {
       />
 
       <DocsComponent
-        title="Default Contained"
+        title="Default"
         description="Standard tab navigation with contained pill background."
         preview={
           <div className="w-full">
@@ -126,28 +161,19 @@ export default function TabsComponentPage() {
                   Billing
                 </TabsTrigger>
               </TabsList>
-              <TabsContent
-                value="account"
-                className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 mt-3"
-              >
+              <TabsContent value="account" className={CONTENT_CLASS}>
                 <h4 className="text-sm font-bold">Account Profile</h4>
                 <p className="text-xs text-zinc-500 mt-1">
                   Manage your public display credentials.
                 </p>
               </TabsContent>
-              <TabsContent
-                value="password"
-                className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 mt-3"
-              >
+              <TabsContent value="password" className={CONTENT_CLASS}>
                 <h4 className="text-sm font-bold">Security & Password</h4>
                 <p className="text-xs text-zinc-500 mt-1">
                   Change your master password and enable 2FA.
                 </p>
               </TabsContent>
-              <TabsContent
-                value="billing"
-                className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 mt-3"
-              >
+              <TabsContent value="billing" className={CONTENT_CLASS}>
                 <h4 className="text-sm font-bold">Billing & Invoices</h4>
                 <p className="text-xs text-zinc-500 mt-1">
                   Update payment cards and download past receipts.
@@ -167,8 +193,148 @@ export default function TabsComponentPage() {
       />
 
       <DocsComponent
-        title="Closable Tabs (isClosable)"
-        description="Enable individual tab closing with 'isClosable' and 'onClose'."
+        title="Sizes"
+        description="Choose from 5 step sizes to match your layout density."
+        preview={
+          <div className="w-full space-y-4">
+            {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+              <div key={size}>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-2">
+                  {size}
+                </span>
+                <Tabs defaultValue="a">
+                  <TabsList>
+                    <TabsTrigger
+                      value="a"
+                      variant="contained"
+                      color="primary"
+                      size={size}
+                    >
+                      Overview
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="b"
+                      variant="contained"
+                      color="primary"
+                      size={size}
+                    >
+                      Analytics
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="c"
+                      variant="contained"
+                      color="primary"
+                      size={size}
+                    >
+                      Reports
+                    </TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              </div>
+            ))}
+          </div>
+        }
+        code={`<TabsTrigger size="xs">...</TabsTrigger>
+<TabsTrigger size="sm">...</TabsTrigger>
+<TabsTrigger size="md">...</TabsTrigger>
+<TabsTrigger size="lg">...</TabsTrigger>
+<TabsTrigger size="xl">...</TabsTrigger>`}
+        props={["size: 'xs' | 'sm' | 'md' | 'lg' | 'xl'"]}
+      />
+
+      <DocsComponent
+        title="Colors"
+        description="Apply theme colors to the active tab trigger indicator."
+        preview={
+          <div className="w-full space-y-4">
+            {(
+              [
+                "primary",
+                "secondary",
+                "success",
+                "warning",
+                "danger",
+                "default",
+              ] as const
+            ).map((color) => (
+              <div key={color}>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-2">
+                  {color}
+                </span>
+                <Tabs defaultValue="a">
+                  <TabsList background={false}>
+                    <TabsTrigger value="a" variant="pills" color={color}>
+                      Overview
+                    </TabsTrigger>
+                    <TabsTrigger value="b" variant="pills" color={color}>
+                      Analytics
+                    </TabsTrigger>
+                    <TabsTrigger value="c" variant="pills" color={color}>
+                      Reports
+                    </TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              </div>
+            ))}
+          </div>
+        }
+        code={`<TabsTrigger color="primary">...</TabsTrigger>
+<TabsTrigger color="success">...</TabsTrigger>
+<TabsTrigger color="danger">...</TabsTrigger>`}
+        props={[
+          "color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'",
+        ]}
+      />
+
+      <DocsComponent
+        title="Variants"
+        description="Choose from 8 visual styles matching the Input component variants."
+        preview={
+          <div className="w-full space-y-5">
+            {[
+              { label: "Default", variant: "default" },
+              { label: "Contained", variant: "contained" },
+              { label: "Flat", variant: "flat" },
+              { label: "Filled", variant: "filled" },
+              { label: "Bordered", variant: "bordered" },
+              {
+                label: "Underlined",
+                variant: "underlined",
+                listBackground: false,
+              },
+              { label: "Glow", variant: "glow" },
+              { label: "Glassmorphism", variant: "glassmorphism" },
+              { label: "Gradient Border", variant: "gradient-border" },
+            ].map(({ label, variant, listBackground = true }) => (
+              <div key={variant}>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-2">
+                  {label}
+                </span>
+                <TabsPreview
+                  variant={variant}
+                  listBackground={listBackground}
+                />
+              </div>
+            ))}
+          </div>
+        }
+        code={`<TabsTrigger variant="default">...</TabsTrigger>
+<TabsTrigger variant="contained">...</TabsTrigger>
+<TabsTrigger variant="flat">...</TabsTrigger>
+<TabsTrigger variant="filled">...</TabsTrigger>
+<TabsTrigger variant="bordered">...</TabsTrigger>
+<TabsTrigger variant="underlined">...</TabsTrigger>
+<TabsTrigger variant="glow">...</TabsTrigger>
+<TabsTrigger variant="glassmorphism">...</TabsTrigger>
+<TabsTrigger variant="gradient-border">...</TabsTrigger>`}
+        props={[
+          "variant: 'default' | 'contained' | 'flat' | 'filled' | 'bordered' | 'underlined' | 'glow' | 'glassmorphism' | 'gradient-border'",
+        ]}
+      />
+
+      <DocsComponent
+        title="Closable Tabs"
+        description="Enable individual tab closing with isClosable and onClose."
         preview={
           <div className="w-full">
             <Tabs defaultValue={closableTabs[0]?.id || "tab1"}>
@@ -185,11 +351,7 @@ export default function TabsComponentPage() {
                 ))}
               </TabsList>
               {closableTabs.map((t) => (
-                <TabsContent
-                  key={t.id}
-                  value={t.id}
-                  className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 mt-3"
-                >
+                <TabsContent key={t.id} value={t.id} className={CONTENT_CLASS}>
                   <h4 className="text-sm font-bold">{t.title}</h4>
                   <p className="text-xs text-zinc-500 mt-1">{t.content}</p>
                 </TabsContent>
@@ -210,8 +372,8 @@ export default function TabsComponentPage() {
       />
 
       <DocsComponent
-        title="Addable & Editable Dynamic Tabs (addable)"
-        description="Append new tabs dynamically with 'addable' and double-click or click the edit icon to rename tab titles in real time."
+        title="Addable & Editable Tabs"
+        description="Append new tabs dynamically with addable and double-click or click the edit icon to rename tab titles in real time."
         preview={
           <div className="w-full">
             <Tabs defaultValue={dynamicTabs[0]?.id || "dyn1"}>
@@ -242,7 +404,7 @@ export default function TabsComponentPage() {
                           role="button"
                           tabIndex={0}
                           onClick={(e) => handleStartRename(e, t.id, t.title)}
-                          className="opacity-50 hover:opacity-100 p-0.5 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-opacity"
+                          className="opacity-50 hover:opacity-100 p-0.5 rounded hover:bg-black/10 dark:hover:bg-white/10 group-data-[state=active]:text-white transition-opacity"
                         >
                           <Icon
                             icon="hugeicons:pencil-edit-01"
@@ -255,11 +417,7 @@ export default function TabsComponentPage() {
                 ))}
               </TabsList>
               {dynamicTabs.map((t) => (
-                <TabsContent
-                  key={t.id}
-                  value={t.id}
-                  className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 mt-3"
-                >
+                <TabsContent key={t.id} value={t.id} className={CONTENT_CLASS}>
                   <h4 className="text-sm font-bold">{t.title}</h4>
                   <p className="text-xs text-zinc-500 mt-1">{t.content}</p>
                 </TabsContent>
@@ -280,7 +438,7 @@ export default function TabsComponentPage() {
       />
 
       <DocsComponent
-        title="Vertical Orientation (orientation='vertical')"
+        title="Vertical Orientation"
         description="Stack tabs vertically on the left side with matching vertical panel alignment."
         preview={
           <div className="w-full max-w-xl">
@@ -346,7 +504,7 @@ export default function TabsComponentPage() {
       />
 
       <DocsComponent
-        title="Scrollable Navigation Arrows (isScrollable)"
+        title="Scrollable Navigation"
         description="Enable automatic scroll navigation arrows for overflow tabs on narrow viewports."
         preview={
           <div className="w-full max-w-md">
@@ -368,102 +526,6 @@ export default function TabsComponentPage() {
   ...
 </TabsList>`}
         props={["isScrollable: boolean"]}
-      />
-
-      <DocsComponent
-        title="Variants (default, contained, pills, underlined, bordered, vertical)"
-        description="Comprehensive demonstration of all supported tab variants."
-        preview={
-          <div className="flex flex-col gap-6 w-full">
-            <div>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400 block mb-2 font-semibold">
-                1. Default Variant
-              </span>
-              <Tabs defaultValue="def1">
-                <TabsList>
-                  <TabsTrigger value="def1" variant="default">
-                    Default 1
-                  </TabsTrigger>
-                  <TabsTrigger value="def2" variant="default">
-                    Default 2
-                  </TabsTrigger>
-                </TabsList>
-              </Tabs>
-            </div>
-
-            <div>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400 block mb-2 font-semibold">
-                2. Contained Variant
-              </span>
-              <Tabs defaultValue="c1">
-                <TabsList>
-                  <TabsTrigger value="c1" variant="contained">
-                    Contained 1
-                  </TabsTrigger>
-                  <TabsTrigger value="c2" variant="contained">
-                    Contained 2
-                  </TabsTrigger>
-                </TabsList>
-              </Tabs>
-            </div>
-
-            <div>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400 block mb-2 font-semibold">
-                3. Pills Variant
-              </span>
-              <Tabs defaultValue="p1">
-                <TabsList>
-                  <TabsTrigger value="p1" variant="pills">
-                    Pill 1
-                  </TabsTrigger>
-                  <TabsTrigger value="p2" variant="pills">
-                    Pill 2
-                  </TabsTrigger>
-                </TabsList>
-              </Tabs>
-            </div>
-
-            <div>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400 block mb-2 font-semibold">
-                4. Underlined Variant
-              </span>
-              <Tabs defaultValue="u1">
-                <TabsList background={false}>
-                  <TabsTrigger value="u1" variant="underlined" color="primary">
-                    Underline 1
-                  </TabsTrigger>
-                  <TabsTrigger value="u2" variant="underlined" color="primary">
-                    Underline 2
-                  </TabsTrigger>
-                </TabsList>
-              </Tabs>
-            </div>
-
-            <div>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400 block mb-2 font-semibold">
-                5. Bordered Variant
-              </span>
-              <Tabs defaultValue="b1">
-                <TabsList background={false}>
-                  <TabsTrigger value="b1" variant="bordered">
-                    Bordered 1
-                  </TabsTrigger>
-                  <TabsTrigger value="b2" variant="bordered">
-                    Bordered 2
-                  </TabsTrigger>
-                </TabsList>
-              </Tabs>
-            </div>
-          </div>
-        }
-        code={`<TabsTrigger variant="default">Default</TabsTrigger>
-<TabsTrigger variant="contained">Contained</TabsTrigger>
-<TabsTrigger variant="pills">Pills</TabsTrigger>
-<TabsTrigger variant="underlined">Underlined</TabsTrigger>
-<TabsTrigger variant="bordered">Bordered</TabsTrigger>`}
-        props={[
-          "variant: 'default' | 'contained' | 'pills' | 'underlined' | 'bordered' | 'vertical'",
-        ]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
@@ -494,8 +556,8 @@ export default function TabsComponentPage() {
                 <tr className="border-b border-border">
                   <td className="px-3 py-2 font-mono text-primary">variant</td>
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'contained' | 'pills' | 'underlined' |
-                    'bordered' | 'vertical'
+                    'default' | 'contained' | 'flat' | 'filled' | 'bordered' |
+                    'underlined' | 'glow' | 'glassmorphism' | 'gradient-border'
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">'default'</td>
                   <td className="px-3 py-2 text-muted-foreground">
@@ -511,7 +573,7 @@ export default function TabsComponentPage() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Renders a close ('x') icon button on the trigger.
+                    Renders a close icon button on the trigger.
                   </td>
                 </tr>
                 <tr className="border-b border-border">
@@ -521,10 +583,10 @@ export default function TabsComponentPage() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">false</td>
                   <td className="px-3 py-2 text-muted-foreground">
-                    Renders '+' button to dynamically append new tabs.
+                    Renders a + button to dynamically append new tabs.
                   </td>
                 </tr>
-                <tr className="border-b border-border">
+                <tr>
                   <td className="px-3 py-2 font-mono text-primary">
                     isScrollable
                   </td>

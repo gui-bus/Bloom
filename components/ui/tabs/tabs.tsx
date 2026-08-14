@@ -15,7 +15,12 @@ export type TabsVariant =
   | "contained"
   | "vertical"
   | "ghost"
-  | "underline";
+  | "underline"
+  | "flat"
+  | "filled"
+  | "glassmorphism"
+  | "gradient-border"
+  | "glow";
 export type TabsSize = "xs" | "sm" | "md" | "lg" | "xl";
 export type TabsColor =
   | "default"
@@ -85,91 +90,149 @@ const colorClasses: Record<
     underlined:
       "data-[state=active]:border-zinc-900 dark:data-[state=active]:border-zinc-100 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100",
     pills:
-      "data-[state=active]:bg-zinc-900 dark:data-[state=active]:bg-zinc-100 data-[state=active]:text-white dark:data-[state=active]:text-zinc-900",
+      "data-[state=active]:bg-zinc-400 dark:data-[state=active]:bg-zinc-600 data-[state=active]:text-white dark:data-[state=active]:text-white",
     contained:
       "data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100",
     vertical:
       "data-[state=active]:bg-zinc-100 dark:data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100 font-bold",
+    flat: "data-[state=active]:bg-zinc-400 dark:data-[state=active]:bg-zinc-600 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    filled:
+      "data-[state=active]:bg-zinc-400 dark:data-[state=active]:bg-zinc-600 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    glassmorphism:
+      "data-[state=active]:bg-zinc-400 dark:data-[state=active]:bg-zinc-600 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    "gradient-border":
+      "data-[state=active]:bg-zinc-400 dark:data-[state=active]:bg-zinc-600 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    glow: "data-[state=active]:bg-zinc-400 dark:data-[state=active]:bg-zinc-600 data-[state=active]:text-white dark:data-[state=active]:text-white",
   },
   primary: {
-    default: "data-[state=active]:bg-sky-500 data-[state=active]:text-white",
-    ghost: "data-[state=active]:bg-sky-500/15 data-[state=active]:text-sky-500",
+    default:
+      "data-[state=active]:bg-sky-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    ghost:
+      "data-[state=active]:bg-sky-500/15 data-[state=active]:text-sky-500 dark:data-[state=active]:text-sky-400",
     bordered:
-      "data-[state=active]:border-sky-500 data-[state=active]:text-sky-500",
+      "data-[state=active]:border-sky-500 data-[state=active]:text-sky-500 dark:data-[state=active]:text-sky-400",
     underline:
-      "data-[state=active]:border-sky-500 data-[state=active]:text-sky-500",
+      "data-[state=active]:border-sky-500 data-[state=active]:text-sky-500 dark:data-[state=active]:text-sky-400",
     underlined:
-      "data-[state=active]:border-sky-500 data-[state=active]:text-sky-500",
-    pills: "data-[state=active]:bg-sky-500 data-[state=active]:text-white",
+      "data-[state=active]:border-sky-500 data-[state=active]:text-sky-500 dark:data-[state=active]:text-sky-400",
+    pills:
+      "data-[state=active]:bg-sky-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
     contained:
-      "data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-sky-500",
+      "data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-sky-500 dark:data-[state=active]:text-sky-400",
     vertical:
-      "data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-500 data-[state=active]:border-r-2 data-[state=active]:border-sky-500",
+      "data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-500 dark:data-[state=active]:text-sky-400 data-[state=active]:border-r-2 data-[state=active]:border-sky-500",
+    flat: "data-[state=active]:bg-sky-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    filled:
+      "data-[state=active]:bg-sky-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    glassmorphism:
+      "data-[state=active]:bg-sky-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    "gradient-border":
+      "data-[state=active]:bg-sky-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    glow: "data-[state=active]:bg-sky-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
   },
   secondary: {
-    default: "data-[state=active]:bg-purple-500 data-[state=active]:text-white",
+    default:
+      "data-[state=active]:bg-purple-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
     ghost:
-      "data-[state=active]:bg-purple-500/15 data-[state=active]:text-purple-500",
+      "data-[state=active]:bg-purple-500/15 data-[state=active]:text-purple-500 dark:data-[state=active]:text-purple-400",
     bordered:
-      "data-[state=active]:border-purple-500 data-[state=active]:text-purple-500",
+      "data-[state=active]:border-purple-500 data-[state=active]:text-purple-500 dark:data-[state=active]:text-purple-400",
     underline:
-      "data-[state=active]:border-purple-500 data-[state=active]:text-purple-500",
+      "data-[state=active]:border-purple-500 data-[state=active]:text-purple-500 dark:data-[state=active]:text-purple-400",
     underlined:
-      "data-[state=active]:border-purple-500 data-[state=active]:text-purple-500",
-    pills: "data-[state=active]:bg-purple-500 data-[state=active]:text-white",
+      "data-[state=active]:border-purple-500 data-[state=active]:text-purple-500 dark:data-[state=active]:text-purple-400",
+    pills:
+      "data-[state=active]:bg-purple-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
     contained:
-      "data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-purple-500",
+      "data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-purple-500 dark:data-[state=active]:text-purple-400",
     vertical:
-      "data-[state=active]:bg-purple-500/10 data-[state=active]:text-purple-500 data-[state=active]:border-r-2 data-[state=active]:border-purple-500",
+      "data-[state=active]:bg-purple-500/10 data-[state=active]:text-purple-500 dark:data-[state=active]:text-purple-400 data-[state=active]:border-r-2 data-[state=active]:border-purple-500",
+    flat: "data-[state=active]:bg-purple-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    filled:
+      "data-[state=active]:bg-purple-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    glassmorphism:
+      "data-[state=active]:bg-purple-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    "gradient-border":
+      "data-[state=active]:bg-purple-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    glow: "data-[state=active]:bg-purple-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
   },
   success: {
     default:
-      "data-[state=active]:bg-emerald-500 data-[state=active]:text-white",
+      "data-[state=active]:bg-emerald-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
     ghost:
-      "data-[state=active]:bg-emerald-500/15 data-[state=active]:text-emerald-500",
+      "data-[state=active]:bg-emerald-500/15 data-[state=active]:text-emerald-500 dark:data-[state=active]:text-emerald-400",
     bordered:
-      "data-[state=active]:border-emerald-500 data-[state=active]:text-emerald-500",
+      "data-[state=active]:border-emerald-500 data-[state=active]:text-emerald-500 dark:data-[state=active]:text-emerald-400",
     underline:
-      "data-[state=active]:border-emerald-500 data-[state=active]:text-emerald-500",
+      "data-[state=active]:border-emerald-500 data-[state=active]:text-emerald-500 dark:data-[state=active]:text-emerald-400",
     underlined:
-      "data-[state=active]:border-emerald-500 data-[state=active]:text-emerald-500",
-    pills: "data-[state=active]:bg-emerald-500 data-[state=active]:text-white",
+      "data-[state=active]:border-emerald-500 data-[state=active]:text-emerald-500 dark:data-[state=active]:text-emerald-400",
+    pills:
+      "data-[state=active]:bg-emerald-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
     contained:
-      "data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-emerald-500",
+      "data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-emerald-500 dark:data-[state=active]:text-emerald-400",
     vertical:
-      "data-[state=active]:bg-emerald-500/10 data-[state=active]:text-emerald-500 data-[state=active]:border-r-2 data-[state=active]:border-emerald-500",
+      "data-[state=active]:bg-emerald-500/10 data-[state=active]:text-emerald-500 dark:data-[state=active]:text-emerald-400 data-[state=active]:border-r-2 data-[state=active]:border-emerald-500",
+    flat: "data-[state=active]:bg-emerald-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    filled:
+      "data-[state=active]:bg-emerald-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    glassmorphism:
+      "data-[state=active]:bg-emerald-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    "gradient-border":
+      "data-[state=active]:bg-emerald-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    glow: "data-[state=active]:bg-emerald-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
   },
   warning: {
-    default: "data-[state=active]:bg-amber-500 data-[state=active]:text-white",
+    default:
+      "data-[state=active]:bg-amber-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
     ghost:
-      "data-[state=active]:bg-amber-500/15 data-[state=active]:text-amber-500",
+      "data-[state=active]:bg-amber-500/15 data-[state=active]:text-amber-500 dark:data-[state=active]:text-amber-400",
     bordered:
-      "data-[state=active]:border-amber-500 data-[state=active]:text-amber-500",
+      "data-[state=active]:border-amber-500 data-[state=active]:text-amber-500 dark:data-[state=active]:text-amber-400",
     underline:
-      "data-[state=active]:border-amber-500 data-[state=active]:text-amber-500",
+      "data-[state=active]:border-amber-500 data-[state=active]:text-amber-500 dark:data-[state=active]:text-amber-400",
     underlined:
-      "data-[state=active]:border-amber-500 data-[state=active]:text-amber-500",
-    pills: "data-[state=active]:bg-amber-500 data-[state=active]:text-white",
+      "data-[state=active]:border-amber-500 data-[state=active]:text-amber-500 dark:data-[state=active]:text-amber-400",
+    pills:
+      "data-[state=active]:bg-amber-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
     contained:
-      "data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-amber-500",
+      "data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-amber-500 dark:data-[state=active]:text-amber-400",
     vertical:
-      "data-[state=active]:bg-amber-500/10 data-[state=active]:text-amber-500 data-[state=active]:border-r-2 data-[state=active]:border-amber-500",
+      "data-[state=active]:bg-amber-500/10 data-[state=active]:text-amber-500 dark:data-[state=active]:text-amber-400 data-[state=active]:border-r-2 data-[state=active]:border-amber-500",
+    flat: "data-[state=active]:bg-amber-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    filled:
+      "data-[state=active]:bg-amber-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    glassmorphism:
+      "data-[state=active]:bg-amber-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    "gradient-border":
+      "data-[state=active]:bg-amber-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    glow: "data-[state=active]:bg-amber-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
   },
   danger: {
-    default: "data-[state=active]:bg-rose-500 data-[state=active]:text-white",
+    default:
+      "data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
     ghost:
-      "data-[state=active]:bg-rose-500/15 data-[state=active]:text-rose-500",
+      "data-[state=active]:bg-rose-500/15 data-[state=active]:text-rose-500 dark:data-[state=active]:text-rose-400",
     bordered:
-      "data-[state=active]:border-rose-500 data-[state=active]:text-rose-500",
+      "data-[state=active]:border-rose-500 data-[state=active]:text-rose-500 dark:data-[state=active]:text-rose-400",
     underline:
-      "data-[state=active]:border-rose-500 data-[state=active]:text-rose-500",
+      "data-[state=active]:border-rose-500 data-[state=active]:text-rose-500 dark:data-[state=active]:text-rose-400",
     underlined:
-      "data-[state=active]:border-rose-500 data-[state=active]:text-rose-500",
-    pills: "data-[state=active]:bg-rose-500 data-[state=active]:text-white",
+      "data-[state=active]:border-rose-500 data-[state=active]:text-rose-500 dark:data-[state=active]:text-rose-400",
+    pills:
+      "data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
     contained:
-      "data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-rose-500",
+      "data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-rose-500 dark:data-[state=active]:text-rose-400",
     vertical:
-      "data-[state=active]:bg-rose-500/10 data-[state=active]:text-rose-500 data-[state=active]:border-r-2 data-[state=active]:border-rose-500",
+      "data-[state=active]:bg-rose-500/10 data-[state=active]:text-rose-500 dark:data-[state=active]:text-rose-400 data-[state=active]:border-r-2 data-[state=active]:border-rose-500",
+    flat: "data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    filled:
+      "data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    glassmorphism:
+      "data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    "gradient-border":
+      "data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
+    glow: "data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:data-[state=active]:text-white",
   },
 };
 
@@ -190,6 +253,14 @@ const variantClasses: Record<TabsVariant, string> = {
     "bg-zinc-100 dark:bg-zinc-800/60 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-xl transition-all duration-200 data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:shadow-xs",
   vertical:
     "bg-transparent text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl transition-all duration-200 justify-start w-full",
+  flat: "bg-zinc-100 dark:bg-zinc-800/60 hover:bg-zinc-200/70 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-xl border border-transparent transition-all duration-200",
+  filled:
+    "bg-zinc-100 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-xl border border-transparent transition-all duration-200",
+  glassmorphism:
+    "backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-xl shadow-lg transition-all duration-200",
+  "gradient-border":
+    "bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-xl relative [background-clip:padding-box] border border-transparent before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-sky-500 before:via-indigo-500 before:to-pink-500 transition-all duration-200",
+  glow: "bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-xl shadow-xs border border-zinc-200 dark:border-zinc-800 data-[state=active]:shadow-[0_0_12px_rgba(14,165,233,0.35)] data-[state=active]:border-sky-500 transition-all duration-200",
 };
 
 const stateClasses = {
@@ -360,7 +431,7 @@ const TabsTrigger = React.memo(
             : undefined
         }
         className={cn(
-          "relative inline-flex items-center justify-center gap-1.5 font-bold transition-all duration-200 ease-in-out cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-sky-500/20 select-none",
+          "group relative inline-flex items-center justify-center gap-1.5 font-bold transition-all duration-200 ease-in-out cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-sky-500/20 select-none",
           designSizes[size],
           variantClasses[activeVariant],
           color !== "custom" && colorClasses[color]?.[activeVariant],
@@ -414,7 +485,7 @@ const TabsTrigger = React.memo(
                 role="button"
                 tabIndex={0}
                 onClick={handleClose}
-                className="ml-1 p-0.5 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors cursor-pointer"
+                className="ml-1 p-0.5 rounded-md hover:bg-black/10 dark:hover:bg-white/10 text-zinc-400 group-data-[state=active]:text-white/70 hover:text-zinc-900 dark:hover:text-zinc-100 group-data-[state=active]:hover:text-white transition-colors cursor-pointer"
               >
                 <Icon icon="hugeicons:cancel-01" className="size-3.5" />
               </span>

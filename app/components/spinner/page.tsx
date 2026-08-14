@@ -15,7 +15,7 @@ export default function SpinnerComponentPage() {
     <div className="space-y-8">
       <DocsTitle
         title="Spinner"
-        description="Animated loading indicator featuring multiple visual styles (default, dots, bars, pulse, ring, gradient), color palettes, size scale, and text labels."
+        description="Animated loading indicator featuring multiple visual styles, color palettes, size scale, and text labels."
       />
 
       <ImportSnippet
@@ -43,34 +43,8 @@ export default function SpinnerComponentPage() {
       />
 
       <DocsComponent
-        title="Colors"
-        description="Choose from theme color variants: 'default', 'primary', 'secondary', 'accent', 'success', 'warning', or 'danger'."
-        preview={
-          <div className="flex flex-wrap items-center gap-6">
-            <Spinner color="default" label="Default" />
-            <Spinner color="primary" label="Primary" />
-            <Spinner color="secondary" label="Secondary" />
-            <Spinner color="accent" label="Accent" />
-            <Spinner color="success" label="Success" />
-            <Spinner color="warning" label="Warning" />
-            <Spinner color="danger" label="Danger" />
-          </div>
-        }
-        code={`<Spinner color="default" label="Default" />
-<Spinner color="primary" label="Primary" />
-<Spinner color="secondary" label="Secondary" />
-<Spinner color="accent" label="Accent" />
-<Spinner color="success" label="Success" />
-<Spinner color="warning" label="Warning" />
-<Spinner color="danger" label="Danger" />`}
-        props={[
-          "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
-        ]}
-      />
-
-      <DocsComponent
-        title="Spinner Variants"
-        description="Choose from 6 animation styles: 'default', 'dots', 'bars', 'pulse', 'ring', or 'gradient'."
+        title="Variants"
+        description="Choose from different animation layouts and graphic styles."
         preview={
           <div className="flex flex-wrap items-center gap-8">
             <Spinner variant="default" label="Default" />
@@ -93,8 +67,110 @@ export default function SpinnerComponentPage() {
       />
 
       <DocsComponent
+        title="Colors"
+        description="Apply theme-specific alert colors across the different animation variants."
+        preview={
+          <div className="flex flex-col gap-6 w-full">
+            <div className="flex flex-wrap items-center gap-6">
+              <span className="w-16 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Default
+              </span>
+              <div className="flex flex-wrap gap-4">
+                <Spinner variant="default" color="default" />
+                <Spinner variant="default" color="primary" />
+                <Spinner variant="default" color="secondary" />
+                <Spinner variant="default" color="accent" />
+                <Spinner variant="default" color="success" />
+                <Spinner variant="default" color="warning" />
+                <Spinner variant="default" color="danger" />
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-6">
+              <span className="w-16 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Dots
+              </span>
+              <div className="flex flex-wrap gap-4">
+                <Spinner variant="dots" color="default" />
+                <Spinner variant="dots" color="primary" />
+                <Spinner variant="dots" color="secondary" />
+                <Spinner variant="dots" color="accent" />
+                <Spinner variant="dots" color="success" />
+                <Spinner variant="dots" color="warning" />
+                <Spinner variant="dots" color="danger" />
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-6">
+              <span className="w-16 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Bars
+              </span>
+              <div className="flex flex-wrap gap-4">
+                <Spinner variant="bars" color="default" />
+                <Spinner variant="bars" color="primary" />
+                <Spinner variant="bars" color="secondary" />
+                <Spinner variant="bars" color="accent" />
+                <Spinner variant="bars" color="success" />
+                <Spinner variant="bars" color="warning" />
+                <Spinner variant="bars" color="danger" />
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-6">
+              <span className="w-16 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Pulse
+              </span>
+              <div className="flex flex-wrap gap-4">
+                <Spinner variant="pulse" color="default" />
+                <Spinner variant="pulse" color="primary" />
+                <Spinner variant="pulse" color="secondary" />
+                <Spinner variant="pulse" color="accent" />
+                <Spinner variant="pulse" color="success" />
+                <Spinner variant="pulse" color="warning" />
+                <Spinner variant="pulse" color="danger" />
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-6">
+              <span className="w-16 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Ring
+              </span>
+              <div className="flex flex-wrap gap-4">
+                <Spinner variant="ring" color="default" />
+                <Spinner variant="ring" color="primary" />
+                <Spinner variant="ring" color="secondary" />
+                <Spinner variant="ring" color="accent" />
+                <Spinner variant="ring" color="success" />
+                <Spinner variant="ring" color="warning" />
+                <Spinner variant="ring" color="danger" />
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-6">
+              <span className="w-16 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                Gradient
+              </span>
+              <div className="flex flex-wrap gap-4">
+                <Spinner variant="gradient" color="default" />
+                <Spinner variant="gradient" color="primary" />
+                <Spinner variant="gradient" color="secondary" />
+                <Spinner variant="gradient" color="accent" />
+                <Spinner variant="gradient" color="success" />
+                <Spinner variant="gradient" color="warning" />
+                <Spinner variant="gradient" color="danger" />
+              </div>
+            </div>
+          </div>
+        }
+        code={`<Spinner variant="default" color="primary" />
+<Spinner variant="dots" color="success" />
+<Spinner variant="bars" color="warning" />
+<Spinner variant="pulse" color="danger" />
+<Spinner variant="ring" color="secondary" />
+<Spinner variant="gradient" color="accent" />`}
+        props={[
+          "color: 'default' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
+        ]}
+      />
+
+      <DocsComponent
         title="Sizes"
-        description="Scale spinner dimensions from 'xs' to '3xl'."
+        description="Scale the loader size dimensions to fit different layout containers."
         preview={
           <div className="flex flex-wrap items-center gap-6">
             <Spinner size="sm" color="primary" />

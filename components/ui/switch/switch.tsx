@@ -30,7 +30,7 @@ export interface SwitchProps
 
 const colorMap = {
   default:
-    "data-[state=checked]:bg-zinc-900 dark:data-[state=checked]:bg-zinc-100",
+    "data-[state=checked]:bg-zinc-400 dark:data-[state=checked]:bg-zinc-600",
   primary: "data-[state=checked]:bg-sky-500",
   secondary: "data-[state=checked]:bg-purple-500",
   accent: "data-[state=checked]:bg-pink-500",
