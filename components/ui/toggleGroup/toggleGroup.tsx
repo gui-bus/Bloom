@@ -12,26 +12,33 @@ const ToggleGroupContext = React.createContext<
 >({
   size: "md",
   variant: "default",
+  color: "default",
 });
 
 const ToggleGroup = React.forwardRef<
   React.ComponentRef<typeof ToggleGroupPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> &
-    VariantProps<typeof toggleVariants>
->(({ className, variant, size, children, ...props }, ref) => (
-  <ToggleGroupPrimitive.Root
-    ref={ref}
-    className={cn(
-      "inline-flex items-center justify-center gap-1 p-1 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/60 shadow-xs",
-      className,
-    )}
-    {...props}
-  >
-    <ToggleGroupContext.Provider value={{ variant, size }}>
-      {children}
-    </ToggleGroupContext.Provider>
-  </ToggleGroupPrimitive.Root>
-));
+    VariantProps<typeof toggleVariants> & { radius?: keyof typeof designRadius }
+>(
+  (
+    { className, variant, size, color, radius = "2xl", children, ...props },
+    ref,
+  ) => (
+    <ToggleGroupPrimitive.Root
+      ref={ref}
+      className={cn(
+        "inline-flex items-center justify-center gap-1 p-1 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 shadow-xs w-fit",
+        designRadius[radius],
+        className,
+      )}
+      {...props}
+    >
+      <ToggleGroupContext.Provider value={{ variant, size, color }}>
+        {children}
+      </ToggleGroupContext.Provider>
+    </ToggleGroupPrimitive.Root>
+  ),
+);
 
 ToggleGroup.displayName = ToggleGroupPrimitive.Root.displayName;
 
@@ -39,26 +46,32 @@ const ToggleGroupItem = React.forwardRef<
   React.ComponentRef<typeof ToggleGroupPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Item> &
     VariantProps<typeof toggleVariants> & { radius?: keyof typeof designRadius }
->(({ className, children, variant, size, radius = "lg", ...props }, ref) => {
-  const context = React.useContext(ToggleGroupContext);
+>(
+  (
+    { className, children, variant, size, color, radius = "lg", ...props },
+    ref,
+  ) => {
+    const context = React.useContext(ToggleGroupContext);
 
-  return (
-    <ToggleGroupPrimitive.Item
-      ref={ref}
-      className={cn(
-        toggleVariants({
-          variant: context.variant || variant,
-          size: context.size || size,
-        }),
-        designRadius[radius],
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </ToggleGroupPrimitive.Item>
-  );
-});
+    return (
+      <ToggleGroupPrimitive.Item
+        ref={ref}
+        className={cn(
+          toggleVariants({
+            variant: context.variant || variant,
+            size: context.size || size,
+            color: context.color || color,
+          }),
+          designRadius[radius],
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </ToggleGroupPrimitive.Item>
+    );
+  },
+);
 
 ToggleGroupItem.displayName = ToggleGroupPrimitive.Item.displayName;
 

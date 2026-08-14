@@ -9,10 +9,23 @@ import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
 import { Separator } from "@/components/ui/separator/separator";
-import { TreeNode, TreeView } from "@/components/ui/treeView/treeView";
+import {
+  type TreeDataItem,
+  TreeNode,
+  TreeView,
+} from "@/components/ui/treeView/treeView";
 import { treeViewCode } from "@/components/ui/treeView/treeView.code";
 
 export default function TreeViewPage() {
+  const [asyncData, setAsyncData] = React.useState<TreeDataItem[]>([
+    {
+      id: "remote-1",
+      label: "Remote Server Logs (Click to load)",
+      isLazy: true,
+    },
+    { id: "remote-2", label: "Cloud Backups (Click to load)", isLazy: true },
+  ]);
+
   return (
     <div className="space-y-8">
       <DocsTitle
@@ -75,27 +88,7 @@ export default function TreeViewPage() {
       />
 
       <DocsComponent
-        props={[
-          "defaultExpanded: any",
-          "docs: any",
-          "icon: any",
-          "hugeicons: any",
-          "folder-01: any",
-          "size-4: any",
-          "text-amber-500: any",
-          "getting-started: any",
-          "book-open-01: any",
-          "text-sky-500: any",
-          "api-reference: any",
-          "code: any",
-          "text-emerald-500: any",
-          "changelog: any",
-          "clock-01: any",
-          "text-violet-500: any",
-          "settings: any",
-          "settings-01: any",
-          "text-zinc-500: any",
-        ]}
+        props={["defaultExpanded?: string[]", "icon?: React.ReactNode"]}
         title="With Icons"
         description="Tree nodes with custom icons for folders, files, and specialized content types."
         preview={
@@ -245,12 +238,36 @@ export default function TreeViewPage() {
         preview={
           <div className="w-full max-w-sm p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
             <TreeView
-              data={[
-                { id: "remote-1", label: "Remote Server Logs (Click to load)" },
-                { id: "remote-2", label: "Cloud Backups (Click to load)" },
-              ]}
-              onLoadChildren={async (_id) => {
-                await new Promise((resolve) => setTimeout(resolve, 1500));
+              data={asyncData}
+              onLoadChildren={async (id) => {
+                await new Promise((resolve) => setTimeout(resolve, 1200));
+                setAsyncData((prev) => {
+                  const updateNode = (list: TreeDataItem[]): TreeDataItem[] => {
+                    return list.map((item) => {
+                      if (item.id === id) {
+                        return {
+                          ...item,
+                          isLazy: false,
+                          children: [
+                            {
+                              id: `${id}-child-1`,
+                              label: "Log_2026_08_14.txt",
+                            },
+                            {
+                              id: `${id}-child-2`,
+                              label: "System_Diagnostics.log",
+                            },
+                          ],
+                        };
+                      }
+                      if (item.children) {
+                        return { ...item, children: updateNode(item.children) };
+                      }
+                      return item;
+                    });
+                  };
+                  return updateNode(prev);
+                });
               }}
             />
           </div>

@@ -15,7 +15,7 @@ export default function TypographyComponentPage() {
     <div className="space-y-8">
       <DocsTitle
         title="Typography"
-        description="Standardized typographic text hierarchy styles including headings, body paragraphs, lead copy, colors, and inline code elements."
+        description="Standardized typographic text hierarchy styles including headings, body paragraphs, colors, and inline code elements."
       />
 
       <ImportSnippet
@@ -48,7 +48,7 @@ export default function TypographyComponentPage() {
       />
 
       <DocsComponent
-        title="Headings Scale (H1 - H6)"
+        title="Headings Scale"
         description="Typographic hierarchy sizes ranging from H1 to H6 headings."
         preview={
           <div className="space-y-4 w-full">
@@ -68,36 +68,34 @@ export default function TypographyComponentPage() {
       />
 
       <DocsComponent
-        title="Colors & Code Format"
-        description="Color variants and inline code formatting."
+        props={[
+          "color: 'default' | 'muted' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'",
+        ]}
+        title="Colors"
+        description="Apply theme colors to match the design system color scheme."
         preview={
-          <div className="space-y-4 w-full">
-            <Typography variant="lead" color="primary">
-              Primary colored lead text for highlighting section intros.
-            </Typography>
-            <Typography variant="p" color="muted">
-              Muted body paragraph text for secondary information.
-            </Typography>
-            <div className="flex items-center gap-2">
-              <Typography variant="p">Install via terminal:</Typography>
-              <Typography variant="code">
-                npm install @bloom-ui/react
-              </Typography>
-            </div>
+          <div className="space-y-2 w-full">
+            <Typography color="default">Default text color</Typography>
+            <Typography color="muted">Muted text color</Typography>
+            <Typography color="primary">Primary text color</Typography>
+            <Typography color="secondary">Secondary text color</Typography>
+            <Typography color="accent">Accent text color</Typography>
+            <Typography color="success">Success text color</Typography>
+            <Typography color="warning">Warning text color</Typography>
+            <Typography color="danger">Danger text color</Typography>
           </div>
         }
-        code={`<Typography variant="lead" color="primary">Primary colored text...</Typography>
-<Typography variant="p" color="muted">Muted secondary text...</Typography>
-<Typography variant="code">npm install @bloom-ui/react</Typography>`}
-        props={[
-          "color: 'default' | 'muted' | 'primary' | 'secondary' | ...",
-          "variant: 'lead' | 'code'",
-        ]}
+        code={`<Typography color="default">Default text</Typography>
+<Typography color="muted">Muted text</Typography>
+<Typography color="primary">Primary text</Typography>
+<Typography color="secondary">Secondary text</Typography>
+<Typography color="success">Success text</Typography>
+<Typography color="danger">Danger text</Typography>`}
       />
 
       <DocsComponent
-        title="Line Clamping & Read More Toggle"
-        description="Clamp long paragraphs to a max line count (e.g. clampLines={2}) and toggle full text with showExpandToggle={true}."
+        title="Line Clamping"
+        description="Clamp long paragraphs to a max line count."
         preview={
           <div className="max-w-md w-full p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
             <Typography clampLines={2} showExpandToggle variant="p">
@@ -117,68 +115,76 @@ export default function TypographyComponentPage() {
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      <DocsComponent
-        title="Props — Typography"
-        description="Supported properties for Typography."
-        preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Prop
-                  </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Type
-                  </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Default
-                  </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Description
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">variant</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'lead' |
-                    'large' | 'small' | 'muted' | 'code'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'p'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Typographic size & HTML tag mapping.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">color</td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    'default' | 'muted' | 'primary' | 'secondary' | 'accent' |
-                    'success' | 'warning' | 'danger'
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">'default'</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Theme color palette of typography text.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">
-                    clampLines
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    number
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Limits text to specified number of lines with ellipsis.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        }
-      />
+      <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Prop
+              </th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Type
+              </th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Default
+              </th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Description
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                variant
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'large' |
+                'small' | 'muted' | 'code'
+              </td>
+              <td className="px-4 py-3 text-zinc-400">'p'</td>
+              <td className="px-4 py-3">
+                Typographic size and HTML tag mapping.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                color
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                'default' | 'muted' | 'primary' | 'secondary' | 'accent' |
+                'success' | 'warning' | 'danger'
+              </td>
+              <td className="px-4 py-3 text-zinc-400">'default'</td>
+              <td className="px-4 py-3">
+                Theme color palette of typography text.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                clampLines
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                number
+              </td>
+              <td className="px-4 py-3 text-zinc-400">—</td>
+              <td className="px-4 py-3">
+                Limits text to specified number of lines.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                showExpandToggle
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                boolean
+              </td>
+              <td className="px-4 py-3 text-zinc-400">false</td>
+              <td className="px-4 py-3">Shows a read-more/show-less button.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <DocsPagination />
     </div>

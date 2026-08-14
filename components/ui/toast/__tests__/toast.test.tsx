@@ -1,6 +1,6 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "vitest";
-import { Toast } from "../toast";
+import { Toast, toast } from "../toast";
 
 describe("Toast Component", () => {
   beforeEach(() => {
@@ -19,8 +19,38 @@ describe("Toast Component", () => {
     });
   });
 
-  it("renders toaster container", () => {
+  it("renders toaster container correctly", () => {
     const { container } = render(<Toast />);
     expect(container).toBeInTheDocument();
+  });
+
+  it("triggers custom toasts and renders content correctly", () => {
+    render(<Toast />);
+
+    // Trigger toast
+    toast("Welcome aboard", {
+      description: "Setup completed successfully.",
+      variant: "bordered",
+      size: "lg",
+    });
+
+    // Check custom element rendered
+    expect(screen.getByText("Welcome aboard")).toBeInTheDocument();
+    expect(
+      screen.getByText("Setup completed successfully."),
+    ).toBeInTheDocument();
+  });
+
+  it("applies richColors correctly", () => {
+    render(<Toast />);
+
+    toast.success("Transaction Confirmed", {
+      richColors: true,
+    });
+
+    const titleElement = screen.getByText("Transaction Confirmed");
+    const container = titleElement.closest("div.relative");
+    // Should have solid color background class matching designColors Success token bg
+    expect(container).toHaveClass("bg-success");
   });
 });

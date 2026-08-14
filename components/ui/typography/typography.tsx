@@ -11,7 +11,6 @@ type TypographyVariant =
   | "h5"
   | "h6"
   | "p"
-  | "lead"
   | "large"
   | "small"
   | "muted"
@@ -44,7 +43,6 @@ const variantStyles: Record<TypographyVariant, string> = {
   h5: "scroll-m-20 text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100",
   h6: "scroll-m-20 text-base font-bold tracking-tight text-zinc-900 dark:text-zinc-100",
   p: "leading-7 text-zinc-700 dark:text-zinc-300 font-normal",
-  lead: "text-lg text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed",
   large: "text-lg font-bold text-zinc-900 dark:text-zinc-100",
   small: "text-xs font-semibold leading-none text-zinc-500 dark:text-zinc-400",
   muted: "text-xs text-zinc-500 dark:text-zinc-400 leading-normal",
@@ -59,7 +57,6 @@ const defaultElementMap: Record<TypographyVariant, React.ElementType> = {
   h5: "h5",
   h6: "h6",
   p: "p",
-  lead: "p",
   large: "div",
   small: "small",
   muted: "p",
@@ -100,6 +97,12 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
       <div className="inline-block w-full">
         <Component
           ref={ref as any}
+          className={cn(
+            variantStyles[variant],
+            color !== "default" && colorStyles[color],
+            shouldClamp && "line-clamp-none",
+            className,
+          )}
           style={
             shouldClamp
               ? {
@@ -110,11 +113,6 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
                 }
               : undefined
           }
-          className={cn(
-            variantStyles[variant],
-            color !== "default" && colorStyles[color],
-            className,
-          )}
           {...props}
         >
           {children}
@@ -124,7 +122,7 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
           <button
             type="button"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-1 text-xs font-bold text-sky-500 hover:text-sky-600 dark:hover:text-sky-400 transition-colors underline cursor-pointer"
+            className="mt-2 text-xs font-bold text-sky-500 hover:text-sky-600 dark:hover:text-sky-400 transition-colors cursor-pointer"
           >
             {isExpanded ? "Show Less" : "Read More"}
           </button>
@@ -133,6 +131,8 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
     );
   },
 );
+
 Typography.displayName = "Typography";
 
+export type { TypographyColor, TypographyVariant };
 export { Typography };

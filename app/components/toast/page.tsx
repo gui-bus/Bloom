@@ -16,13 +16,13 @@ export default function ToastComponentPage() {
     <div className="space-y-8">
       <DocsTitle
         title="Toast"
-        description="A rich glassmorphic feedback notification popover with status accent bars, glow icon badges, descriptions, interactive action buttons, and dismiss controls."
+        description="A rich feedback notification popover with status accent bars, background icons, spinner loaders, progress indicator timers, and interactive action buttons."
       />
 
       <Toast position="bottom-right" />
 
       <ImportSnippet
-        importCode={`import { Toast } from "@/components/ui/toast/toast";`}
+        importCode={`import { Toast, toast } from "@/components/ui/toast/toast";`}
       />
 
       <InstallationBlock componentName="toast" />
@@ -36,7 +36,7 @@ export default function ToastComponentPage() {
 
       <DocsComponent
         title="Default"
-        description="Standard glassmorphic notification toast with title and description."
+        description="Standard clean notification toast with title and description."
         preview={
           <div className="flex flex-wrap gap-4">
             <Button
@@ -57,58 +57,274 @@ toast("New Workspace Created", { description: "Your workspace is ready for team 
       />
 
       <DocsComponent
-        props={["variant: string"]}
-        title="Status Variants (Success, Error, Warning, Info)"
-        description="Trigger feedback notifications with contextual status icons, side accent bars, and color themes."
+        props={["variant: 'default' | 'bordered' | 'bar'"]}
+        title="Variants"
+        description="Choose from default clean layout, bordered outline style, or bar accent highlights on the left."
         preview={
           <div className="flex flex-wrap gap-3">
             <Button
-              color="success"
+              color="primary"
               onClick={() =>
-                toast.success("Project Saved Successfully", {
-                  description: "All recent changes have been synchronized.",
+                toast("System Updated", {
+                  variant: "default",
+                  description: "Default clean layout active.",
                 })
               }
             >
-              Success Toast
-            </Button>
-            <Button
-              color="danger"
-              onClick={() =>
-                toast.error("Connection Refused", {
-                  description: "Could not reach database server on port 5432.",
-                })
-              }
-            >
-              Error Toast
-            </Button>
-            <Button
-              color="warning"
-              onClick={() =>
-                toast.warning("Subscription Expiring", {
-                  description: "Your trial plan expires in 3 days.",
-                })
-              }
-            >
-              Warning Toast
+              Default Variant
             </Button>
             <Button
               color="primary"
               variant="bordered"
               onClick={() =>
-                toast.info("System Update Available", {
-                  description: "Version v2.4.0 is ready to install.",
+                toast.success("Design System Saved", {
+                  variant: "bordered",
+                  description: "Thin colored border all around.",
                 })
               }
             >
-              Info Toast
+              Bordered Variant
+            </Button>
+            <Button
+              color="secondary"
+              onClick={() =>
+                toast("Bar Notification", {
+                  variant: "bar",
+                  description: "Accent color bar on the left edge.",
+                })
+              }
+            >
+              Bar Variant
             </Button>
           </div>
         }
-        code={`toast.success("Project Saved Successfully", { description: "All changes synchronized." });
-toast.error("Connection Refused", { description: "Could not reach database server." });
-toast.warning("Subscription Expiring", { description: "Trial plan expires in 3 days." });
-toast.info("System Update Available", { description: "Version v2.4.0 is ready." });`}
+        code={`toast("Default Layout", { variant: "default" });
+toast.success("Design System Saved", { variant: "bordered" });
+toast("Bar Notification", { variant: "bar" });`}
+      />
+
+      <DocsComponent
+        props={["size: 'sm' | 'md' | 'lg'"]}
+        title="Sizes"
+        description="Toasts support small, medium, or large sizes altering widths and inner layout spaces."
+        preview={
+          <div className="flex flex-wrap gap-3">
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() =>
+                toast("Small Toast Notification", {
+                  size: "sm",
+                  description: "Compact text size.",
+                })
+              }
+            >
+              Small Size
+            </Button>
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() =>
+                toast("Medium Toast Notification", {
+                  size: "md",
+                  description: "Standard layout dimensions.",
+                })
+              }
+            >
+              Medium Size
+            </Button>
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() =>
+                toast("Large Toast Notification", {
+                  size: "lg",
+                  description: "Extra prominent alert details.",
+                })
+              }
+            >
+              Large Size
+            </Button>
+          </div>
+        }
+        code={`toast("Small Toast Notification", { size: "sm" });
+toast("Medium Toast Notification", { size: "md" });
+toast("Large Toast Notification", { size: "lg" });`}
+      />
+
+      <DocsComponent
+        props={[
+          "radius: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'",
+        ]}
+        title="Radius"
+        description="Configure standard border-radius styles ranging from square to fully rounded nodes."
+        preview={
+          <div className="flex flex-wrap gap-3">
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() =>
+                toast("Radius: None", {
+                  radius: "none",
+                  description: "Completely square corners.",
+                })
+              }
+            >
+              Radius None
+            </Button>
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() =>
+                toast("Radius: Medium", {
+                  radius: "md",
+                  description: "Subtle modern corner rounding.",
+                })
+              }
+            >
+              Radius MD
+            </Button>
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() =>
+                toast("Radius: Extra Large", {
+                  radius: "xl",
+                  description: "Standard layout rounding style.",
+                })
+              }
+            >
+              Radius XL
+            </Button>
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() =>
+                toast("Radius: Full", {
+                  radius: "full",
+                  description: "Fully rounded pill shape layout.",
+                })
+              }
+            >
+              Radius Full
+            </Button>
+          </div>
+        }
+        code={`toast("Radius: None", { radius: "none" });
+toast("Radius: Medium", { radius: "md" });
+toast("Radius: Extra Large", { radius: "xl" });
+toast("Radius: Full", { radius: "full" });`}
+      />
+
+      <DocsComponent
+        props={["richColors: boolean"]}
+        title="Rich Colors"
+        description="Fills the entire background color of the toast matching the semantic status color."
+        preview={
+          <div className="flex flex-wrap gap-3">
+            <Button
+              color="success"
+              onClick={() =>
+                toast.success("Successfully Completed", {
+                  richColors: true,
+                  description: "Your files were fully uploaded.",
+                })
+              }
+            >
+              Rich Success
+            </Button>
+            <Button
+              color="danger"
+              onClick={() =>
+                toast.error("Operation Aborted", {
+                  richColors: true,
+                  description: "Authentication token expired.",
+                })
+              }
+            >
+              Rich Error
+            </Button>
+            <Button
+              color="warning"
+              onClick={() =>
+                toast.warning("Server Capacity Warning", {
+                  richColors: true,
+                  description: "Resource usage exceeds 85%.",
+                })
+              }
+            >
+              Rich Warning
+            </Button>
+            <Button
+              color="primary"
+              onClick={() =>
+                toast.info("Database Synchronized", {
+                  richColors: true,
+                  description: "Read replicas synced cleanly.",
+                })
+              }
+            >
+              Rich Info
+            </Button>
+          </div>
+        }
+        code={`toast.success("Successfully Completed", { richColors: true });
+toast.error("Operation Aborted", { richColors: true });
+toast.warning("Server Capacity Warning", { richColors: true });
+toast.info("Database Synchronized", { richColors: true });`}
+      />
+
+      <DocsComponent
+        props={["showBgIcon: boolean"]}
+        title="Background Icon Decoration"
+        description="Fades a large low-opacity decorative status icon in the background of the toast."
+        preview={
+          <div className="flex flex-wrap gap-3">
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() =>
+                toast.success("System Optimized", {
+                  showBgIcon: true,
+                  description: "Cleaned cache and files.",
+                })
+              }
+            >
+              Show Toast with Background Icon
+            </Button>
+          </div>
+        }
+        code={`toast.success("System Optimized", {
+  showBgIcon: true,
+  description: "Cleaned cache and files."
+});`}
+      />
+
+      <DocsComponent
+        props={["showProgress: boolean"]}
+        title="Timer Progress Bar"
+        description="Render a timer indicator bar showing remaining duration."
+        preview={
+          <div className="flex flex-wrap gap-3">
+            <Button
+              color="primary"
+              variant="bordered"
+              onClick={() =>
+                toast.success("Closing Automatically", {
+                  showProgress: true,
+                  description: "Closing soon via visual timer track.",
+                  duration: 5000,
+                })
+              }
+            >
+              Progress Timer
+            </Button>
+          </div>
+        }
+        code={`toast.success("Closing Automatically", {
+  showProgress: true,
+  duration: 5000
+});`}
       />
 
       <DocsComponent
@@ -145,7 +361,7 @@ toast.info("System Update Available", { description: "Version v2.4.0 is ready." 
       />
 
       <DocsComponent
-        title="Loading Toast Variations (Loading -> Success / Error)"
+        title="Loading Toast Variations"
         description="Trigger animated loading spinner toasts, and dynamically update them to success or error results after asynchronous tasks."
         preview={
           <div className="flex flex-wrap gap-3">
@@ -230,7 +446,7 @@ setTimeout(() => {
                 toast.loading("Fetching Records...", { spinnerVariant: "dots" })
               }
             >
-              Spinner: Dots
+              Spinner: Docs
             </Button>
             <Button
               color="primary"
@@ -254,7 +470,9 @@ setTimeout(() => {
               color="primary"
               variant="bordered"
               onClick={() =>
-                toast.loading("Generating PDF...", { spinnerVariant: "ring" })
+                toast.loading("Routing Connection...", {
+                  spinnerVariant: "ring",
+                })
               }
             >
               Spinner: Ring
@@ -263,7 +481,7 @@ setTimeout(() => {
               color="primary"
               variant="bordered"
               onClick={() =>
-                toast.loading("Compiling Code...", {
+                toast.loading("Applying Updates...", {
                   spinnerVariant: "gradient",
                 })
               }
@@ -275,92 +493,102 @@ setTimeout(() => {
         code={`toast.loading("Fetching Records...", { spinnerVariant: "dots" });
 toast.loading("Processing Order...", { spinnerVariant: "bars" });
 toast.loading("Syncing Files...", { spinnerVariant: "pulse" });
-toast.loading("Generating PDF...", { spinnerVariant: "ring" });
-toast.loading("Compiling Code...", { spinnerVariant: "gradient" });`}
+toast.loading("Routing Connection...", { spinnerVariant: "ring" });
+toast.loading("Applying Updates...", { spinnerVariant: "gradient" });`}
         props={[
-          "spinnerVariant: 'default' | 'dots' | 'bars' | 'pulse' | 'ring' | 'gradient'",
+          "spinnerVariant?: 'dots' | 'bars' | 'pulse' | 'ring' | 'gradient'",
         ]}
       />
 
       <Separator label={<span className="px-2">API Reference</span>} gradient />
 
-      <DocsComponent
-        title="Props & Methods — Toast"
-        description="Supported helper functions and options for Toast."
-        preview={
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Method / Option
-                  </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Type
-                  </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Default
-                  </th>
-                  <th className="text-left py-2 px-3 font-semibold text-foreground">
-                    Description
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    toast.success(title, options)
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    function
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Triggers an emerald success notification with checkmark icon
-                    badge.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    toast.error(title, options)
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    function
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Triggers a rose error alert toast.
-                  </td>
-                </tr>
-                <tr className="border-b border-border">
-                  <td className="px-3 py-2 font-mono text-primary">
-                    options.description
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    ReactNode
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Contextual body text below the title.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2 font-mono text-primary">
-                    options.action
-                  </td>
-                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">
-                    &#123; label, onClick &#125;
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">—</td>
-                  <td className="px-3 py-2 text-muted-foreground">
-                    Interactive action button config.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        }
-      />
+      <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/50">
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Prop
+              </th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Type
+              </th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Default
+              </th>
+              <th className="px-4 py-3 text-left font-bold text-zinc-900 dark:text-zinc-100">
+                Description
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                variant
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                'default' | 'bordered' | 'bar'
+              </td>
+              <td className="px-4 py-3 text-zinc-400">'default'</td>
+              <td className="px-4 py-3">The visual style layout variant.</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">size</td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                'sm' | 'md' | 'lg'
+              </td>
+              <td className="px-4 py-3 text-zinc-400">'md'</td>
+              <td className="px-4 py-3">Sizing coordinates and text sizes.</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                radius
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' |
+                'full'
+              </td>
+              <td className="px-4 py-3 text-zinc-400">'xl'</td>
+              <td className="px-4 py-3">
+                Corner border-radius rounding token.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                richColors
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                boolean
+              </td>
+              <td className="px-4 py-3 text-zinc-400">false</td>
+              <td className="px-4 py-3">
+                Fills the whole background card matching status color.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                showBgIcon
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                boolean
+              </td>
+              <td className="px-4 py-3 text-zinc-400">false</td>
+              <td className="px-4 py-3">
+                Renders a huge faded background status icon decoration.
+              </td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-xs text-sky-500">
+                showProgress
+              </td>
+              <td className="px-4 py-3 text-zinc-600 dark:text-zinc-300">
+                boolean
+              </td>
+              <td className="px-4 py-3 text-zinc-400">false</td>
+              <td className="px-4 py-3">Displays a closing progress line.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <DocsPagination />
     </div>

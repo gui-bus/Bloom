@@ -6,6 +6,7 @@ import { DocsPagination } from "@/components/core/docsPagination";
 import DocsTitle from "@/components/core/docsTitle";
 import { ImportSnippet } from "@/components/core/importSnippet";
 import { InstallationBlock } from "@/components/core/installationBlock";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar/avatar";
 import { Badge } from "@/components/ui/badge/badge";
 import { Separator } from "@/components/ui/separator/separator";
 import { VirtualizedList } from "@/components/ui/virtualizedList/virtualizedList";
@@ -93,32 +94,12 @@ export default function VirtualizedListPage() {
 
       <DocsComponent
         props={[
-          "items: any",
-          "users: any",
-          "itemHeight: any",
-          "height: any",
-          "renderItem: any",
-          "item: any",
-          "flex: any",
-          "items-center: any",
-          "gap-3: any",
-          "px-4: any",
-          "h-full: any",
-          "border-b: any",
-          "flex-1: any",
-          "min-w-0: any",
-          "text-sm: any",
-          "font-medium: any",
-          "truncate: any",
-          "text-xs: any",
-          "text-zinc-400: any",
-          "color: any",
-          "role: any",
-          "danger: any",
-          "default: any",
+          "items: any[]",
+          "itemHeight: number",
+          "renderItem: (item: any, index: number) => React.ReactNode",
         ]}
         title="Custom Render"
-        description="Use the renderItem prop to display complex row layouts with icons, badges, and metadata."
+        description="Use the renderItem prop to display complex row layouts with avatars and badges."
         preview={
           <div className="w-full max-w-lg">
             <p className="text-xs text-zinc-400 mb-2 font-mono">5,000 users</p>
@@ -133,9 +114,11 @@ export default function VirtualizedListPage() {
                 role: string;
               }) => (
                 <div className="flex items-center gap-3 px-4 h-full border-b border-zinc-100 dark:border-zinc-800/50">
-                  <div className="flex items-center justify-center size-8 rounded-full bg-sky-500/10 text-sky-500 text-xs font-bold shrink-0">
-                    {item.name.charAt(5)}
-                  </div>
+                  <Avatar size="sm" color="primary">
+                    <AvatarFallback>
+                      {item.name.replace("User ", "")}
+                    </AvatarFallback>
+                  </Avatar>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100 truncate">
                       {item.name}
@@ -175,7 +158,7 @@ export default function VirtualizedListPage() {
   height={336}
   renderItem={(item) => (
     <div className="flex items-center gap-3 px-4 h-full border-b">
-      <Avatar>{item.name.charAt(5)}</Avatar>
+      <Avatar name={item.name} size="sm" />
       <div className="flex-1 min-w-0">
         <p className="text-sm font-medium truncate">{item.name}</p>
         <p className="text-xs text-zinc-400 truncate">{item.email}</p>
@@ -234,21 +217,21 @@ export default function VirtualizedListPage() {
               <button
                 type="button"
                 onClick={() => (window as any).__listRef?.scrollToIndex(0)}
-                className="px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+                className="px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 cursor-pointer"
               >
                 Jump to #1
               </button>
               <button
                 type="button"
                 onClick={() => (window as any).__listRef?.scrollToIndex(500)}
-                className="px-3 py-1.5 rounded-lg bg-sky-500 text-white text-xs font-semibold hover:bg-sky-600"
+                className="px-3 py-1.5 rounded-lg bg-sky-500 text-white text-xs font-semibold hover:bg-sky-600 cursor-pointer"
               >
                 Jump to #501
               </button>
               <button
                 type="button"
                 onClick={() => (window as any).__listRef?.scrollToIndex(9999)}
-                className="px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+                className="px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 cursor-pointer"
               >
                 Jump to Bottom (#10000)
               </button>
@@ -284,7 +267,7 @@ export default function VirtualizedListPage() {
       />
 
       <DocsComponent
-        title="Infinite Scroll Loading (onEndReached)"
+        title="Infinite Scroll Loading"
         description="Automatically trigger data fetching when scrolling near bottom threshold with onEndReached."
         preview={
           <div className="w-full max-w-lg">

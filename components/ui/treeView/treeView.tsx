@@ -10,6 +10,7 @@ export interface TreeDataItem {
   icon?: React.ReactNode;
   children?: TreeDataItem[];
   isDisabled?: boolean;
+  isLazy?: boolean;
 }
 
 interface TreeViewContextValue {
@@ -212,7 +213,9 @@ export function TreeView({
           icon={item.icon}
           isDisabled={item.isDisabled}
           isLoading={loadingIds.has(item.id)}
-          hasChildrenProp={Boolean(item.children && item.children.length > 0)}
+          hasChildrenProp={Boolean(
+            item.isLazy || (item.children && item.children.length > 0),
+          )}
         >
           {item.children && item.children.length > 0
             ? renderDataTree(item.children)
