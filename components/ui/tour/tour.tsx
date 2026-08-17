@@ -67,12 +67,22 @@ export const Tour: React.FC<TourProps> = ({
   }, [run, currentStepIndex, activeStep]);
 
   React.useEffect(() => {
+    let frameId: number;
+
+    const handleScrollOrResize = () => {
+      cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(() => {
+        updateCoords();
+      });
+    };
+
     updateCoords();
-    window.addEventListener("resize", updateCoords);
-    window.addEventListener("scroll", updateCoords);
+    window.addEventListener("resize", handleScrollOrResize);
+    window.addEventListener("scroll", handleScrollOrResize);
     return () => {
-      window.removeEventListener("resize", updateCoords);
-      window.removeEventListener("scroll", updateCoords);
+      cancelAnimationFrame(frameId);
+      window.removeEventListener("resize", handleScrollOrResize);
+      window.removeEventListener("scroll", handleScrollOrResize);
     };
   }, [updateCoords]);
 
