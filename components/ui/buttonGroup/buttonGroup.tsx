@@ -32,10 +32,9 @@ export const ButtonGroup = React.memo(
     ariaLabel,
     className,
   }: ButtonGroupProps) => {
-    const childrenArray = React.Children.toArray(children);
-    const count = childrenArray.length;
-
     const clonedChildren = React.useMemo(() => {
+      const childrenArray = React.Children.toArray(children);
+      const count = childrenArray.length;
       return childrenArray.map((child, index) => {
         if (!React.isValidElement<ButtonProps>(child)) return child;
 
@@ -85,7 +84,7 @@ export const ButtonGroup = React.memo(
         });
       });
     }, [
-      childrenArray,
+      children,
       variant,
       color,
       size,
@@ -94,7 +93,6 @@ export const ButtonGroup = React.memo(
       isAttached,
       isLoading,
       isDisabled,
-      count,
     ]);
 
     return (

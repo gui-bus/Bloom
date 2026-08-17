@@ -1,5 +1,4 @@
-﻿import { Check, ChevronDown, ChevronRight, Copy } from "lucide-react";
-import type React from "react";
+import { Check, ChevronDown, ChevronRight, Copy } from "lucide-react";
 import { useState } from "react";
 
 export interface JsonTreeViewerProps {
@@ -9,12 +8,12 @@ export interface JsonTreeViewerProps {
   isLast?: boolean;
 }
 
-const JsonNode: React.FC<{
+const JsonNode = React.memo<{
   keyName?: string;
   value: any;
   defaultExpanded?: boolean;
   isLast?: boolean;
-}> = ({ keyName, value, defaultExpanded = false, isLast = true }) => {
+}>(({ keyName, value, defaultExpanded = false, isLast = true }) => {
   const [expanded, setExpanded] = useState(defaultExpanded);
   const isObject = value !== null && typeof value === "object";
   const isArray = Array.isArray(value);
@@ -137,7 +136,8 @@ const JsonNode: React.FC<{
       )}
     </div>
   );
-};
+});
+JsonNode.displayName = "JsonNode";
 
 export function JsonTreeViewer({
   data,

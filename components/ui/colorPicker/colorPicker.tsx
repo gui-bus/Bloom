@@ -146,25 +146,7 @@ function ColorWheel({
         ctx.fill();
       }
     }
-
-    const rgb = hexToRgb(value);
-    const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
-    const angleRad = (hsl.h * Math.PI) / 180;
-    const dist = (hsl.s / 100) * radius;
-    const selectorX = centerX + dist * Math.cos(angleRad);
-    const selectorY = centerY + dist * Math.sin(angleRad);
-
-    ctx.beginPath();
-    ctx.arc(selectorX, selectorY, 8, 0, 2 * Math.PI);
-    ctx.strokeStyle = "#ffffff";
-    ctx.lineWidth = 2.5;
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(selectorX, selectorY, 9.5, 0, 2 * Math.PI);
-    ctx.strokeStyle = "rgba(0,0,0,0.25)";
-    ctx.lineWidth = 1;
-    ctx.stroke();
-  }, [value, size]);
+  }, [size]);
 
   const pickColor = React.useCallback(
     (
@@ -202,29 +184,53 @@ function ColorWheel({
     [disabled, size, onChange],
   );
 
+  const centerX = size / 2;
+  const centerY = size / 2;
+  const radius = size / 2 - 4;
+
+  const rgb = hexToRgb(value);
+  const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+  const angleRad = (hsl.h * Math.PI) / 180;
+  const dist = (hsl.s / 100) * radius;
+  const selectorX = centerX + dist * Math.cos(angleRad);
+  const selectorY = centerY + dist * Math.sin(angleRad);
+
   return (
-    <canvas
-      ref={canvasRef}
-      width={size}
-      height={size}
-      className={cn(
-        "rounded-full cursor-crosshair select-none touch-none",
-        disabled && "opacity-50 pointer-events-none",
-      )}
-      onMouseDown={(e) => {
-        setIsDragging(true);
-        pickColor(e);
-      }}
-      onMouseMove={(e) => isDragging && pickColor(e)}
-      onMouseUp={() => setIsDragging(false)}
-      onMouseLeave={() => setIsDragging(false)}
-      onTouchStart={(e) => {
-        setIsDragging(true);
-        pickColor(e);
-      }}
-      onTouchMove={(e) => isDragging && pickColor(e)}
-      onTouchEnd={() => setIsDragging(false)}
-    />
+    <div className="relative" style={{ width: size, height: size }}>
+      <canvas
+        ref={canvasRef}
+        width={size}
+        height={size}
+        className={cn(
+          "rounded-full cursor-crosshair select-none touch-none",
+          disabled && "opacity-50 pointer-events-none",
+        )}
+        onMouseDown={(e) => {
+          setIsDragging(true);
+          pickColor(e);
+        }}
+        onMouseMove={(e) => isDragging && pickColor(e)}
+        onMouseUp={() => setIsDragging(false)}
+        onMouseLeave={() => setIsDragging(false)}
+        onTouchStart={(e) => {
+          setIsDragging(true);
+          pickColor(e);
+        }}
+        onTouchMove={(e) => isDragging && pickColor(e)}
+        onTouchEnd={() => setIsDragging(false)}
+      />
+      <div
+        className="absolute border-2 border-white rounded-full pointer-events-none shadow-md"
+        style={{
+          left: `${selectorX}px`,
+          top: `${selectorY}px`,
+          width: "16px",
+          height: "16px",
+          transform: "translate(-50%, -50%)",
+          boxShadow: "0 0 0 1px rgba(0,0,0,0.25)",
+        }}
+      />
+    </div>
   );
 }
 
