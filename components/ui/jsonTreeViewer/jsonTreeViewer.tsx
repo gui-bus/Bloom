@@ -1,4 +1,5 @@
 import { Check, ChevronDown, ChevronRight, Copy } from "lucide-react";
+import * as React from "react";
 import { useState } from "react";
 
 export interface JsonTreeViewerProps {
