@@ -17,7 +17,7 @@ const backdropVariants: Record<SheetBackdrop, string> = {
 };
 
 const Sheet = ({
-  modal = false,
+  modal = true,
   ...props
 }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Root>) => (
   <DialogPrimitive.Root modal={modal} {...props} />
