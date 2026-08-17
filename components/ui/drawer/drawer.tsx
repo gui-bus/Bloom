@@ -15,7 +15,7 @@ export type DrawerOverlayVariant =
 export type DrawerSize = "sm" | "md" | "lg" | "xl" | "full";
 
 const Drawer = ({
-  modal = false,
+  modal = true,
   ...props
 }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Root>) => (
   <DialogPrimitive.Root modal={modal} {...props} />

@@ -5,7 +5,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const AlertDialog = ({
-  modal = false,
+  modal = true,
   ...props
 }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Root>) => (
   <DialogPrimitive.Root modal={modal} {...props} />

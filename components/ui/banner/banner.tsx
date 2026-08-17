@@ -84,12 +84,12 @@ export function Banner({
     }
   }, [hasCarousel, count]);
 
-  const prevAnnouncement = () => {
+  const prevAnnouncement = React.useCallback(() => {
     if (hasCarousel) {
       setCurrentIndex((prev) => (prev === 0 ? count - 1 : prev - 1));
       setProgress(0);
     }
-  };
+  }, [hasCarousel, count]);
 
   React.useEffect(() => {
     if (!hasCarousel || !autoPlay || count <= 1) return;
@@ -125,13 +125,13 @@ export function Banner({
     nextAnnouncement,
   ]);
 
-  const handleDismiss = () => {
+  const handleDismiss = React.useCallback(() => {
     setIsDismissed(true);
     if (storageKey && typeof window !== "undefined") {
       localStorage.setItem(`bloom-banner-dismissed-${storageKey}`, "true");
     }
     onDismiss?.();
-  };
+  }, [storageKey, onDismiss]);
 
   if (isDismissed) return null;
 
