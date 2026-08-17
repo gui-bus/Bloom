@@ -14,13 +14,19 @@ export function useQueryState(
   const [value, setValue] = React.useState<string>("");
 
   React.useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window === "undefined") return;
+
+    const handlePopState = () => {
       const params = new URLSearchParams(window.location.search);
-      const initial = params.get(key);
-      if (initial) {
-        setValue(initial);
-      }
-    }
+      setValue(params.get(key) || "");
+    };
+
+    handlePopState();
+
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
   }, [key]);
 
   const setQueryValue = React.useCallback(
