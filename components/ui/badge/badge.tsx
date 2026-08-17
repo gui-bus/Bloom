@@ -1,7 +1,9 @@
 "use client";
 
+import { Slot } from "@radix-ui/react-slot";
 import * as React from "react";
 import { designRadius } from "@/lib/design-system";
+import { useKeyboardClick } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 
 type BadgeColor =
@@ -40,6 +42,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   isDisabled?: boolean;
   isInvisible?: boolean;
   live?: boolean;
+  asChild?: boolean;
 }
 
 const badgeSizes: Record<BadgeSize, string> = {
@@ -169,6 +172,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       live = false,
       children,
       className,
+      asChild = false,
       ...props
     },
     ref,
@@ -179,8 +183,9 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     const showDot = dot || isDot || variant === "dot";
 
     if (isOnlyDotMode) {
+      const DotComp = asChild ? Slot : "span";
       return (
-        <span
+        <DotComp
           ref={ref}
           className={cn(
             "relative inline-flex shrink-0 size-2.5 rounded-full select-none",
@@ -198,15 +203,21 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
               )}
             />
           )}
-        </span>
+        </DotComp>
       );
     }
 
+    const Comp = asChild ? Slot : "span";
+    const keyboardProps = useKeyboardClick<HTMLSpanElement>(
+      isPressable && !isDisabled,
+    );
+
     return (
-      <span
+      <Comp
         ref={ref}
         aria-live={live ? "polite" : undefined}
         aria-atomic={live ? "true" : undefined}
+        role={isPressable ? "button" : undefined}
         className={cn(
           "inline-flex items-center font-semibold select-none transition-all duration-200 ease-in-out relative",
           badgeSizes[size],
@@ -219,6 +230,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
             "opacity-50 grayscale cursor-not-allowed pointer-events-none",
           className,
         )}
+        {...keyboardProps}
         {...props}
       >
         {showDot && (
@@ -276,7 +288,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
             </svg>
           </button>
         )}
-      </span>
+      </Comp>
     );
   },
 );

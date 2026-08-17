@@ -1,8 +1,10 @@
 "use client";
 
 import { Icon } from "@iconify/react";
+import { Slot } from "@radix-ui/react-slot";
 import * as React from "react";
 import { designRadius } from "@/lib/design-system";
+import { useKeyboardClick } from "@/lib/hooks";
 import { Ripple } from "@/lib/ripple/ripple";
 import { useRipples } from "@/lib/ripple/useRipple";
 import { cn } from "@/lib/utils";
@@ -36,6 +38,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   disableRipple?: boolean;
   backgroundIcon?: string;
   children?: React.ReactNode;
+  asChild?: boolean;
 }
 
 const cardColorMap: Record<CardColor, Record<CardVariant, string>> = {
@@ -154,20 +157,25 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       backgroundIcon,
       onClick,
       children,
+      asChild = false,
       ...props
     },
     ref,
   ) => {
     const { ripples, addRipple, removeRipple } = useRipples();
+    const Comp = asChild ? Slot : "div";
 
     const handleClick = React.useCallback(
       (e: React.MouseEvent<HTMLDivElement>) => {
         if (isDisabled || isLoading) return;
 
         if (isPressable && !disableRipple) {
+          const isKeyboardClick = e.clientX === 0 && e.clientY === 0;
           const rect = e.currentTarget.getBoundingClientRect();
           const size = Math.max(rect.width, rect.height);
-          addRipple(e.clientX - rect.left, e.clientY - rect.top, size);
+          const x = isKeyboardClick ? rect.width / 2 : e.clientX - rect.left;
+          const y = isKeyboardClick ? rect.height / 2 : e.clientY - rect.top;
+          addRipple(x, y, size);
         }
 
         onClick?.(e);
@@ -175,10 +183,13 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       [isPressable, isDisabled, isLoading, disableRipple, addRipple, onClick],
     );
 
+    const keyboardProps = useKeyboardClick<HTMLDivElement>(
+      isPressable && !isDisabled && !isLoading,
+    );
+
     return (
-      <div
+      <Comp
         ref={ref}
-        tabIndex={isPressable && !isDisabled && !isLoading ? 0 : undefined}
         role={isPressable ? "button" : undefined}
         aria-disabled={isDisabled || isLoading ? true : undefined}
         aria-busy={isLoading || undefined}
@@ -199,6 +210,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
           isLoading && "opacity-75 cursor-wait pointer-events-none",
           className,
         )}
+        {...keyboardProps}
         {...props}
       >
         {backgroundIcon && (
@@ -226,7 +238,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
               onComplete={() => removeRipple(r.id)}
             />
           ))}
-      </div>
+      </Comp>
     );
   },
 );

@@ -3,6 +3,7 @@
 import { Icon } from "@iconify/react";
 import { cva } from "class-variance-authority";
 import * as React from "react";
+import { useKeyboardClick } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 
 export const datePickerTriggerVariants = cva(
@@ -217,6 +218,7 @@ export function DatePicker({
   );
 
   const [isOpen, setIsOpen] = React.useState(false);
+  const keyboardProps = useKeyboardClick<HTMLDivElement>(!disabled);
   const [currentMonth, setCurrentMonth] = React.useState<Date>(
     value || rangeValue?.[0] || multipleValue?.[0] || new Date(),
   );
@@ -467,20 +469,15 @@ export function DatePicker({
       )}
 
       <div
-        role="button"
-        tabIndex={disabled ? -1 : 0}
         onClick={() => !disabled && setIsOpen((prev) => !prev)}
-        onKeyDown={(e) => {
-          if (!disabled && (e.key === "Enter" || e.key === " ")) {
-            e.preventDefault();
-            setIsOpen((prev) => !prev);
-          }
-        }}
         className={cn(
           datePickerTriggerVariants({ variant }),
           isInvalid && "border-rose-500 dark:border-rose-500 text-rose-500",
           disabled && "opacity-50 cursor-not-allowed pointer-events-none",
         )}
+        role="button"
+        tabIndex={disabled ? -1 : 0}
+        {...keyboardProps}
       >
         <span
           className={cn(

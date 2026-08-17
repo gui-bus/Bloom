@@ -170,6 +170,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const activeVariant = variant || "default";
 
+    const [drawCheckmark, setDrawCheckmark] = React.useState(false);
+
+    React.useEffect(() => {
+      if (copied) {
+        const timeout = setTimeout(() => setDrawCheckmark(true), 50);
+        return () => clearTimeout(timeout);
+      }
+      setDrawCheckmark(false);
+    }, [copied]);
+
     const displayedStartContent = isCopy ? (
       copied ? (
         <svg
@@ -185,15 +195,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             d="M20 6L9 17L4 12"
             style={{
               strokeDasharray: 22,
-              strokeDashoffset: 22,
-              animation: "button-copy-draw 250ms ease-out forwards",
+              strokeDashoffset: drawCheckmark ? 0 : 22,
+              transition: "stroke-dashoffset 250ms ease-out",
             }}
           />
-          <style>{`
-            @keyframes button-copy-draw {
-              to { stroke-dashoffset: 0; }
-            }
-          `}</style>
         </svg>
       ) : (
         startContent || <Icon icon="hugeicons:copy-01" className="size-3.5" />

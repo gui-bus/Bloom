@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import * as React from "react";
 import { designRadius } from "@/lib/design-system";
+import { useKeyboardClick } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 
 export type SelectVariant =
@@ -133,6 +134,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     const [selectedMulti, setSelectedMulti] =
       React.useState<string[]>(defaultMultiValue);
     const [isOpen, setIsOpen] = React.useState(false);
+    const keyboardProps = useKeyboardClick<HTMLDivElement>(!disabled);
     const [searchQuery, setSearchQuery] = React.useState("");
 
     const currentSingle = value !== undefined ? value : singleVal;
@@ -339,15 +341,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 
         <div className="relative w-full">
           <div
-            role="button"
-            tabIndex={disabled ? -1 : 0}
             onClick={() => !disabled && setIsOpen((prev) => !prev)}
-            onKeyDown={(e) => {
-              if (!disabled && (e.key === "Enter" || e.key === " ")) {
-                e.preventDefault();
-                setIsOpen((prev) => !prev);
-              }
-            }}
             className={cn(
               "flex w-full items-center justify-between transition-colors outline-none cursor-pointer select-none",
               variantStyles[variant],
@@ -358,6 +352,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
               disabled && "cursor-not-allowed opacity-50 pointer-events-none",
               className,
             )}
+            role="button"
+            tabIndex={disabled ? -1 : 0}
+            {...keyboardProps}
           >
             <div className="flex-1 min-w-0 text-left">
               {isMultiSelect

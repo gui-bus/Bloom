@@ -3,6 +3,7 @@
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import * as React from "react";
 import { designRadius } from "@/lib/design-system";
+import { useKeyboardClick } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 
 type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
@@ -122,14 +123,17 @@ const Avatar = React.forwardRef<
   ) => {
     const { isInGroup } = useAvatarContext();
     const isEffectivelyDisabled = isDisabled;
+    const keyboardProps = useKeyboardClick<HTMLSpanElement>(
+      isPressable && !isEffectivelyDisabled,
+    );
+    const editableKeyboardProps = useKeyboardClick<HTMLDivElement>(
+      isEditable && !isEffectivelyDisabled,
+    );
 
     const avatarContent = (
       <div className="relative inline-flex shrink-0 group">
         <AvatarPrimitive.Root
           ref={ref}
-          tabIndex={
-            isPressable && !isEffectivelyDisabled ? (tabIndex ?? 0) : tabIndex
-          }
           className={cn(
             "relative flex shrink-0 overflow-hidden items-center justify-center select-none font-semibold transition-all duration-200",
             avatarSizes[size],
@@ -146,6 +150,8 @@ const Avatar = React.forwardRef<
               "opacity-50 grayscale cursor-not-allowed pointer-events-none",
             !title && !description && className,
           )}
+          {...keyboardProps}
+          {...(tabIndex !== undefined ? { tabIndex } : {})}
           {...props}
         >
           {children}
@@ -156,6 +162,8 @@ const Avatar = React.forwardRef<
                 onUpload?.();
               }}
               className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer text-white"
+              aria-label="Upload image"
+              {...editableKeyboardProps}
             >
               <svg
                 className="size-4"

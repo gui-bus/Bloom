@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 import { Input } from "@/components/ui/input/input";
+import { useKeyboardClick } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 
 export const comboboxVariants = cva(
@@ -119,6 +120,7 @@ export function Combobox({
   variant,
 }: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
+  const keyboardProps = useKeyboardClick<HTMLDivElement>(!disabled);
   const [search, setSearch] = React.useState("");
   const [selectedSingle, setSelectedSingle] = React.useState<string>(
     value !== undefined ? value : defaultValue,
@@ -284,21 +286,16 @@ export function Combobox({
       )}
 
       <div
-        role="button"
-        tabIndex={disabled ? -1 : 0}
         onClick={() => !disabled && setOpen((prev) => !prev)}
-        onKeyDown={(e) => {
-          if (!disabled && (e.key === "Enter" || e.key === " ")) {
-            e.preventDefault();
-            setOpen((prev) => !prev);
-          }
-        }}
         className={cn(
           comboboxVariants({ variant }),
           isInvalid && "border-rose-500 dark:border-rose-500 text-rose-500",
           disabled && "opacity-50 cursor-not-allowed pointer-events-none",
           className,
         )}
+        role="button"
+        tabIndex={disabled ? -1 : 0}
+        {...keyboardProps}
       >
         <div className="flex flex-wrap items-center gap-1.5 flex-1 min-w-0 pr-2">
           {isMulti ? (
