@@ -3,7 +3,10 @@
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import * as React from "react";
-import { DocsComponent } from "@/components/core/docsComponent";
+import {
+  DevicePreviewContext,
+  DocsComponent,
+} from "@/components/core/docsComponent";
 import {
   Avatar,
   AvatarFallback,
@@ -38,6 +41,7 @@ import {
   StepperTitle,
 } from "@/components/ui/stepper/stepper";
 import { Toast, toast } from "@/components/ui/toast/toast";
+import { cn } from "@/lib/utils";
 
 const classicCardCode = `import { Icon } from "@iconify/react";
 import { Button } from "@/components/ui/button/button";
@@ -111,9 +115,8 @@ export function SplitScreenLogin() {
     <div className="p-4 sm:p-8 bg-zinc-50 dark:bg-zinc-900/10 rounded-[2rem]">
       <div className="grid md:grid-cols-2 max-w-4xl mx-auto rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl min-h-[500px]">
         <div className="relative hidden md:flex flex-col justify-between p-12 text-white bg-zinc-950">
-          <div className="absolute inset-0 bg-gradient-to-tr from-sky-600 via-sky-700 to-indigo-700 opacity-95" />
           <div className="relative z-10 flex items-center gap-2.5 font-bold text-lg">
-            <Icon icon="hugeicons:sparkles" className="size-6 text-sky-300" />
+            <Icon icon="lucide:command" className="size-6 text-zinc-400" />
             <span>Bloom UI</span>
           </div>
           <div className="relative z-10 space-y-6">
@@ -122,7 +125,7 @@ export function SplitScreenLogin() {
             </blockquote>
             <div>
               <span className="block font-bold text-base">Guilherme Bus</span>
-              <span className="block text-xs text-sky-200">Lead Frontend Engineer</span>
+              <span className="block text-xs text-zinc-400">Lead Frontend Engineer</span>
             </div>
           </div>
         </div>
@@ -717,12 +720,25 @@ function ClassicCardPreview() {
 }
 
 function SplitScreenPreview() {
+  const simulatedDevice = React.useContext(DevicePreviewContext);
+  const isMobileOrTablet =
+    simulatedDevice === "mobile" || simulatedDevice === "tablet";
+
   return (
-    <div className="grid md:grid-cols-2 w-full max-w-4xl mx-auto rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl min-h-[500px]">
-      <div className="relative hidden md:flex flex-col justify-between p-12 text-white bg-zinc-950">
-        <div className="absolute inset-0 bg-gradient-to-tr from-sky-600 via-sky-700 to-indigo-700 opacity-95" />
+    <div
+      className={cn(
+        "grid w-full max-w-4xl mx-auto rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl min-h-[500px]",
+        isMobileOrTablet ? "grid-cols-1" : "grid md:grid-cols-2",
+      )}
+    >
+      <div
+        className={cn(
+          "relative flex-col justify-between p-12 text-white bg-zinc-950",
+          isMobileOrTablet ? "hidden" : "hidden md:flex",
+        )}
+      >
         <div className="relative z-10 flex items-center gap-2.5 font-bold text-lg tracking-tight">
-          <Icon icon="hugeicons:sparkles" className="size-6 text-sky-300" />
+          <Icon icon="lucide:command" className="size-6 text-zinc-400" />
           <span>Bloom UI</span>
         </div>
         <div className="relative z-10 space-y-6">
@@ -732,7 +748,7 @@ function SplitScreenPreview() {
           </blockquote>
           <div>
             <span className="block font-bold text-base">Guilherme Bus</span>
-            <span className="block text-xs text-sky-200">
+            <span className="block text-xs text-zinc-400">
               Lead Frontend Engineer
             </span>
           </div>
@@ -825,9 +841,23 @@ function MinimalistPreview() {
 }
 
 function ImageOverlayPreview() {
+  const simulatedDevice = React.useContext(DevicePreviewContext);
+  const isMobileOrTablet =
+    simulatedDevice === "mobile" || simulatedDevice === "tablet";
+
   return (
-    <div className="grid md:grid-cols-2 rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl min-h-[580px] w-full max-w-4xl mx-auto">
-      <div className="relative hidden md:block">
+    <div
+      className={cn(
+        "grid rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl min-h-[580px] w-full max-w-4xl mx-auto",
+        isMobileOrTablet ? "grid-cols-1" : "grid md:grid-cols-2",
+      )}
+    >
+      <div
+        className={cn(
+          "relative",
+          isMobileOrTablet ? "hidden" : "hidden md:block",
+        )}
+      >
         <Image
           src="/utils/placeholder.svg"
           alt="Login visual"
@@ -1155,6 +1185,11 @@ function SignUpWithStrengthPreview() {
 }
 
 function MultiStepSignupPreview() {
+  const simulatedDevice = React.useContext(DevicePreviewContext);
+  const isMobile = simulatedDevice === "mobile";
+  const isTablet = simulatedDevice === "tablet";
+  const isMobileOrTablet = isMobile || isTablet;
+
   const [activeStep, setActiveStep] = React.useState(0);
 
   return (
@@ -1170,8 +1205,14 @@ function MultiStepSignupPreview() {
           <StepperItem step={0}>
             <StepperIndicator step={0} />
             <div>
-              <StepperTitle className="hidden sm:block">Account</StepperTitle>
-              <StepperDescription className="hidden md:block">
+              <StepperTitle
+                className={cn(isMobile ? "hidden" : "hidden sm:block")}
+              >
+                Account
+              </StepperTitle>
+              <StepperDescription
+                className={cn(isMobileOrTablet ? "hidden" : "hidden md:block")}
+              >
                 Credentials
               </StepperDescription>
             </div>
@@ -1180,8 +1221,14 @@ function MultiStepSignupPreview() {
           <StepperItem step={1}>
             <StepperIndicator step={1} />
             <div>
-              <StepperTitle className="hidden sm:block">Profile</StepperTitle>
-              <StepperDescription className="hidden md:block">
+              <StepperTitle
+                className={cn(isMobile ? "hidden" : "hidden sm:block")}
+              >
+                Profile
+              </StepperTitle>
+              <StepperDescription
+                className={cn(isMobileOrTablet ? "hidden" : "hidden md:block")}
+              >
                 Personal info
               </StepperDescription>
             </div>
@@ -1190,8 +1237,14 @@ function MultiStepSignupPreview() {
           <StepperItem step={2}>
             <StepperIndicator step={2} />
             <div>
-              <StepperTitle className="hidden sm:block">Finish</StepperTitle>
-              <StepperDescription className="hidden md:block">
+              <StepperTitle
+                className={cn(isMobile ? "hidden" : "hidden sm:block")}
+              >
+                Finish
+              </StepperTitle>
+              <StepperDescription
+                className={cn(isMobileOrTablet ? "hidden" : "hidden md:block")}
+              >
                 Confirmation
               </StepperDescription>
             </div>

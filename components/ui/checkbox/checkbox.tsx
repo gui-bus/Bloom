@@ -321,7 +321,7 @@ const Checkbox = React.forwardRef<
                 <label
                   htmlFor={checkboxId}
                   className={cn(
-                    "text-sm font-medium leading-none cursor-pointer text-zinc-900 dark:text-zinc-100 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 truncate",
+                    "text-sm font-medium leading-tight cursor-pointer text-zinc-900 dark:text-zinc-100 peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
                     effectiveInvalid && "text-rose-500 dark:text-rose-400",
                   )}
                 >

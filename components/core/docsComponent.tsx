@@ -38,51 +38,55 @@ const devices: Record<
   },
 };
 
+export const DevicePreviewContext = React.createContext<Device | null>(null);
+
 function ResponsivePreview({ children }: { children: React.ReactNode }) {
   const [device, setDevice] = React.useState<Device>("desktop");
 
   return (
-    <div className="w-full space-y-4">
-      <div className="flex h-9 items-center justify-end">
-        <div className="flex items-center gap-1">
-          {(Object.keys(devices) as Device[]).map((key) => {
-            const item = devices[key];
-            const IconComponent = item.icon;
-            const active = device === key;
+    <DevicePreviewContext.Provider value={device}>
+      <div className="w-full space-y-4">
+        <div className="flex h-9 items-center justify-end">
+          <div className="flex items-center gap-1">
+            {(Object.keys(devices) as Device[]).map((key) => {
+              const item = devices[key];
+              const IconComponent = item.icon;
+              const active = device === key;
 
-            return (
-              <button
-                key={key}
-                type="button"
-                onClick={() => setDevice(key)}
-                aria-label={`Preview on ${item.label}`}
-                aria-pressed={active}
-                className={cn(
-                  "inline-flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-colors outline-none",
-                  active
-                    ? "bg-zinc-100 dark:bg-zinc-800 text-foreground"
-                    : "text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-900",
-                )}
-              >
-                <IconComponent className="size-4" />
-                <span>{item.label}</span>
-              </button>
-            );
-          })}
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setDevice(key)}
+                  aria-label={`Preview on ${item.label}`}
+                  aria-pressed={active}
+                  className={cn(
+                    "inline-flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-colors outline-none",
+                    active
+                      ? "bg-zinc-100 dark:bg-zinc-800 text-foreground"
+                      : "text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-900",
+                  )}
+                >
+                  <IconComponent className="size-4" />
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="flex min-h-[450px] w-full justify-center overflow-auto rounded-2xl bg-zinc-50/50 dark:bg-zinc-900/10 p-4 sm:p-6">
+          <div
+            className="flex min-h-[400px] shrink-0 items-center justify-center transition-[width] duration-300 ease-in-out"
+            style={{
+              width: devices[device].width,
+            }}
+          >
+            <div className="w-full flex justify-center items-center">{children}</div>
+          </div>
         </div>
       </div>
-
-      <div className="flex min-h-[450px] w-full justify-center overflow-auto rounded-2xl bg-zinc-50/50 dark:bg-zinc-900/10 p-4 sm:p-6">
-        <div
-          className="flex min-h-[400px] shrink-0 items-center justify-center transition-[width] duration-300 ease-in-out"
-          style={{
-            width: devices[device].width,
-          }}
-        >
-          <div className="w-full flex justify-center items-center">{children}</div>
-        </div>
-      </div>
-    </div>
+    </DevicePreviewContext.Provider>
   );
 }
 
