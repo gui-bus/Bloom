@@ -66,7 +66,8 @@ function ResponsivePreview({ children }: { children: React.ReactNode }) {
     if (!isDragging || !containerRef.current) return;
 
     const rect = containerRef.current.getBoundingClientRect();
-    const parentRect = containerRef.current.parentElement?.getBoundingClientRect();
+    const parentRect =
+      containerRef.current.parentElement?.getBoundingClientRect();
 
     if (!parentRect) return;
 
@@ -87,7 +88,7 @@ function ResponsivePreview({ children }: { children: React.ReactNode }) {
     const handle = e.currentTarget as HTMLDivElement;
     try {
       handle.releasePointerCapture(e.pointerId);
-    } catch (err) {
+    } catch {
       // Ignore
     }
   };
@@ -139,7 +140,9 @@ function ResponsivePreview({ children }: { children: React.ReactNode }) {
             ref={containerRef}
             className={cn(
               "relative flex min-h-[400px] shrink-0 justify-center items-center bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden shadow-xs",
-              isDragging ? "transition-[height]" : "transition-[width,height] duration-300 ease-in-out",
+              isDragging
+                ? "transition-[height]"
+                : "transition-[width,height] duration-300 ease-in-out",
             )}
             style={{
               width: width === null ? "100%" : `${width}px`,
@@ -154,16 +157,32 @@ function ResponsivePreview({ children }: { children: React.ReactNode }) {
             <div
               className={cn(
                 "absolute right-0 top-0 bottom-0 w-2.5 cursor-ew-resize flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 border-l border-zinc-200/60 dark:border-zinc-700/60 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors select-none",
-                isDragging && "bg-sky-600 dark:bg-sky-500 text-white border-transparent dark:border-transparent hover:bg-sky-600 dark:hover:bg-sky-500",
+                isDragging &&
+                  "bg-sky-600 dark:bg-sky-500 text-white border-transparent dark:border-transparent hover:bg-sky-600 dark:hover:bg-sky-500",
               )}
               onPointerDown={handlePointerDown}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
             >
               <div className="flex flex-col gap-0.5">
-                <div className={cn("w-0.5 h-1 rounded-full bg-zinc-400 dark:bg-zinc-500", isDragging && "bg-white")} />
-                <div className={cn("w-0.5 h-1 rounded-full bg-zinc-400 dark:bg-zinc-500", isDragging && "bg-white")} />
-                <div className={cn("w-0.5 h-1 rounded-full bg-zinc-400 dark:bg-zinc-500", isDragging && "bg-white")} />
+                <div
+                  className={cn(
+                    "w-0.5 h-1 rounded-full bg-zinc-400 dark:bg-zinc-500",
+                    isDragging && "bg-white",
+                  )}
+                />
+                <div
+                  className={cn(
+                    "w-0.5 h-1 rounded-full bg-zinc-400 dark:bg-zinc-500",
+                    isDragging && "bg-white",
+                  )}
+                />
+                <div
+                  className={cn(
+                    "w-0.5 h-1 rounded-full bg-zinc-400 dark:bg-zinc-500",
+                    isDragging && "bg-white",
+                  )}
+                />
               </div>
             </div>
           </div>
