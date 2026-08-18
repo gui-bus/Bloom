@@ -1,5 +1,6 @@
 "use client";
 
+import { Monitor, Smartphone, Tablet } from "lucide-react";
 import * as React from "react";
 import {
   Tabs,
@@ -7,7 +8,83 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs/tabs";
+import { cn } from "@/lib/utils";
 import { CodeBlock } from "./codeBlock";
+
+type Device = "mobile" | "tablet" | "desktop";
+
+const devices: Record<
+  Device,
+  {
+    label: string;
+    width: string;
+    icon: React.ElementType;
+  }
+> = {
+  mobile: {
+    label: "Mobile",
+    width: "375px",
+    icon: Smartphone,
+  },
+  tablet: {
+    label: "Tablet",
+    width: "768px",
+    icon: Tablet,
+  },
+  desktop: {
+    label: "Desktop",
+    width: "100%",
+    icon: Monitor,
+  },
+};
+
+function ResponsivePreview({ children }: { children: React.ReactNode }) {
+  const [device, setDevice] = React.useState<Device>("desktop");
+
+  return (
+    <div className="overflow-hidden rounded-xl border bg-background border-zinc-200 dark:border-zinc-800">
+      <div className="flex h-12 items-center justify-end border-b bg-zinc-50/50 dark:bg-zinc-900/20 border-zinc-200 dark:border-zinc-800 px-3">
+        <div className="flex items-center gap-0.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-background p-1 shadow-sm">
+          {(Object.keys(devices) as Device[]).map((key) => {
+            const item = devices[key];
+            const IconComponent = item.icon;
+            const active = device === key;
+
+            return (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setDevice(key)}
+                aria-label={`Preview on ${item.label}`}
+                aria-pressed={active}
+                className={cn(
+                  "inline-flex h-7 items-center gap-1.5 rounded-md px-2.5 text-xs font-medium transition-colors",
+                  active
+                    ? "bg-zinc-100 dark:bg-zinc-800 text-foreground shadow-sm"
+                    : "text-muted-foreground hover:bg-zinc-50 dark:hover:bg-zinc-850 hover:text-foreground",
+                )}
+              >
+                <IconComponent className="size-3.5" />
+                <span className="hidden sm:inline">{item.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="flex min-h-[450px] w-full justify-center overflow-auto bg-zinc-50/20 dark:bg-zinc-950/10 p-8">
+        <div
+          className="flex min-h-[400px] shrink-0 items-center justify-center transition-[width] duration-300 ease-in-out"
+          style={{
+            width: devices[device].width,
+          }}
+        >
+          <div className="w-full">{children}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 interface DocsComponentProps {
   title: string;
@@ -15,6 +92,7 @@ interface DocsComponentProps {
   preview: React.ReactNode;
   code?: string | React.ReactNode;
   props?: string[];
+  showResponsivePreview?: boolean;
 }
 
 export function DocsComponent({
@@ -23,6 +101,7 @@ export function DocsComponent({
   preview,
   code,
   props,
+  showResponsivePreview = false,
 }: DocsComponentProps) {
   const sectionId = React.useMemo(() => {
     return title
@@ -131,7 +210,11 @@ export function DocsComponent({
         </TabsList>
 
         <TabsContent value="preview" className="mt-4">
-          {preview}
+          {showResponsivePreview ? (
+            <ResponsivePreview>{preview}</ResponsivePreview>
+          ) : (
+            preview
+          )}
         </TabsContent>
 
         {resolvedCode && (

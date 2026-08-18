@@ -1322,6 +1322,7 @@ export default function AuthPreviewPage() {
         description="A standard, centered card interface suitable for SaaS logins, dashboards, and settings views."
         preview={<ClassicCardPreview />}
         code={classicCardCode}
+        showResponsivePreview={true}
       />
 
       <DocsComponent
@@ -1329,6 +1330,7 @@ export default function AuthPreviewPage() {
         description="A modern login layout featuring a split graphic/testimonial panel and full sign-up form."
         preview={<SplitScreenPreview />}
         code={splitScreenCode}
+        showResponsivePreview={true}
       />
 
       <DocsComponent
@@ -1336,6 +1338,7 @@ export default function AuthPreviewPage() {
         description="A distraction-free verification panel with a clean icon header and subtle card shadow."
         preview={<MinimalistPreview />}
         code={minimalistCode}
+        showResponsivePreview={true}
       />
 
       <DocsComponent
@@ -1343,6 +1346,7 @@ export default function AuthPreviewPage() {
         description="A two-column layout with a full-height image on the left and a solid Card login form on the right — clean and conversion-focused."
         preview={<ImageOverlayPreview />}
         code={imageOverlayCode}
+        showResponsivePreview={true}
       />
 
       <DocsComponent
@@ -1350,6 +1354,7 @@ export default function AuthPreviewPage() {
         description="A clean two-step verification screen using the InputOTP component for email or SMS code confirmation."
         preview={<OTPVerificationPreview />}
         code={otpVerificationCode}
+        showResponsivePreview={true}
       />
 
       <DocsComponent
@@ -1357,6 +1362,7 @@ export default function AuthPreviewPage() {
         description="A provider-first login screen with OAuth buttons, email fallback, and pressable Card entries for recent accounts."
         preview={<SocialLoginPreview />}
         code={socialLoginCode}
+        showResponsivePreview={true}
       />
 
       <DocsComponent
@@ -1364,6 +1370,7 @@ export default function AuthPreviewPage() {
         description="A password update card featuring real-time requirements check and strength meter verification."
         preview={<PasswordResetPreview />}
         code={passwordResetCode}
+        showResponsivePreview={true}
       />
 
       <DocsComponent
@@ -1371,6 +1378,7 @@ export default function AuthPreviewPage() {
         description="A comprehensive registration form showing password strength meter on focus."
         preview={<SignUpWithStrengthPreview />}
         code={signUpWithStrengthCode}
+        showResponsivePreview={true}
       />
 
       <DocsComponent
@@ -1378,6 +1386,7 @@ export default function AuthPreviewPage() {
         description="A registration wizard utilizing a Stepper progress flow to divide credentials and profile steps."
         preview={<MultiStepSignupPreview />}
         code={multiStepSignupCode}
+        showResponsivePreview={true}
       />
     </div>
   );
