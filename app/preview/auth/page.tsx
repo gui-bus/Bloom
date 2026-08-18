@@ -59,7 +59,7 @@ import { toast } from "@/components/ui/toast/toast";
 export function ClassicCardLogin() {
   return (
     <div className="flex justify-center p-8 sm:p-12 bg-zinc-50 dark:bg-zinc-900/10 rounded-[2rem]">
-      <Card variant="shadow" className="w-full max-w-md">
+      <Card variant="bordered" className="w-full max-w-md">
         <CardHeader className="space-y-1.5 p-8 pb-4">
           <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
           <CardDescription>
@@ -113,7 +113,7 @@ import { toast } from "@/components/ui/toast/toast";
 export function SplitScreenLogin() {
   return (
     <div className="p-4 sm:p-8 bg-zinc-50 dark:bg-zinc-900/10 rounded-[2rem]">
-      <div className="grid md:grid-cols-2 max-w-4xl mx-auto rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl min-h-[500px]">
+      <div className="grid md:grid-cols-2 max-w-4xl mx-auto rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 min-h-[500px]">
         <div className="relative hidden md:flex flex-col justify-between p-12 text-white bg-zinc-950">
           <div className="relative z-10 flex items-center gap-2.5 font-bold text-lg">
             <Icon icon="lucide:command" className="size-6 text-zinc-400" />
@@ -168,7 +168,7 @@ import { toast } from "@/components/ui/toast/toast";
 export function MinimalistLogin() {
   return (
     <div className="flex justify-center p-8 sm:p-12 bg-zinc-50 dark:bg-zinc-900/10 rounded-[2rem]">
-      <Card variant="shadow" className="w-full max-w-sm">
+      <Card variant="bordered" className="w-full max-w-sm">
         <CardHeader className="p-8 pb-0 space-y-4 items-center text-center flex flex-col">
           <div className="inline-flex items-center justify-center p-3 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">
             <Icon icon="hugeicons:lock-key-01" className="size-6" />
@@ -216,7 +216,7 @@ import { toast } from "@/components/ui/toast/toast";
 
 export function ImageSplitLogin() {
   return (
-    <div className="grid md:grid-cols-2 rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl min-h-[580px]">
+    <div className="grid md:grid-cols-2 rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 min-h-[580px]">
       <div className="relative hidden md:block">
         <Image
           src="/utils/placeholder.svg"
@@ -303,7 +303,7 @@ import { toast } from "@/components/ui/toast/toast";
 export function OTPVerification() {
   return (
     <div className="flex justify-center p-8 sm:p-12 bg-zinc-50 dark:bg-zinc-900/10 rounded-[2rem]">
-      <Card variant="shadow" className="w-full max-w-sm">
+      <Card variant="bordered" className="w-full max-w-sm">
         <CardHeader className="p-8 pb-0 flex flex-col items-center text-center space-y-4">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-sky-50 dark:bg-sky-500/10">
             <Icon icon="hugeicons:mail-send-01" className="size-8 text-sky-500" />
@@ -362,9 +362,9 @@ const recentAccounts = [
 export function SocialLogin() {
   return (
     <div className="flex justify-center p-8 sm:p-12 bg-zinc-50 dark:bg-zinc-900/10 rounded-[2rem]">
-      <Card variant="shadow" className="w-full max-w-sm">
+      <Card variant="bordered" className="w-full max-w-sm">
         <CardHeader className="p-8 pb-0 flex flex-col items-center text-center space-y-3">
-          <div className="relative w-16 h-16 rounded-2xl overflow-hidden shadow-md border border-zinc-200 dark:border-zinc-800">
+          <div className="relative w-16 h-16 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800">
             <Image
               src="/utils/placeholder.svg"
               alt="App Logo"
@@ -458,7 +458,7 @@ import { toast } from "@/components/ui/toast/toast";
 export function PasswordReset() {
   return (
     <div className="flex justify-center p-8 sm:p-12 bg-zinc-50 dark:bg-zinc-900/10 rounded-[2rem]">
-      <Card variant="shadow" className="w-full max-w-md">
+      <Card variant="bordered" className="w-full max-w-md">
         <CardHeader className="space-y-1.5 p-8 pb-4">
           <CardTitle className="text-2xl font-bold">Reset Password</CardTitle>
           <CardDescription>
@@ -507,7 +507,7 @@ import { toast } from "@/components/ui/toast/toast";
 export function SignUpWithStrength() {
   return (
     <div className="flex justify-center p-8 sm:p-12 bg-zinc-50 dark:bg-zinc-900/10 rounded-[2rem]">
-      <Card variant="shadow" className="w-full max-w-md">
+      <Card variant="bordered" className="w-full max-w-md">
         <CardHeader className="space-y-1.5 p-8 pb-4">
           <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
           <CardDescription>
@@ -562,7 +562,7 @@ export function MultiStepSignup() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   return (
-    <Card variant="shadow" className="w-full max-w-xl">
+    <Card variant="bordered" className="w-full max-w-xl">
       <CardHeader className="space-y-1.5 p-6 sm:p-8 pb-4">
         <CardTitle className="text-2xl font-bold">Register Account</CardTitle>
         <CardDescription>
@@ -667,7 +667,7 @@ const recentAccounts = [
 
 function ClassicCardPreview() {
   return (
-    <Card variant="shadow" className="w-full max-w-md">
+    <Card variant="bordered" className="w-full max-w-md">
       <CardHeader className="space-y-1.5 p-6 sm:p-8 pb-4">
         <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
         <CardDescription>
@@ -727,7 +727,7 @@ function SplitScreenPreview() {
   return (
     <div
       className={cn(
-        "grid w-full max-w-4xl mx-auto rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl min-h-[500px]",
+        "grid w-full max-w-4xl mx-auto rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 min-h-[500px]",
         isMobileOrTablet ? "grid-cols-1" : "grid md:grid-cols-2",
       )}
     >
@@ -800,7 +800,7 @@ function SplitScreenPreview() {
 
 function MinimalistPreview() {
   return (
-    <Card variant="shadow" className="w-full max-w-sm">
+    <Card variant="bordered" className="w-full max-w-sm">
       <CardHeader className="p-6 sm:p-8 pb-0 flex flex-col items-center text-center space-y-4">
         <div className="inline-flex items-center justify-center p-3 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">
           <Icon icon="hugeicons:lock-key-01" className="size-6" />
@@ -848,7 +848,7 @@ function ImageOverlayPreview() {
   return (
     <div
       className={cn(
-        "grid rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl min-h-[580px] w-full max-w-4xl mx-auto",
+        "grid rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 min-h-[580px] w-full max-w-4xl mx-auto",
         isMobileOrTablet ? "grid-cols-1" : "grid md:grid-cols-2",
       )}
     >
@@ -951,7 +951,7 @@ function ImageOverlayPreview() {
 
 function OTPVerificationPreview() {
   return (
-    <Card variant="shadow" className="w-full max-w-sm">
+    <Card variant="bordered" className="w-full max-w-sm">
       <CardHeader className="p-6 sm:p-8 pb-0 flex flex-col items-center text-center space-y-4">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-sky-50 dark:bg-sky-500/10">
           <Icon icon="hugeicons:mail-send-01" className="size-8 text-sky-500" />
@@ -1001,9 +1001,9 @@ function OTPVerificationPreview() {
 
 function SocialLoginPreview() {
   return (
-    <Card variant="shadow" className="w-full max-w-sm">
+    <Card variant="bordered" className="w-full max-w-sm">
       <CardHeader className="p-6 sm:p-8 pb-0 flex flex-col items-center text-center space-y-3">
-        <div className="relative w-16 h-16 mx-auto rounded-2xl overflow-hidden shadow-md border border-zinc-200 dark:border-zinc-800">
+        <div className="relative w-16 h-16 mx-auto rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800">
           <Image
             src="/utils/placeholder.svg"
             alt="App Logo"
@@ -1104,7 +1104,7 @@ function SocialLoginPreview() {
 
 function PasswordResetPreview() {
   return (
-    <Card variant="shadow" className="w-full max-w-md">
+    <Card variant="bordered" className="w-full max-w-md">
       <CardHeader className="space-y-1.5 p-6 sm:p-8 pb-4">
         <CardTitle className="text-2xl font-bold">Reset Password</CardTitle>
         <CardDescription>
@@ -1142,7 +1142,7 @@ function PasswordResetPreview() {
 
 function SignUpWithStrengthPreview() {
   return (
-    <Card variant="shadow" className="w-full max-w-md">
+    <Card variant="bordered" className="w-full max-w-md">
       <CardHeader className="space-y-1.5 p-6 sm:p-8 pb-4">
         <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
         <CardDescription>
@@ -1193,7 +1193,7 @@ function MultiStepSignupPreview() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   return (
-    <Card variant="shadow" className="w-full max-w-xl">
+    <Card variant="bordered" className="w-full max-w-xl">
       <CardHeader className="space-y-1.5 p-6 sm:p-8 pb-4">
         <CardTitle className="text-2xl font-bold">Register Account</CardTitle>
         <CardDescription>
