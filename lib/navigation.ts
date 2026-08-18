@@ -116,16 +116,25 @@ export const blocksNavigationList: DocNavItem[] = [
   { href: "/components/tour", label: "Tour Guide" },
 ];
 
+export const previewsNavigationList: DocNavItem[] = [
+  { href: "/preview/auth", label: "Authentication" },
+];
+
 export const docNavigationList: DocNavItem[] = [
   ...overviewNavigationList,
   ...componentsNavigationList,
   ...blocksNavigationList,
+  ...previewsNavigationList,
 ];
 
 export const navigationSections: SidebarSection[] = [
   {
     title: "Overview",
     links: overviewNavigationList,
+  },
+  {
+    title: "Previews",
+    links: previewsNavigationList,
   },
   {
     title: "Components",
