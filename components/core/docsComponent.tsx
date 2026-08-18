@@ -72,14 +72,14 @@ function ResponsivePreview({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      <div className="flex min-h-[450px] w-full justify-center overflow-auto rounded-2xl bg-zinc-50/50 dark:bg-zinc-900/10">
+      <div className="flex min-h-[450px] w-full justify-center overflow-auto rounded-2xl bg-zinc-50/50 dark:bg-zinc-900/10 p-4 sm:p-6">
         <div
           className="flex min-h-[400px] shrink-0 items-center justify-center transition-[width] duration-300 ease-in-out"
           style={{
             width: devices[device].width,
           }}
         >
-          <div className="w-full p-2">{children}</div>
+          <div className="w-full flex justify-center items-center">{children}</div>
         </div>
       </div>
     </div>
