@@ -127,13 +127,13 @@ export function SplitScreenLogin() {
           </div>
         </div>
         <Card variant="ghost" className="rounded-none p-0">
-          <CardHeader className="p-8 sm:p-12 pb-0 space-y-2">
+          <CardHeader className="p-6 sm:p-8 md:p-12 pb-0 space-y-2">
             <h4 className="text-2xl font-bold tracking-tight">Get Started</h4>
             <p className="text-sm text-zinc-500 dark:text-zinc-400">
               Create your free account and explore the platform today.
             </p>
           </CardHeader>
-          <CardBody className="p-8 sm:p-12 space-y-5">
+          <CardBody className="p-6 sm:p-8 md:p-12 space-y-5">
             <Input type="text" label="Full Name" placeholder="John Doe" isRequired />
             <Input type="email" label="Email Address" placeholder="john@company.com" isRequired />
             <PasswordInput label="Password" placeholder="Create a strong password" showStrengthMeter showRequirements="on-focus" isRequired />
@@ -232,13 +232,13 @@ export function ImageSplitLogin() {
         </div>
       </div>
       <Card variant="ghost" className="rounded-none justify-center">
-        <CardHeader className="p-8 sm:p-12 pb-0 space-y-1">
+        <CardHeader className="p-6 sm:p-8 md:p-12 pb-0 space-y-1">
           <CardTitle className="text-2xl font-bold">Sign In</CardTitle>
           <CardDescription>
             Enter your credentials to access your workspace.
           </CardDescription>
         </CardHeader>
-        <CardBody className="p-8 sm:p-12 space-y-5">
+        <CardBody className="p-6 sm:p-8 md:p-12 space-y-5">
           <Input type="email" label="Email Address" placeholder="you@company.com" isRequired />
           <div className="space-y-1.5">
             <div className="flex justify-between items-center">
@@ -275,7 +275,7 @@ export function ImageSplitLogin() {
             </Button>
           </div>
         </CardBody>
-        <CardFooter className="p-8 sm:p-12 pt-0 justify-center">
+        <CardFooter className="p-6 sm:p-8 md:p-12 pt-0 justify-center">
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
             Don&apos;t have an account?{" "}
             <Link href="#" size="sm" variant="default">Create one free</Link>
@@ -559,95 +559,93 @@ export function MultiStepSignup() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   return (
-    <div className="flex justify-center p-8 sm:p-12 bg-zinc-50 dark:bg-zinc-900/10 rounded-[2rem]">
-      <Card variant="shadow" className="w-full max-w-xl">
-        <CardHeader className="space-y-1.5 p-8 pb-4">
-          <CardTitle className="text-2xl font-bold">Register Account</CardTitle>
-          <CardDescription>
-            Complete the steps below to setup your new account.
-          </CardDescription>
-        </CardHeader>
-        <CardBody className="p-8 pt-2 pb-6 space-y-8">
-          <Stepper activeStep={activeStep} size="sm">
-            <StepperItem step={0}>
-              <StepperIndicator step={0} />
-              <div>
-                <StepperTitle>Account</StepperTitle>
-                <StepperDescription>Credentials</StepperDescription>
-              </div>
-            </StepperItem>
-            <StepperSeparator step={0} />
-            <StepperItem step={1}>
-              <StepperIndicator step={1} />
-              <div>
-                <StepperTitle>Profile</StepperTitle>
-                <StepperDescription>Personal info</StepperDescription>
-              </div>
-            </StepperItem>
-            <StepperSeparator step={1} />
-            <StepperItem step={2}>
-              <StepperIndicator step={2} />
-              <div>
-                <StepperTitle>Finish</StepperTitle>
-                <StepperDescription>Confirmation</StepperDescription>
-              </div>
-            </StepperItem>
-          </Stepper>
+    <Card variant="shadow" className="w-full max-w-xl">
+      <CardHeader className="space-y-1.5 p-6 sm:p-8 pb-4">
+        <CardTitle className="text-2xl font-bold">Register Account</CardTitle>
+        <CardDescription>
+          Complete the steps below to setup your new account.
+        </CardDescription>
+      </CardHeader>
+      <CardBody className="p-6 sm:p-8 pt-2 pb-6 space-y-8">
+        <Stepper activeStep={activeStep} size="sm">
+          <StepperItem step={0}>
+            <StepperIndicator step={0} />
+            <div>
+              <StepperTitle className="hidden sm:block">Account</StepperTitle>
+              <StepperDescription className="hidden md:block">Credentials</StepperDescription>
+            </div>
+          </StepperItem>
+          <StepperSeparator step={0} />
+          <StepperItem step={1}>
+            <StepperIndicator step={1} />
+            <div>
+              <StepperTitle className="hidden sm:block">Profile</StepperTitle>
+              <StepperDescription className="hidden md:block">Personal info</StepperDescription>
+            </div>
+          </StepperItem>
+          <StepperSeparator step={1} />
+          <StepperItem step={2}>
+            <StepperIndicator step={2} />
+            <div>
+              <StepperTitle className="hidden sm:block">Finish</StepperTitle>
+              <StepperDescription className="hidden md:block">Confirmation</StepperDescription>
+            </div>
+          </StepperItem>
+        </Stepper>
 
-          <div className="min-h-[220px] flex flex-col justify-center">
-            {activeStep === 0 && (
-              <div className="space-y-4">
-                <Input type="email" label="Email Address" placeholder="name@company.com" isRequired />
-                <PasswordInput label="Password" placeholder="Create password" showStrengthMeter showRequirements="on-focus" isRequired />
-              </div>
-            )}
-
-            {activeStep === 1 && (
-              <div className="space-y-4">
-                <Input type="text" label="Full Name" placeholder="John Doe" isRequired />
-                <Input type="text" label="Company Name" placeholder="Acme Inc." />
-              </div>
-            )}
-
-            {activeStep === 2 && (
-              <div className="text-center space-y-4 py-4">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-                  <span className="text-xl">✓</span>
-                </div>
-                <div className="space-y-1">
-                  <h4 className="font-semibold text-lg">All Set!</h4>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                    By submitting, you agree to our terms and conditions.
-                  </p>
-                </div>
-                <Checkbox label="Subscribe to newsletter updates" color="primary" />
-              </div>
-            )}
-          </div>
-        </CardBody>
-        <CardFooter className="flex justify-between p-8 pt-0">
-          <Button
-            variant="flat"
-            isDisabled={activeStep === 0}
-            onClick={() => setActiveStep((s) => Math.max(0, s - 1))}
-          >
-            Back
-          </Button>
-          {activeStep < 2 ? (
-            <Button color="primary" onClick={() => setActiveStep((s) => Math.min(2, s + 1))}>
-              Continue
-            </Button>
-          ) : (
-            <Button
-              color="primary"
-              onClick={() => toast.success("Registration complete! Welcome aboard.")}
-            >
-              Complete Signup
-            </Button>
+        <div className="min-h-[220px] flex flex-col justify-center">
+          {activeStep === 0 && (
+            <div className="space-y-4">
+              <Input type="email" label="Email Address" placeholder="name@company.com" isRequired />
+              <PasswordInput label="Password" placeholder="Create password" showStrengthMeter showRequirements="on-focus" isRequired />
+            </div>
           )}
-        </CardFooter>
-      </Card>
-    </div>
+
+          {activeStep === 1 && (
+            <div className="space-y-4">
+              <Input type="text" label="Full Name" placeholder="John Doe" isRequired />
+              <Input type="text" label="Company Name" placeholder="Acme Inc." />
+            </div>
+          )}
+
+          {activeStep === 2 && (
+            <div className="text-center space-y-4 py-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <span className="text-xl">✓</span>
+              </div>
+              <div className="space-y-1">
+                <h4 className="font-semibold text-lg">All Set!</h4>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                  By submitting, you agree to our terms and conditions.
+                </p>
+              </div>
+              <Checkbox label="Subscribe to newsletter updates" color="primary" />
+            </div>
+          )}
+        </div>
+      </CardBody>
+      <CardFooter className="flex justify-between p-6 sm:p-8 pt-0">
+        <Button
+          variant="flat"
+          isDisabled={activeStep === 0}
+          onClick={() => setActiveStep((s) => Math.max(0, s - 1))}
+        >
+          Back
+        </Button>
+        {activeStep < 2 ? (
+          <Button color="primary" onClick={() => setActiveStep((s) => Math.min(2, s + 1))}>
+            Continue
+          </Button>
+        ) : (
+          <Button
+            color="primary"
+            onClick={() => toast.success("Registration complete! Welcome aboard.")}
+          >
+            Complete Signup
+          </Button>
+        )}
+      </CardFooter>
+    </Card>
   );
 }`;
 
@@ -667,13 +665,13 @@ const recentAccounts = [
 function ClassicCardPreview() {
   return (
     <Card variant="shadow" className="w-full max-w-md">
-      <CardHeader className="space-y-1.5 p-8 pb-4">
+      <CardHeader className="space-y-1.5 p-6 sm:p-8 pb-4">
         <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
         <CardDescription>
           Enter your credentials below to access your account dashboard.
         </CardDescription>
       </CardHeader>
-      <CardBody className="space-y-5 p-8 pt-2 pb-6">
+      <CardBody className="space-y-5 p-6 sm:p-8 pt-2 pb-6">
         <Input
           type="email"
           label="Email Address"
@@ -696,7 +694,7 @@ function ClassicCardPreview() {
         </div>
         <Checkbox label="Remember me on this device" color="primary" />
       </CardBody>
-      <CardFooter className="flex flex-col gap-4 p-8 pt-0">
+      <CardFooter className="flex flex-col gap-4 p-6 sm:p-8 pt-0">
         <Button
           className="w-full h-11 text-sm font-semibold"
           color="primary"
@@ -741,13 +739,13 @@ function SplitScreenPreview() {
         </div>
       </div>
       <Card variant="ghost" className="rounded-none">
-        <CardHeader className="p-8 sm:p-12 pb-0 space-y-2">
+        <CardHeader className="p-6 sm:p-8 md:p-12 pb-0 space-y-2">
           <h4 className="text-2xl font-bold tracking-tight">Get Started</h4>
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
             Create your free account and explore the platform today.
           </p>
         </CardHeader>
-        <CardBody className="p-8 sm:p-12 space-y-5">
+        <CardBody className="p-6 sm:p-8 md:p-12 space-y-5">
           <Input
             type="text"
             label="Full Name"
@@ -787,7 +785,7 @@ function SplitScreenPreview() {
 function MinimalistPreview() {
   return (
     <Card variant="shadow" className="w-full max-w-sm">
-      <CardHeader className="p-8 pb-0 flex flex-col items-center text-center space-y-4">
+      <CardHeader className="p-6 sm:p-8 pb-0 flex flex-col items-center text-center space-y-4">
         <div className="inline-flex items-center justify-center p-3 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">
           <Icon icon="hugeicons:lock-key-01" className="size-6" />
         </div>
@@ -800,7 +798,7 @@ function MinimalistPreview() {
           </p>
         </div>
       </CardHeader>
-      <CardBody className="p-8 space-y-4">
+      <CardBody className="p-6 sm:p-8 space-y-4">
         <Input type="email" placeholder="Access Email" isRequired />
         <PasswordInput
           placeholder="Confirm Password"
@@ -849,13 +847,13 @@ function ImageOverlayPreview() {
         </div>
       </div>
       <Card variant="ghost" className="rounded-none justify-center">
-        <CardHeader className="p-8 sm:p-12 pb-0 space-y-1">
+        <CardHeader className="p-6 sm:p-8 md:p-12 pb-0 space-y-1">
           <CardTitle className="text-2xl font-bold">Sign In</CardTitle>
           <CardDescription>
             Enter your credentials to access your workspace.
           </CardDescription>
         </CardHeader>
-        <CardBody className="p-8 sm:p-12 space-y-5">
+        <CardBody className="p-6 sm:p-8 md:p-12 space-y-5">
           <Input
             type="email"
             label="Email Address"
@@ -908,7 +906,7 @@ function ImageOverlayPreview() {
             </Button>
           </div>
         </CardBody>
-        <CardFooter className="p-8 sm:p-12 pt-0 justify-center">
+        <CardFooter className="p-6 sm:p-8 md:p-12 pt-0 justify-center">
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
             Don&apos;t have an account?{" "}
             <Link href="#" size="sm" variant="default">
@@ -924,7 +922,7 @@ function ImageOverlayPreview() {
 function OTPVerificationPreview() {
   return (
     <Card variant="shadow" className="w-full max-w-sm">
-      <CardHeader className="p-8 pb-0 flex flex-col items-center text-center space-y-4">
+      <CardHeader className="p-6 sm:p-8 pb-0 flex flex-col items-center text-center space-y-4">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-sky-50 dark:bg-sky-500/10">
           <Icon icon="hugeicons:mail-send-01" className="size-8 text-sky-500" />
         </div>
@@ -938,7 +936,7 @@ function OTPVerificationPreview() {
           </p>
         </div>
       </CardHeader>
-      <CardBody className="p-8 flex flex-col items-center gap-6">
+      <CardBody className="p-6 sm:p-8 flex flex-col items-center gap-6">
         <InputOTP maxLength={6} allowedType="numeric">
           <InputOTPGroup>
             <InputOTPSlot index={0} />
@@ -974,7 +972,7 @@ function OTPVerificationPreview() {
 function SocialLoginPreview() {
   return (
     <Card variant="shadow" className="w-full max-w-sm">
-      <CardHeader className="p-8 pb-0 flex flex-col items-center text-center space-y-3">
+      <CardHeader className="p-6 sm:p-8 pb-0 flex flex-col items-center text-center space-y-3">
         <div className="relative w-16 h-16 mx-auto rounded-2xl overflow-hidden shadow-md border border-zinc-200 dark:border-zinc-800">
           <Image
             src="/utils/placeholder.svg"
@@ -993,7 +991,7 @@ function SocialLoginPreview() {
           </p>
         </div>
       </CardHeader>
-      <CardBody className="p-8 space-y-8">
+      <CardBody className="p-6 sm:p-8 space-y-8">
         <div className="space-y-3">
           <Button
             className="w-full h-12 text-sm font-medium"
@@ -1077,13 +1075,13 @@ function SocialLoginPreview() {
 function PasswordResetPreview() {
   return (
     <Card variant="shadow" className="w-full max-w-md">
-      <CardHeader className="space-y-1.5 p-8 pb-4">
+      <CardHeader className="space-y-1.5 p-6 sm:p-8 pb-4">
         <CardTitle className="text-2xl font-bold">Reset Password</CardTitle>
         <CardDescription>
           Choose a strong password to protect and secure your account.
         </CardDescription>
       </CardHeader>
-      <CardBody className="space-y-5 p-8 pt-2 pb-6">
+      <CardBody className="space-y-5 p-6 sm:p-8 pt-2 pb-6">
         <PasswordInput
           label="New Password"
           placeholder="Enter new password"
@@ -1099,7 +1097,7 @@ function PasswordResetPreview() {
           isRequired
         />
       </CardBody>
-      <CardFooter className="flex flex-col gap-4 p-8 pt-0">
+      <CardFooter className="flex flex-col gap-4 p-6 sm:p-8 pt-0">
         <Button
           className="w-full h-11 font-semibold"
           color="primary"
@@ -1115,13 +1113,13 @@ function PasswordResetPreview() {
 function SignUpWithStrengthPreview() {
   return (
     <Card variant="shadow" className="w-full max-w-md">
-      <CardHeader className="space-y-1.5 p-8 pb-4">
+      <CardHeader className="space-y-1.5 p-6 sm:p-8 pb-4">
         <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
         <CardDescription>
           Join us to get started with your new workspace.
         </CardDescription>
       </CardHeader>
-      <CardBody className="space-y-5 p-8 pt-2 pb-6">
+      <CardBody className="space-y-5 p-6 sm:p-8 pt-2 pb-6">
         <Input
           type="text"
           label="Full Name"
@@ -1143,7 +1141,7 @@ function SignUpWithStrengthPreview() {
         />
         <Checkbox label="I agree to the Terms & Conditions" color="primary" />
       </CardBody>
-      <CardFooter className="flex flex-col gap-4 p-8 pt-0">
+      <CardFooter className="flex flex-col gap-4 p-6 sm:p-8 pt-0">
         <Button
           className="w-full h-11 font-semibold"
           color="primary"
@@ -1161,35 +1159,41 @@ function MultiStepSignupPreview() {
 
   return (
     <Card variant="shadow" className="w-full max-w-xl">
-      <CardHeader className="space-y-1.5 p-8 pb-4">
+      <CardHeader className="space-y-1.5 p-6 sm:p-8 pb-4">
         <CardTitle className="text-2xl font-bold">Register Account</CardTitle>
         <CardDescription>
           Complete the steps below to setup your new account.
         </CardDescription>
       </CardHeader>
-      <CardBody className="p-8 pt-2 pb-6 space-y-8">
+      <CardBody className="p-6 sm:p-8 pt-2 pb-6 space-y-8">
         <Stepper activeStep={activeStep} size="sm">
           <StepperItem step={0}>
             <StepperIndicator step={0} />
             <div>
-              <StepperTitle>Account</StepperTitle>
-              <StepperDescription>Credentials</StepperDescription>
+              <StepperTitle className="hidden sm:block">Account</StepperTitle>
+              <StepperDescription className="hidden md:block">
+                Credentials
+              </StepperDescription>
             </div>
           </StepperItem>
           <StepperSeparator step={0} />
           <StepperItem step={1}>
             <StepperIndicator step={1} />
             <div>
-              <StepperTitle>Profile</StepperTitle>
-              <StepperDescription>Personal info</StepperDescription>
+              <StepperTitle className="hidden sm:block">Profile</StepperTitle>
+              <StepperDescription className="hidden md:block">
+                Personal info
+              </StepperDescription>
             </div>
           </StepperItem>
           <StepperSeparator step={1} />
           <StepperItem step={2}>
             <StepperIndicator step={2} />
             <div>
-              <StepperTitle>Finish</StepperTitle>
-              <StepperDescription>Confirmation</StepperDescription>
+              <StepperTitle className="hidden sm:block">Finish</StepperTitle>
+              <StepperDescription className="hidden md:block">
+                Confirmation
+              </StepperDescription>
             </div>
           </StepperItem>
         </Stepper>
@@ -1244,7 +1248,7 @@ function MultiStepSignupPreview() {
           )}
         </div>
       </CardBody>
-      <CardFooter className="flex justify-between p-8 pt-0">
+      <CardFooter className="flex justify-between p-6 sm:p-8 pt-0">
         <Button
           variant="flat"
           isDisabled={activeStep === 0}
