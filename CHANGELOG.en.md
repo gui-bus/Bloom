@@ -8,6 +8,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [1.0.2] - 2026-08-18
+
+### New Features and Previews 🎨
+- **Authentication Preview Route**: Added a new `/preview/auth` page showcasing 9 complete, production-ready auth layouts (Classic Card, Split Screen Banner, Modern Minimalist, Image Split Panel, OTP Verification, Social Login with Recent Accounts, Password Reset, Sign Up with Strength Meter, and Multi-Step Registration) fully built using Bloom components (`Card`, `Button`, `Input`, `PasswordInput`, `Stepper`, `Avatar`, `Separator`, and `Toast`).
+- **Forms & CRUD Preview Route**: Created a new `/preview/forms` route containing 9 comprehensive form and data management templates (Profile Settings, Support Ticket, System Preferences, Project Task Creator, Job Application, Appointment Scheduler, Verification & Terms Pad, Customer Billing, and Member CRUD Manager).
+- **Zod Validation & Form Wrapper**: Integrated schema-based Zod validation and `react-hook-form` state management using Bloom's native `<Form>` and `<FormField>` components across all 9 authentication and 9 form layouts for type-safe and realistic templates.
+- **Responsive Device Simulator (`ResponsivePreview`)**: Designed a new preview simulator component in the docs (`components/core/docsComponent.tsx`) to preview components under Mobile (375px), Tablet (768px), and Desktop (100%) views.
+- **Manual Drag Resizing**: Added native pointer-based drag handles allowing users to manually resize simulated device widths, restricted to a safe minimum width of `375px` (Mobile) to preserve layout responsiveness.
+- **Context-Aware Simulation**: Introduced `DevicePreviewContext` to propagate the simulator's size state down to preview components, enabling dynamic column collapse and elements hiding in real-time during simulation.
+
+### Refactorings and Fixes ⚙️
+- **Checkbox Label Wrapping**: Removed `truncate` class from the `Checkbox` component's label and updated line-height from `leading-none` to `leading-tight`. This allows long terms and privacy policy labels to wrap correctly on mobile viewports.
+- **Minimalist Clean Aesthetics**: Removed high-contrast gradients and sparkles icons from preview layouts, shifting to premium solid dark gray backgrounds (`bg-zinc-950` / `text-zinc-400`) and modern symbols (`lucide:command`) to prevent generic "AI-generated" looks.
+- **Flat Border Styling**: Updated card preview variants from `"shadow"` to `"bordered"`, removing heavy shadows (`shadow-2xl` / `shadow-md`) to ensure consistent, premium flat design system aesthetics.
+
 ## [1.0.1] - 2026-08-17
 
 ### Refactorings and Improvements ⚙️

@@ -29,6 +29,7 @@ export interface SliderProps
   histogramData?: number[];
   histogramHeight?: number;
   isRequired?: boolean;
+  isInvalid?: boolean;
 }
 
 const trackColorMap = {
@@ -80,6 +81,7 @@ const Slider = React.forwardRef<
       max = 100,
       onValueChange,
       isRequired = false,
+      isInvalid: _isInvalid = false,
       ...props
     },
     ref,

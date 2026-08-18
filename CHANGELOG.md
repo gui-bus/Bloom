@@ -8,6 +8,21 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ---
 
+## [1.0.2] - 2026-08-18
+
+### Novas Funcionalidades e Previews 🎨
+- **Páginas de Preview de Autenticação**: Adicionada uma nova rota `/preview/auth` com 9 templates e layouts completos de autenticação (Classic Card, Split Screen Banner, Modern Minimalist, Image Split Panel, OTP Verification, Social Login with Recent Accounts, Password Reset, Sign Up with Strength Meter e Multi-Step Registration) integrando os componentes da biblioteca Bloom (incluindo `Card`, `Button`, `Input`, `PasswordInput`, `Stepper`, `Avatar`, `Separator` e `Toast`).
+- **Páginas de Preview de Formulários e CRUD**: Criada a nova rota `/preview/forms` contendo 9 templates completos de formulários (Profile Settings, Support Ticket, System Preferences, Project Task Creator, Job Application, Appointment Scheduler, Verification & Terms Pad, Customer Billing e Member CRUD Manager).
+- **Validação com Zod e Componente Form**: Integrada a validação de formulários baseada em esquemas Zod e gerenciamento com `react-hook-form` através do componente unificado `<Form>` e `<FormField>` da Bloom, aplicados em todos os 9 exemplos de autenticação e 9 de formulários, proporcionando uma experiência de desenvolvimento tipada e integrada.
+- **Simulador de Dispositivos Responsivo (`ResponsivePreview`)**: Criado um novo componente simulador na documentação (`components/core/docsComponent.tsx`) que permite visualizar os componentes em visualizações Mobile (375px), Tablet (768px) e Desktop (100%).
+- **Ajuste de Tamanho Manual (Resize)**: Integrado suporte a redimensionamento manual livre por arrasto utilizando eventos de ponteiro nativos, limitado a uma largura mínima de `375px` para preservar a responsividade e integridade dos layouts.
+- **Responsividade Inteligente via Contexto**: Desenvolvido um contexto de visualização (`DevicePreviewContext`) para propagar o estado do simulador responsivo para os componentes internos, adaptando colunas e visibilidade de elementos complexos em tempo real durante a simulação.
+
+### Refatorações e Correções ⚙️
+- **Ajuste de Quebra de Texto no Checkbox**: Removida a propriedade `truncate` do label interno do componente `Checkbox` e alterado o espaçamento de entrelinhas de `leading-none` para `leading-tight`. Isso permite que textos longos de termos e políticas de privacidade quebrem de linha e se ajustem corretamente em telas mobile.
+- **Ajustes de Design Minimalista**: Removido o uso de gradientes chamativos e ícones de *sparkles* nos layouts de preview de autenticação, adotando tons de cinza neutros (`bg-zinc-950` / `text-zinc-400`) e ícones minimalistas (`lucide:command`) para manter o design profissional, limpo e livre de estéticas artificiais (estilo IA).
+- **Simplificação e Remoção de Sombras**: Alterados os cartões de preview para o padrão `variant="bordered"`, eliminando sombras pesadas e drop shadows (`shadow-2xl` / `shadow-md`) e mantendo a consistência do sistema de design flat.
+
 ## [1.0.1] - 2026-08-17
 
 ### Refatorações e Melhorias ⚙️

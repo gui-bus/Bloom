@@ -103,6 +103,7 @@ export interface ColorPickerProps {
   showFormatSwitcher?: boolean;
   defaultFormat?: ColorFormat;
   isRequired?: boolean;
+  isInvalid?: boolean;
 }
 
 function ColorWheel({
@@ -244,6 +245,7 @@ export function ColorPicker({
   showFormatSwitcher = true,
   defaultFormat = "hex",
   isRequired = false,
+  isInvalid: _isInvalid = false,
 }: ColorPickerProps) {
   const [color, setColor] = React.useState<string>(
     value !== undefined ? value : defaultValue,

@@ -118,6 +118,7 @@ export const blocksNavigationList: DocNavItem[] = [
 
 export const previewsNavigationList: DocNavItem[] = [
   { href: "/preview/auth", label: "Authentication" },
+  { href: "/preview/forms", label: "Forms & CRUD" },
 ];
 
 export const docNavigationList: DocNavItem[] = [

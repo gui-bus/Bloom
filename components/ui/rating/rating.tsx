@@ -31,6 +31,7 @@ export interface RatingProps {
   emojiMap?: Record<number, string>;
   showTooltip?: boolean;
   isRequired?: boolean;
+  isInvalid?: boolean;
   className?: string;
 }
 
@@ -74,6 +75,7 @@ export function Rating({
   emojiMap,
   showTooltip = false,
   isRequired = false,
+  isInvalid: _isInvalid = false,
   className,
 }: RatingProps) {
   const [internalVal, setInternalVal] = React.useState<number>(
