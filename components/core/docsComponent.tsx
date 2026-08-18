@@ -42,9 +42,9 @@ function ResponsivePreview({ children }: { children: React.ReactNode }) {
   const [device, setDevice] = React.useState<Device>("desktop");
 
   return (
-    <div className="overflow-hidden rounded-xl border bg-background border-zinc-200 dark:border-zinc-800">
-      <div className="flex h-12 items-center justify-end border-b bg-zinc-50/50 dark:bg-zinc-900/20 border-zinc-200 dark:border-zinc-800 px-3">
-        <div className="flex items-center gap-0.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-background p-1 shadow-sm">
+    <div className="w-full space-y-4">
+      <div className="flex h-9 items-center justify-end">
+        <div className="flex items-center gap-1">
           {(Object.keys(devices) as Device[]).map((key) => {
             const item = devices[key];
             const IconComponent = item.icon;
@@ -58,28 +58,28 @@ function ResponsivePreview({ children }: { children: React.ReactNode }) {
                 aria-label={`Preview on ${item.label}`}
                 aria-pressed={active}
                 className={cn(
-                  "inline-flex h-7 items-center gap-1.5 rounded-md px-2.5 text-xs font-medium transition-colors",
+                  "inline-flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-colors outline-none",
                   active
-                    ? "bg-zinc-100 dark:bg-zinc-800 text-foreground shadow-sm"
-                    : "text-muted-foreground hover:bg-zinc-50 dark:hover:bg-zinc-850 hover:text-foreground",
+                    ? "bg-zinc-100 dark:bg-zinc-800 text-foreground"
+                    : "text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-900",
                 )}
               >
-                <IconComponent className="size-3.5" />
-                <span className="hidden sm:inline">{item.label}</span>
+                <IconComponent className="size-4" />
+                <span>{item.label}</span>
               </button>
             );
           })}
         </div>
       </div>
 
-      <div className="flex min-h-[450px] w-full justify-center overflow-auto bg-zinc-50/20 dark:bg-zinc-950/10 p-8">
+      <div className="flex min-h-[450px] w-full justify-center overflow-auto rounded-2xl bg-zinc-50/50 dark:bg-zinc-900/10">
         <div
           className="flex min-h-[400px] shrink-0 items-center justify-center transition-[width] duration-300 ease-in-out"
           style={{
             width: devices[device].width,
           }}
         >
-          <div className="w-full">{children}</div>
+          <div className="w-full p-2">{children}</div>
         </div>
       </div>
     </div>
