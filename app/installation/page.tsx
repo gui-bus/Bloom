@@ -87,13 +87,6 @@ const terminalNpmLines: TerminalLine[] = [
   },
 ];
 
-const terminalSourceLines: TerminalLine[] = [
-  {
-    text: `@source "../node_modules/@bloomui-react/components";`,
-    type: "command",
-  },
-];
-
 export default function InstallationPage() {
   return (
     <div className="space-y-12 w-full">
@@ -211,12 +204,11 @@ export default function InstallationPage() {
                 1. Initialize Theme & CSS Config
               </h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                Initialize Bloom UI using the CLI in your project root to
-                automatically configure Tailwind CSS v4 variables, keyframes,
-                and utilities. The CLI will append the{" "}
+                Run the CLI in your project root to automatically configure
+                Tailwind CSS v4 variables, keyframes, utilities, and the{" "}
                 <code className="text-sky-500 font-mono">@source</code>{" "}
-                directive to your globals CSS file to ensure Tailwind v4 scans
-                the pre-compiled package.
+                directive for the pre-compiled package — no manual setup
+                required.
               </p>
               <Terminal variant="mac" lines={terminalInitLines} />
             </div>
@@ -234,18 +226,7 @@ export default function InstallationPage() {
 
             <div className="space-y-2 pt-2">
               <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                3. Update your globals.css file
-              </h3>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                Update your globals.css file to include the @source directive
-                for the pre-compiled components.
-              </p>
-              <Terminal variant="mac" lines={terminalSourceLines} />
-            </div>
-
-            <div className="space-y-2 pt-2">
-              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                4. Import Components
+                3. Import Components
               </h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 Import any component directly from{" "}

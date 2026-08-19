@@ -216,18 +216,25 @@ program
         if (fs.existsSync(targetCssPath)) {
           const existingContent = fs.readFileSync(targetCssPath, "utf8");
           if (!existingContent.includes(sourceDirective)) {
+            const animateImportRegex =
+              /(@import\s+["']tw-animate-css["'];?\s*\n)/;
             const tailwindImportRegex =
               /(@import\s+["']tailwindcss["'];?\s*\n)/;
-            if (tailwindImportRegex.test(existingContent)) {
-              const updatedContent = existingContent.replace(
+            let updatedContent: string;
+            if (animateImportRegex.test(existingContent)) {
+              updatedContent = existingContent.replace(
+                animateImportRegex,
+                `$1${sourceDirective}\n`,
+              );
+            } else if (tailwindImportRegex.test(existingContent)) {
+              updatedContent = existingContent.replace(
                 tailwindImportRegex,
                 `$1${sourceDirective}\n`,
               );
-              fs.writeFileSync(targetCssPath, updatedContent, "utf8");
             } else {
-              const updatedContent = `${sourceDirective}\n${existingContent}`;
-              fs.writeFileSync(targetCssPath, updatedContent, "utf8");
+              updatedContent = `${existingContent}\n${sourceDirective}\n`;
             }
+            fs.writeFileSync(targetCssPath, updatedContent, "utf8");
           }
           const bloomContent = globalsData.content;
           const customAnimations = bloomContent.slice(
@@ -246,10 +253,17 @@ program
           }
         } else {
           const registryContent = globalsData.content;
-          const updatedContent = registryContent.replace(
-            /(@import\s+["']tailwindcss["'];?\s*\n)/,
-            `$1${sourceDirective}\n`,
-          );
+          const animateImportRegex =
+            /(@import\s+["']tw-animate-css["'];?\s*\n)/;
+          const updatedContent = animateImportRegex.test(registryContent)
+            ? registryContent.replace(
+                animateImportRegex,
+                `$1${sourceDirective}\n`,
+              )
+            : registryContent.replace(
+                /(@import\s+["']tailwindcss["'];?\s*\n)/,
+                `$1${sourceDirective}\n`,
+              );
           fs.writeFileSync(targetCssPath, updatedContent, "utf8");
         }
       }

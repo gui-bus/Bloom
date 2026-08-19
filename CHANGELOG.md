@@ -8,11 +8,11 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ---
 
-## [1.0.7] - 2026-08-19
+## [1.0.9] - 2026-08-19
 
 ### Novas Funcionalidades e Melhorias 🎨
 - **Auto-Configuração de CSS do Tailwind v4**: Adicionada a detecção automática e configuração do arquivo `globals.css` (com suporte a projetos Next.js) durante o `npx @bloomui-react/cli init`, inserindo diretamente as variáveis, animações e classes utilitárias no arquivo de estilos globais do projeto.
-- **Integração de Varredura do Tailwind v4 (Source Scan)**: Adicionada a diretiva `@source` apontando para o pacote `@bloomui-react/components` no template padrão do `globals.css`, permitindo que o Tailwind CSS v4 processe e gere as classes utilitárias internas da biblioteca (como `overflow-hidden` do botão para conter o ripple) automaticamente nos projetos hosts.
+- **Injeção Automática da Diretiva `@source`**: O CLI agora injeta automaticamente a diretiva `@source "../node_modules/@bloomui-react/components"` no `globals.css` do projeto host ao rodar `init`, posicionada corretamente após `@import "tw-animate-css"`. Funciona tanto para arquivos CSS existentes quanto para novos — sem necessidade de configuração manual.
 - **Validação Inteligente do Gerenciador de Pacotes**: Desenvolvido script de validação executado durante a instalação do pacote `@bloomui-react/components` que impede a execução sob gerenciador incorreto de acordo com os arquivos de lockfile existentes (`pnpm-lock.yaml`, `yarn.lock`, `bun.lockb`), evitando conflitos de pacotes e corrupção de arquivos de lock.
 - **Geração de Tipos TypeScript (DTS)**: Ativada a compilação e exportação de arquivos de declaração `.d.ts` na build do pacote de componentes, permitindo sugestões automáticas de importação pelo IDE (auto-import) e tipagem estática integrada.
 - **Instalação das Dependências Requeridas no CLI**: Adicionado o pacote `tw-animate-css` à lista de dependências instaladas automaticamente na inicialização (`init`) e verificadas no diagnóstico de saúde (`doctor`), solucionando erros de compilação de CSS nos projetos clientes.
@@ -21,6 +21,7 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 ### Refatorações e Correções ⚙️
 - **Correção de Tipos do Menubar**: Envolvidos sub-componentes do `Menubar` herdados do Radix UI em wrappers React funcionais explícitos, corrigindo erros de portabilidade de tipos não nomeados (TS2742).
 - **Correção de Require Dinâmico no Next.js**: Configurados `next`, `next/image` e `next/link` como dependências externas na configuração do tsup, prevenindo erros de execução do Turbopack ("dynamic usage of require is not supported") e reduzindo significativamente o tamanho final do bundle.
+- **Página de Instalação Simplificada**: Removido o passo manual de configuração da diretiva `@source` do guia de instalação via NPM, já que o CLI agora realiza essa configuração automaticamente ao rodar `init`.
 
 ## [1.0.2] - 2026-08-18
 
