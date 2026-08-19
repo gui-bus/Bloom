@@ -35,7 +35,7 @@ export default function Home() {
       <section id="introduction" className="space-y-8 pt-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 text-xs font-medium tracking-tight">
           <span className="size-1.5 rounded-full bg-sky-500" />
-          Bloom UI v1.0 — 95 React 19 Components
+          Bloom UI v1.0 — 98 React 19 Components
         </div>
 
         <div className="space-y-4">
@@ -55,7 +55,7 @@ export default function Home() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-medium text-sm transition-colors duration-150 shadow-xs"
           >
             <Icon icon="hugeicons:grid-view" className="size-4" />
-            Explore 90+ Components
+            Explore 98+ Components
           </Link>
           <Link
             href="/installation"
@@ -117,7 +117,7 @@ export default function Home() {
           />
           <FeatureCard
             icon="hugeicons:package"
-            title="95 Modular Components"
+            title="98 Modular Components"
             description="Independent components designed for composition. Zero bloated dependencies and optimized bundle size."
           />
         </div>
