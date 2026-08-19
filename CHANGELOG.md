@@ -8,12 +8,13 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ---
 
-## [1.0.4] - 2026-08-19
+## [1.0.5] - 2026-08-19
 
 ### Novas Funcionalidades e Melhorias 🎨
 - **Auto-Configuração de CSS do Tailwind v4**: Adicionada a detecção automática e configuração do arquivo `globals.css` (com suporte a projetos Next.js) durante o `npx @bloomui-react/cli init`, inserindo diretamente as variáveis, animações e classes utilitárias no arquivo de estilos globais do projeto.
 - **Validação Inteligente do Gerenciador de Pacotes**: Desenvolvido script de validação executado durante a instalação do pacote `@bloomui-react/components` que impede a execução sob gerenciador incorreto de acordo com os arquivos de lockfile existentes (`pnpm-lock.yaml`, `yarn.lock`, `bun.lockb`), evitando conflitos de pacotes e corrupção de arquivos de lock.
 - **Geração de Tipos TypeScript (DTS)**: Ativada a compilação e exportação de arquivos de declaração `.d.ts` na build do pacote de componentes, permitindo sugestões automáticas de importação pelo IDE (auto-import) e tipagem estática integrada.
+- **Instalação das Dependências Requeridas no CLI**: Adicionado o pacote `tw-animate-css` à lista de dependências instaladas automaticamente na inicialização (`init`) e verificadas no diagnóstico de saúde (`doctor`), solucionando erros de compilação de CSS nos projetos clientes.
 
 ### Refatorações e Correções ⚙️
 - **Correção de Tipos do Menubar**: Envolvidos sub-componentes do `Menubar` herdados do Radix UI em wrappers React funcionais explícitos, corrigindo erros de portabilidade de tipos não nomeados (TS2742).
