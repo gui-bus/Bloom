@@ -125,7 +125,6 @@ export default function Home() {
 
       <DocsPagination />
 
-      <div className="h-4" />
     </main>
   );
 }

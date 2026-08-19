@@ -239,7 +239,7 @@ program
       const sDeps = spinner();
       if (!skipPrompts) {
         sDeps.start(
-          `Installing clsx tailwind-merge and lucide-react via ${pkgManager}`,
+          `Installing clsx tailwind-merge lucide-react and tw-animate-css via ${pkgManager}`,
         );
       } else {
         console.log(`Installing dependencies using ${pkgManager}...`);
@@ -247,12 +247,17 @@ program
       try {
         let installCmd = "";
         if (pkgManager === "pnpm")
-          installCmd = "pnpm add clsx tailwind-merge lucide-react";
+          installCmd =
+            "pnpm add clsx tailwind-merge lucide-react tw-animate-css";
         else if (pkgManager === "yarn")
-          installCmd = "yarn add clsx tailwind-merge lucide-react";
+          installCmd =
+            "yarn add clsx tailwind-merge lucide-react tw-animate-css";
         else if (pkgManager === "bun")
-          installCmd = "bun add clsx tailwind-merge lucide-react";
-        else installCmd = "npm install clsx tailwind-merge lucide-react";
+          installCmd =
+            "bun add clsx tailwind-merge lucide-react tw-animate-css";
+        else
+          installCmd =
+            "npm install clsx tailwind-merge lucide-react tw-animate-css";
 
         await execPromise(installCmd);
         if (!skipPrompts) {
@@ -1230,7 +1235,12 @@ program
         try {
           const pkg = JSON.parse(fs.readFileSync(pkgJsonPath, "utf8"));
           const deps = { ...pkg.dependencies, ...pkg.devDependencies };
-          const requiredDeps = ["clsx", "tailwind-merge", "lucide-react"];
+          const requiredDeps = [
+            "clsx",
+            "tailwind-merge",
+            "lucide-react",
+            "tw-animate-css",
+          ];
           for (const dep of requiredDeps) {
             if (deps[dep]) {
               successes.push(`Dependency '${dep}' is installed.`);
