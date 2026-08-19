@@ -82,7 +82,7 @@ const terminalDoctorLines: TerminalLine[] = [
 const terminalNpmLines: TerminalLine[] = [
   { text: "npm install @bloomui-react/components", type: "command" },
   {
-    text: "Installed @bloomui-react/components v0.1.0 (ESM & CJS bundles)",
+    text: "Installed @bloomui-react/components v1.0.4 (ESM & CJS bundles)",
     type: "success",
   },
 ];
@@ -201,18 +201,37 @@ export default function InstallationPage() {
           <div className="space-y-4">
             <div className="space-y-2">
               <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                1. Install Dependency
+                1. Initialize Theme & CSS Config
               </h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Initialize Bloom UI using the CLI in your project root to
+                automatically configure Tailwind CSS v4 variables, keyframes,
+                and utilities in your styles file.
+              </p>
+              <Terminal variant="mac" lines={terminalInitLines} />
+            </div>
+
+            <div className="space-y-2 pt-2">
+              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                2. Install Dependency
+              </h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Install the pre-compiled library as a dependency in your
+                project.
+              </p>
               <Terminal variant="mac" lines={terminalNpmLines} />
             </div>
 
             <div className="space-y-2 pt-2">
               <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                2. Import Components
+                3. Import Components
               </h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 Import any component directly from{" "}
-                <code className="text-sky-500 font-mono">@bloomui/react</code>:
+                <code className="text-sky-500 font-mono">
+                  @bloomui-react/components
+                </code>
+                :
               </p>
               <PublicCodeBlock
                 variant="mac"
