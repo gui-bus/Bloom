@@ -312,9 +312,10 @@ export const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
     );
 
     const textStyle = textSizes[activeSize];
+    const Component = props.id ? "section" : "div";
 
     return (
-      <div ref={ref} className={containerStyle} {...props}>
+      <Component ref={ref} className={containerStyle} {...props}>
         {!isLast && <div className={lineStyle} />}
 
         <div
@@ -393,14 +394,14 @@ export const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
           </div>
 
           {description && (
-            <p
+            <div
               className={cn(
                 "text-zinc-500 dark:text-zinc-400 leading-relaxed",
                 textStyle.desc,
               )}
             >
               {description}
-            </p>
+            </div>
           )}
 
           {details && (
@@ -433,7 +434,7 @@ export const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
             </div>
           )}
         </div>
-      </div>
+      </Component>
     );
   },
 );

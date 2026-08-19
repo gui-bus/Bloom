@@ -11,6 +11,7 @@ export interface SidebarSection {
 export const overviewNavigationList: DocNavItem[] = [
   { href: "/", label: "Introduction" },
   { href: "/installation", label: "Installation" },
+  { href: "/changelog", label: "Changelog" },
 ];
 
 export const componentsNavigationList: DocNavItem[] = [
