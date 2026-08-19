@@ -206,7 +206,10 @@ export default function InstallationPage() {
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 Initialize Bloom UI using the CLI in your project root to
                 automatically configure Tailwind CSS v4 variables, keyframes,
-                and utilities in your styles file.
+                and utilities. The CLI will append the{" "}
+                <code className="text-sky-500 font-mono">@source</code>{" "}
+                directive to your globals CSS file to ensure Tailwind v4 scans
+                the pre-compiled package.
               </p>
               <Terminal variant="mac" lines={terminalInitLines} />
             </div>

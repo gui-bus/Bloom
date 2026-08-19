@@ -8,10 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
-## [1.0.6] - 2026-08-19
+## [1.0.7] - 2026-08-19
 
 ### New Features and Improvements 🎨
 - **Tailwind v4 CSS Auto-Setup**: Added automatic detection and setup of `globals.css` (supporting Next.js structures) during `npx @bloomui-react/cli init`, provisioning custom components animations, variables, and utility classes directly into the project's globals file.
+- **Tailwind v4 Source Scan Integration**: Injected the `@source` directive pointing to `@bloomui-react/components` inside the generated `globals.css` configuration template, ensuring Tailwind CSS v4 compiles package classes (like overflow-hidden for ripple clips) automatically.
 - **Smart Package Manager Enforcement**: Implemented a package manager verification script during `@bloomui-react/components` installation that checks the current running client against existing lockfiles (`pnpm-lock.yaml`, `yarn.lock`, `bun.lockb`) to prevent package manager mismatches and lockfile corruption.
 - **TypeScript Declarations Support**: Enabled TypeScript `.d.ts` declaration file generation during compilation of the `@bloomui-react/components` library for full, seamless IDE auto-import suggestions and type safety.
 - **CLI Dependency Expansion**: Added `tw-animate-css` to the list of packages installed automatically during `init` and checked by `doctor` command, resolving import and compilation errors on Tailwind CSS animations in client workspaces.
