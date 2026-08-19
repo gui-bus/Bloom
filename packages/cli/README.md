@@ -16,7 +16,8 @@ npx @bloomui-react/cli init
 This interactive command will:
 * Prompt you to configure directories for components and utilities (creates `bloom.json` config).
 * Generate core utility files: `lib/utils.ts` (the `cn` utility) and `lib/design-system.ts` (design tokens).
-* Install required styling dependencies (`clsx`, `tailwind-merge`, and `lucide-react`).
+* Automatically detect and patch your `globals.css` — injecting Bloom's CSS variables, keyframe animations, and the `@source` directive for Tailwind CSS v4 to scan the pre-compiled package.
+* Install required styling dependencies (`clsx`, `tailwind-merge`, `lucide-react`, and `tw-animate-css`).
 
 ### 2. Add components
 Add components along with their radix primitives and dependency files automatically:

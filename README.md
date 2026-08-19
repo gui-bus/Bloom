@@ -152,7 +152,7 @@ graph TB
 
 ---
 
-## 🚀 Componentes Implementados (97 Componentes)
+## 🚀 Componentes Implementados (98 Componentes)
 
 | Componente | Categoria | Descrição |
 | :--- | :--- | :--- |
@@ -261,7 +261,7 @@ O ecossistema Bloom adota uma cobertura de testes automatizada para assegurar es
 ```mermaid
 flowchart LR
     subgraph Unit ["🧪 Vitest (Suíte Unitária)"]
-        U1["97+ Arquivos de Teste"]
+        U1["98+ Arquivos de Teste"]
         U2["300+ Assertivas Unitárias"]
     end
 
