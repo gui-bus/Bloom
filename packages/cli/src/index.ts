@@ -99,7 +99,7 @@ program
 
       const installDepsInput = await confirm({
         message:
-          "Do you want us to install tailwind-merge and clsx if they are missing?",
+          "Do you want us to install tailwind-merge, clsx, lucide-react, and tw-animate-css if they are missing?",
       });
 
       if (typeof installDepsInput === "symbol") return;
