@@ -1,7 +1,7 @@
 module.exports = {
   entry: ["src/index.ts"],
   format: ["cjs", "esm"],
-  dts: false,
+  dts: true,
   clean: true,
   minify: true,
   sourcemap: true,

@@ -39,6 +39,10 @@ async function getRegistryBase(): Promise<string> {
 }
 
 function detectPackageManager(): string {
+  const ua = process.env.npm_config_user_agent || "";
+  if (ua.includes("pnpm")) return "pnpm";
+  if (ua.includes("yarn")) return "yarn";
+  if (ua.includes("bun")) return "bun";
   if (fs.existsSync(path.join(process.cwd(), "pnpm-lock.yaml"))) return "pnpm";
   if (fs.existsSync(path.join(process.cwd(), "yarn.lock"))) return "yarn";
   if (fs.existsSync(path.join(process.cwd(), "bun.lockb"))) return "bun";
@@ -172,6 +176,43 @@ program
           useRippleData.content,
           "utf8",
         );
+      }
+
+      const possibleCssPaths = [
+        "app/globals.css",
+        "src/app/globals.css",
+        "styles/globals.css",
+        "src/styles/globals.css",
+        "app/global.css",
+        "src/app/global.css",
+      ];
+      let targetCssPath = "";
+      for (const p of possibleCssPaths) {
+        const fullPath = path.join(process.cwd(), p);
+        if (fs.existsSync(fullPath)) {
+          targetCssPath = fullPath;
+          break;
+        }
+      }
+
+      if (!targetCssPath) {
+        if (fs.existsSync(path.join(process.cwd(), "src/app"))) {
+          targetCssPath = path.join(process.cwd(), "src/app/globals.css");
+        } else if (fs.existsSync(path.join(process.cwd(), "app"))) {
+          targetCssPath = path.join(process.cwd(), "app/globals.css");
+        } else {
+          targetCssPath = path.join(process.cwd(), "app/globals.css");
+        }
+      }
+
+      const globalsRes = await fetch(`${registryBase}/globals.json`);
+      if (globalsRes.ok) {
+        const globalsData = (await globalsRes.json()) as { content: string };
+        const cssDir = path.dirname(targetCssPath);
+        if (!fs.existsSync(cssDir)) {
+          fs.mkdirSync(cssDir, { recursive: true });
+        }
+        fs.writeFileSync(targetCssPath, globalsData.content, "utf8");
       }
     } catch (_e) {
       if (!skipPrompts) {

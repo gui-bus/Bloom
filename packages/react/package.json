@@ -1,6 +1,6 @@
 {
   "name": "@bloomui-react/components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Premium React 19 UI component library built with Tailwind CSS and Radix UI.",
   "author": "Guilherme Bus",
   "license": "MIT",
@@ -20,10 +20,12 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "scripts"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "preinstall": "node scripts/preinstall.js"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

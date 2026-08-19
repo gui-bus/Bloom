@@ -231,6 +231,17 @@ function main() {
     console.log("Registered util: useRipple.ts");
   }
 
+  const globalsCssPath = path.join(projectRoot, "app/globals.css");
+  if (fs.existsSync(globalsCssPath)) {
+    const globalsContent = fs.readFileSync(globalsCssPath, "utf8");
+    fs.writeFileSync(
+      path.join(outputDir, "globals.json"),
+      JSON.stringify({ content: globalsContent }, null, 2),
+      "utf8",
+    );
+    console.log("Registered util: globals.css");
+  }
+
   fs.writeFileSync(
     path.join(outputDir, "index.json"),
     JSON.stringify(indexRegistry, null, 2),
