@@ -212,7 +212,46 @@ program
         if (!fs.existsSync(cssDir)) {
           fs.mkdirSync(cssDir, { recursive: true });
         }
-        fs.writeFileSync(targetCssPath, globalsData.content, "utf8");
+        const sourceDirective = `@source "../node_modules/@bloomui-react/components";`;
+        if (fs.existsSync(targetCssPath)) {
+          const existingContent = fs.readFileSync(targetCssPath, "utf8");
+          if (!existingContent.includes(sourceDirective)) {
+            const tailwindImportRegex =
+              /(@import\s+["']tailwindcss["'];?\s*\n)/;
+            if (tailwindImportRegex.test(existingContent)) {
+              const updatedContent = existingContent.replace(
+                tailwindImportRegex,
+                `$1${sourceDirective}\n`,
+              );
+              fs.writeFileSync(targetCssPath, updatedContent, "utf8");
+            } else {
+              const updatedContent = `${sourceDirective}\n${existingContent}`;
+              fs.writeFileSync(targetCssPath, updatedContent, "utf8");
+            }
+          }
+          const bloomContent = globalsData.content;
+          const customAnimations = bloomContent.slice(
+            bloomContent.indexOf("@keyframes ripple"),
+          );
+          if (
+            customAnimations &&
+            !existingContent.includes("@keyframes ripple")
+          ) {
+            const currentContent = fs.readFileSync(targetCssPath, "utf8");
+            fs.writeFileSync(
+              targetCssPath,
+              `${currentContent}\n${customAnimations}`,
+              "utf8",
+            );
+          }
+        } else {
+          const registryContent = globalsData.content;
+          const updatedContent = registryContent.replace(
+            /(@import\s+["']tailwindcss["'];?\s*\n)/,
+            `$1${sourceDirective}\n`,
+          );
+          fs.writeFileSync(targetCssPath, updatedContent, "utf8");
+        }
       }
     } catch (_e) {
       if (!skipPrompts) {
