@@ -74,7 +74,7 @@ export function FormField({
     <div className={cn("w-full flex flex-col gap-1.5", className)} {...props}>
       {renderLabelContent()}
       <div className="w-full">
-        {React.isValidElement(children)
+        {React.isValidElement(children) && typeof children.type !== "string"
           ? React.cloneElement(
               children as React.ReactElement<{
                 id?: string;
