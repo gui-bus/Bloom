@@ -87,6 +87,13 @@ const terminalNpmLines: TerminalLine[] = [
   },
 ];
 
+const terminalSourceLines: TerminalLine[] = [
+  {
+    text: `@source "../node_modules/@bloomui-react/components";`,
+    type: "command",
+  },
+];
+
 export default function InstallationPage() {
   return (
     <div className="space-y-12 w-full">
@@ -227,7 +234,18 @@ export default function InstallationPage() {
 
             <div className="space-y-2 pt-2">
               <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                3. Import Components
+                3. Update your globals.css file
+              </h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Update your globals.css file to include the @source directive
+                for the pre-compiled components.
+              </p>
+              <Terminal variant="mac" lines={terminalSourceLines} />
+            </div>
+
+            <div className="space-y-2 pt-2">
+              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                4. Import Components
               </h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 Import any component directly from{" "}
