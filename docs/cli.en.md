@@ -18,11 +18,12 @@ npx @bloomui-react/cli init
 The CLI will open an interactive interface in the terminal asking:
 1. **Components Directory**: Where created components should be saved (Default: `components/ui`).
 2. **Utilities Directory**: Where support files should be saved (Default: `lib`).
-3. **Dependency Installation**: Whether the CLI should automatically install required utility libraries (`clsx`, `tailwind-merge`, and `lucide-react`) in your project.
+3. **Dependency Installation**: Whether the CLI should automatically install required utility libraries (`clsx`, `tailwind-merge`, `lucide-react`, and `tw-animate-css`) in your project.
 
 This command will generate the `bloom.json` file at the root of your project and create the folders and support files:
 * `lib/utils.ts` (containing the `cn` utility function for merging classes).
 * `lib/design-system.ts` (containing tokens for sizes, semantic colors, and rounded corners).
+* Automatically detects and patches your `globals.css` — injecting Bloom's CSS variables, keyframe animations, and the `@source "../node_modules/@bloomui-react/components"` directive so Tailwind CSS v4 scans the pre-compiled package correctly.
 
 ---
 
@@ -70,7 +71,7 @@ It will analyze and validate:
 * The existence and validity of the `bloom.json` manifest.
 * The physical integrity of component and utility folders.
 * The presence of required support files (`utils.ts`, `design-system.ts`, `ripple`).
-* The presence of required dependencies (`clsx`, `tailwind-merge`, `lucide-react`) in `package.json`.
+* The presence of required dependencies (`clsx`, `tailwind-merge`, `lucide-react`, and `tw-animate-css`) in `package.json`.
 
 ---
 

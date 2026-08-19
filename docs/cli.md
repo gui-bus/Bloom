@@ -18,11 +18,12 @@ npx @bloomui-react/cli init
 A CLI abrirá uma interface interativa no terminal perguntando:
 1. **Diretório dos Componentes**: Onde os componentes criados devem ser salvos (Padrão: `components/ui`).
 2. **Diretório de Utilitários**: Onde os arquivos fundamentais de suporte devem ser salvos (Padrão: `lib`).
-3. **Instalação de Dependências**: Se a CLI deve instalar automaticamente as bibliotecas de utilidades necessárias (`clsx`, `tailwind-merge` e `lucide-react`) no seu projeto.
+3. **Instalação de Dependências**: Se a CLI deve instalar automaticamente as bibliotecas de utilidades necessárias (`clsx`, `tailwind-merge`, `lucide-react` e `tw-animate-css`) no seu projeto.
 
 Este comando gerará o arquivo `bloom.json` na raiz do seu projeto e criará as pastas e arquivos de suporte:
 * `lib/utils.ts` (contendo a função utilitária `cn` para fusão de classes).
 * `lib/design-system.ts` (contendo os tokens de tamanhos, cores semânticas e cantos arredondados).
+* Detecta e aplica automaticamente as configurações no seu `globals.css` — injetando as variáveis CSS, animações de keyframe do Bloom e a diretiva `@source "../node_modules/@bloomui-react/components"` para que o Tailwind CSS v4 escaneie corretamente o pacote pré-compilado.
 
 ---
 
@@ -70,7 +71,7 @@ Ele analisará e validará:
 * A existência e validade do manifesto `bloom.json`.
 * A integridade física das pastas de componentes e utilitários.
 * A presença dos arquivos obrigatórios de suporte (`utils.ts`, `design-system.ts`, `ripple`).
-* A presença das dependências obrigatórias (`clsx`, `tailwind-merge`, `lucide-react`) no `package.json`.
+* A presença das dependências obrigatórias (`clsx`, `tailwind-merge`, `lucide-react` e `tw-animate-css`) no `package.json`.
 
 ---
 
