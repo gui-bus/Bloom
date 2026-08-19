@@ -1,6 +1,6 @@
 {
   "name": "@bloomui-react/cli",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "CLI to install Bloom UI components directly into your project",
   "main": "dist/index.js",
   "bin": {
