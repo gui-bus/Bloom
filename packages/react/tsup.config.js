@@ -1,3 +1,5 @@
+const pkg = require("./package.json");
+
 module.exports = {
   entry: ["src/index.ts"],
   format: ["cjs", "esm"],
@@ -5,7 +7,15 @@ module.exports = {
   clean: true,
   minify: true,
   sourcemap: true,
-  external: ["react", "react-dom"],
+  external: [
+    "react",
+    "react-dom",
+    "next",
+    "next/image",
+    "next/link",
+    ...Object.keys(pkg.dependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {}),
+  ],
   banner: {
     js: '"use client";',
   },

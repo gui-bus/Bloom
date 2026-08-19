@@ -17,6 +17,7 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ### Refatorações e Correções ⚙️
 - **Correção de Tipos do Menubar**: Envolvidos sub-componentes do `Menubar` herdados do Radix UI em wrappers React funcionais explícitos, corrigindo erros de portabilidade de tipos não nomeados (TS2742).
+- **Correção de Require Dinâmico no Next.js**: Configurados `next`, `next/image` e `next/link` como dependências externas na configuração do tsup, prevenindo erros de execução do Turbopack ("dynamic usage of require is not supported") e reduzindo significativamente o tamanho final do bundle.
 
 ## [1.0.2] - 2026-08-18
 

@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ### Refactorings and Fixes ⚙️
 - **Menubar Portability Fix**: Wrapped Radix UI sub-components in the `Menubar` to ensure complete, clean types definition and avoid TypeScript portable type compilation errors (TS2742).
+- **Next.js Dynamic Require Fix**: Configured `next`, `next/image` and `next/link` as external dependencies in tsup config, preventing Turbopack runtime errors ("dynamic usage of require is not supported") and significantly reducing bundle size.
 
 ## [1.0.2] - 2026-08-18
 
