@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
-## [1.0.3] - 2026-08-19
+## [1.0.4] - 2026-08-19
 
 ### New Features and Improvements 🎨
 - **Tailwind v4 CSS Auto-Setup**: Added automatic detection and setup of `globals.css` (supporting Next.js structures) during `npx @bloomui-react/cli init`, provisioning custom components animations, variables, and utility classes directly into the project's globals file.

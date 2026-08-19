@@ -8,7 +8,7 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ---
 
-## [1.0.3] - 2026-08-19
+## [1.0.4] - 2026-08-19
 
 ### Novas Funcionalidades e Melhorias 🎨
 - **Auto-Configuração de CSS do Tailwind v4**: Adicionada a detecção automática e configuração do arquivo `globals.css` (com suporte a projetos Next.js) durante o `npx @bloomui-react/cli init`, inserindo diretamente as variáveis, animações e classes utilitárias no arquivo de estilos globais do projeto.
