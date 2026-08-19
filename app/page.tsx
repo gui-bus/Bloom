@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card/card";
-import { Terminal, type TerminalLine } from "@/components/ui/terminal/terminal";
 
 const FeatureCard = ({
   icon,
@@ -29,24 +28,6 @@ const FeatureCard = ({
     </CardHeader>
   </Card>
 );
-
-const terminalCliLines: TerminalLine[] = [
-  { text: "npx @bloomui-react/cli init", type: "command" },
-  { text: "Design system tokens initialized in project", type: "success" },
-  {
-    text: "npx @bloomui-react/cli add button tableOfContents snippet",
-    type: "command",
-  },
-  { text: "Components added directly into components/ui", type: "success" },
-];
-
-const terminalNpmLines: TerminalLine[] = [
-  { text: "npm install @bloomui-react/components", type: "command" },
-  {
-    text: "Installed @bloomui-react/components v0.1.0 (95 components included)",
-    type: "success",
-  },
-];
 
 export default function Home() {
   return (
@@ -97,65 +78,6 @@ export default function Home() {
           </a>
         </div>
       </section>
-
-      <section id="quickstart" className="space-y-8">
-        <div>
-          <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Installation Methods
-          </h3>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
-            Choose between full source code ownership using our CLI or a
-            standard NPM package dependency.
-          </p>
-        </div>
-
-        <div className="space-y-8">
-          <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <span className="flex items-center justify-center size-7 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold font-mono">
-                  01
-                </span>
-                <h4 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
-                  CLI — Full Source Code Ownership
-                </h4>
-              </div>
-              <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md">
-                Recommended for Customization
-              </span>
-            </div>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Use our CLI to download raw React component code directly into
-              your repository. Modify styling, logic, and structure freely
-              without third-party wrapper constraints.
-            </p>
-            <Terminal variant="mac" lines={terminalCliLines} />
-          </div>
-
-          <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <span className="flex items-center justify-center size-7 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold font-mono">
-                  02
-                </span>
-                <h4 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
-                  NPM Package — Standard Dependency
-                </h4>
-              </div>
-              <span className="text-xs font-medium text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 rounded-md">
-                Pre-compiled ESM & CJS
-              </span>
-            </div>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Install pre-compiled components via NPM if you prefer traditional
-              version management across your applications.
-            </p>
-            <Terminal variant="mac" lines={terminalNpmLines} />
-          </div>
-        </div>
-      </section>
-
-      <hr className="border-zinc-200 dark:border-zinc-800" />
 
       <section id="principles" className="space-y-6">
         <div>
